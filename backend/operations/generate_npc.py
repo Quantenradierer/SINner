@@ -1,7 +1,7 @@
 import random
 import time
 
-import backend.config
+from backend import config
 from factories.fill_npc_from_gpt import fill_npc_from_gpt
 from models.npc import Npc
 from repositories.npc import NpcRepository

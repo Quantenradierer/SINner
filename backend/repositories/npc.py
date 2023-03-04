@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 from sqlalchemy.sql.selectable import and_
 
-import backend.config
+from backend import config
 from backend.models.npc import Npc, Attribute, NpcBase
 
 
