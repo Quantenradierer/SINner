@@ -27,8 +27,8 @@ def split_image(image_path, output_path):
 
 
 if __name__ == '__main__':
-    output_path = r'frontend\public\images\npcs'
-    input_path = r'data\midjourney'
+    output_path = 'frontend/public/images/npcs'
+    input_path = 'data/midjourney'
 
     for beginning_size in range(63, 15, -1):
         repo = NpcRepository()
