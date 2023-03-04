@@ -18,6 +18,7 @@ RELEVANT_ATTRIBUTES = {
         'Geschlecht': '',
         'Alter': '',
         'Geruch': '',
+        'Catchphrase': '',
         'Detailliertes Aussehen': '',
         'Detailliertes Aussehen (english)': ''
     },
