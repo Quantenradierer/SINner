@@ -7,8 +7,17 @@ logging.getLogger().setLevel(logging.DEBUG)
 
 SQLITE_FILE = 'data/npcs.sqlite'
 
+
+"""
+Prompt which will be sent to GPT, followed by a list of the attributes
+"""
 PROMPT = "Vervollständige einen Shadowrun NPC mit Bezug auf die ADL, Allianz Deutscher Länder, mit den folgenden Attributen. Antworte dazu mit allen genannten Punkten, inklusive der Werte, erneut: \n"
 
+
+"""
+All relevant attributes, with default value. The main keys (Aussehen, Hintergrund, etc) do not have a function at the moment.
+The default value can be overwritten by existing values of a npc.
+"""
 RELEVANT_ATTRIBUTES = {
     'Aussehen': {
         'Name': '',
@@ -51,3 +60,9 @@ RELEVANT_ATTRIBUTES = {
         'Konzernzugehörigkeit': ''
     }
 }
+
+
+'''
+midjourney adds the username in front of the image name. We need the name in order to remove it.
+'''
+MIDJOURNEY_USERNAME = 'Leto'

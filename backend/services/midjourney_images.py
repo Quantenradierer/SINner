@@ -1,6 +1,7 @@
 from PIL import Image
 import os.path
 
+from backend import config
 from backend.repositories.npc import NpcRepository
 
 
@@ -34,7 +35,7 @@ if __name__ == '__main__':
         repo = NpcRepository()
         for root, folder, files in os.walk(input_path):
             for file in files:
-                beginning = file[5:beginning_size].replace('_', ' ')
+                beginning = file[len(config.MIDJOURNEY_USERNAME) + 1:beginning_size].replace('_', ' ')
                 npc = repo.find_image_description(beginning)
                 if npc:
                     splitted_file_names = list(split_image(image_path=os.path.join(root, file), output_path=output_path))
