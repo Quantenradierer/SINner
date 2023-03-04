@@ -52,9 +52,11 @@ Also, please take a look at the backend/README.
 
 # Costs
 
-GPT-3.5 costs $0.002 / 1K tokens. One NPC call is around 1.3K tokens. Even with planned changes and additional features, it will be around 0.01$ per npc creation.
+GPT-3.5 costs $0.002 / 1K tokens. One NPC call is around 1.3K tokens.
+Even with planned changes and additional features, it will be around 0.01$ per npc creation.
 
-Midjourney costs 8$ for ca. 200 generations in the cheapest subscription plan. This means 0,04$ per NPC, but you can choose between 4 images.
+Midjourney costs 8$ for ca. 200 generations in the cheapest subscription plan.
+This means 0.04$ per NPC, but you can choose between 4 images.
 
 In summary, it costs around 0.05$ per NPC creation. 
 
