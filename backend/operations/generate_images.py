@@ -15,3 +15,5 @@ if __name__ == '__main__':
 
         # break
         time.sleep(200 + random.randint(-60, 60))
+
+    # WIP: you still need to copy them into data/midjourney and then call services/midjourney_images.py

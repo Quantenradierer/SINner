@@ -1,4 +1,4 @@
-from backend.repositories.npc import Npc, Attribute
+from backend.models.npc import Npc, Attribute
 
 
 def _split(text):
@@ -19,11 +19,12 @@ def _split(text):
             'attributes': attributes}
 
 
-def npc_from_gpt(gpt_response):
+def fill_npc_from_gpt(npc, gpt_response):
     splitted_response = _split(gpt_response)
     image_generator_description = splitted_response.pop('image_generator_description')
 
-    attributes = list([Attribute(key=key, value=value) for key, value in splitted_response['attributes'].items()])
-    print(attributes[0].key, attributes[0].value)
-    return Npc(image_generator_description=image_generator_description, attributes=attributes)
+    attributes = list([Attribute(key=key, value=value, npc_id=npc.id) for key, value in splitted_response['attributes'].items()])
+
+    npc.image_generator_description = image_generator_description
+    npc.attributes = attributes
 
