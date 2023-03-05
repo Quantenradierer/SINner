@@ -4,10 +4,6 @@
 ## Architecture
 The architecture is mostly based off domain-driven-design by Eric Evans.
 
-### factories
-Factories are to create objects, like from models. Sure, you could add the methods into the model but the model does not need the knowledge about what created them.
-Like, the NPC does not care about the GPT Text which created it, so adding GPT specific code there is a unnecessary coupling. The factory however knows about GPT and about NPC, but since it's no part of either it isn't tightly coupled.
-
 ### models
 Models which contain data and business functionality.
 Models should not actively use the repository or the database. The operation, not the model itself, decides when those instances of models are being saved.

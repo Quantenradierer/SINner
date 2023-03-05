@@ -5,6 +5,9 @@ from repositories.npc import NpcRepository
 
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+npc_repo = NpcRepository()
 
 
 @app.route('/random_npc')
@@ -18,7 +21,7 @@ def random_npc():
     return {**npc_dict, **{'attributes': attributes_dict}}
 
 
-@app.route('/npc')
+@app.route('/npc/<id>', methods=['GET'])
 def npc(id):
     npc = npc_repo.find(id)
     attributes_dict = {}
@@ -29,8 +32,7 @@ def npc(id):
     return {**npc_dict, **{'attributes': attributes_dict}}
 
 
-if __name__ == '__main__':
-    CORS(app, resources={r"/*": {"origins": "*"}})
 
-    npc_repo = NpcRepository()
+
+if __name__ == '__main__':
     app.run()

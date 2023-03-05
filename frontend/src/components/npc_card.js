@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from "@arwes/core";
+import {Button, Card, Text} from "@arwes/core";
 import {FramePentagon, Figure, List} from '@arwes/core';
 
 class NPCCard extends React.Component {
@@ -8,25 +8,36 @@ class NPCCard extends React.Component {
     }
 
     render() {
+        const relevantAttributes = ['Catchphrase', 'Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Geruch', 'Detailliertes Aussehen', ]
         const items = [];
-        for (const property in this.props.npc.attributes) {
-            items.push(<li key={property}><Text> {property}: {this.props.npc.attributes[property]} </Text></li>);
+
+        for (const attribute of relevantAttributes) {
+            items.push(<li style={{  position: 'relative' }} key={attribute}><Text> {attribute}: {this.props.npc.attributes[attribute]} </Text></li>);
+            //items.push(<Text> {attribute}: {this.props.npc.attributes[attribute]} </Text>);
         }
 
         return (
-            <FramePentagon hover squareSize={155} style={{width: 1200, height: 555}}>
+            <Card
+                image={{
+                    src: this.props.npc.image_url,
+                    alt: this.props.npc.image_generator_description
+                }}
+                options={
+                  <Button palette='secondary'>
+                    <Text>Details</Text>
+                  </Button>
+                }
+                style={{width: 1000}}
+                title={this.props.npc.attributes['Name']}
+                landscape
+            >
                 <div>
-                    <div style={{float:'left'}}>
-                        <Figure src={this.props.npc.image_url} alt={this.props.npc.image_generator_description} />
-                    </div>
-                    <div style={{float:'left', width: 620}}>
-                        <List>
-                            <li><Text>SIN: {this.props.npc.id}</Text></li>
-                            {items}
-                        </List>
-                    </div>
+                    <List>
+                        <li><Text>SIN: {this.props.npc.id}</Text></li>
+                        {items}
+                    </List>
                 </div>
-            </FramePentagon>
+            </Card>
         )
     }
 }

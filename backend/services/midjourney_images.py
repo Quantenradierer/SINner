@@ -21,7 +21,6 @@ def split_image(image_path, output_path):
 
         new_filename = filename + f'-{enumerator}' + file_extension
         splitted_file_path = os.path.join(output_path, new_filename)
-        print(output_path, splitted_file_path, filename)
         im.crop((left, top, right, bottom)).save(splitted_file_path)
         yield new_filename
     os.remove(image_path)

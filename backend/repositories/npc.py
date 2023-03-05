@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.sql.selectable import and_
 
 from backend import config
-from backend.models.npc import Npc, Attribute, NpcBase
+from backend.models.npc import Npc, NpcBase
 
 
 class NpcRepository:

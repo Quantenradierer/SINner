@@ -6,6 +6,7 @@ SERVER_ID = os.getenv('MJ_SERVER_ID')
 CHANNEL_ID = os.getenv('MJ_CHANNEL_ID')
 PRIVATE_DISCORD_TOKEN = os.getenv('MJ_PRIVATE_DISCORD_TOKEN')
 
+
 def pass_prompt(prompt: str):
     payload ={"type": 2, "application_id": "936929561302675456", "guild_id": SERVER_ID,
                "channel_id": CHANNEL_ID, "session_id": "2fb980f65e5c9a77c96ca01f2c242cf6",
@@ -37,5 +38,5 @@ def pass_prompt(prompt: str):
 
 
 if __name__ == '__main__':
-    print(pass_prompt('just a test prompt'))
+    pass_prompt('just a test prompt')
 

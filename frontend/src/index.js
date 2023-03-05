@@ -58,7 +58,7 @@ class Content extends React.Component {
     componentDidMount() {
         let npc;
         let self = this;
-        axios.get('http://localhost:5000/npc')
+        axios.get('http://localhost:5000/random_npc')
           .then(function (response) {
               npc = response.data
           })

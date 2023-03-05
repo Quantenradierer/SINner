@@ -3,6 +3,8 @@ from typing import List
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import Mapped, relationship, mapped_column, declarative_base
 
+import config
+
 NpcBase = declarative_base()
 class Npc(NpcBase):
     __tablename__ = 'npc'
@@ -16,6 +18,9 @@ class Npc(NpcBase):
                                                          lazy="joined",
                                                          cascade="all, delete-orphan")
 
+    def has_image_description(self):
+        return bool(self.image_generator_description)
+
     def image_generation_started(self):
         self.image_generator_state = 'started'
 
@@ -23,8 +28,18 @@ class Npc(NpcBase):
         self.image_url = image_url
         self.image_generator_state = 'done'
 
+    def get_attribute(self, name):
+        return next((attr.value for attr in self.attributes if attr.key == name), None)
+
     def __repr__(self):
         return f'<models.Npc id={self.id}>'
+
+    def add_attributes(self, attributes_hash):
+        for attr_name in config.RELEVANT_ATTRIBUTES:
+            if not self.get_attribute(attr_name):
+                attribute = Attribute(key=attr_name, value=attributes_hash.get(attr_name, ''))
+                self.attributes.append(attribute)
+
 
 class Attribute(NpcBase):
     __tablename__ = 'attribute'
@@ -37,4 +52,4 @@ class Attribute(NpcBase):
     value: Mapped[str] = Column(String)
 
     def __repr__(self):
-        return f'<models.Npc id={self.id} key={self.key} value={self.value} npc_id={self.npc_id}>'
+        return f'<models.Attribute id={self.id} key={self.key} value={self.value} npc_id={self.npc_id}>'
