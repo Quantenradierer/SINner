@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, Text} from "@arwes/core";
+import {Blockquote, Button, Card, Text} from "@arwes/core";
 import {FramePentagon, Figure, List} from '@arwes/core';
 
 class NPCCard extends React.Component {
@@ -8,12 +8,11 @@ class NPCCard extends React.Component {
     }
 
     render() {
-        const relevantAttributes = ['Catchphrase', 'Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Geruch', 'Detailliertes Aussehen', ]
+        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Geruch', 'Detailliertes Aussehen', ]
         const items = [];
 
         for (const attribute of relevantAttributes) {
-            items.push(<li style={{  position: 'relative' }} key={attribute}><Text> {attribute}: {this.props.npc.attributes[attribute]} </Text></li>);
-            //items.push(<Text> {attribute}: {this.props.npc.attributes[attribute]} </Text>);
+            items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text></li>);
         }
 
         return (
@@ -32,6 +31,12 @@ class NPCCard extends React.Component {
                 landscape
             >
                 <div>
+                    <Blockquote>
+                        <Text>
+                            {this.props.npc.attributes['Catchphrase']}
+                        </Text>
+                    </Blockquote>
+
                     <List>
                         <li><Text>SIN: {this.props.npc.id}</Text></li>
                         {items}
