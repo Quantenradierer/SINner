@@ -8,6 +8,7 @@ import NPCCard from "./components/npc_card";
 import Npc from "./models/npc";
 import axios from 'axios';
 import NPCDetails from "./components/npc_details";
+import NPCPrivate from "./components/npc_private";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -58,8 +59,9 @@ class Content extends React.Component {
     constructor(props) {
         super(props);
         const npc = new Npc('LOADING ...', 'LOADING ... ', './images/loading.png', '', {'Please stand by': '...'})
-        this.state = { npc: npc, showDetails: false };
+        this.state = { npc: npc, showDetails: false, showPrivate: false };
         this.toggleDetails = this.toggleDetails.bind(this)
+        this.togglePrivate = this.togglePrivate.bind(this)
     }
 
     componentDidMount() {
@@ -83,12 +85,19 @@ class Content extends React.Component {
         });
     }
 
+    togglePrivate() {
+        this.setState((state, props) => {
+            return {showPrivate: !state.showPrivate}
+        });
+    }
+
     render() {
         console.log(this.state)
         return (
             <div>
-                <NPCCard npc={this.state.npc} toggleDetails={this.toggleDetails}/>
+                <NPCCard npc={this.state.npc} toggleDetails={this.toggleDetails} togglePrivate={this.togglePrivate}/>
                 <NPCDetails npc={this.state.npc} show={this.state.showDetails}/>
+                <NPCPrivate npc={this.state.npc} show={this.state.showPrivate}/>
             </div>
         )
     }

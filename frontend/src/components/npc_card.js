@@ -22,9 +22,14 @@ class NPCCard extends React.Component {
                     alt: this.props.npc.image_generator_description
                 }}
                 options={
-                  <Button palette='secondary' onClick={this.props.toggleDetails}>
+                <div>
+                  <Button onClick={this.props.toggleDetails}>
                     <Text>Details</Text>
                   </Button>
+                  <Button onClick={this.props.togglePrivate}>
+                    <Text>Private</Text>
+                  </Button>
+                </div>
                 }
                 style={{width: 1000}}
                 title={this.props.npc.attributes['Name']}
