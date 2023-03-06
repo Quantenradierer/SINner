@@ -22,7 +22,7 @@ class NPCCard extends React.Component {
                     alt: this.props.npc.image_generator_description
                 }}
                 options={
-                  <Button palette='secondary'>
+                  <Button palette='secondary' onClick={this.props.toggleDetails}>
                     <Text>Details</Text>
                   </Button>
                 }

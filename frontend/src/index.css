@@ -10,3 +10,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+li::before {
+  content: "≫ ";
+  position: absolute;
+  left: -1.25em;
+  margin-top: 0.05em;
+  font-size: 0.9em;
+}

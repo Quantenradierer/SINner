@@ -7,6 +7,7 @@ import './index.css';
 import NPCCard from "./components/npc_card";
 import Npc from "./models/npc";
 import axios from 'axios';
+import NPCDetails from "./components/npc_details";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -30,7 +31,12 @@ class Root extends React.Component {
     render() {
         return (
             <ArwesThemeProvider>
-                <StylesBaseline styles={{body: {fontFamily: ROOT_FONT_FAMILY}}}/>
+                <StylesBaseline styles={{
+                    body: {fontFamily: ROOT_FONT_FAMILY},
+                    'ul li::marker': {
+                        content: '""'
+                    }
+                }}/>
                 <BleepsProvider
                     audioSettings={audioSettings}
                     playersSettings={playersSettings}
@@ -52,7 +58,8 @@ class Content extends React.Component {
     constructor(props) {
         super(props);
         const npc = new Npc('LOADING ...', 'LOADING ... ', './images/loading.png', '', {'Please stand by': '...'})
-        this.state = { npc: npc };
+        this.state = { npc: npc, showDetails: false };
+        this.toggleDetails = this.toggleDetails.bind(this)
     }
 
     componentDidMount() {
@@ -68,15 +75,21 @@ class Content extends React.Component {
           .finally(function () {
             self.setState({npc: npc})
           });
+    }
 
-
+    toggleDetails() {
+        this.setState((state, props) => {
+            return {showDetails: !state.showDetails}
+        });
     }
 
     render() {
-        console.log(this.state.npc)
+        console.log(this.state)
         return (
-            <NPCCard npc={this.state.npc}>
-            </NPCCard>
+            <div>
+                <NPCCard npc={this.state.npc} toggleDetails={this.toggleDetails}/>
+                <NPCDetails npc={this.state.npc} show={this.state.showDetails}/>
+            </div>
         )
     }
 }
