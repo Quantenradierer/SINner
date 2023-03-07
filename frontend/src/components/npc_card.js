@@ -24,10 +24,10 @@ class NPCCard extends React.Component {
                 options={
                 <div>
                   <Button onClick={this.props.toggleDetails}>
-                    <Text>Details</Text>
+                    <Text>Hintergrund</Text>
                   </Button>
                   <Button onClick={this.props.togglePrivate}>
-                    <Text>Private</Text>
+                    <Text>Privates</Text>
                   </Button>
                 </div>
                 }
