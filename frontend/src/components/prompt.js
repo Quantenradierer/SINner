@@ -64,6 +64,8 @@ class Prompt extends React.Component {
                 self.props.changeNpc(response.data)
             })
             .catch(function (error) {
+                let npc = new Npc('ERROR', 'ERROR', './images/npc_load_error.png', 'Image could not be loaded.',{error: error.message})
+                self.props.changeNpc(npc)
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})
