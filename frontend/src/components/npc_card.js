@@ -43,7 +43,7 @@ class NPCCard extends React.Component {
                     </Blockquote>
 
                     <List>
-                        <li><Text>SIN: {this.props.npc.id}</Text></li>
+                        <li><Text><b>SIN:</b> {this.props.npc.id}</Text></li>
                         {items}
                     </List>
                 </div>
