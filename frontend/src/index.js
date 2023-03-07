@@ -1,7 +1,6 @@
 import React, {FC, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
-import {BleepsProvider} from '@arwes/sounds';
 import {ArwesThemeProvider, StylesBaseline} from '@arwes/core';
 import './index.css';
 import NPCCard from "./components/npc_card";
@@ -9,22 +8,12 @@ import Npc from "./models/npc";
 import axios from 'axios';
 import NPCDetails from "./components/npc_details";
 import NPCPrivate from "./components/npc_private";
+import Prompt from "./components/prompt";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
-const IMAGE_URL = 'https://playground.arwes.dev/assets/images/wallpaper.jpg';
-const SOUND_OBJECT_URL = 'https://playground.arwes.dev/assets/sounds/object.mp3';
-const SOUND_TYPE_URL = 'https://playground.arwes.dev/assets/sounds/type.mp3';
-const audioSettings = {common: {volume: 0.25}};
-const playersSettings = {
-    object: {src: [SOUND_OBJECT_URL]},
-    type: {src: [SOUND_TYPE_URL], loop: true}
-};
-const bleepsSettings = {
-    object: {player: 'object'},
-    type: {player: 'type'}
-};
+
 const generalAnimator = {duration: {enter: 500, exit: 500}};
 
 
@@ -38,18 +27,12 @@ class Root extends React.Component {
                         content: '""'
                     }
                 }}/>
-                <BleepsProvider
-                    audioSettings={audioSettings}
-                    playersSettings={playersSettings}
-                    bleepsSettings={bleepsSettings}
-                >
-                    <AnimatorGeneralProvider animator={generalAnimator}>
-                        <div style={{display: 'flex', justifyContent: 'center', margin: 25}}>
-                            <Content/>
-                        </div>
+                <AnimatorGeneralProvider animator={generalAnimator}>
+                    <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
+                        <Content/>
+                    </div>
 
-                    </AnimatorGeneralProvider>
-                </BleepsProvider>
+                </AnimatorGeneralProvider>
             </ArwesThemeProvider>
         )
     }
@@ -92,9 +75,10 @@ class Content extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
-            <div>
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+                <Prompt changeNpc={this.changeNpc}/>
+
                 <NPCCard npc={this.state.npc} toggleDetails={this.toggleDetails} togglePrivate={this.togglePrivate}/>
                 <NPCDetails npc={this.state.npc} show={this.state.showDetails}/>
                 <NPCPrivate npc={this.state.npc} show={this.state.showPrivate}/>
