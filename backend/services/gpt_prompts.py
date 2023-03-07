@@ -5,7 +5,7 @@ import config
 from config import PROMPT
 
 
-def create_npc_prompt(npc, attributes):
+def create_npc_prompt(user_prompt, npc, attributes):
     existing_attributes = ''
     missing_attributes = ''
 
@@ -21,7 +21,9 @@ def create_npc_prompt(npc, attributes):
         else:
             missing_attributes += f'{item[0]}: {value}\n'
 
-    return PROMPT.format(existing_attributes=existing_attributes, missing_attributes=missing_attributes)
+    return PROMPT.format(user_prompt=user_prompt,
+                         existing_attributes=existing_attributes,
+                         missing_attributes=missing_attributes)
 
 
 def translate_appearance_prompt(text):

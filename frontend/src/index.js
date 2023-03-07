@@ -45,6 +45,7 @@ class Content extends React.Component {
         this.state = { npc: npc, showDetails: false, showPrivate: false };
         this.toggleDetails = this.toggleDetails.bind(this)
         this.togglePrivate = this.togglePrivate.bind(this)
+        this.changeNpc = this.changeNpc.bind(this)
     }
 
     componentDidMount() {
@@ -60,6 +61,11 @@ class Content extends React.Component {
           .finally(function () {
             self.setState({npc: npc})
           });
+    }
+
+    changeNpc(npc) {
+        console.log(npc)
+        this.setState({npc: npc})
     }
 
     toggleDetails() {

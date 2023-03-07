@@ -9,7 +9,7 @@ from services.gpt import Gpt
 from services.interpret_gpt import dict_from_text
 
 
-def generate_npc():
+def generate_npc(user_prompt):
     """
     Creates a NPC
     """
@@ -18,7 +18,7 @@ def generate_npc():
 
     npc = Npc()
 
-    npc_prompt = create_npc_prompt(npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
+    npc_prompt = create_npc_prompt(user_prompt, npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
     gpt_completion = gpt.ask_chatgpt(npc_prompt)
 
     npc.add_attributes(dict_from_text(gpt_completion))
@@ -32,5 +32,5 @@ def generate_npc():
 
 
 if __name__ == '__main__':
-    for i in range(10):
-        generate_npc()
+    for i in range(1):
+        generate_npc('Der NPC ist ein Barkeeper.')
