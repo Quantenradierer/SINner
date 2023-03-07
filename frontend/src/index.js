@@ -49,7 +49,7 @@ class Content extends React.Component {
     }
 
     componentDidMount() {
-        let npc;
+        let npc = {};
         let self = this;
         axios.get('http://localhost:5000/random_npc')
           .then(function (response) {
@@ -59,12 +59,12 @@ class Content extends React.Component {
             npc = new Npc('ERROR', 'ERROR', './images/npc_load_error.png', 'Image could not be loaded.',{error: error.message})
           })
           .finally(function () {
-            self.setState({npc: npc})
+            self.changeNpc(npc)
           });
     }
 
     changeNpc(npc) {
-        console.log(npc)
+        window.history.replaceState(null, "SINner: " + npc.name, "/npc/" + npc.id)
         this.setState({npc: npc})
     }
 
