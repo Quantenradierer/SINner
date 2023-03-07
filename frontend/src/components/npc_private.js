@@ -19,7 +19,7 @@ class NPCPrivate extends React.Component {
             return (<div></div>)
         } else {
             return (
-                <FramePentagon style={{width: 1000}}>
+                <FramePentagon style={{width: 950, margin: 15}}>
                     <List>
                         {items}
                     </List>

@@ -31,7 +31,7 @@ class NPCCard extends React.Component {
                   </Button>
                 </div>
                 }
-                style={{width: 1000}}
+                style={{width: 950, margin: 15}}
                 title={this.props.npc.attributes['Name']}
                 landscape
             >
