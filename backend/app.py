@@ -11,20 +11,13 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 npc_repo = NpcRepository()
 
 
-@app.route('/random_npc')
-def random_npc():
-    npc = npc_repo.read_random()
-    attributes_dict = {}
-    for attribute in npc.attributes:
-        attributes_dict[attribute.key] = attribute.value
-
-    npc_dict = {c.name: getattr(npc, c.name) for c in npc.__table__.columns}
-    return {**npc_dict, **{'attributes': attributes_dict}}
-
-
 @app.route('/npc/<id>', methods=['GET'])
-def read_npc(id):
-    npc = npc_repo.find(id)
+def read_npc(id=None):
+    if id and id.isdigit():
+        npc = npc_repo.find(id)
+    else:
+        npc = npc_repo.read_random()
+
     attributes_dict = {}
     for attribute in npc.attributes:
         attributes_dict[attribute.key] = attribute.value
