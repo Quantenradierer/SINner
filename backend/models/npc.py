@@ -10,6 +10,7 @@ class Npc(NpcBase):
     __tablename__ = 'npc'
 
     id: Mapped[int] = Column(Integer, primary_key=True)
+    user_prompt: Mapped[str] = Column(String)
     image_generator_description: Mapped[str] = Column(String)
     image_url: Mapped[str] = Column(String)
     image_generator_state: Mapped[str] = Column(String)
