@@ -60,7 +60,7 @@ class Prompt extends React.Component {
                 self.props.changeNpc(response.data)
             })
             .catch(function (error) {
-                let npc = {'Name': 'ERROR', image_url: './images/npc_load_error.png', attributes: {}}
+                let npc = {id: 'ERROR', image_url: '../../images/npc_load_error.png', attributes: {'Name': 'ERROR'}}
                 self.props.changeNpc(npc)
             })
             .finally(function () {
