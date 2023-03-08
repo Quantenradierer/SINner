@@ -12,7 +12,7 @@ SQLITE_FILE = 'data/npcs.sqlite'
 Prompt which will be sent to GPT. From my experience,
 it is better to ask for the relevant points first and then give additional informations, cause otherwise it tries to create additional missing attributes or just answers directly without the attribute name
 """
-PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}" \
+PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}.\n" \
          "Die folgenden Punkte müssen ergänzt werden. Antworte nur auf Deutsch.\n" \
          "{missing_attributes}\n" \
          "-----\n" \
@@ -31,7 +31,6 @@ RELEVANT_ATTRIBUTES = {
     'Ethnizität': '',
     'Geschlecht': '',
     'Alter': '',
-    'Geruch': '',
     'Catchphrase': '',
     'Detailliertes Aussehen': '',
     'Hintergrundgeschichte': '',
@@ -43,14 +42,9 @@ RELEVANT_ATTRIBUTES = {
     'Schwächen': '',
     'Fertigkeiten': '',
     'Ausrüstung': '',
-    'Ruf': '',
-    'Geld': '',
-    'Ressourcen': '',
     'Hobbys und Interessen': '',
     'Eigenarten': '',
-    'Familienstand': '',
     'Familie': '',
-    'Kinder': '',
     'Kontakte': '',
     'Wohnort': '',
     'Nationalität': '',

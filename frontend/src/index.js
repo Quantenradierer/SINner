@@ -41,7 +41,7 @@ class Root extends React.Component {
 class Content extends React.Component {
    constructor(props) {
         super(props);
-        const npc = {id: 'RANDOM', image_url: '../images/loading.png', attributes: {'Name': 'LOADING'}}
+        const npc = {id: 'RANDOM', image_url: 'images/loading.png', attributes: {'Name': 'LOADING'}}
         this.state = { npc: npc };
         this.changeNpc = this.changeNpc.bind(this)
     }
@@ -54,7 +54,7 @@ class Content extends React.Component {
               npc = response.data
           })
           .catch(function (error) {
-              npc = {id: 'ERROR', image_url: '../images/npc_load_error.png', attributes: {'Name': 'ERROR'}}
+              npc = {id: 'ERROR', image_url: 'images/npc_load_error.png', attributes: {'Name': 'ERROR'}}
           })
           .finally(function () {
             self.changeNpc(npc)

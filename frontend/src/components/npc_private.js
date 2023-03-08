@@ -4,8 +4,8 @@ import {FramePentagon, Figure, List} from '@arwes/core';
 
 class NPCPrivate extends React.Component {
     render() {
-        const relevantAttributes = ['Hobbys und Interessen', 'Eigenarten', 'Familienstand', 'Familie', 'Kinder',
-                                    'Kontakte', 'Wohnort', 'Nationalität', 'Konzernzugehörigkeit', 'Geheimnis']
+        const relevantAttributes = ['Hobbys und Interessen', 'Eigenarten', 'Familie',
+                                    'Kontakte', 'Wohnort', 'Konzernzugehörigkeit', 'Geheimnis']
         const items = [];
 
         for (const attribute of relevantAttributes) {

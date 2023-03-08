@@ -29,7 +29,10 @@ class NPCComplete extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{
+                display: 'contents',
+                alignContent: 'center'
+            }}>
                 <NPCCard npc={this.props.npc} toggleDetails={this.toggleDetails} togglePrivate={this.togglePrivate}/>
                 <NPCDetails npc={this.props.npc} show={this.state.showDetails}/>
                 <NPCPrivate npc={this.props.npc} show={this.state.showPrivate}/>

@@ -4,7 +4,7 @@ import {List} from '@arwes/core';
 
 class NPCCard extends React.Component {
     render() {
-        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Geruch', 'Detailliertes Aussehen', ]
+        const relevantAttributes = ['Metatyp', 'Beruf', 'Nationalität', 'Geschlecht', 'Alter', 'Detailliertes Aussehen', ]
         const items = [];
 
         for (const attribute of relevantAttributes) {
@@ -14,7 +14,7 @@ class NPCCard extends React.Component {
         return (
             <Card
                 image={{
-                    src: this.props.npc.image_url,
+                    src: '../' + this.props.npc.image_url,
                     alt: this.props.npc.image_generator_description
                 }}
                 options={

@@ -6,7 +6,7 @@ class NPCDetails extends React.Component {
 
     render() {
         const relevantAttributes = ['Hintergrundgeschichte', 'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele',
-                                    'Stärken', 'Schwächen', 'Fertigkeiten', 'Ausrüstung', 'Ruf', 'Geld', 'Ressourcen']
+                                    'Stärken', 'Schwächen', 'Fertigkeiten', 'Ausrüstung']
         const items = [];
 
         for (const attribute of relevantAttributes) {
