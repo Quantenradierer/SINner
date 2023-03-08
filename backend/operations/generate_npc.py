@@ -9,10 +9,17 @@ from services.gpt import Gpt
 from services.interpret_gpt import dict_from_text
 
 
-def generate_npc(user_prompt):
+def generate_npc(user_prompt: str):
     """
-    Creates a NPC
+    Generates a random NPC based on a user-provided prompt.
+
+    :param user_prompt: The prompt provided by the user.
+    :type user_prompt: str
+
+    :returns: A new Npc object containing the attributes of the generated NPC.
+    :rtype: Npc object
     """
+
     gpt = Gpt()
     npc_repo = NpcRepository()
 

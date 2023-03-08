@@ -9,7 +9,7 @@ from services.gpt import Gpt
 from services.interpret_gpt import dict_from_text
 
 
-def regenerate_npc(id):
+def regenerate_npc(id: int):
     """
     To be used when the configuration changes.
     Generates all attributes which are not set. Removes all attributes which are not in the configuration listed.
