@@ -3,10 +3,6 @@ import {Button, Card, Text} from "@arwes/core";
 import {FramePentagon, Figure, List} from '@arwes/core';
 
 class NPCPrivate extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const relevantAttributes = ['Hobbys und Interessen', 'Eigenarten', 'Familienstand', 'Familie', 'Kinder',
                                     'Kontakte', 'Wohnort', 'Nationalität', 'Konzernzugehörigkeit', 'Geheimnis']

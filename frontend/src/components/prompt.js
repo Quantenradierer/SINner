@@ -1,39 +1,35 @@
 import React from "react";
-import {Blockquote, Button, Card, FrameCorners, FrameLines, LoadingBars, Text} from "@arwes/core";
-import {FramePentagon, Figure, List} from '@arwes/core';
+import {Button, FrameCorners, FrameLines, Text} from "@arwes/core";
 import axios from "axios";
-import Npc from "../models/npc";
 import {Animator} from "@arwes/animation";
 
 const EXAMPLES = [
-    'Der NPC arbeitet als Techniker und ist spezialisiert auf Cyberware',
-    'Der NPC ist ein einfacher Ladenbesitzer und betreibt einen Waffenladen in der Stadt',
-    'Der NPC ist ein beliebter Clubbesitzer',
-    'Der NPC ist ein Buchhalter und arbeitet für einen der großen Konzerne',
-    'Der NPC ist ein Straßendoc',
-    'Der NPC ist ein Büroangestellter',
-    'Der NPC ist ein Magietheoretiker',
-    'Der NPC will mal ein Runner werden',
-    'Der NPC ist ein erfolgloser Restaurantbesitzer',
-    'Der NPC ist ein Schmuggler auf einem Fahrrad',
-    'Der NPC ist ein Verkäufer von illegalen Drogen',
-    'Der NPC ist ein Gangmitglied und bietet Schutz vor anderen Gangs in der Stadt',
-    'Der NPC ist ein Straßenmusiker',
-    'Der NPC ist ein Reporter',
-    'Der NPC ist ein Barkeeper',
-    'Der NPC ist ein Ökoterrorist',
-    'Der NPC ist ein Büroangestellter der gerne ein Ökoterrorist wäre',
-    'Der NPC ist eine künstliche Intelligenz',
-    'Der NPC ist Friedhofswärter',
-    'Der NPC kommt aus Hamburg',
-    'Der NPC kommt aus der Sonderverwaltungszone SOX',
-    'Der NPC hat irgendwas mit Keksen zu tun',
-    'Der NPC ist magisch begabt',
-    'Der NPC ist ein anarchist',
-    'Der NPC ist ein Politiker',
-    'Der NPC ist ein Mafia-Mitglied',
-    'Der NPC ist ein ausgebrannter Magier',
-    'Der NPC ist stark vercybert'
+    'Erstelle einen Ladenbesitzer',
+    'Erstelle eine widersprüchliche Person',
+    'Erstelle einen Clubbesitzer',
+    'Erstelle einen Buchhalter, der für einen der großen Konzern arbeitet.',
+    'Erstelle einen Straßendoc',
+    'Erstelle einen Büroangestellten',
+    'Erstelle einen Magietheoretiker',
+    'Erstelle einen NPC, der mal Runner werden will',
+    'Erstelle einen erfolglosen Restaurantbesitzer',
+    'Erstelle einen Schmuggler, der ein Fahrrad nutzt',
+    'Erstelle einen Drogendealer',
+    'Erstelle ein Gangmitglied',
+    'Erstelle einen Straßenmusiker',
+    'Erstelle einen Reporter',
+    'Erstelle einen Barkeeper',
+    'Erstelle einen Ökoterrorist',
+    'Erstelle einen Büroangestellten, der gerne ein Ökoterrorist wäre',
+    'Erstelle eine künstliche Intelligenz',
+    'Erstelle einen Friedhofswärter',
+    'Erstelle einen NPC aus Hamburg',
+    'Erstelle einen ausgebrannten Magier',
+    'Erstelle einen Anarchisten',
+    'Erstelle einen korrupten Politiker',
+    'Erstelle einen NPC mit viel Cyberware',
+    'Erstelle ein Vorstandsmitglied eines großen Konzerns',
+    'Erstelle einen NPC mit Bezug auf die ADL, Allianz Deutscher Länder',
 ]
 
 function random_prompt() {
@@ -64,7 +60,7 @@ class Prompt extends React.Component {
                 self.props.changeNpc(response.data)
             })
             .catch(function (error) {
-                let npc = new Npc('ERROR', 'ERROR', './images/npc_load_error.png', 'Image could not be loaded.',{error: error.message})
+                let npc = {'Name': 'ERROR', image_url: './images/npc_load_error.png', attributes: {}}
                 self.props.changeNpc(npc)
             })
             .finally(function () {

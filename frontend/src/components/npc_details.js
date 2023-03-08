@@ -1,11 +1,8 @@
 import React from "react";
-import {Button, Card, Text} from "@arwes/core";
-import {FramePentagon, Figure, List} from '@arwes/core';
+import {Text} from "@arwes/core";
+import {FramePentagon, List} from '@arwes/core';
 
 class NPCDetails extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const relevantAttributes = ['Hintergrundgeschichte', 'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele',

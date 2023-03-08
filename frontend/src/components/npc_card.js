@@ -1,12 +1,8 @@
 import React from "react";
 import {Blockquote, Button, Card, Text} from "@arwes/core";
-import {FramePentagon, Figure, List} from '@arwes/core';
+import {List} from '@arwes/core';
 
 class NPCCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Geruch', 'Detailliertes Aussehen', ]
         const items = [];
