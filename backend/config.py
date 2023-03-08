@@ -46,7 +46,6 @@ RELEVANT_ATTRIBUTES = {
     'Ruf': '',
     'Geld': '',
     'Ressourcen': '',
-# ['Stärke (von 1-6)', 'Konstitution (von 1-6)', 'Intuition (von 1-6)', 'Reaktion (von 1-6)', 'Geschicklichkeit (von 1-6)', 'Willenskraft (von 1-6)', 'Glück (von 1-6)', 'Magie (von 0-6)', 'Resonanz (von 0-6)']
     'Hobbys und Interessen': '',
     'Eigenarten': '',
     'Familienstand': '',
@@ -56,8 +55,17 @@ RELEVANT_ATTRIBUTES = {
     'Wohnort': '',
     'Nationalität': '',
     'Konzernzugehörigkeit': '',
-    'Lootbare Gegenstände': ''
-    # 'Geheimnis': ''
+    'Lootbare Gegenstände': '',
+    'Geheimnis': '',
+    'Stärke (von 1-6)': '',
+    'Konstitution (von 1-6)': '',
+    'Intuition (von 1-6)': '',
+    'Reaktion (von 1-6)': '',
+    'Geschicklichkeit (von 1-6)': '',
+    'Willenskraft (von 1-6)': '',
+    'Glück (von 1-6)': '',
+    'Magie (von 0-6)': '',
+    'Resonanz (von 0-6)': ''
 }
 
 """

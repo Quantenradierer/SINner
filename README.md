@@ -61,4 +61,4 @@ This means 0.04$ per NPC, but you can choose between 4 images.
 In summary, it costs around 0.05$ per NPC creation. 
 
 I would like to add other AI image generators, so if you have experience with other AI image generators, please let me know.
-I have tried DALL-E 2, but the results are bad.
+I have tried DALL-E 2, but the results are not suitable.
