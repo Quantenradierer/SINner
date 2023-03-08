@@ -21,13 +21,14 @@ def regenerate_npc(id: int):
 
     npc = npc_repo.find(id)
 
-    npc_prompt = create_npc_prompt(npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
+    npc_prompt = create_npc_prompt(user_prompt=npc.user_prompt, npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
     gpt_completion = gpt.ask_chatgpt(npc_prompt)
-    npc.add_attributes(dict_from_text(gpt_completion))
+    npc.add_attributes(dict_from_text(config.RELEVANT_ATTRIBUTES.keys(), gpt_completion))
 
     npc_repo.create(npc)
     return npc
 
 
 if __name__ == '__main__':
-        regenerate_npc(1)
+    for i in range(1, 100):
+        regenerate_npc(i)

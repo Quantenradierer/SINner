@@ -26,6 +26,8 @@ const EXAMPLES = [
     'Erstelle einen NPC aus Hamburg',
     'Erstelle einen ausgebrannten Magier',
     'Erstelle einen Anarchisten',
+    'Erstelle einen Verschwörungstheoretiker',
+    'Erstelle einen korrupten Polizisten',
     'Erstelle einen korrupten Politiker',
     'Erstelle einen NPC mit viel Cyberware',
     'Erstelle ein Vorstandsmitglied eines großen Konzerns',

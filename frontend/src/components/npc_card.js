@@ -1,8 +1,40 @@
 import React from "react";
-import {Blockquote, Button, Card, Text} from "@arwes/core";
+import {Blockquote, Button, Card, Table, Text} from "@arwes/core";
 import {List} from '@arwes/core';
 
 class NPCCard extends React.Component {
+
+    tableHeaders() {
+        return [
+            { id: 'K', data: 'K' },
+            { id: 'G', data: 'G' },
+            { id: 'R', data: 'R' },
+            { id: 'S', data: 'S' },
+            { id: 'W', data: 'S' },
+            { id: 'L', data: 'L' },
+            { id: 'I', data: 'I' },
+            { id: 'C', data: 'C' },
+            { id: 'E', data: 'E' }
+        ];
+    }
+
+    tableDataset(npc) {
+        return [{
+            id: 0,
+            columns: [
+                {id: 'K', data: npc.attributes['Konstitution (von 1-6)']},
+                {id: 'G', data: npc.attributes['Geschicklichkeit (von 1-6)']},
+                {id: 'R', data: npc.attributes['Reaktion (von 1-6)']},
+                {id: 'S', data: npc.attributes['Stärke (von 1-6)']},
+                {id: 'W', data: npc.attributes['Konstitution (von 1-6)']},
+                {id: 'L', data: npc.attributes['Logik (von 1-6)']},
+                {id: 'I', data: npc.attributes['Intuition (von 1-6)']},
+                {id: 'C', data: npc.attributes['Charisma (von 1-6)']},
+                {id: 'E', data: npc.attributes['Glück (von 1-6)']}
+            ]
+        }]
+    }
+
     render() {
         const relevantAttributes = ['Metatyp', 'Beruf', 'Nationalität', 'Geschlecht', 'Alter', 'Detailliertes Aussehen', ]
         const items = [];
@@ -17,16 +49,6 @@ class NPCCard extends React.Component {
                     src: '../' + this.props.npc.image_url,
                     alt: this.props.npc.image_generator_description
                 }}
-                options={
-                <div>
-                  <Button onClick={this.props.toggleDetails}>
-                    <Text>Hintergrund</Text>
-                  </Button>
-                  <Button onClick={this.props.togglePrivate}>
-                    <Text>Privates</Text>
-                  </Button>
-                </div>
-                }
                 style={{width: 950, margin: 15}}
                 title={this.props.npc.attributes['Name']}
                 landscape
@@ -43,6 +65,9 @@ class NPCCard extends React.Component {
                         {items}
                     </List>
                 </div>
+                <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}>
+
+                </Table>
             </Card>
         )
     }

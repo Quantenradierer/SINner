@@ -9,7 +9,7 @@ class NPCComplete extends React.Component {
 
    constructor(props) {
         super(props);
-        this.state = { showDetails: false, showPrivate: false };
+        this.state = { showDetails: true, showPrivate: true };
         this.toggleDetails = this.toggleDetails.bind(this)
         this.togglePrivate = this.togglePrivate.bind(this)
     }
