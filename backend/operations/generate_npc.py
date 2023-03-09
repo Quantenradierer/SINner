@@ -35,7 +35,6 @@ def generate_npc(user_prompt: str):
     # generate image with midjourney.pass_prompt(npc.image_generator_description)
     npc_repo.create(npc)
     generate_image_job_async(npc)
-    print('timeout!')
 
     return npc
 
