@@ -1,8 +1,6 @@
-import random
-import time
-
 from backend import config
 from models.npc import Npc
+from operations.generage_image import generate_image_job, generate_image_job_async
 from repositories.npc import NpcRepository
 from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
 from services.gpt import Gpt
@@ -36,6 +34,9 @@ def generate_npc(user_prompt: str):
 
     # generate image with midjourney.pass_prompt(npc.image_generator_description)
     npc_repo.create(npc)
+    generate_image_job_async(npc)
+    print('timeout!')
+
     return npc
 
 

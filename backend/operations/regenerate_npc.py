@@ -1,8 +1,4 @@
-import random
-import time
-
 from backend import config
-from models.npc import Npc
 from repositories.npc import NpcRepository
 from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
 from services.gpt import Gpt
@@ -22,6 +18,9 @@ def regenerate_npc(id: int):
     npc = npc_repo.find(id)
 
     npc_prompt = create_npc_prompt(user_prompt=npc.user_prompt, npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
+    if npc_prompt is None:
+        return npc
+
     gpt_completion = gpt.ask_chatgpt(npc_prompt)
     npc.add_attributes(dict_from_text(config.RELEVANT_ATTRIBUTES.keys(), gpt_completion))
 
@@ -30,5 +29,5 @@ def regenerate_npc(id: int):
 
 
 if __name__ == '__main__':
-    for i in range(1, 100):
+    for i in range(1, 160):
         regenerate_npc(i)

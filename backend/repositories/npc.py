@@ -20,8 +20,13 @@ class NpcRepository:
         with Session(self.engine) as session:
             return session.query(Npc).filter_by(id=id).limit(1).one()
 
-    def requires_image(self):
+    def requires_image_generation(self):
         filter = and_(Npc.image_generator_state.is_(None), Npc.image_url.is_(None), Npc.image_generator_description.isnot(None))
+        with Session(self.engine) as session:
+            return session.query(Npc).filter(filter).all()
+
+    def requires_image_download(self):
+        filter = and_(Npc.image_generator_state.is_('started'), Npc.image_url.is_(None))
         with Session(self.engine) as session:
             return session.query(Npc).filter(filter).all()
 

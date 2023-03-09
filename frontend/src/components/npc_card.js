@@ -10,7 +10,7 @@ class NPCCard extends React.Component {
             { id: 'G', data: 'G' },
             { id: 'R', data: 'R' },
             { id: 'S', data: 'S' },
-            { id: 'W', data: 'S' },
+            { id: 'W', data: 'W' },
             { id: 'L', data: 'L' },
             { id: 'I', data: 'I' },
             { id: 'C', data: 'C' },
@@ -46,7 +46,7 @@ class NPCCard extends React.Component {
         return (
             <Card
                 image={{
-                    src: '../' + this.props.npc.image_url,
+                    src: '../images/npcs/' + this.props.npc.image_url,
                     alt: this.props.npc.image_generator_description
                 }}
                 style={{width: 950, margin: 15}}

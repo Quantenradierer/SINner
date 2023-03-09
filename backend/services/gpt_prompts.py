@@ -20,6 +20,8 @@ def create_npc_prompt(user_prompt, npc, attributes):
             existing_attributes += f'{item[0]}: {value}\n'
         else:
             missing_attributes += f'{item[0]}: {value}\n'
+    if not missing_attributes:
+        return None
 
     return PROMPT.format(user_prompt=user_prompt,
                          existing_attributes=existing_attributes,

@@ -13,5 +13,5 @@ def add_column(engine, table_name, column):
 if __name__ == '__main__':
     repo = NpcRepository()
 
-    column = Column('image_generator_state', String(16), primary_key=True)
+    column = Column('user_prompt', String(255))
     add_column(repo.engine, 'npc', column)

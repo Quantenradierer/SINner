@@ -12,6 +12,7 @@ npc_repo = NpcRepository()
 
 
 @app.route('/npc/<id>', methods=['GET'])
+@app.route('/npc/', methods=['GET'])
 def read_npc(id=None):
     if id and id.isdigit():
         npc = npc_repo.find(id)

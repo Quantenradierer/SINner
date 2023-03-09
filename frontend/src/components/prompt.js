@@ -32,6 +32,9 @@ const EXAMPLES = [
     'Erstelle einen NPC mit viel Cyberware',
     'Erstelle ein Vorstandsmitglied eines großen Konzerns',
     'Erstelle einen NPC mit Bezug auf die ADL, Allianz Deutscher Länder',
+    'Erstelle einen Fabrikarbeiter',
+    'Erstelle einen Runner',
+    'Erstelle einen Schieber',
 ]
 
 function random_prompt() {
@@ -76,12 +79,12 @@ class Prompt extends React.Component {
             return (
                 <FrameLines style={{width: 950, margin: 15}}>
                     <form>
-                        <Text> Erstelle einen NPC und beschreibe seine Ausrichtung. Gib keine persönlichen Informationen
+                        <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
                                von dir an, da diese öffentlich zugänglich sein werden!</Text>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <input value={this.state.prompt} onChange={this.handleChange} maxLength="255" type="text"
                                    id="prompt"/>
-                            <Button FrameComponent={FrameCorners} onClick={this.handleClick}>
+                            <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={this.handleClick}>
                                 <Text>Erstellen</Text>
                             </Button>
                         </div>
@@ -98,7 +101,7 @@ class Prompt extends React.Component {
                             manager: 'stagger',
                             duration: { stagger: 210 }
                         }}>
-                            <Text>Bitte warten. Erstelle NPC. Die Bildgenerierung ist aktuell noch deaktiviert.</Text><br/>
+                            <Text>Bitte warten. Erstelle NPC. Lade den NPC in ein paar Minuten erneut um das Bild zu sehen.</Text><br/>
                             <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
                             <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
                         </Animator>

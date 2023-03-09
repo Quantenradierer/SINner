@@ -41,7 +41,11 @@ class Root extends React.Component {
 class Content extends React.Component {
    constructor(props) {
         super(props);
-        const npc = {id: 'RANDOM', image_url: 'images/loading.png', attributes: {'Name': 'LOADING'}}
+
+        const path = window.location.pathname.split('/')
+        const npc_id = path[path.length - 1]
+        console.log(npc_id)
+        const npc = {id: npc_id, image_url: 'images/loading.png', attributes: {'Name': 'LOADING'}}
         this.state = { npc: npc };
         this.changeNpc = this.changeNpc.bind(this)
     }
@@ -49,7 +53,7 @@ class Content extends React.Component {
     componentDidMount() {
         let npc = {};
         let self = this;
-        axios.get('http://localhost:5000/npc/random')
+        axios.get('http://localhost:5000/npc/' + this.state.npc.id)
           .then(function (response) {
               npc = response.data
           })
