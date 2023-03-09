@@ -42,7 +42,7 @@ def generate_image_job(npc_id):
         repo.save(npc)
         return
 
-    pass_prompt(f'In Shadowrun/Cyberpunk: {npc.image_generator_description}')
+    pass_prompt(f'In Shadowrun/Cyberpunk: {npc.image_generator_description} --chaos 30 --ar 4:5')
     npc.image_generation_started()
     for i in range(6):
         time.sleep(40 + pow(4, i))
@@ -63,7 +63,7 @@ def generate_image_job_async(npc):
 
 if __name__ == '__main__':
     repo = NpcRepository()
-    npcs = [repo.find(166),]# .requires_image_generation()[0:10]
+    npcs = [repo.find(169),]# .requires_image_generation()[0:10]
 
     for npc in npcs:
         print(npc)
