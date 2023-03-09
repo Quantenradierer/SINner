@@ -25,19 +25,3 @@ def split_image(image_path, output_path):
         yield new_filename
     os.remove(image_path)
 
-
-if __name__ == '__main__':
-    output_path = 'frontend/public/images/npcs'
-    input_path = 'data/midjourney'
-
-    for beginning_size in range(63, 15, -1):
-        repo = NpcRepository()
-        for root, folder, files in os.walk(input_path):
-            for file in files:
-                beginning = file[len(config.MIDJOURNEY_USERNAME) + 1:beginning_size].replace('_', ' ')
-                npc = repo.find_image_description(beginning)
-                if npc:
-                    splitted_file_names = list(split_image(image_path=os.path.join(root, file), output_path=output_path))
-                    npc.add_image(f'./images/npcs/{splitted_file_names[0]}')
-                    repo.save(npc)
-

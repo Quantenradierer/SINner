@@ -19,7 +19,7 @@ PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}.\n" \
          "Hintergrundinformationen zu dem Charaktere.\n" \
          "{existing_attributes}\n" \
 
-TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \n{text}\n"
+TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {metatyp} der als {beruf} tätig ist. {image_generator_description}"
 
 """
 All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.
@@ -63,14 +63,3 @@ RELEVANT_ATTRIBUTES = {
     'Magie (von 0-6)': '',
     'Resonanz (von 0-6)': ''
 }
-
-"""
-What attributes describes the visual appearance. The content of this will be translated to english and then send to the image generator.
-"""
-UNTRANSLATED_APPEARANCE_ATTRIBUTE = 'Detailliertes Aussehen'
-
-
-'''
-midjourney adds the username in front of the image name. We need the name in order to remove it.
-'''
-MIDJOURNEY_USERNAME = 'Leto'

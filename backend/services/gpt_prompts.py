@@ -28,5 +28,9 @@ def create_npc_prompt(user_prompt, npc, attributes):
                          missing_attributes=missing_attributes)
 
 
-def translate_appearance_prompt(text):
-    return config.TRANSLATE_PROMPT.format(text=text)
+def translate_appearance_prompt(npc):
+    return config.TRANSLATE_PROMPT.format(
+        metatyp=npc.get_attribute('Metatyp'),
+        beruf=npc.get_attribute('Beruf'),
+        image_generator_description=npc.get_attribute('Detailliertes Aussehen')
+    )

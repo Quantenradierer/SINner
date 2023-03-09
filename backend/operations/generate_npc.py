@@ -28,8 +28,7 @@ def generate_npc(user_prompt: str):
     gpt_completion = gpt.ask_chatgpt(npc_prompt)
     npc.add_attributes(dict_from_text(config.RELEVANT_ATTRIBUTES.keys(), gpt_completion))
 
-    untranslated_appearance_description = npc.get_attribute(config.UNTRANSLATED_APPEARANCE_ATTRIBUTE)
-    translation_prompt = translate_appearance_prompt(untranslated_appearance_description)
+    translation_prompt = translate_appearance_prompt(npc)
     npc.image_generator_description = gpt.ask_chatgpt(translation_prompt).strip()
 
     # generate image with midjourney.pass_prompt(npc.image_generator_description)
