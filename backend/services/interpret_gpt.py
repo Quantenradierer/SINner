@@ -19,7 +19,9 @@ def dict_from_text(used_attribute_keys: list[str], text: str):
     for line in lines:
         if not line.count(':'):
             continue
-        key, value = line.split(':')
+
+        splitted = line.split(':')
+        key, value = splitted[0], ''.join(splitted[1:])
         key = key.strip()
 
         if key not in used_attribute_keys:
