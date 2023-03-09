@@ -36,7 +36,7 @@ class NPCCard extends React.Component {
     }
 
     render() {
-        const relevantAttributes = ['Metatyp', 'Beruf', 'Nationalität', 'Geschlecht', 'Alter', 'Detailliertes Aussehen', ]
+        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Detailliertes Aussehen', ]
         const items = [];
 
         for (const attribute of relevantAttributes) {
