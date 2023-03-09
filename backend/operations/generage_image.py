@@ -3,6 +3,7 @@ import time
 from threading import Thread
 
 from backend.repositories.npc import NpcRepository
+from services.banned_words_filter import contains_banned_word
 from services.midjourney import retrieve_latest_messages, MIDJOURNEY_BOT_ID, download_midjourney_image, pass_prompt
 from services.midjourney_images import split_image
 
@@ -36,6 +37,11 @@ def generate_image_job(npc_id):
     repo = NpcRepository()
     npc = repo.find(npc_id)
 
+    if contains_banned_word(npc.image_generator_description):
+        npc.image_generator_state = 'banned'
+        repo.save(npc)
+        return
+
     pass_prompt(f'In Shadowrun/Cyberpunk: {npc.image_generator_description}')
     npc.image_generation_started()
     for i in range(6):
@@ -57,7 +63,7 @@ def generate_image_job_async(npc):
 
 if __name__ == '__main__':
     repo = NpcRepository()
-    npcs = repo.requires_image_generation()[0:10]
+    npcs = [repo.find(166),]# .requires_image_generation()[0:10]
 
     for npc in npcs:
         print(npc)

@@ -41,6 +41,13 @@ class NpcRepository:
             session.commit()
             return npc.id
 
+    def delete(self, npc):
+        with Session(self.engine) as session:
+            session.delete(npc)
+            session.commit()
+            return npc.id
+
+
     def save(self, npc):
         with Session(self.engine) as session:
             session.add(npc)
