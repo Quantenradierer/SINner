@@ -22,7 +22,6 @@ const EXAMPLES = [
     'Erstelle einen Ökoterrorist',
     'Erstelle einen Büroangestellten, der gerne ein Ökoterrorist wäre',
     'Erstelle eine künstliche Intelligenz',
-    'Erstelle einen Friedhofswärter',
     'Erstelle einen NPC aus Hamburg',
     'Erstelle einen ausgebrannten Magier',
     'Erstelle einen Anarchisten',
@@ -35,6 +34,13 @@ const EXAMPLES = [
     'Erstelle einen Fabrikarbeiter',
     'Erstelle einen Runner',
     'Erstelle einen Schieber',
+    'Erstelle eine Babuschka',
+    'Erstelle einen Zwerg',
+    'Erstelle einen Taxifahrer',
+    'Erstelle einen Busfahrer',
+    'Erstelle einen Fährmann',
+    'Erstelle einen Bodyguard',
+    'Erstelle einen Türsteher',
 ]
 
 function random_prompt() {
