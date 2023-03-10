@@ -15,12 +15,15 @@ The backend is Python based (Flask, SQL Alchemy), while the frontend uses React 
 
 Please set those ENV variables in your operating system or in your IDE.
 
-| ENV Variable             | Description                                                                    |
-|--------------------------|--------------------------------------------------------------------------------|
-| OPENAI_API_KEY           | Create and copy the api key from: https://platform.openai.com/account/api-keys |
-| MJ_SERVER_ID             | Image generation is still WIP                                                  |
-| MJ_CHANNEL_ID            | Image generation is still WIP                                                  |
-| MJ_PRIVATE_DISCORD_TOKEN | Image generation is still WIP                                                  |
+Invite a midjourney bot to your server: https://docs.midjourney.com/docs/invite-the-bot
+I recommend setting up a private channel to not disturb anyone.
+
+| ENV Variable             | Description                                                                                                         |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------|
+| OPENAI_API_KEY           | Create and copy the api key from: https://platform.openai.com/account/api-keys                                      |
+| MJ_SERVER_ID             | Your Discord server ID (right click on server -> Copy ID)                                                           |
+| MJ_CHANNEL_ID            | Your Discord channel ID (right click on channel -> Copy ID)                                                         |
+| MJ_PRIVATE_DISCORD_TOKEN | https://linuxhint.com/get-discord-token/ (don't give this to anyone! it allows full access to your discord account) |
 
 
 
