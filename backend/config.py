@@ -3,11 +3,32 @@ import logging
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 
+"""
+file for the database
+"""
 SQLITE_FILE = 'data/npcs.sqlite'
+
+"""
+directory for npc images
+"""
 PUBLIC_NPC_IMAGE_PATH = 'frontend/public/images/npcs/'
 
+"""
+The images from midjourney will be saved temporary in this directory
+"""
+MIDJOURNEY_TEMP_PATH = 'data/midjourney'
+
+"""
+the prompt for midjourney
+"""
 MIDJOURNEY_PROMPT = 'In Shadowrun/Cyberpunk: {image_generator_description} --chaos 30 --ar 4:5'
 
+"""
+how often it shall be tried. The time between every try it calculated with '40 + pow(4, i)'
+Means the waiting time is: 41s, 56s, 104s, ~5min, ~17min, ~68min.
+After all this time the image generation counts as 'failed'.
+This often happens when the image generation contains bad words, where the image couldn't get generated
+"""
 MIDJOURNEY_RETRIES_BEFORE_FAILING = 6
 
 """
@@ -19,9 +40,12 @@ PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}.\n" \
          "{missing_attributes}\n" \
          "-----\n" \
          "Hintergrundinformationen zu dem Charaktere.\n" \
-         "{existing_attributes}\n" \
- \
-    TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {metatyp} der als {beruf} tätig ist. {image_generator_description}"
+         "{existing_attributes}\n"
+
+"""
+The translated result will be what midjourney gets. So this decides the midjourney results
+"""
+TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {metatyp} der als {beruf} tätig ist. {image_generator_description}"
 
 """
 All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.
