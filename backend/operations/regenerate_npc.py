@@ -1,7 +1,7 @@
 from backend import config
 from repositories.npc import NpcRepository
-from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
 from services.gpt import Gpt
+from services.gpt_prompts import create_npc_prompt
 from services.interpret_gpt import dict_from_text
 
 
@@ -26,8 +26,3 @@ def regenerate_npc(id: int):
 
     npc_repo.create(npc)
     return npc
-
-
-if __name__ == '__main__':
-    for i in range(1, 160):
-        regenerate_npc(i)

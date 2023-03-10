@@ -1,8 +1,8 @@
-import os.path
 import time
 from threading import Thread
 
 from backend.repositories.npc import NpcRepository
+from config import PUBLIC_NPC_IMAGE_PATH, MIDJOURNEY_PROMPT, MIDJOURNEY_RETRIES_BEFORE_FAILING
 from services.banned_words_filter import contains_banned_word
 from services.midjourney import retrieve_latest_messages, MIDJOURNEY_BOT_ID, download_midjourney_image, pass_prompt
 from services.midjourney_images import split_image
@@ -28,8 +28,8 @@ def find_and_crop_image(image_generator_description):
     if not url:
         return False
 
-    image_path = download_midjourney_image(url)
-    splitted_file_names = list(split_image(image_path, os.path.join('frontend/public/images/npcs/')))
+    image_name = download_midjourney_image(url)
+    splitted_file_names = list(split_image(image_name, PUBLIC_NPC_IMAGE_PATH))
     return splitted_file_names[0]
 
 
@@ -42,9 +42,9 @@ def generate_image_job(npc_id):
         repo.save(npc)
         return
 
-    pass_prompt(f'In Shadowrun/Cyberpunk: {npc.image_generator_description} --chaos 30 --ar 4:5')
+    pass_prompt(MIDJOURNEY_PROMPT.format(npc.image_generator_description))
     npc.image_generation_started()
-    for i in range(6):
+    for i in range(MIDJOURNEY_RETRIES_BEFORE_FAILING):
         time.sleep(40 + pow(4, i))
         image_path = find_and_crop_image(npc.image_generator_description)
         if image_path:
@@ -59,18 +59,3 @@ def generate_image_job(npc_id):
 def generate_image_job_async(npc):
     t = Thread(target=generate_image_job, args=[npc.id])
     t.start()
-
-
-if __name__ == '__main__':
-    repo = NpcRepository()
-    npcs = [repo.find(169),]# .requires_image_generation()[0:10]
-
-    for npc in npcs:
-        print(npc)
-        generate_image_job(npc.id)
-
-#        image_path = find_and_save_image(npc.image_generator_description)
-#        if image_path:
-#            npc.add_image(image_path)
-#            repo.save(npc)
-#            break

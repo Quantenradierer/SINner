@@ -6,6 +6,8 @@ from sqlalchemy.orm import Mapped, relationship, mapped_column, declarative_base
 import config
 
 NpcBase = declarative_base()
+
+
 class Npc(NpcBase):
     __tablename__ = 'npc'
 

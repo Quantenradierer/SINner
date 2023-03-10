@@ -1,5 +1,3 @@
-
-
 def find_correct_key(used_attribute_keys: list[str], key: str):
     """
     Sometimes GPT does not answer with the correct key, but removes part of it
@@ -30,9 +28,3 @@ def dict_from_text(used_attribute_keys: list[str], text: str):
         attributes[key] = value.strip()
 
     return attributes
-
-
-if __name__ == '__main__':
-    import config
-
-    print(find_correct_key(config.RELEVANT_ATTRIBUTES.keys(), 'St\u00e4rke'))

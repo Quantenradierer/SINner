@@ -1,4 +1,3 @@
-from collections import ChainMap
 from copy import copy
 
 import config

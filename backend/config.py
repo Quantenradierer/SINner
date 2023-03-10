@@ -1,12 +1,14 @@
-
-
 import logging
 
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 
 SQLITE_FILE = 'data/npcs.sqlite'
+PUBLIC_NPC_IMAGE_PATH = 'frontend/public/images/npcs/'
 
+MIDJOURNEY_PROMPT = 'In Shadowrun/Cyberpunk: {image_generator_description} --chaos 30 --ar 4:5'
+
+MIDJOURNEY_RETRIES_BEFORE_FAILING = 6
 
 """
 Prompt which will be sent to GPT. From my experience,
@@ -18,8 +20,8 @@ PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}.\n" \
          "-----\n" \
          "Hintergrundinformationen zu dem Charaktere.\n" \
          "{existing_attributes}\n" \
-
-TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {metatyp} der als {beruf} tätig ist. {image_generator_description}"
+ \
+    TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {metatyp} der als {beruf} tätig ist. {image_generator_description}"
 
 """
 All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.

@@ -21,7 +21,8 @@ class NpcRepository:
             return session.query(Npc).filter_by(id=id).limit(1).one()
 
     def requires_image_generation(self):
-        filter = and_(Npc.image_generator_state.is_(None), Npc.image_url.is_(None), Npc.image_generator_description.isnot(None))
+        filter = and_(Npc.image_generator_state.is_(None), Npc.image_url.is_(None),
+                      Npc.image_generator_description.isnot(None))
         with Session(self.engine) as session:
             return session.query(Npc).filter(filter).all()
 
@@ -46,7 +47,6 @@ class NpcRepository:
             session.delete(npc)
             session.commit()
             return npc.id
-
 
     def save(self, npc):
         with Session(self.engine) as session:

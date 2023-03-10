@@ -1,9 +1,9 @@
 from backend import config
 from models.npc import Npc
-from operations.generage_image import generate_image_job, generate_image_job_async
+from operations.generage_image import generate_image_job_async
 from repositories.npc import NpcRepository
-from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
 from services.gpt import Gpt
+from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
 from services.interpret_gpt import dict_from_text
 
 
@@ -40,4 +40,4 @@ def generate_npc(user_prompt: str):
 
 if __name__ == '__main__':
     for i in range(1):
-        generate_npc('Der NPC ist ein Barkeeper.')
+        generate_npc('')

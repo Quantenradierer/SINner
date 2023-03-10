@@ -1,8 +1,6 @@
-from PIL import Image
 import os.path
 
-from backend import config
-from backend.repositories.npc import NpcRepository
+from PIL import Image
 
 
 def split_image(image_path, output_path):
@@ -24,4 +22,3 @@ def split_image(image_path, output_path):
         im.crop((left, top, right, bottom)).save(splitted_file_path)
         yield new_filename
     os.remove(image_path)
-

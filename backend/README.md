@@ -1,17 +1,21 @@
 # SINner backend
 
-
 ## Architecture
+
 The architecture is mostly based off domain-driven-design by Eric Evans.
 
 ### models
+
 Models which contain data and business functionality.
-Models should not actively use the repository or the database. The operation, not the model itself, decides when those instances of models are being saved.
-They may use and change other models, when they are the only one which manages it (see aggregates at domain driven design).
+Models should not actively use the repository or the database. The operation, not the model itself, decides when those
+instances of models are being saved.
+They may use and change other models, when they are the only one which manages it (see aggregates at domain driven
+design).
 
 ### operations
 
-Since most of the other patterns shall not interact with each other, operations tie everything together. They implement the concrete business process.
+Since most of the other patterns shall not interact with each other, operations tie everything together. They implement
+the concrete business process.
 
 ### repositories
 

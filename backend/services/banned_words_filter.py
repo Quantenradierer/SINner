@@ -14,4 +14,3 @@ def contains_banned_word(text):
         if word in text:
             return True
     return False
-

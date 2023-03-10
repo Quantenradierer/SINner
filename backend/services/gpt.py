@@ -1,7 +1,7 @@
 import logging
+import os
 
 import openai
-import os
 
 
 class Gpt:
