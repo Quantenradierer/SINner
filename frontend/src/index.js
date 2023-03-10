@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, StylesBaseline} from '@arwes/core';
 import './index.css';
-import NPCCard from "./components/npc_card";
 import axios from 'axios';
-import NPCDetails from "./components/npc_details";
-import NPCPrivate from "./components/npc_private";
 import Prompt from "./components/prompt";
 import NPCComplete from "./components/npc_complete";
+import Footer from "./components/footer";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -74,8 +72,10 @@ class Content extends React.Component {
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Prompt changeNpc={this.changeNpc}/>
+<NPCComplete npc={this.state.npc}/>
 
-                <NPCComplete npc={this.state.npc}/>
+
+                <Footer/>
             </div>
         )
     }
