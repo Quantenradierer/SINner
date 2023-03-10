@@ -10,8 +10,8 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 npc_repo = NpcRepository()
 
 
-@app.route('/npc/<id>', methods=['GET'])
-@app.route('/npc/', methods=['GET'])
+@app.route('/api/npc/<id>', methods=['GET'])
+@app.route('/api/npc/', methods=['GET'])
 def read_npc(id=None):
     if id and id.isdigit():
         npc = npc_repo.find(id)
@@ -26,7 +26,7 @@ def read_npc(id=None):
     return {**npc_dict, **{'attributes': attributes_dict}}
 
 
-@app.route('/npc', methods=['POST'])
+@app.route('/api/npc', methods=['POST'])
 def create_npc():
     prompt = request.json['prompt'][:255]
 
