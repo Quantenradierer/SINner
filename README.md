@@ -18,12 +18,13 @@ Please set those ENV variables in your operating system or in your IDE.
 Invite a midjourney bot to your server: https://docs.midjourney.com/docs/invite-the-bot
 I recommend setting up a private channel to not disturb anyone.
 
-| ENV Variable             | Description                                                                                                         |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------|
-| OPENAI_API_KEY           | Create and copy the api key from: https://platform.openai.com/account/api-keys                                      |
-| MJ_SERVER_ID             | Your Discord server ID (right click on server -> Copy ID)                                                           |
-| MJ_CHANNEL_ID            | Your Discord channel ID (right click on channel -> Copy ID)                                                         |
-| MJ_PRIVATE_DISCORD_TOKEN | https://linuxhint.com/get-discord-token/ (don't give this to anyone! it allows full access to your discord account) |
+| ENV Variable             | Description                                                                    |
+|--------------------------|--------------------------------------------------------------------------------|
+| OPENAI_API_KEY           | Create and copy the api key from: https://platform.openai.com/account/api-keys |
+| MJ_SERVER_ID             | Your Discord server ID (right click on server -> Copy ID)                      |
+| MJ_CHANNEL_ID            | Your Discord channel ID (right click on channel -> Copy ID)                    |
+| MJ_PRIVATE_DISCORD_TOKEN | see https://linuxhint.com/get-discord-token/ how to get it                     |
+| REACT_APP_SERVER         | localhost:5000 for development, or your server name                            |
 
 
 

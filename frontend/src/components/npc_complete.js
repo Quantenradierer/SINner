@@ -15,7 +15,6 @@ class NPCComplete extends React.Component {
     }
 
     toggleDetails() {
-       console.log('stuff', this.state.showDetails)
         this.setState((state, props) => {
             return {showDetails: !state.showDetails}
         });

@@ -66,12 +66,12 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        axios.post('http://localhost:5000/npc', {prompt: this.state.prompt})
+        axios.post(process.env.REACT_APP_SERVER + '/npc', {prompt: this.state.prompt})
             .then(function (response) {
                 self.props.changeNpc(response.data)
             })
             .catch(function (error) {
-                let npc = {id: 'ERROR', image_url: 'images/npc_load_error.png', attributes: {'Name': 'ERROR'}}
+                let npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
                 self.props.changeNpc(npc)
             })
             .finally(function () {

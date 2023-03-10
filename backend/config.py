@@ -11,7 +11,7 @@ SQLITE_FILE = 'data/npcs.sqlite'
 """
 directory for npc images
 """
-PUBLIC_NPC_IMAGE_PATH = 'frontend/public/images/npcs/'
+PUBLIC_NPC_IMAGE_PATH = 'frontend/public/images/npcs'
 
 """
 The images from midjourney will be saved temporary in this directory
