@@ -16,6 +16,7 @@ class Impressum extends React.Component {
                     E-Mails: schmidt.bernd.1989@gmail.com<br/>
                     <br/>
                     Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
+                    Bitte schreibt mir falls die erstellten Inhalte eure Rechte verletzten.
                 </p>
                 <h1>Datenschutz:</h1>
                 <p>
@@ -49,9 +50,11 @@ class Impressum extends React.Component {
                 </List>
 
                 <h1>Nutzungsbedingungen:</h1>
-                <p>Dieser Dienst dient zur Erstellung von NPCs (non-player character) für Shadowrun.  </p>
+                <p>Dieser Dienst dient zur Erstellung von NPCs (non-player character) für Shadowrun. </p>
 
-                <p>Wenn GPT oder Midjourney der Meinung ist, das die Inhalte unpassend sind, dann wird dieser Dienst ausgesperrt.</p><br/>
+                <p>Wenn GPT oder Midjourney der Meinung ist, das die Inhalte unpassend sind, dann wird dieser Dienst ausgesperrt.
+                Unpassende NPCs werden auch manuell gelöscht oder verändert.
+                </p><br/>
 
                 <p>Bei GPT ist es klar, das es sich lediglich um die Erstellung von Rollenspiel-NPCs handelt.
                     Bei Midjourney ist dies anhand der Äußerlichen Beschreibung nicht ersichtlich, weshalb ein Wortfilter implementiert wurde.</p>

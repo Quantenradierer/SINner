@@ -1,6 +1,5 @@
 import React from "react";
 import {Blockquote, Button, Card, FrameLines, FramePentagon, Table, Text} from "@arwes/core";
-import {List} from '@arwes/core';
 import Impressum from "./impressum";
 
 class Footer extends React.Component {
