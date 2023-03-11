@@ -1,3 +1,5 @@
 /.idea/
 /data/npcs.sqlite
 /frontend/public/images/npcs/*.png
+/node_modules/
+/.env

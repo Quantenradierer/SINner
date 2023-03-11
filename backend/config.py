@@ -1,4 +1,5 @@
 import logging
+import os
 
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
@@ -11,7 +12,7 @@ SQLITE_FILE = 'data/npcs.sqlite'
 """
 directory for npc images
 """
-PUBLIC_NPC_IMAGE_PATH = 'frontend/public/images/npcs'
+PUBLIC_NPC_IMAGE_PATH = os.getenv('PUBLIC_NPC_IMAGE_PATH') or 'frontend/public/images/npcs'
 
 """
 The images from midjourney will be saved temporary in this directory

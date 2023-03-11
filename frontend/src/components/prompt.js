@@ -66,7 +66,7 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        axios.post(process.env.REACT_APP_SERVER + '/npc', {prompt: this.state.prompt})
+        axios.post('/api/npc', {prompt: this.state.prompt})
             .then(function (response) {
                 self.props.changeNpc(response.data)
             })

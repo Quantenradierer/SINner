@@ -1,4 +1,4 @@
-from backend import config
+import config
 from models.npc import Npc
 from operations.generage_image import generate_image_job_async
 from repositories.npc import NpcRepository
@@ -31,7 +31,6 @@ def generate_npc(user_prompt: str):
     translation_prompt = translate_appearance_prompt(npc)
     npc.image_generator_description = gpt.ask_chatgpt(translation_prompt).strip()
 
-    # generate image with midjourney.pass_prompt(npc.image_generator_description)
     npc_repo.create(npc)
     generate_image_job_async(npc)
 

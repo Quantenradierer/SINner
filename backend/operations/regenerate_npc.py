@@ -1,4 +1,4 @@
-from backend import config
+import config
 from repositories.npc import NpcRepository
 from services.gpt import Gpt
 from services.gpt_prompts import create_npc_prompt

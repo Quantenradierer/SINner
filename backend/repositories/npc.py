@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 from sqlalchemy.sql.selectable import and_
 
-from backend import config
-from backend.models.npc import Npc, NpcBase
+import config
+from models.npc import Npc, NpcBase
 
 
 class NpcRepository:

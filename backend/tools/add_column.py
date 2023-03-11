@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, text
 
-from backend.repositories.npc import NpcRepository
+from repositories.npc import NpcRepository
 
 
 def add_column(engine, table_name, column):

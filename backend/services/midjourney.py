@@ -2,7 +2,6 @@ import os
 
 import requests
 
-from repositories.npc import NpcRepository
 
 SERVER_ID = os.getenv('MJ_SERVER_ID')
 CHANNEL_ID = os.getenv('MJ_CHANNEL_ID')

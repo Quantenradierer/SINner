@@ -50,7 +50,7 @@ class Content extends React.Component {
     componentDidMount() {
         let npc = {};
         let self = this;
-        axios.get(process.env.REACT_APP_SERVER + '/npc/' + this.state.npc.id)
+        axios.get('/api/npc/' + this.state.npc.id)
           .then(function (response) {
               npc = response.data
           })

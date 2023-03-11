@@ -1,7 +1,7 @@
 import time
 from threading import Thread
 
-from backend.repositories.npc import NpcRepository
+from repositories.npc import NpcRepository
 from config import PUBLIC_NPC_IMAGE_PATH, MIDJOURNEY_PROMPT, MIDJOURNEY_RETRIES_BEFORE_FAILING
 from services.banned_words_filter import contains_banned_word
 from services.midjourney import retrieve_latest_messages, MIDJOURNEY_BOT_ID, download_midjourney_image, pass_prompt
@@ -13,6 +13,8 @@ def find_correlated_response(responses, search_text):
         if message['author']['id'] != MIDJOURNEY_BOT_ID:
             continue
         if search_text not in message['content']:
+            continue
+        if not message['attachments']:
             continue
 
         url = message['attachments'][0]['url']
@@ -42,8 +44,9 @@ def generate_image_job(npc_id):
         repo.save(npc)
         return
 
-    pass_prompt(MIDJOURNEY_PROMPT.format(npc.image_generator_description))
+    pass_prompt(MIDJOURNEY_PROMPT.format(image_generator_description=npc.image_generator_description))
     npc.image_generation_started()
+    repo.save(npc)
     for i in range(MIDJOURNEY_RETRIES_BEFORE_FAILING):
         time.sleep(40 + pow(4, i))
         image_path = find_and_crop_image(npc.image_generator_description)

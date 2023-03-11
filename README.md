@@ -24,8 +24,6 @@ I recommend setting up a private channel to not disturb anyone.
 | MJ_SERVER_ID             | Your Discord server ID (right click on server -> Copy ID)                      |
 | MJ_CHANNEL_ID            | Your Discord channel ID (right click on channel -> Copy ID)                    |
 | MJ_PRIVATE_DISCORD_TOKEN | see https://linuxhint.com/get-discord-token/ how to get it                     |
-| REACT_APP_SERVER         | localhost:5000 for development, or your server name                            |
-
 
 
 
