@@ -1,15 +1,13 @@
 import React from "react";
-import {Blockquote, Button, Card, Text} from "@arwes/core";
-import {FramePentagon, Figure, List} from '@arwes/core';
 import NPCCard from "./npc_card";
 import NPCDetails from "./npc_details";
 import NPCPrivate from "./npc_private";
 
 class NPCComplete extends React.Component {
 
-   constructor(props) {
+    constructor(props) {
         super(props);
-        this.state = { showDetails: true, showPrivate: true };
+        this.state = {showDetails: true, showPrivate: true};
         this.toggleDetails = this.toggleDetails.bind(this)
         this.togglePrivate = this.togglePrivate.bind(this)
     }

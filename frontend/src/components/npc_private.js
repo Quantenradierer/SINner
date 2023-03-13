@@ -1,15 +1,15 @@
 import React from "react";
-import {Button, Card, Text} from "@arwes/core";
-import {FramePentagon, Figure, List} from '@arwes/core';
+import {FramePentagon, List, Text} from "@arwes/core";
 
 class NPCPrivate extends React.Component {
     render() {
         const relevantAttributes = ['Hobbys und Interessen', 'Eigenarten', 'Familie',
-                                    'Kontakte', 'Wohnort', 'Konzernzugehörigkeit', 'Geheimnis']
+            'Kontakte', 'Wohnort', 'Konzernzugehörigkeit', 'Geheimnis']
         const items = [];
 
         for (const attribute of relevantAttributes) {
-            items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text></li>);
+            items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text>
+            </li>);
         }
         if (!this.props.show) {
             return (<div></div>)

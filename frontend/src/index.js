@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, StylesBaseline} from '@arwes/core';
@@ -75,7 +75,7 @@ class Content extends React.Component {
 
 
     changeNpc(npc) {
-        if (npc != this.state.npc) {
+        if (npc !== this.state.npc) {
             window.history.replaceState(null, "SINner: " + npc.name, "/npc/" + npc.id)
             this.setState({npc: npc})
         }
@@ -92,7 +92,6 @@ class Content extends React.Component {
         )
     }
 }
-
 
 
 // Assuming there is a HTML element with id "root".

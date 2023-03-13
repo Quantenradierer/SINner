@@ -44,7 +44,7 @@ const EXAMPLES = [
 ]
 
 function random_prompt() {
-    return EXAMPLES[Math.floor(Math.random()*EXAMPLES.length)];
+    return EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)];
 }
 
 class Prompt extends React.Component {
@@ -59,7 +59,7 @@ class Prompt extends React.Component {
     }
 
     handleChange(event) {
-      this.setState({prompt: event.target.value});
+        this.setState({prompt: event.target.value});
     }
 
     handleClick() {
@@ -81,12 +81,12 @@ class Prompt extends React.Component {
 
     render() {
 
-        if (this.state.loadingState == 'prompt') {
+        if (this.state.loadingState === 'prompt') {
             return (
                 <FrameLines style={{width: 950, margin: 15}}>
                     <form>
                         <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
-                               von dir an, da diese öffentlich zugänglich sein werden!</Text>
+                            von dir an, da diese öffentlich zugänglich sein werden!</Text>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <input value={this.state.prompt} onChange={this.handleChange} maxLength="255" type="text"
                                    id="prompt"/>
@@ -97,15 +97,14 @@ class Prompt extends React.Component {
                     </form>
                 </FrameLines>
             )
-        }
-        else if (this.state.loadingState == 'waiting') {
+        } else if (this.state.loadingState === 'waiting') {
             return (
                 <div>
                     <FrameLines style={{width: 950, margin: 15}}>
                         <Animator animator={{
                             activate: this.state.activate,
                             manager: 'stagger',
-                            duration: { stagger: 210 }
+                            duration: {stagger: 210}
                         }}>
                             <Text>Bitte warten. Erstelle NPC. Das Bild wird in einigen Minuten nachgeladen.</Text><br/>
                             <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>

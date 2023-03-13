@@ -1,18 +1,18 @@
 import React from "react";
-import {Blockquote, Button, Card, FrameLines, FramePentagon, Table, Text} from "@arwes/core";
+import {Button, FrameLines} from "@arwes/core";
 import Impressum from "./impressum";
 
 class Footer extends React.Component {
-   constructor(props) {
+    constructor(props) {
         super(props);
 
-        this.state = { showImpressum: false };
+        this.state = {showImpressum: false};
 
         this.showImpressum = this.showImpressum.bind(this)
     }
 
     showImpressum() {
-       this.setState({ showImpressum: true })
+        this.setState({showImpressum: true})
     }
 
 

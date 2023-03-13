@@ -1,6 +1,5 @@
 import React from "react";
-import {FramePentagon} from "@arwes/core";
-import {List} from '@arwes/core';
+import {FramePentagon, List} from "@arwes/core";
 
 class Impressum extends React.Component {
 
@@ -15,11 +14,13 @@ class Impressum extends React.Component {
 
                     E-Mails: schmidt.bernd.1989@gmail.com<br/>
                     <br/>
-                    Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
+                    Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur
+                    eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
                 </p>
                 <h1>Datenschutz:</h1>
                 <p>
-                    Sämtliche angezeigten Daten sind fiktiv, die von Openai/GPT anhand einer Eingabe generiert wurden.<br/>
+                    Sämtliche angezeigten Daten sind fiktiv, die von Openai/GPT anhand einer Eingabe generiert
+                    wurden.<br/>
                 </p>
                 <b>Bitte gebt keine privaten oder personenbezogene Daten ein!</b><br/>
                 <br/>
@@ -33,17 +34,27 @@ class Impressum extends React.Component {
                 Alle eingegebenen Daten werden dauerhaft gespeichert und sind öffentlich zugänglich.<br/>
                 <List>
                     <li><b>Welche Daten:</b> Alle Eingaben in Textfeldern</li>
-                    <li><b>Verwendung:</b> Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben) und zur Fehlersuche</li>
-                    <li><b>Löschung:</b> Löschung nur auf Anfrage bei der Impressums-E-Mail, falls ihr Private oder Personenbezogene Angaben</li>
-                    <li><b>Weitergabe:</b> Die Weitergabe erfolgt nur zur Sicherstellung der Funktionalität an die folgenden Dienste</li>
+                    <li><b>Verwendung:</b> Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben) und zur
+                        Fehlersuche
+                    </li>
+                    <li><b>Löschung:</b> Löschung nur auf Anfrage bei der Impressums-E-Mail, falls ihr Private oder
+                        Personenbezogene Angaben
+                    </li>
+                    <li><b>Weitergabe:</b> Die Weitergabe erfolgt nur zur Sicherstellung der Funktionalität an die
+                        folgenden Dienste
+                    </li>
                     <li>Weitergabe an <a href='https://openai.com/'>OpenAI</a> um die Texte zu generieren</li>
-                    <li>Weitergabe an <a href='https://midjourney.com/'>Midjourney</a> um die Bilder zu generieren, die Äusserlichen Beschreibungen bei Midjourney sind öffentlich zugänglich</li>
+                    <li>Weitergabe an <a href='https://midjourney.com/'>Midjourney</a> um die Bilder zu generieren, die
+                        Äusserlichen Beschreibungen bei Midjourney sind öffentlich zugänglich
+                    </li>
                     <li>Weitergabe an <a href='https://discord.com'>Discord</a> als Übertragungsweg an Midjourney</li>
                 </List>
                 Cookies werden nur beim Login gesetzt. Es werden keine Cookies von Drittanbietern gesetzt.<br/>
                 <List>
-                    <li><b>Welche Daten:</b> Einen Code um euch auf dem Server wiederzuerkennen </li>
-                    <li><b>Verwendung:</b> Nur zur Sicherstellung der Funktionalität: Damit ihr eingeloggt bleibt und ihr bestimmte Rechte nutzen könnt </li>
+                    <li><b>Welche Daten:</b> Einen Code um euch auf dem Server wiederzuerkennen</li>
+                    <li><b>Verwendung:</b> Nur zur Sicherstellung der Funktionalität: Damit ihr eingeloggt bleibt und
+                        ihr bestimmte Rechte nutzen könnt
+                    </li>
                     <li><b>Löschung:</b> Beim Ausloggen wird der Cookie gelöscht</li>
                     <li><b>Weitergabe:</b> Es erfolgt keine Weitergabe</li>
                 </List>
@@ -51,14 +62,16 @@ class Impressum extends React.Component {
                 <h1>Nutzungsbedingungen:</h1>
                 <p>Dieser Dienst dient zur Erstellung von NPCs (non-player character) für Shadowrun. </p>
 
-                <p>Bitte achtet auch ein wenig darauf was ihr eingebt: Wenn GPT oder Midjourney der Meinung ist, das die Eingaben unpassend sind, dann wird dieser Dienst ausgesperrt.
+                <p>Bitte achtet auch ein wenig darauf was ihr eingebt: Wenn GPT oder Midjourney der Meinung ist, das die
+                    Eingaben unpassend sind, dann wird dieser Dienst ausgesperrt.
                     Ich werde unpassende NPCs auch manuell löschen oder abändern.
                 </p><br/>
 
                 <p>Bei GPT ist es klar, das es sich lediglich um die Erstellung von Rollenspiel-NPCs handelt.
-                    Bei Midjourney ist dies anhand der Äußerlichen Beschreibung nicht ersichtlich, weshalb ein Wortfilter implementiert wurde.</p>
+                    Bei Midjourney ist dies anhand der Äußerlichen Beschreibung nicht ersichtlich, weshalb ein
+                    Wortfilter implementiert wurde.</p>
                 <List>
-                    <li>Bitte gebt keine privaten oder personenbezogenen Daten an </li>
+                    <li>Bitte gebt keine privaten oder personenbezogenen Daten an</li>
                     <li>Bitte unterlasst extreme Darstellung von Gewalt, Rassismus oder Sexualität</li>
                     <li>Bitte erstellt keine Urheberrechtlich geschützten Personen oder Figuren</li>
                 </List>
@@ -78,16 +91,20 @@ class Impressum extends React.Component {
                 </p>
                 <p>
                     <b>Warum wird das Bild nicht erzeugt?</b><br/>
-                    Manche Beschreibungen enthalten Wörter, welche von Midjourney verboten sind. Es wird noch daran gearbeitet, das diese Beschreibungen dann umformuliert werden.
+                    Manche Beschreibungen enthalten Wörter, welche von Midjourney verboten sind. Es wird noch daran
+                    gearbeitet, das diese Beschreibungen dann umformuliert werden.
                 </p>
                 <p>
                     <b>Warum ist Resonanz, Magie oder die Fertigkeiten nicht detailliert aufgeführt?</b><br/>
                     GPT ist ungenau. Es erzeugt manchmal Werte wenn sie nicht vorhanden sein sollten.
-                    Deshalb werden diese erstmal nicht angezeigt, bis ich ein Muster entdeckt habe, was ich manuell korrigieren kann.
+                    Deshalb werden diese erstmal nicht angezeigt, bis ich ein Muster entdeckt habe, was ich manuell
+                    korrigieren kann.
                 </p>
                 <p>
                     <b>Wo kann ich Vorschläge für Änderungen einbringen - oder Fehler melden?</b><br/>
-                    Entweder du schreibst an <a href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a> oder du trägst hier ein Issue ein:
+                    Entweder du schreibst an <a
+                    href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a> oder
+                    du trägst hier ein Issue ein:
                     <a href='https://github.com/Quantenradierer/SINner/issues/new'>https://github.com/Quantenradierer/SINner/issues/new</a>
                 </p>
             </FramePentagon>

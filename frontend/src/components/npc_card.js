@@ -1,20 +1,19 @@
 import React from "react";
-import {Blockquote, Button, Card, Table, Text} from "@arwes/core";
-import {List} from '@arwes/core';
+import {Blockquote, Card, List, Table, Text} from "@arwes/core";
 
 class NPCCard extends React.Component {
 
     tableHeaders() {
         return [
-            { id: 'K', data: 'K' },
-            { id: 'G', data: 'G' },
-            { id: 'R', data: 'R' },
-            { id: 'S', data: 'S' },
-            { id: 'W', data: 'W' },
-            { id: 'L', data: 'L' },
-            { id: 'I', data: 'I' },
-            { id: 'C', data: 'C' },
-            { id: 'E', data: 'E' }
+            {id: 'K', data: 'K'},
+            {id: 'G', data: 'G'},
+            {id: 'R', data: 'R'},
+            {id: 'S', data: 'S'},
+            {id: 'W', data: 'W'},
+            {id: 'L', data: 'L'},
+            {id: 'I', data: 'I'},
+            {id: 'C', data: 'C'},
+            {id: 'E', data: 'E'}
         ];
     }
 
@@ -36,11 +35,12 @@ class NPCCard extends React.Component {
     }
 
     render() {
-        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Detailliertes Aussehen', ]
+        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Detailliertes Aussehen',]
         const items = [];
 
         for (const attribute of relevantAttributes) {
-            items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text></li>);
+            items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text>
+            </li>);
         }
 
         return (
