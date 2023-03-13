@@ -1,5 +1,5 @@
 import React from "react";
-import {Blockquote, Button, Card, FramePentagon, Table, Text} from "@arwes/core";
+import {FramePentagon} from "@arwes/core";
 import {List} from '@arwes/core';
 
 class Impressum extends React.Component {
@@ -16,7 +16,6 @@ class Impressum extends React.Component {
                     E-Mails: schmidt.bernd.1989@gmail.com<br/>
                     <br/>
                     Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
-                    Bitte schreibt mir falls die erstellten Inhalte eure Rechte verletzten.
                 </p>
                 <h1>Datenschutz:</h1>
                 <p>
@@ -52,8 +51,8 @@ class Impressum extends React.Component {
                 <h1>Nutzungsbedingungen:</h1>
                 <p>Dieser Dienst dient zur Erstellung von NPCs (non-player character) für Shadowrun. </p>
 
-                <p>Wenn GPT oder Midjourney der Meinung ist, das die Inhalte unpassend sind, dann wird dieser Dienst ausgesperrt.
-                Unpassende NPCs werden auch manuell gelöscht oder verändert.
+                <p>Bitte achtet auch ein wenig darauf was ihr eingebt: Wenn GPT oder Midjourney der Meinung ist, das die Eingaben unpassend sind, dann wird dieser Dienst ausgesperrt.
+                    Ich werde unpassende NPCs auch manuell löschen oder abändern.
                 </p><br/>
 
                 <p>Bei GPT ist es klar, das es sich lediglich um die Erstellung von Rollenspiel-NPCs handelt.
@@ -70,8 +69,27 @@ class Impressum extends React.Component {
                     <li><a href='https://openai.com/policies/terms-of-use'>GPT Richtlinien</a></li>
                 </List>
 
-                Shadowrun ist eine eingetragene Handelsmarke von Topps Company, Inc.
-
+                Shadowrun ist eine eingetragene Handelsmarke von Topps Company, Inc.<br/>
+                <br/>
+                <h1>FAQ:</h1>
+                <p>
+                    <b>Will this be available in english?</b><br/>
+                    I am working on it, but it isn't my main priority right now.
+                </p>
+                <p>
+                    <b>Warum wird das Bild nicht erzeugt?</b><br/>
+                    Manche Beschreibungen enthalten Wörter, welche von Midjourney verboten sind. Es wird noch daran gearbeitet, das diese Beschreibungen dann umformuliert werden.
+                </p>
+                <p>
+                    <b>Warum ist Resonanz, Magie oder die Fertigkeiten nicht detailliert aufgeführt?</b><br/>
+                    GPT ist ungenau. Es erzeugt manchmal Werte wenn sie nicht vorhanden sein sollten.
+                    Deshalb werden diese erstmal nicht angezeigt, bis ich ein Muster entdeckt habe, was ich manuell korrigieren kann.
+                </p>
+                <p>
+                    <b>Wo kann ich Vorschläge für Änderungen einbringen - oder Fehler melden?</b><br/>
+                    Entweder du schreibst an <a href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a> oder du trägst hier ein Issue ein:
+                    <a href='https://github.com/Quantenradierer/SINner/issues/new'>https://github.com/Quantenradierer/SINner/issues/new</a>
+                </p>
             </FramePentagon>
         )
     }

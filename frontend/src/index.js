@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, StylesBaseline} from '@arwes/core';
 import './index.css';
-import axios from 'axios';
 import Prompt from "./components/prompt";
 import NPCComplete from "./components/npc_complete";
 import Footer from "./components/footer";
+import api from "./axios";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -37,41 +37,55 @@ class Root extends React.Component {
 }
 
 class Content extends React.Component {
-   constructor(props) {
+    constructor(props) {
         super(props);
 
         const path = window.location.pathname.split('/')
         const npc_id = path[path.length - 1]
         const npc = {id: npc_id, image_url: 'loading.png', attributes: {'Name': 'LOADING'}}
-        this.state = { npc: npc };
+        this.state = {npc: npc};
         this.changeNpc = this.changeNpc.bind(this)
     }
 
     componentDidMount() {
-        let npc = {};
-        let self = this;
-        axios.get('/api/npc/' + this.state.npc.id)
-          .then(function (response) {
-              npc = response.data
-          })
-          .catch(function (error) {
-              npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
-          })
-          .finally(function () {
-            self.changeNpc(npc)
-          });
+        this.loadNpc(this.state.npc.id)
     }
 
+    loadNpc(id) {
+        let self = this;
+
+        let npc = {};
+        api.get('/api/npc/' + id)
+            .then(function (response) {
+                npc = response.data
+                // reload the npc in a few minutes, if there is no image
+                if (npc.image_url == null) {
+                    setInterval(function () {
+                        this.loadNpc(id)
+                    }, 3 * 60 * 1000);
+                }
+            })
+            .catch(function (error) {
+                npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
+            })
+            .finally(function () {
+                self.changeNpc(npc)
+            });
+    }
+
+
     changeNpc(npc) {
-        window.history.replaceState(null, "SINner: " + npc.name, "/npc/" + npc.id)
-        this.setState({npc: npc})
+        if (npc != this.state.npc) {
+            window.history.replaceState(null, "SINner: " + npc.name, "/npc/" + npc.id)
+            this.setState({npc: npc})
+        }
     }
 
     render() {
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Prompt changeNpc={this.changeNpc}/>
-<NPCComplete npc={this.state.npc}/>
+                <NPCComplete npc={this.state.npc}/>
 
                 <Footer/>
             </div>
