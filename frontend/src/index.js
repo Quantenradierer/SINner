@@ -7,6 +7,7 @@ import Prompt from "./components/prompt";
 import NPCComplete from "./components/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
+import ReloadButton from "./components/reload_button";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -85,6 +86,8 @@ class Content extends React.Component {
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Prompt changeNpc={this.changeNpc}/>
+                <div style={{margin: 15}}></div>
+                <ReloadButton/>
                 <NPCComplete npc={this.state.npc}/>
 
                 <Footer/>
