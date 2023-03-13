@@ -60,10 +60,11 @@ class Content extends React.Component {
             .then(function (response) {
                 npc = response.data
                 // reload the npc in a few minutes, if there is no image
+                console.log(npc, npc.image_url, npc.image_url == null)
                 if (npc.image_url == null) {
                     setInterval(function () {
-                        this.loadNpc(id)
-                    }, 3 * 60 * 1000);
+                        self.loadNpc(id)
+                    },  3 * 60 * 1000);
                 }
             })
             .catch(function (error) {
