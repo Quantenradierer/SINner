@@ -12,7 +12,7 @@ class Impressum extends React.Component {
                     Grömitzer Weg 34A<br/>
                     22147 Hamburg<br/>
 
-                    E-Mails: schmidt.bernd.1989@gmail.com<br/>
+                    E-Mails: <a href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a><br/>
                     <br/>
                     Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur
                     eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
