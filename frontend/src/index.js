@@ -46,10 +46,23 @@ class Content extends React.Component {
         const npc = {id: npc_id, image_url: 'loading.png', attributes: {'Name': 'LOADING'}}
         this.state = {npc: npc};
         this.changeNpc = this.changeNpc.bind(this)
+        this.interval = null;
     }
 
     componentDidMount() {
         this.loadNpc(this.state.npc.id)
+
+        this.interval = setInterval( self.checkImageUpdate(),  3 * 60 * 1000);
+    }
+
+    componentWillUnmount() {
+        this.interval.stop()
+    }
+
+    checkImageUpdate() {
+        if (this.state.npc.image_url == null) {
+            this.loadNpc(this.state.npc.id)
+        }
     }
 
     loadNpc(id) {
@@ -59,13 +72,6 @@ class Content extends React.Component {
         api.get('/api/npc/' + id)
             .then(function (response) {
                 npc = response.data
-                // reload the npc in a few minutes, if there is no image
-                console.log(npc, npc.image_url, npc.image_url == null)
-                if (npc.image_url == null) {
-                    setInterval(function () {
-                        self.loadNpc(id)
-                    },  3 * 60 * 1000);
-                }
             })
             .catch(function (error) {
                 npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
