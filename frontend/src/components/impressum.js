@@ -17,6 +17,11 @@ class Impressum extends React.Component {
                     Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur
                     eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
                 </p>
+                <h1>Disclaimer:</h1>
+                <p>
+                    Shadowrun-Logo und Inhalte mit freundlicher Genehmigung von Pegasus Spiele unter Lizenz von Catalyst Game Labs und Topps Company, Inc. © 2020 Topps Company, Inc. Alle Rechte vorbehalten. Shadowrun ist eine eingetragene Handelsmarke von Topps Company, Inc.
+                </p>
+
                 <h1>Datenschutz:</h1>
                 <p>
                     Sämtliche angezeigten Daten sind fiktiv, die von Openai/GPT anhand einer Eingabe generiert
@@ -82,7 +87,6 @@ class Impressum extends React.Component {
                     <li><a href='https://openai.com/policies/terms-of-use'>GPT Richtlinien</a></li>
                 </List>
 
-                Shadowrun ist eine eingetragene Handelsmarke von Topps Company, Inc.<br/>
                 <br/>
                 <h1>FAQ:</h1>
                 <p>

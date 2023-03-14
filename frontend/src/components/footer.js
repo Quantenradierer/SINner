@@ -27,7 +27,7 @@ class Footer extends React.Component {
                 <Button FrameComponent={FrameLines}
                         style={{textAlign: 'center'}}
                         onClick={this.showImpressum}>
-                    Impressum / Datenschutz / Nutzungsbedingungen
+                    Impressum / Disclaimer / Datenschutz / Nutzungsbedingungen
                 </Button>
             )
         }
