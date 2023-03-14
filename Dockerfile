@@ -29,14 +29,9 @@ RUN pip install gunicorn
 RUN pip install gevent
 ENV FLASK_ENV production
 
-RUN mkdir ./data
-RUN mkdir ./data/midjourney
-
-COPY data/npcs.sqlite ./data/
-COPY data/midjourney_banned_words.txt ./data/
-COPY frontend/build/ /www/data/
 COPY deployment/config ./config
-
+COPY frontend/build/ /www/data/
+RUN mkdir /www/data/images/npcs
 
 RUN chmod +x config/entrypoint.sh
 
