@@ -10,9 +10,9 @@ from services.midjourney_images import split_image
 
 def find_correlated_response(responses, search_text):
     for message in responses:
-        if message['author']['id'] != MIDJOURNEY_BOT_ID:
-            continue
         if search_text not in message['content']:
+            continue
+        if message['author']['id'] != MIDJOURNEY_BOT_ID and 'OVERRIDE' not in search_text:
             continue
         if not message['attachments']:
             continue
