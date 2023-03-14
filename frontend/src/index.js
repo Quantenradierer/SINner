@@ -52,7 +52,7 @@ class Content extends React.Component {
     componentDidMount() {
         this.loadNpc(this.state.npc.id)
 
-        this.interval = setInterval( self.checkImageUpdate(),  3 * 60 * 1000);
+        this.interval = setInterval( this.checkImageUpdate,  3 * 60 * 1000);
     }
 
     componentWillUnmount() {
