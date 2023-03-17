@@ -3,3 +3,5 @@
 /frontend/public/images/npcs/*.png
 /node_modules/
 /.env
+/backend/*.log
+/*.log
