@@ -1,5 +1,3 @@
-import time
-from threading import Thread
 from typing import Optional
 
 from operations.operation_output import Failure, Success

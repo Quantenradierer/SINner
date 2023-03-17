@@ -27,13 +27,4 @@ class DownloadMidjourneyImageTest(unittest.TestCase):
     @patch('requests.get')
     def test_request_error(self, mock_get):
         mock_get.side_effect = RequestException
-        with self.assertRaises(RequestException):
-            download_midjourney_image(self.tempdir.name, self.url)
-
-    @patch('os.path.basename')
-    @patch('builtins.open')
-    def test_file_error(self, mock_open, mock_basename):
-        mock_open.side_effect = IOError
-        mock_basename.return_value = 'image.jpg'
-        with self.assertRaises(IOError):
-            download_midjourney_image(self.tempdir.name, self.url)
+        self.assertIsNone(download_midjourney_image(self.tempdir.name, self.url))

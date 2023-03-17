@@ -29,6 +29,6 @@ class TestSplitImage(unittest.TestCase):
 
         # Check that each split file has the expected dimensions.
         for i, split_filename in enumerate(split_filenames):
-            split_file_path = os.path.join(self.test_output_path, split_filename)
+            split_file_path = os.path.join(self.tempdir.name, split_filename)
             with Image.open(split_file_path) as splitted_image:
                 self.assertEqual(splitted_image.size, (25, 25))

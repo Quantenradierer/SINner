@@ -45,4 +45,4 @@ def pass_prompt(prompt: str) -> requests.models.Response:
         response = requests.post("https://discord.com/api/v9/interactions", json=payload, headers=header)
     except requests.exceptions.RequestException:
         return False
-    return True
+    return response.status_code == 200

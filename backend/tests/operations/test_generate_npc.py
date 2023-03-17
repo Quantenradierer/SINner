@@ -24,22 +24,25 @@ class GenerateNpcTest(BaseIntegrationTest):
 
     @patch('builtins.open', new_callable=mock_open, read_data="")
     @patch('openai.ChatCompletion.create')
-    @patch('jobs.download_image.download_image_job_async')
+    @patch('operations.generate_npc.download_image.download_image_job_async')
     def test_call_success(self, mock_generate_image_job, mock_create, mock_open):
         mock_gpt_create_npc = {'choices': [{'message': {'content': '\n'.join([f'{attr}: test' for attr in list(config.RELEVANT_ATTRIBUTES)])}}]}
         mock_gpt_translation = {'choices': [{'message': {'content': 'the person looks cool, man.'}}]}
         mock_create.side_effect = mock_gpt_create_npc, mock_gpt_translation
 
-        npc = GenerateNpc('some prompt').call()
+        result_npc = GenerateNpc('some prompt').call()
+        self.assertTrue(result_npc)
+        self.assertEqual('the person looks cool, man.', result_npc.data.image_generator_description)
         mock_generate_image_job.assert_called_once()
-        assert('the person looks cool, man', npc.image_generator_description)
 
     @patch('builtins.open', new_callable=mock_open, read_data="")
     @patch('openai.ChatCompletion.create', side_effect=Exception('Test Error'))
-    @patch('jobs.download_image.download_image_job_async')
+    @patch('operations.generate_npc.download_image.download_image_job_async')
     def test_call_gpt_unavailable(self, mock_generate_image_job, mock_create, mock_open):
-        npc = GenerateNpc('some prompt').call()
-        mock_generate_image_job.assert_called_once()
-        assert('the person looks cool, man', npc.image_generator_description)
+        result = GenerateNpc('some prompt').call()
+
+        self.assertFalse(result)
+        self.assertEqual('gpt not available', result.error)
+        mock_generate_image_job.assert_not_called()
 
 

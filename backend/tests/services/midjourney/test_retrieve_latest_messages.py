@@ -70,7 +70,7 @@ class TestRetrieveLatestMessages(unittest.TestCase):
 
         result = retrieve_latest_messages()
 
-        self.assertIsNone(result)
+        self.assertListEqual([], result)
         mock_get.assert_called_once_with(
             f'https://discord.com/api/v9/channels/{CHANNEL_ID}/messages',
             headers={

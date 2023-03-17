@@ -23,11 +23,11 @@ class TestPassImagePrompt(BaseIntegrationTest):
         super().tearDown()
 
     @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\nass\n")
-    @patch('requests.get')
-    def test_call_success(self, mock_get, mock_open):
+    @patch('requests.post')
+    def test_call_success(self, mock_post, mock_open):
         mock_response = Mock()
         mock_response.status_code = 200
-        mock_get.return_value = mock_response
+        mock_post.return_value = mock_response
 
         npc = Npc(id=self.npc_id, image_generator_description='someone with glasses')
         self.assertIsNone(npc.image_generator_state)

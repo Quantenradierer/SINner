@@ -12,7 +12,7 @@ class TestPassPrompt(unittest.TestCase):
 
         result = pass_prompt('Test prompt')
 
-        self.assertEqual(result.status_code, 200)
+        self.assertTrue(result)
         mock_post.assert_called_once()
 
     @patch('requests.post')
@@ -21,5 +21,5 @@ class TestPassPrompt(unittest.TestCase):
 
         result = pass_prompt('Test prompt')
 
-        self.assertEqual(result.status_code, 401)
+        self.assertFalse(result)
         mock_post.assert_called_once()

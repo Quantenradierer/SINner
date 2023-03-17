@@ -1,8 +1,8 @@
 import config
+from jobs import download_image
 from models.npc import Npc
 from operations.operation_output import Failure, Success
 from operations.pass_image_prompt import PassImagePrompt
-from operations import download_image
 from repositories.npc import NpcRepository
 from services.gpt.ask_chatgpt import ask_chatgpt
 from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
@@ -42,9 +42,6 @@ class GenerateNpc:
 
         npc.image_generator_description = image_generator_description.strip()
         npc_repo.create(npc)
-
-        PassImagePrompt(npc).call()
-        npc_repo.save(npc)
 
         download_image.download_image_job_async(npc)
 
