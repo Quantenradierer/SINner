@@ -1,0 +1,11 @@
+repos:
+   -   repo: local
+       hooks:
+          - id: unittest
+            name: unittest
+            entry:  bash -c 'cd backend && python -m unittest discover -p *test.py'
+            language: python
+            'types': [ python ]
+            args: [  ]
+            additional_dependencies: [ ]
+            pass_filenames: false
