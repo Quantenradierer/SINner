@@ -1,3 +1,5 @@
+from functools import cache
+
 import sqlalchemy
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
@@ -8,9 +10,14 @@ from models.npc import Npc, NpcBase
 
 
 class NpcRepository:
+    # Borg Pattern to avoid additional connections: https://code.activestate.com/recipes/66531/
+    __shared_state = {}
     def __init__(self):
-        self.engine = sqlalchemy.create_engine('sqlite:///' + config.SQLITE_FILE)
-        NpcBase.metadata.create_all(self.engine)
+        self.__dict__ = self.__shared_state
+
+        if not hasattr(self, 'engine'):
+            self.engine = sqlalchemy.create_engine('sqlite:///' + config.SQLITE_FILE)
+            NpcBase.metadata.create_all(self.engine)
 
     def read_random(self):
         with Session(self.engine) as session:
@@ -53,3 +60,7 @@ class NpcRepository:
             session.add(npc)
             session.commit()
             return npc.id
+
+    def close(self):
+        self.engine.dispose(close=True)
+        del self.engine

@@ -1,7 +1,8 @@
 import logging
 import os
+import openai
 
-logging.basicConfig()
+logging.basicConfig(filename='sinner.log')
 logging.getLogger().setLevel(logging.DEBUG)
 
 """
@@ -13,6 +14,12 @@ SQLITE_FILE = 'data/npcs.sqlite'
 directory for npc images
 """
 PUBLIC_NPC_IMAGE_PATH = os.getenv('PUBLIC_NPC_IMAGE_PATH') or 'frontend/public/images/npcs'
+
+"""
+file for 
+"""
+BANNED_WORD_FILE = 'data/midjourney_banned_words.txt'
+
 
 """
 The images from midjourney will be saved temporary in this directory
@@ -47,6 +54,11 @@ PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}.\n" \
 The translated result will be what midjourney gets. So this decides the midjourney results
 """
 TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {metatyp} der als {beruf} tätig ist. {image_generator_description}"
+
+"""
+the attribute which is used for visual appearance
+"""
+VISUAL_APPEARANCE_ATTRIBUTE = 'Detailliertes Aussehen'
 
 """
 All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.
@@ -90,3 +102,8 @@ RELEVANT_ATTRIBUTES = {
     'Magie (von 0-6)': '',
     'Resonanz (von 0-6)': ''
 }
+
+"""
+configuration for openai
+"""
+openai.api_key = os.getenv('OPENAI_API_KEY')

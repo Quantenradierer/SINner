@@ -1,15 +1,26 @@
+import requests
 import os
 
-import requests
 
 
-SERVER_ID = os.getenv('MJ_SERVER_ID')
-CHANNEL_ID = os.getenv('MJ_CHANNEL_ID')
-PRIVATE_DISCORD_TOKEN = os.getenv('MJ_PRIVATE_DISCORD_TOKEN')
-MIDJOURNEY_BOT_ID = '936929561302675456'
+def pass_prompt(prompt: str) -> requests.models.Response:
+    """
+    Sends a prompt to the Midjourney Discord bot using the Discord API.
 
+    Args:
+        prompt (str): The prompt to send to the bot.
 
-def pass_prompt(prompt: str):
+    Returns:
+        requests.models.Response: The response object returned by the Discord API.
+
+    Raises:
+        requests.exceptions.RequestException: If an error occures while sending the request
+
+    """
+    SERVER_ID = os.getenv('MJ_SERVER_ID')
+    CHANNEL_ID = os.getenv('MJ_CHANNEL_ID')
+    PRIVATE_DISCORD_TOKEN = os.getenv('MJ_PRIVATE_DISCORD_TOKEN')
+
     payload = {"type": 2, "application_id": "936929561302675456", "guild_id": SERVER_ID,
                "channel_id": CHANNEL_ID, "session_id": "9e394ea43e050cd23c98cbaed9bd53b8",
                "data": {"version": "1077969938624553050", "id": "938956540159881230", "name": "imagine", "type": 1,
@@ -30,34 +41,8 @@ def pass_prompt(prompt: str):
     header = {
         'authorization': PRIVATE_DISCORD_TOKEN
     }
-    response = requests.post("https://discord.com/api/v9/interactions",
-                             json=payload, headers=header)
-    return response
-
-
-def retrieve_latest_messages():
-    # Discord API endpoint for channels
-    url = f'https://discord.com/api/v9/channels/{CHANNEL_ID}/messages'
-
-    headers = {
-        "Authorization": PRIVATE_DISCORD_TOKEN,
-        "Content-Type": "application/json"
-    }
-
-    params = {
-        "limit": 50
-    }
-
-    response = requests.get(url, headers=headers, params=params)
-
-    return response.json()
-
-
-def download_midjourney_image(url):
-    response = requests.get(url)
-    local_path = f'data/midjourney/{os.path.basename(url)}'
-
-    # Schreiben der Binärdaten in eine Datei
-    with open(local_path, "wb") as f:
-        f.write(response.content)
-    return local_path
+    try:
+        response = requests.post("https://discord.com/api/v9/interactions", json=payload, headers=header)
+    except requests.exceptions.RequestException:
+        return False
+    return True

@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-from operations.generate_npc import generate_npc
+from operations.generate_npc import GenerateNpc
 from repositories.npc import NpcRepository
 
 app = Flask(__name__)
@@ -30,7 +30,7 @@ def read_npc(id=None):
 def create_npc():
     prompt = request.json['prompt'][:255]
 
-    npc = generate_npc(prompt)
+    npc = GenerateNpc(prompt).call()
 
     attributes_dict = {}
     for attribute in npc.attributes:

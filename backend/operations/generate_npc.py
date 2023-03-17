@@ -1,42 +1,51 @@
 import config
 from models.npc import Npc
-from operations.generage_image import generate_image_job_async
+from operations.operation_output import Failure, Success
+from operations.pass_image_prompt import PassImagePrompt
+from operations import download_image
 from repositories.npc import NpcRepository
-from services.gpt import Gpt
+from services.gpt.ask_chatgpt import ask_chatgpt
 from services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
 from services.interpret_gpt import dict_from_text
 
 
-def generate_npc(user_prompt: str):
-    """
-    Generates a random NPC based on a user-provided prompt.
+class GenerateNpc:
+    def __init__(self, user_prompt:str):
+        self.user_prompt = user_prompt
 
-    :param user_prompt: The prompt provided by the user.
-    :type user_prompt: str
+    def call(self):
+        """
+        Generates a random NPC based on a user-provided prompt.
 
-    :returns: A new Npc object containing the attributes of the generated NPC.
-    :rtype: Npc object
-    """
+        :param user_prompt: The prompt provided by the user.
+        :type user_prompt: str
 
-    gpt = Gpt()
-    npc_repo = NpcRepository()
+        :returns: A new Npc object containing the attributes of the generated NPC.
+        :rtype: Npc object
+        """
 
-    npc = Npc()
-    npc.user_prompt = user_prompt
+        npc = Npc()
 
-    npc_prompt = create_npc_prompt(user_prompt, npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
-    gpt_completion = gpt.ask_chatgpt(npc_prompt)
-    npc.add_attributes(dict_from_text(config.RELEVANT_ATTRIBUTES.keys(), gpt_completion))
+        npc_repo = NpcRepository()
+        npc.user_prompt = self.user_prompt
 
-    translation_prompt = translate_appearance_prompt(npc)
-    npc.image_generator_description = gpt.ask_chatgpt(translation_prompt).strip()
+        npc_prompt = create_npc_prompt(self.user_prompt, npc=npc, attributes=config.RELEVANT_ATTRIBUTES)
+        gpt_completion = ask_chatgpt(npc_prompt)
+        if not gpt_completion:
+            return Failure('gpt not available')
+        npc.add_attributes(dict_from_text(config.RELEVANT_ATTRIBUTES.keys(), gpt_completion))
 
-    npc_repo.create(npc)
-    generate_image_job_async(npc)
+        translation_prompt = translate_appearance_prompt(npc)
+        image_generator_description = ask_chatgpt(translation_prompt)
+        if not npc_prompt:
+            return Failure('gpt not available')
 
-    return npc
+        npc.image_generator_description = image_generator_description.strip()
+        npc_repo.create(npc)
 
+        PassImagePrompt(npc).call()
+        npc_repo.save(npc)
 
-if __name__ == '__main__':
-    for i in range(1):
-        generate_npc('')
+        download_image.download_image_job_async(npc)
+
+        return Success(data=npc)

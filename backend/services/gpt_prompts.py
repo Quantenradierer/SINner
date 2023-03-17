@@ -31,5 +31,5 @@ def translate_appearance_prompt(npc):
     return config.TRANSLATE_PROMPT.format(
         metatyp=npc.get_attribute('Metatyp'),
         beruf=npc.get_attribute('Beruf'),
-        image_generator_description=npc.get_attribute('Detailliertes Aussehen')
+        image_generator_description=npc.get_attribute(config.VISUAL_APPEARANCE_ATTRIBUTE)
     )

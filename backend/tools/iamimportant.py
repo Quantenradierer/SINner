@@ -6,7 +6,7 @@ repo = NpcRepository()
 def switch_ids(from_id, to_id):
     """
     yep, the only purpose for this script is to move myself to id=1
-    did you know, all from npc.id = 1 was created by GPT3, except the name?
+    did you know, all data from npc.id = 1 was created by GPT3, except the name?
     """
     try:
         repo.find(to_id)
