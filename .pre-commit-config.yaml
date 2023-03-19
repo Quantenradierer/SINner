@@ -3,9 +3,13 @@ repos:
        hooks:
           - id: unittest
             name: unittest
-            entry:  bash -c 'cd backend && python -m unittest discover -p *test.py'
+            entry:  bash -c 'cd backend && python manage.py test npc_creator.tests'
             language: python
             'types': [ python ]
             args: [  ]
-            additional_dependencies: [ ]
+            additional_dependencies: [
+              django,
+              openai,
+              Pillow
+            ]
             pass_filenames: false
