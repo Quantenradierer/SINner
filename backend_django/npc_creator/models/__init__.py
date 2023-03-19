@@ -1,0 +1,3 @@
+
+
+from .npc import Npc
