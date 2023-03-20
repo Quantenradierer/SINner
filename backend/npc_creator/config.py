@@ -3,6 +3,7 @@ import os
 
 import openai
 
+
 logging.basicConfig(filename='sinner.log')
 logging.getLogger().setLevel(logging.DEBUG)
 

@@ -7,7 +7,19 @@ from npc_creator.operations.pass_image_prompt import PassImagePrompt
 from npc_creator.repositories import npc_repo
 
 
-def download_image_job(npc_id):
+def download_image_job(npc_id: str) -> None:
+    """
+    Downloads an image for the given NPC ID and saves it in the NPC repository.
+
+    Parameters
+    ----------
+    npc_id : str
+        The ID of the NPC whose image is to be downloaded.
+
+    Returns
+    -------
+    None
+    """
     npc = npc_repo.find(npc_id)
 
     PassImagePrompt(npc).call()
@@ -19,6 +31,18 @@ def download_image_job(npc_id):
             break
 
 
-def download_image_job_async(npc):
+def download_image_job_async(npc: object) -> None:
+    """
+    Starts a new thread to download an image for the given NPC object.
+
+    Parameters
+    ----------
+    npc : object
+        The NPC object whose image is to be downloaded.
+
+    Returns
+    -------
+    None
+    """
     t = Thread(target=download_image_job, args=[npc.id])
     t.start()

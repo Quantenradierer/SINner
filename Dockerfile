@@ -19,20 +19,17 @@ ENV OPENAI_API_KEY=$OPENAI_API_KEY
 ENV MJ_CHANNEL_ID=$MJ_CHANNEL_ID
 ENV MJ_PRIVATE_DISCORD_TOKEN=$MJ_PRIVATE_DISCORD_TOKEN
 ENV MJ_SERVER_ID=$MJ_SERVER_ID
-ENV PUBLIC_NPC_IMAGE_PATH='/www/data/images/npcs/'
+ENV PUBLIC_NPC_IMAGE_PATH='/app/data/images/npc_creator/npcs'
 
 WORKDIR /app
 
 COPY backend/ ./
 RUN pip install -r ./requirements.txt
-RUN pip install gunicorn
-RUN pip install gevent
 ENV FLASK_ENV production
 
-COPY deployment/config ./config
+COPY deployment/entrypoint.sh ./entrypoint.sh
 COPY frontend/build/ /www/data/
-RUN mkdir /www/data/images/npcs
 
-RUN chmod +x config/entrypoint.sh
+RUN chmod +x entrypoint.sh
 
-CMD ["./config/entrypoint.sh"]
+CMD ["./entrypoint.sh"]

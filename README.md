@@ -7,7 +7,7 @@ SINner is an application to create NPCs for Shadowrun Pen&Paper.
 It uses GPT for NPCs description, and midjourney to create images.
 The image generation is a bit of manual labor currently, since there is no actual API. 
 
-The backend is Python based (Flask, SQL Alchemy), while the frontend uses React and Arwes (https://arwes.dev/).
+The backend is Python based (Django), while the frontend uses React and Arwes (https://arwes.dev/).
 
 # Installation
 
@@ -64,3 +64,10 @@ In summary, it costs around 0.05$ per NPC creation.
 
 I would like to add other AI image generators, so if you have experience with other AI image generators, please let me know.
 I have tried DALL-E 2, but the results are not suitable.
+
+# Docker
+
+Creates a volume to store the current database (sqlite) and the images
+`docker volume create sinner-data`
+
+``

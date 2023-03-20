@@ -66,7 +66,7 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        api.post('/api/npc', {prompt: this.state.prompt})
+        api.post('/api/npc_creator/npc', {prompt: this.state.prompt})
             .then(function (response) {
                 self.props.changeNpc(response.data)
             })

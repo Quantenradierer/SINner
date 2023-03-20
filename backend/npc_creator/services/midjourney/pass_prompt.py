@@ -43,6 +43,7 @@ def pass_prompt(prompt: str) -> bool:
     }
     try:
         response = requests.post("https://discord.com/api/v9/interactions", json=payload, headers=header)
+        response.raise_for_status()
+        return True
     except requests.exceptions.RequestException:
         return False
-    return response.status_code == 200

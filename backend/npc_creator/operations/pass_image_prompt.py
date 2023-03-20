@@ -1,5 +1,3 @@
-from typing import Union
-
 from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.npc import Npc
 from npc_creator.operations.return_types import Failure, Success

@@ -46,7 +46,7 @@ class NPCCard extends React.Component {
         return (
             <Card
                 image={{
-                    src: '../images/npcs/' + this.props.npc.image_url,
+                    src: '../images/npc_creator/npcs/' + this.props.npc.image_url,
                     alt: this.props.npc.image_generator_description
                 }}
                 style={{width: 950, margin: 15}}

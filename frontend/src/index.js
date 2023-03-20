@@ -43,10 +43,12 @@ class Content extends React.Component {
 
         const path = window.location.pathname.split('/')
         const npc_id = path[path.length - 1]
-        const npc = {id: npc_id, image_url: 'loading.png', attributes: {'Name': 'LOADING'}}
+        const npc = {id: npc_id || 0, image_url: 'images/loading.png', attributes: {'Name': 'LOADING'}}
         this.state = {npc: npc};
         this.changeNpc = this.changeNpc.bind(this)
         this.interval = null;
+
+        this.loadNpc = this.loadNpc.bind(this)
     }
 
     componentDidMount() {
@@ -56,7 +58,7 @@ class Content extends React.Component {
     }
 
     componentWillUnmount() {
-        this.interval.stop()
+        clearInterval(this.interval)
     }
 
     checkImageUpdate() {
@@ -69,12 +71,12 @@ class Content extends React.Component {
         let self = this;
 
         let npc = {};
-        api.get('/api/npc/' + id)
+        api.get('/api/npc_creator/npc/' + id)
             .then(function (response) {
                 npc = response.data
             })
             .catch(function (error) {
-                npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
+                npc = {id: id, image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
             })
             .finally(function () {
                 self.changeNpc(npc)
@@ -84,7 +86,9 @@ class Content extends React.Component {
 
     changeNpc(npc) {
         if (npc !== this.state.npc) {
-            window.history.replaceState(null, "SINner: " + npc.name, "/npc/" + npc.id)
+            const url = "/npc/" + npc.id
+            //window.history.replaceState(null, '', url)
+            window.history.pushState({}, "", url)
             this.setState({npc: npc})
         }
     }
@@ -94,7 +98,7 @@ class Content extends React.Component {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Prompt changeNpc={this.changeNpc}/>
                 <div style={{margin: 15}}></div>
-                <ReloadButton/>
+                <ReloadButton loadNpc={this.loadNpc}/>
                 <NPCComplete npc={this.state.npc}/>
 
                 <Footer/>
@@ -103,7 +107,5 @@ class Content extends React.Component {
     }
 }
 
-
-// Assuming there is a HTML element with id "root".
 ReactDOM.render(<Root/>, document.querySelector('#root'));
 //CreationPriorityList.render(document.querySelector('#root'))

@@ -15,16 +15,16 @@ def create_npc_prompt(user_prompt, npc_attributes, attributes):
     for key, value in attributes.items():
         value = value or ''
         if value:
-            existing_attributes += f'{key}: {value}\n'
+            existing_attributes.append(f'{key}: {value}\n')
         else:
-            missing_attributes += f'{key}: \n'
+            missing_attributes.append(f'{key}: \n')
 
     if not missing_attributes:
         return None
 
     return config.PROMPT.format(user_prompt=user_prompt,
-                                existing_attributes=existing_attributes,
-                                missing_attributes=missing_attributes)
+                                existing_attributes=''.join(existing_attributes),
+                                missing_attributes=''.join(missing_attributes))
 
 
 def translate_appearance_prompt(npc):

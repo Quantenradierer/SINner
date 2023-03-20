@@ -11,11 +11,10 @@ class Npc(models.Model):
     image_generator_state = models.CharField(max_length=20)
 
     def __init__(self, *args, **kwargs):
+        self.attributes = kwargs.pop('attributes', {})
         super(Npc, self).__init__(*args, **kwargs)
         if self.id:
             self.attributes = dict([(attr.key, attr.value) for attr in self.attribute_set.all()])
-        else:
-            self.attributes = {}
 
     def save(self, *args, **kwargs):
         super(Npc, self).save(*args, **kwargs)

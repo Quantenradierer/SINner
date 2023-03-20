@@ -5,8 +5,8 @@ def read_random():
     return Npc.objects.order_by('?').prefetch_related('attribute_set').first()
 
 
-def find(id):
-    return Npc.objects.prefetch_related('attribute_set').find(id)
+def find(pk):
+    return Npc.objects.prefetch_related('attribute_set').get(pk=pk)
 
 
 def requires_image_generation():

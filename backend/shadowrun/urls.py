@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('npc_creator/', include('npc_creator.urls')),
+    path('api/', include([
+        path('npc_creator/', include('npc_creator.urls')),
+    ])),
     path('admin/', admin.site.urls)
 ]

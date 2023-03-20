@@ -2,14 +2,18 @@ import React from "react";
 import {Blockquote, Button, Card, FrameLines, List, Table, Text} from "@arwes/core";
 
 class ReloadButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.loadRandom = this.loadRandom.bind(this)
+    }
 
-    reloadWebsite() {
-        window.location.replace('random');
+    loadRandom() {
+        this.props.loadNpc(0)
     }
 
     render() {
         return (
-            <Button FrameComponent={FrameLines} onClick={this.reloadWebsite}>
+            <Button FrameComponent={FrameLines} onClick={this.loadRandom}>
                 <Text>Lade einen anderen zufälligen NPC</Text>
             </Button>
         )
