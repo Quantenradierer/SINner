@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOST')]
+ALLOWED_HOSTS = [os.getenv('DJANGO_HOST')]
 
 
 # Application definition
@@ -121,6 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/www/data/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -129,7 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000'
+    f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = [
+    f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}'
+]

@@ -13,18 +13,21 @@ The backend is Python based (Django), while the frontend uses React and Arwes (h
 
 ## Environment Variables
 
-Please set those ENV variables in your operating system or in your IDE.
-
 Invite a midjourney bot to your server: https://docs.midjourney.com/docs/invite-the-bot
 I recommend setting up a private channel to not disturb anyone.
 
-| ENV Variable             | Description                                                                    |
-|--------------------------|--------------------------------------------------------------------------------|
-| OPENAI_API_KEY           | Create and copy the api key from: https://platform.openai.com/account/api-keys |
-| MJ_SERVER_ID             | Your Discord server ID (right click on server -> Copy ID)                      |
-| MJ_CHANNEL_ID            | Your Discord channel ID (right click on channel -> Copy ID)                    |
-| MJ_PRIVATE_DISCORD_TOKEN | see https://linuxhint.com/get-discord-token/ how to get it                     |
+Please set those ENV variables. I recommend using a `.env` file. 
 
+
+| ENV Variable             | Description                                                                                      |
+|--------------------------|--------------------------------------------------------------------------------------------------|
+| OPENAI_API_KEY           | Create and copy the api key from: https://platform.openai.com/account/api-keys                   |
+| MJ_SERVER_ID             | Your Discord server ID (right click on server -> Copy ID)                                        |
+| MJ_CHANNEL_ID            | Your Discord channel ID (right click on channel -> Copy ID)                                      |
+| MJ_PRIVATE_DISCORD_TOKEN | see https://linuxhint.com/get-discord-token/ how to get it                                       |
+| DJANGO_SECURE_KEY        | `from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())` |
+| DJANGO_HOST              | localhost or your domain                                                                         |
+| DJANGO_PORT              | like, 8000 or 80                                                                                 |
 
 
 
@@ -43,8 +46,8 @@ Download and Install Python: https://www.python.org/
 (if you installed the frontend previously, don't forget to go back into the project root, with `cd ..`)
 ```
 pip install -r backend\requirements.txt
-python backend\operations\generate_npc.py
-python backend\app.py
+cd backend
+python manage.py runserver
 ```
 
 It will create one npc and then start the flask backend server.
@@ -70,4 +73,4 @@ I have tried DALL-E 2, but the results are not suitable.
 Creates a volume to store the current database (sqlite) and the images
 `docker volume create sinner-data`
 
-``
+use the `dockerscript.sh` to run everything. 

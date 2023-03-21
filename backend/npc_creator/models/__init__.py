@@ -1,2 +1,2 @@
 
-from .npc import Npc
+from .npc import Npc, Attribute
