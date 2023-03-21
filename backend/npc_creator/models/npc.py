@@ -18,6 +18,15 @@ class Npc(models.Model):
 
     def save(self, *args, **kwargs):
         super(Npc, self).save(*args, **kwargs)
+
+        attribute_set = self.attribute_set.all()
+        for attribute in attribute_set:
+            if attribute.key in self.attributes:
+                attribute.value = self.attributes[attribute.key]
+                self.attributes.pop(attribute.key)
+            else:
+                attribute.delete()
+
         self.attribute_set.bulk_create([Attribute(key=key, value=value, npc=self) for key, value in self.attributes.items()])
 
     def has_image_description(self):
