@@ -23,7 +23,6 @@ def download_image_job(npc_id: str) -> None:
     npc = npc_repo.find(npc_id)
 
     PassImagePrompt(npc).call()
-    npc_repo.save(npc)
 
     for i in range(config.MIDJOURNEY_RETRIES_BEFORE_FAILING):
         time.sleep(40 + pow(4, i))
@@ -44,5 +43,6 @@ def download_image_job_async(npc: object) -> None:
     -------
     None
     """
+    return
     t = Thread(target=download_image_job, args=[npc.id])
     t.start()
