@@ -1,3 +1,4 @@
+from copy import copy
 
 from django.db import models
 
@@ -20,10 +21,11 @@ class Npc(models.Model):
         super(Npc, self).save(*args, **kwargs)
 
         attribute_set = self.attribute_set.all()
+        attributes_hash = copy(self.attributes)
         for attribute in attribute_set:
-            if attribute.key in self.attributes:
-                attribute.value = self.attributes[attribute.key]
-                self.attributes.pop(attribute.key)
+            if attribute.key in attributes_hash:
+                attribute.value = attributes_hash[attribute.key]
+                attributes_hash.pop(attribute.key)
             else:
                 attribute.delete()
 
