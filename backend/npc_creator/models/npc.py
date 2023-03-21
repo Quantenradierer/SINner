@@ -5,10 +5,10 @@ from npc_creator import config
 
 
 class Npc(models.Model):
-    user_prompt = models.CharField(max_length=255)
-    image_generator_description = models.TextField()
-    image_url = models.CharField(max_length=255)
-    image_generator_state = models.CharField(max_length=20)
+    user_prompt = models.CharField(max_length=255, blank=True)
+    image_generator_description = models.TextField(blank=True)
+    image_url = models.CharField(max_length=255, blank=True)
+    image_generator_state = models.CharField(max_length=20, blank=True)
 
     def __init__(self, *args, **kwargs):
         self.attributes = kwargs.pop('attributes', {})
