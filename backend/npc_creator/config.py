@@ -56,7 +56,7 @@ PROMPT = "Vervollständige einen Shadowrun NPC. {user_prompt}.\n" \
 """
 The translated result will be what midjourney gets. So this decides the midjourney results
 """
-TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {alter} Jähriger {metatyp} der als {beruf} tätig ist. {image_generator_description}"
+TRANSLATE_PROMPT = "Übersetzte den folgenden Abschnitt ins Englische: \nEin {alter} Jähriger mit Ethnizität {ethni}. Ein {metatyp} der als {beruf} tätig ist. {image_generator_description}"
 
 """
 the attribute which is used for visual appearance

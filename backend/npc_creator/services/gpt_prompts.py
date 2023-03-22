@@ -32,5 +32,6 @@ def translate_appearance_prompt(npc):
         metatyp=npc.attributes.get('Metatyp', ''),
         beruf=npc.attributes.get('Beruf', ''),
         alter=npc.attributes.get('Alter', ''),
+        ethni=npc.attributes.get('Ethnizität'),
         image_generator_description=npc.attributes[config.VISUAL_APPEARANCE_ATTRIBUTE]
     )
