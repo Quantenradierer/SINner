@@ -34,7 +34,7 @@ class GenerateNpc:
 
         translation_prompt = translate_appearance_prompt(npc)
         image_generator_description = ask_chatgpt(translation_prompt)
-        if not npc_prompt:
+        if not image_generator_description:
             return Failure('gpt not available')
 
         npc.image_generator_description = image_generator_description.strip()
