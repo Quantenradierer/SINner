@@ -14,8 +14,8 @@ class Impressum extends React.Component {
 
                     E-Mails: <a href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a><br/>
                     <br/>
-                    Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzten, <br/>sondern nur
-                    eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
+                    Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzen, <br/>
+                    sondern nur eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
                 </p>
                 <h1>Disclaimer:</h1>
                 <p>
@@ -24,8 +24,7 @@ class Impressum extends React.Component {
 
                 <h1>Datenschutz:</h1>
                 <p>
-                    Sämtliche angezeigten Daten sind fiktiv, die von Openai/GPT anhand einer Eingabe generiert
-                    wurden.<br/>
+                    Sämtliche angezeigten Daten sind fiktiv, die von Openai/GPT sowie Midjourney generiert wurden.<br/>
                 </p>
                 <b>Bitte gebt keine privaten oder personenbezogene Daten ein!</b><br/>
                 <br/>
@@ -38,8 +37,8 @@ class Impressum extends React.Component {
                 </List>
                 Alle eingegebenen Daten werden dauerhaft gespeichert und sind öffentlich zugänglich.<br/>
                 <List>
-                    <li><b>Welche Daten:</b> Alle Eingaben in Textfeldern</li>
-                    <li><b>Verwendung:</b> Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben) und zur
+                    <li><b>Welche Daten:</b>Alle Eingaben in Textfeldern</li>
+                    <li><b>Verwendung:</b>Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben) und zur
                         Fehlersuche
                     </li>
                     <li><b>Löschung:</b> Löschung nur auf Anfrage bei der Impressums-E-Mail, falls ihr Private oder

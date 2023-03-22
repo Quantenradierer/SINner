@@ -4,7 +4,7 @@ import {Animator} from "@arwes/animation";
 import api from "../axios";
 
 const EXAMPLES = [
-    'Erstelle einen Ladenbesitzer',
+    'Erstelle einen Werkstattbesitzer',
     'Erstelle eine widersprüchliche Person',
     'Erstelle einen Clubbesitzer',
     'Erstelle einen Buchhalter, der für einen der großen Konzern arbeitet.',
@@ -24,6 +24,7 @@ const EXAMPLES = [
     'Erstelle eine künstliche Intelligenz',
     'Erstelle einen NPC aus Hamburg',
     'Erstelle einen ausgebrannten Magier',
+    'Erstelle einen Magier',
     'Erstelle einen Anarchisten',
     'Erstelle einen Verschwörungstheoretiker',
     'Erstelle einen korrupten Polizisten',
@@ -41,6 +42,7 @@ const EXAMPLES = [
     'Erstelle einen Fährmann',
     'Erstelle einen Bodyguard',
     'Erstelle einen Türsteher',
+    'Erstelle einen Obdachlosen',
 ]
 
 function random_prompt() {

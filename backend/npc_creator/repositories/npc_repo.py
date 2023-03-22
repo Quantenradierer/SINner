@@ -17,6 +17,20 @@ def requires_image_download():
     return Npc.objects.filter(image_generator_state__eq='started', image_url__is=None).prefetch_related('attribute_set')
 
 
+def next_npc(pk):
+    try:
+        return Npc.objects.filter(id__gt=pk).order_by('id')[0]
+    except IndexError:
+        return Npc.objects.order_by('id')[0]
+
+
+def prev_npc(pk):
+    try:
+        return Npc.objects.filter(id__lt=pk).order_by('-id')[0]
+    except IndexError:
+        return Npc.objects.order_by('-id')[0]
+
+
 def create(npc):
     npc.save()
     return npc.id

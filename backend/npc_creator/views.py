@@ -18,12 +18,34 @@ def convert_npc(npc):
     })
 
 
-def read_npc(request, id=None):
+def read_npc(request, id):
     if id:
         npc = npc_repo.find(id)
     else:
         npc = npc_repo.read_random()
+    return HttpResponse(convert_npc(npc))
 
+
+def random_npc(request):
+    npc = npc_repo.read_random()
+    return HttpResponse(convert_npc(npc))
+
+
+def next_npc(request):
+    pk = str(request.GET['id'])
+    if pk.isdigit():
+        npc = npc_repo.next_npc(pk)
+    else:
+        npc = npc_repo.read_random()
+    return HttpResponse(convert_npc(npc))
+
+
+def prev_npc(request):
+    pk = str(request.GET['id'])
+    if pk.isdigit():
+        npc = npc_repo.prev_npc(pk)
+    else:
+        npc = npc_repo.read_random()
     return HttpResponse(convert_npc(npc))
 
 
@@ -46,7 +68,3 @@ def create_npc(request):
 
     return HttpResponse(convert_npc(npc))
 
-
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
