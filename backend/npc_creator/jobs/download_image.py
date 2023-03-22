@@ -43,6 +43,5 @@ def download_image_job_async(npc: object) -> None:
     -------
     None
     """
-    return
     t = Thread(target=download_image_job, args=[npc.id])
     t.start()
