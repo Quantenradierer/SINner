@@ -25,11 +25,14 @@ class Npc(models.Model):
         for attribute in attribute_set:
             if attribute.key in attributes_hash:
                 attribute.value = attributes_hash[attribute.key]
+                attribute.save()
                 attributes_hash.pop(attribute.key)
             else:
                 attribute.delete()
 
-        self.attribute_set.bulk_create([Attribute(key=key, value=value, npc=self) for key, value in self.attributes.items()])
+        for key, value in attributes_hash.items():
+            attribute = Attribute(key=key, value=value, npc=self)
+            attribute.save()
 
     def has_image_description(self):
         return bool(self.image_generator_description)
