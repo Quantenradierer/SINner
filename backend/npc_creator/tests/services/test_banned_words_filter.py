@@ -17,4 +17,4 @@ class TestContainsBannedWord(unittest.TestCase):
     def test_banned_words(self, _mock_file):
         expected = [' porn ', ' tied up ', ' petite ']
         actual = banned_words()
-        self.assertEqual(actual, expected)
+        self.assertSetEqual(set(actual), set(expected))

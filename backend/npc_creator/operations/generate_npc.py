@@ -31,13 +31,6 @@ class GenerateNpc:
         if not gpt_completion:
             return Failure('gpt not available')
         npc.add_attributes(dict_from_text(config.RELEVANT_ATTRIBUTES.keys(), gpt_completion))
-
-        translation_prompt = translate_appearance_prompt(npc)
-        image_generator_description = ask_chatgpt(translation_prompt)
-        if not image_generator_description:
-            return Failure('gpt not available')
-
-        npc.image_generator_description = image_generator_description.strip()
         npc_repo.create(npc)
 
         download_image.download_image_job_async(npc)

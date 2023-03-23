@@ -9,13 +9,15 @@ class Npc(models.Model):
     user_prompt = models.CharField(max_length=255, blank=True)
     image_generator_description = models.TextField(blank=True)
     image_url = models.CharField(max_length=255, blank=True)
-    image_generator_state = models.CharField(max_length=20, blank=True)
+    image_generator_state = models.CharField(max_length=20, blank=True, default='init')
 
     def __init__(self, *args, **kwargs):
-        self.attributes = kwargs.pop('attributes', {})
+        self.attributes = {}
+        attributes = kwargs.pop('attributes', {})
         super(Npc, self).__init__(*args, **kwargs)
         if self.id:
             self.attributes = dict([(attr.key, attr.value) for attr in self.attribute_set.all()])
+        self.add_attributes(attributes)
 
     def save(self, *args, **kwargs):
         super(Npc, self).save(*args, **kwargs)
@@ -63,11 +65,7 @@ class Npc(models.Model):
             self.attributes[attr_name] = value
 
     def requires_image_generation(self):
-        return all([
-            not self.image_generator_state.strip(),
-            not self.image_url.strip(),
-            self.image_generator_description
-        ])
+        return self.image_generator_state in ['init', 'banned'] and self.image_generator_description and not self.image_url.strip()
 
     def requires_image_download(self):
         return self.image_generator_state == 'started' and not self.image_url

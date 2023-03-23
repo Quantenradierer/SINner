@@ -18,14 +18,10 @@ class GenerateNpcTest(BaseIntegrationTest):
     @patch('openai.ChatCompletion.create')
     @patch('npc_creator.operations.generate_npc.download_image.download_image_job_async')
     def test_call_success(self, mock_generate_image_job, mock_create, _mock_open):
-        mock_gpt_create_npc = {'choices': [{'message': {'content': '\n'.join([f'{attr}: test' for attr in list(RELEVANT_ATTRIBUTES)])}}]}
-        mock_gpt_translation = {'choices': [{'message': {'content': 'the person looks cool, man.'}}]}
-        mock_create.side_effect = mock_gpt_create_npc, mock_gpt_translation
+        mock_create.return_value = {'choices': [{'message': {'content': '\n'.join([f'{attr}: test' for attr in list(RELEVANT_ATTRIBUTES)])}}]}
 
         result_npc = GenerateNpc('some prompt').call()
         self.assertTrue(result_npc)
-        self.assertEqual('the person looks cool, man.', result_npc.data.image_generator_description)
-        mock_generate_image_job.assert_called_once()
 
     @patch('builtins.open', new_callable=mock_open, read_data="")
     @patch('openai.ChatCompletion.create', side_effect=Exception('Test Error'))

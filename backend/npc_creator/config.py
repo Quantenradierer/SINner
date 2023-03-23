@@ -1,7 +1,9 @@
 import logging
 import os
+import sys
 
 import openai
+import requests
 
 
 logging.basicConfig(filename='sinner.log')
@@ -110,3 +112,12 @@ RELEVANT_ATTRIBUTES = {
 configuration for openai
 """
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
+
+if 'test' in sys.argv:
+    def mock(*args, **kwargs):
+        raise Exception('if this has raised in your test, your mocks do not work.')
+
+    openai.create = mock
+    requests.get = mock
+    requests.post = mock

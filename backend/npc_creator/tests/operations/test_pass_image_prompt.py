@@ -2,6 +2,7 @@ from unittest.mock import patch, Mock, mock_open
 
 import requests
 
+from npc_creator import config
 from npc_creator.models.npc import Npc
 from npc_creator.operations.pass_image_prompt import PassImagePrompt
 from npc_creator.tests.operations.base_integration_test import BaseIntegrationTest
@@ -13,40 +14,87 @@ class TestPassImagePrompt(BaseIntegrationTest):
 
         self.npc_id = 123
 
+    @patch('openai.ChatCompletion.create')
     @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\nass\n")
     @patch('requests.post')
-    def test_call_success(self, mock_post, _mock_open):
+    def test_call_success(self, mock_post, _mock_open, mock_create):
+        mock_create.return_value = {'choices': [{'message': {'content': 'the person looks cool, man.'}}]}
+
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_post.return_value = mock_response
+
+        npc = Npc(id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ''})
+        self.assertEqual('init', npc.image_generator_state)
+
+        self.assertTrue(PassImagePrompt(npc).call())
+        self.assertEqual('started', npc.image_generator_state)
+
+    @patch('openai.ChatCompletion.create')
+    @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\nass\n")
+    @patch('requests.post')
+    def test_call_when_the_npc_has_an_image_description(self, mock_post, _mock_open, mock_create):
+        mock_create.return_value = {'choices': [{'message': {'content': 'the person looks cool, man.'}}]}
+
         mock_response = Mock()
         mock_response.status_code = 200
         mock_post.return_value = mock_response
 
         npc = Npc(id=self.npc_id, image_generator_description='someone with glasses')
-        self.assertEqual('', npc.image_generator_state)
+        self.assertEqual('init', npc.image_generator_state)
 
         self.assertTrue(PassImagePrompt(npc).call())
         self.assertEqual('started', npc.image_generator_state)
 
+    @patch('openai.ChatCompletion.create')
     @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\n")
-    def test_call_banned_word(self, _mock_open):
-        npc = Npc(id=self.npc_id, image_generator_description='tied up hair')
-        self.assertEqual('', npc.image_generator_state)
+    def test_call_banned_word(self, _mock_open, mock_create):
+        mock_create.return_value = {'choices': [{'message': {'content': 'person with tied up hair.'}}]}
+
+        npc = Npc(id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ''})
+        self.assertEqual('init', npc.image_generator_state)
 
         result = PassImagePrompt(npc).call()
         self.assertFalse(result)
         self.assertEqual('contains banned word', result.error)
         self.assertEqual('banned', npc.image_generator_state)
 
+    @patch('openai.ChatCompletion.create')
+    @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\n")
+    @patch('requests.post')
+    def test_call_twice_with_banned_word(self, mock_post, _mock_open, mock_create):
+        first_banned = {'choices': [{'message': {'content': 'person with tied up hair.'}}]}
+        second_allowed = {'choices': [{'message': {'content': 'the person looks cool, man.'}}]}
+        mock_create.side_effect = first_banned, second_allowed
+
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_post.return_value = mock_response
+
+        npc = Npc(id=self.npc_id)
+        self.assertEqual('init', npc.image_generator_state)
+
+        # fails at the first attempt
+        result = PassImagePrompt(npc).call()
+        self.assertFalse(result)
+        self.assertEqual('contains banned word', result.error)
+        self.assertEqual('banned', npc.image_generator_state)
+
+        # succeeds at the second atempt
+        self.assertTrue(PassImagePrompt(npc).call())
+        self.assertEqual('started', npc.image_generator_state)
+
     @patch('requests.post')
     def test_call_connection_error(self, mock_get):
         mock_get.side_effect = [requests.exceptions.RequestException()]
 
         npc = Npc(id=self.npc_id, image_generator_description='some description')
-        self.assertEqual('', npc.image_generator_state)
+        self.assertEqual('init', npc.image_generator_state)
 
         result = PassImagePrompt(npc).call()
         self.assertFalse(result)
         self.assertEqual('sending midjourney prompt was unsuccessful', result.error)
-        self.assertEqual('', npc.image_generator_state)
+        self.assertEqual('init', npc.image_generator_state)
 
     @patch('builtins.open', new_callable=mock_open, read_data="")
     @patch('requests.get')
@@ -77,3 +125,4 @@ class TestPassImagePrompt(BaseIntegrationTest):
         self.assertFalse(result)
         self.assertEqual('image generation for this npc already started', result.error)
         self.assertEqual('started', npc.image_generator_state)
+
