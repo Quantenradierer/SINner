@@ -30,6 +30,7 @@ class PassImagePrompt:
                 return Failure('gpt not available')
 
             self.npc.image_generator_description = image_generator_description.strip()
+            npc_repo.save(self.npc)
 
         if not self.npc.requires_image_generation():
             return Failure('image generation for this npc already started')
