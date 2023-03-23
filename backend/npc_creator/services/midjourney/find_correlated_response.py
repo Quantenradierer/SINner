@@ -31,7 +31,7 @@ def find_correlated_response(responses: List[Dict[str, any]], search_text: str) 
             continue
         if message['author']['id'] != MIDJOURNEY_BOT_ID and 'OVERRIDE' not in message['content']:
             continue
-        if not message['attachments'] and 'url' not in message['attachments'][0]:
+        if not message['attachments'] or 'url' not in message['attachments'][0]:
             continue
 
         url = message['attachments'][0]['url']
