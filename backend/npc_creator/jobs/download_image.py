@@ -1,3 +1,4 @@
+import logging
 import time
 from threading import Thread
 
@@ -20,13 +21,18 @@ def download_image_job(npc_id: str) -> None:
     -------
     None
     """
+
+    logging.debug(f'DownloadImageJob({npc_id}): Started')
     npc = npc_repo.find(npc_id)
 
-    PassImagePrompt(npc).call()
+    result = PassImagePrompt(npc).call()
+    logging.debug(f'DownloadImageJob({npc_id}): PassImagePrompt Operation {result}')
 
     for i in range(config.MIDJOURNEY_RETRIES_BEFORE_FAILING):
         time.sleep(40 + pow(4, i))
-        if DownloadImage(npc).call():
+        result = DownloadImage(npc).call()
+        logging.debug(f'DownloadImageJob({npc_id}): DownloadImage Operation {result}')
+        if result:
             break
 
 
