@@ -109,6 +109,14 @@ class Impressum extends React.Component {
                     korrigieren kann.
                 </p>
                 <p>
+                    <b>Warum passen manche Bilder nicht?</b><br/>
+                    Die Generatoren sind nur so gut wie die Daten, mit denen sie trainiert wurden.<br/>
+                    <br/>
+                    Menschen können daher gut dargestellt werden. Zwerge aus diversen Gründen auch. Es werden nur manchmal Details ignoriert.<br/>
+                    Elfen werden des öfteren in Fantasywerken verwendet, weshalb die Bilder und Ausrüstung oft dementsprechend aussieht.<br/>
+                    Die Bilder von Orks und Trolle stammen vermutlich von Computerspielen, weshalb das Aussehen von dort kommt.<br/>
+                </p>
+                <p>
                     <b>Wo kann ich Vorschläge für Änderungen einbringen - oder Fehler melden?</b><br/>
                     Entweder du schreibst an <a
                     href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a> oder
