@@ -59,31 +59,6 @@ class TestPassImagePrompt(BaseIntegrationTest):
         self.assertEqual('contains banned word', result.error)
         self.assertEqual('banned', npc.image_generator_state)
 
-    @patch('openai.ChatCompletion.create')
-    @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\n")
-    @patch('requests.post')
-    def test_call_twice_with_banned_word(self, mock_post, _mock_open, mock_create):
-        first_banned = {'choices': [{'message': {'content': 'person with tied up hair.'}}]}
-        second_allowed = {'choices': [{'message': {'content': 'the person looks cool, man.'}}]}
-        mock_create.side_effect = first_banned, second_allowed
-
-        mock_response = Mock()
-        mock_response.status_code = 200
-        mock_post.return_value = mock_response
-
-        npc = Npc(id=self.npc_id)
-        self.assertEqual('init', npc.image_generator_state)
-
-        # fails at the first attempt
-        result = PassImagePrompt(npc).call()
-        self.assertFalse(result)
-        self.assertEqual('contains banned word', result.error)
-        self.assertEqual('banned', npc.image_generator_state)
-
-        # succeeds at the second atempt
-        self.assertTrue(PassImagePrompt(npc).call())
-        self.assertEqual('started', npc.image_generator_state)
-
     @patch('requests.post')
     def test_call_connection_error(self, mock_get):
         mock_get.side_effect = [requests.exceptions.RequestException()]

@@ -9,8 +9,9 @@ from npc_creator.services.interpret_gpt import dict_from_text
 
 
 class GenerateNpc:
-    def __init__(self, user_prompt: str):
+    def __init__(self, user_prompt: str='', npc: Npc=None):
         self.user_prompt = user_prompt
+        self.npc = npc
 
     def call(self):
         """
@@ -20,9 +21,11 @@ class GenerateNpc:
         :rtype: Npc object
         """
 
-        npc = Npc()
-
-        npc.user_prompt = self.user_prompt
+        if self.npc:
+            npc = self.npc
+        else:
+            npc = Npc()
+            npc.user_prompt = self.user_prompt
 
         npc_prompt = create_npc_prompt(user_prompt=self.user_prompt,
                                        npc_attributes=npc.attributes,

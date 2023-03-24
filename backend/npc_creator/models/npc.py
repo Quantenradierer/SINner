@@ -51,8 +51,6 @@ class Npc(models.Model):
 
     def image_generation_used_banned_word(self):
         self.image_generator_state = 'banned'
-        self.image_generator_description = ''
-        self.attributes[config.VISUAL_APPEARANCE_ATTRIBUTE] = ''
 
     def __repr__(self):
         return f'<models.Npc id={self.id}>'
@@ -68,11 +66,16 @@ class Npc(models.Model):
         return self.image_generator_state in ['init', 'banned'] and self.image_generator_description and not self.image_url.strip()
 
     def requires_image_download(self):
-        return self.image_generator_state == 'started' and not self.image_url
+        return self.image_generator_state in ['started', 'failed'] and not self.image_url
 
     def requires_new_image_generator_description(self):
         return not self.image_generator_description or self.image_generator_state in ['failed', 'banned']
 
+    def reset_image(self):
+        self.image_url = ''
+        self.image_generator_state = 'init'
+        self.image_generator_description = ''
+        self.attributes[config.VISUAL_APPEARANCE_ATTRIBUTE] = ''
 
 class Attribute(models.Model):
     npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)

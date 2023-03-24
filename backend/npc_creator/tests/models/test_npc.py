@@ -34,7 +34,7 @@ class TestNpcModel(TestCase):
         npc.image_generation_used_banned_word()
         self.assertEqual(npc.image_generator_state, 'banned')
         self.assertEqual(npc.image_generator_description, '')
-        self.assertEqual(npc.attributes.get(config.VISUAL_APPEARANCE_ATTRIBUTE), '')
+        self.assertEqual(npc.attributes.get(config.VISUAL_APPEARANCE_ATTRIBUTE), 'some banned word')
 
     def test_requires_image_generation(self):
         npc = Npc(image_generator_description="Test description")
