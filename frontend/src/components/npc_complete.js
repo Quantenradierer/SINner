@@ -1,7 +1,7 @@
 import React from "react";
 import NPCCard from "./npc_card";
-import NPCDetails from "./npc_details";
 import NPCPrivate from "./npc_private";
+import NPCSkills from "./npc_skills";
 
 class NPCComplete extends React.Component {
 
@@ -31,8 +31,8 @@ class NPCComplete extends React.Component {
                 alignContent: 'center'
             }}>
                 <NPCCard npc={this.props.npc} toggleDetails={this.toggleDetails} togglePrivate={this.togglePrivate}/>
-                <NPCDetails npc={this.props.npc} show={this.state.showDetails}/>
-                <NPCPrivate npc={this.props.npc} show={this.state.showPrivate}/>
+                <NPCPrivate npc={this.props.npc} show={this.state.showDetails}/>
+                <NPCSkills npc={this.props.npc} show={this.state.showPrivate}/>
             </div>
         )
 

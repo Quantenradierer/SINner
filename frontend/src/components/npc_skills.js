@@ -1,11 +1,9 @@
 import React from "react";
 import {FramePentagon, List, Text} from "@arwes/core";
 
-class NPCDetails extends React.Component {
-
+class NPCSkills extends React.Component {
     render() {
-        const relevantAttributes = ['Hintergrundgeschichte', 'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele',
-            'Stärken', 'Schwächen', 'Fertigkeiten', 'Ausrüstung']
+        const relevantAttributes = ['Stärken', 'Schwächen', 'Fertigkeiten', 'Ausrüstung', 'Lootbare Gegenstände', 'Geheimnis']
         const items = [];
 
         for (const attribute of relevantAttributes) {
@@ -26,4 +24,4 @@ class NPCDetails extends React.Component {
     }
 }
 
-export default NPCDetails;
+export default NPCSkills;
