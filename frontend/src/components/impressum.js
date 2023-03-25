@@ -93,14 +93,8 @@ class Impressum extends React.Component {
                     I am working on it, but it isn't my main priority right now.
                 </p>
                 <p>
-                    <b>Kostet das was? Gibt es Beschränkungen?</b><br/>
-                    Für dich ist das kostenlos und ohne Beschränkung. Für mich kostet es etwa 5 Cent pro Generierung.
-                    Falls keine Bilder mehr generiert werden, dann sind meine Credits für diesen Monat leer - deshalb geht bitte sparsam um!
-                </p>
-                <p>
                     <b>Warum wird das Bild nicht erzeugt?</b><br/>
-                    Manche Beschreibungen enthalten Wörter, welche von Midjourney verboten sind. Es wird noch daran
-                    gearbeitet, das diese Beschreibungen dann umformuliert werden.
+                    Manche Beschreibungen enthalten verbotene Wörter. Diese werden dann nicht erstellt.
                 </p>
                 <p>
                     <b>Warum ist Resonanz, Magie oder die Fertigkeiten nicht detailliert aufgeführt?</b><br/>
