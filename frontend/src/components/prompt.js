@@ -53,8 +53,10 @@ class Prompt extends React.Component {
 
     constructor(props) {
         super(props)
-
-        this.state = {prompt: random_prompt(), loadingState: 'prompt', activate: true}
+        let url = new URL(window.location.href)
+        const params = new URLSearchParams(url.search)
+        let show = params.get('input') === 'true'
+        this.state = {show: show, prompt: random_prompt(), loadingState: 'prompt', activate: true}
 
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
@@ -82,8 +84,9 @@ class Prompt extends React.Component {
     }
 
     render() {
-
-        if (this.state.loadingState === 'prompt') {
+        if (!this.state.show) {
+          return (<div></div>)
+        } else if (this.state.loadingState === 'prompt') {
             return (
                 <FrameLines style={{width: 950, margin: 15}}>
                     <form>
