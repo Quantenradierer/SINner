@@ -26,7 +26,6 @@ class Impressum extends React.Component {
                 <p>
                     Sämtliche angezeigten Daten sind fiktiv, die von Openai/GPT sowie Midjourney generiert wurden.<br/>
                 </p>
-                <b>Bitte gebt keine privaten oder personenbezogene Daten ein!</b><br/>
                 <br/>
                 Der Zugriff auf diese Webseite wird vom Webserver in Log-Dateien protokolliert.<br/>
                 <List>
@@ -35,9 +34,9 @@ class Impressum extends React.Component {
                     <li><b>Löschung:</b> Sie werden regelmäßig gelöscht</li>
                     <li><b>Weitergabe:</b> Es erfolgt keine Weitergabe</li>
                 </List>
-                Alle eingegebenen Daten werden dauerhaft gespeichert und sind öffentlich zugänglich.<br/>
+                Bei der Erstellung eines NPCs werden die Eingaben gespeichert - und sind danach öffentlich zugänglich.<br/>
                 <List>
-                    <li><b>Welche Daten:</b>Alle Eingaben in Textfeldern</li>
+                    <li><b>Welche Daten:</b>Alle Eingaben bei der Erstellung eines NPCs</li>
                     <li><b>Verwendung:</b>Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben) und zur
                         Fehlersuche
                     </li>
@@ -71,9 +70,6 @@ class Impressum extends React.Component {
                     Ich werde unpassende NPCs auch manuell löschen oder abändern.
                 </p><br/>
 
-                <p>Bei GPT ist es klar, das es sich lediglich um die Erstellung von Rollenspiel-NPCs handelt.
-                    Bei Midjourney ist dies anhand der Äußerlichen Beschreibung nicht ersichtlich, weshalb ein
-                    Wortfilter implementiert wurde.</p>
                 <List>
                     <li>Bitte gebt keine privaten oder personenbezogenen Daten an</li>
                     <li>Bitte unterlasst extreme Darstellung von Gewalt, Rassismus oder Sexualität</li>
