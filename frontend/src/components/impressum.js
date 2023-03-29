@@ -65,7 +65,7 @@ class Impressum extends React.Component {
                 <h1>Nutzungsbedingungen:</h1>
                 <p>Dieser Dienst dient zur Erstellung von NPCs (non-player character) für Shadowrun. </p>
 
-                <p>Bitte achtet auch ein wenig darauf was ihr eingebt: Wenn GPT oder Midjourney der Meinung ist, das die
+                <p>Bitte achtet auch ein wenig darauf was ihr eingebt: Wenn die Dienste der Meinung sind, das die
                     Eingaben unpassend sind, dann wird dieser Dienst ausgesperrt.
                     Ich werde unpassende NPCs auch manuell löschen oder abändern.
                 </p><br/>
@@ -101,10 +101,11 @@ class Impressum extends React.Component {
                 <p>
                     <b>Warum passen manche Bilder nicht?</b><br/>
                     Die Generatoren sind nur so gut wie die Daten, mit denen sie trainiert wurden.<br/>
-                    <br/>
-                    Menschen können daher gut dargestellt werden. Zwerge aus diversen Gründen auch. Es werden nur manchmal Details ignoriert.<br/>
-                    Elfen werden des öfteren in Fantasywerken verwendet, weshalb die Bilder und Ausrüstung oft dementsprechend aussieht.<br/>
-                    Die Bilder von Orks und Trolle stammen vermutlich von Computerspielen, weshalb das Aussehen von dort kommt.<br/>
+                    Der Bildgenerator lernt auch manche Aspekte, die nicht zur Erstellung förderlich sind.
+
+                    Der Bildgenerator hat gelernt das Frauen schön sind, mit glatter Haut und ästhetisch ansprechend. Die Bilder von weiblichen Trollen enthalten dann diese Aspekte - auch wenn sie eigentlich schrumpelige Haut und ästhetisch weniger ansprechend sein sollten.
+
+                    Daher: Bitte habt etwas Nachtsicht. Die Technik ist noch jung.
                 </p>
                 <p>
                     <b>Wo kann ich Vorschläge für Änderungen einbringen - oder Fehler melden?</b><br/>
