@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
-import {ArwesThemeProvider, StylesBaseline} from '@arwes/core';
+import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
 import Prompt from "./components/prompt";
 import NPCComplete from "./components/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
 import ReloadButton from "./components/reload_button";
+import NPCList from "./components/npc_list";
+import {createBrowserRouter, Navigate, redirect, RouterProvider, useNavigate} from "react-router-dom";
+import npcLoader from "./loader/npc_loader";
+import {npcListLoader} from "./loader/npc_list_loader";
+import Impressum from "./components/impressum";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -16,7 +21,7 @@ const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 const generalAnimator = {duration: {enter: 300, exit: 300}};
 
 
-class Root extends React.Component {
+class Theme extends React.Component {
     render() {
         return (
             <ArwesThemeProvider>
@@ -28,9 +33,14 @@ class Root extends React.Component {
                 }}/>
                 <AnimatorGeneralProvider animator={generalAnimator}>
                     <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-                        <Content/>
+                        <Prompt/>
                     </div>
-
+                    <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
+                        <RouterProvider router={router}/>
+                    </div>
+                    <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
+                        <Footer/>
+                    </div>
                 </AnimatorGeneralProvider>
             </ArwesThemeProvider>
         )
@@ -106,6 +116,9 @@ class Content extends React.Component {
     }
 
     render() {
+        return (<NPCList/>)
+
+
         if (this.state.npc == null) {
             return (
                 <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -123,7 +136,6 @@ class Content extends React.Component {
                     <div style={{margin: 15}}></div>
                     <ReloadButton changeNpc={this.changeNpc} npc={this.state.npc}/>
                     <NPCComplete npc={this.state.npc}/>
-
                     <Footer/>
                 </div>
             )
@@ -131,5 +143,36 @@ class Content extends React.Component {
     }
 }
 
-ReactDOM.render(<Root/>, document.querySelector('#root'));
-//CreationPriorityList.render(document.querySelector('#root'))
+const Redirector = props => {
+    window.location.href = "npcs/"
+    return <LoadingBars></LoadingBars>
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Redirector/>
+  },
+  {
+    path: "/impressum",
+    element: <Impressum/>
+  },
+  {
+    path: "/npcs/:id",
+    element: <NPCComplete/>,
+      loader: npcLoader,
+  },
+  {
+    path: "/npcs/",
+    element: <NPCList/>,
+    loader: npcListLoader,
+  }
+]);
+
+
+ReactDOM.render(
+  <React.StrictMode>
+      <Theme/>
+  </React.StrictMode>,
+    document.querySelector('#root')
+);

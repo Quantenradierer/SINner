@@ -1,37 +1,22 @@
 import React from "react";
-import {Button, FrameLines} from "@arwes/core";
+import {Button, FrameLines, Text} from "@arwes/core";
 import Impressum from "./impressum";
-
-class Footer extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {showImpressum: false};
-
-        this.showImpressum = this.showImpressum.bind(this)
-    }
-
-    showImpressum() {
-        this.setState({showImpressum: true})
-    }
+import {useLoaderData} from "react-router";
+import {Link, useNavigate, useNavigation} from "react-router-dom";
 
 
-    render() {
+function redirectToImpressum() {
+    window.location.href = '/impressum'
+}
 
-        if (this.state.showImpressum) {
-            return (
-                <Impressum/>
-            )
-        } else {
-            return (
-                <Button FrameComponent={FrameLines}
-                        style={{textAlign: 'center'}}
-                        onClick={this.showImpressum}>
+const Footer = props => {
+    return (
+        <Button FrameComponent={FrameLines}
+                         style={{textAlign: 'center'}}
+                         onClick={redirectToImpressum}>
                     Impressum / Disclaimer / Datenschutz / Nutzungsbedingungen
-                </Button>
-            )
-        }
-    }
+        </Button>
+    )
 }
 
 export default Footer;

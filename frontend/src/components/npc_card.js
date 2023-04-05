@@ -1,5 +1,6 @@
 import React from "react";
 import {Blockquote, Card, List, Table, Text} from "@arwes/core";
+import {NPC_IMAGE_PATH} from "../config";
 
 class NPCCard extends React.Component {
 
@@ -13,7 +14,9 @@ class NPCCard extends React.Component {
             {id: 'L', data: 'L'},
             {id: 'I', data: 'I'},
             {id: 'C', data: 'C'},
-            {id: 'E', data: 'E'}
+            {id: 'E', data: 'E'},
+            {id: 'M', data: 'M'},
+            {id: 'R', data: 'R'}
         ];
     }
 
@@ -29,7 +32,9 @@ class NPCCard extends React.Component {
                 {id: 'L', data: npc.attributes['Logik (von 1-6)']},
                 {id: 'I', data: npc.attributes['Intuition (von 1-6)']},
                 {id: 'C', data: npc.attributes['Charisma (von 1-6)']},
-                {id: 'E', data: npc.attributes['Glück (von 1-6)']}
+                {id: 'E', data: npc.attributes['Glück (von 1-6)']},
+                {id: 'M', data: npc.attributes['Magie (von 1-6)']},
+                {id: 'R', data: npc.attributes['Resonanz (von 1-6)']}
             ]
         }]
     }
@@ -46,7 +51,7 @@ class NPCCard extends React.Component {
         return (
             <Card
                 image={{
-                    src: '../images/npc_creator/npcs/' + this.props.npc.image_url,
+                    src: NPC_IMAGE_PATH + this.props.npc.image_url,
                     alt: this.props.npc.image_generator_description
                 }}
                 style={{width: 950, margin: 15}}

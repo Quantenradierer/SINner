@@ -11,6 +11,7 @@ repos:
               django,
               openai,
               Pillow,
-              django-cors-headers
+              django-cors-headers,
+              djangorestframework
             ]
             pass_filenames: false

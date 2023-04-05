@@ -43,6 +43,8 @@ const EXAMPLES = [
     'Erstelle einen Bodyguard',
     'Erstelle einen Türsteher',
     'Erstelle einen Obdachlosen',
+    'Erstelle einen Troll',
+    'Erstelle einen Ork'
 ]
 
 function random_prompt() {
@@ -55,7 +57,7 @@ class Prompt extends React.Component {
         super(props)
         let url = new URL(window.location.href)
         const params = new URLSearchParams(url.search)
-        let show = params.get('input') === 'true'
+        let show = true //params.get('input') === 'true'
         this.state = {show: show, prompt: random_prompt(), loadingState: 'prompt', activate: true}
 
         this.handleChange = this.handleChange.bind(this)
@@ -72,11 +74,11 @@ class Prompt extends React.Component {
 
         api.post('/api/npc_creator/npc', {prompt: this.state.prompt})
             .then(function (response) {
-                self.props.changeNpc(response.data)
+                window.location.href = '/npcs/' + response.data.id
             })
             .catch(function (error) {
                 let npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
-                self.props.changeNpc(npc)
+                window.location.href = '/npcs/error'
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})
@@ -88,7 +90,7 @@ class Prompt extends React.Component {
           return (<div></div>)
         } else if (this.state.loadingState === 'prompt') {
             return (
-                <FrameLines style={{width: 950, margin: 15}}>
+                <FrameLines>
                     <form>
                         <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
                             von dir an, da diese öffentlich zugänglich sein werden!</Text>
@@ -105,7 +107,7 @@ class Prompt extends React.Component {
         } else if (this.state.loadingState === 'waiting') {
             return (
                 <div>
-                    <FrameLines style={{width: 950, margin: 15}}>
+                    <FrameLines>
                         <Animator animator={{
                             activate: this.state.activate,
                             manager: 'stagger',

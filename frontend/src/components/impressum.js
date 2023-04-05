@@ -2,7 +2,6 @@ import React from "react";
 import {FramePentagon, List} from "@arwes/core";
 
 class Impressum extends React.Component {
-
     render() {
         return (
             <FramePentagon style={{width: 950, margin: 15}}>
@@ -93,19 +92,19 @@ class Impressum extends React.Component {
                     Manche Beschreibungen enthalten verbotene Wörter. Diese werden dann nicht erstellt.
                 </p>
                 <p>
-                    <b>Warum ist Resonanz, Magie oder die Fertigkeiten nicht detailliert aufgeführt?</b><br/>
-                    GPT ist ungenau. Es erzeugt manchmal Werte wenn sie nicht vorhanden sein sollten.
-                    Deshalb werden diese erstmal nicht angezeigt, bis ich ein Muster entdeckt habe, was ich manuell
-                    korrigieren kann.
-                </p>
-                <p>
-                    <b>Warum passen manche Bilder nicht?</b><br/>
+                    <b>Warum passen manche Bilder oder Beschreibungen nicht?</b><br/>
                     Die Generatoren sind nur so gut wie die Daten, mit denen sie trainiert wurden.<br/>
                     Der Bildgenerator lernt auch manche Aspekte, die nicht zur Erstellung förderlich sind.
 
                     Der Bildgenerator hat gelernt das Frauen schön sind, mit glatter Haut und ästhetisch ansprechend. Die Bilder von weiblichen Trollen enthalten dann diese Aspekte - auch wenn sie eigentlich schrumpelige Haut und ästhetisch weniger ansprechend sein sollten.
 
                     Daher: Bitte habt etwas Nachtsicht. Die Technik ist noch jung.
+                </p>
+                <p>
+                    <b>Kostet das was?</b><br/>
+                    Es ist für euch kostenlos und wird es auch bleiben.
+                    Für mich kostet das zwar, aber so lange ihr nicht hunderte von NPCs erzeugt, ist das alles in meinem Budget.
+                    Falls unerwartet viele Erzeugungen stattfinden, dann werde ich es gegebenenfalls beschränken.
                 </p>
                 <p>
                     <b>Wo kann ich Vorschläge für Änderungen einbringen - oder Fehler melden?</b><br/>

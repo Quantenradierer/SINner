@@ -19,3 +19,7 @@ li::before {
     margin-top: 0.05em;
     font-size: 0.9em;
 }
+
+.disabled-link {
+  pointer-events: none;
+}

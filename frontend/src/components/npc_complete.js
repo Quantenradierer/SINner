@@ -2,41 +2,40 @@ import React from "react";
 import NPCCard from "./npc_card";
 import NPCPrivate from "./npc_private";
 import NPCSkills from "./npc_skills";
+import api from "../axios";
+import {useLoaderData} from "react-router";
 
-class NPCComplete extends React.Component {
+
+class NPCCompleteWrapped extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {showDetails: true, showPrivate: true};
-        this.toggleDetails = this.toggleDetails.bind(this)
-        this.togglePrivate = this.togglePrivate.bind(this)
-    }
 
-    toggleDetails() {
-        this.setState((state, props) => {
-            return {showDetails: !state.showDetails}
-        });
-    }
+        //const npc = {id: this.props.id || 0, attributes: {'Name': 'LOADING'}}
+        //this.state = {npc: npc};
 
-    togglePrivate() {
-        this.setState((state, props) => {
-            return {showPrivate: !state.showPrivate}
-        });
+        this.interval = null;
+
     }
 
     render() {
         return (
-            <div style={{
-                display: 'contents',
-                alignContent: 'center'
-            }}>
-                <NPCCard npc={this.props.npc} toggleDetails={this.toggleDetails} togglePrivate={this.togglePrivate}/>
-                <NPCPrivate npc={this.props.npc} show={this.state.showDetails}/>
-                <NPCSkills npc={this.props.npc} show={this.state.showPrivate}/>
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+
+                <NPCCard npc={this.props.npc}/>
+                <NPCPrivate npc={this.props.npc} />
+                <NPCSkills npc={this.props.npc} />
             </div>
         )
 
     }
+}
+
+
+const NPCComplete = props => {
+  const npc = useLoaderData()
+
+  return <NPCCompleteWrapped npc={npc} {...props} />
 }
 
 export default NPCComplete;

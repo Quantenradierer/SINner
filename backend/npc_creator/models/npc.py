@@ -6,6 +6,16 @@ from npc_creator import config
 
 
 class Npc(models.Model):
+    class State(models.TextChoices):
+        CREATED = 'CR', 'Created'
+        MODERATED = 'MO', 'Moderated'
+
+    state = models.CharField(
+        max_length=2,
+        choices=State.choices,
+        default=State.CREATED,
+    )
+
     user_prompt = models.CharField(max_length=255, blank=True)
     image_generator_description = models.TextField(blank=True)
     image_url = models.CharField(max_length=255, blank=True)
@@ -81,7 +91,7 @@ class Attribute(models.Model):
     npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)
 
     key = models.TextField(db_index=True)
-    value = models.TextField(db_index=True)
+    value = models.TextField(db_index=True, blank=True)
 
     def __repr__(self):
         return f'<models.Attribute id={self.id} key={self.key} value={self.value} npc_id={self.npc_id}>'

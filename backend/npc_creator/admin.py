@@ -10,7 +10,7 @@ class InlineAttributeAdmin(admin.TabularInline):
 
 @admin.register(Npc)
 class NpcAdmin(admin.ModelAdmin):
-    list_display = ('id', 'image_url', 'image_generator_state', 'image_generator_description', 'user_prompt')
+    list_display = ('id', 'image_url', 'image_generator_state', 'image_generator_description', 'user_prompt', 'state')
     inlines = [
         InlineAttributeAdmin,
     ]

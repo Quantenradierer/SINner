@@ -12,17 +12,14 @@ class NPCPrivate extends React.Component {
             items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text>
             </li>);
         }
-        if (!this.props.show) {
-            return (<div></div>)
-        } else {
-            return (
-                <FramePentagon style={{width: 950, margin: 15}}>
-                    <List>
-                        {items}
-                    </List>
-                </FramePentagon>
-            )
-        }
+
+        return (
+            <FramePentagon style={{width: 950, margin: 15}}>
+                <List>
+                    {items}
+                </List>
+            </FramePentagon>
+        )
     }
 }
 

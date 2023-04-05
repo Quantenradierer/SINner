@@ -26,20 +26,21 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('DJANGO_HOST')]
+ALLOWED_HOSTS = [os.getenv('DJANGO_HOST'), '127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'npc_creator.apps.NpcCreatorConfig'
+    'rest_framework',
+    'npc_creator.apps.NpcCreatorConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,8 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'shadowrun.urls'
@@ -131,10 +132,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
-    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}'
+    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    'http://localhost:3000',
+    'http://localhost:8000'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
     f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}'
+    'http://localhost:3000',
+    'http://localhost:8000'
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'shadowrun.paginator.Paginator',
+    'PAGE_SIZE': 10
+}
