@@ -33,8 +33,8 @@ class NPCCard extends React.Component {
                 {id: 'I', data: npc.attributes['Intuition (von 1-6)']},
                 {id: 'C', data: npc.attributes['Charisma (von 1-6)']},
                 {id: 'E', data: npc.attributes['Glück (von 1-6)']},
-                {id: 'M', data: npc.attributes['Magie (von 1-6)']},
-                {id: 'R', data: npc.attributes['Resonanz (von 1-6)']}
+                {id: 'M', data: npc.attributes['Magie (von 0-6)']},
+                {id: 'R', data: npc.attributes['Resonanz (von 0-6)']}
             ]
         }]
     }
