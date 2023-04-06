@@ -43,36 +43,39 @@ class NPCListItem extends React.Component {
 
 
 class SearchPrompt extends React.Component {
-  constructor(props) {
-    super(props);
-    const params = new URLSearchParams(window.location.search)
+    constructor(props) {
+        super(props);
+        const params = new URLSearchParams(window.location.search)
 
-    this.state = {search: params.get('search') || '', moderated: params.get('moderated') || ''};
+        this.state = {search: params.get('search') || '', moderated: params.get('moderated') || ''};
 
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.handleModeratedChange = this.handleModeratedChange.bind(this);
-  }
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.handleModeratedChange = this.handleModeratedChange.bind(this);
+    }
 
-  handleSearchChange(event) {
-    this.setState({search: event.target.value});
-  }
+    handleSearchChange(event) {
+        this.setState({search: event.target.value});
+    }
 
-  handleModeratedChange(event) {
-    this.setState({moderated: event.target.checked});
-  }
+    handleModeratedChange(event) {
+        this.setState({moderated: event.target.checked});
+    }
 
     render() {
-        return (<FrameLines style={{justifyContent: 'center', display: 'flex', margin: 0}}>
-            <form>
-                <div style={{display: 'flex', flexDirection: 'row', width: '833px'}}>
-                    <input placeholder="Freitextsuche" type="text" name="search" id="search" value={this.state.search} onChange={this.handleSearchChange} />
-                    <input type="checkbox"  name="moderated" id="moderated" checked={this.state.moderated} onChange={this.handleModeratedChange} style={{margin: 6, width: '20px'}}/>
-                    <label htmlFor="moderated" style={{display: 'flex', alignItems: 'center', width: 200}}><Text>Nur Auserlesene</Text></label>
-                    <Button style={{margin: '0px 0px 0px 15px'}} FrameComponent={FrameCorners}>
+        return (<FrameLines style={{justifyContent: 'center', display: 'flex'}}>
+            <div>
+                <form style={{display: 'flex'}}>
+                    <input placeholder="Freitextsuche" type="text" name="search" id="search" value={this.state.search}
+                           onChange={this.handleSearchChange} style={{width: 480}} />
+                    <input type="checkbox" name="moderated" id="moderated" checked={this.state.moderated}
+                           onChange={this.handleModeratedChange} style={{margin: 6, width: 20}}/>
+                    <label htmlFor="moderated" style={{display: 'flex', alignItems: 'center', width: 150}}><Text>Nur
+                        Auserlesene</Text></label>
+                    <Button FrameComponent={FrameCorners}>
                         <Text>Suchen</Text>
                     </Button>
-                </div>
-            </form>
+                </form>
+            </div>
         </FrameLines>)
     }
 }

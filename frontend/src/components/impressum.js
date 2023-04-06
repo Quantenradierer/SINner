@@ -4,7 +4,8 @@ import {FramePentagon, List} from "@arwes/core";
 class Impressum extends React.Component {
     render() {
         return (
-            <FramePentagon style={{width: 950, margin: 15}}>
+            <FramePentagon>
+                <div>
                 <h1>Impressum:</h1>
                 <p>
                     Bernd Schmidt<br/>
@@ -113,6 +114,8 @@ class Impressum extends React.Component {
                     du trägst hier ein Issue ein:
                     <a href='https://github.com/Quantenradierer/SINner/issues/new'>https://github.com/Quantenradierer/SINner/issues/new</a>
                 </p>
+                </div>
+
             </FramePentagon>
         )
     }

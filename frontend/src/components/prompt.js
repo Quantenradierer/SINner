@@ -52,7 +52,6 @@ function random_prompt() {
 }
 
 class Prompt extends React.Component {
-
     constructor(props) {
         super(props)
         let url = new URL(window.location.href)

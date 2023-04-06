@@ -13,6 +13,7 @@ import {createBrowserRouter, Navigate, redirect, RouterProvider, useNavigate} fr
 import npcLoader from "./loader/npc_loader";
 import {npcListLoader} from "./loader/npc_list_loader";
 import Impressum from "./components/impressum";
+import Header from "./components/header";
 
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
@@ -33,113 +34,21 @@ class Theme extends React.Component {
                 }}/>
                 <AnimatorGeneralProvider animator={generalAnimator}>
                     <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-                        <Prompt/>
-                    </div>
-                    <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-                        <RouterProvider router={router}/>
-                    </div>
-                    <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-                        <Footer/>
+                        <div style={{width: 800}}>
+                            <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
+                                <Header/>
+                            </div>
+                            <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
+                                <RouterProvider router={router}/>
+                            </div>
+                            <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
+                                <Footer/>
+                            </div>
+                        </div>
                     </div>
                 </AnimatorGeneralProvider>
             </ArwesThemeProvider>
         )
-    }
-}
-
-class Content extends React.Component {
-    constructor(props) {
-        super(props);
-
-        const path = window.location.pathname.split('/')
-        const npc_id = path[path.length - 1]
-        const npc = {id: npc_id || 0, image_url: 'images/loading.png', attributes: {'Name': 'LOADING'}}
-        this.state = {npc: npc, loadNpc: null};
-        this.changeNpc = this.changeNpc.bind(this)
-        this.interval = null;
-
-        this.loadNpc = this.loadNpc.bind(this)
-    }
-
-    componentDidMount() {
-        this.loadNpc(this.state.npc.id)
-
-        this.interval = setInterval(this.checkImageUpdate, 3 * 60 * 1000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval)
-    }
-
-     componentDidUpdate(prevProps) {
-         if (this.state.loadNpc) {
-             this.setState((prevState) => {
-                 return {
-                     npc: prevState.loadNpc,
-                     loadNpc: null
-                 }
-             })
-         }
-     }
-
-    checkImageUpdate() {
-        if (this.state.npc.image_url == null) {
-            this.loadNpc(this.state.npc.id)
-        }
-    }
-
-    loadNpc(id) {
-        let self = this;
-
-        let npc = {};
-        api.get('/api/npc_creator/npc/' + id)
-            .then(function (response) {
-                npc = response.data
-            })
-            .catch(function (error) {
-                npc = {id: id, image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
-            })
-            .finally(function () {
-                    self.changeNpc(npc)
-                }
-            );
-    }
-
-
-    changeNpc(npc) {
-        if (npc !== this.state.npc) {
-            const url = "/npc/" + npc.id
-            //window.history.replaceState(null, '', url)
-            window.history.pushState({}, "", url)
-            this.setState({npc: null, loadNpc: npc})
-        }
-    }
-
-    render() {
-        return (<NPCList/>)
-
-
-        if (this.state.npc == null) {
-            return (
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Prompt changeNpc={this.changeNpc}/>
-                    <div style={{margin: 15}}></div>
-                    <ReloadButton changeNpc={this.changeNpc} npc={this.state.npc}/>
-                    <Footer/>
-                </div>
-            )
-        } else {
-            //return (<div></div>)
-            return (
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Prompt changeNpc={this.changeNpc}/>
-                    <div style={{margin: 15}}></div>
-                    <ReloadButton changeNpc={this.changeNpc} npc={this.state.npc}/>
-                    <NPCComplete npc={this.state.npc}/>
-                    <Footer/>
-                </div>
-            )
-        }
     }
 }
 
@@ -166,6 +75,10 @@ const router = createBrowserRouter([
     path: "/npcs/",
     element: <NPCList/>,
     loader: npcListLoader,
+  },
+  {
+    path: "/prompt/",
+    element: <Prompt/>
   }
 ]);
 
