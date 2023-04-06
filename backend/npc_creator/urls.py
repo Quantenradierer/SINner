@@ -36,6 +36,7 @@ router.register(r'npcs', UserViewSet)
 
 urlpatterns = [
     path('npcs/random/', views.random_npc, name='get a random npc'),
+    path('npcs/prompt', views.npc, name='create npc'),
     path('npcs/prev', views.prev_npc, name='get the prev npc'),
     path('npcs/next', views.next_npc, name='get the next npc'),
     path('', include(router.urls)),
