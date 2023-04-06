@@ -12,7 +12,7 @@ class NPCListItem extends React.Component {
     render() {
         return (<div style={{margin: 15}}>
 
-                <a href={this.props.npc.id}>
+                <a href={'/npcs/' + this.props.npc.id}>
                     <Card
                         image={{
                             src: NPC_IMAGE_PATH + this.props.npc.image_url,

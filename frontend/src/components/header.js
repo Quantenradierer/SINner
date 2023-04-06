@@ -7,7 +7,7 @@ const Header = props => {
     return (
         <FrameBox style={{width: '100%'}}>
             <div style={{justifyContent: 'center', display: 'flex'}}>
-                <Button style={{width: 200}} onClick={() => { window.location.href = '/npcs' }}>
+                <Button style={{width: 200}} onClick={() => { window.location.href = '/npcs/' }}>
                     <Text>NPC Liste</Text>
                 </Button>
                 <div style={{width: 50}}/>
