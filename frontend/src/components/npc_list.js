@@ -112,7 +112,7 @@ class NPCListWrapped extends React.Component {
             items.push(<NPCListItem npc={npc} key={npc.id}/>)
         }
 
-        const pageSize = 10
+        const pageSize = 20
         const pageMax = Math.ceil(this.props.npcs.count / pageSize)
         const hasPrev = this.props.npcs.previous !== null
         const hasNext = this.props.npcs.next !== null
