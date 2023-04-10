@@ -6,17 +6,17 @@ class NPCCard extends React.Component {
 
     tableHeaders() {
         return [
-            {id: 'K', data: 'K'},
-            {id: 'G', data: 'G'},
-            {id: 'R', data: 'R'},
-            {id: 'S', data: 'S'},
-            {id: 'W', data: 'W'},
-            {id: 'L', data: 'L'},
-            {id: 'I', data: 'I'},
-            {id: 'C', data: 'C'},
-            {id: 'E', data: 'E'},
-            {id: 'M', data: 'M'},
-            {id: 'R', data: 'R'}
+            {id: 'Ko', data: 'Kon'},
+            {id: 'G', data: 'Ges'},
+            {id: 'R', data: 'Rea'},
+            {id: 'S', data: 'Str'},
+            {id: 'W', data: 'Wil'},
+            {id: 'L', data: 'Log'},
+            {id: 'I', data: 'Int'},
+            {id: 'C', data: 'Cha'},
+            {id: 'Edg', data: 'Edg'},
+            {id: 'Mag', data: 'Mag'},
+            {id: 'Res', data: 'Res'}
         ];
     }
 
@@ -32,9 +32,9 @@ class NPCCard extends React.Component {
                 {id: 'L', data: npc.attributes['Logik (von 1-6)']},
                 {id: 'I', data: npc.attributes['Intuition (von 1-6)']},
                 {id: 'C', data: npc.attributes['Charisma (von 1-6)']},
-                {id: 'E', data: npc.attributes['Glück (von 1-6)']},
-                {id: 'M', data: npc.attributes['Magie (von 0-6)']},
-                {id: 'R', data: npc.attributes['Resonanz (von 0-6)']}
+                {id: 'Edg', data: npc.attributes['Glück (von 1-6)']},
+                {id: 'Mag', data: npc.attributes['Magie (von 0-6)']},
+                {id: 'Res', data: npc.attributes['Resonanz (von 0-6)']}
             ]
         }]
     }

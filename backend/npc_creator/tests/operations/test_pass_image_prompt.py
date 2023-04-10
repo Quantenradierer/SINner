@@ -56,7 +56,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
 
         result = PassImagePrompt(npc).call()
         self.assertFalse(result)
-        self.assertEqual('contains banned word', result.error)
+        self.assertEqual('contains_banned_word', result.error)
         self.assertEqual('banned', npc.image_generator_state)
 
     @patch('requests.post')
@@ -68,7 +68,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
 
         result = PassImagePrompt(npc).call()
         self.assertFalse(result)
-        self.assertEqual('sending midjourney prompt was unsuccessful', result.error)
+        self.assertEqual('sending_midjourney_prompt_was_unsuccessful', result.error)
         self.assertEqual('init', npc.image_generator_state)
 
     @patch('builtins.open', new_callable=mock_open, read_data="")
@@ -83,7 +83,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
 
         result = PassImagePrompt(npc).call()
         self.assertFalse(result)
-        self.assertEqual('image generation for this npc already started', result.error)
+        self.assertEqual('image_generation_for_this_npc_already_started', result.error)
         self.assertEqual('done', npc.image_generator_state)
 
     @patch('builtins.open', new_callable=mock_open, read_data="")
@@ -98,6 +98,6 @@ class TestPassImagePrompt(BaseIntegrationTest):
 
         result = PassImagePrompt(npc).call()
         self.assertFalse(result)
-        self.assertEqual('image generation for this npc already started', result.error)
+        self.assertEqual('image_generation_for_this_npc_already_started', result.error)
         self.assertEqual('started', npc.image_generator_state)
 

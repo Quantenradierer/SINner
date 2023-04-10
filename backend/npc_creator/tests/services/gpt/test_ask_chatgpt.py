@@ -10,14 +10,14 @@ class TestAskChatgpt(unittest.TestCase):
         mock_create.return_value = {
             "choices": [{"message": {"content": "This is the Chat GPT response."}}]
         }
-        prompt = "This is the Chat GPT prompt."
+        prompts = ["This is the Chat GPT prompt."]
         expected = "This is the Chat GPT response."
-        actual = ask_chatgpt(prompt)
+        actual = ask_chatgpt('', prompts)
         self.assertEqual(actual, expected)
 
     @patch('openai.ChatCompletion.create', side_effect=Exception('Test Error'))
     def test_ask_chatgpt_error(self, _mock_create):
-        prompt = "This is the Chat GPT prompt."
+        prompts = "This is the Chat GPT prompt."
         expected = None
-        actual = ask_chatgpt(prompt)
+        actual = ask_chatgpt('', prompts)
         self.assertEqual(actual, expected)

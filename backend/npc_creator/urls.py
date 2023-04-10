@@ -28,7 +28,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if not moderated:
             states.append(Npc.State.CREATED)
 
-        return self.queryset.filter(attribute__value__contains=search_text, state__in=states).distinct()
+        return self.queryset.filter(attribute__value__icontains=search_text, state__in=states).distinct()
 
 
 router = routers.DefaultRouter()

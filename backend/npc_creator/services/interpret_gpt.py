@@ -15,7 +15,7 @@ def dict_from_text(used_attribute_keys: list[str], text: str):
 
     attributes = {}
     for line in lines:
-        if not line.count(':'):
+        if ':' not in line:
             continue
 
         splitted = line.split(':')
@@ -25,6 +25,8 @@ def dict_from_text(used_attribute_keys: list[str], text: str):
         if key not in used_attribute_keys:
             key = find_correct_key(used_attribute_keys, key)
 
+        if key not in used_attribute_keys:
+            continue
         attributes[key] = value.strip()
 
     return attributes

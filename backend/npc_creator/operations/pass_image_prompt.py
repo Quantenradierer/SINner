@@ -27,7 +27,7 @@ class PassImagePrompt:
 
         if not self.npc.image_generator_description:
             translation_prompt = translate_appearance_prompt(self.npc)
-            image_generator_description = ask_chatgpt(translation_prompt)
+            image_generator_description = ask_chatgpt(config.TRANSLATE_SYSTEM_PROMPT, [translation_prompt])
             if not image_generator_description:
                 return Failure('gpt not available')
 
@@ -41,12 +41,12 @@ class PassImagePrompt:
         prompt += ' ' + config.ADDITIONAL_PROMPT_OPTIONS
 
         if not self.npc.requires_image_generation():
-            return Failure('image generation for this npc already started')
+            return Failure('image_generation_for_this_npc_already_started')
         if contains_banned_word(self.npc.image_generator_description):
             self.npc.image_generation_used_banned_word()
-            result = Failure('contains banned word')
+            result = Failure('contains_banned_word')
         elif not pass_prompt(prompt):
-            return Failure('sending midjourney prompt was unsuccessful')
+            return Failure('sending_midjourney_prompt_was_unsuccessful')
         else:
             self.npc.image_generation_started()
             result = Success()

@@ -1,3 +1,4 @@
+import json
 from unittest.mock import patch, mock_open
 
 from npc_creator.config import RELEVANT_ATTRIBUTES
@@ -18,7 +19,8 @@ class GenerateNpcTest(BaseIntegrationTest):
     @patch('openai.ChatCompletion.create')
     @patch('npc_creator.operations.generate_npc.download_image.download_image_job_async')
     def test_call_success(self, mock_generate_image_job, mock_create, _mock_open):
-        mock_create.return_value = {'choices': [{'message': {'content': '\n'.join([f'{attr}: test' for attr in list(RELEVANT_ATTRIBUTES)])}}]}
+        content = '\n'.join([f'{attr}: data' for attr in list(RELEVANT_ATTRIBUTES)])
+        mock_create.return_value = {'choices': [{'message': {'content': content}}]}
 
         result_npc = GenerateNpc('some prompt').call()
         self.assertTrue(result_npc)
@@ -30,7 +32,7 @@ class GenerateNpcTest(BaseIntegrationTest):
         result = GenerateNpc('some prompt').call()
 
         self.assertFalse(result)
-        self.assertEqual('gpt not available', result.error)
+        self.assertEqual('gpt_raised_an_error', result.error)
         mock_generate_image_job.assert_not_called()
 
 

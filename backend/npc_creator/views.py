@@ -62,9 +62,6 @@ def create_npc(request):
 
     result_npc = GenerateNpc(prompt).call()
     if result_npc:
-        npc = result_npc.data
+        return HttpResponse(json.dumps({'type': 'success', 'id': result_npc.data.id}))
     else:
-        npc = Npc(attributes={'Name': result_npc.error})
-
-    return HttpResponse(convert_npc(npc))
-
+        return HttpResponse(json.dumps({'type': 'error', 'error': result_npc.error}))

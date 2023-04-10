@@ -2,33 +2,42 @@ from copy import copy
 
 from npc_creator import config
 
+from typing import Any, Dict, List, Tuple
 
-def create_npc_prompt(user_prompt, npc_attributes, attributes):
-    attributes = copy(attributes)
-    existing_attributes = []
-    missing_attributes = []
 
-    for key, value in npc_attributes.items():
-        if value:
-            attributes[key] = value
+def create_npc_prompt(user_prompt: str, npc_attributes: Dict[str, str], relevant_attributes: List[str]) -> List:
+    """
+    Function to create a prompt for a non-player character (NPC) using the given attributes.
+    The result will be in three parts: the user prompt itself, the current attributes and the missing attributes
 
-    for key, value in attributes.items():
-        value = value or ''
-        if value:
-            existing_attributes.append(f'{key}: {value}\n')
-        else:
-            missing_attributes.append(f'{key}: \n')
+    Parameters
+    ----------
+    user_prompt : str
+        The user prompt text.
+    npc_attributes : Dict[str, str]
+        A dictionary containing the NPC's attributes.
+    relevant_attributes : List[str]
+        A list containing the all attributes to be considered.
 
-    if not missing_attributes:
-        return None
+    Returns
+    -------
+    List
+        A list containing the user prompt, npc attributes, and other attributes.
 
-    return config.PROMPT.format(user_prompt=user_prompt,
-                                existing_attributes=''.join(existing_attributes),
-                                missing_attributes=''.join(missing_attributes))
+    Examples
+    --------
+    >>> create_npc_prompt("Create a NPC", {"name": "John", "age": "30"}, ["name", "job", "age", "height"])
+    ["Create a NPC", {"name": "John", "age": "30"}, {"job": "", "height": ""}]
+    """
+
+    npc_attributes_filtered = dict([(key, value) for key, value in npc_attributes.items() if value])
+    attributes_filtered = dict([(key, "") for key in relevant_attributes if key not in npc_attributes_filtered])
+
+    return [user_prompt, npc_attributes_filtered, attributes_filtered]
 
 
 def translate_appearance_prompt(npc):
-    return config.TRANSLATE_PROMPT.format(
+    return config.TRANSLATE_INPUT_PROMPT.format(
         metatyp=npc.attributes.get('Metatyp', ''),
         beruf=npc.attributes.get('Beruf', ''),
         alter=npc.attributes.get('Alter', ''),

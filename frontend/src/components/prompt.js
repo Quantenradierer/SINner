@@ -1,7 +1,8 @@
 import React from "react";
-import {Button, FrameCorners, FrameLines, Text} from "@arwes/core";
+import {Button, FrameCorners, FrameLines, FramePentagon, Text} from "@arwes/core";
 import {Animator} from "@arwes/animation";
 import api from "../axios";
+import i18next from "../i18n";
 
 const EXAMPLES = [
     'Erstelle einen Werkstattbesitzer',
@@ -30,7 +31,6 @@ const EXAMPLES = [
     'Erstelle einen korrupten Polizisten',
     'Erstelle einen korrupten Politiker',
     'Erstelle ein Vorstandsmitglied eines großen Konzerns',
-    'Erstelle einen NPC mit Bezug auf die ADL, Allianz Deutscher Länder',
     'Erstelle einen Fabrikarbeiter',
     'Erstelle einen Runner',
     'Erstelle einen Schieber',
@@ -57,7 +57,7 @@ class Prompt extends React.Component {
         let url = new URL(window.location.href)
         const params = new URLSearchParams(url.search)
         let show = true
-        this.state = {show: show, prompt: random_prompt(), loadingState: 'prompt', activate: true}
+        this.state = {show: show, prompt: random_prompt(), loadingState: 'prompt', activate: true, error: null}
 
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
@@ -73,11 +73,15 @@ class Prompt extends React.Component {
 
         api.post('/api/npc_creator/npcs/prompt', {prompt: this.state.prompt})
             .then(function (response) {
-                window.location.href = '/npcs/' + response.data.id
+                if (response.data.type === 'success') {
+                    window.location.href = '/npcs/' + response.data.id
+                } else {
+                  self.setState({'error': i18next.t(response.data.error)})
+                }
             })
             .catch(function (error) {
-                let npc = {id: 'ERROR', image_url: 'npc_load_error.png', attributes: {'Name': 'ERROR'}}
-                window.location.href = '/npcs/error'
+                self.setState({'error': i18next.t('prompt_failed_connection')})
+                //window.location.href = '/npcs/error'
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})
@@ -85,38 +89,55 @@ class Prompt extends React.Component {
     }
 
     render() {
+        let errorDialog = ''
+        if (this.state.error !== null) {
+            errorDialog = <div style={{margin: 10}}>
+                <FramePentagon
+                    style={{width: '100%'}}
+                    palette='secondary'
+                    lineWidth={1}
+                >
+                    <Text>{this.state.error}</Text>
+                </FramePentagon>
+            </div>
+        }
+
         if (!this.state.show) {
           return (<div></div>)
         } else if (this.state.loadingState === 'prompt') {
             return (
-                <FrameLines>
-                    <form>
-                        <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
-                            von dir an, da diese öffentlich zugänglich sein werden!</Text>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <input value={this.state.prompt} onChange={this.handleChange} maxLength="255" type="text"
-                                   id="prompt"/>
-                            <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={this.handleClick}>
-                                <Text>Erstellen</Text>
-                            </Button>
-                        </div>
-                    </form>
-                </FrameLines>
+                <div key='prompt'>
+                    {errorDialog}
+                    <FrameLines>
+                        <form>
+                            <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
+                                von dir an, da diese öffentlich zugänglich sein werden!</Text>
+                            <div style={{display: 'flex', flexDirection: 'row'}}>
+                                <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
+                                       type="text"
+                                       id="prompt"/>
+                                <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={this.handleClick}>
+                                    <Text>Erstellen</Text>
+                                </Button>
+                            </div>
+                        </form>
+                    </FrameLines>
+                </div>
             )
         } else if (this.state.loadingState === 'waiting') {
             return (
-                <div>
-                    <FrameLines>
-                        <Animator animator={{
-                            activate: this.state.activate,
-                            manager: 'stagger',
-                            duration: {stagger: 300}
-                        }}>
-                            <Text>Bitte warten. Erstelle NPC. Das Bild wird in einigen Minuten nachgeladen.</Text><br/>
-                            <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
-                            <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
-                        </Animator>
-                    </FrameLines>
+                <div key='waiting'>
+                <FrameLines>
+                    <Animator animator={{
+                        activate: this.state.activate,
+                        manager: 'stagger',
+                        duration: {stagger: 300}
+                    }}>
+                        <Text>Bitte warten. Erstelle NPC. Das Bild wird in einigen Minuten nachgeladen.</Text><br/>
+                        <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
+                        <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
+                    </Animator>
+                </FrameLines>
                 </div>
             )
         }
