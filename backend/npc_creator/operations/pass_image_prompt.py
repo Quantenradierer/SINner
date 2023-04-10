@@ -3,7 +3,7 @@ from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.npc import Npc
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.repositories import npc_repo
-from npc_creator.services.banned_words_filter import contains_banned_word
+from npc_creator.services.banned_words_filter import remove_banned_words
 from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt
 from npc_creator.services.gpt_prompts import translate_appearance_prompt
 from npc_creator.services.midjourney.pass_prompt import pass_prompt
@@ -31,7 +31,7 @@ class PassImagePrompt:
             if not image_generator_description:
                 return Failure('gpt not available')
 
-            self.npc.image_generator_description = image_generator_description.strip()
+            self.npc.image_generator_description = remove_banned_words(image_generator_description.strip())
             npc_repo.save(self.npc)
 
         prompt = MIDJOURNEY_PROMPT.format(image_generator_description=self.npc.image_generator_description)
@@ -42,9 +42,6 @@ class PassImagePrompt:
 
         if not self.npc.requires_image_generation():
             return Failure('image_generation_for_this_npc_already_started')
-        if contains_banned_word(self.npc.image_generator_description):
-            self.npc.image_generation_used_banned_word()
-            result = Failure('contains_banned_word')
         elif not pass_prompt(prompt):
             return Failure('sending_midjourney_prompt_was_unsuccessful')
         else:

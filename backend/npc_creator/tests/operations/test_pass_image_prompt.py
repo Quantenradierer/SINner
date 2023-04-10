@@ -46,19 +46,6 @@ class TestPassImagePrompt(BaseIntegrationTest):
         self.assertTrue(PassImagePrompt(npc).call())
         self.assertEqual('started', npc.image_generator_state)
 
-    @patch('openai.ChatCompletion.create')
-    @patch('builtins.open', new_callable=mock_open, read_data="porn\ntied up\npetite\n")
-    def test_call_banned_word(self, _mock_open, mock_create):
-        mock_create.return_value = {'choices': [{'message': {'content': 'person with tied up hair.'}}]}
-
-        npc = Npc(id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ''})
-        self.assertEqual('init', npc.image_generator_state)
-
-        result = PassImagePrompt(npc).call()
-        self.assertFalse(result)
-        self.assertEqual('contains_banned_word', result.error)
-        self.assertEqual('banned', npc.image_generator_state)
-
     @patch('requests.post')
     def test_call_connection_error(self, mock_get):
         mock_get.side_effect = [requests.exceptions.RequestException()]
