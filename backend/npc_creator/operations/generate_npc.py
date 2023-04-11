@@ -37,10 +37,11 @@ class GenerateNpc:
         if not gpt_completion:
             return gpt_completion
         attributes = dict_from_text(config.RELEVANT_ATTRIBUTES, gpt_completion.data)
-        if len(attributes) < len(config.RELEVANT_ATTRIBUTES) - 2:
+        npc.add_attributes(attributes)
+
+        if len(npc.attributes) < len(config.RELEVANT_ATTRIBUTES) - 2:
             return Failure('gpt_result_insufficient')
 
-        npc.add_attributes(attributes)
         npc_repo.create(npc)
 
         download_image.download_image_job_async(npc)
