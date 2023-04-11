@@ -2,7 +2,7 @@
 /backend/data/npcs.sqlite
 /frontend/public/images/npcs/*.png
 /node_modules/
-/.env
+/backend/.env
 /backend/*.log
 /*.log
 /backend/data/db.sqlite3

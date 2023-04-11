@@ -16,8 +16,9 @@ The backend is Python based (Django), while the frontend uses React and Arwes (h
 Invite a midjourney bot to your server: https://docs.midjourney.com/docs/invite-the-bot
 I recommend setting up a private channel to not disturb anyone.
 
-Please set those ENV variables. I recommend using a `.env` file. 
+Copy the `.env.example` to `.env`: `cp .env.example .env`.
 
+Please set the env variables in the `.env` file:
 
 | ENV Variable             | Description                                                                                      |
 |--------------------------|--------------------------------------------------------------------------------------------------|
@@ -52,8 +53,6 @@ python manage.py runserver
 
 It will create one npc and then start the flask backend server.
 However, at the moment the image won't be created. This is still WIP. 
-
-Also, please take a look at the backend/README.
 
 # Costs
 

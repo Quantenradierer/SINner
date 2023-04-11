@@ -8,3 +8,4 @@ django-cors-headers
 djangorestframework
 markdown
 django-filter
+python-dotenv

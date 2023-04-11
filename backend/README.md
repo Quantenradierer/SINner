@@ -23,18 +23,14 @@ A simple abstraction layer for the database.
 Yes, the model itself has all those wonderful methods to save, but this often leads to the model saving itself. 
 But then, the model will be saved in every unittest, which then is no unittest and also results in higher test times. 
 
-And even adding filter in the model mixes regular business objects with database access. 
+And even adding filters in the model mixes regular business objects with database access. 
 
 It may even save the data when the business does not intend it. 
 
 The access to databases should therefore mainly be used by the business process (operations). 
-So that's what the repository is for: for the operations. 
+So that's what the repository is for: for the operations, to manage database access and transactions. 
 
 ### services
 
 Not every logic belongs into models. For example accessing GPT is a general functionality, which belongs into services.
 Services should be standalone, and neither require other code or knowledge about other code in this project to work.
-
-### tools
-
-Some tools which may help at developing.
