@@ -154,6 +154,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_PAGINATION_CLASS': 'shadowrun.paginator.Paginator',
-    'PAGE_SIZE': 10
+    'DEFAULT_PAGINATION_CLASS': 'shadowrun.paginator.Paginator'
 }
