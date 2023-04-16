@@ -84,7 +84,7 @@ class Impressum extends React.Component {
                         <li>Weitergabe an <a href='https://discord.com'>Discord</a> als Übertragungsweg an Midjourney
                         </li>
                     </List>
-                    Cookies werden nur beim Login gesetzt. Es werden keine Cookies von Drittanbietern gesetzt.<br/>
+                    Cookies werden gegebenenfalls gesetzt um euch . Alle Cookies werden zur Funktionalit benötigt. Es werden keine Cookies von Drittanbietern gesetzt.<br/>
                     <List>
                         <li><b>Welche Daten:</b> Einen Code um euch auf dem Server wiederzuerkennen</li>
                         <li><b>Verwendung:</b> Nur zur Sicherstellung der Funktionalität: Damit ihr eingeloggt bleibt

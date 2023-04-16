@@ -1,5 +1,16 @@
 import React, {useState} from "react";
-import {Blockquote, Button, Card, FrameCorners, FrameLines, List, LoadingBars, Table, Text} from "@arwes/core";
+import {
+    Blockquote,
+    Button,
+    Card,
+    FrameCorners,
+    FrameLines,
+    FramePentagon,
+    List,
+    LoadingBars,
+    Table,
+    Text
+} from "@arwes/core";
 import api from "../axios";
 import {NPC_IMAGE_PATH} from "../config";
 import {Animator} from "@arwes/animation";
@@ -21,7 +32,7 @@ class NPCListItem extends React.Component {
                         title={this.props.npc.attributes['Name']}
                         landscape
                         hover
-                        style={{maxWidth: 800}}
+                        style={{}}
                     >
                     <Blockquote>
                         <Text>
@@ -118,7 +129,7 @@ class NPCListWrapped extends React.Component {
         const hasNext = this.props.npcs.next !== null
 
         return (
-            <div>
+            <div style={{width: '100%'}}>
                 <SearchPrompt/>
 
                 <Animator animator={{
@@ -133,7 +144,7 @@ class NPCListWrapped extends React.Component {
                         <Text> &lt; </Text>
                     </Button>
                     <div>
-                        <FrameLines style={{margin: 0}}>
+                        <FrameLines>
                             <Text> {this.props.npcs.number - 1} / {pageMax} </Text>
                         </FrameLines>
                     </div>
