@@ -6,6 +6,7 @@ gunicorn
 gevent
 django-cors-headers
 djangorestframework
+djangorestframework-simplejwt
 markdown
 django-filter
 python-dotenv

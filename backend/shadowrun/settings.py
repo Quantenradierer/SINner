@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'npc_creator.apps.NpcCreatorConfig',
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 MIDDLEWARE = [
@@ -133,26 +135,33 @@ STATIC_ROOT = '/www/data/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
     f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
     'http://localhost:3000',
-    'http://localhost:8000'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
-    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}'
-    'http://localhost:3000',
-    'http://localhost:8000'
+    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    'http://localhost:3000'
 ]
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PAGINATION_CLASS': 'shadowrun.paginator.Paginator',
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_PAGINATION_CLASS': 'shadowrun.paginator.Paginator'
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
+
+SIMPLE_JWT = {
+     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+     'ROTATE_REFRESH_TOKENS': True,
+     'BLACKLIST_AFTER_ROTATION': True
 }

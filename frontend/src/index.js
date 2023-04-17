@@ -16,11 +16,14 @@ import Impressum from "./components/impressum";
 import Header from "./components/header";
 import ErrorBoundary from "./components/error_site";
 import ErrorPage from "./components/error_site";
+import Login from "./components/login";
+import Logout from "./components/logout";
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
+
 
 
 class Theme extends React.Component {
@@ -96,11 +99,18 @@ const router = createBrowserRouter([
             {
                 path: "prompt/",
                 element: <Prompt/>
+            },
+            {
+                path: "login/",
+                element: <Login/>
+            },
+            {
+                path: "logout/",
+                element: <Logout/>
             }
         ]
     }
 ]);
-
 
 ReactDOM.render(
   <React.StrictMode>
