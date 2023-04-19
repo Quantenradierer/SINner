@@ -1,4 +1,4 @@
-from npc_creator.repositories import template_image
+from npc_creator.repositories import template_image_repo
 
 
 def transform_metatyp(metatyp):
@@ -32,8 +32,8 @@ def get_multiprompts(metatyp_gender):
     return {
         'troll_male': 'small horns:: minotaur::0.8 bull::-0.1 animal::-0.1 ',
         'troll_female': 'female::2 suit:: minotaur::1.5 small horns:: wrinkles:: fur::-0.5 beard::-0.5 cyberpunk::',
-        'orc_male': 'orc::',
-        'orc_female': 'orc::',
+        'orc_male': 'orc:: green skin::-0.25',
+        'orc_female': 'orc:: green skin::-0.25',
         'dwarf_male': 'dwarf::',
         'dwarf_female': 'dwarf::'
     }.get(metatyp_gender, '')
@@ -50,7 +50,7 @@ def special_midjourney_prompt(prompt, metatyp, gender):
     metatyp = transform_metatyp(metatyp)
     gender = transform_gender(gender)
 
-    template_url = template_image.find(f'{metatyp}_{gender}')
+    template_url = template_image_repo.find(f'{metatyp}_{gender}')
     if template_url:
         template_url = template_url.url
     else:
