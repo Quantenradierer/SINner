@@ -40,9 +40,7 @@ class PassImagePrompt:
                                            gender=self.npc.attributes.get('Geschlecht', ''))
         prompt += ' ' + config.ADDITIONAL_PROMPT_OPTIONS
 
-        if not self.npc.requires_image_generation():
-            return Failure('image_generation_for_this_npc_already_started')
-        elif not pass_prompt(prompt):
+        if not pass_prompt(prompt):
             return Failure('sending_midjourney_prompt_was_unsuccessful')
         else:
             self.npc.image_generation_started()

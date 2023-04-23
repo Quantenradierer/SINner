@@ -3,7 +3,7 @@ from typing import Optional, List, Dict
 MIDJOURNEY_BOT_ID = '936929561302675456'
 
 
-def find_correlated_response(responses: List[Dict[str, any]], search_text: str) -> Optional[str]:
+def find_correlated_responses(responses: List[Dict[str, any]], search_text: List[str]) -> List[str]:
     """
     Search for a response message in a list of messages based on the given search text.
 
@@ -16,12 +16,11 @@ def find_correlated_response(responses: List[Dict[str, any]], search_text: str) 
 
     Returns
     -------
-    Optional[str]
-        The URL of the first message that matches the search criteria and contains a PNG attachment, or None if no match
-        is found.
+    List[str]
+        a list of URLs for all messages that matches the search criteria and contains a PNG attachment
     """
     if not search_text.strip():
-        return None
+        return []
 
     for message in responses:
         if not all(key in message for key in ['content', 'author', 'attachments']) or 'id' not in message['author']:
@@ -38,5 +37,5 @@ def find_correlated_response(responses: List[Dict[str, any]], search_text: str) 
         if not url.lower().endswith('.png'):
             continue
 
-        return url
-    return None
+        yield url
+    return []

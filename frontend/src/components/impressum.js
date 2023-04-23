@@ -66,12 +66,11 @@ class Impressum extends React.Component {
                     zugänglich.<br/>
                     <List>
                         <li><b>Welche Daten:</b>Alle Eingaben bei der Erstellung eines NPCs</li>
-                        <li><b>Verwendung:</b>Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben) und
-                            zur
-                            Fehlersuche
+                        <li><b>Verwendung:</b>Lediglich um die Funktionalität bereit zu stellen (siehe Weitergaben)
                         </li>
-                        <li><b>Löschung:</b> Löschung nur auf Anfrage bei der Impressums-E-Mail, falls ihr Private oder
-                            Personenbezogene Angaben
+                        <li><b>Löschung:</b> Löschung auf Anfrage bei der <a
+                        href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a><br/>
+                        <br/>
                         </li>
                         <li><b>Weitergabe:</b> Die Weitergabe erfolgt nur zur Sicherstellung der Funktionalität an die
                             folgenden Dienste
@@ -84,14 +83,12 @@ class Impressum extends React.Component {
                         <li>Weitergabe an <a href='https://discord.com'>Discord</a> als Übertragungsweg an Midjourney
                         </li>
                     </List>
-                    Cookies werden gegebenenfalls gesetzt um euch . Alle Cookies werden zur Funktionalit benötigt. Es werden keine Cookies von Drittanbietern gesetzt.<br/>
+                    Cookies: Es werden keine Cookies von Drittanbietern gesetzt. Beim Login werden in eurem Browser (local storage, nicht per Cookie) Daten gesetzt um wiederzuerkennen.<br/>
                     <List>
-                        <li><b>Welche Daten:</b> Einen Code um euch auf dem Server wiederzuerkennen</li>
-                        <li><b>Verwendung:</b> Nur zur Sicherstellung der Funktionalität: Damit ihr eingeloggt bleibt
-                            und
-                            ihr bestimmte Rechte nutzen könnt
+                        <li><b>Welche Daten:</b> Eine Zeichenfolge die den eingeloggten Nutzer eindeutig identifiziert. </li>
+                        <li><b>Verwendung:</b> Nur zur Sicherstellung der Funktionalität: Damit ihr eingeloggt bleibt und bestimmte Funktionen nutzen könnt.
                         </li>
-                        <li><b>Löschung:</b> Beim Ausloggen wird der Cookie gelöscht</li>
+                        <li><b>Löschung:</b> Beim Ausloggen werden die Daten gelöscht.</li>
                         <li><b>Weitergabe:</b> Es erfolgt keine Weitergabe</li>
                     </List>
 

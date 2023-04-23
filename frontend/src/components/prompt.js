@@ -71,7 +71,7 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        api.post('/api/npc_creator/npcs/prompt', {prompt: this.state.prompt})
+        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt})
             .then(function (response) {
                 if (response.data.type === 'success') {
                     window.location.href = '/npcs/' + response.data.id
@@ -91,9 +91,9 @@ class Prompt extends React.Component {
     render() {
         let errorDialog = ''
         if (this.state.error !== null) {
-            errorDialog = <div key='error' style={{margin: 10, width: '100%'}}>
+            errorDialog = <div key='error' style={{width: '100%'}}>
                 <FramePentagon
-                    style={{width: '100%'}}
+                    style={{ margin: '15px 0px 15px 0px', display: 'flex'}}
                     palette='secondary'
                     lineWidth={1}
                 >
@@ -106,7 +106,7 @@ class Prompt extends React.Component {
             return (<div key='nothing'></div>)
         } else if (this.state.loadingState === 'prompt') {
             return (
-                <div key='prompt' style={{width: '100%'}}>
+                <div key='prompt'>
                     {errorDialog}
                     <FrameLines style={{width: '100%'}}>
                         <form>

@@ -1,6 +1,6 @@
 import unittest
 
-from npc_creator.services.midjourney.find_correlated_response import find_correlated_response, MIDJOURNEY_BOT_ID
+from npc_creator.services.midjourney.find_image_responses import find_correlated_response, MIDJOURNEY_BOT_ID
 
 
 class TestFindCorrelatedResponse(unittest.TestCase):

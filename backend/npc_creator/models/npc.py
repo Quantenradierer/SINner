@@ -1,3 +1,4 @@
+import os
 from copy import copy
 
 from django.db import models
@@ -18,8 +19,10 @@ class Npc(models.Model):
 
     user_prompt = models.CharField(max_length=255, blank=True)
     image_generator_description = models.TextField(blank=True)
-    image_url = models.CharField(max_length=255, blank=True)
+    image_url = models.CharField(max_length=255, blank=True, default='pk-{pk}_counter-{counter}.png')
     image_generator_state = models.CharField(max_length=20, blank=True, default='init')
+    default_image_number = models.IntegerField(default=0)
+    max_image_number = models.IntegerField(default=0)
 
     def __init__(self, *args, **kwargs):
         self.attributes = {}
@@ -52,8 +55,10 @@ class Npc(models.Model):
     def image_generation_started(self):
         self.image_generator_state = 'started'
 
-    def add_image(self, image_url):
-        self.image_url = image_url
+    def add_images(self, count):
+        if not self.default_image_number:
+            self.default_image_number = 1
+        self.max_image_number += count
         self.image_generator_state = 'done'
 
     def image_generation_failed(self):
@@ -81,11 +86,6 @@ class Npc(models.Model):
     def requires_new_image_generator_description(self):
         return not self.image_generator_description or self.image_generator_state in ['failed', 'banned']
 
-    def reset_image(self):
-        self.image_url = ''
-        self.image_generator_state = 'init'
-        self.image_generator_description = ''
-        self.attributes[config.VISUAL_APPEARANCE_ATTRIBUTE] = ''
 
 class Attribute(models.Model):
     npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)

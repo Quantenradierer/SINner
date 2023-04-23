@@ -2,6 +2,7 @@ from npc_creator import config
 from npc_creator.config import GPT_CREATE_NPC_SYSTEM_PROMPT
 from npc_creator.jobs import download_image
 from npc_creator.models.npc import Npc
+from npc_creator.operations.recreate_image import RecreateImage
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.repositories import npc_repo
 from npc_creator.services.gpt_prompts import create_npc_prompt, translate_appearance_prompt
@@ -44,6 +45,6 @@ class GenerateNpc:
 
         npc_repo.create(npc)
 
-        download_image.download_image_job_async(npc)
+        RecreateImage(npc).call()
 
         return Success(data=npc)

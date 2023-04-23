@@ -1,16 +1,17 @@
 import os.path
+from typing import List
 
 import PIL
 from PIL import Image
 
 
-def split_image(image_path: str, output_path: str) -> list[str]:
+def split_image(image_path: str, image_paths_iter: List[str]) -> List[str]:
     """
     Splits an image into 4 equally sized parts and saves each part as a separate file in the specified output directory.
 
     Args:
         image_path (str): Path to the image file to be split.
-        output_path (str): Path to the output directory where the splitted files will be saved.
+        image_paths_iter (str): pathes where to save the items
 
     Returns:
         List[str]: A list of the filenames of the splitted files.
@@ -20,20 +21,19 @@ def split_image(image_path: str, output_path: str) -> list[str]:
         im = Image.open(image_path)
     except PIL.UnidentifiedImageError:
         return []
-    filename, file_extension = os.path.splitext(os.path.basename(image_path))
 
     width, height = im.size
 
     result = []
-    for x, y in [[0, 0], [0, height // 2], [width // 2, 0], [width // 2, height // 2]]:
+
+    splits = [[0, 0], [width // 2, 0], [0, height // 2], [width // 2, height // 2]]
+    for (x, y), file_path in zip(splits, image_paths_iter):
         left = x
         top = y
         right = x + width // 2
         bottom = y + height // 2
 
-        new_filename = f"{filename}-{len(result)}{file_extension}"
-        splitted_file_path = os.path.join(output_path, new_filename)
-        im.crop((left, top, right, bottom)).save(splitted_file_path)
-        result.append(new_filename)
+        im.crop((left, top, right, bottom)).save(file_path)
+        result.append(os.path.basename(file_path))
     os.remove(image_path)
     return result

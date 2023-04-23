@@ -1,12 +1,10 @@
 import React from "react";
 import {Button, FrameBox, Text} from "@arwes/core";
+import is_loggin_in from "../is_loggin_in";
 
 
 
 const Header = props => {
-    const logged_in = localStorage.getItem('access_token') !== null && localStorage.getItem('refresh_token') !== null
-    console.log(logged_in)
-
     return (
         <FrameBox style={{width: '100%'}}>
             <div style={{justifyContent: 'center', display: 'flex'}}>
@@ -19,10 +17,10 @@ const Header = props => {
                 <Button style={{display: 'flex', margin: '0px 15px 0px 15px'}} onClick={() => { window.location.href = '/prompt' }}>
                     <Text>NPC Erstellen</Text>
                 </Button>
-                <Button style={{display: logged_in ? 'none': 'flex', margin: '0px 15px 0px 15px'}} onClick={() => { window.location.href = '/login' }}>
+                <Button style={{display: is_loggin_in() ? 'none': 'none', margin: '0px 15px 0px 15px'}} onClick={() => { window.location.href = '/login' }}>
                     <Text>Login</Text>
                 </Button>
-                <Button style={{display: logged_in ? 'flex': 'none', margin: '0px 15px 0px 15px'}} onClick={() => { window.location.href = '/logout' }}>
+                <Button style={{display: is_loggin_in() ? 'flex': 'none', margin: '0px 15px 0px 15px'}} onClick={() => { window.location.href = '/logout' }}>
                     <Text>Logout</Text>
                 </Button>
             </div>

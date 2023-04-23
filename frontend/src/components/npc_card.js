@@ -1,8 +1,13 @@
 import React from "react";
-import {Blockquote, Card, List, Table, Text} from "@arwes/core";
-import {NPC_IMAGE_PATH} from "../config";
+import {Blockquote, Button, Card, List, Table, Text} from "@arwes/core";
+import image_path from "../image_path";
+import is_loggin_in from "../is_loggin_in";
+import is_logged_in from "../is_loggin_in";
 
 class NPCCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
     tableHeaders() {
         return [
@@ -40,7 +45,7 @@ class NPCCard extends React.Component {
     }
 
     render() {
-        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter',  'Eigenarten', 'Detailliertes Aussehen']
+        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten', 'Detailliertes Aussehen']
         const items = [];
 
         for (const attribute of relevantAttributes) {
@@ -51,8 +56,9 @@ class NPCCard extends React.Component {
         return (
             <Card
                 image={{
-                    src: NPC_IMAGE_PATH + this.props.npc.image_url,
-                    alt: this.props.npc.image_generator_description
+                    src: image_path(this.props.npc.image_url, this.props.npc.id, this.props.npc.default_image_number),
+                    alt: this.props.npc.image_generator_description,
+
                 }}
                 style={{width: 950, margin: 15}}
                 title={this.props.npc.attributes['Name']}
@@ -70,9 +76,12 @@ class NPCCard extends React.Component {
                         {items}
                     </List>
                 </div>
-                <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}>
-
-                </Table>
+                <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}/>
+                <div className={is_logged_in()? '': 'hidden'}>
+                    <a href={"/npcs/" + this.props.npc.id + "/gallery"}>
+                        <Button>Galerie</Button>
+                    </a>
+                </div>
             </Card>
         )
     }

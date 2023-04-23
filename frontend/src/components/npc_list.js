@@ -16,6 +16,7 @@ import {NPC_IMAGE_PATH} from "../config";
 import {Animator} from "@arwes/animation";
 import {useNavigate, useNavigation} from "react-router-dom";
 import {useLoaderData} from "react-router";
+import image_path from "../image_path";
 
 
 class NPCListItem extends React.Component {
@@ -26,7 +27,7 @@ class NPCListItem extends React.Component {
                 <a href={'/npcs/' + this.props.npc.id}>
                     <Card
                         image={{
-                            src: NPC_IMAGE_PATH + this.props.npc.image_url,
+                            src: image_path(this.props.npc.image_url, this.props.npc.id, this.props.npc.default_image_number),
                             alt: this.props.npc.image_generator_description
                         }}
                         title={this.props.npc.attributes['Name']}

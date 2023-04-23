@@ -25,10 +25,8 @@ def download_midjourney_image(save_path: str, url: str) -> Optional[str]:
     try:
         response = requests.get(url)
     except requests.exceptions.RequestException:
-        return None
+        return False
 
-    local_path = os.path.join(save_path, os.path.basename(url))
-
-    with open(local_path, "wb") as f:
+    with open(save_path, "wb") as f:
         f.write(response.content)
-    return local_path
+    return True
