@@ -3,7 +3,6 @@ import {Blockquote, Button, Card, FramePentagon, List, LoadingBars, Table, Text}
 import {NPC_IMAGE_PATH} from "../config";
 import api from "../axios";
 import image_path from "../image_path";
-import Modal from 'react-modal';
 import {useLoaderData} from "react-router";
 import {useNavigate, useNavigation} from "react-router-dom";
 
