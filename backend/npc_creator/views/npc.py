@@ -46,7 +46,6 @@ class NpcViewSet(viewsets.ModelViewSet):
         npc = npc_repo.read_random()
         return Response(convert_npc(npc))
 
-    @csrf_exempt
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def prompt(self, request):
         data = json.loads(request.body.decode())

@@ -138,14 +138,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    f'http://{os.getenv("DJANGO_HOST")}',
-    f'https://{os.getenv("DJANGO_HOST")}',
+    f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
     'http://localhost:3000',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    f'http://{os.getenv("DJANGO_HOST")}',
-    f'https://{os.getenv("DJANGO_HOST")}',
+    f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
     'http://localhost:3000'
 ]
 
