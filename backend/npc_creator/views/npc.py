@@ -56,7 +56,7 @@ class NpcViewSet(viewsets.ModelViewSet):
         else:
             return Response({'type': 'error', 'error': result_npc.error})
 
-    @action(detail=True, methods=['post'], permission_classes=[AllowAny])
+    @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
         npc = npc_repo.find(pk)
         result = RecreateImage(npc).call()
