@@ -1,4 +1,5 @@
 import rest_framework_simplejwt
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -45,6 +46,7 @@ class NpcViewSet(viewsets.ModelViewSet):
         npc = npc_repo.read_random()
         return Response(convert_npc(npc))
 
+    @csrf_exempt
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def prompt(self, request):
         data = json.loads(request.body.decode())
