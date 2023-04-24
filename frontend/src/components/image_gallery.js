@@ -19,7 +19,7 @@ class ImageGalleryWrapped extends React.Component {
     }
 
     async handleRecreateImages() {
-        await api.post('api/npc_creator/npcs/' + this.state.npc.id + '/recreate_images/', {
+        await api.post('/api/npc_creator/npcs/' + this.state.npc.id + '/recreate_images/', {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
@@ -29,7 +29,7 @@ class ImageGalleryWrapped extends React.Component {
     async setImageDefault(event, image_number) {
         event.preventDefault();
 
-        let response = await api.post('api/npc_creator/npcs/' + this.state.npc.id + '/set_default_image/', {
+        let response = await api.post('/api/npc_creator/npcs/' + this.state.npc.id + '/set_default_image/', {
                 image_number: image_number,
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},

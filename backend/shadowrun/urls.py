@@ -32,7 +32,7 @@ urlpatterns = [
     path('token/refresh/',
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
-    path('logout/',
+    path('token/logout/',
          LogoutView.as_view(),
          name='logout')
 

@@ -9,7 +9,7 @@ const Logout = props => {
        (async () => {
          try {
            const {data} = await
-                 api.post('logout/',{
+                 api.post('/token/logout/',{
                  refresh_token:localStorage.getItem('refresh_token')
                  } ,{headers: {'Content-Type': 'application/json'}},
                  {withCredentials: true});

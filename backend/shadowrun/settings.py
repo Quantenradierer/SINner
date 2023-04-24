@@ -138,14 +138,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
-    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    f'http://{os.getenv("DJANGO_HOST")}',
+    f'https://{os.getenv("DJANGO_HOST")}',
     'http://localhost:3000',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    f'http://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
-    f'https://{os.getenv("DJANGO_HOST")}:{os.getenv("DJANGO_PORT")}',
+    f'http://{os.getenv("DJANGO_HOST")}',
+    f'https://{os.getenv("DJANGO_HOST")}',
     'http://localhost:3000'
 ]
 
@@ -160,8 +160,8 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
-     'REFRESH_TOKEN_LIFETIME': timedelta(days=365),
+     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=60),
      'ROTATE_REFRESH_TOKENS': True,
      'BLACKLIST_AFTER_ROTATION': True
 }
