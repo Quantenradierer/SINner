@@ -44,7 +44,7 @@ class ImageGalleryWrapped extends React.Component {
             return (<div/>)
         }
 
-        for (let i = 0; i < this.state.npc.max_image_number; i++) {
+        for (let i = 1; i <= this.state.npc.max_image_number; i++) {
             let glowEffect = ''
             let addSize = 0
             if (i == this.state.npc.default_image_number) {

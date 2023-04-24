@@ -62,7 +62,7 @@ class DownloadImage:
 
     @staticmethod
     def images_names_iterator(image_url, pk):
-        counter = 0
+        counter = 1
         while True:
             path = os.path.join(config.PUBLIC_NPC_IMAGE_PATH, image_url.format(pk=pk, counter=counter))
 
