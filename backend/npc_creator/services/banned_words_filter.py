@@ -34,4 +34,5 @@ def remove_banned_words(text: str) -> bool:
         if match:
             text = text[:match.span()[0] + 1] + text[match.span()[1] - 1:]
 
+    text = text.replace('  ', ' ')
     return text.strip()
