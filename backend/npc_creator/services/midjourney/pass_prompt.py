@@ -1,5 +1,5 @@
 import os
-
+import shadowrun.settings
 import requests
 
 SERVER_ID = os.getenv('MJ_SERVER_ID')
@@ -22,17 +22,17 @@ def pass_prompt(prompt: str) -> bool:
 
     """
     payload = {"type": 2, "application_id": "936929561302675456", "guild_id": SERVER_ID,
-               "channel_id": CHANNEL_ID, "session_id": "9e394ea43e050cd23c98cbaed9bd53b8",
-               "data": {"version": "1077969938624553050", "id": "938956540159881230", "name": "imagine", "type": 1,
+               "channel_id": CHANNEL_ID, "session_id": "b36c5d147f15d2547e9fb0384bdb4811",
+               "data": {"version": "1118961510123847772", "id": "938956540159881230", "name": "imagine", "type": 1,
                         "options": [{"type": 3, "name": "prompt", "value": prompt}],
                         "application_command": {"id": "938956540159881230",
                                                 "application_id": "936929561302675456",
-                                                "version": "1077969938624553050",
-                                                "default_permission": True,
+                                                "version": "1118961510123847772",
                                                 "default_member_permissions": None,
                                                 "type": 1, "nsfw": False, "name": "imagine",
                                                 "description": "Create images with Midjourney",
                                                 "dm_permission": True,
+                                                "contexts": [0, 1, 2],
                                                 "options": [{"type": 3, "name": "prompt",
                                                              "description": "The prompt to imagine",
                                                              "required": True}]},
@@ -47,3 +47,9 @@ def pass_prompt(prompt: str) -> bool:
         return True
     except requests.exceptions.RequestException:
         return False
+
+
+if __name__ == '__main__':
+    assert(SERVER_ID != None)
+    assert(CHANNEL_ID != None)
+    assert(pass_prompt('In a cyberpunk/shadowrun: A human with a suit.') == True)
