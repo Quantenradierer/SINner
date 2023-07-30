@@ -11,9 +11,6 @@ class NPCCompleteWrapped extends React.Component {
     constructor(props) {
         super(props);
 
-        //const npc = {id: this.props.id || 0, attributes: {'Name': 'LOADING'}}
-        //this.state = {npc: npc};
-
         this.interval = null;
 
     }

@@ -59,18 +59,13 @@ class SearchPrompt extends React.Component {
         super(props);
         const params = new URLSearchParams(window.location.search)
 
-        this.state = {search: params.get('search') || '', moderated: params.get('moderated') || ''};
+        this.state = {search: params.get('search') || ''};
 
         this.handleSearchChange = this.handleSearchChange.bind(this);
-        this.handleModeratedChange = this.handleModeratedChange.bind(this);
     }
 
     handleSearchChange(event) {
         this.setState({search: event.target.value});
-    }
-
-    handleModeratedChange(event) {
-        this.setState({moderated: event.target.checked});
     }
 
     render() {
@@ -79,10 +74,6 @@ class SearchPrompt extends React.Component {
                 <form style={{display: 'flex'}}>
                     <input placeholder="Freitextsuche" type="text" name="search" id="search" value={this.state.search}
                            onChange={this.handleSearchChange} style={{width: 480}} />
-                    <input type="checkbox" name="moderated" id="moderated" checked={this.state.moderated}
-                           onChange={this.handleModeratedChange} style={{margin: 6, width: 20}}/>
-                    <label htmlFor="moderated" style={{display: 'flex', alignItems: 'center', width: 150}}><Text>Nur
-                        Auserlesene</Text></label>
                     <Button FrameComponent={FrameCorners}>
                         <Text>Suchen</Text>
                     </Button>

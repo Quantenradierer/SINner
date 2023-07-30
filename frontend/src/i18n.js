@@ -10,7 +10,32 @@ const resources = {
             input_was_flagged_by_gpt: 'Die Eingabe wurde von der GPT Moderation ausgefiltert. Bitte gib etwas weniger extremes ein.',
             npc_was_flagged_by_gpt: 'Der NPC wurde von GPT als unangemessen eingeschätzt. Bitte gib etwas weniger extremes ein.',
             gpt_raised_an_error: 'GPT hat einen Fehler geworfen. Bitte versuche es später erneut.',
-            gpt_result_insufficient: 'GPT verweigerte ein vollständiges Ergebnis. Bitte versuch etwas anderes.'
+            gpt_result_insufficient: 'GPT verweigerte ein vollständiges Ergebnis. Bitte versuch etwas anderes.',
+            attribute_metatyp: 'Metatyp',
+            attribute_beruf: 'Beruf',
+            attribute_ethnizität: 'Ethnizität',
+            attribute_geschlecht: 'Geschlecht',
+            attribute_alter: 'Alter',
+            attribute_eigenarten: 'Eigenarten',
+            attribute_detailliertes_aussehen: 'Aussehen',
+
+            attribute_hintergrundgeschichte: 'Hintergrund',
+            attribute_erfahrungen: 'Erfahrung',
+            attribute_ressentiments: 'Abneigung',
+            attribute_motivationen: 'Motivation',
+            attribute_ziele: 'Ziele',
+            attribute_hobbys_und_interessen: 'Hobbys',
+            attribute_familie: 'Familie',
+            attribute_kontakte: 'Kontakte',
+            attribute_wohnort: 'Wohnort',
+            attribute_konzernzugehörigkeit: 'Konzern',
+
+            attribute_stärken: 'Stärken',
+            attribute_schwächen: 'Schwächen',
+            attribute_fertigkeiten: 'Fertigkeiten',
+            attribute_ausrüstung: 'Ausrüstung',
+            attribute_lootbare_gegenstände: 'Loot',
+            attribute_geheimnis: 'Geheimnis'
         },
     },
     en: {
