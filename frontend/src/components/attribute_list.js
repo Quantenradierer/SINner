@@ -16,7 +16,10 @@ const AttributeList = props => {
                 <EditableText style={{margin: '-7px 0 0 0'}} attribute={attribute}
                               npc={props.npc} approxLineSize={props.approxLineSize}/>
 
-            </li>);
+
+            </li>
+);
+        items.push(<hr style={{margin: '2px 0px 0px 2px'}}/>)
     }
 
     return (<List>

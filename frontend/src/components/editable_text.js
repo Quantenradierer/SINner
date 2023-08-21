@@ -10,7 +10,7 @@ const EditableText = props => {
         setValue(event.target.value);
     };
 
-    if (props.text) {
+    if (!props.text) {
         return (<Text>{value}</Text>)
     } else {
         let rows = 1
