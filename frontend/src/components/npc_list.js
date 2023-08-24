@@ -73,7 +73,7 @@ class SearchPrompt extends React.Component {
             <div>
                 <form style={{display: 'flex'}}>
                     <input placeholder="Freitextsuche" type="text" name="search" id="search" value={this.state.search}
-                           onChange={this.handleSearchChange} style={{width: 480}} />
+                           onChange={this.handleSearchChange} style={{width: 480, margin: '0px 15px 0px 0px'}} />
                     <Button FrameComponent={FrameCorners}>
                         <Text>Suchen</Text>
                     </Button>

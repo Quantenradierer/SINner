@@ -10,6 +10,7 @@ class Npc(models.Model):
     class State(models.TextChoices):
         CREATED = 'CR', 'Created'
         MODERATED = 'MO', 'Moderated'
+        FAILED = 'FA', 'Failed'
 
     state = models.CharField(
         max_length=2,
@@ -23,6 +24,9 @@ class Npc(models.Model):
     image_generator_state = models.CharField(max_length=20, blank=True, default='init')
     default_image_number = models.IntegerField(default=0)
     max_image_number = models.IntegerField(default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __init__(self, *args, **kwargs):
         self.attributes = {}

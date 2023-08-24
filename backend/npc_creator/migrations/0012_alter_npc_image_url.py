@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('npc_creator', '0011_image_number_as_field'),
+        ('npc_creator', '0010_npc_default_image_number_npc_max_image_number'),
     ]
 
     operations = [

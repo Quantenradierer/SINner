@@ -25,17 +25,11 @@ def ask_chatgpt(system_prompt, user_prompts):
 
 
 def ask_chatgpt_moderated(system_prompt, user_prompts):
-    formatted_prompts = []
-    for prompt in user_prompts:
-        if type(prompt) is not str:
-            prompt = '\n'.join([f'{key}: {value}' for key, value in prompt.items()])
-        formatted_prompts.append(prompt)
-
     messages = [{'role': 'system', 'content': system_prompt}]
-    messages += [{'role': "user", 'content': prompt} for prompt in formatted_prompts]
+    messages += [{'role': "user", 'content': prompt} for prompt in user_prompts]
 
     logging.info(f'GPT Prompt: {messages}')
-    if openai.Moderation.create(input='\n'.join(formatted_prompts))['results'][0]['flagged']:
+    if openai.Moderation.create(input='\n'.join(user_prompts))['results'][0]['flagged']:
         return Failure('input_was_flagged_by_gpt')
 
     try:

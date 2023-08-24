@@ -33,7 +33,14 @@ def create_npc_prompt(user_prompt: str, npc_attributes: Dict[str, str], relevant
     npc_attributes_filtered = dict([(key, value) for key, value in npc_attributes.items() if value])
     attributes_filtered = dict([(key, "") for key in relevant_attributes if key not in npc_attributes_filtered])
 
-    return [user_prompt, npc_attributes_filtered, attributes_filtered]
+    prompt_parts = [user_prompt, npc_attributes_filtered, attributes_filtered]
+
+    formatted_prompts = []
+    for prompt in prompt_parts:
+        if type(prompt) is not str:
+            prompt = '\n'.join([f'{key}: {value}' for key, value in prompt.items()])
+        formatted_prompts.append(prompt)
+    return formatted_prompts
 
 
 def translate_appearance_prompt(npc):

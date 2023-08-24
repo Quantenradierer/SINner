@@ -11,3 +11,6 @@ class TemplateImage(models.Model):
 
     keyword = models.CharField(max_length=128)
     url = models.CharField(max_length=512)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
