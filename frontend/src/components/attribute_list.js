@@ -18,9 +18,10 @@ const AttributeList = props => {
 
 
             </li>
-);
+        );
         items.push(<hr style={{margin: '2px 0px 0px 2px'}}/>)
     }
+    items.pop()
 
     return (<List>
         {items}
