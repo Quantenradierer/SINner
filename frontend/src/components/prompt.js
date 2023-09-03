@@ -144,20 +144,26 @@ class Prompt extends React.Component {
     }
 
     handleClick(event) {
-        event.preventDefault()
+        event.preventDefault();
         let self = this;
-        self.setState({loadingState: 'waiting'})
+        self.setState({loadingState: 'waiting'});
 
         api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc})
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    self.setState({'npc': response.data.npc})
+                    self.setState({ 'npc': response.data.npc })
                 } else {
-                    self.setState({'error': i18next.t(response.data.error)})
+                    self.setState({ 'error': i18next.t(response.data.error) });
+                    setTimeout(function(){
+                        self.setState({loadingState: 'prompt', 'error': null })
+                    },15000);
                 }
             })
             .catch(function (error) {
-                self.setState({'error': i18next.t('prompt_failed_connection')})
+                self.setState({ 'error': i18next.t('prompt_failed_connection') })
+                setTimeout(function(){
+                    self.setState({ loadingState: 'prompt', 'error': null })
+                },15000);
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})
@@ -176,10 +182,16 @@ class Prompt extends React.Component {
                     window.location.href = '/npcs/' + response.data.npc.id
                 } else {
                     self.setState({'error': i18next.t(response.data.error)})
+                    setTimeout(function(){
+                        self.setState({loadingState: 'prompt', 'error': null })
+                    },15000);
                 }
             })
             .catch(function (error) {
                 self.setState({'error': i18next.t('prompt_failed_connection')})
+                setTimeout(function(){
+                    self.setState({loadingState: 'prompt', 'error': null })
+                },15000);
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})
