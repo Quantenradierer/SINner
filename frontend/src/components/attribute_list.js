@@ -13,13 +13,17 @@ const AttributeList = props => {
                 <div>
                     <div style={{width: props.listItemWidth}}><Text><b>{i18next.t('attribute_' + attribute.replaceAll(' ', '_').toLowerCase())}:</b></Text></div>
                 </div>
-                <EditableText style={{margin: '-7px 0 0 0'}} attribute={attribute}
-                              npc={props.npc} approxLineSize={props.approxLineSize}/>
+                <EditableText style={{margin: '-7px 0 0 0'}}
+                              attribute={attribute}
+                              npc={props.npc}
+                              approxLineSize={props.approxLineSize}
+                              editable={props.editable}
+                              editableDisabled={props.editableDisabled}/>
 
 
             </li>
         );
-        items.push(<hr style={{margin: '2px 0px 0px 2px'}}/>)
+        items.push(<hr key={'hr' + items.length} style={{margin: '2px 0px 0px 2px'}}/>)
     }
     items.pop()
 

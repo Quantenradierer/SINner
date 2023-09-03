@@ -1,6 +1,7 @@
 import os
 from copy import copy
 
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from npc_creator import config
@@ -42,6 +43,7 @@ class Npc(models.Model):
         attribute_set = self.attribute_set.all()
         attributes_hash = copy(self.attributes)
         for attribute in attribute_set:
+
             if attribute.key in attributes_hash:
                 attribute.value = attributes_hash[attribute.key]
                 attribute.save()
@@ -52,6 +54,11 @@ class Npc(models.Model):
         for key, value in attributes_hash.items():
             attribute = Attribute(key=key, value=value, npc=self)
             attribute.save()
+
+    def is_complete(self):
+        if len([value for value in self.attributes.values() if value]) < len(config.RELEVANT_ATTRIBUTES):
+            return False
+        return True
 
     def has_image_description(self):
         return bool(self.image_generator_description)

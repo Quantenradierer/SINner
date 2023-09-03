@@ -16,7 +16,7 @@ from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
 
 class GenerateNpc:
     def __init__(self, user_prompt: str='', npc: Npc=None):
-        self.npc = npc or Npc(user_prompt=user_prompt)
+        self.npc = npc or Npc()
         self.user_prompt = user_prompt
 
     def format_npc(self):
@@ -39,18 +39,8 @@ class GenerateNpc:
         gpt_request.save()
         return gpt_completion
 
-    def is_attributes_sufficient(self):
-        return len([value for value in self.npc.attributes.values() if value]) >= len(config.RELEVANT_ATTRIBUTES) - 2
-
-    def save_and_visualize_npc(self):
-        npc_repo.create(self.npc)
-        RecreateImage(self.npc).call()
-
     def call(self):
         gpt_completion = self.update_npc_with_gpt_data(self.user_prompt)
         if not gpt_completion:
             return gpt_completion
-        if not self.is_attributes_sufficient():
-            return Failure('gpt_result_insufficient')
-        self.save_and_visualize_npc()
         return Success(data=self.npc)

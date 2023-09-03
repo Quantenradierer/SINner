@@ -1,5 +1,6 @@
 import json
 import logging
+from datetime import datetime
 
 import openai
 
@@ -29,7 +30,8 @@ def ask_chatgpt_moderated(system_prompt, user_prompts):
     messages += [{'role': "user", 'content': prompt} for prompt in user_prompts]
 
     logging.info(f'GPT Prompt: {messages}')
-    if openai.Moderation.create(input='\n'.join(user_prompts))['results'][0]['flagged']:
+    result = openai.Moderation.create(input='\n'.join(user_prompts))
+    if result['results'][0]['flagged']:
         return Failure('input_was_flagged_by_gpt')
 
     try:
@@ -43,6 +45,9 @@ def ask_chatgpt_moderated(system_prompt, user_prompts):
 
     content = completion['choices'][0]['message']['content']
     logging.info(f'GPT Prompt: {completion}')
-    if openai.Moderation.create(input=content)['results'][0]['flagged']:
+
+    result = openai.Moderation.create(input=content)
+    if result['results'][0]['flagged']:
         return Failure('npc_was_flagged_by_gpt')
+
     return Success(content)

@@ -8,6 +8,7 @@ import json
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from npc_creator.models.gpt_request import GptRequest
 from npc_creator.operations.generate_npc import GenerateNpc
 from npc_creator.operations.recreate_image import RecreateImage
 from npc_creator.repositories import npc_repo
@@ -16,6 +17,8 @@ from rest_framework.authentication import BasicAuthentication, SessionAuthentica
 
 from npc_creator.models import Npc
 from rest_framework import serializers, viewsets
+
+from npc_creator.services.gpt_prompts import create_npc_prompt
 
 
 class NpcSerializer(serializers.ModelSerializer):
@@ -51,11 +54,30 @@ class NpcViewSet(viewsets.ModelViewSet):
         data = json.loads(request.body.decode())
         prompt = data.get("prompt")[:255]
 
-        result_npc = GenerateNpc(prompt).call()
-        if result_npc:
-            return Response({'type': 'success', 'id': result_npc.data.id})
-        else:
-            return Response({'type': 'error', 'error': result_npc.error})
+        serializer = self.get_serializer(data=data.get('npc', None))
+
+        if serializer.is_valid(raise_exception=True):
+            npc = Npc(**serializer.validated_data)
+
+            result_npc = GenerateNpc(prompt, npc).call()
+            if result_npc:
+                return Response({'type': 'success', 'npc': NpcSerializer(result_npc.data).data})
+            else:
+                return Response({'type': 'error', 'error': result_npc.error})
+
+    @action(detail=False, methods=['post'], permission_classes=[AllowAny])
+    def save(self, request):
+        data = json.loads(request.body.decode())
+
+        serializer = self.get_serializer(data=data.get('npc', None))
+
+        if serializer.is_valid(raise_exception=True):
+            npc = Npc(**serializer.validated_data)
+            if npc.is_complete():
+                npc.save()
+                RecreateImage(npc).call()
+                return Response({'type': 'success', 'npc': convert_npc(npc)})
+        return Response({'type': 'error', 'error': 'npc_incomplete'})
 
     @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):

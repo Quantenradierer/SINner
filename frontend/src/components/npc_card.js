@@ -52,7 +52,11 @@ class NPCCard extends React.Component {
         ]
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),
-                data: <EditableText attribute={attribute} npc={this.props.npc} approxLineSize={58}/>
+                data: <EditableText attribute={attribute}
+                                    npc={this.props.npc}
+                                    approxLineSize={58}
+                                    editable={this.props.editable}
+                                    editableDisabled={this.props.editableDisabled}/>
             })
         )
 
@@ -83,18 +87,35 @@ class NPCCard extends React.Component {
                         alt: this.props.npc.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}
-                    title={(<EditableText style={{width: '630px'}} attribute='Name' npc={this.props.npc} approxLineSize={58}/>)}
+                    title={(<EditableText style={{width: '630px'}}
+                                          attribute='Name'
+                                          npc={this.props.npc}
+                                          approxLineSize={58}
+                                          editable={this.props.editable}
+                                          editableDisabled={this.props.editableDisabled}
+                    />)}
                     landscape
                 >
 
                     <div>
                         <Blockquote>
                             <Text>
-                                <EditableText style={{width: '580px'}} attribute='Catchphrase' npc={this.props.npc} approxLineSize={58}/>
+                                <EditableText style={{width: '580px'}}
+                                              attribute='Catchphrase'
+                                              npc={this.props.npc}
+                                              approxLineSize={58}
+                                              editable={this.props.editable}
+                                              editableDisabled={this.props.editableDisabled}
+                                />
                             </Text>
                         </Blockquote>
 
-                        <AttributeList listItemWidth={100} npc={this.props.npc} attributes={relevantAttributes} approxLineSize={58}/>
+                        <AttributeList listItemWidth={100}
+                                       npc={this.props.npc}
+                                       attributes={relevantAttributes}
+                                       approxLineSize={58}
+                                       editable={this.props.editable}
+                                       editableDisabled={this.props.editableDisabled}/>
                     </div>
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}/>
 

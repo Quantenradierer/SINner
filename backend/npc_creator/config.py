@@ -64,9 +64,7 @@ GPT_CREATE_NPC_SYSTEM_PROMPT = """- Vervollständige einen NPC für ein Shadowru
 - Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun 
 - Zwerge sind keine Schmiede oder Braumeister, sondern gehen reguläre Berufe der Modernen Zeit nach
 """
-#
-#- Erstelle keine Runner oder Söldner, sofern nicht anders gewünscht
-#
+
 
 """
 The translated result will be what midjourney gets. So this decides the midjourney results

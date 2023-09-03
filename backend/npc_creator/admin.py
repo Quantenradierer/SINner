@@ -40,5 +40,5 @@ class PanelImageAdmin(admin.ModelAdmin):
 
 @admin.register(GptRequest)
 class GptRequestAdmin(admin.ModelAdmin):
-    list_display = ('input', 'output')
+    list_display = ('input', 'output', 'created_at')
     search_fields = ['input', 'output']

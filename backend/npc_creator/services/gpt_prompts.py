@@ -1,3 +1,4 @@
+import random
 from copy import copy
 
 from npc_creator import config
