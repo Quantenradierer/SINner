@@ -131,7 +131,7 @@ class Prompt extends React.Component {
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: {attributes: {}}
+            npc: {attributes: {}, image_url: 'creation_form.png'}
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -151,18 +151,19 @@ class Prompt extends React.Component {
         api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc})
             .then(function (response) {
                 if (response.data.type === 'success') {
+                    response.data.npc.image_url = 'creation_form.png'
                     self.setState({ 'npc': response.data.npc })
                 } else {
                     self.setState({ 'error': i18next.t(response.data.error) });
                     setTimeout(function(){
-                        self.setState({loadingState: 'prompt', 'error': null })
+                        self.setState({'error': null })
                     },15000);
                 }
             })
             .catch(function (error) {
                 self.setState({ 'error': i18next.t('prompt_failed_connection') })
                 setTimeout(function(){
-                    self.setState({ loadingState: 'prompt', 'error': null })
+                    self.setState({'error': null })
                 },15000);
             })
             .finally(function () {
@@ -183,14 +184,14 @@ class Prompt extends React.Component {
                 } else {
                     self.setState({'error': i18next.t(response.data.error)})
                     setTimeout(function(){
-                        self.setState({loadingState: 'prompt', 'error': null })
+                        self.setState({'error': null })
                     },15000);
                 }
             })
             .catch(function (error) {
                 self.setState({'error': i18next.t('prompt_failed_connection')})
                 setTimeout(function(){
-                    self.setState({loadingState: 'prompt', 'error': null })
+                    self.setState({'error': null })
                 },15000);
             })
             .finally(function () {

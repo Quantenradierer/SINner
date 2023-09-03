@@ -57,7 +57,7 @@ class NpcViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=data.get('npc', None))
 
         if serializer.is_valid(raise_exception=True):
-            npc = Npc(**serializer.validated_data)
+            npc = Npc(attributes=serializer.validated_data['attributes'])
 
             result_npc = GenerateNpc(prompt, npc).call()
             if result_npc:
@@ -72,7 +72,8 @@ class NpcViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=data.get('npc', None))
 
         if serializer.is_valid(raise_exception=True):
-            npc = Npc(**serializer.validated_data)
+            npc = Npc(attributes=serializer.validated_data['attributes'])
+
             if npc.is_complete():
                 npc.save()
                 RecreateImage(npc).call()
