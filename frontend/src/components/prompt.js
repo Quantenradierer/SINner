@@ -269,7 +269,7 @@ class Prompt extends React.Component {
                 {prompt}
             </div>
 
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end', margin: 15}}>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 15}}>
                 <Button FrameComponent={FrameCorners} style={{margin: 3}} onClick={this.handleSave}>
                     <Text>NPC speichern und Bild generieren</Text>
                 </Button>
