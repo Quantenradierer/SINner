@@ -25,7 +25,7 @@ def ask_chatgpt(system_prompt, user_prompts):
     return completion['choices'][0]['message']['content']
 
 
-def ask_chatgpt_moderated(system_prompt, user_prompts):
+def ask_chatgpt_moderated(system_prompt, user_prompts, gpt='gpt-3.5-turbo'):
     messages = [{'role': 'system', 'content': system_prompt}]
     messages += [{'role': "user", 'content': prompt} for prompt in user_prompts]
 
@@ -36,7 +36,7 @@ def ask_chatgpt_moderated(system_prompt, user_prompts):
 
     try:
         completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model=gpt,
             messages=messages
         )
     except Exception as e:

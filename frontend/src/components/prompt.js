@@ -182,7 +182,11 @@ class Prompt extends React.Component {
                 if (response.data.type === 'success') {
                     window.location.href = '/npcs/' + response.data.npc.id
                 } else {
-                    self.setState({'error': i18next.t(response.data.error)})
+                    if (response.data.error === 'custom') {
+                        self.setState({'error': 'GPT: ' + response.data.message})
+                    } else {
+                        self.setState({'error': i18next.t(response.data.error)})
+                    }
                     setTimeout(function(){
                         self.setState({'error': null })
                     },15000);
@@ -266,7 +270,7 @@ class Prompt extends React.Component {
             </div>
 
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end', margin: 15}}>
-                <Button style={{margin: 3}} onClick={this.handleSave}>
+                <Button FrameComponent={FrameCorners} style={{margin: 3}} onClick={this.handleSave}>
                     <Text>NPC speichern und Bild generieren</Text>
                 </Button>
             </div>
