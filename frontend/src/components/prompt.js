@@ -268,10 +268,10 @@ class Prompt extends React.Component {
                 {prompt}
             </div>
             <div style={{display: 'flex', alignItems: 'right', justifyContent: 'right', margin: 15}}>
-                <Button style={{margin: '3px 3px 3px 13px'}} FrameComponent={FramePentagon} onClick={this.handleClick}>
+                <Button style={{margin: '3px 3px 3px 13px'}} FrameComponent={FramePentagon} onClick={this.handleClick} disabled={this.state.loadingState === 'waiting'}>
                     <Text>Ausfüllen</Text>
                 </Button>
-                <Button FrameComponent={FramePentagon} style={{margin: 3}} onClick={this.handleSave}>
+                <Button FrameComponent={FramePentagon} style={{margin: 3}} onClick={this.handleSave} disabled={this.state.loadingState === 'waiting'}>
                     <Text>NPC speichern und Bild generieren</Text>
                 </Button>
             </div>
