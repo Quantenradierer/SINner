@@ -5,6 +5,7 @@ import api from "../axios";
 import image_path from "../image_path";
 import {useLoaderData} from "react-router";
 import {useNavigate, useNavigation} from "react-router-dom";
+import is_logged_in from "../is_loggin_in";
 
 
 
@@ -28,6 +29,11 @@ class ImageGalleryWrapped extends React.Component {
 
     async setImageDefault(event, image_number) {
         event.preventDefault();
+
+        if (!is_logged_in()) {
+            //window.location.href = image_path(this.state.npc.image_url, this.state.npc.id, image_number)
+            return
+        }
 
         let response = await api.post('/api/npc_creator/npcs/' + this.state.npc.id + '/set_default_image/', {
                 image_number: image_number,
@@ -69,7 +75,9 @@ class ImageGalleryWrapped extends React.Component {
                 <div style={{flexWrap: 'wrap', display: 'flex'}}>
                     {items}
                 </div>
-                <Button onClick={this.handleRecreateImages}>Neue Bilder</Button>
+                <div className={is_logged_in()? '': 'hidden'}>
+                    <Button onClick={this.handleRecreateImages}>Neue Bilder</Button>
+                </div>
             </FramePentagon>
 
         )

@@ -7,6 +7,7 @@ import api from "../axios";
 import i18next from "../i18n";
 import EditableText from "./editable_text";
 import AttributeList from "./attribute_list";
+import ImageGallery from "./image_gallery";
 
 
 function allows_edit(npc) {
@@ -115,10 +116,15 @@ class NPCCard extends React.Component {
                                        editable={this.props.editable}
                                        editableDisabled={this.props.editableDisabled}
                                        check={this.props.check}/>
+
                     </div>
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}/>
 
-
+                    <div className={this.props.npc.id? '': 'hidden'}>
+                        <a href={"/npcs/" + this.props.npc.id + "/gallery"}>
+                            <Button>Galerie</Button>
+                        </a>
+                    </div>
                 </Card>
             </div>
 
