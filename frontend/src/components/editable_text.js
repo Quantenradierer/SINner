@@ -29,7 +29,7 @@ const EditableText = props => {
         }
 
         rows = Math.min(4, rows);
-        let style = { padding: '2px', height: rows * 34 + 'px', backgroundColor: backgroundColor };
+        let style = { padding: '2px', height: 4 + rows * 32 + 'px', backgroundColor: backgroundColor };
 
         Object.assign(style, props.style);
 
