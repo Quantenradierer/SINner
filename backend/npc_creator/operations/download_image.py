@@ -1,4 +1,5 @@
 import os.path
+from urllib.parse import urlparse
 
 from npc_creator import config
 from npc_creator.models import Npc
@@ -35,7 +36,6 @@ class DownloadImage:
         else:
             self.npc.image_generation_failed()
 
-
         npc_repo.save(self.npc)
         return result_image_paths
 
@@ -45,7 +45,7 @@ class DownloadImage:
         image_paths_iter = self.images_names_iterator(self.npc.image_url, self.npc.id)
 
         for url in urls:
-            panel_name = os.path.basename(url)
+            panel_name = os.path.basename(urlparse(url).path)
 
             if not panel_image_repo.exists(panel_name):
                 panel_image = PanelImage(panel_name=panel_name, description=self.npc.image_generator_description)

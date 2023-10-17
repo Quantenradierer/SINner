@@ -1,4 +1,5 @@
 from typing import Optional, List, Dict
+from urllib.parse import urlparse
 
 MIDJOURNEY_BOT_ID = '936929561302675456'
 
@@ -34,7 +35,7 @@ def find_correlated_responses(responses: List[Dict[str, any]], search_text: List
             continue
 
         url = message['attachments'][0]['url']
-        if not url.lower().endswith('.png'):
+        if not urlparse(url).path.lower().endswith('.png'):
             continue
 
         yield url

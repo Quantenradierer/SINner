@@ -56,7 +56,9 @@ class NPCCard extends React.Component {
                                     npc={this.props.npc}
                                     approxLineSize={58}
                                     editable={this.props.editable}
-                                    editableDisabled={this.props.editableDisabled}/>
+                                    editableDisabled={this.props.editableDisabled}
+                                    check={this.props.check}
+                     />
             })
         )
 
@@ -71,13 +73,6 @@ class NPCCard extends React.Component {
         let state_label = ''
 
         const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten', 'Detailliertes Aussehen']
-        const items = [];
-
-        for (const attribute of relevantAttributes) {
-            items.push(<li key={attribute}><Text><b>{attribute}:</b> {this.props.npc.attributes[attribute]} </Text>
-            </li>);
-        }
-
         return (
             <div>
                 {state_label}
@@ -93,6 +88,8 @@ class NPCCard extends React.Component {
                                           approxLineSize={58}
                                           editable={this.props.editable}
                                           editableDisabled={this.props.editableDisabled}
+                                          check={this.props.check}
+
                     />)}
                     landscape
                 >
@@ -106,6 +103,7 @@ class NPCCard extends React.Component {
                                               approxLineSize={58}
                                               editable={this.props.editable}
                                               editableDisabled={this.props.editableDisabled}
+                                              check={this.props.check}
                                 />
                             </Text>
                         </Blockquote>
@@ -115,7 +113,8 @@ class NPCCard extends React.Component {
                                        attributes={relevantAttributes}
                                        approxLineSize={58}
                                        editable={this.props.editable}
-                                       editableDisabled={this.props.editableDisabled}/>
+                                       editableDisabled={this.props.editableDisabled}
+                                       check={this.props.check}/>
                     </div>
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}/>
 

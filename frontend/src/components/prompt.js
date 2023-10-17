@@ -131,7 +131,8 @@ class Prompt extends React.Component {
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: {attributes: {}, image_url: 'creation_form.png'}
+            npc: {attributes: {}, image_url: 'creation_form.png'},
+            check: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -178,15 +179,16 @@ class Prompt extends React.Component {
 
         api.post('/api/npc_creator/npcs/save/', {npc: this.state.npc})
             .then(function (response) {
-                console.log(response.data.npc)
                 if (response.data.type === 'success') {
                     window.location.href = '/npcs/' + response.data.npc.id
                 } else {
                     if (response.data.error === 'custom') {
                         self.setState({'error': 'GPT: ' + response.data.message})
                     } else {
-                        self.setState({'error': i18next.t(response.data.error)})
+                        self.setState({'error': i18next.t(response.data.error),
+                                            'check': true})
                     }
+                    window.scrollTo(0, 0)
                     setTimeout(function(){
                         self.setState({'error': null })
                     },15000);
@@ -236,9 +238,6 @@ class Prompt extends React.Component {
                             <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
                                    type="text"
                                    id="prompt"/>
-                            <Button style={{margin: '3px 3px 3px 13px'}} FrameComponent={FrameCorners} onClick={this.handleClick}>
-                                <Text>Ausfüllen</Text>
-                            </Button>
                         </div>
                     </form>
                 </FrameLines>
@@ -268,17 +267,20 @@ class Prompt extends React.Component {
             <div style={{margin: 15}}>
                 {prompt}
             </div>
-
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 15}}>
-                <Button FrameComponent={FrameCorners} style={{margin: 3}} onClick={this.handleSave}>
+            <div style={{display: 'flex', alignItems: 'right', justifyContent: 'right', margin: 15}}>
+                <Button style={{margin: '3px 3px 3px 13px'}} FrameComponent={FramePentagon} onClick={this.handleClick}>
+                    <Text>Ausfüllen</Text>
+                </Button>
+                <Button FrameComponent={FramePentagon} style={{margin: 3}} onClick={this.handleSave}>
                     <Text>NPC speichern und Bild generieren</Text>
                 </Button>
             </div>
             <div>
-                <NPCCard npc={this.state.npc} editable={true} editableDisabled={disabled}/>
-                <NPCPrivate npc={this.state.npc} editable={true} editableDisabled={disabled}/>
-                <NPCSkills npc={this.state.npc} editable={true} editableDisabled={disabled}/>
+                <NPCCard npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCPrivate npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCSkills npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
             </div>
+
 
         </div>)
     }

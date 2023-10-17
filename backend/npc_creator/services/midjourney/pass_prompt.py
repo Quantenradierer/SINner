@@ -33,10 +33,12 @@ def pass_prompt(prompt: str) -> bool:
                                                 "description": "Create images with Midjourney",
                                                 "dm_permission": True,
                                                 "contexts": [0, 1, 2],
+                                                "integration_types": [0],
                                                 "options": [{"type": 3, "name": "prompt",
                                                              "description": "The prompt to imagine",
                                                              "required": True}]},
                         "attachments": []}}
+
 
     header = {
         'authorization': PRIVATE_DISCORD_TOKEN

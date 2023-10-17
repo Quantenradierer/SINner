@@ -26,6 +26,15 @@ class GenerateNpc:
         gpt_request = GptRequest(input=npc_prompt)
         return gpt_request
 
+    def get_empty_attribute(self):
+        '''
+        Returns: the empty attribute, if there is only one, or None otherwise
+        '''
+        for key, value in self.npc.attributes.items():
+            if not value.strip():
+                return key
+
+
     def update_npc_with_gpt_data(self, gpt_request):
         gpt_request = self.format_npc()
 
@@ -33,6 +42,12 @@ class GenerateNpc:
         if gpt_completion:
             gpt_request.finished(gpt_completion.data)
             attributes = dict_from_text(config.RELEVANT_ATTRIBUTES, gpt_completion.data)
+
+            if not attributes:
+                empty_attribute = self.get_empty_attribute()
+                if empty_attribute:
+                    attributes = {empty_attribute: gpt_completion.data}
+
             self.npc.add_attributes(attributes)
         else:
             gpt_request.failed()

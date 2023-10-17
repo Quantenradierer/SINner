@@ -11,7 +11,7 @@ class NPCPrivate extends React.Component {
 
         return (
             <FramePentagon style={{width: 950, margin: 15}}>
-                <AttributeList listItemWidth={105} npc={this.props.npc} attributes={relevantAttributes} approxLineSize={100} editable={this.props.editable}
+                <AttributeList listItemWidth={105} npc={this.props.npc} attributes={relevantAttributes} approxLineSize={100} editable={this.props.editable} check={this.props.check}
                                        editableDisabled={this.props.editableDisabled}/>
             </FramePentagon>
         )

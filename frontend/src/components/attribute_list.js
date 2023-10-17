@@ -18,7 +18,10 @@ const AttributeList = props => {
                               npc={props.npc}
                               approxLineSize={props.approxLineSize}
                               editable={props.editable}
-                              editableDisabled={props.editableDisabled}/>
+                              editableDisabled={props.editableDisabled}
+                              check={props.check}
+                />
+
 
 
             </li>
