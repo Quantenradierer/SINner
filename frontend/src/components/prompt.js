@@ -228,7 +228,7 @@ class Prompt extends React.Component {
         } else if (this.state.loadingState === 'prompt') {
             prompt = <div key='prompt'>
                 <FrameLines style={{width: '100%'}}>
-                    <form>
+                    <form onSubmit={this.handleClick}>
                         <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
                             von dir an, da diese öffentlich zugänglich sein werden!
 
