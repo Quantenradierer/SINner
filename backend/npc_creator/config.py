@@ -6,7 +6,7 @@ import openai
 import requests
 
 
-logging.basicConfig(filename='sinner.log')
+logging.basicConfig(filename='schattenakte.log')
 logging.getLogger().setLevel(logging.DEBUG)
 
 """

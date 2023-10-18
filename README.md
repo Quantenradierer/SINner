@@ -3,7 +3,7 @@
 
 This project is still work in progress. If you see something strange or something isn't working just write me! I am always eager to help, even for small things.
 
-SINner is an application to create NPCs for Shadowrun Pen&Paper.
+Schattenakte is an application to create NPCs for Shadowrun Pen&Paper.
 It uses GPT for NPCs description, and midjourney to create images.
 The image generation is a bit of manual labor currently, since there is no actual API. 
 

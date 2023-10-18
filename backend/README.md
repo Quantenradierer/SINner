@@ -1,4 +1,4 @@
-# SINner backend
+# Schattenakte backend
 
 ## Architecture
 
