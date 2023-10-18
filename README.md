@@ -1,4 +1,4 @@
-# SINner Readme
+# Schattenakte Readme
 ![Animation.gif](docs%2FAnimation.gif)
 
 This project is still work in progress. If you see something strange or something isn't working just write me! I am always eager to help, even for small things.

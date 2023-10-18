@@ -5,13 +5,13 @@ import {initReactI18next} from "react-i18next";
 const resources = {
     de: {
         translation: {
-            app_name: "SINer - Shadowrun NPC Generator",
+            app_name: "Schattenakte - Shadowrun NPC Generator",
             prompt_failed_connection: "Verbindungsprobleme. Bitte versuche es später erneut.",
             input_was_flagged_by_gpt: 'Die Eingabe wurde von der GPT Moderation ausgefiltert. Versuche es erneut oder gib etwas anderes ein.',
             npc_was_flagged_by_gpt: 'Der NPC wurde von GPT als unangemessen eingeschätzt. Versuche es erneut oder gib etwas anderes ein.',
             gpt_raised_an_error: 'GPT hat einen Fehler geworfen. Bitte versuche es später erneut.',
             npc_incomplete: 'Der NPC ist unvollständig. Bitte fülle alle Felder aus bevor du speicherst.',
-            // gpt_thinks_npc_is_bad: 'Die Prüfung das NPC den Anforderungen entspricht (kein Urheberrechtsverletzung, kein Spam, etc.) schlug fehl. GPT: {0}',
+            image_generation_in_progress: 'Das Bild für diesen NPC wird noch erzeugt. Bitte aktualisiere diese Seite in ein paar Minuten erneut.',
             attribute_metatyp: 'Metatyp',
             attribute_beruf: 'Beruf',
             attribute_ethnizität: 'Ethnizität',
