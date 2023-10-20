@@ -10,7 +10,7 @@ def transform_metatyp(metatyp):
         'elf': 'elf'
     }
 
-    metatyp = metatyp.lower()
+    metatyp = metatyp.strip().lower()
 
     for key, intern in transformations.items():
         if key in metatyp:
