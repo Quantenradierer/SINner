@@ -50,7 +50,7 @@ class ImageGalleryWrapped extends React.Component {
             return (<div/>)
         }
 
-        for (let i = 1; i <= this.state.npc.max_image_number; i++) {
+        for (let i = 0; i < this.state.npc.images.length; i++) {
             let glowEffect = ''
             let addSize = 0
             if (i == this.state.npc.default_image_number) {
@@ -61,7 +61,7 @@ class ImageGalleryWrapped extends React.Component {
             items.push(
                 <a href="" key={i} onClick={(event) => this.setImageDefault(event, i)}>
                     <img style={{margin: 15 - addSize, width: 92 * 2 + addSize * 2, minHeight: 120 * 2 + addSize * 2, boxShadow: glowEffect}}
-                         src={image_path(this.state.npc.image_url, this.state.npc.id, i)}/>
+                         src={image_path(this.state.npc.images[i])}/>
                 </a>)
         }
 

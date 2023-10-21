@@ -9,9 +9,10 @@ import json
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from npc_creator import config
+from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models.gpt_request import GptRequest
+from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.generate_npc import GenerateNpc
-from npc_creator.operations.recreate_image import RecreateImage
 from npc_creator.repositories import npc_repo
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
@@ -49,7 +50,7 @@ class NpcViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def random(self, request):
         npc = npc_repo.read_random()
-        return Response(convert_npc(npc))
+        return Response(NpcSerializer(npc).data)
 
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def prompt(self, request):
@@ -82,9 +83,11 @@ class NpcViewSet(viewsets.ModelViewSet):
                     return Response({'type': 'error', 'error': 'custom', 'message': flagged_message})
 
                 npc.save()
-                RecreateImage(npc).call()
+                generation = ImageGeneration(npc=npc)
+                generation.save()
+                generation_job_async(generation)
 
-                return Response({'type': 'success', 'npc': convert_npc(npc)})
+                return Response({'type': 'success', 'npc': NpcSerializer(npc).data})
         return Response({'type': 'error', 'error': 'npc_incomplete'})
 
     def check_npc_content(self, npc):
@@ -104,30 +107,15 @@ class NpcViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
         npc = npc_repo.find(pk)
-        result = RecreateImage(npc).call()
-        if result:
-            return Response({'type': 'success', 'npc': convert_npc(npc)})
-        else:
-            return Response({'type': 'error', 'error': result.error})
+        generation = ImageGeneration(npc=npc)
+        generation.save()
+        generation_job_async(generation)
+
+        return Response({'type': 'success', 'npc': NpcSerializer(npc).data})
 
     @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
     def set_default_image(self, request, pk):
         npc = npc_repo.find(pk)
         npc.default_image_number = int(request.data['image_number'])
         npc_repo.save(npc)
-        return Response({'type': 'success', 'npc': convert_npc(npc)})
-
-
-def convert_npc(npc):
-    return {
-        'id': npc.id,
-        'image_generator_description': npc.image_generator_description,
-        'image_url': npc.image_url,
-        'image_generator_state': npc.image_generator_state,
-        'attributes': npc.attributes,
-        'default_image_number': npc.default_image_number,
-        'max_image_number': npc.max_image_number,
-        'state': npc.state,
-        'user_prompt': npc.user_prompt
-
-    }
+        return Response({'type': 'success', 'npc': NpcSerializer(npc).dat})

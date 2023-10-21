@@ -8,19 +8,6 @@ def read_random():
 def find(pk):
     return Npc.objects.prefetch_related('attribute_set').get(pk=pk)
 
-
-def requires_image_generation():
-    return Npc.objects.filter(image_generator_state__eq='', image_url__eq='', image_generator_description__neq='').prefetch_related('attribute_set')
-
-
-def requires_image_download():
-    return Npc.objects.filter(image_generator_state__eq='started', image_url__is=None).prefetch_related('attribute_set')
-
-
-def requires_image_recreation():
-    return Npc.objects.filter(image_generator_state__in=['failed', 'banned', '']).prefetch_related('attribute_set')
-
-
 def next_npc(pk):
     try:
         return Npc.objects.filter(id__gt=pk).order_by('id')[0]

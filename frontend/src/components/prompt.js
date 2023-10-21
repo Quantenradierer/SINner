@@ -131,7 +131,7 @@ class Prompt extends React.Component {
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: {attributes: {}, image_url: 'creation_form.png'},
+            npc: {attributes: {}, images: ['creation_form.png'], default_image_number: 0},
             check: false
         }
 
@@ -152,7 +152,8 @@ class Prompt extends React.Component {
         api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc})
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    response.data.npc.image_url = 'creation_form.png'
+                    response.data.npc.images = ['creation_form.png']
+                    response.data.npc.default_image_number = 0
                     self.setState({ 'npc': response.data.npc })
                 } else {
                     self.setState({ 'error': i18next.t(response.data.error) });

@@ -21,6 +21,8 @@ class Npc(models.Model):
 
     user_prompt = models.CharField(max_length=255, blank=True)
     image_generator_description = models.TextField(blank=True)
+    images = models.JSONField(default=list)
+
     image_url = models.CharField(max_length=255, blank=True, default='pk-{pk}_counter-{counter}.png')
     image_generator_state = models.CharField(max_length=20, blank=True, default='init')
     default_image_number = models.IntegerField(default=0)
@@ -63,20 +65,8 @@ class Npc(models.Model):
     def has_image_description(self):
         return bool(self.image_generator_description)
 
-    def image_generation_started(self):
-        self.image_generator_state = 'started'
-
-    def add_images(self, count):
-        if not self.default_image_number:
-            self.default_image_number = 1
-        self.max_image_number += count
-        self.image_generator_state = 'done'
-
-    def image_generation_failed(self):
-        self.image_generator_state = 'failed'
-
-    def image_generation_used_banned_word(self):
-        self.image_generator_state = 'banned'
+    def add_images(self, image_paths):
+        self.images.extend(image_paths)
 
     def __repr__(self):
         return f'<models.Npc id={self.id}>'
@@ -87,16 +77,6 @@ class Npc(models.Model):
         for attr_name in config.RELEVANT_ATTRIBUTES:
             value = new_attributes.get(attr_name, '') or existing_attributes.get(attr_name, '')
             self.attributes[attr_name] = value
-
-    def requires_image_generation(self):
-        return self.image_generator_state in ['init', 'banned'] and self.image_generator_description and not self.image_url.strip()
-
-    def requires_image_download(self):
-        return self.image_generator_state in ['started', 'failed'] and not self.image_url
-
-    def requires_new_image_generator_description(self):
-        return not self.image_generator_description or self.image_generator_state in ['failed', 'banned']
-
 
 class Attribute(models.Model):
     npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)

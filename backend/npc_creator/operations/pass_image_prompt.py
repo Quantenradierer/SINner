@@ -1,5 +1,6 @@
 from npc_creator import config
 from npc_creator.config import MIDJOURNEY_PROMPT
+from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.models.npc import Npc
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.repositories import npc_repo
@@ -11,20 +12,11 @@ from npc_creator.services.special_midjourney_prompt import special_midjourney_pr
 
 
 class PassImagePrompt:
-    def __init__(self, npc: Npc):
-        """
-        Constructor of the GenerateImage class.
-        """
-        self.npc = npc
+    def __init__(self, generation: ImageGeneration):
+        self.generation = generation
+        self.npc = self.generation.npc
 
-    def call(self) -> Failure:
-        """
-        Generates the image for the NPC
-
-        Returns:
-            bool: True if the image creation was started, False otherwise.
-        """
-
+    def generate_npc_image_description(self):
         if not self.npc.image_generator_description:
             translation_prompt = translate_appearance_prompt(self.npc)
             image_generator_description = ask_chatgpt(config.TRANSLATE_SYSTEM_PROMPT, [translation_prompt])
@@ -34,7 +26,18 @@ class PassImagePrompt:
             self.npc.image_generator_description = remove_banned_words(image_generator_description.strip())
             npc_repo.save(self.npc)
 
-        prompt = MIDJOURNEY_PROMPT.format(image_generator_description=self.npc.image_generator_description)
+    def call(self) -> Failure:
+        """
+        Generates the image for the NPC
+
+        Returns:
+            bool: True if the image creation was started, False otherwise.
+        """
+        if not self.generation.description:
+            self.generate_npc_image_description()
+            self.generation.description = self.npc.image_generator_description
+
+        prompt = MIDJOURNEY_PROMPT.format(image_generator_description=self.generation.description)
         prompt = special_midjourney_prompt(prompt,
                                            metatyp=self.npc.attributes.get('Metatyp', ''),
                                            gender=self.npc.attributes.get('Geschlecht', ''))
@@ -42,9 +45,9 @@ class PassImagePrompt:
 
         if not pass_prompt(prompt):
             return Failure('sending_midjourney_prompt_was_unsuccessful')
-        else:
-            self.npc.image_generation_started()
-            result = Success()
 
-        npc_repo.save(self.npc)
+        self.generation.state = ImageGeneration.State.IN_PROGRESS
+        self.generation.save()
+
+        result = Success()
         return result
