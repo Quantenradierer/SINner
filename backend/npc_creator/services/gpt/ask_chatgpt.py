@@ -7,25 +7,7 @@ import openai
 from npc_creator.operations.return_types import Failure, Success
 
 
-def ask_chatgpt(system_prompt, user_prompts):
-    messages = [{'role': 'system', 'content': system_prompt}]
-    messages += [{'role': "user", 'content': prompt} for prompt in user_prompts]
-
-    logging.info(f'GPT Prompt: {messages}')
-    try:
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=messages
-        )
-    except Exception as e:
-        logging.info(f'GPT Error: {e}')
-        return None
-
-    logging.info(f'GPT Prompt: {completion}')
-    return completion['choices'][0]['message']['content']
-
-
-def ask_chatgpt_moderated(system_prompt, user_prompts, gpt='gpt-3.5-turbo'):
+def ask_chatgpt_moderated(system_prompt, user_prompts, gpt='gpt-4'):
     messages = [{'role': 'system', 'content': system_prompt}]
     messages += [{'role': "user", 'content': prompt} for prompt in user_prompts]
 
