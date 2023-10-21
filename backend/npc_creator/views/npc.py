@@ -39,13 +39,9 @@ class NpcViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         search_text = self.request.query_params.get('search', '')
-        moderated = self.request.query_params.get('moderated', '') == 'on'
 
-        states = [Npc.State.MODERATED]
-        if not moderated:
-            states.append(Npc.State.CREATED)
-
-        return self.queryset.filter(attribute__value__icontains=search_text, state__in=states).distinct()
+        regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
+        return self.queryset.filter(attribute__value__regex=regex).distinct()
 
     @action(detail=False, methods=['get'])
     def random(self, request):
