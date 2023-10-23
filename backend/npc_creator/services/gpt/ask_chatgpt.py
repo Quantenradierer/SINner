@@ -14,6 +14,7 @@ def ask_chatgpt_moderated(system_prompt, user_prompts, gpt='gpt-4'):
     logging.info(f'GPT Prompt: {messages}')
     result = openai.Moderation.create(input='\n'.join(user_prompts))
     if result['results'][0]['flagged']:
+        logging.info(f'GPT Error: ', result)
         return Failure('input_was_flagged_by_gpt')
 
     try:
@@ -30,6 +31,7 @@ def ask_chatgpt_moderated(system_prompt, user_prompts, gpt='gpt-4'):
 
     result = openai.Moderation.create(input=content)
     if result['results'][0]['flagged']:
+        logging.info(f'GPT Error: ', result)
         return Failure('npc_was_flagged_by_gpt')
 
     return Success(content)
