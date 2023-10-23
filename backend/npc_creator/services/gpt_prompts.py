@@ -46,6 +46,7 @@ def create_npc_prompt(user_prompt: str, npc_attributes: Dict[str, str], relevant
 
 def translate_appearance_prompt(npc):
     return config.TRANSLATE_INPUT_PROMPT.format(
+        gender=npc.attributes.get('Geschlecht', ''),
         metatyp=npc.attributes.get('Metatyp', ''),
         beruf=npc.attributes.get('Beruf', ''),
         alter=npc.attributes.get('Alter', ''),

@@ -149,7 +149,7 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'});
 
-        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc}, {timeout: 120000} )
+        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
                     response.data.npc.images = ['creation_form.png']
