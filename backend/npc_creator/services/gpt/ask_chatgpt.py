@@ -12,7 +12,7 @@ def ask_chatgpt_moderated(system_prompt, user_prompts, gpt='gpt-4'):
     messages += [{'role': "user", 'content': prompt} for prompt in user_prompts]
 
     logging.info(f'GPT Prompt: {messages}')
-    result = openai.Moderation.create(input='\n'.join(user_prompts))
+    result = openai.Moderation.create(input='\n'.join(user_prompts + [system_prompt,]))
     if result['results'][0]['flagged']:
         logging.info(f'GPT Error: ', result)
         return Failure('input_was_flagged_by_gpt')
