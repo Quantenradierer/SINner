@@ -1,3 +1,4 @@
+import logging
 import os
 import shadowrun.settings
 import requests
@@ -22,17 +23,17 @@ def pass_prompt(prompt: str) -> bool:
 
     """
     payload = {"type": 2, "application_id": "936929561302675456", "guild_id": SERVER_ID,
-               "channel_id": CHANNEL_ID, "session_id": "b36c5d147f15d2547e9fb0384bdb4811",
-               "data": {"version": "1118961510123847772", "id": "938956540159881230", "name": "imagine", "type": 1,
+               "channel_id": CHANNEL_ID, "session_id": "38985802",
+               "data": {"version": "1166847114203123795", "id": "938956540159881230", "name": "imagine", "type": 1,
                         "options": [{"type": 3, "name": "prompt", "value": prompt}],
                         "application_command": {"id": "938956540159881230",
                                                 "application_id": "936929561302675456",
-                                                "version": "1118961510123847772",
+                                                "version": "1166847114203123795",
                                                 "default_member_permissions": None,
                                                 "type": 1, "nsfw": False, "name": "imagine",
                                                 "description": "Create images with Midjourney",
                                                 "dm_permission": True,
-                                                "contexts": [0, 1, 2],
+                                                "contexts": None,
                                                 "integration_types": [0],
                                                 "options": [{"type": 3, "name": "prompt",
                                                              "description": "The prompt to imagine",
@@ -47,7 +48,8 @@ def pass_prompt(prompt: str) -> bool:
         response = requests.post("https://discord.com/api/v9/interactions", json=payload, headers=header)
         response.raise_for_status()
         return True
-    except requests.exceptions.RequestException:
+    except requests.exceptions.RequestException as e:
+        logging.error(e)
         return False
 
 
