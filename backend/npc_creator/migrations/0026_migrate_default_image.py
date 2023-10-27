@@ -10,7 +10,7 @@ import os
 from npc_creator.models.image import Image
 
 
-def image_structure(*args, **kwargs):
+def image_score(*args, **kwargs):
     npcs = Npc.objects.all()
     for npc in npcs:
         try:
@@ -30,5 +30,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-       migrations.RunPython(image_structure),
+       migrations.RunPython(image_score),
     ]
