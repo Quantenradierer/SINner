@@ -33,7 +33,6 @@ class ImageGalleryWrapped extends React.Component {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
-        window.location.reload()
     }
 
     async downvote(event, image_number) {
@@ -42,7 +41,6 @@ class ImageGalleryWrapped extends React.Component {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
-        window.location.reload()
     }
 
     render() {
