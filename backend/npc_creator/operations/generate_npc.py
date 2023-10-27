@@ -35,7 +35,7 @@ class GenerateNpc:
     def update_npc_with_gpt_data(self, gpt_request):
         gpt_request = self.format_npc()
 
-        gpt_completion = ask_chatgpt_moderated(config.GPT_CREATE_NPC_SYSTEM_PROMPT, gpt_request.input)
+        gpt_completion = ask_chatgpt_moderated(config.GPT_CREATE_NPC_SYSTEM_PROMPT, gpt_request.input, gpt='gpt-3.5-turbo')
         if gpt_completion:
             gpt_request.finished(gpt_completion.data)
             attributes = dict_from_text(config.RELEVANT_ATTRIBUTES, gpt_completion.data)
