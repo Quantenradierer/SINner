@@ -3,6 +3,7 @@ import uuid
 from urllib.parse import urlparse
 
 from npc_creator import config
+from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success, ReturnType
 from npc_creator.services.midjourney.download_midjourney_image import download_midjourney_image
@@ -33,7 +34,7 @@ class DownloadImage:
         if not result_image_paths:
             return result_image_paths
 
-        self.npc.add_images(result_image_paths.data)
+        self.add_images(result_image_paths.data)
         self.npc.save()
 
         self.generation.state = ImageGeneration.State.DOWNLOADED
@@ -43,6 +44,10 @@ class DownloadImage:
     @staticmethod
     def panel_exists(panel_name):
         return ImageGeneration.objects.filter(url=panel_name).exists()
+
+    def add_images(self, image_paths):
+        for name in image_paths:
+            Image.objects.create(npc=self.npc, name=name)
 
     def download_images(self):
         responses = retrieve_latest_messages()

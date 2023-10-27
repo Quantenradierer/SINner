@@ -17,17 +17,20 @@ import {Animator} from "@arwes/animation";
 import {useNavigate, useNavigation} from "react-router-dom";
 import {useLoaderData} from "react-router";
 import image_path from "../image_path";
+import active_image from "../active_image";
 
 
 class NPCListItem extends React.Component {
 
     render() {
+        let activeImage = active_image(this.props.npc.image_objects) || {}
+
         return (<div style={{margin: 15}}>
 
                 <a href={'/npcs/' + this.props.npc.id}>
                     <Card
                         image={{
-                            src: image_path(this.props.npc.images[this.props.npc.default_image_number]),
+                            src: image_path(activeImage.name),
                             alt: this.props.npc.image_generator_description
                         }}
                         title={this.props.npc.attributes['Name']}

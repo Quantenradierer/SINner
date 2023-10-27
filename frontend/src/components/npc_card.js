@@ -8,6 +8,7 @@ import i18next from "../i18n";
 import EditableText from "./editable_text";
 import AttributeList from "./attribute_list";
 import ImageGallery from "./image_gallery";
+import active_image from "../active_image";
 
 
 function allows_edit(npc) {
@@ -72,6 +73,7 @@ class NPCCard extends React.Component {
 
     render() {
         let state_label = ''
+        let activeImage = active_image(this.props.npc.image_objects) || {}
 
         const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten', 'Detailliertes Aussehen']
         return (
@@ -79,7 +81,7 @@ class NPCCard extends React.Component {
                 {state_label}
                 <Card
                     image={{
-                        src: image_path(this.props.npc.images[this.props.npc.default_image_number || 0]),
+                        src: image_path(activeImage.name),
                         alt: this.props.npc.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}

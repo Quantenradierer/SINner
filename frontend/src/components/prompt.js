@@ -131,7 +131,7 @@ class Prompt extends React.Component {
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: {attributes: {}, images: ['creation_form.png'], default_image_number: 0},
+            npc: {attributes: {}, image_objects: [{id: 0, score: 0, name: 'creation_form.png'}], default_image_number: 0},
             check: false
         }
 
@@ -152,8 +152,7 @@ class Prompt extends React.Component {
         api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    response.data.npc.images = ['creation_form.png']
-                    response.data.npc.default_image_number = 0
+                    response.data.npc.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
                     self.setState({ 'npc': response.data.npc })
                 } else {
                     self.setState({ 'error': i18next.t(response.data.error) });

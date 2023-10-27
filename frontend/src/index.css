@@ -28,3 +28,12 @@ li::before {
 .hidden {
     display: none;
 }
+
+.votes {
+  opacity: 0.33;
+  transition: opacity 0.5s ease;
+}
+
+.votes:hover {
+  opacity: 1;
+}

@@ -31,7 +31,7 @@ class NPCCompleteWrapped extends React.Component {
 
     render() {
         let warning = ''
-        if (this.props.npc.images.length == 0) {
+        if (this.props.npc.image_objects.length == 0) {
             warning = <Warning text={i18next.t('image_generation_in_progress')}/>
         }
 

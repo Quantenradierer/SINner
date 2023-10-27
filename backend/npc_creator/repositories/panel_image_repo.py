@@ -1,4 +1,4 @@
-from npc_creator.models.panel_image import PanelImage
+from npc_creator.models.image import PanelImage
 
 
 def save(panel_image):

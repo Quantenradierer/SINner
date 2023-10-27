@@ -3,7 +3,8 @@
 from django.contrib import admin
 from npc_creator.models import Npc, Attribute, TemplateImage
 from npc_creator.models.gpt_request import GptRequest
-from npc_creator.models.panel_image import PanelImage
+from npc_creator.models.image import Image
+from npc_creator.models.image_generation import ImageGeneration
 
 
 class InlineAttributeAdmin(admin.TabularInline):
@@ -12,12 +13,12 @@ class InlineAttributeAdmin(admin.TabularInline):
 
 @admin.register(Npc)
 class NpcAdmin(admin.ModelAdmin):
-    list_display = ('id', 'image_url', 'image_generator_description', 'user_prompt', 'state', 'default_image_number')
+    list_display = ('id', 'image_generator_description', 'user_prompt', 'state', 'default_image_number')
     inlines = [
         InlineAttributeAdmin,
     ]
 
-    search_fields = ['image_url', 'image_generator_description', 'user_prompt']
+    search_fields = ['image_generator_description', 'user_prompt']
 
 
 @admin.register(Attribute)
@@ -26,13 +27,26 @@ class AttributeAdmin(admin.ModelAdmin):
     search_fields = ['key', 'value']
 
 
-@admin.register(TemplateImage)
-class PanelImageAdmin(admin.ModelAdmin):
-    list_display = ('keyword', 'url')
-    search_fields = ['keyword', 'url']
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('template', 'npc', 'created_at', 'updated_at')
+    search_fields = ['template', 'npc', 'created_at', 'updated_at']
+
+
+@admin.register(ImageGeneration)
+class ImageGenerationAdmin(admin.ModelAdmin):
+    list_display = ('description', 'retry_count', 'url', 'npc', 'created_at', 'updated_at')
+    search_fields = ['description', 'retry_count', 'url', 'npc', 'created_at', 'updated_at']
 
 
 @admin.register(GptRequest)
 class GptRequestAdmin(admin.ModelAdmin):
     list_display = ('input', 'output', 'created_at')
-    search_fields = ['input', 'output']
+    search_fields = ['input', 'output', 'created_at']
+
+
+@admin.register(TemplateImage)
+class TemplateImageAdmin(admin.ModelAdmin):
+    list_display = ('keyword', 'url', 'score', 'created_at', 'updated_at')
+    search_fields = ['keyword', 'url', 'score', 'created_at', 'updated_at']
+

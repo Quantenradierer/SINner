@@ -1,6 +1,7 @@
 import rest_framework_simplejwt
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
+from rest_framework.serializers import ListSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
@@ -22,13 +23,15 @@ from rest_framework import serializers, viewsets
 
 from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
 from npc_creator.services.gpt_prompts import create_npc_prompt
+from npc_creator.views.image import ImageSerializer
 
 
 class NpcSerializer(serializers.ModelSerializer):
     attributes = serializers.DictField()
+    image_objects = ListSerializer(child=ImageSerializer())
     class Meta:
         model = Npc
-        fields = [field.name for field in Npc._meta.fields] + ['attributes']
+        fields = [field.name for field in Npc._meta.fields] + ['attributes', 'image_objects']
 
 
 class NpcViewSet(viewsets.ModelViewSet):
@@ -114,4 +117,4 @@ class NpcViewSet(viewsets.ModelViewSet):
         npc = npc_repo.find(pk)
         npc.default_image_number = int(request.data['image_number'])
         npc_repo.save(npc)
-        return Response({'type': 'success', 'npc': NpcSerializer(npc).dat})
+        return Response({'type': 'success', 'npc': NpcSerializer(npc).data})

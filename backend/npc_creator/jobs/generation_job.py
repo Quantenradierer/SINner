@@ -24,6 +24,7 @@ def generation_job(generation_id: int) -> None:
     if generation.state == ImageGeneration.State.IN_PROGRESS and generation.retry_count < config.MIDJOURNEY_RETRIES_BEFORE_FAILING:
         time.sleep(40 + pow(3, generation.retry_count))
         generation.retry_count += 1
+        generation.save()
         generation_job_async(generation)
 
 

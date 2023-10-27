@@ -12,5 +12,13 @@ class TemplateImage(models.Model):
     keyword = models.CharField(max_length=128)
     url = models.CharField(max_length=512)
 
+    score = models.IntegerField(default=100)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def upvote(self):
+        self.score += 1
+
+    def downvote(self):
+        self.score = max(0, self.score - 1)

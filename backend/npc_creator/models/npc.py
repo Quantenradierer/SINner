@@ -1,7 +1,6 @@
 import os
 from copy import copy
 
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from npc_creator import config
@@ -23,7 +22,6 @@ class Npc(models.Model):
     image_generator_description = models.TextField(blank=True)
     images = models.JSONField(default=list)
 
-    image_url = models.CharField(max_length=255, blank=True, default='pk-{pk}_counter-{counter}.png')
     image_generator_state = models.CharField(max_length=20, blank=True, default='init')
     default_image_number = models.IntegerField(default=0)
     max_image_number = models.IntegerField(default=0)
@@ -57,6 +55,10 @@ class Npc(models.Model):
             attribute = Attribute(key=key, value=value, npc=self)
             attribute.save()
 
+    @property
+    def image_objects(self):
+        return self.image_set
+
     def is_complete(self):
         if len([value for value in self.attributes.values() if value]) < len(config.RELEVANT_ATTRIBUTES):
             return False
@@ -64,9 +66,6 @@ class Npc(models.Model):
 
     def has_image_description(self):
         return bool(self.image_generator_description)
-
-    def add_images(self, image_paths):
-        self.images.extend(image_paths)
 
     def __repr__(self):
         return f'<models.Npc id={self.id}>'
@@ -77,6 +76,7 @@ class Npc(models.Model):
         for attr_name in config.RELEVANT_ATTRIBUTES:
             value = new_attributes.get(attr_name, '') or existing_attributes.get(attr_name, '')
             self.attributes[attr_name] = value
+
 
 class Attribute(models.Model):
     npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)

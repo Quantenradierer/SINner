@@ -2,10 +2,11 @@ import React from "react";
 import {Blockquote, Button, Card, FramePentagon, List, LoadingBars, Table, Text} from "@arwes/core";
 import {NPC_IMAGE_PATH} from "../config";
 import api from "../axios";
-import image_path from "../image_path";
 import {useLoaderData} from "react-router";
 import {useNavigate, useNavigation} from "react-router-dom";
 import is_logged_in from "../is_loggin_in";
+import image_path from "../image_path";
+import active_image from "../active_image";
 
 
 
@@ -16,7 +17,6 @@ class ImageGalleryWrapped extends React.Component {
         this.state = {npc: this.props.npc}
 
         this.handleRecreateImages = this.handleRecreateImages.bind(this);
-        this.setImageDefault = this.setImageDefault.bind(this);
     }
 
     async handleRecreateImages() {
@@ -27,21 +27,22 @@ class ImageGalleryWrapped extends React.Component {
         window.location.reload()
     }
 
-    async setImageDefault(event, image_number) {
+    async upvote(event, image_number) {
         event.preventDefault();
-
-        if (!is_logged_in()) {
-            //window.location.href = image_path(this.state.npc.image_url, this.state.npc.id, image_number)
-            return
-        }
-
-        let response = await api.post('/api/npc_creator/npcs/' + this.state.npc.id + '/set_default_image/', {
-                image_number: image_number,
+        await api.post('/api/npc_creator/images/' + image_number + '/upvote/', {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
+        window.location.reload()
+    }
 
-        this.setState({npc: response.data.npc})
+    async downvote(event, image_number) {
+        event.preventDefault();
+        await api.post('/api/npc_creator/images/' + image_number + '/downvote/', {
+                refresh_token: localStorage.getItem('refresh_token')
+            }, {headers: {'Content-Type': 'application/json'}},
+            {withCredentials: true})
+        window.location.reload()
     }
 
     render() {
@@ -50,19 +51,30 @@ class ImageGalleryWrapped extends React.Component {
             return (<div/>)
         }
 
-        for (let i = 0; i < this.state.npc.images.length; i++) {
+        let activeImage = active_image(this.state.npc.image_objects)
+        for (let image of this.state.npc.image_objects) {
             let glowEffect = ''
             let addSize = 0
-            if (i == this.state.npc.default_image_number) {
+            if (image.id == activeImage.id) {
                 glowEffect = '0px 0px 5px 5px #0ff'
                 addSize = 15
             }
 
+            let buttons = ''
+            if (is_logged_in()) {
+                buttons = <div key='scoring'>
+                    <div key='upvote' className='votes' style={{position: 'absolute', marginLeft: 92 * 2 - 25, marginTop: 120 * 2 - 70}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.upvote(event, image.id)}>👍</a></div>
+                    <div key='downvote' className='votes' style={{position: 'absolute', marginLeft: 92 * 2 - 25, marginTop: 120 * 2 - 30}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.downvote(event, image.id)}>👎</a></div>
+                </div>
+            }
+                    console.log(this.state.npc.image_objects)
+
             items.push(
-                <a href="" key={i} onClick={(event) => this.setImageDefault(event, i)}>
+                <div style={{display: 'flex'}}>
+                    {buttons}
                     <img style={{margin: 15 - addSize, width: 92 * 2 + addSize * 2, minHeight: 120 * 2 + addSize * 2, boxShadow: glowEffect}}
-                         src={image_path(this.state.npc.images[i])}/>
-                </a>)
+                         src={image_path(image.name)}/>
+                </div>)
         }
 
         return (
