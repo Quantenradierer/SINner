@@ -57,7 +57,9 @@ class Npc(models.Model):
 
     @property
     def image_objects(self):
-        return self.image_set
+        if self.id:
+            return self.image_set
+        return Npc.objects.none()
 
     def is_complete(self):
         if len([value for value in self.attributes.values() if value]) < len(config.RELEVANT_ATTRIBUTES):
