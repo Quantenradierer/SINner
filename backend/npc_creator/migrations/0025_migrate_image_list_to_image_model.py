@@ -19,7 +19,7 @@ def image_structure(*args, **kwargs):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('npc_creator', '0023_remove_npc_image_url_image_name'),
+        ('npc_creator', '0024_image_score'),
     ]
 
     operations = [

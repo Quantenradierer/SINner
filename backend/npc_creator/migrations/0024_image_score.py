@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('npc_creator', '0024_migrate_image_list_to_image_model'),
+        ('npc_creator', '0023_remove_npc_image_url_image_name'),
     ]
 
     operations = [
