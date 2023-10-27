@@ -49,10 +49,9 @@ def get_suffix_options(metatyp_gender):
 def special_midjourney_prompt(prompt, metatyp, gender):
     metatyp = transform_metatyp(metatyp)
     gender = transform_gender(gender)
-
-    template_url = template_image_repo.find(f'{metatyp}_{gender}')
-    if template_url:
-        template_url = template_url.url
+    template = template_image_repo.find(f'{metatyp}_{gender}')
+    if template:
+        template_url = template.url
     else:
         template_url = ''
 
@@ -60,4 +59,4 @@ def special_midjourney_prompt(prompt, metatyp, gender):
     suffix_options = get_suffix_options(f'{metatyp}_{gender}')
 
     prompt = f'{template_url} {prompt}:: {multiprompts} {suffix_options}'
-    return prompt
+    return template, prompt

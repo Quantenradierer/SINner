@@ -47,7 +47,7 @@ class DownloadImage:
 
     def add_images(self, image_paths):
         for name in image_paths:
-            Image.objects.create(npc=self.npc, name=name)
+            Image.objects.create(npc=self.npc, name=name, generation=self.generation)
 
     def download_images(self):
         responses = retrieve_latest_messages()

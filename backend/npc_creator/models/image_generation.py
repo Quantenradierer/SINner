@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from npc_creator.models import Npc
+from npc_creator.models import Npc, TemplateImage
 
 
 class ImageGeneration(models.Model):
@@ -18,6 +18,7 @@ class ImageGeneration(models.Model):
         default=State.CREATED,
     )
 
+    template = models.ForeignKey(TemplateImage, null=True, on_delete=models.SET_NULL)
     description = models.TextField(blank=True)
     retry_count = models.IntegerField(default=0)
     url = models.CharField(max_length=256)

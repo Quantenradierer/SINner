@@ -1,7 +1,6 @@
 from npc_creator import config
 from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.image_generation import ImageGeneration
-from npc_creator.models.npc import Npc
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.repositories import npc_repo
 from npc_creator.services.banned_words_filter import remove_banned_words
@@ -38,7 +37,7 @@ class PassImagePrompt:
             self.generation.description = self.npc.image_generator_description
 
         prompt = MIDJOURNEY_PROMPT.format(image_generator_description=self.generation.description)
-        prompt = special_midjourney_prompt(prompt,
+        template, prompt = special_midjourney_prompt(prompt,
                                            metatyp=self.npc.attributes.get('Metatyp', ''),
                                            gender=self.npc.attributes.get('Geschlecht', ''))
         prompt += ' ' + config.ADDITIONAL_PROMPT_OPTIONS
@@ -46,6 +45,7 @@ class PassImagePrompt:
         if not pass_prompt(prompt):
             return Failure('sending_midjourney_prompt_was_unsuccessful')
 
+        self.generation.template = template
         self.generation.state = ImageGeneration.State.IN_PROGRESS
         self.generation.save()
 

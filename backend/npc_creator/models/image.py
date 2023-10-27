@@ -3,6 +3,7 @@ import uuid
 
 from django.db import models
 from npc_creator.models import TemplateImage, Npc
+from npc_creator.models.image_generation import ImageGeneration
 
 
 class Image(models.Model):
@@ -12,8 +13,13 @@ class Image(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    template = models.ForeignKey(TemplateImage, null=True, on_delete=models.SET_NULL)
+    generation = models.ForeignKey(ImageGeneration, null=True, on_delete=models.SET_NULL)
     npc = models.ForeignKey(Npc, null=True, on_delete=models.SET_NULL)
+
+    @property
+    def template(self):
+        if self.generation:
+            return self.generation.template
 
     def upvote(self):
         self.score += 1
