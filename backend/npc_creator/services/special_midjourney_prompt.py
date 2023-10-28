@@ -1,3 +1,5 @@
+import random
+
 from npc_creator.repositories import template_image_repo
 
 
@@ -41,8 +43,8 @@ def get_multiprompts(metatyp_gender):
 
 def get_suffix_options(metatyp_gender):
     return {
-        'troll_male': '--chaos 8 --v 5',
-        'troll_female': '--chaos 8 --v 5'
+        'troll_male': '--chaos ' + str(15 * random.randint(1, 3)),
+        'troll_female': '--chaos ' + str(15 * random.randint(1, 3))
     }.get(metatyp_gender, '--chaos 30')
 
 
