@@ -1,4 +1,10 @@
+import datetime
+import random
+import time
+from datetime import timedelta
+
 import rest_framework_simplejwt
+from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.serializers import ListSerializer
@@ -106,9 +112,14 @@ class NpcViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
         npc = npc_repo.find(pk)
-        generation = ImageGeneration(npc=npc)
-        generation.save()
-        generation_job_async(generation)
+
+        for i in range(10):
+            if ImageGeneration.objects.filter(url__isnull=True, created_at__gt=now() + timedelta(hours=-1)).count() < 10:
+                generation = ImageGeneration(npc=npc)
+                generation.save()
+                generation_job_async(generation)
+
+            time.sleep(random.random() + random.randint(30, 90))
 
         return Response({'type': 'success', 'npc': NpcSerializer(npc).data})
 
