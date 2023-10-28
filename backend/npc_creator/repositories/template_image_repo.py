@@ -1,9 +1,13 @@
+import random
+
 from npc_creator.models.template_image import TemplateImage
 
 
 def find(keyword):
     try:
-        return TemplateImage.objects.filter(keyword__exact=keyword).order_by('?').first()
+        templates = TemplateImage.objects.filter(keyword__exact=keyword)
+        weights = [t.score for t in templates]
+        return random.choices(templates, weights=weights)[0]
     except IndexError:
         return None
 
