@@ -43,8 +43,8 @@ def get_multiprompts(metatyp_gender):
 
 def get_suffix_options(metatyp_gender):
     return {
-        'troll_male': '--chaos ' + str(15 * random.randint(1, 3)),
-        'troll_female': '--chaos ' + str(15 * random.randint(1, 3))
+        'troll_male': '--chaos ' + str(random.randint(1, 6) * random.randint(1, 6) + random.randint(1, 6)),
+        'troll_female': '--chaos ' + str(random.randint(1, 6) * random.randint(1, 6) + random.randint(1, 6))
     }.get(metatyp_gender, '--chaos 30')
 
 
