@@ -51,7 +51,7 @@ class DownloadImage:
 
     def download_images(self):
         responses = retrieve_latest_messages()
-        urls = find_correlated_responses(responses, self.generation.description)
+        urls = find_correlated_responses(responses, self.generation.id)
 
         for url in urls:
             panel_name = os.path.basename(urlparse(url).path)

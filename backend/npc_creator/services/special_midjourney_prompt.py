@@ -36,8 +36,8 @@ def get_multiprompts(metatyp_gender):
         'troll_female': 'female::2 suit:: minotaur::1.5 small horns:: wrinkles:: fur::-0.5 beard::-0.5 cyberpunk::',
         'orc_male': 'green skin::-0.3 wears jacket, suit or hoodie:: human with orc tusks:: armor::-0.1 ',
         'orc_female': 'green skin::-0.3 wears jacket, suit or hoodie:: human with orc tusks:: armor::-0.1 ',
-        'dwarf_male': 'dwarf:: gnome::-0.1 elf::-0.1',
-        'dwarf_female': 'dwarf:: gnome::-0.1 elf::-0.1'
+        'dwarf_male': 'dwarf:: gnome::-0.2 elf::-0.2',
+        'dwarf_female': 'dwarf:: gnome::-0.2 elf::-0.2'
     }.get(metatyp_gender, '')
 
 
@@ -45,10 +45,10 @@ def get_suffix_options(metatyp_gender):
     return {
         'troll_male': '--chaos ' + str(random.randint(1, 6) * random.randint(1, 6) + random.randint(1, 6)),
         'troll_female': '--chaos ' + str(random.randint(1, 6) * random.randint(1, 6) + random.randint(1, 6))
-    }.get(metatyp_gender, '--chaos 30')
+    }.get(metatyp_gender, '--chaos ' + str(random.randint(1, 6) * random.randint(1, 6) + 11 ))
 
 
-def special_midjourney_prompt(prompt, metatyp, gender):
+def special_midjourney_prompt(prompt, seed, metatyp, gender):
     metatyp = transform_metatyp(metatyp)
     gender = transform_gender(gender)
     template = template_image_repo.find(f'{metatyp}_{gender}')
@@ -60,5 +60,7 @@ def special_midjourney_prompt(prompt, metatyp, gender):
     multiprompts = get_multiprompts(f'{metatyp}_{gender}')
     suffix_options = get_suffix_options(f'{metatyp}_{gender}')
 
-    prompt = f'{template_url} {prompt}:: {multiprompts} {suffix_options}'
+    seed_suffix = f'--seed {seed}'
+
+    prompt = f'{template_url} {prompt}:: {multiprompts} {suffix_options} {seed_suffix}'
     return template, prompt

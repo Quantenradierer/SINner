@@ -38,8 +38,9 @@ class PassImagePrompt:
 
         prompt = MIDJOURNEY_PROMPT.format(image_generator_description=self.generation.description)
         template, prompt = special_midjourney_prompt(prompt,
-                                           metatyp=self.npc.attributes.get('Metatyp', ''),
-                                           gender=self.npc.attributes.get('Geschlecht', ''))
+                                                     seed=self.generation.id,
+                                                     metatyp=self.npc.attributes.get('Metatyp', ''),
+                                                     gender=self.npc.attributes.get('Geschlecht', ''))
         prompt += ' ' + config.ADDITIONAL_PROMPT_OPTIONS
 
         if not pass_prompt(prompt):
