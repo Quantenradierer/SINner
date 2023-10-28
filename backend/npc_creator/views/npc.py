@@ -119,7 +119,7 @@ class NpcViewSet(viewsets.ModelViewSet):
                 generation.save()
                 generation_job_async(generation)
 
-            time.sleep(random.random() + random.randint(30, 90))
+            time.sleep(random.random() + random.randint(3, 10))
 
         return Response({'type': 'success', 'npc': NpcSerializer(npc).data})
 
