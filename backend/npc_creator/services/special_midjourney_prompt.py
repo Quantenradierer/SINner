@@ -32,8 +32,8 @@ def transform_gender(gender):
 
 def get_multiprompts(metatyp_gender):
     return {
-        'troll_male': 'small horns:: minotaur::0.8 bull::-0.1 animal::-0.1 ',
-        'troll_female': 'female::2 suit:: minotaur::1.5 small horns:: wrinkles:: fur::-0.5 beard::-0.5 cyberpunk::',
+        'troll_male': 'small horns:: minotaur::0.8 clothes:: cyberpunk:: bull::-0.1 animal::-0.1 ',
+        'troll_female': 'female::2 suit:: minotaur::1.5 small horns:: wrinkles:: clothes:: cyberpunk:: fur::-0.5 beard::-0.5 cyberpunk::',
         'orc_male': 'green skin::-0.3 wears jacket, suit or hoodie:: human with orc tusks:: armor::-0.1 ',
         'orc_female': 'green skin::-0.3 wears jacket, suit or hoodie:: human with orc tusks:: armor::-0.1 ',
         'dwarf_male': 'dwarf:: gnome::-0.2 elf::-0.2',
