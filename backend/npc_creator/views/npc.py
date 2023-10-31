@@ -28,7 +28,6 @@ from rest_framework.authentication import BasicAuthentication, SessionAuthentica
 from npc_creator.models import Npc
 from rest_framework import serializers, viewsets
 
-from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
 from npc_creator.views.image import ImageSerializer
 
 

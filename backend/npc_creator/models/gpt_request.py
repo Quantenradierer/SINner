@@ -19,6 +19,8 @@ class GptRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    kind = models.TextField(blank=True)
+
     state = models.CharField(
         max_length=2,
         choices=State.choices,

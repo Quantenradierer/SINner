@@ -45,20 +45,6 @@ This often happens when the image generation contains bad words, where the image
 MIDJOURNEY_RETRIES_BEFORE_FAILING = 8
 
 # noinspection PyPep8
-"""
-The translated result will be what midjourney gets. So this decides the midjourney results
-"""
-TRANSLATE_SYSTEM_PROMPT = """- Übersetze ins Englische
-- Antworte nur mit der Übersetzung
-- Übersetze in die Geschlechtsform entsprechend des Geschlechts welches am Anfang steht
-"""
-
-TRANSLATE_INPUT_PROMPT = "Geschlecht: {gender}. Ein {alter} Jähriger mit Ethnizität {ethni}. Ein {metatyp} der als {beruf} tätig ist. {image_generator_description}"
-
-"""
-the attribute which is used for visual appearance
-"""
-VISUAL_APPEARANCE_ATTRIBUTE = 'Detailliertes Aussehen'
 
 """
 All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.

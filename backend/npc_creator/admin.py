@@ -41,8 +41,8 @@ class ImageGenerationAdmin(admin.ModelAdmin):
 
 @admin.register(GptRequest)
 class GptRequestAdmin(admin.ModelAdmin):
-    list_display = ('input', 'output', 'created_at')
-    search_fields = ['input', 'output', 'created_at']
+    list_display = ('kind', 'input', 'output', 'created_at')
+    search_fields = ['kind', 'input', 'output', 'created_at']
 
 
 @admin.register(TemplateImage)

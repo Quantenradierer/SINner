@@ -1,11 +1,10 @@
 from npc_creator import config
 from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.image_generation import ImageGeneration
+from npc_creator.operations.gpt.translate_description import TranslateDescription
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.repositories import npc_repo
 from npc_creator.services.banned_words_filter import remove_banned_words
-from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
-from npc_creator.services.gpt_prompts import translate_appearance_prompt
 from npc_creator.services.midjourney.pass_prompt import pass_prompt
 from npc_creator.services.special_midjourney_prompt import special_midjourney_prompt
 
@@ -16,14 +15,10 @@ class PassImagePrompt:
         self.npc = self.generation.npc
 
     def generate_npc_image_description(self):
-        if not self.npc.image_generator_description:
-            translation_prompt = translate_appearance_prompt(self.npc)
-            image_generator_description = ask_chatgpt_moderated(config.TRANSLATE_SYSTEM_PROMPT, [translation_prompt])
-            if not image_generator_description:
-                return image_generator_description
-
-            self.npc.image_generator_description = remove_banned_words(image_generator_description.data.strip())
-            npc_repo.save(self.npc)
+        result = TranslateDescription(npc=self.npc).call()
+        if result:
+            self.npc.save()
+        return result
 
     def call(self) -> Failure:
         """

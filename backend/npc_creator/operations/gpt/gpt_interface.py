@@ -11,9 +11,10 @@ class GptInterface:
 
     def __init__(self, **kwargs):
         self.kwargs = kwargs
-        self.request = GptRequest()
+        self.request = GptRequest(kind=str(self.__class__.__name__))
         self.gpt = GptInterface.GptVersion.GPT4
         self.system_prompt = ""
+
 
     def prompt(self):
         raise NotImplementedError()
