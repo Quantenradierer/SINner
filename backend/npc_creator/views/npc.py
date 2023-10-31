@@ -20,6 +20,7 @@ from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.generate_npc import GenerateNpc
+from npc_creator.operations.gpt.check_npc import CheckNpc
 from npc_creator.repositories import npc_repo
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
@@ -28,7 +29,6 @@ from npc_creator.models import Npc
 from rest_framework import serializers, viewsets
 
 from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
-from npc_creator.services.gpt_prompts import create_npc_prompt
 from npc_creator.views.image import ImageSerializer
 
 
@@ -83,9 +83,10 @@ class NpcViewSet(viewsets.ModelViewSet):
             npc = Npc(attributes=serializer.validated_data['attributes'])
 
             if npc.is_complete():
-                flagged_message = self.check_npc_content(npc)
-                if flagged_message.lower() != 'ok':
-                    return Response({'type': 'error', 'error': 'custom', 'message': flagged_message})
+                result = CheckNpc(npc=npc)
+
+                if not result:
+                    return Response({'type': 'error', 'error': 'custom', 'message': result.error})
 
                 npc.save()
                 generation = ImageGeneration(npc=npc)
@@ -95,19 +96,6 @@ class NpcViewSet(viewsets.ModelViewSet):
                 return Response({'type': 'success', 'npc': NpcSerializer(npc).data})
         return Response({'type': 'error', 'error': 'npc_incomplete'})
 
-    def check_npc_content(self, npc):
-        npc_prompt = create_npc_prompt(user_prompt='',
-                                       npc_attributes=npc.attributes,
-                                       relevant_attributes=config.RELEVANT_ATTRIBUTES)
-        gpt_request = GptRequest(input=npc_prompt)
-        system_prompt = '- Antworte NUR mit "Ok" oder mit einer Erklärung warum der NPC abgelehnt wurde \n- Die Attribute sollten einen NPC einen Shadowrun darstellen\n- Prüf ob die Daten inhaltlich passen\n- Verwirf Urheberrechtsverletzungen oder zu extreme Namen oder Beschreibungen\n- Der NPC sollte eine gewisse Qualität haben'
-        gpt_answer = ask_chatgpt_moderated(system_prompt, gpt_request.input, 'gpt-4')
-        if gpt_answer:
-            gpt_request.finished(gpt_answer.data)
-        else:
-            gpt_request.failed()
-        gpt_request.save()
-        return gpt_answer.data
 
     @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):

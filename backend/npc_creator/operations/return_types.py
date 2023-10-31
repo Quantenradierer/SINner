@@ -5,14 +5,15 @@ class ReturnType:
 
 
 class Failure(ReturnType):
-    def __init__(self, error):
+    def __init__(self, error, data={}):
         self.error = error
+        self.data = data
 
     def __bool__(self):
         return False
 
     def __repr__(self):
-        return f'<Failure: error: {self.error}>'
+        return f'<Failure: error={self.error} data={self.data}>'
 
 
 class Success(ReturnType):

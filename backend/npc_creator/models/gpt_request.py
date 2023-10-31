@@ -25,8 +25,7 @@ class GptRequest(models.Model):
         default=State.STARTED,
     )
 
-    def finished(self, output):
-        self.output = output
+    def finished(self):
         self.state = GptRequest.State.COMPLETED
 
     def failed(self):

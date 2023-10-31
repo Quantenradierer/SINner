@@ -46,28 +46,6 @@ MIDJOURNEY_RETRIES_BEFORE_FAILING = 8
 
 # noinspection PyPep8
 """
-Prompt which will be sent to GPT. From my experience,
-it is better to ask for the relevant points first and then give additional informations, cause otherwise it tries to create additional missing attributes or just answers directly without the attribute name
-"""
-
-# 'create less afro people' sounds rassist, but GPT created ONLY ethnicity -afro. Either afroamerican, afro-german or similar.
-GPT_CREATE_NPC_SYSTEM_PROMPT = """- Vervollständige einen NPC für ein Shadowrun Pen & Paper Rollenspiel
-- Wenn keine Informationen gegeben sind, denke dir welche aus
-- Erstelle unangemessene, extreme, rassistische oder homophobe NPC so, das du zeigst wie falsch ihre Werte sind 
-- Erstelle keine Urheberrechtlich geschützten Figuren oder Personen
-- Erstelle keine Runner oder Söldner, sofern nicht anders gewünscht
-- Das Geheimnis muss detailliert beschrieben sein
-- Der Name ist in der Form 'Vorname "Rufname" Nachname' 
-- Sei beim Namen kreativ
-- Nutze seltene und unübliche Namen 
-- Achte darauf, den NPC in die Shadowrun-Welt zu integrieren und ihn für die Spieler ansprechend zu gestalten
-- Zwerge sind keine Schmiede oder Braumeister, sondern gehen reguläre Berufe der Modernen Zeit nach
-- Erstelle standardmäßig weniger Personen mit afro-Ethnizität
-- Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun, wie: ADL, CAS, CFS, Japanisches Kaiserreich, Tír na nÓg, Tír Tairngire oder UCAS
-"""
-
-
-"""
 The translated result will be what midjourney gets. So this decides the midjourney results
 """
 TRANSLATE_SYSTEM_PROMPT = """- Übersetze ins Englische
