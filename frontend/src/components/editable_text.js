@@ -25,7 +25,6 @@ const EditableText = props => {
         return (
             <div style={{display: 'flex', width: '100%'}}>
                 <Text style={{flexGrow: 1, flexBasis: '100%'}} key={props.attribute}>{value}</Text>
-                <a onClick={handleAlternatives} style={{marginRight: '10px', cursor: 'pointer'}}>🎲</a>
             </div>);
     } else {
         let rows = 1;

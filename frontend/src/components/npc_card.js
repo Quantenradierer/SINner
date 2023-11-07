@@ -54,14 +54,14 @@ class NPCCard extends React.Component {
         ]
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),
-                data: <EditableText attribute={attribute}
+                data: <div><EditableText attribute={attribute}
                                     npc={this.props.npc}
                                     approxLineSize={58}
                                     editable={this.props.editable}
                                     editableDisabled={this.props.editableDisabled}
                                     check={this.props.check}
                                     setAlternatives={this.props.setAlternatives}
-                     />
+                     /> </div>
             })
         )
 
@@ -86,7 +86,7 @@ class NPCCard extends React.Component {
                         alt: this.props.npc.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}
-                    title={<EditableText style={{width: '630px'}}
+                    title={<div><EditableText style={{width: '630px'}}
                                           attribute='Name'
                                           npc={this.props.npc}
                                           approxLineSize={58}
@@ -95,7 +95,7 @@ class NPCCard extends React.Component {
                                           check={this.props.check}
                                           setAlternatives={this.props.setAlternatives}
 
-                    />}
+                    /> </div>}
                     landscape
                 >
 
@@ -124,6 +124,7 @@ class NPCCard extends React.Component {
                                        setAlternatives={this.props.setAlternatives}
                         />
                     </div>
+
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}/>
 
                     <div className={this.props.npc.id? '': 'hidden'}>
