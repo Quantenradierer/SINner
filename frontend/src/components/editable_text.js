@@ -1,13 +1,15 @@
-import {Button, FrameLines, Text} from "@arwes/core";
+import {Button, FrameLines, FramePentagon, Text} from "@arwes/core";
 import React, {useEffect, useState} from "react";
-import {backgrounds} from "polished";
+import api from "../axios";
+
+
 
 
 const EditableText = props => {
-    const [value, setValue] = useState( props.npc.attributes[props.attribute] || ' ');
+    const [value, setValue] = useState( props.npc.attributes[props.attribute] || '');
 
     useEffect(() => {
-        setValue(props.npc.attributes[props.attribute] || ' ');
+        setValue(props.npc.attributes[props.attribute] || '');
     }, [props.npc, props.attribute]);
 
     const handleChange = (event) => {
@@ -15,8 +17,16 @@ const EditableText = props => {
         setValue(event.target.value);
     };
 
+    async function handleAlternatives(event) {
+        props.setAlternatives(props.attribute)
+    }
+
     if (!props.editable) {
-        return (<Text key={props.attribute}>{value}</Text>);
+        return (
+            <div style={{display: 'flex', width: '100%'}}>
+                <Text style={{flexGrow: 1, flexBasis: '100%'}} key={props.attribute}>{value}</Text>
+                <a onClick={handleAlternatives} style={{marginRight: '10px', cursor: 'pointer'}}>🎲</a>
+            </div>);
     } else {
         let rows = 1;
         let backgroundColor = ''

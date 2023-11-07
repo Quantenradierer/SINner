@@ -34,7 +34,7 @@ class Npc(models.Model):
         attributes = kwargs.pop('attributes', {})
         super(Npc, self).__init__(*args, **kwargs)
         if self.id:
-            self.attributes = dict([(attr.key, attr.value) for attr in self.attribute_set.all()])
+            self.attributes = dict([(attr.key, attr.value) for attr in self.attribute_set.filter(generation=0)])
         self.add_attributes(attributes)
 
     def save(self, *args, **kwargs):
@@ -85,6 +85,7 @@ class Attribute(models.Model):
 
     key = models.TextField(db_index=True)
     value = models.TextField(db_index=True, blank=True)
+    generation = models.IntegerField(default=0)
 
     def __repr__(self):
         return f'<models.Attribute id={self.id} key={self.key} value={self.value} npc_id={self.npc_id}>'

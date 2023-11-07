@@ -9,10 +9,12 @@ from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
 class TranslateDescription(GptInterface):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.gpt = GptInterface.GptVersion.GPT4
-        self.system_prompt = """- Übersetze ins Englische
-- Antworte nur mit der Übersetzung
+        self.gpt = GptInterface.GptVersion.GPT4_TURBO
+        self.system_prompt = """
+- Übersetze ins Englische
 - Übersetze in die Geschlechtsform entsprechend des Geschlechts welches am Anfang steht
+- Forme die Sätze entsprechend um, das der Midjournes Bildgenerator bessere Bilder erzeugt
+- Antworte nur mit der Übersetzung
 """
 
     def prompt(self):
@@ -34,12 +36,3 @@ class TranslateDescription(GptInterface):
 
     def handle_failure(self, failure):
         return failure
-
-"""
-            translation_prompt = translate_appearance_prompt(self.npc)
-            image_generator_description = ask_chatgpt_moderated(, [translation_prompt])
-            if not image_generator_description:
-                return image_generator_description
-
-            
-            """

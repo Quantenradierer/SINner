@@ -6,6 +6,8 @@ import api from "../axios";
 import {useLoaderData} from "react-router";
 import {FramePentagon, Text} from "@arwes/core";
 import i18next from "../i18n";
+import AlternativeDialog from "./alternative_dialog";
+import {random} from "animejs";
 
 
 const Warning = props => {
@@ -25,8 +27,14 @@ class NPCCompleteWrapped extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {attributeAlternative: null}
         this.interval = null;
 
+        this.setAlternatives = this.setAlternatives.bind(this);
+    }
+
+    setAlternatives(attribute) {
+        this.setState({attributeAlternative: attribute})
     }
 
     render() {
@@ -39,9 +47,10 @@ class NPCCompleteWrapped extends React.Component {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {warning}
 
-                <NPCCard npc={this.props.npc}/>
-                <NPCPrivate npc={this.props.npc} />
-                <NPCSkills npc={this.props.npc} />
+                {this.state.attributeAlternative && <AlternativeDialog npc={this.props.npc} attributeAlternative={this.state.attributeAlternative} setAlternatives={this.setAlternatives}/>}
+                <NPCCard npc={this.props.npc} setAlternatives={this.setAlternatives}/>
+                <NPCPrivate npc={this.props.npc} setAlternatives={this.setAlternatives}/>
+                <NPCSkills npc={this.props.npc} setAlternatives={this.setAlternatives}/>
             </div>
         )
 

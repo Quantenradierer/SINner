@@ -10,7 +10,7 @@ class NPCSkills extends React.Component {
         return (
             <FramePentagon style={{width: 950, margin: 15}}>
                 <AttributeList listItemWidth={105} npc={this.props.npc} attributes={relevantAttributes} approxLineSize={100} editable={this.props.editable} check={this.props.check}
-                                       editableDisabled={this.props.editableDisabled}/>
+                                       editableDisabled={this.props.editableDisabled} setAlternatives={this.props.setAlternatives}/>
             </FramePentagon>
         )
     }
