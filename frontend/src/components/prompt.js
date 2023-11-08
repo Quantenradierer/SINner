@@ -228,12 +228,13 @@ class Prompt extends React.Component {
         } else if (this.state.loadingState === 'prompt') {
             prompt = <div key='prompt'>
                 <FrameLines style={{width: '100%'}}>
+                    <ul style={{margin: 0}}>
+                        <li className='fine-li'><Text>Beschreibe deinen NPC</Text></li>
+                        <li className='fine-li'><Text>Klick auf "Ausfüllen" um die Werte von GPT ausfüllen zu lassen</Text></li>
+                        <li className='fine-li'><Text>Kontrolliere und Korrigiere die Werte</Text></li>
+                        <li className='fine-li'><Text>Speicher und lass ein Bild erzeugen</Text></li>
+                    </ul>
                     <form onSubmit={this.handleClick}>
-                        <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
-                            von dir an, da diese öffentlich zugänglich sein werden!
-
-                            <br/>Das Bild wird erst nach dem Speichern des NPCs erzeugt.
-                        </Text>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
                                    type="text"
