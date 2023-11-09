@@ -1,4 +1,5 @@
 from npc_creator import config
+from npc_creator.models import Npc
 
 from npc_creator.operations.gpt.gpt_interface import GptInterface
 from npc_creator.operations.gpt.helper import npc_prompt
@@ -45,7 +46,8 @@ class FillNpc(GptInterface):
                 return key
 
     def interpret_result(self, success):
-        attributes = dict_from_text(config.RELEVANT_ATTRIBUTES, success.data)
+        names = [attr_def.name for attr_def in Npc.ATTRIBUTE_DEFINITION]
+        attributes = dict_from_text(names, success.data)
 
         if not attributes:
             empty_attribute = self.get_empty_attribute()

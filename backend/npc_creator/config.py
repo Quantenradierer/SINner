@@ -46,11 +46,6 @@ MIDJOURNEY_RETRIES_BEFORE_FAILING = 8
 
 # noinspection PyPep8
 
-"""
-All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.
-"""
-RELEVANT_ATTRIBUTES = ['Beruf', 'Metatyp', 'Ethnizität', 'Geschlecht', 'Alter', 'Catchphrase', 'Detailliertes Aussehen', 'Name', 'Hintergrundgeschichte',  'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele', 'Stärken', 'Schwächen', 'Fertigkeiten', 'Ausrüstung', 'Hobbys und Interessen', 'Eigenarten', 'Familie', 'Kontakte', 'Lootbare Gegenstände', 'Geheimnis', 'Konstitution (von 1-6)', 'Geschicklichkeit (von 1-6)', 'Reaktion (von 1-6)', 'Stärke (von 1-6)', 'Willenskraft (von 1-6)', 'Logik (von 1-6)', 'Intuition (von 1-6)', 'Charisma (von 1-6)', 'Glück (von 1-6)', 'Magie (von 0-6)', 'Resonanz (von 0-6)']
-
 
 """
 configuration for openai

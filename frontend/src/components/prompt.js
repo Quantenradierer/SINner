@@ -189,16 +189,12 @@ class Prompt extends React.Component {
                                             'check': true})
                     }
                     window.scrollTo(0, 0)
-                    setTimeout(function(){
-                        self.setState({'error': null })
-                    },15000);
+
                 }
             })
             .catch(function (error) {
                 self.setState({'error': i18next.t('prompt_failed_connection')})
-                setTimeout(function(){
-                    self.setState({'error': null })
-                },15000);
+
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})

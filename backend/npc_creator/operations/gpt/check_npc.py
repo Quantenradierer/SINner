@@ -1,8 +1,7 @@
-from npc_creator import config
 from npc_creator.operations.gpt.fill_npc import FillNpc
 
 from npc_creator.operations.gpt.gpt_interface import GptInterface
-from npc_creator.services.interpret_gpt import dict_from_text
+from npc_creator.operations.return_types import Failure
 
 
 class CheckNpc(FillNpc):
@@ -12,12 +11,6 @@ class CheckNpc(FillNpc):
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
 
     def interpret_result(self, success):
-        attributes = dict_from_text(config.RELEVANT_ATTRIBUTES, success.data)
-
-        if not attributes:
-            empty_attribute = self.get_empty_attribute()
-            if empty_attribute:
-                attributes = {empty_attribute: success.data}
-
-        self.npc.add_attributes(attributes)
-        return success
+        if success.data.lower() == 'ok':
+            return success
+        return Failure(success.data)

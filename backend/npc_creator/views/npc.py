@@ -86,7 +86,7 @@ class NpcViewSet(viewsets.ModelViewSet):
             npc = Npc(attributes=serializer.validated_data['attributes'])
 
             if npc.is_complete():
-                result = CheckNpc(npc=npc)
+                result = CheckNpc(npc=npc).call()
 
                 if not result:
                     return Response({'type': 'error', 'error': 'custom', 'message': result.error})
