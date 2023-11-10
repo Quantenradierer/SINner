@@ -11,6 +11,6 @@ class CheckNpc(FillNpc):
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
 
     def interpret_result(self, success):
-        if success.data.lower() == 'ok':
+        if success.data.lower() == "ok":
             return success
         return Failure(success.data)

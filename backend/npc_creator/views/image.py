@@ -3,7 +3,11 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import (
+    IsAuthenticated,
+    AllowAny,
+    IsAuthenticatedOrReadOnly,
+)
 import json
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -25,7 +29,7 @@ from rest_framework import serializers, viewsets
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ['id', 'name', 'score']
+        fields = ["id", "name", "score"]
 
 
 class ImageViewSet(viewsets.ModelViewSet):
@@ -34,7 +38,7 @@ class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.prefetch_related().all()
     serializer_class = ImageSerializer
 
-    @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
+    @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def upvote(self, request, pk):
         image = Image.objects.filter(id=pk)[0]
         template = image.template
@@ -44,9 +48,9 @@ class ImageViewSet(viewsets.ModelViewSet):
         if template:
             template.upvote()
             template.save()
-        return Response({'type': 'success'})
+        return Response({"type": "success"})
 
-    @action(detail=True, methods=['post'], authentication_classes=[JWTAuthentication])
+    @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def downvote(self, request, pk):
         image = Image.objects.filter(id=pk)[0]
         template = image.template
@@ -56,4 +60,4 @@ class ImageViewSet(viewsets.ModelViewSet):
         if template:
             template.downvote()
             template.save()
-        return Response({'type': 'success'})
+        return Response({"type": "success"})

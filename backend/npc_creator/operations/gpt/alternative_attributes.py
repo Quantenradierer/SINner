@@ -21,15 +21,19 @@ class AlternativeAttributes(GptInterface):
 
     @property
     def npc(self):
-        return self.kwargs['npc']
+        return self.kwargs["npc"]
 
     @property
     def attribute(self):
-        return self.kwargs.get('attribute', '')
+        return self.kwargs.get("attribute", "")
 
     def prompt(self):
-        self.npc.attributes[self.attribute] = ''
-        return npc_prompt(self.npc) + [f'Erstelle andere Vorschläge für {self.attribute}:',]
+        self.npc.attributes[self.attribute] = ""
+        return npc_prompt(self.npc) + [
+            f"Erstelle andere Vorschläge für {self.attribute}:",
+        ]
 
     def interpret_result(self, success):
-        return Success([answer.strip() for answer in success.data.split('###') if answer.strip()])
+        return Success(
+            [answer.strip() for answer in success.data.split("###") if answer.strip()]
+        )

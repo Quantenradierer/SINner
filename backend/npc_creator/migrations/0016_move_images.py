@@ -22,7 +22,7 @@ def image_structure(*args, **kwargs):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('npc_creator', '0015_add_image_generation'),
+        ("npc_creator", "0015_add_image_generation"),
     ]
 
     operations = [

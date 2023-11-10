@@ -1,4 +1,3 @@
-
 from django.db import models
 
 from npc_creator.models import Npc, TemplateImage
@@ -6,11 +5,11 @@ from npc_creator.models import Npc, TemplateImage
 
 class ImageGeneration(models.Model):
     class State(models.TextChoices):
-        CREATED = 'CR', 'Created'
-        IN_PROGRESS = 'IN', 'In Progress'
-        DOWNLOADED = 'DL', 'Downloaded'
-        FAILED = 'FA', 'Failed'
-        DONE = 'DO', 'Done'
+        CREATED = "CR", "Created"
+        IN_PROGRESS = "IN", "In Progress"
+        DOWNLOADED = "DL", "Downloaded"
+        FAILED = "FA", "Failed"
+        DONE = "DO", "Done"
 
     state = models.CharField(
         max_length=2,

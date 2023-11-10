@@ -9,9 +9,9 @@ from npc_creator import config
 
 class GptRequest(models.Model):
     class State(models.TextChoices):
-        STARTED = 'ST', 'Started'
-        COMPLETED = 'CO', 'Completed'
-        FAILED = 'FF', 'Failed'
+        STARTED = "ST", "Started"
+        COMPLETED = "CO", "Completed"
+        FAILED = "FF", "Failed"
 
     input = JSONField(blank=False)
     output = models.TextField(blank=True)

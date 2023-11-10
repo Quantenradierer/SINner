@@ -22,18 +22,16 @@ from rest_framework_simplejwt import views as jwt_views
 from core.views.logout import LogoutView
 
 urlpatterns = [
-    path('api/', include([
-        path('npc_creator/', include('npc_creator.urls')),
-    ])),
-    path('admin/', admin.site.urls),
-    path('token/',
-         jwt_views.TokenObtainPairView.as_view(),
-         name='token_obtain_pair'),
-    path('token/refresh/',
-         jwt_views.TokenRefreshView.as_view(),
-         name='token_refresh'),
-    path('token/logout/',
-         LogoutView.as_view(),
-         name='logout')
-
+    path(
+        "api/",
+        include(
+            [
+                path("npc_creator/", include("npc_creator.urls")),
+            ]
+        ),
+    ),
+    path("admin/", admin.site.urls),
+    path("token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),
+    path("token/logout/", LogoutView.as_view(), name="logout"),
 ]

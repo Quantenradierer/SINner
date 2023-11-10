@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0001_initial'),
+        ("npc_creator", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='attribute',
-            name='key',
+            model_name="attribute",
+            name="key",
             field=models.TextField(db_index=True),
         ),
         migrations.AlterField(
-            model_name='attribute',
-            name='value',
+            model_name="attribute",
+            name="value",
             field=models.TextField(db_index=True),
         ),
     ]

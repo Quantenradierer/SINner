@@ -31,15 +31,19 @@ class PassImagePrompt:
             self.generate_npc_image_description()
             self.generation.description = self.npc.image_generator_description
 
-        prompt = MIDJOURNEY_PROMPT.format(image_generator_description=self.generation.description)
-        template, prompt = special_midjourney_prompt(prompt,
-                                                     seed=self.generation.id,
-                                                     metatyp=self.npc.attributes.get('Metatyp', ''),
-                                                     gender=self.npc.attributes.get('Geschlecht', ''))
-        prompt += ' ' + config.ADDITIONAL_PROMPT_OPTIONS
+        prompt = MIDJOURNEY_PROMPT.format(
+            image_generator_description=self.generation.description
+        )
+        template, prompt = special_midjourney_prompt(
+            prompt,
+            seed=self.generation.id,
+            metatyp=self.npc.attributes.get("Metatyp", ""),
+            gender=self.npc.attributes.get("Geschlecht", ""),
+        )
+        prompt += " " + config.ADDITIONAL_PROMPT_OPTIONS
 
         if not pass_prompt(prompt):
-            return Failure('sending_midjourney_prompt_was_unsuccessful')
+            return Failure("sending_midjourney_prompt_was_unsuccessful")
 
         self.generation.template = template
         self.generation.state = ImageGeneration.State.IN_PROGRESS

@@ -28,19 +28,21 @@ class FillNpc(GptInterface):
 
     @property
     def npc(self):
-        return self.kwargs['npc']
+        return self.kwargs["npc"]
 
     @property
     def user_prompt(self):
-        return self.kwargs.get('user_prompt', '')
+        return self.kwargs.get("user_prompt", "")
 
     def prompt(self):
-        return [self.user_prompt, ] + npc_prompt(self.npc)
+        return [
+            self.user_prompt,
+        ] + npc_prompt(self.npc)
 
     def get_empty_attribute(self):
-        '''
+        """
         Returns: the empty attribute, if there is only one, or None otherwise
-        '''
+        """
         for key, value in self.npc.attributes.items():
             if not value.strip():
                 return key

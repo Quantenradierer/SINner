@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0027_remove_image_template_image_generation_and_more'),
+        ("npc_creator", "0027_remove_image_template_image_generation_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gptrequest',
-            name='kind',
+            model_name="gptrequest",
+            name="kind",
             field=models.TextField(blank=True),
         ),
     ]

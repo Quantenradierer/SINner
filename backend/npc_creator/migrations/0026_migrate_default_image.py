@@ -26,9 +26,9 @@ def image_score(*args, **kwargs):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('npc_creator', '0025_migrate_image_list_to_image_model'),
+        ("npc_creator", "0025_migrate_image_list_to_image_model"),
     ]
 
     operations = [
-       migrations.RunPython(image_score),
+        migrations.RunPython(image_score),
     ]

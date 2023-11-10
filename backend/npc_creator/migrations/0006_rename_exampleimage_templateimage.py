@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0005_exampleimage'),
+        ("npc_creator", "0005_exampleimage"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='ExampleImage',
-            new_name='TemplateImage',
+            old_name="ExampleImage",
+            new_name="TemplateImage",
         ),
     ]

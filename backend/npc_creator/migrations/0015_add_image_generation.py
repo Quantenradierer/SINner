@@ -5,28 +5,57 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0014_gptrequest_remove_npc_access_key_npc_created_at_and_more'),
+        (
+            "npc_creator",
+            "0014_gptrequest_remove_npc_access_key_npc_created_at_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='npc',
-            name='images',
+            model_name="npc",
+            name="images",
             field=models.JSONField(default=list),
         ),
         migrations.CreateModel(
-            name='ImageGeneration',
+            name="ImageGeneration",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('state', models.CharField(choices=[('CR', 'Created'), ('IN', 'In Progress'), ('DL', 'Downloaded'), ('FA', 'Failed'), ('DO', 'Done')], default='CR', max_length=2)),
-                ('description', models.TextField(blank=True)),
-                ('retry_count', models.IntegerField(default=0)),
-                ('url', models.CharField(max_length=256)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('npc', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='npc_creator.npc')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "state",
+                    models.CharField(
+                        choices=[
+                            ("CR", "Created"),
+                            ("IN", "In Progress"),
+                            ("DL", "Downloaded"),
+                            ("FA", "Failed"),
+                            ("DO", "Done"),
+                        ],
+                        default="CR",
+                        max_length=2,
+                    ),
+                ),
+                ("description", models.TextField(blank=True)),
+                ("retry_count", models.IntegerField(default=0)),
+                ("url", models.CharField(max_length=256)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "npc",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="npc_creator.npc",
+                    ),
+                ),
             ],
         ),
     ]

@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0010_npc_default_image_number_npc_max_image_number'),
+        ("npc_creator", "0010_npc_default_image_number_npc_max_image_number"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='npc',
-            name='image_url',
-            field=models.CharField(blank=True, default='pk-{pk}_counter-{counter}.png', max_length=255),
+            model_name="npc",
+            name="image_url",
+            field=models.CharField(
+                blank=True, default="pk-{pk}_counter-{counter}.png", max_length=255
+            ),
         ),
     ]

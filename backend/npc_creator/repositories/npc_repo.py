@@ -2,24 +2,25 @@ from npc_creator.models.npc import Npc
 
 
 def read_random():
-    return Npc.objects.order_by('?').prefetch_related('attribute_set').first()
+    return Npc.objects.order_by("?").prefetch_related("attribute_set").first()
 
 
 def find(pk):
-    return Npc.objects.prefetch_related('attribute_set').get(pk=pk)
+    return Npc.objects.prefetch_related("attribute_set").get(pk=pk)
+
 
 def next_npc(pk):
     try:
-        return Npc.objects.filter(id__gt=pk).order_by('id')[0]
+        return Npc.objects.filter(id__gt=pk).order_by("id")[0]
     except IndexError:
-        return Npc.objects.order_by('id')[0]
+        return Npc.objects.order_by("id")[0]
 
 
 def prev_npc(pk):
     try:
-        return Npc.objects.filter(id__lt=pk).order_by('-id')[0]
+        return Npc.objects.filter(id__lt=pk).order_by("-id")[0]
     except IndexError:
-        return Npc.objects.order_by('-id')[0]
+        return Npc.objects.order_by("-id")[0]
 
 
 def create(npc):

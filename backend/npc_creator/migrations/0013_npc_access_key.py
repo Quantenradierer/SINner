@@ -5,15 +5,14 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0012_alter_npc_image_url'),
+        ("npc_creator", "0012_alter_npc_image_url"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='npc',
-            name='access_key',
+            model_name="npc",
+            name="access_key",
             field=models.UUIDField(default=uuid.uuid4, editable=False),
         ),
     ]

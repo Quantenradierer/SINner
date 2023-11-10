@@ -1,5 +1,3 @@
-
-
 class ReturnType:
     pass
 
@@ -13,7 +11,7 @@ class Failure(ReturnType):
         return False
 
     def __repr__(self):
-        return f'<Failure: error={self.error} data={self.data}>'
+        return f"<Failure: error={self.error} data={self.data}>"
 
 
 class Success(ReturnType):

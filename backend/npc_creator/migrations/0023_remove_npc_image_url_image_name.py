@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0022_alter_image_id'),
+        ("npc_creator", "0022_alter_image_id"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='npc',
-            name='image_url',
+            model_name="npc",
+            name="image_url",
         ),
         migrations.AddField(
-            model_name='image',
-            name='name',
+            model_name="image",
+            name="name",
             field=models.CharField(blank=True, max_length=255),
         ),
     ]

@@ -4,18 +4,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0008_alter_attribute_value'),
+        ("npc_creator", "0008_alter_attribute_value"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PanelImage',
+            name="PanelImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(blank=True, max_length=255)),
-                ('panel_name', models.CharField(max_length=255, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("description", models.CharField(blank=True, max_length=255)),
+                ("panel_name", models.CharField(max_length=255, unique=True)),
             ],
         ),
     ]

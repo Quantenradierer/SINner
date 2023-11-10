@@ -6,21 +6,45 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0019_delete_panelimage_templateimage_score'),
+        ("npc_creator", "0019_delete_panelimage_templateimage_score"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Image',
+            name="Image",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('npc', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='npc_creator.npc')),
-                ('template', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='npc_creator.templateimage')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "npc",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="npc_creator.npc",
+                    ),
+                ),
+                (
+                    "template",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="npc_creator.templateimage",
+                    ),
+                ),
             ],
         ),
     ]

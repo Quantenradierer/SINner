@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 class LogoutView(APIView):
     authentication_classes = [rest_framework_simplejwt.authentication.JWTAuthentication]
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         try:

@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0028_gptrequest_kind'),
+        ("npc_creator", "0028_gptrequest_kind"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='attribute',
-            name='generation',
+            model_name="attribute",
+            name="generation",
             field=models.IntegerField(default=0),
         ),
     ]

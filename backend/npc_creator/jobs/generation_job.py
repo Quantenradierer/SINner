@@ -10,18 +10,25 @@ from npc_creator.repositories import npc_repo
 
 
 def generation_job(generation_id: int) -> None:
-    logging.debug(f'DownloadImageJob({generation_id}): Started')
+    logging.debug(f"DownloadImageJob({generation_id}): Started")
     generation = ImageGeneration.objects.get(pk=generation_id)
 
     if generation.state == ImageGeneration.State.CREATED:
         result = PassImagePrompt(generation).call()
-        logging.debug(f'DownloadImageJob({generation.id}): PassImagePrompt Operation {result}')
+        logging.debug(
+            f"DownloadImageJob({generation.id}): PassImagePrompt Operation {result}"
+        )
 
     if generation.state == ImageGeneration.State.IN_PROGRESS:
         result = DownloadImage(generation).call()
-        logging.debug(f'DownloadImageJob({generation.id}): DownloadImage Operation {result}')
+        logging.debug(
+            f"DownloadImageJob({generation.id}): DownloadImage Operation {result}"
+        )
 
-    if generation.state == ImageGeneration.State.IN_PROGRESS and generation.retry_count < config.MIDJOURNEY_RETRIES_BEFORE_FAILING:
+    if (
+        generation.state == ImageGeneration.State.IN_PROGRESS
+        and generation.retry_count < config.MIDJOURNEY_RETRIES_BEFORE_FAILING
+    ):
         time.sleep(40 + pow(3, generation.retry_count))
         generation.retry_count += 1
         generation.save()

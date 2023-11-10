@@ -4,7 +4,7 @@ from npc_creator.operations.return_types import Failure, Success
 
 
 class GenerateNpc:
-    def __init__(self, user_prompt: str='', npc: Npc=None):
+    def __init__(self, user_prompt: str = "", npc: Npc = None):
         self.npc = npc or Npc()
         self.user_prompt = user_prompt
 

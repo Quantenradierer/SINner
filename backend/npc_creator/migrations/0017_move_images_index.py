@@ -17,9 +17,9 @@ def image_structure(*args, **kwargs):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('npc_creator', '0016_move_images'),
+        ("npc_creator", "0016_move_images"),
     ]
 
     operations = [
-       migrations.RunPython(image_structure),
+        migrations.RunPython(image_structure),
     ]
