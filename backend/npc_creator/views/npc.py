@@ -48,6 +48,7 @@ class NpcSerializer(serializers.ModelSerializer):
         fields = [field.name for field in Npc._meta.fields] + [
             "attributes",
             "image_objects",
+            "attributes_with_definition"
         ]
 
 
@@ -111,6 +112,10 @@ class NpcViewSet(viewsets.ModelViewSet):
                 return Response({"type": "success", "npc": NpcSerializer(npc).data})
         return Response({"type": "error", "error": "npc_incomplete"})
 
+    @action(detail=False, methods=["get"], permission_classes=[AllowAny])
+    def default(self, request):
+        return Response({"type": "success", "npc": NpcSerializer(Npc()).data})
+
     @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
         npc = npc_repo.find(pk)
@@ -170,3 +175,4 @@ class NpcViewSet(viewsets.ModelViewSet):
             )
 
         return Response({"type": "error", "error": "TODO"})
+

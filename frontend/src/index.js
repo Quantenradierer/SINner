@@ -19,6 +19,7 @@ import ErrorPage from "./components/error_site";
 import Login from "./components/login";
 import Logout from "./components/logout";
 import ImageGallery from "./components/image_gallery";
+import npcDefinitionLoader from "./loader/npc_definition_loader";
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
@@ -104,7 +105,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "prompt/",
-                element: <Prompt/>
+                element: <Prompt/>,
+                loader: npcDefinitionLoader,
             },
             {
                 path: "login/",

@@ -35,13 +35,13 @@ class Npc(models.Model):
 
     ATTRIBUTE_DEFINITION = [
         AttributeDefinition(name="Beruf", length=0, reroll=True),
-        AttributeDefinition(name="Metatyp", length=0, reroll=False),
+        AttributeDefinition(name="Metatyp", length=50, reroll=False),
         AttributeDefinition(name="Ethnizität", length=0, reroll=False),
         AttributeDefinition(name="Geschlecht", length=0, reroll=False),
         AttributeDefinition(name="Alter", length=2, reroll=False),
         AttributeDefinition(name="Catchphrase", length=0, reroll=True),
         AttributeDefinition(name="Detailliertes Aussehen", length=0, reroll=True),
-        AttributeDefinition(name="Name", length=0, reroll=True),
+        AttributeDefinition(name="Name", length=100, reroll=True),
         AttributeDefinition(name="Hintergrundgeschichte", length=0, reroll=True),
         AttributeDefinition(name="Erfahrungen", length=0, reroll=True),
         AttributeDefinition(name="Ressentiments", length=0, reroll=True),
@@ -57,12 +57,12 @@ class Npc(models.Model):
         AttributeDefinition(name="Kontakte", length=0, reroll=True),
         AttributeDefinition(name="Lootbare Gegenstände", length=0, reroll=True),
         AttributeDefinition(name="Geheimnis", length=0, reroll=False),
-        AttributeDefinition(name="Konstitution (von 1-6)", length=0, reroll=False),
-        AttributeDefinition(name="Geschicklichkeit (von 1-6)", length=0, reroll=False),
-        AttributeDefinition(name="Reaktion (von 1-6)", length=0, reroll=False),
-        AttributeDefinition(name="Stärke (von 1-6)", length=0, reroll=False),
-        AttributeDefinition(name="Willenskraft (von 1-6)", length=0, reroll=False),
-        AttributeDefinition(name="Logik (von 1-6)", length=0, reroll=False),
+        AttributeDefinition(name="Konstitution (von 1-6)", length=2, reroll=False),
+        AttributeDefinition(name="Geschicklichkeit (von 1-6)", length=2, reroll=False),
+        AttributeDefinition(name="Reaktion (von 1-6)", length=2, reroll=False),
+        AttributeDefinition(name="Stärke (von 1-6)", length=2, reroll=False),
+        AttributeDefinition(name="Willenskraft (von 1-6)", length=2, reroll=False),
+        AttributeDefinition(name="Logik (von 1-6)", length=2, reroll=False),
         AttributeDefinition(name="Intuition (von 1-6)", length=2, reroll=False),
         AttributeDefinition(name="Charisma (von 1-6)", length=2, reroll=False),
         AttributeDefinition(name="Glück (von 1-6)", length=2, reroll=False),
@@ -99,6 +99,17 @@ class Npc(models.Model):
         for key, value in attributes_hash.items():
             attribute = Attribute(key=key, value=value, npc=self)
             attribute.save()
+
+    @property
+    def attributes_with_definition(self):
+        result = {}
+        for attr_def in self.ATTRIBUTE_DEFINITION:
+            result[attr_def.name] = {
+                'value': self.attributes[attr_def.name],
+                'length': attr_def.length,
+                'reroll': attr_def.reroll
+             }
+        return result
 
     @property
     def image_objects(self):

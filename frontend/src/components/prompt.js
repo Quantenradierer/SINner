@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, FrameCorners, FrameLines, FramePentagon, Text} from "@arwes/core";
+import {Button, FrameCorners, FrameLines, FramePentagon, LoadingBars, Text} from "@arwes/core";
 import {Animator} from "@arwes/animation";
 import api from "../axios";
 import i18next from "../i18n";
@@ -7,6 +7,8 @@ import NPCComplete from "./npc_complete";
 import NPCCard from "./npc_card";
 import NPCPrivate from "./npc_private";
 import NPCSkills from "./npc_skills";
+import {useLoaderData} from "react-router";
+import {useNavigate, useNavigation} from "react-router-dom";
 
 const EXAMPLES = [
     'Erstelle einen Werkstattbesitzer',
@@ -119,19 +121,22 @@ function random_prompt() {
     return EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)];
 }
 
-class Prompt extends React.Component {
+class PromptWrapped extends React.Component {
     constructor(props) {
         super(props)
         let url = new URL(window.location.href)
         const params = new URLSearchParams(url.search)
         let show = true
+
+        let npc = props.npc
+        npc["image_objects"] = [{id: 0, score: 0, name: 'creation_form.png'}]
         this.state = {
             show: show,
             prompt: random_prompt(),
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: {attributes: {}, image_objects: [{id: 0, score: 0, name: 'creation_form.png'}], default_image_number: 0},
+            npc: npc,
             check: false
         }
 
@@ -281,6 +286,21 @@ class Prompt extends React.Component {
 
         </div>)
     }
+}
+
+
+
+
+const Prompt = props => {
+  const default_npc = useLoaderData()
+  const navigate = useNavigate()
+  const { state } = useNavigation()
+
+  if (state === 'loading') {
+      return <LoadingBars></LoadingBars>
+  } else {
+      return <PromptWrapped npc={default_npc} {...props} />
+  }
 }
 
 export default Prompt;
