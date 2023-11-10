@@ -15,20 +15,8 @@ class AttributeDefinition:
 
 
 class Npc(models.Model):
-    class State(models.TextChoices):
-        CREATED = "CR", "Created"
-        MODERATED = "MO", "Moderated"
-        FAILED = "FA", "Failed"
-
-    state = models.CharField(
-        max_length=2,
-        choices=State.choices,
-        default=State.CREATED,
-    )
-
     user_prompt = models.CharField(max_length=255, blank=True)
     image_generator_description = models.TextField(blank=True)
-    default_image_number = models.IntegerField(default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

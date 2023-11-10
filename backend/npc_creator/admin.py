@@ -17,8 +17,6 @@ class NpcAdmin(admin.ModelAdmin):
         "id",
         "image_generator_description",
         "user_prompt",
-        "state",
-        "default_image_number",
     )
     inlines = [
         InlineAttributeAdmin,
