@@ -15,14 +15,13 @@ class InlineAttributeAdmin(admin.TabularInline):
 class NpcAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "image_generator_description",
-        "user_prompt",
+        "image_generator_description"
     )
     inlines = [
         InlineAttributeAdmin,
     ]
 
-    search_fields = ["image_generator_description", "user_prompt"]
+    search_fields = ["image_generator_description"]
 
 
 @admin.register(Attribute)

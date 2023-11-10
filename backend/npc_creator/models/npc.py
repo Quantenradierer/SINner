@@ -15,7 +15,6 @@ class AttributeDefinition:
 
 
 class Npc(models.Model):
-    user_prompt = models.CharField(max_length=255, blank=True)
     image_generator_description = models.TextField(blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
