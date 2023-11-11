@@ -25,6 +25,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from npc_creator import config
 from npc_creator.jobs.generation_job import generation_job_async
+from npc_creator.models import Entity
 from npc_creator.models.entities.npc import Npc
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image_generation import ImageGeneration
@@ -40,26 +41,15 @@ from rest_framework import serializers, viewsets
 from npc_creator.views.image import ImageSerializer
 
 
-class NpcSerializer(serializers.ModelSerializer):
-    image_objects = ListSerializer(child=ImageSerializer())
+class GenericEntityView(viewsets.ModelViewSet):
+    entity_class = None
+    queryset = None
+    serializer_class = None
 
-    class Meta:
-        model = Npc
-        fields = [
-            "id",
-            "primary_values",
-            "image_generator_description",
-            "image_objects",
-            "attribute_definition"
-        ]
+    GenerationOperation = None
 
 
-class NpcViewSet(viewsets.ModelViewSet):
     authentication_classes = [BasicAuthentication, SessionAuthentication]
-
-    queryset = Npc.objects.order_by("-id").prefetch_related().all()
-    serializer_class = NpcSerializer
-
     def get_queryset(self):
         search_text = self.request.query_params.get("search", "")
 
@@ -68,8 +58,8 @@ class NpcViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["get"])
     def random(self, request):
-        npc = npc_repo.read_random()
-        return Response(NpcSerializer(npc).data)
+        entity = self.queryset.order_by("?").first()
+        return Response(self.serializer_class(entity).data)
 
     @action(detail=False, methods=["post"], permission_classes=[AllowAny])
     def prompt(self, request):
@@ -77,47 +67,47 @@ class NpcViewSet(viewsets.ModelViewSet):
         prompt = data.get("prompt")[:255]
         values = data.get("values")
 
-        npc = Npc()
-        npc.add_values(values)
-        result_npc = GenerateNpc(prompt, npc).call()
-        if result_npc:
+        entity = self.entity_class()
+        entity.add_values(values)
+        result_entity = self.GenerationOperation(prompt, entity).call()
+        if result_entity:
             return Response(
-                {"type": "success", "npc": NpcSerializer(result_npc.data).data}
+                {"type": "success", "npc": self.serializer_class(result_entity.data).data}
             )
         else:
-            return Response({"type": "error", "error": result_npc.error})
+            return Response({"type": "error", "error": result_entity.error})
 
     @action(detail=False, methods=["post"], permission_classes=[AllowAny])
     def save(self, request):
         data = json.loads(request.body.decode())
         values = data.get("values")
 
-        npc = Npc()
-        npc.add_values(values)
+        entity = self.entity_class()
+        entity.add_values(values)
 
-        if not npc.is_complete():
+        if not entity.is_complete():
             return Response({"type": "error", "error": "npc_incomplete"})
-        result = CheckNpc(npc=npc).call()
+        result = CheckNpc(npc=entity).call()
 
         if not result:
             return Response(
                 {"type": "error", "error": "custom", "message": result.error}
             )
 
-        npc.save()
-        generation = ImageGeneration(npc=npc)
+        entity.save()
+        generation = ImageGeneration(npc=entity)
         generation.save()
         generation_job_async(generation)
 
-        return Response({"type": "success", "npc": NpcSerializer(npc).data})
+        return Response({"type": "success", "npc": self.serializer_class(entity).data})
 
     @action(detail=False, methods=["get"], permission_classes=[AllowAny])
     def default(self, request):
-        return Response({"type": "success", "npc": NpcSerializer(Npc()).data})
+        return Response({"type": "success", "npc": self.serializer_class(self.entity_class()).data})
 
     @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
-        npc = npc_repo.find(pk)
+        entity = self.queryset.get(pk=pk)
 
         for i in range(10):
             if (
@@ -125,20 +115,21 @@ class NpcViewSet(viewsets.ModelViewSet):
                     url__isnull=True, created_at__gt=now() - timedelta(hours=-1)
                 ).count() < 10
             ):
-                generation = ImageGeneration(npc=npc)
+                generation = ImageGeneration(npc=entity)
                 generation.save()
                 generation_job_async(generation)
 
             time.sleep(random.random() + random.randint(3, 10))
 
-        return Response({"type": "success", "npc": NpcSerializer(npc).data})
+        return Response({"type": "success", "npc": self.serializer_class(entity).data})
 
     @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def set_default_image(self, request, pk):
-        npc = npc_repo.find(pk)
-        npc.default_image_number = int(request.data["image_number"])
-        npc_repo.save(npc)
-        return Response({"type": "success", "npc": NpcSerializer(npc).data})
+        entity = self.queryset.get(pk=pk)
+
+        entity.default_image_number = int(request.data["image_number"])
+        npc_repo.save(entity)
+        return Response({"type": "success", "npc": self.serializer_class(entity).data})
 
     @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def alternatives(self, request, pk):
@@ -174,3 +165,24 @@ class NpcViewSet(viewsets.ModelViewSet):
 
         return Response({"type": "error", "error": "TODO"})
 
+
+class NpcSerializer(serializers.ModelSerializer):
+    image_objects = ListSerializer(child=ImageSerializer())
+
+    class Meta:
+        model = Npc
+        fields = [
+            "id",
+            "primary_values",
+            "image_generator_description",
+            "image_objects",
+            "attribute_definition"
+        ]
+
+
+class NpcViewSet(GenericEntityView):
+    entity_class = Npc
+    queryset = Npc.objects.order_by("-id").prefetch_related().all()
+    serializer_class = NpcSerializer
+
+    GenerationOperation = GenerateNpc
