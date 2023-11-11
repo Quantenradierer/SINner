@@ -1,6 +1,6 @@
 from django.db import models
 
-from npc_creator.models import Npc, TemplateImage
+from npc_creator.models import Entity, TemplateImage
 
 
 class ImageGeneration(models.Model):
@@ -21,7 +21,7 @@ class ImageGeneration(models.Model):
     description = models.TextField(blank=True)
     retry_count = models.IntegerField(default=0)
     url = models.CharField(max_length=256)
-    npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)
+    npc = models.ForeignKey(Entity, on_delete=models.CASCADE, db_index=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

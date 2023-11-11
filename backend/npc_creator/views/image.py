@@ -22,7 +22,7 @@ from npc_creator.repositories import npc_repo
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
-from npc_creator.models import Npc
+from npc_creator.models import Entity
 from rest_framework import serializers, viewsets
 
 

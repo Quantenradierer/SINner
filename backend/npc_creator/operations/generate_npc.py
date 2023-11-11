@@ -1,11 +1,11 @@
-from npc_creator.models.npc import Npc
+from npc_creator.models.entity import Entity
 from npc_creator.operations.gpt.fill_npc import FillNpc
 from npc_creator.operations.return_types import Failure, Success
 
 
 class GenerateNpc:
-    def __init__(self, user_prompt: str = "", npc: Npc = None):
-        self.npc = npc or Npc()
+    def __init__(self, user_prompt: str = "", npc: Entity = None):
+        self.npc = npc or Entity()
         self.user_prompt = user_prompt
 
     def call(self):

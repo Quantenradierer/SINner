@@ -3,7 +3,7 @@ from unittest.mock import patch, Mock, mock_open
 import requests
 
 from npc_creator import config
-from npc_creator.models.npc import Npc
+from npc_creator.models.npc import Entity
 from npc_creator.operations.pass_image_prompt import PassImagePrompt
 from npc_creator.tests.operations.base_integration_test import BaseIntegrationTest
 
@@ -30,7 +30,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
         mock_response.status_code = 200
         mock_post.return_value = mock_response
 
-        npc = Npc(id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ""})
+        npc = Entity(id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ""})
         self.assertEqual("init", npc.image_generator_state)
 
         self.assertTrue(PassImagePrompt(npc).call())
@@ -54,7 +54,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
         mock_response.status_code = 200
         mock_post.return_value = mock_response
 
-        npc = Npc(id=self.npc_id, image_generator_description="someone with glasses")
+        npc = Entity(id=self.npc_id, image_generator_description="someone with glasses")
         self.assertEqual("init", npc.image_generator_state)
 
         self.assertTrue(PassImagePrompt(npc).call())
@@ -64,7 +64,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
     def test_call_connection_error(self, mock_get):
         mock_get.side_effect = [requests.exceptions.RequestException()]
 
-        npc = Npc(id=self.npc_id, image_generator_description="some description")
+        npc = Entity(id=self.npc_id, image_generator_description="some description")
         self.assertEqual("init", npc.image_generator_state)
 
         result = PassImagePrompt(npc).call()
@@ -79,7 +79,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
         mock_response.status_code = 200
         mock_get.return_value = mock_response
 
-        npc = Npc(id=self.npc_id, image_generator_description="someone with glasses")
+        npc = Entity(id=self.npc_id, image_generator_description="someone with glasses")
         npc.add_image("example.png")
 
         result = PassImagePrompt(npc).call()
@@ -94,7 +94,7 @@ class TestPassImagePrompt(BaseIntegrationTest):
         mock_response.status_code = 200
         mock_get.return_value = mock_response
 
-        npc = Npc(id=self.npc_id, image_generator_description="someone with glasses")
+        npc = Entity(id=self.npc_id, image_generator_description="someone with glasses")
         npc.image_generation_started()
 
         result = PassImagePrompt(npc).call()

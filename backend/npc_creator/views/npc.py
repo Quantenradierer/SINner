@@ -25,6 +25,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from npc_creator import config
 from npc_creator.jobs.generation_job import generation_job_async
+from npc_creator.models.entities.npc import Npc
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.generate_npc import GenerateNpc
@@ -34,7 +35,6 @@ from npc_creator.repositories import npc_repo
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
-from npc_creator.models import Npc
 from rest_framework import serializers, viewsets
 
 from npc_creator.views.image import ImageSerializer

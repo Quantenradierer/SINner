@@ -1,2 +1,2 @@
-from .npc import Npc
+from .entity import Entity
 from .template_image import TemplateImage

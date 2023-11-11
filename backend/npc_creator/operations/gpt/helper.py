@@ -1,5 +1,5 @@
 from npc_creator import config
-from npc_creator.models import Npc
+from npc_creator.models import Entity
 
 
 def npc_prompt(npc):
@@ -11,7 +11,7 @@ def npc_prompt(npc):
     attributes_filtered = dict(
         [
             (attr_def.name, "")
-            for attr_def in Npc.ATTRIBUTE_DEFINITION
+            for attr_def in npc.ATTRIBUTE_DEFINITION
             if attr_def.name not in npc_attributes_filtered
         ]
     )

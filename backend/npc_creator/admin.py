@@ -1,13 +1,13 @@
 # Register your models here.
 
 from django.contrib import admin
-from npc_creator.models import Npc, TemplateImage
+from npc_creator.models import Entity, TemplateImage
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 
 
-@admin.register(Npc)
+@admin.register(Entity)
 class NpcAdmin(admin.ModelAdmin):
     list_display = (
         "id",

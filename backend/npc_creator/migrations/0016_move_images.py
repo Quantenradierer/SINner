@@ -4,12 +4,12 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 from npc_creator import config
-from npc_creator.models import Npc
+from npc_creator.models import Entity
 import os
 
 
 def image_structure(*args, **kwargs):
-    npcs = Npc.objects.all()
+    npcs = Entity.objects.all()
     for npc in npcs:
         for i in range(npc.max_image_number + 1):
             file = npc.image_url.format(pk=npc.id, counter=i)

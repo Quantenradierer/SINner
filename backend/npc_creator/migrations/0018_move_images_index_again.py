@@ -4,12 +4,12 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 from npc_creator import config
-from npc_creator.models import Npc
+from npc_creator.models import Entity
 import os
 
 
 def image_structure(*args, **kwargs):
-    npcs = Npc.objects.all()
+    npcs = Entity.objects.all()
     for npc in npcs:
         npc.default_image_number = max(0, npc.default_image_number)
         npc.save()

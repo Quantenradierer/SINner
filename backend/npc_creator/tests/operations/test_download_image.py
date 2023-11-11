@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import requests
 
-from npc_creator.models.npc import Npc
+from npc_creator.models.npc import Entity
 from npc_creator.operations.download_image import DownloadImage
 from npc_creator.tests.mocks.mock_download_image import mock_download_image
 from npc_creator.tests.mocks.mock_return_discord_messages import (
@@ -24,7 +24,7 @@ class TestDownloadImage(BaseIntegrationTest):
     @patch("requests.get")
     def test_call_success(self, get_mock):
         get_mock.side_effect = [mock_return_discord_messages(), mock_download_image()]
-        npc = Npc(id=self.npc_id, image_generator_description="with a PNG attachment")
+        npc = Entity(id=self.npc_id, image_generator_description="with a PNG attachment")
         npc.image_generation_started()
 
         with patch("npc_creator.config.PUBLIC_NPC_IMAGE_PATH", self.tempdir.name):
@@ -37,7 +37,7 @@ class TestDownloadImage(BaseIntegrationTest):
     @patch("requests.get")
     def test_call_cant_find_message(self, get_mock):
         get_mock.side_effect = [mock_return_discord_messages(), mock_download_image()]
-        npc = Npc(id=self.npc_id, image_generator_description="No useful description")
+        npc = Entity(id=self.npc_id, image_generator_description="No useful description")
         npc.image_generation_started()
 
         result = DownloadImage(npc, self.tempdir.name).call()
@@ -53,7 +53,7 @@ class TestDownloadImage(BaseIntegrationTest):
         image_request_mock = mock_download_image()
         image_request_mock.content = b"invalid_data"
         get_mock.side_effect = [mock_return_discord_messages(), image_request_mock]
-        npc = Npc(id=self.npc_id, image_generator_description="with a PNG attachment")
+        npc = Entity(id=self.npc_id, image_generator_description="with a PNG attachment")
         npc.image_generation_started()
 
         result = DownloadImage(npc, self.tempdir.name).call()
@@ -64,7 +64,7 @@ class TestDownloadImage(BaseIntegrationTest):
     @patch("requests.get")
     def test_call_npc_has_already_image(self, get_mock):
         get_mock.side_effect = [mock_return_discord_messages(), mock_download_image()]
-        npc = Npc(id=self.npc_id, image_generator_description="with a PNG attachment")
+        npc = Entity(id=self.npc_id, image_generator_description="with a PNG attachment")
         npc.image_generation_started()
         npc.add_image("example.png")
 
@@ -77,7 +77,7 @@ class TestDownloadImage(BaseIntegrationTest):
         discord_mock = mock_return_discord_messages()
         discord_mock.json.return_value = []
         get_mock.side_effect = [discord_mock, mock_download_image()]
-        npc = Npc(id=self.npc_id, image_generator_description="with a PNG attachment")
+        npc = Entity(id=self.npc_id, image_generator_description="with a PNG attachment")
         npc.image_generation_started()
 
         result = DownloadImage(npc, self.tempdir.name).call()
@@ -93,7 +93,7 @@ class TestDownloadImage(BaseIntegrationTest):
             mock_return_discord_messages(),
             requests.exceptions.RequestException(),
         ]
-        npc = Npc(id=self.npc_id, image_generator_description="with a PNG attachment")
+        npc = Entity(id=self.npc_id, image_generator_description="with a PNG attachment")
         npc.image_generation_started()
 
         result = DownloadImage(npc, self.tempdir.name).call()
@@ -103,7 +103,7 @@ class TestDownloadImage(BaseIntegrationTest):
     @patch("requests.get")
     def test_call_discord_unavailable(self, get_mock):
         get_mock.side_effect = [requests.exceptions.RequestException()]
-        npc = Npc(id=self.npc_id, image_generator_description="with a PNG attachment")
+        npc = Entity(id=self.npc_id, image_generator_description="with a PNG attachment")
         npc.image_generation_started()
 
         result = DownloadImage(npc, self.tempdir.name).call()
