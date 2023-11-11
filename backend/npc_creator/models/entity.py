@@ -66,7 +66,7 @@ class Entity(models.Model):
                 if not values.strip():
                     continue
                 values = [values]
-            self.attributes[key].extend(values)
+            self.attributes[key] = values
 
     @property
     def attribute_definition(self):
