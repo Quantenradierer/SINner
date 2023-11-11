@@ -4,8 +4,6 @@ from dataclasses import dataclass
 
 from django.db import models
 
-from npc_creator import config
-
 
 @dataclass
 class AttributeDefinition:
@@ -14,18 +12,72 @@ class AttributeDefinition:
     reroll: bool
 
 
-class Npc(models.Model):
+class GenerationBase(models.Model):
+    ATTRIBUTE_DEFINITION = []
+
     image_generator_description = models.TextField(blank=True)
+    attributes = models.JSONField(blank=False, null=False, default=dict)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        abstract = True
+
+    @property
+    def image_objects(self):
+        if self.id:
+            return self.image_set
+        return self.__class__.objects.none()
+
+    def is_complete(self):
+        if len([value for value in self.primary_values.values() if value]) < len(
+            self.ATTRIBUTE_DEFINITION
+        ):
+            return False
+        return True
+
+    def has_image_description(self):
+        return bool(self.image_generator_description)
+
+    def __repr__(self):
+        return f"<models.{self.__class__} id={self.id}>"
+
+    @property
+    def primary_values(self):
+        return dict((key, values[0] if values else '') for key, values in self.attributes.items())
+
+    @property
+    def attribute_names(self):
+        return [attr_def.name for attr_def in self.ATTRIBUTE_DEFINITION]
+
+    def add_values(self, new_values):
+        for key, values in new_values.items():
+            if key not in self.attribute_names:
+                raise ValueError(f'key {key} not in {self.__class__} ATTRIBUTE_DEFINITIONS')
+
+            self.attributes[key] = self.attributes.get(key, list())
+            if type(values) == str:
+                values = [values]
+            self.attributes[key].extend(values)
+
+    @property
+    def attribute_definition(self):
+        result = {}
+        for attr_def in self.ATTRIBUTE_DEFINITION:
+            result[attr_def.name] = {
+                'length': attr_def.length,
+                'reroll': attr_def.reroll
+             }
+        return result
+
+class Npc(GenerationBase):
     ATTRIBUTE_DEFINITION = [
         AttributeDefinition(name="Beruf", length=0, reroll=True),
         AttributeDefinition(name="Metatyp", length=50, reroll=False),
         AttributeDefinition(name="Ethnizität", length=0, reroll=False),
         AttributeDefinition(name="Geschlecht", length=0, reroll=False),
-        AttributeDefinition(name="Alter", length=2, reroll=False),
+        AttributeDefinition(name="Alter", length=10, reroll=False),
         AttributeDefinition(name="Catchphrase", length=0, reroll=True),
         AttributeDefinition(name="Detailliertes Aussehen", length=0, reroll=True),
         AttributeDefinition(name="Name", length=100, reroll=True),
@@ -57,83 +109,3 @@ class Npc(models.Model):
         AttributeDefinition(name="Resonanz (von 0-6)", length=2, reroll=False),
     ]
 
-    def __init__(self, *args, **kwargs):
-        self.attributes = {}
-        attributes = kwargs.pop("attributes", {})
-        super(Npc, self).__init__(*args, **kwargs)
-        if self.id:
-            self.attributes = dict(
-                [
-                    (attr.key, attr.value)
-                    for attr in self.attribute_set.filter(generation=0)
-                ]
-            )
-        self.add_attributes(attributes)
-
-    def save(self, *args, **kwargs):
-        super(Npc, self).save(*args, **kwargs)
-
-        attribute_set = self.attribute_set.all()
-        attributes_hash = copy(self.attributes)
-        for attribute in attribute_set:
-            if attribute.key in attributes_hash:
-                attribute.value = attributes_hash[attribute.key]
-                attribute.save()
-                attributes_hash.pop(attribute.key)
-            else:
-                attribute.delete()
-
-        for key, value in attributes_hash.items():
-            attribute = Attribute(key=key, value=value, npc=self)
-            attribute.save()
-
-    @property
-    def attributes_with_definition(self):
-        result = {}
-        for attr_def in self.ATTRIBUTE_DEFINITION:
-            result[attr_def.name] = {
-                'value': self.attributes[attr_def.name],
-                'length': attr_def.length,
-                'reroll': attr_def.reroll
-             }
-        return result
-
-    @property
-    def image_objects(self):
-        if self.id:
-            return self.image_set
-        return Npc.objects.none()
-
-    def is_complete(self):
-        if len([value for value in self.attributes.values() if value]) < len(
-            Npc.ATTRIBUTE_DEFINITION
-        ):
-            return False
-        return True
-
-    def has_image_description(self):
-        return bool(self.image_generator_description)
-
-    def __repr__(self):
-        return f"<models.Npc id={self.id}>"
-
-    def add_attributes(self, new_attributes):
-        existing_attributes = self.attributes
-        self.attributes = {}
-        for attr_def in Npc.ATTRIBUTE_DEFINITION:
-            attr_name = attr_def.name
-            value = new_attributes.get(attr_name, "") or existing_attributes.get(
-                attr_name, ""
-            )
-            self.attributes[attr_name] = value
-
-
-class Attribute(models.Model):
-    npc = models.ForeignKey(Npc, on_delete=models.CASCADE, db_index=True)
-
-    key = models.TextField(db_index=True)
-    value = models.TextField(db_index=True, blank=True)
-    generation = models.IntegerField(default=0)
-
-    def __repr__(self):
-        return f"<models.Attribute id={self.id} key={self.key} value={self.value} npc_id={self.npc_id}>"

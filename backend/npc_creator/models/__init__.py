@@ -1,2 +1,2 @@
-from .npc import Npc, Attribute
+from .npc import Npc
 from .template_image import TemplateImage

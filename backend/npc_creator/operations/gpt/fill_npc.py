@@ -43,7 +43,7 @@ class FillNpc(GptInterface):
         """
         Returns: the empty attribute, if there is only one, or None otherwise
         """
-        for key, value in self.npc.attributes.items():
+        for key, value in self.npc.primary_values.items():
             if not value.strip():
                 return key
 
@@ -56,5 +56,5 @@ class FillNpc(GptInterface):
             if empty_attribute:
                 attributes = {empty_attribute: success.data}
 
-        self.npc.add_attributes(attributes)
+        self.npc.add_values(attributes)
         return success

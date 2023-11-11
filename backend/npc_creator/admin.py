@@ -1,14 +1,10 @@
 # Register your models here.
 
 from django.contrib import admin
-from npc_creator.models import Npc, Attribute, TemplateImage
+from npc_creator.models import Npc, TemplateImage
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
-
-
-class InlineAttributeAdmin(admin.TabularInline):
-    model = Attribute
 
 
 @admin.register(Npc)
@@ -17,17 +13,8 @@ class NpcAdmin(admin.ModelAdmin):
         "id",
         "image_generator_description"
     )
-    inlines = [
-        InlineAttributeAdmin,
-    ]
 
     search_fields = ["image_generator_description"]
-
-
-@admin.register(Attribute)
-class AttributeAdmin(admin.ModelAdmin):
-    list_display = ("npc", "key", "value")
-    search_fields = ["key", "value"]
 
 
 @admin.register(Image)

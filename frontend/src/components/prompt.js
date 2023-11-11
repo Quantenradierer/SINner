@@ -154,7 +154,7 @@ class PromptWrapped extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'});
 
-        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc}, {timeout: 240000} )
+        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, values: this.state.npc.primary_values}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
                     response.data.npc.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
@@ -182,7 +182,7 @@ class PromptWrapped extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        api.post('/api/npc_creator/npcs/save/', {npc: this.state.npc})
+        api.post('/api/npc_creator/npcs/save/', {values: this.state.npc.primary_values})
             .then(function (response) {
                 if (response.data.type === 'success') {
                     window.location.href = '/npcs/' + response.data.npc.id

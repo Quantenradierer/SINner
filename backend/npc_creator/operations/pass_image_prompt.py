@@ -37,8 +37,8 @@ class PassImagePrompt:
         template, prompt = special_midjourney_prompt(
             prompt,
             seed=self.generation.id,
-            metatyp=self.npc.attributes.get("Metatyp", ""),
-            gender=self.npc.attributes.get("Geschlecht", ""),
+            metatyp=self.npc.primary_values.get("Metatyp", ""),
+            gender=self.npc.primary_values.get("Geschlecht", ""),
         )
         prompt += " " + config.ADDITIONAL_PROMPT_OPTIONS
 

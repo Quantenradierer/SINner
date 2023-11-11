@@ -33,21 +33,21 @@ class NPCListItem extends React.Component {
                             src: image_path(activeImage.name),
                             alt: this.props.npc.image_generator_description
                         }}
-                        title={this.props.npc.attributes['Name']}
+                        title={this.props.npc.primary_values['Name']}
                         landscape
                         hover
                         style={{}}
                     >
                     <Blockquote>
                         <Text>
-                            {this.props.npc.attributes['Catchphrase']}
+                            {this.props.npc.primary_values['Catchphrase']}
                         </Text>
                     </Blockquote>
 
                         <List>
-                            <li><Text><b>Metatyp:</b> {this.props.npc.attributes['Metatyp']}</Text></li>
-                            <li><Text><b>Beruf:</b> {this.props.npc.attributes['Beruf']}</Text></li>
-                            <li><Text><b>Eigenarten:</b> {this.props.npc.attributes['Eigenarten']}</Text></li>
+                            <li><Text><b>Metatyp:</b> {this.props.npc.primary_values['Metatyp']}</Text></li>
+                            <li><Text><b>Beruf:</b> {this.props.npc.primary_values['Beruf']}</Text></li>
+                            <li><Text><b>Eigenarten:</b> {this.props.npc.primary_values['Eigenarten']}</Text></li>
                         </List>
                     </Card>
                 </a>

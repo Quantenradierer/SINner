@@ -7,6 +7,7 @@ from time import sleep
 
 import rest_framework_simplejwt
 from django.core.cache import cache
+from django.db.migrations.serializer import DictionarySerializer
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
@@ -33,22 +34,23 @@ from npc_creator.repositories import npc_repo
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
-from npc_creator.models import Npc, Attribute
+from npc_creator.models import Npc
 from rest_framework import serializers, viewsets
 
 from npc_creator.views.image import ImageSerializer
 
 
 class NpcSerializer(serializers.ModelSerializer):
-    attributes = serializers.DictField()
     image_objects = ListSerializer(child=ImageSerializer())
 
     class Meta:
         model = Npc
-        fields = [field.name for field in Npc._meta.fields] + [
-            "attributes",
+        fields = [
+            "id",
+            "primary_values",
+            "image_generator_description",
             "image_objects",
-            "attributes_with_definition"
+            "attribute_definition"
         ]
 
 
@@ -62,7 +64,7 @@ class NpcViewSet(viewsets.ModelViewSet):
         search_text = self.request.query_params.get("search", "")
 
         regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
-        return self.queryset.filter(attribute__value__regex=regex).distinct()
+        return self.queryset.filter(attributes__regex=regex).distinct()
 
     @action(detail=False, methods=["get"])
     def random(self, request):
@@ -73,44 +75,41 @@ class NpcViewSet(viewsets.ModelViewSet):
     def prompt(self, request):
         data = json.loads(request.body.decode())
         prompt = data.get("prompt")[:255]
+        values = data.get("values")
 
-        serializer = self.get_serializer(data=data.get("npc", None))
-
-        if serializer.is_valid(raise_exception=True):
-            npc = Npc(attributes=serializer.validated_data["attributes"])
-
-            result_npc = GenerateNpc(prompt, npc).call()
-            if result_npc:
-                return Response(
-                    {"type": "success", "npc": NpcSerializer(result_npc.data).data}
-                )
-            else:
-                return Response({"type": "error", "error": result_npc.error})
+        npc = Npc()
+        npc.add_values(values)
+        result_npc = GenerateNpc(prompt, npc).call()
+        if result_npc:
+            return Response(
+                {"type": "success", "npc": NpcSerializer(result_npc.data).data}
+            )
+        else:
+            return Response({"type": "error", "error": result_npc.error})
 
     @action(detail=False, methods=["post"], permission_classes=[AllowAny])
     def save(self, request):
         data = json.loads(request.body.decode())
+        values = data.get("values")
 
-        serializer = self.get_serializer(data=data.get("npc", None))
+        npc = Npc()
+        npc.add_values(values)
 
-        if serializer.is_valid(raise_exception=True):
-            npc = Npc(attributes=serializer.validated_data["attributes"])
+        if not npc.is_complete():
+            return Response({"type": "error", "error": "npc_incomplete"})
+        result = CheckNpc(npc=npc).call()
 
-            if npc.is_complete():
-                result = CheckNpc(npc=npc).call()
+        if not result:
+            return Response(
+                {"type": "error", "error": "custom", "message": result.error}
+            )
 
-                if not result:
-                    return Response(
-                        {"type": "error", "error": "custom", "message": result.error}
-                    )
+        npc.save()
+        generation = ImageGeneration(npc=npc)
+        generation.save()
+        generation_job_async(generation)
 
-                npc.save()
-                generation = ImageGeneration(npc=npc)
-                generation.save()
-                generation_job_async(generation)
-
-                return Response({"type": "success", "npc": NpcSerializer(npc).data})
-        return Response({"type": "error", "error": "npc_incomplete"})
+        return Response({"type": "success", "npc": NpcSerializer(npc).data})
 
     @action(detail=False, methods=["get"], permission_classes=[AllowAny])
     def default(self, request):
@@ -123,9 +122,8 @@ class NpcViewSet(viewsets.ModelViewSet):
         for i in range(10):
             if (
                 ImageGeneration.objects.filter(
-                    url__isnull=True, created_at__gt=now() + timedelta(hours=-1)
-                ).count()
-                < 10
+                    url__isnull=True, created_at__gt=now() - timedelta(hours=-1)
+                ).count() < 10
             ):
                 generation = ImageGeneration(npc=npc)
                 generation.save()
@@ -149,7 +147,7 @@ class NpcViewSet(viewsets.ModelViewSet):
         data = json.loads(request.body.decode())
         attribute = data.get("attribute", None)
 
-        if attribute not in npc.attributes:
+        if attribute not in npc.primary_values:
             return Response({"type": "error", "error": "TODO"})
 
         key = f"AlternativeAttributes-npc{npc.id}-{attribute}"

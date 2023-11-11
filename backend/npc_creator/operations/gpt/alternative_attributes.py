@@ -28,7 +28,7 @@ class AlternativeAttributes(GptInterface):
         return self.kwargs.get("attribute", "")
 
     def prompt(self):
-        self.npc.attributes[self.attribute] = ""
+        self.npc.primary_values[self.attribute] = ""
         return npc_prompt(self.npc) + [
             f"Erstelle andere Vorschläge für {self.attribute}:",
         ]

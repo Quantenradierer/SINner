@@ -79,7 +79,7 @@ class ImageGalleryWrapped extends React.Component {
 
             <FramePentagon>
                 <Text style={{margin: '10px 0px 20px 0px'}}>
-                    <b>Detailliertes Aussehen:</b> {this.state.npc.attributes['Detailliertes Aussehen']}
+                    <b>Detailliertes Aussehen:</b> {this.state.npc.primary_values['Detailliertes Aussehen']}
                 </Text>
 
                 <div style={{flexWrap: 'wrap', display: 'flex'}}>

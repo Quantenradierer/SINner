@@ -4,7 +4,7 @@ from npc_creator.models import Npc
 
 def npc_prompt(npc):
     """ """
-    npc_attributes = npc.attributes
+    npc_attributes = npc.primary_values
     npc_attributes_filtered = dict(
         [(key, value) for key, value in npc_attributes.items() if value]
     )
