@@ -3,8 +3,6 @@ from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.gpt.translate_description import TranslateDescription
 from npc_creator.operations.return_types import Failure, Success
-from npc_creator.repositories import npc_repo
-from npc_creator.services.banned_words_filter import remove_banned_words
 from npc_creator.services.midjourney.pass_prompt import pass_prompt
 from npc_creator.services.special_midjourney_prompt import special_midjourney_prompt
 
@@ -12,7 +10,7 @@ from npc_creator.services.special_midjourney_prompt import special_midjourney_pr
 class PassImagePrompt:
     def __init__(self, generation: ImageGeneration):
         self.generation = generation
-        self.npc = self.generation.npc
+        self.npc = self.generation.entity
 
     def generate_npc_image_description(self):
         result = TranslateDescription(npc=self.npc).call()

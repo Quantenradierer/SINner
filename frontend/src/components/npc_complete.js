@@ -39,7 +39,7 @@ class NPCCompleteWrapped extends React.Component {
 
     render() {
         let warning = ''
-        if (this.props.npc.image_objects.length == 0) {
+        if (this.props.entity.image_objects.length == 0) {
             warning = <Warning text={i18next.t('image_generation_in_progress')}/>
         }
 
@@ -47,10 +47,10 @@ class NPCCompleteWrapped extends React.Component {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {warning}
 
-                {this.state.attributeAlternative && <AlternativeDialog npc={this.props.npc} attributeAlternative={this.state.attributeAlternative} setAlternatives={this.setAlternatives}/>}
-                <NPCCard npc={this.props.npc} setAlternatives={this.setAlternatives}/>
-                <NPCPrivate npc={this.props.npc} setAlternatives={this.setAlternatives}/>
-                <NPCSkills npc={this.props.npc} setAlternatives={this.setAlternatives}/>
+                {this.state.attributeAlternative && <AlternativeDialog entity={this.props.entity} attributeAlternative={this.state.attributeAlternative} setAlternatives={this.setAlternatives}/>}
+                <NPCCard entity={this.props.entity} setAlternatives={this.setAlternatives}/>
+                <NPCPrivate entity={this.props.entity} setAlternatives={this.setAlternatives}/>
+                <NPCSkills entity={this.props.entity} setAlternatives={this.setAlternatives}/>
             </div>
         )
 
@@ -59,9 +59,9 @@ class NPCCompleteWrapped extends React.Component {
 
 
 const NPCComplete = props => {
-  const npc = useLoaderData()
+  const entity = useLoaderData()
 
-  return <NPCCompleteWrapped npc={npc} {...props} />
+  return <NPCCompleteWrapped entity={entity} {...props} />
 }
 
 export default NPCComplete;

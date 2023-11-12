@@ -6,7 +6,6 @@ from npc_creator import config
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.download_image import DownloadImage
 from npc_creator.operations.pass_image_prompt import PassImagePrompt
-from npc_creator.repositories import npc_repo
 
 
 def generation_job(generation_id: int) -> None:

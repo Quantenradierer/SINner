@@ -21,7 +21,7 @@ class ImageGeneration(models.Model):
     description = models.TextField(blank=True)
     retry_count = models.IntegerField(default=0)
     url = models.CharField(max_length=256)
-    npc = models.ForeignKey(Entity, on_delete=models.CASCADE, db_index=True)
+    entity = models.ForeignKey(Entity, on_delete=models.CASCADE, db_index=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -15,7 +15,7 @@ const AttributeList = props => {
                 </div>
                 <EditableText style={{margin: '-7px 0 0 0'}}
                               attribute={attribute}
-                              npc={props.npc}
+                              entity={props.entity}
                               approxLineSize={props.approxLineSize}
                               editable={props.editable}
                               editableDisabled={props.editableDisabled}

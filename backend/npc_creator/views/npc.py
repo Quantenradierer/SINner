@@ -32,7 +32,6 @@ from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.generate_npc import GenerateNpc
 from npc_creator.operations.gpt.alternative_attributes import AlternativeAttributes
 from npc_creator.operations.gpt.check_npc import CheckNpc
-from npc_creator.repositories import npc_repo
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
@@ -41,10 +40,23 @@ from rest_framework import serializers, viewsets
 from npc_creator.views.image import ImageSerializer
 
 
+class EntitySerializer(serializers.ModelSerializer):
+    image_objects = ListSerializer(child=ImageSerializer())
+
+    class Meta:
+        model = Entity
+        fields = [
+            "id",
+            "primary_values",
+            "image_generator_description",
+            "image_objects",
+            "attribute_definition"
+        ]
+
 class GenericEntityView(viewsets.ModelViewSet):
     entity_class = None
     queryset = None
-    serializer_class = None
+    serializer_class = EntitySerializer
 
     GenerationOperation = None
 
@@ -72,7 +84,7 @@ class GenericEntityView(viewsets.ModelViewSet):
         result_entity = self.GenerationOperation(prompt, entity).call()
         if result_entity:
             return Response(
-                {"type": "success", "npc": self.serializer_class(result_entity.data).data}
+                {"type": "success", "entity": self.serializer_class(result_entity.data).data}
             )
         else:
             return Response({"type": "error", "error": result_entity.error})
@@ -95,15 +107,15 @@ class GenericEntityView(viewsets.ModelViewSet):
             )
 
         entity.save()
-        generation = ImageGeneration(npc=entity)
+        generation = ImageGeneration(entity=entity)
         generation.save()
         generation_job_async(generation)
 
-        return Response({"type": "success", "npc": self.serializer_class(entity).data})
+        return Response({"type": "success", "entity": self.serializer_class(entity).data})
 
     @action(detail=False, methods=["get"], permission_classes=[AllowAny])
     def default(self, request):
-        return Response({"type": "success", "npc": self.serializer_class(self.entity_class()).data})
+        return Response({"type": "success", "entity": self.serializer_class(self.entity_class()).data})
 
     @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
@@ -115,21 +127,13 @@ class GenericEntityView(viewsets.ModelViewSet):
                     url__isnull=True, created_at__gt=now() - timedelta(hours=-1)
                 ).count() < 10
             ):
-                generation = ImageGeneration(npc=entity)
+                generation = ImageGeneration(entity=entity)
                 generation.save()
                 generation_job_async(generation)
 
             time.sleep(random.random() + random.randint(3, 10))
 
-        return Response({"type": "success", "npc": self.serializer_class(entity).data})
-
-    @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
-    def set_default_image(self, request, pk):
-        entity = self.queryset.get(pk=pk)
-
-        entity.default_image_number = int(request.data["image_number"])
-        npc_repo.save(entity)
-        return Response({"type": "success", "npc": self.serializer_class(entity).data})
+        return Response({"type": "success", "entity": self.serializer_class(entity).data})
 
     @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def alternatives(self, request, pk):
@@ -166,23 +170,11 @@ class GenericEntityView(viewsets.ModelViewSet):
         return Response({"type": "error", "error": "TODO"})
 
 
-class NpcSerializer(serializers.ModelSerializer):
-    image_objects = ListSerializer(child=ImageSerializer())
 
-    class Meta:
-        model = Npc
-        fields = [
-            "id",
-            "primary_values",
-            "image_generator_description",
-            "image_objects",
-            "attribute_definition"
-        ]
 
 
 class NpcViewSet(GenericEntityView):
     entity_class = Npc
     queryset = Npc.objects.order_by("-id").prefetch_related().all()
-    serializer_class = NpcSerializer
 
     GenerationOperation = GenerateNpc

@@ -23,31 +23,31 @@ import active_image from "../active_image";
 class NPCListItem extends React.Component {
 
     render() {
-        let activeImage = active_image(this.props.npc.image_objects) || {}
+        let activeImage = active_image(this.props.entity.image_objects) || {}
 
         return (<div style={{margin: 15}}>
 
-                <a href={'/npcs/' + this.props.npc.id}>
+                <a href={'/npcs/' + this.props.entity.id}>
                     <Card
                         image={{
                             src: image_path(activeImage.name),
-                            alt: this.props.npc.image_generator_description
+                            alt: this.props.entity.image_generator_description
                         }}
-                        title={this.props.npc.primary_values['Name']}
+                        title={this.props.entity.primary_values['Name']}
                         landscape
                         hover
                         style={{}}
                     >
                     <Blockquote>
                         <Text>
-                            {this.props.npc.primary_values['Catchphrase']}
+                            {this.props.entity.primary_values['Catchphrase']}
                         </Text>
                     </Blockquote>
 
                         <List>
-                            <li><Text><b>Metatyp:</b> {this.props.npc.primary_values['Metatyp']}</Text></li>
-                            <li><Text><b>Beruf:</b> {this.props.npc.primary_values['Beruf']}</Text></li>
-                            <li><Text><b>Eigenarten:</b> {this.props.npc.primary_values['Eigenarten']}</Text></li>
+                            <li><Text><b>Metatyp:</b> {this.props.entity.primary_values['Metatyp']}</Text></li>
+                            <li><Text><b>Beruf:</b> {this.props.entity.primary_values['Beruf']}</Text></li>
+                            <li><Text><b>Eigenarten:</b> {this.props.entity.primary_values['Eigenarten']}</Text></li>
                         </List>
                     </Card>
                 </a>
@@ -102,26 +102,26 @@ class NPCListWrapped extends React.Component {
 
     handlePrev() {
         let url = new URL(window.location.href)
-        url.searchParams.set('page', this.props.npcs.previous)
+        url.searchParams.set('page', this.props.entities.previous)
         this.props.navigate(url.search)
     }
 
     handleNext() {
         let url = new URL(window.location.href)
-        url.searchParams.set('page', this.props.npcs.next)
+        url.searchParams.set('page', this.props.entities.next)
         this.props.navigate(url.search)
     }
 
     render() {
         const items = [];
-        for (const npc of this.props.npcs.results) {
-            items.push(<NPCListItem npc={npc} key={npc.id}/>)
+        for (const entity of this.props.entities.results) {
+            items.push(<NPCListItem entity={entity} key={entity.id}/>)
         }
 
         const pageSize = 20
-        const pageMax = Math.ceil(this.props.npcs.count / pageSize)
-        const hasPrev = this.props.npcs.previous !== null
-        const hasNext = this.props.npcs.next !== null
+        const pageMax = Math.ceil(this.props.entities.count / pageSize)
+        const hasPrev = this.props.entities.previous !== null
+        const hasNext = this.props.entities.next !== null
 
         return (
             <div style={{width: '100%'}}>
@@ -140,7 +140,7 @@ class NPCListWrapped extends React.Component {
                     </Button>
                     <div>
                         <FrameLines>
-                            <Text> {this.props.npcs.number - 1} / {pageMax} </Text>
+                            <Text> {this.props.entities.number - 1} / {pageMax} </Text>
                         </FrameLines>
                     </div>
                     <Button FrameComponent={FrameLines} disabled={!hasNext} onClick={this.handleNext}>
@@ -155,14 +155,14 @@ class NPCListWrapped extends React.Component {
 
 
 const NPCList = props => {
-  const npcs = useLoaderData()
+  const entities = useLoaderData()
   const navigate = useNavigate()
   const { state } = useNavigation()
 
   if (state === 'loading') {
       return <LoadingBars></LoadingBars>
   } else {
-      return <NPCListWrapped navigate={navigate} npcs={npcs} {...props} />
+      return <NPCListWrapped navigate={navigate} entities={entities} {...props} />
   }
 }
 

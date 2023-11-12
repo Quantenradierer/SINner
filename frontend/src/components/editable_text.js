@@ -6,17 +6,17 @@ import api from "../axios";
 
 
 const EditableText = props => {
-    let attribute = props.npc.primary_values[props.attribute]
+    let attribute = props.entity.primary_values[props.attribute]
     console.log(attribute)
-    let definition = props.npc.attribute_definition[props.attribute]
+    let definition = props.entity.attribute_definition[props.attribute]
     const [value, setValue] = useState( attribute || '');
 
     useEffect(() => {
         setValue(attribute || '');
-    }, [props.npc, props.attribute]);
+    }, [props.entity, props.attribute]);
 
     const handleChange = (event) => {
-        props.npc.primary_values[props.attribute] = event.target.value
+        props.entity.primary_values[props.attribute] = event.target.value
         setValue(event.target.value);
     };
 

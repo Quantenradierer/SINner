@@ -55,7 +55,7 @@ class NPCCard extends React.Component {
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),
                 data: <div><EditableText attribute={attribute}
-                                    npc={this.props.npc}
+                                    entity={this.props.entity}
                                     approxLineSize={58}
                                     editable={this.props.editable}
                                     editableDisabled={this.props.editableDisabled}
@@ -74,7 +74,7 @@ class NPCCard extends React.Component {
 
     render() {
         let state_label = ''
-        let activeImage = active_image(this.props.npc.image_objects) || {}
+        let activeImage = active_image(this.props.entity.image_objects) || {}
 
         const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten', 'Detailliertes Aussehen']
         return (
@@ -83,12 +83,12 @@ class NPCCard extends React.Component {
                 <Card
                     image={{
                         src: image_path(activeImage.name),
-                        alt: this.props.npc.image_generator_description
+                        alt: this.props.entity.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}
                     title={<div><EditableText style={{width: '630px'}}
                                           attribute='Name'
-                                          npc={this.props.npc}
+                                          entity={this.props.entity}
                                           approxLineSize={58}
                                           editable={this.props.editable}
                                           editableDisabled={this.props.editableDisabled}
@@ -104,7 +104,7 @@ class NPCCard extends React.Component {
                             <Text><div>
                                 <EditableText style={{margin: '1 0 0 0', width: '580px'}}
                                               attribute='Catchphrase'
-                                              npc={this.props.npc}
+                                              entity={this.props.entity}
                                               approxLineSize={58}
                                               editable={this.props.editable}
                                               editableDisabled={this.props.editableDisabled}
@@ -115,7 +115,7 @@ class NPCCard extends React.Component {
                         </Blockquote>
 
                         <AttributeList listItemWidth={100}
-                                       npc={this.props.npc}
+                                       entity={this.props.entity}
                                        attributes={relevantAttributes}
                                        approxLineSize={58}
                                        editable={this.props.editable}
@@ -125,10 +125,10 @@ class NPCCard extends React.Component {
                         />
                     </div>
 
-                    <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.npc)}/>
+                    <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.entity)}/>
 
-                    <div className={this.props.npc.id? '': 'hidden'}>
-                        <a href={"/npcs/" + this.props.npc.id + "/gallery"}>
+                    <div className={this.props.entity.id? '': 'hidden'}>
+                        <a href={"/npcs/" + this.props.entity.id + "/gallery"}>
                             <Button>Galerie</Button>
                         </a>
                     </div>

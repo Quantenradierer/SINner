@@ -15,12 +15,12 @@ class AlternativeDialog extends React.Component {
     }
 
     retrieveAlternatives = async () => {
-        console.log(this.props.npc.id)
+        console.log(this.props.entity.id)
 
         this.setState({state: 'loading', alternatives: []});
 
         try {
-            const response = await api.post( `/api/npc_creator/npcs/${this.props.npc.id}/alternatives/`, {
+            const response = await api.post( `/api/npc_creator/npcs/${this.props.entity.id}/alternatives/`, {
                 attribute: this.props.attributeAlternative
             }, {timeout: 60000});
 

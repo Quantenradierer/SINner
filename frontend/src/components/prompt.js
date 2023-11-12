@@ -128,15 +128,15 @@ class PromptWrapped extends React.Component {
         const params = new URLSearchParams(url.search)
         let show = true
 
-        let npc = props.npc
-        npc["image_objects"] = [{id: 0, score: 0, name: 'creation_form.png'}]
+        let entity = props.entity
+        entity["image_objects"] = [{id: 0, score: 0, name: 'creation_form.png'}]
         this.state = {
             show: show,
             prompt: random_prompt(),
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: npc,
+            entity: entity,
             check: false
         }
 
@@ -154,11 +154,11 @@ class PromptWrapped extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'});
 
-        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, values: this.state.npc.primary_values}, {timeout: 240000} )
+        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, values: this.state.entity.primary_values}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    response.data.npc.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
-                    self.setState({ 'npc': response.data.npc })
+                    response.data.entity.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
+                    self.setState({ 'entity': response.data.entity })
                 } else {
                     self.setState({ 'error': i18next.t(response.data.error) });
                     setTimeout(function(){
@@ -182,10 +182,10 @@ class PromptWrapped extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        api.post('/api/npc_creator/npcs/save/', {values: this.state.npc.primary_values})
+        api.post('/api/npc_creator/npcs/save/', {values: this.state.entity.primary_values})
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    window.location.href = '/npcs/' + response.data.npc.id
+                    window.location.href = '/npcs/' + response.data.entity.id
                 } else {
                     if (response.data.error === 'custom') {
                         self.setState({'error': 'GPT: ' + response.data.message})
@@ -278,9 +278,9 @@ class PromptWrapped extends React.Component {
                 </Button>
             </div>
             <div>
-                <NPCCard npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
-                <NPCPrivate npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
-                <NPCSkills npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCCard entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCPrivate entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCSkills entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
             </div>
 
 
@@ -292,14 +292,14 @@ class PromptWrapped extends React.Component {
 
 
 const Prompt = props => {
-  const default_npc = useLoaderData()
+  const default_entity = useLoaderData()
   const navigate = useNavigate()
   const { state } = useNavigation()
 
   if (state === 'loading') {
       return <LoadingBars></LoadingBars>
   } else {
-      return <PromptWrapped npc={default_npc} {...props} />
+      return <PromptWrapped entity={default_entity} {...props} />
   }
 }
 

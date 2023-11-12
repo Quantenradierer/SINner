@@ -7,7 +7,6 @@ import Prompt from "./components/prompt";
 import NPCComplete from "./components/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
-import ReloadButton from "./components/reload_button";
 import NPCList from "./components/npc_list";
 import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavigate} from "react-router-dom";
 import npcLoader from "./loader/npc_loader";

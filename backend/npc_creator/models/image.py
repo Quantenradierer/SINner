@@ -16,7 +16,7 @@ class Image(models.Model):
     generation = models.ForeignKey(
         ImageGeneration, null=True, on_delete=models.SET_NULL
     )
-    npc = models.ForeignKey(Entity, null=True, on_delete=models.SET_NULL)
+    entity = models.ForeignKey(Entity, null=True, on_delete=models.SET_NULL)
 
     @property
     def template(self):

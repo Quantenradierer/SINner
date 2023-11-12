@@ -13,7 +13,7 @@ def image_structure(*args, **kwargs):
     for npc in npcs:
         for i in range(npc.max_image_number + 1):
             file = npc.image_url.format(pk=npc.id, counter=i)
-            path = os.path.join(config.PUBLIC_NPC_IMAGE_PATH, file)
+            path = os.path.join(config.PUBLIC_ENTITY_IMAGE_PATH, file)
             if os.path.isfile(path):
                 npc.images.append(file)
 

@@ -16,9 +16,7 @@ from npc_creator import config
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image import Image
-from npc_creator.models.image_generation import ImageGeneration
-from npc_creator.operations.generate_npc import GenerateNpc
-from npc_creator.repositories import npc_repo
+
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 

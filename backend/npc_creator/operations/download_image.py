@@ -26,7 +26,7 @@ class DownloadImage:
         """
 
         self.generation = generation
-        self.npc = self.generation.npc
+        self.entity = self.generation.entity
         self.temp_image_path = temp_image_path
 
     def call(self) -> ReturnType:
@@ -41,7 +41,7 @@ class DownloadImage:
             return result_image_paths
 
         self.add_images(result_image_paths.data)
-        self.npc.save()
+        self.entity.save()
 
         self.generation.state = ImageGeneration.State.DOWNLOADED
         self.generation.save()
@@ -53,7 +53,7 @@ class DownloadImage:
 
     def add_images(self, image_paths):
         for name in image_paths:
-            Image.objects.create(npc=self.npc, name=name, generation=self.generation)
+            Image.objects.create(entity=self.entity, name=name, generation=self.generation)
 
     def download_images(self):
         responses = retrieve_latest_messages()
@@ -79,7 +79,7 @@ class DownloadImage:
     @staticmethod
     def images_names_iterator():
         while True:
-            yield os.path.join(config.PUBLIC_NPC_IMAGE_PATH, str(uuid.uuid1()) + ".png")
+            yield os.path.join(config.PUBLIC_ENTITY_IMAGE_PATH, str(uuid.uuid1()) + ".png")
 
 
 if __name__ == "__main__":
