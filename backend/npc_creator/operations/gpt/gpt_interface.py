@@ -15,6 +15,7 @@ class GptInterface:
         self.request = GptRequest(kind=str(self.__class__.__name__))
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = ""
+        self.use_json = False
 
     def prompt(self):
         raise NotImplementedError()
@@ -29,7 +30,7 @@ class GptInterface:
         self.request.input = self.prompt()
 
         output = ask_chatgpt_moderated(
-            self.system_prompt, self.request.input, gpt=self.gpt.value
+            self.system_prompt, self.request.input, gpt=self.gpt.value, json=self.use_json
         )
         self.request.output = str(output.data)
         if not output:

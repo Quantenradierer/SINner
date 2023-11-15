@@ -47,10 +47,6 @@ MIDJOURNEY_RETRIES_BEFORE_FAILING = 8
 # noinspection PyPep8
 
 
-"""
-configuration for openai
-"""
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 if "test" in sys.argv:
