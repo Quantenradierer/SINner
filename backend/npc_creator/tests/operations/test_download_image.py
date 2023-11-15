@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import requests
 
-from npc_creator.models.npc import Entity
+from npc_creator.models import Entity
 from npc_creator.operations.download_image import DownloadImage
 from npc_creator.tests.mocks.mock_download_image import mock_download_image
 from npc_creator.tests.mocks.mock_return_discord_messages import (

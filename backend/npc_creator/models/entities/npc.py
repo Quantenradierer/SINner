@@ -18,7 +18,7 @@ class Npc(Entity):
     class Meta:
         proxy = True
 
-    #objects = NpcManager
+    objects = NpcManager()
 
     ATTRIBUTE_DEFINITION = [
         AttributeDefinition(name="Beruf", length=0, reroll=True),

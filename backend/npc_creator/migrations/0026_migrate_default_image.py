@@ -10,18 +10,6 @@ import os
 from npc_creator.models.image import Image
 
 
-def image_score(*args, **kwargs):
-    npcs = Entity.objects.all()
-    for npc in npcs:
-        try:
-            default_image_name = npc.images[npc.default_image_number]
-        except IndexError:
-            continue
-        result = npc.image_set.filter(name=default_image_name)
-        if result:
-            image_object = result[0]
-            image_object.score += 100
-            image_object.save()
 
 
 class Migration(migrations.Migration):
@@ -30,5 +18,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(image_score),
     ]

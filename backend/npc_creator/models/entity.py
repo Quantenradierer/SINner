@@ -8,6 +8,7 @@ class AttributeDefinition:
     name: str
     length: int
     reroll: bool
+    additional_data: str = ''
 
 
 class Entity(models.Model):

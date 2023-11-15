@@ -10,12 +10,6 @@ import os
 from npc_creator.models.image import Image
 
 
-def image_structure(*args, **kwargs):
-    npcs = Entity.objects.all()
-    for npc in npcs:
-        for image_name in npc.images:
-            Image.objects.create(npc=npc, name=image_name)
-
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -23,5 +17,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(image_structure),
+
     ]

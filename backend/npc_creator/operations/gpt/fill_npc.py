@@ -2,7 +2,7 @@ from npc_creator import config
 from npc_creator.models import Entity
 
 from npc_creator.operations.gpt.gpt_interface import GptInterface
-from npc_creator.operations.gpt.helper import npc_prompt
+from npc_creator.operations.gpt.helper import entity_prompt
 from npc_creator.services.interpret_gpt import dict_from_text
 
 
@@ -12,7 +12,7 @@ class FillNpc(GptInterface):
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """- Vervollständige einen NPC für ein Shadowrun Pen & Paper Rollenspiel
 - Wenn keine Informationen gegeben sind, denke dir welche aus
-- Erstelle unangemessene, extreme, rassistische oder homophob+e NPC so, das du zeigst wie falsch ihre Werte sind 
+- Erstelle unangemessene, extreme, rassistische oder homophobe NPC so, das du zeigst wie falsch ihre Werte sind 
 - Erstelle keine Urheberrechtlich geschützten Figuren oder Personen
 - Erstelle keine Runner oder Söldner, sofern nicht anders gewünscht
 - Das Geheimnis muss detailliert beschrieben sein
@@ -37,7 +37,7 @@ class FillNpc(GptInterface):
     def prompt(self):
         return [
             self.user_prompt,
-        ] + npc_prompt(self.npc)
+        ] + entity_prompt(self.npc)
 
     def get_empty_attribute(self):
         """

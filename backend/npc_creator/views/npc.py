@@ -27,8 +27,9 @@ from npc_creator import config
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models import Entity
 from npc_creator.models.entities.npc import Npc
-from npc_creator.models.gpt_request import GptRequest
+from npc_creator.models.entities.location import Location
 from npc_creator.models.image_generation import ImageGeneration
+from npc_creator.operations.generate_location import GenerateLocation
 from npc_creator.operations.generate_npc import GenerateNpc
 from npc_creator.operations.gpt.alternative_attributes import AlternativeAttributes
 from npc_creator.operations.gpt.check_npc import CheckNpc
@@ -38,6 +39,7 @@ from rest_framework.authentication import BasicAuthentication, SessionAuthentica
 from rest_framework import serializers, viewsets
 
 from npc_creator.views.image import ImageSerializer
+
 
 
 class EntitySerializer(serializers.ModelSerializer):
@@ -170,11 +172,15 @@ class GenericEntityView(viewsets.ModelViewSet):
         return Response({"type": "error", "error": "TODO"})
 
 
-
-
-
 class NpcViewSet(GenericEntityView):
     entity_class = Npc
-    queryset = Npc.objects.order_by("-id").prefetch_related().all()
+    queryset = Npc.objects.order_by("-id")
 
     GenerationOperation = GenerateNpc
+
+
+class LocationViewSet(GenericEntityView):
+    entity_class = Location
+    queryset = Location.objects.order_by("-id").all()
+
+    GenerationOperation = GenerateLocation
