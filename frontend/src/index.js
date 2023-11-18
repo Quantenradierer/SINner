@@ -4,10 +4,10 @@ import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
 import Prompt from "./components/prompt";
-import NPCComplete from "./components/npc_complete";
+import NPCComplete from "./components/npc/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
-import NPCList from "./components/npc_list";
+import NPCList from "./components/npc/npc_list";
 import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavigate} from "react-router-dom";
 import npcLoader from "./loader/npc_loader";
 import {npcListLoader} from "./loader/npc_list_loader";
@@ -19,6 +19,10 @@ import Login from "./components/login";
 import Logout from "./components/logout";
 import ImageGallery from "./components/image_gallery";
 import npcDefinitionLoader from "./loader/npc_definition_loader";
+import PromptLocation from "./components/prompt_location";
+import locationDefinitionLoader from "./loader/location_definition_loader";
+import LocationComplete from "./components/location/location_complete";
+import locationLoader from "./loader/location_loader";
 // For the font-family to work, you would have to setup the Google Fonts link:
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
@@ -106,6 +110,21 @@ const router = createBrowserRouter([
                 path: "prompt/",
                 element: <Prompt/>,
                 loader: npcDefinitionLoader,
+            },
+            {
+                path: "locations/:id",
+                element: <LocationComplete/>,
+                loader: locationLoader,
+            },
+            {
+                path: "locations/:id/gallery",
+                element: <ImageGallery/>,
+                loader: locationLoader,
+            },
+            {
+                path: "prompt_location/",
+                element: <PromptLocation/>,
+                loader: locationDefinitionLoader,
             },
             {
                 path: "login/",

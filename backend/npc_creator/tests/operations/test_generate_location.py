@@ -12,8 +12,6 @@ class GenerateLocationTest(TestCase):
     def test_generate_location_success(self):
         # Given
         entity = Location()
-        fill_location_result = Success(data=entity)
-        generate_loc = GenerateLocation(user_prompt='Erzeuge eine Bar', entity=entity)
-        result = generate_loc.call()
+        result = GenerateLocation(user_prompt='Erzeuge eine Bar', entity=entity).call()
         assert isinstance(result, Success)
         assert result.data == entity

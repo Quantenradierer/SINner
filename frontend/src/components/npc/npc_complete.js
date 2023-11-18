@@ -2,28 +2,16 @@ import React from "react";
 import NPCCard from "./npc_card";
 import NPCPrivate from "./npc_private";
 import NPCSkills from "./npc_skills";
-import api from "../axios";
+import api from "../../axios";
 import {useLoaderData} from "react-router";
 import {FramePentagon, Text} from "@arwes/core";
-import i18next from "../i18n";
-import AlternativeDialog from "./alternative_dialog";
+import i18next from "../../i18n";
+import AlternativeDialog from "../alternative_dialog";
 import {random} from "animejs";
+import Warning from "../warning";
 
-
-const Warning = props => {
-    return (<div key='error'  style={{width: 950, margin: 15}}>
-                <FramePentagon
-                    style={{margin: '15px 0px 15px 0px', display: 'flex'}}
-                    palette='secondary'
-                    lineWidth={1}
-                >
-                    <Text>{props.text}</Text>
-                </FramePentagon>
-            </div>)
-}
 
 class NPCCompleteWrapped extends React.Component {
-
     constructor(props) {
         super(props);
 

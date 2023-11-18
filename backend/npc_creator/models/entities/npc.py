@@ -1,8 +1,8 @@
-
 from django.db import models
 
 from npc_creator.models import Entity
 from npc_creator.models.entity import AttributeDefinition
+from npc_creator.operations.gpt import npc
 
 
 class NpcManager(models.Manager):
@@ -56,3 +56,8 @@ class Npc(Entity):
         AttributeDefinition(name="Magie (von 0-6)", length=2, reroll=False),
         AttributeDefinition(name="Resonanz (von 0-6)", length=2, reroll=False),
     ]
+
+    Fill = npc.Fill
+    Translate = npc.Translate
+    PassImagePrompt = npc.PassImagePrompt
+    Check = npc.Check

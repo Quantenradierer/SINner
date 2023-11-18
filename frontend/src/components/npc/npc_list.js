@@ -11,13 +11,13 @@ import {
     Table,
     Text
 } from "@arwes/core";
-import api from "../axios";
-import {NPC_IMAGE_PATH} from "../config";
+import api from "../../axios";
+import {NPC_IMAGE_PATH} from "../../config";
 import {Animator} from "@arwes/animation";
 import {useNavigate, useNavigation} from "react-router-dom";
 import {useLoaderData} from "react-router";
-import image_path from "../image_path";
-import active_image from "../active_image";
+import image_path from "../../image_path";
+import active_image from "../../active_image";
 
 
 class NPCListItem extends React.Component {

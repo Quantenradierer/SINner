@@ -1,45 +1,33 @@
-import datetime
 import random
 import time
 from datetime import timedelta
-from string import ascii_uppercase
 from time import sleep
 
-import rest_framework_simplejwt
 from django.core.cache import cache
-from django.db.migrations.serializer import DictionarySerializer
 from django.utils.timezone import now
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.serializers import ListSerializer
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import (
-    IsAuthenticated,
     AllowAny,
-    IsAuthenticatedOrReadOnly,
 )
 import json
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from npc_creator import config
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models import Entity
 from npc_creator.models.entities.npc import Npc
 from npc_creator.models.entities.location import Location
 from npc_creator.models.image_generation import ImageGeneration
-from npc_creator.operations.generate_location import GenerateLocation
-from npc_creator.operations.generate_npc import GenerateNpc
 from npc_creator.operations.gpt.alternative_attributes import AlternativeAttributes
-from npc_creator.operations.gpt.check_npc import CheckNpc
+
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
 from rest_framework import serializers, viewsets
 
 from npc_creator.views.image import ImageSerializer
-
 
 
 class EntitySerializer(serializers.ModelSerializer):
@@ -52,8 +40,9 @@ class EntitySerializer(serializers.ModelSerializer):
             "primary_values",
             "image_generator_description",
             "image_objects",
-            "attribute_definition"
+            "attribute_definition",
         ]
+
 
 class GenericEntityView(viewsets.ModelViewSet):
     entity_class = None
@@ -61,9 +50,8 @@ class GenericEntityView(viewsets.ModelViewSet):
     serializer_class = EntitySerializer
 
     GenerationOperation = None
-
-
     authentication_classes = [BasicAuthentication, SessionAuthentication]
+
     def get_queryset(self):
         search_text = self.request.query_params.get("search", "")
 
@@ -83,13 +71,16 @@ class GenericEntityView(viewsets.ModelViewSet):
 
         entity = self.entity_class()
         entity.add_values(values)
-        result_entity = self.GenerationOperation(prompt, entity).call()
-        if result_entity:
+        result = self.entity_class.Fill(user_prompt=prompt, entity=entity).call()
+        if result:
             return Response(
-                {"type": "success", "entity": self.serializer_class(result_entity.data).data}
+                {
+                    "type": "success",
+                    "entity": self.serializer_class(entity).data,
+                }
             )
         else:
-            return Response({"type": "error", "error": result_entity.error})
+            return Response({"type": "error", "error": result.error})
 
     @action(detail=False, methods=["post"], permission_classes=[AllowAny])
     def save(self, request):
@@ -101,7 +92,7 @@ class GenericEntityView(viewsets.ModelViewSet):
 
         if not entity.is_complete():
             return Response({"type": "error", "error": "npc_incomplete"})
-        result = CheckNpc(npc=entity).call()
+        result = self.entity_class.Check(entity=entity).call()
 
         if not result:
             return Response(
@@ -113,11 +104,18 @@ class GenericEntityView(viewsets.ModelViewSet):
         generation.save()
         generation_job_async(generation)
 
-        return Response({"type": "success", "entity": self.serializer_class(entity).data})
+        return Response(
+            {"type": "success", "entity": self.serializer_class(entity).data}
+        )
 
     @action(detail=False, methods=["get"], permission_classes=[AllowAny])
     def default(self, request):
-        return Response({"type": "success", "entity": self.serializer_class(self.entity_class()).data})
+        return Response(
+            {
+                "type": "success",
+                "entity": self.serializer_class(self.entity_class()).data,
+            }
+        )
 
     @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
     def recreate_images(self, request, pk):
@@ -127,7 +125,8 @@ class GenericEntityView(viewsets.ModelViewSet):
             if (
                 ImageGeneration.objects.filter(
                     url__isnull=True, created_at__gt=now() - timedelta(hours=-1)
-                ).count() < 10
+                ).count()
+                < 10
             ):
                 generation = ImageGeneration(entity=entity)
                 generation.save()
@@ -135,7 +134,9 @@ class GenericEntityView(viewsets.ModelViewSet):
 
             time.sleep(random.random() + random.randint(3, 10))
 
-        return Response({"type": "success", "entity": self.serializer_class(entity).data})
+        return Response(
+            {"type": "success", "entity": self.serializer_class(entity).data}
+        )
 
     @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def alternatives(self, request, pk):
@@ -176,11 +177,7 @@ class NpcViewSet(GenericEntityView):
     entity_class = Npc
     queryset = Npc.objects.order_by("-id")
 
-    GenerationOperation = GenerateNpc
-
 
 class LocationViewSet(GenericEntityView):
     entity_class = Location
-    queryset = Location.objects.order_by("-id").all()
-
-    GenerationOperation = GenerateLocation
+    queryset = Location.objects.order_by("-id")

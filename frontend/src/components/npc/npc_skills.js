@@ -1,7 +1,7 @@
 import React from "react";
 import {FramePentagon, List, Text} from "@arwes/core";
-import EditableText from "./editable_text";
-import AttributeList from "./attribute_list";
+import EditableText from "../editable_text";
+import AttributeList from "../attribute_list";
 
 class NPCSkills extends React.Component {
     render() {

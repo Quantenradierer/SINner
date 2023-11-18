@@ -1,10 +1,6 @@
-from npc_creator import config
-from npc_creator.operations.gpt.fill_npc import FillNpc
-
 from npc_creator.operations.gpt.gpt_interface import GptInterface
 from npc_creator.operations.gpt.helper import entity_prompt
 from npc_creator.operations.return_types import Success
-from npc_creator.services.interpret_gpt import dict_from_text
 
 
 class AlternativeAttributes(GptInterface):

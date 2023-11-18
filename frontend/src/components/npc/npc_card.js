@@ -1,14 +1,14 @@
 import React from "react";
 import {Blockquote, Button, Card, FrameLines, List, Table, Text} from "@arwes/core";
-import image_path from "../image_path";
-import is_logged_in from "../is_loggin_in";
+import image_path from "../../image_path";
+import is_logged_in from "../../is_loggin_in";
 import {Link} from "react-router-dom";
-import api from "../axios";
-import i18next from "../i18n";
-import EditableText from "./editable_text";
-import AttributeList from "./attribute_list";
-import ImageGallery from "./image_gallery";
-import active_image from "../active_image";
+import api from "../../axios";
+import i18next from "../../i18n";
+import EditableText from "../editable_text";
+import AttributeList from "../attribute_list";
+import ImageGallery from "../image_gallery";
+import active_image from "../../active_image";
 
 
 function allows_edit(npc) {

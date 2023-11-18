@@ -1,9 +1,6 @@
-import json
 from unittest.mock import patch, mock_open
 
-from npc_creator.config import RELEVANT_ATTRIBUTES
-from npc_creator.models import Entity
-from npc_creator.operations.generate_npc import GenerateNpc
+
 from npc_creator.tests.operations.base_integration_test import BaseIntegrationTest
 
 

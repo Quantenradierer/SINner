@@ -1,22 +1,16 @@
 from npc_creator import config
 from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.image_generation import ImageGeneration
-from npc_creator.operations.gpt.translate_description import TranslateDescription
+from npc_creator.operations.gpt import entity
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.services.midjourney.pass_prompt import pass_prompt
-from npc_creator.services.special_midjourney_prompt import special_midjourney_prompt
+from npc_creator.operations.gpt.entity.special_midjourney_prompt import (
+    special_midjourney_prompt,
+)
 
 
-class PassImagePrompt:
-    def __init__(self, generation: ImageGeneration):
-        self.generation = generation
-        self.npc = self.generation.entity
-
-    def generate_npc_image_description(self):
-        result = TranslateDescription(npc=self.npc).call()
-        if result:
-            self.npc.save()
-        return result
+class PassImagePrompt(entity.PassImagePrompt):
+    special_midjourney_prompt = special_midjourney_prompt
 
     def call(self) -> Failure:
         """
@@ -26,17 +20,17 @@ class PassImagePrompt:
             bool: True if the image creation was started, False otherwise.
         """
         if not self.generation.description:
-            self.generate_npc_image_description()
-            self.generation.description = self.npc.image_generator_description
+            self.generate_entity_image_description()
+            self.generation.description = self.entity.image_generator_description
 
         prompt = MIDJOURNEY_PROMPT.format(
             image_generator_description=self.generation.description
         )
-        template, prompt = special_midjourney_prompt(
+        template, prompt = self.special_midjourney_prompt(
             prompt,
             seed=self.generation.id,
-            metatyp=self.npc.primary_values.get("Metatyp", ""),
-            gender=self.npc.primary_values.get("Geschlecht", ""),
+            metatyp=self.entity.primary_values.get("Metatyp", ""),
+            gender=self.entity.primary_values.get("Geschlecht", ""),
         )
         prompt += " " + config.ADDITIONAL_PROMPT_OPTIONS
 

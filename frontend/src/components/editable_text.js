@@ -44,8 +44,6 @@ const EditableText = props => {
         let style = { padding: '2px', height: 4 + rows * 32 + 'px', backgroundColor: backgroundColor };
 
         Object.assign(style, props.style);
-
-        console.log(definition.length)
         if (definition.length == 0) {
             return (<textarea style={style} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} />);
         } else {

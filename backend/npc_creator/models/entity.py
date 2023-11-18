@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from django.apps import apps
 from django.db import models
 
 
@@ -8,19 +9,16 @@ class AttributeDefinition:
     name: str
     length: int
     reroll: bool
-    additional_data: str = ''
+    additional_data: str = ""
 
 
 class Entity(models.Model):
     class Kinds(models.TextChoices):
-        NPC = "NPC", "NPC"
-        LOCATION = "LOCATION", "LOCATION"
-        CRITTER = "CRITTER", "CRITTER"
+        NPC = "Npc", "Npc"
+        LOCATION = "Location", "Location"
+        CRITTER = "Critter", "Critter"
 
-    kind = models.CharField(
-        max_length=20,
-        choices=Kinds.choices
-    )
+    kind = models.CharField(max_length=20, choices=Kinds.choices)
 
     image_generator_description = models.TextField(blank=True)
     attributes = models.JSONField(blank=False, null=False, default=dict)
@@ -29,6 +27,18 @@ class Entity(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     ATTRIBUTE_DEFINITION = []
+    Fill = None
+    Translate = None
+    PassImagePrompt = None
+    SpecialMidjourneyPrompt = None
+    Check = None
+
+    @property
+    def instance(self):
+        for cls in self.__class__.__subclasses__():
+            if cls.__name__ == self.kind:
+                return cls.objects.get(pk=self.pk)
+        return self
 
     @property
     def image_objects(self):
@@ -51,7 +61,10 @@ class Entity(models.Model):
 
     @property
     def primary_values(self):
-        return dict((key, values[0] if values else '') for key, values in self.attributes.items())
+        return dict(
+            (key, values[0] if values else "")
+            for key, values in self.attributes.items()
+        )
 
     @property
     def attribute_names(self):
@@ -60,7 +73,9 @@ class Entity(models.Model):
     def add_values(self, new_values):
         for key, values in new_values.items():
             if key not in self.attribute_names:
-                raise ValueError(f'key {key} not in {self.__class__} ATTRIBUTE_DEFINITIONS')
+                raise ValueError(
+                    f"key {key} not in {self.__class__} ATTRIBUTE_DEFINITIONS"
+                )
 
             self.attributes[key] = self.attributes.get(key, list())
             if type(values) == str:
@@ -74,8 +89,7 @@ class Entity(models.Model):
         result = {}
         for attr_def in self.ATTRIBUTE_DEFINITION:
             result[attr_def.name] = {
-                'length': attr_def.length,
-                'reroll': attr_def.reroll
-             }
+                "length": attr_def.length,
+                "reroll": attr_def.reroll,
+            }
         return result
-

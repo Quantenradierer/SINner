@@ -11,7 +11,7 @@ const resources = {
             npc_was_flagged_by_gpt: 'Der NPC wurde von GPT als unangemessen eingeschätzt. Versuche es erneut oder gib etwas anderes ein.',
             gpt_raised_an_error: 'GPT hat einen Fehler geworfen. Bitte versuche es später erneut.',
             npc_incomplete: 'Der NPC ist unvollständig. Bitte fülle alle Felder aus bevor du speicherst.',
-            image_generation_in_progress: 'Das Bild für diesen NPC wird noch erzeugt. Bitte aktualisiere diese Seite in ein paar Minuten erneut.',
+            image_generation_in_progress: 'Das Bild wird noch erzeugt. Bitte aktualisiere diese Seite in ein paar Minuten erneut.',
             attribute_metatyp: 'Metatyp',
             attribute_beruf: 'Beruf',
             attribute_ethnizität: 'Ethnizität',
@@ -36,7 +36,18 @@ const resources = {
             attribute_fertigkeiten: 'Fertigkeiten',
             attribute_ausrüstung: 'Ausrüstung',
             attribute_lootbare_gegenstände: 'Loot',
-            attribute_geheimnis: 'Geheimnis'
+            attribute_geheimnis: 'Geheimnis',
+
+            attribute_name: 'Name',
+            attribute_typ: 'Typ',
+            attribute_aussehen: 'Aussehen',
+            attribute_stadtteil_zone: 'Gebiet',
+            attribute_zugehörige_gruppe_corp_fraktion: 'Zugehörigkeit',
+            attribute_besonderheiten: 'Besonderheiten',
+            attribute_diverse_hinweise: 'Hinweise',
+            attribute_verfügbarkeit_von_sicherheitssystemen: 'Sicherheit',
+            attribute_aktuelle_aktionen_events: 'Aktionen',
+            attribute_gerüchte_und_geschichten_über_die_location: 'Gerüchte'
         },
     },
     en: {

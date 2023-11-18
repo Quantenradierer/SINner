@@ -5,15 +5,16 @@ from threading import Thread
 from npc_creator import config
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.download_image import DownloadImage
-from npc_creator.operations.pass_image_prompt import PassImagePrompt
+from npc_creator.operations.gpt.npc.pass_image_prompt import PassImagePrompt
 
 
 def generation_job(generation_id: int) -> None:
     logging.debug(f"DownloadImageJob({generation_id}): Started")
     generation = ImageGeneration.objects.get(pk=generation_id)
+    entity = generation.entity.instance
 
     if generation.state == ImageGeneration.State.CREATED:
-        result = PassImagePrompt(generation).call()
+        result = entity.PassImagePrompt(generation).call()
         logging.debug(
             f"DownloadImageJob({generation.id}): PassImagePrompt Operation {result}"
         )

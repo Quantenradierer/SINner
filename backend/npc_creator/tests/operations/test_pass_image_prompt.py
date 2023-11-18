@@ -4,7 +4,7 @@ import requests
 
 from npc_creator import config
 from npc_creator.models import Entity
-from npc_creator.operations.pass_image_prompt import PassImagePrompt
+from npc_creator.operations.gpt.npc.pass_image_prompt import PassImagePrompt
 from npc_creator.tests.operations.base_integration_test import BaseIntegrationTest
 
 
