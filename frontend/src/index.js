@@ -9,22 +9,15 @@ import Footer from "./components/footer";
 import api from "./axios";
 import NPCList from "./components/npc/npc_list";
 import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavigate} from "react-router-dom";
-import npcLoader from "./loader/npc_loader";
-import {npcListLoader} from "./loader/npc_list_loader";
 import Impressum from "./components/impressum";
 import Header from "./components/header";
-import ErrorBoundary from "./components/error_site";
 import ErrorPage from "./components/error_site";
 import Login from "./components/login";
 import Logout from "./components/logout";
 import ImageGallery from "./components/image_gallery";
-import npcDefinitionLoader from "./loader/npc_definition_loader";
 import PromptLocation from "./components/prompt_location";
-import locationDefinitionLoader from "./loader/location_definition_loader";
 import LocationComplete from "./components/location/location_complete";
-import locationLoader from "./loader/location_loader";
-// For the font-family to work, you would have to setup the Google Fonts link:
-// <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
+import EntityLoader from "./loader/entity_loader";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -74,7 +67,9 @@ const Root = props => {
     </div>)
 }
 
-
+const npcLoader = new EntityLoader('npcs')
+const locationLoader = new EntityLoader('locations')
+const critterLoader = new EntityLoader('critters')
 
 const router = createBrowserRouter([
     {
@@ -85,7 +80,7 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <NPCList/>,
-                loader: npcListLoader,
+                loader: npcLoader.list,
             },
             {
                 path: "impressum",
@@ -94,37 +89,37 @@ const router = createBrowserRouter([
             {
                 path: "npcs/:id",
                 element: <NPCComplete/>,
-                loader: npcLoader,
+                loader: npcLoader.entity,
             },
             {
                 path: "npcs/:id/gallery",
                 element: <ImageGallery/>,
-                loader: npcLoader,
+                loader: npcLoader.entity,
             },
             {
                 path: "npcs/",
                 element: <NPCList/>,
-                loader: npcListLoader,
+                loader: npcLoader.list,
             },
             {
                 path: "prompt/",
                 element: <Prompt/>,
-                loader: npcDefinitionLoader,
+                loader: npcLoader.definition,
             },
             {
                 path: "locations/:id",
                 element: <LocationComplete/>,
-                loader: locationLoader,
+                loader: locationLoader.entity,
             },
             {
                 path: "locations/:id/gallery",
                 element: <ImageGallery/>,
-                loader: locationLoader,
+                loader: locationLoader.entity,
             },
             {
                 path: "prompt_location/",
                 element: <PromptLocation/>,
-                loader: locationDefinitionLoader,
+                loader: locationLoader.definition,
             },
             {
                 path: "login/",
