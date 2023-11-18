@@ -7,9 +7,60 @@ import {useLoaderData} from "react-router";
 import {useNavigate, useNavigation} from "react-router-dom";
 import LocationCard from "./location/location_card";
 
+
 const EXAMPLES = [
-    'Erstelle eine Bar'
+    'Erstelle eine Bar',
+    'Generiere mir eine geheime Unternehmensforschungsanlage.',
+    'Generiere mir eine hochsichere Bank.',
+    'Generiere mir eine städtische Bar oder ein Nachtclub.',
+    'Generiere mir eine dystopische Slum Region.',
+    'Generiere mir einen illegalen Cyberware-Markt.',
+    'Generiere mir eine verstohlene magische Bibliothek.',
+    'Generiere mir eine futuristische Wohnkomplexanlage.',
+    'Generiere mir ein verlassenes Industriesilo.',
+    'Generiere mir eine Cyberpunk-Gang-Hochburg.',
+    'Generiere mir einen geheimen Untergrundbunker.',
+    'Generiere mir ein von Konzernen kontrolliertes Stadtviertel.',
+    'Generiere mir einen postapokalyptischen Bürgerkriegsschauplatz.',
+    'Generiere mir ein High-Tech-Sicherheitsgefängnis.',
+    'Generiere mir eine versteckte Rebellenbasis.',
+    'Generiere mir einen verfallenen Amüsierungspark.',
+    'Generiere mir eine illegale Straßenrennstrecke.',
+    'Generiere mir ein überlaufenes Flüchtlingscamp.',
+    'Generiere mir eine hochrangige VIP-Residenz.',
+    'Generiere mir eine kontaminierte Strahlungszone.',
+    'Generiere mir einen versteckten Ort für Schwarzmagie-Rituale.',
+    'Generiere mir einen urbanen Dschungel aus technisch hochgerüsteten Bürogebäuden.',
+    'Generiere mir einen provisorischen Cybernetik-Operationssaal.',
+    'Generiere mir einen hochsicheren Datenzentrum.',
+    'Generiere mir einen rauen Hafenbereich.',
+    'Generiere mir eine einsame Bergfestung.',
+    'Generiere mir eine futuristische Einkaufszentrum.',
+    'Generiere mir ein schattiges Spielcasino.',
+    'Generiere mir eine kontrollierte Einwanderungszone.',
+    'Generiere mir eine geheime Raketenstartanlage.',
+    'Generiere mir ein von organisierten Kriminellen kontrolliertes Stadtviertel.',
+    'Generiere mir eine verlassene Fabrik.',
+    'Generiere mir eine futuristische Krankenhausanlage.',
+    'Generiere mir eine verrufene Spielhölle.',
+    'Generiere mir eine Drohnenkampfarena.',
+    'Generiere mir eine umkämpfte Außenpostensiedlung.',
+    'Generiere mir ein Cybernetik-Labor.',
+    'Generiere mir einen Großstadtdschungel.',
+    'Generiere mir eine extraterritoriale Konzern-Enklave.',
+    'Generiere mir einen Matrix-Hotspot.',
+    'Generiere mir einen illegales Waffendepot.',
+    'Generiere mir ein Schmuggelhafen.',
+    'Generiere mir eine Gentech-Forschungseinrichtung.',
+    'Generiere mir eine Kontrollstelle der Lone Star Sicherheitsdienste.',
+    'Generiere mir ein grenzüberschreitendes Nachrichtennetzwerk.',
+    'Generiere mir eine Unterweltsoperation im Schatten der Megakonzerne.',
+    'Generiere mir ein spirituelles Zentrum für erwachte Wesen.',
+    'Generiere mir eine Außenbezirkszone der Metamenschen.',
+    'Generiere mir einen Posten, um illegale BTL-Chips zu handeln.',
+    'Generiere mir ein noirhaftes Shadowrunner Safehouse.'
 ]
+
 
 function random_prompt() {
     return EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)];

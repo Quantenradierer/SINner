@@ -50,7 +50,7 @@ def get_suffix_options(metatyp_gender):
     }.get(
         metatyp_gender,
         "--chaos " + str(random.randint(1, 6) * random.randint(1, 6) + 11),
-    )
+    ) + " --ar 4:5"
 
 
 def special_midjourney_prompt(prompt, seed, metatyp, gender):

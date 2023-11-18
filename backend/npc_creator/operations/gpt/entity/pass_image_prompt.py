@@ -6,17 +6,19 @@ from npc_creator.services.midjourney.pass_prompt import pass_prompt
 
 
 class PassImagePrompt:
-    special_midjourney_prompt = None
+    def special_midjourney_prompt(self):
+        raise NotImplementedError
 
     def __init__(self, generation: ImageGeneration):
         self.generation = generation
         self.entity = self.generation.entity
 
     def generate_entity_image_description(self):
-        result = self.entity.Translate(entity=self.entity).call()
+        entity = self.entity.instance
+        result = entity.Translate(entity=self.entity).call()
 
         if result:
-            self.entity.save()
+            entity.save()
         return result
 
     def call(self) -> Failure:
@@ -33,10 +35,7 @@ class PassImagePrompt:
         prompt = MIDJOURNEY_PROMPT.format(
             image_generator_description=self.generation.description
         )
-        template, prompt = self.special_midjourney_prompt(
-            prompt=prompt, seed=self.generation.id
-        )
-        prompt += " " + config.ADDITIONAL_PROMPT_OPTIONS
+        template, prompt = self.special_midjourney_prompt(prompt=prompt)
 
         if not pass_prompt(prompt):
             return Failure("sending_midjourney_prompt_was_unsuccessful")

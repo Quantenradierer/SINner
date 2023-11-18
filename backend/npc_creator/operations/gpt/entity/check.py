@@ -3,7 +3,7 @@ from npc_creator.operations.gpt.helper import entity_prompt
 from npc_creator.operations.return_types import Failure
 
 
-class Check:
+class Check(GptInterface):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.system_prompt = (
@@ -20,7 +20,7 @@ class Check:
         return self.kwargs["entity"]
 
     def prompt(self):
-        return [self.user_prompt] + entity_prompt(self.entity)
+        return entity_prompt(self.entity)
 
     def interpret_result(self, success):
         if (

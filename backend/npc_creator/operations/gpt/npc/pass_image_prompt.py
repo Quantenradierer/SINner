@@ -4,13 +4,17 @@ from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.gpt import entity
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.services.midjourney.pass_prompt import pass_prompt
-from npc_creator.operations.gpt.entity.special_midjourney_prompt import (
-    special_midjourney_prompt,
-)
+from .special_midjourney_prompt import special_midjourney_prompt
 
 
 class PassImagePrompt(entity.PassImagePrompt):
-    special_midjourney_prompt = special_midjourney_prompt
+    def special_midjourney_prompt(self, prompt):
+        return special_midjourney_prompt(
+            prompt=prompt,
+            seed=self.generation.id,
+            metatyp=self.entity.primary_values.get("Metatyp", ""),
+            gender=self.entity.primary_values.get("Geschlecht", ""),
+        )
 
     def call(self) -> Failure:
         """
@@ -26,13 +30,7 @@ class PassImagePrompt(entity.PassImagePrompt):
         prompt = MIDJOURNEY_PROMPT.format(
             image_generator_description=self.generation.description
         )
-        template, prompt = self.special_midjourney_prompt(
-            prompt,
-            seed=self.generation.id,
-            metatyp=self.entity.primary_values.get("Metatyp", ""),
-            gender=self.entity.primary_values.get("Geschlecht", ""),
-        )
-        prompt += " " + config.ADDITIONAL_PROMPT_OPTIONS
+        template, prompt = self.special_midjourney_prompt(prompt)
 
         if not pass_prompt(prompt):
             return Failure("sending_midjourney_prompt_was_unsuccessful")

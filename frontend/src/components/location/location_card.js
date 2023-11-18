@@ -16,7 +16,7 @@ class LocationCard extends React.Component {
         let state_label = ''
         let activeImage = active_image(this.props.entity.image_objects) || {}
 
-        const relevantAttributes = ['Name', 'Typ', 'Aussehen', 'Stadtteil/Zone', 'Zugehörige Gruppe/Corp/Fraktion', 'Besonderheiten', 'Diverse Hinweise', 'Verfügbarkeit von Sicherheitssystemen', 'Aktuelle Aktionen/Events', 'Gerüchte und Geschichten über die Location']
+        const relevantAttributes = ['Typ', 'Aussehen', 'Stadtteil/Zone', 'Zugehörige Gruppe/Corp/Fraktion', 'Besonderheiten', 'Diverse Hinweise', 'Verfügbarkeit von Sicherheitssystemen', 'Aktuelle Aktionen/Events', 'Gerüchte und Geschichten über die Location']
         return (
             <div>
                 {state_label}
@@ -27,7 +27,7 @@ class LocationCard extends React.Component {
                         alt: this.props.entity.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}
-                    title={<div><EditableText style={{width: '630px'}}
+                    title={<div><EditableText style={{width: '910px'}}
                                           attribute='Name'
                                           entity={this.props.entity}
                                           approxLineSize={58}
@@ -43,7 +43,7 @@ class LocationCard extends React.Component {
                           <AttributeList listItemWidth={130}
                                        entity={this.props.entity}
                                        attributes={relevantAttributes}
-                                       approxLineSize={58}
+                                       approxLineSize={70}
                                        editable={this.props.editable}
                                        editableDisabled={this.props.editableDisabled}
                                        check={this.props.check}
