@@ -20,5 +20,5 @@ class BaseIntegrationTest(TestCase):
             self.mock_sqlite_file(mock_file)
             # Continue with the actual test here
         """
-        mock_file.return_value = 'mocked_file.sqlite'
+        mock_file.return_value = "mocked_file.sqlite"
         self.addCleanup(mock_file.stopall)

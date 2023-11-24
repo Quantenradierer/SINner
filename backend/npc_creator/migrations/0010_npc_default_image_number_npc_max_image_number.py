@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0009_panelimage'),
+        ("npc_creator", "0009_panelimage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='npc',
-            name='default_image_number',
+            model_name="npc",
+            name="default_image_number",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='npc',
-            name='max_image_number',
+            model_name="npc",
+            name="max_image_number",
             field=models.IntegerField(default=0),
         ),
     ]

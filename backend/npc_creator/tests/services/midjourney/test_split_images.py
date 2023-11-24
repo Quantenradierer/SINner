@@ -8,7 +8,6 @@ from npc_creator.services.midjourney.split_images import split_image
 
 
 class TestSplitImage(unittest.TestCase):
-
     def setUp(self):
         # Create a test output directory.
         self.tempdir = tempfile.TemporaryDirectory()

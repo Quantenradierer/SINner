@@ -5,30 +5,50 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Npc',
+            name="Npc",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user_prompt', models.CharField(max_length=255)),
-                ('image_generator_description', models.TextField()),
-                ('image_url', models.CharField(max_length=255)),
-                ('image_generator_state', models.CharField(max_length=20)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("user_prompt", models.CharField(max_length=255)),
+                ("image_generator_description", models.TextField()),
+                ("image_url", models.CharField(max_length=255)),
+                ("image_generator_state", models.CharField(max_length=20)),
             ],
         ),
         migrations.CreateModel(
-            name='Attribute',
+            name="Attribute",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('key', models.TextField()),
-                ('value', models.TextField()),
-                ('npc', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='npc_creator.npc')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("key", models.TextField()),
+                ("value", models.TextField()),
+                (
+                    "npc",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="npc_creator.npc",
+                    ),
+                ),
             ],
         ),
     ]

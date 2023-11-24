@@ -5,24 +5,31 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0026_migrate_default_image'),
+        ("npc_creator", "0026_migrate_default_image"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='image',
-            name='template',
+            model_name="image",
+            name="template",
         ),
         migrations.AddField(
-            model_name='image',
-            name='generation',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='npc_creator.imagegeneration'),
+            model_name="image",
+            name="generation",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="npc_creator.imagegeneration",
+            ),
         ),
         migrations.AddField(
-            model_name='imagegeneration',
-            name='template',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='npc_creator.templateimage'),
+            model_name="imagegeneration",
+            name="template",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="npc_creator.templateimage",
+            ),
         ),
     ]

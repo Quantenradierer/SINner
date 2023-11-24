@@ -4,18 +4,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0004_alter_npc_image_generator_state'),
+        ("npc_creator", "0004_alter_npc_image_generator_state"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ExampleImage',
+            name="ExampleImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('keyword', models.CharField(max_length=128)),
-                ('url', models.CharField(max_length=512)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("keyword", models.CharField(max_length=128)),
+                ("url", models.CharField(max_length=512)),
             ],
         ),
     ]

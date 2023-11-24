@@ -5,24 +5,25 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0020_image'),
+        ("npc_creator", "0020_image"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='image',
-            name='name',
+            model_name="image",
+            name="name",
         ),
         migrations.AlterField(
-            model_name='image',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="image",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='templateimage',
-            name='score',
+            model_name="templateimage",
+            name="score",
             field=models.IntegerField(default=100),
         ),
     ]

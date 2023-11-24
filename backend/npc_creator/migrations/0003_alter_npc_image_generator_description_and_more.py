@@ -4,30 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('npc_creator', '0002_alter_attribute_key_alter_attribute_value'),
+        ("npc_creator", "0002_alter_attribute_key_alter_attribute_value"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='npc',
-            name='image_generator_description',
+            model_name="npc",
+            name="image_generator_description",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='npc',
-            name='image_generator_state',
+            model_name="npc",
+            name="image_generator_state",
             field=models.CharField(blank=True, max_length=20),
         ),
         migrations.AlterField(
-            model_name='npc',
-            name='image_url',
+            model_name="npc",
+            name="image_url",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AlterField(
-            model_name='npc',
-            name='user_prompt',
+            model_name="npc",
+            name="user_prompt",
             field=models.CharField(blank=True, max_length=255),
         ),
     ]

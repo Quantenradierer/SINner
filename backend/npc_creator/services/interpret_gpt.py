@@ -5,21 +5,21 @@ def find_correct_key(used_attribute_keys: list[str], key: str):
     But "Stärke" shouldn't match with "Stärken".
     """
     for used_key in used_attribute_keys:
-        if used_key.split(' ')[0].upper() == key.upper():
+        if used_key.split(" ")[0].upper() == key.upper():
             return used_key
     return key
 
 
 def dict_from_text(used_attribute_keys: list[str], text: str):
-    lines = text.split('\n')
+    lines = text.split("\n")
 
     attributes = {}
     for line in lines:
-        if ':' not in line:
+        if ":" not in line:
             continue
 
-        splitted = line.split(':')
-        key, value = splitted[0], ''.join(splitted[1:])
+        splitted = line.split(":")
+        key, value = splitted[0], "".join(splitted[1:])
         key = key.strip()
 
         if key not in used_attribute_keys:

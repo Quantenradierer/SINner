@@ -6,14 +6,23 @@ import api from "../axios";
 
 
 const EditableText = props => {
-    const [value, setValue] = useState( props.npc.attributes[props.attribute] || '');
+    let attributes = props.entity.values[props.attribute]
+    let attribute = ''
+    if (attributes != undefined && attributes.length > 0) {
+        attribute = attributes[0]
+    } else {
+        attribute = ''
+    }
+
+    let definition = props.entity.attribute_definition[props.attribute]
+    const [value, setValue] = useState( attribute || '');
 
     useEffect(() => {
-        setValue(props.npc.attributes[props.attribute] || '');
-    }, [props.npc, props.attribute]);
+        setValue(attribute || '');
+    }, [props.entity, props.attribute]);
 
     const handleChange = (event) => {
-        props.npc.attributes[props.attribute] = event.target.value
+        props.entity.values[props.attribute] = event.target.value
         setValue(event.target.value);
     };
 
@@ -41,8 +50,11 @@ const EditableText = props => {
         let style = { padding: '2px', height: 4 + rows * 32 + 'px', backgroundColor: backgroundColor };
 
         Object.assign(style, props.style);
-
-        return (<textarea style={style} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} />);
+        if (definition.length == 0) {
+            return (<textarea style={style} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} />);
+        } else {
+            return (<input type={"text"} maxLength={definition.length} style={style} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} />);
+        }
     }
 }
 

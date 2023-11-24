@@ -1,12 +1,14 @@
 import React from "react";
-import {Button, FrameCorners, FrameLines, FramePentagon, Text} from "@arwes/core";
+import {Button, FrameCorners, FrameLines, FramePentagon, LoadingBars, Text} from "@arwes/core";
 import {Animator} from "@arwes/animation";
 import api from "../axios";
 import i18next from "../i18n";
-import NPCComplete from "./npc_complete";
-import NPCCard from "./npc_card";
-import NPCPrivate from "./npc_private";
-import NPCSkills from "./npc_skills";
+import NPCComplete from "./npc/npc_complete";
+import NPCCard from "./npc/npc_card";
+import NPCPrivate from "./npc/npc_private";
+import NPCSkills from "./npc/npc_skills";
+import {useLoaderData} from "react-router";
+import {useNavigate, useNavigation} from "react-router-dom";
 
 const EXAMPLES = [
     'Erstelle einen Werkstattbesitzer',
@@ -119,19 +121,22 @@ function random_prompt() {
     return EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)];
 }
 
-class Prompt extends React.Component {
+class PromptWrapped extends React.Component {
     constructor(props) {
         super(props)
         let url = new URL(window.location.href)
         const params = new URLSearchParams(url.search)
         let show = true
+
+        let entity = props.entity
+        entity["image_objects"] = [{id: 0, score: 0, name: 'creation_form.png'}]
         this.state = {
             show: show,
             prompt: random_prompt(),
             loadingState: 'prompt',
             activate: true,
             error: null,
-            npc: {attributes: {}, image_objects: [{id: 0, score: 0, name: 'creation_form.png'}], default_image_number: 0},
+            entity: entity,
             check: false
         }
 
@@ -149,11 +154,11 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'});
 
-        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, npc: this.state.npc}, {timeout: 240000} )
+        api.post('/api/npc_creator/npcs/prompt/', {prompt: this.state.prompt, values: this.state.entity.primary_values}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    response.data.npc.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
-                    self.setState({ 'npc': response.data.npc })
+                    response.data.entity.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
+                    self.setState({ 'entity': response.data.entity })
                 } else {
                     self.setState({ 'error': i18next.t(response.data.error) });
                     setTimeout(function(){
@@ -177,10 +182,10 @@ class Prompt extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        api.post('/api/npc_creator/npcs/save/', {npc: this.state.npc})
+        api.post('/api/npc_creator/npcs/save/', {values: this.state.entity.primary_values})
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    window.location.href = '/npcs/' + response.data.npc.id
+                    window.location.href = '/npcs/' + response.data.entity.id
                 } else {
                     if (response.data.error === 'custom') {
                         self.setState({'error': 'GPT: ' + response.data.message})
@@ -189,16 +194,12 @@ class Prompt extends React.Component {
                                             'check': true})
                     }
                     window.scrollTo(0, 0)
-                    setTimeout(function(){
-                        self.setState({'error': null })
-                    },15000);
+
                 }
             })
             .catch(function (error) {
                 self.setState({'error': i18next.t('prompt_failed_connection')})
-                setTimeout(function(){
-                    self.setState({'error': null })
-                },15000);
+
             })
             .finally(function () {
                 self.setState({loadingState: 'prompt'})
@@ -228,12 +229,13 @@ class Prompt extends React.Component {
         } else if (this.state.loadingState === 'prompt') {
             prompt = <div key='prompt'>
                 <FrameLines style={{width: '100%'}}>
+                    <ul style={{margin: 0}}>
+                        <li className='fine-li'><Text>Beschreibe deinen NPC</Text></li>
+                        <li className='fine-li'><Text>Klick auf "Ausfüllen" um die Werte von GPT ausfüllen zu lassen</Text></li>
+                        <li className='fine-li'><Text>Kontrolliere und Korrigiere die Werte</Text></li>
+                        <li className='fine-li'><Text>Speicher und lass ein Bild erzeugen</Text></li>
+                    </ul>
                     <form onSubmit={this.handleClick}>
-                        <Text> Beschreibe deinen NPC. Gib keine persönlichen Informationen
-                            von dir an, da diese öffentlich zugänglich sein werden!
-
-                            <br/>Das Bild wird erst nach dem Speichern des NPCs erzeugt.
-                        </Text>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
                                    type="text"
@@ -276,14 +278,29 @@ class Prompt extends React.Component {
                 </Button>
             </div>
             <div>
-                <NPCCard npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
-                <NPCPrivate npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
-                <NPCSkills npc={this.state.npc} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCCard entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCPrivate entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                <NPCSkills entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
             </div>
 
 
         </div>)
     }
+}
+
+
+
+
+const Prompt = props => {
+  const default_entity = useLoaderData()
+  const navigate = useNavigate()
+  const { state } = useNavigation()
+
+  if (state === 'loading') {
+      return <LoadingBars></LoadingBars>
+  } else {
+      return <PromptWrapped entity={default_entity} {...props} />
+  }
 }
 
 export default Prompt;

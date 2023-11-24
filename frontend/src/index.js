@@ -4,23 +4,21 @@ import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
 import Prompt from "./components/prompt";
-import NPCComplete from "./components/npc_complete";
+import NPCComplete from "./components/npc/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
-import ReloadButton from "./components/reload_button";
-import NPCList from "./components/npc_list";
+import NPCList from "./components/npc/npc_list";
 import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavigate} from "react-router-dom";
-import npcLoader from "./loader/npc_loader";
-import {npcListLoader} from "./loader/npc_list_loader";
 import Impressum from "./components/impressum";
 import Header from "./components/header";
-import ErrorBoundary from "./components/error_site";
 import ErrorPage from "./components/error_site";
 import Login from "./components/login";
 import Logout from "./components/logout";
 import ImageGallery from "./components/image_gallery";
-// For the font-family to work, you would have to setup the Google Fonts link:
-// <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" />
+import PromptLocation from "./components/prompt_location";
+import LocationComplete from "./components/location/location_complete";
+import EntityLoader from "./loader/entity_loader";
+import LocationList from "./components/location/location_list";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -70,7 +68,9 @@ const Root = props => {
     </div>)
 }
 
-
+const npcLoader = new EntityLoader('npcs')
+const locationLoader = new EntityLoader('locations')
+const critterLoader = new EntityLoader('critters')
 
 const router = createBrowserRouter([
     {
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <NPCList/>,
-                loader: npcListLoader,
+                loader: npcLoader.list,
             },
             {
                 path: "impressum",
@@ -90,21 +90,42 @@ const router = createBrowserRouter([
             {
                 path: "npcs/:id",
                 element: <NPCComplete/>,
-                loader: npcLoader,
+                loader: npcLoader.entity,
             },
             {
                 path: "npcs/:id/gallery",
-                element: <ImageGallery/>,
-                loader: npcLoader,
+                element: <ImageGallery factor={{'x': 4, 'y': 5}}  attribute={'Detailliertes Aussehen'} entity_type={'npcs'}/>,
+                loader: npcLoader.entity,
             },
             {
                 path: "npcs/",
                 element: <NPCList/>,
-                loader: npcListLoader,
+                loader: npcLoader.list,
             },
             {
-                path: "prompt/",
-                element: <Prompt/>
+                path: "npcs_prompt/",
+                element: <Prompt/>,
+                loader: npcLoader.definition,
+            },
+            {
+                path: "locations/:id",
+                element: <LocationComplete/>,
+                loader: locationLoader.entity,
+            },
+            {
+                path: "locations/:id/gallery",
+                element: <ImageGallery factor={{'x': 7, 'y': 4}} attribute={'Aussehen'} entity_type={'locations'}/>,
+                loader: locationLoader.entity,
+            },
+            {
+                path: "locations/",
+                element: <LocationList/>,
+                loader: locationLoader.list,
+            },
+            {
+                path: "locations_prompt/",
+                element: <PromptLocation/>,
+                loader: locationLoader.definition,
             },
             {
                 path: "login/",

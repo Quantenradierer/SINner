@@ -2,7 +2,7 @@ import os
 import uuid
 
 from django.db import models
-from npc_creator.models import TemplateImage, Npc
+from npc_creator.models import TemplateImage, Entity
 from npc_creator.models.image_generation import ImageGeneration
 
 
@@ -13,8 +13,10 @@ class Image(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    generation = models.ForeignKey(ImageGeneration, null=True, on_delete=models.SET_NULL)
-    npc = models.ForeignKey(Npc, null=True, on_delete=models.SET_NULL)
+    generation = models.ForeignKey(
+        ImageGeneration, null=True, on_delete=models.SET_NULL
+    )
+    entity = models.ForeignKey(Entity, null=True, on_delete=models.SET_NULL)
 
     @property
     def template(self):

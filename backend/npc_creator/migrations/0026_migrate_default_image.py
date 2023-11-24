@@ -4,31 +4,18 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 from npc_creator import config
-from npc_creator.models import Npc
+from npc_creator.models import Entity
 import os
 
 from npc_creator.models.image import Image
 
 
-def image_score(*args, **kwargs):
-    npcs = Npc.objects.all()
-    for npc in npcs:
-        try:
-            default_image_name = npc.images[npc.default_image_number]
-        except IndexError:
-            continue
-        result = npc.image_set.filter(name=default_image_name)
-        if result:
-            image_object = result[0]
-            image_object.score += 100
-            image_object.save()
 
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('npc_creator', '0025_migrate_image_list_to_image_model'),
+        ("npc_creator", "0025_migrate_image_list_to_image_model"),
     ]
 
     operations = [
-       migrations.RunPython(image_score),
     ]

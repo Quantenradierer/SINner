@@ -44,10 +44,14 @@ class ImageGalleryWrapped extends React.Component {
     }
 
     render() {
+        let sizeX = 48*this.props.factor.x;
+        let sizeY = 48*this.props.factor.y
+
         const items = [];
         if (this.state.npc === undefined) {
             return (<div/>)
         }
+
 
         let activeImage = active_image(this.state.npc.image_objects)
         for (let image of this.state.npc.image_objects) {
@@ -61,17 +65,16 @@ class ImageGalleryWrapped extends React.Component {
             let buttons = ''
             if (is_logged_in()) {
                 buttons = <div key='scoring'>
-                    <div key='upvote' className='votes' style={{position: 'absolute', marginLeft: 92 * 2 - 25, marginTop: 120 * 2 - 70}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.upvote(event, image.id)}>👍</a></div>
-                    <div key='downvote' className='votes' style={{position: 'absolute', marginLeft: 92 * 2 - 25, marginTop: 120 * 2 - 30}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.downvote(event, image.id)}>👎</a></div>
+                    <div key='upvote' className='votes' style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 70}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.upvote(event, image.id)}>👍</a></div>
+                    <div key='downvote' className='votes' style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 30}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.downvote(event, image.id)}>👎</a></div>
                 </div>
             }
-                    console.log(this.state.npc.image_objects)
 
             items.push(
                 <div style={{display: 'flex'}}>
                     {buttons}
-                    <img style={{margin: 15 - addSize, width: 92 * 2 + addSize * 2, minHeight: 120 * 2 + addSize * 2, boxShadow: glowEffect}}
-                         src={image_path(image.name)}/>
+                    <img style={{margin: 15 - addSize, width: sizeX + addSize * 2, minHeight: sizeY + addSize * 2, boxShadow: glowEffect}}
+                         src={image_path(this.props.entity_type, image.name)}/>
                 </div>)
         }
 
@@ -79,10 +82,10 @@ class ImageGalleryWrapped extends React.Component {
 
             <FramePentagon>
                 <Text style={{margin: '10px 0px 20px 0px'}}>
-                    <b>Detailliertes Aussehen:</b> {this.state.npc.attributes['Detailliertes Aussehen']}
+                    <b>Aussehen:</b> {this.state.npc.primary_values[this.props.attribute]}
                 </Text>
 
-                <div style={{flexWrap: 'wrap', display: 'flex'}}>
+                <div style={{flexWrap: 'wrap', display: 'flex', justifyContent: 'space-evenly'}}>
                     {items}
                 </div>
                 <div className={is_logged_in()? '': 'hidden'}>

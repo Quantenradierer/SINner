@@ -15,7 +15,11 @@ def banned_words_regex() -> List[str]:
     """
     with open(config.BANNED_WORD_FILE) as file:
         words = file.readlines()
-    return [re.compile(f'(?i)[.,\-"\' ]{word.strip().lower()}[.,\-"\' ]') for word in words if word.strip()]
+    return [
+        re.compile(f"(?i)[.,\-\"' ]{word.strip().lower()}[.,\-\"' ]")
+        for word in words
+        if word.strip()
+    ]
 
 
 def remove_banned_words(text: str) -> bool:
@@ -28,11 +32,11 @@ def remove_banned_words(text: str) -> bool:
     Returns:
         bool: True if the text contains a banned word, False otherwise.
     """
-    text = ' ' + text + ' '
+    text = " " + text + " "
     for regex in banned_words_regex():
         match = regex.search(text)
         if match:
-            text = text[:match.span()[0] + 1] + text[match.span()[1] - 1:]
+            text = text[: match.span()[0] + 1] + text[match.span()[1] - 1 :]
 
-    text = text.replace('  ', ' ')
+    text = text.replace("  ", " ")
     return text.strip()

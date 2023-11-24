@@ -6,35 +6,35 @@ import openai
 import requests
 
 
-logging.basicConfig(filename='schattenakte.log')
+logging.basicConfig(filename="schattenakte.log")
 logging.getLogger().setLevel(logging.DEBUG)
 
 """
 file for the database
 """
-SQLITE_FILE = 'data/npcs.sqlite'
+SQLITE_FILE = "data/npcs.sqlite"
 
 """
 directory for npc images
 """
-PUBLIC_NPC_IMAGE_PATH = os.getenv('PUBLIC_NPC_IMAGE_PATH')
+PUBLIC_ENTITY_IMAGE_PATH = os.getenv("PUBLIC_IMAGE_PATH")
 
 """
 file for 
 """
-BANNED_WORD_FILE = 'data/midjourney_banned_words.txt'
+BANNED_WORD_FILE = "data/midjourney_banned_words.txt"
 
 
 """
 The images from midjourney will be saved temporary in this directory
 """
-MIDJOURNEY_TEMP_PATH = 'data/midjourney'
+MIDJOURNEY_TEMP_PATH = "data/midjourney"
 
 """
 the prompt for midjourney
 """
-MIDJOURNEY_PROMPT = 'In Shadowrun/Cyberpunk: {image_generator_description}'
-ADDITIONAL_PROMPT_OPTIONS = '--ar 4:5'
+MIDJOURNEY_PROMPT = "In Shadowrun/Cyberpunk: {image_generator_description}"
+
 
 """
 how often it shall be tried. The time between every try it calculated with '40 + pow(3, i)'
@@ -46,23 +46,12 @@ MIDJOURNEY_RETRIES_BEFORE_FAILING = 8
 
 # noinspection PyPep8
 
-"""
-All relevant attributes, with default value. The default value can be overwritten by existing values of a npc.
-"""
-RELEVANT_ATTRIBUTES = ['Beruf', 'Metatyp', 'Ethnizität', 'Geschlecht', 'Alter', 'Catchphrase', 'Detailliertes Aussehen', 'Name', 'Hintergrundgeschichte',  'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele', 'Stärken', 'Schwächen', 'Fertigkeiten', 'Ausrüstung', 'Hobbys und Interessen', 'Eigenarten', 'Familie', 'Kontakte', 'Lootbare Gegenstände', 'Geheimnis', 'Konstitution (von 1-6)', 'Geschicklichkeit (von 1-6)', 'Reaktion (von 1-6)', 'Stärke (von 1-6)', 'Willenskraft (von 1-6)', 'Logik (von 1-6)', 'Intuition (von 1-6)', 'Charisma (von 1-6)', 'Glück (von 1-6)', 'Magie (von 0-6)', 'Resonanz (von 0-6)']
 
+if "test" in sys.argv:
 
-"""
-configuration for openai
-"""
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
-
-if 'test' in sys.argv:
     def mock(*args, **kwargs):
-        raise Exception('if this has raised in your test, your mocks do not work.')
+        raise Exception("if this has raised in your test, your mocks do not work.")
 
     openai.create = mock
     requests.get = mock
     requests.post = mock
-
