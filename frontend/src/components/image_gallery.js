@@ -65,7 +65,6 @@ class ImageGalleryWrapped extends React.Component {
                     <div key='downvote' className='votes' style={{position: 'absolute', marginLeft: 92 * 2 - 25, marginTop: 120 * 2 - 30}}><a href="" style={{fontSize: '32px'}} onClick={(event) => this.downvote(event, image.id)}>👎</a></div>
                 </div>
             }
-                    console.log(this.state.npc.image_objects)
 
             items.push(
                 <div style={{display: 'flex'}}>

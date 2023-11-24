@@ -7,9 +7,11 @@ class Translate(entity.Translate):
         super().__init__(**kwargs)
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """
-- Übersetze ins Englische
-- Forme die Sätze entsprechend um, das der Midjourney Bildgenerator bessere Bilder erzeugt
-- Antworte nur mit der Übersetzung
+- translate the prompt into english
+- improve the given prompt for "Mid Journey"
+- add humans or even crowd of humans into the refined prompt if they fit into the scene
+- answer only with the refined version
+- end the refined version with :: then add the type of location at end again ending with ::
 """
 
     def prompt(self):

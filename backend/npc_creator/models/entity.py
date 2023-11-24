@@ -46,6 +46,10 @@ class Entity(models.Model):
             return self.image_set
         return self.__class__.objects.none()
 
+    @property
+    def values(self):
+        return self.attributes
+
     def is_complete(self):
         if len([value for value in self.primary_values.values() if value]) < len(
             self.ATTRIBUTE_DEFINITION
@@ -73,9 +77,10 @@ class Entity(models.Model):
     def add_values(self, new_values):
         for key, values in new_values.items():
             if key not in self.attribute_names:
-                raise ValueError(
-                    f"key {key} not in {self.__class__} ATTRIBUTE_DEFINITIONS"
-                )
+                continue
+                # raise ValueError(
+                #    f"key {key} not in {self.__class__} ATTRIBUTE_DEFINITIONS"
+                # )
 
             self.attributes[key] = self.attributes.get(key, list())
             if type(values) == str:

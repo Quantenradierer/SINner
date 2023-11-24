@@ -32,22 +32,13 @@ class Location(Entity):
             additional_data="z.B. Bar, Club, Unternehmen, Wohnhaus, Untergrund, etc.",
         ),
         AttributeDefinition(
-            name="Stadtteil/Zone", length=0, reroll=True, additional_data=""
-        ),
-        AttributeDefinition(
-            name="Zugehörige Gruppe/Corp/Fraktion",
-            length=0,
-            reroll=True,
-            additional_data="z.B. Shadowrunners, Knight Errant, Ares, Evo, etc.",
-        ),
-        AttributeDefinition(
             name="Besonderheiten",
             length=0,
             reroll=True,
             additional_data="magische Aktivität, High Tech Ausstattung, Kriminelle Aktivität",
         ),
         AttributeDefinition(
-            name="Diverse Hinweise",
+            name="Hinweise",
             length=0,
             reroll=True,
             additional_data="z.B. Versteckte Passagen, Hinterhalte, häufige Patrouillen",
@@ -69,6 +60,12 @@ class Location(Entity):
             length=0,
             reroll=True,
             additional_data="z.B. Konzerte, Happy Hours, Verkaufsaktionen, etc.",
+        ),
+        AttributeDefinition(
+            name="Bewertungen",
+            length=0,
+            reroll=True,
+            additional_data="",
         ),
     ]
     Fill = location.Fill

@@ -41,6 +41,7 @@ class EntitySerializer(serializers.ModelSerializer):
             "image_generator_description",
             "image_objects",
             "attribute_definition",
+            "values",
         ]
 
 

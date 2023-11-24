@@ -1,5 +1,5 @@
 import React from "react";
-import {Blockquote, Button, Card, FrameLines, List, Table, Text} from "@arwes/core";
+import {Blockquote, Button, Card, FrameLines, FramePentagon, List, Table, Text} from "@arwes/core";
 import image_path from "../../image_path";
 import is_logged_in from "../../is_loggin_in";
 import {Link} from "react-router-dom";
@@ -9,6 +9,7 @@ import EditableText from "../editable_text";
 import AttributeList from "../attribute_list";
 import ImageGallery from "../image_gallery";
 import active_image from "../../active_image";
+import Comment from "./comment";
 
 
 class LocationCard extends React.Component {
@@ -16,7 +17,8 @@ class LocationCard extends React.Component {
         let state_label = ''
         let activeImage = active_image(this.props.entity.image_objects) || {}
 
-        const relevantAttributes = ['Typ', 'Aussehen', 'Stadtteil/Zone', 'Zugehörige Gruppe/Corp/Fraktion', 'Besonderheiten', 'Diverse Hinweise', 'Verfügbarkeit von Sicherheitssystemen', 'Aktuelle Aktionen/Events', 'Gerüchte und Geschichten über die Location']
+        const relevantAttributes = ['Typ', 'Aussehen', 'Besonderheiten', 'Hinweise', 'Verfügbarkeit von Sicherheitssystemen', 'Aktuelle Aktionen/Events', 'Gerüchte und Geschichten über die Location']
+
         return (
             <div>
                 {state_label}
@@ -43,7 +45,7 @@ class LocationCard extends React.Component {
                           <AttributeList listItemWidth={130}
                                        entity={this.props.entity}
                                        attributes={relevantAttributes}
-                                       approxLineSize={70}
+                                       approxLineSize={90}
                                        editable={this.props.editable}
                                        editableDisabled={this.props.editableDisabled}
                                        check={this.props.check}

@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                     ("LOCATION", "LOCATION"),
                     ("CRITTER", "CRITTER"),
                 ],
-                default="NPC",
+                default="Npc",
                 max_length=20,
             ),
             preserve_default=False,

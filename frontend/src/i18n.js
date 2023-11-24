@@ -12,6 +12,12 @@ const resources = {
             gpt_raised_an_error: 'GPT hat einen Fehler geworfen. Bitte versuche es später erneut.',
             npc_incomplete: 'Der NPC ist unvollständig. Bitte fülle alle Felder aus bevor du speicherst.',
             image_generation_in_progress: 'Das Bild wird noch erzeugt. Bitte aktualisiere diese Seite in ein paar Minuten erneut.',
+
+            menu_npcs: 'NPCs',
+            menu_locations: 'Locations',
+            menu_critters: 'Critters',
+            menu_vehicles: 'Vehicles',
+
             attribute_metatyp: 'Metatyp',
             attribute_beruf: 'Beruf',
             attribute_ethnizität: 'Ethnizität',
@@ -44,7 +50,7 @@ const resources = {
             attribute_stadtteil_zone: 'Gebiet',
             attribute_zugehörige_gruppe_corp_fraktion: 'Zugehörigkeit',
             attribute_besonderheiten: 'Besonderheiten',
-            attribute_diverse_hinweise: 'Hinweise',
+            attribute_hinweise: 'Hinweise',
             attribute_verfügbarkeit_von_sicherheitssystemen: 'Sicherheit',
             attribute_aktuelle_aktionen_events: 'Aktionen',
             attribute_gerüchte_und_geschichten_über_die_location: 'Gerüchte'

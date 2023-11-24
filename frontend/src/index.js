@@ -18,6 +18,7 @@ import ImageGallery from "./components/image_gallery";
 import PromptLocation from "./components/prompt_location";
 import LocationComplete from "./components/location/location_complete";
 import EntityLoader from "./loader/entity_loader";
+import LocationList from "./components/location/location_list";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -102,7 +103,7 @@ const router = createBrowserRouter([
                 loader: npcLoader.list,
             },
             {
-                path: "prompt/",
+                path: "npcs_prompt/",
                 element: <Prompt/>,
                 loader: npcLoader.definition,
             },
@@ -117,7 +118,12 @@ const router = createBrowserRouter([
                 loader: locationLoader.entity,
             },
             {
-                path: "prompt_location/",
+                path: "locations/",
+                element: <LocationList/>,
+                loader: locationLoader.list,
+            },
+            {
+                path: "locations_prompt/",
                 element: <PromptLocation/>,
                 loader: locationLoader.definition,
             },

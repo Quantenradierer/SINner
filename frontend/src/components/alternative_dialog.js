@@ -15,8 +15,6 @@ class AlternativeDialog extends React.Component {
     }
 
     retrieveAlternatives = async () => {
-        console.log(this.props.entity.id)
-
         this.setState({state: 'loading', alternatives: []});
 
         try {

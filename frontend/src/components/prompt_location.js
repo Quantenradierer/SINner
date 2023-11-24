@@ -1,64 +1,85 @@
 import React from "react";
-import {Button, FrameCorners, FrameLines, FramePentagon, LoadingBars, Text} from "@arwes/core";
+import {Button, FrameCorners, FrameLines, FramePentagon, List, LoadingBars, Text} from "@arwes/core";
 import {Animator} from "@arwes/animation";
 import api from "../axios";
 import i18next from "../i18n";
 import {useLoaderData} from "react-router";
 import {useNavigate, useNavigation} from "react-router-dom";
 import LocationCard from "./location/location_card";
+import CommentCard from "./location/comment_card";
+import Comment from "./location/comment";
+import PromptInput from "./prompt_input";
+import LoadingBar from "./loading_bar";
+import {random} from "animejs";
 
 
 const EXAMPLES = [
-    'Erstelle eine Bar',
-    'Generiere mir eine geheime Unternehmensforschungsanlage.',
-    'Generiere mir eine hochsichere Bank.',
-    'Generiere mir eine städtische Bar oder ein Nachtclub.',
-    'Generiere mir eine dystopische Slum Region.',
-    'Generiere mir einen illegalen Cyberware-Markt.',
-    'Generiere mir eine verstohlene magische Bibliothek.',
-    'Generiere mir eine futuristische Wohnkomplexanlage.',
-    'Generiere mir ein verlassenes Industriesilo.',
-    'Generiere mir eine Cyberpunk-Gang-Hochburg.',
-    'Generiere mir einen geheimen Untergrundbunker.',
-    'Generiere mir ein von Konzernen kontrolliertes Stadtviertel.',
-    'Generiere mir einen postapokalyptischen Bürgerkriegsschauplatz.',
-    'Generiere mir ein High-Tech-Sicherheitsgefängnis.',
-    'Generiere mir eine versteckte Rebellenbasis.',
-    'Generiere mir einen verfallenen Amüsierungspark.',
-    'Generiere mir eine illegale Straßenrennstrecke.',
-    'Generiere mir ein überlaufenes Flüchtlingscamp.',
-    'Generiere mir eine hochrangige VIP-Residenz.',
-    'Generiere mir eine kontaminierte Strahlungszone.',
-    'Generiere mir einen versteckten Ort für Schwarzmagie-Rituale.',
-    'Generiere mir einen urbanen Dschungel aus technisch hochgerüsteten Bürogebäuden.',
-    'Generiere mir einen provisorischen Cybernetik-Operationssaal.',
-    'Generiere mir einen hochsicheren Datenzentrum.',
-    'Generiere mir einen rauen Hafenbereich.',
-    'Generiere mir eine einsame Bergfestung.',
-    'Generiere mir eine futuristische Einkaufszentrum.',
-    'Generiere mir ein schattiges Spielcasino.',
-    'Generiere mir eine kontrollierte Einwanderungszone.',
-    'Generiere mir eine geheime Raketenstartanlage.',
-    'Generiere mir ein von organisierten Kriminellen kontrolliertes Stadtviertel.',
-    'Generiere mir eine verlassene Fabrik.',
-    'Generiere mir eine futuristische Krankenhausanlage.',
-    'Generiere mir eine verrufene Spielhölle.',
-    'Generiere mir eine Drohnenkampfarena.',
-    'Generiere mir eine umkämpfte Außenpostensiedlung.',
-    'Generiere mir ein Cybernetik-Labor.',
-    'Generiere mir einen Großstadtdschungel.',
-    'Generiere mir eine extraterritoriale Konzern-Enklave.',
-    'Generiere mir einen Matrix-Hotspot.',
-    'Generiere mir einen illegales Waffendepot.',
-    'Generiere mir ein Schmuggelhafen.',
-    'Generiere mir eine Gentech-Forschungseinrichtung.',
-    'Generiere mir eine Kontrollstelle der Lone Star Sicherheitsdienste.',
-    'Generiere mir ein grenzüberschreitendes Nachrichtennetzwerk.',
-    'Generiere mir eine Unterweltsoperation im Schatten der Megakonzerne.',
-    'Generiere mir ein spirituelles Zentrum für erwachte Wesen.',
-    'Generiere mir eine Außenbezirkszone der Metamenschen.',
-    'Generiere mir einen Posten, um illegale BTL-Chips zu handeln.',
-    'Generiere mir ein noirhaftes Shadowrunner Safehouse.'
+    'Generiere eine Bar',
+    'Generiere eine geheime Unternehmensforschungsanlage',
+    'Generiere eine hochsichere Bank',
+    'Generiere eine städtische Bar oder ein Nachtclub',
+    'Generiere eine dystopische Slum Region',
+    'Generiere einen illegalen Cyberware-Markt',
+    'Generiere eine verstohlene magische Bibliothek',
+    'Generiere eine futuristische Wohnkomplexanlage',
+    'Generiere ein verlassenes Industriesilo',
+    'Generiere eine Gang-Hochburg',
+    'Generiere einen geheimen Untergrundbunker',
+    'Generiere ein von Konzernen kontrolliertes Stadtviertel',
+    'Generiere ein High-Tech-Sicherheitsgefängnis',
+    'Generiere einen verfallenen Amüsierungspark',
+    'Generiere eine illegale Straßenrennstrecke',
+    'Generiere ein überlaufenes Flüchtlingscamp',
+    'Generiere eine hochrangige VIP-Residenz',
+    'Generiere eine kontaminierte Strahlungszone',
+    'Generiere einen versteckten Ort für Schwarzmagie-Rituale',
+    'Generiere einen urbanen Dschungel aus technisch hochgerüsteten Bürogebäuden',
+    'Generiere einen hochsicheren Datenzentrum',
+    'Generiere einen rauen Hafenbereich',
+    'Generiere ein futuristische Einkaufszentrum',
+    'Generiere ein Spielcasino',
+    'Generiere ein von organisierten Kriminellen kontrolliertes Stadtviertel',
+    'Generiere eine verlassene Fabrik',
+    'Generiere eine futuristische Krankenhausanlage',
+    'Generiere eine Drohnenkampfarena',
+    'Generiere ein Cybernetik-Labor',
+    'Generiere einen Großstadtdschungel',
+    'Generiere ein Bürogebäude',
+    'Generiere ein Corp-Tower',
+    'Generiere eine extraterritoriale Konzern-Enklave',
+    'Generiere einen illegales Waffendepot',
+    'Generiere ein Schmuggelhafen',
+    'Generiere eine Gentech-Forschungseinrichtung',
+    'Generiere eine Kontrollstelle der Lone Star Sicherheitsdienste',
+    'Generiere einen Drogenpark',
+    'Generiere ein noirhaftes Shadowrunner Safehouse',
+    'Generiere eine futuristische Gangsterhöhle',
+    'Generiere eine technisch hochmodernes Safehouse',
+    'Generiere eine Untergrund-Kampfarena',
+    'Generiere eine Neon-beleuchtete Nachtclub ',
+    'Generiere eine geheime Schwarzmarkt-Basis',
+    'Generiere eine Hightech-Hacker-Wohnung',
+    'Generiere eine im Dschungel versteckte Forschungsstation',
+    'Generiere eine zwielichtige Botschafts-Lounge',
+    'Generiere eine in einem Wolkenkratzer verborgene Penthouse',
+    'Generiere eine Squatter-Siedlung',
+    'Generiere eine verdeckte Schmuggler-Höhle',
+    'Generiere eine hochsichere Yakuza-Villa',
+    'Generiere eine geheime Street-Doc-Klinik',
+    'Generiere eine dystopische Nomaden-Wohnsiedlung',
+    'Generiere einen glamourösen Elfensalon',
+    'Generiere ein Ramen-Laden',
+    'Generiere ein Ramen-Restaurant',
+    'Generiere eine Cocktailbar',
+    'Generiere eine Bierstube',
+    'Generiere eine Kneipe',
+    'Generiere eine Diskothek',
+    'Generiere einen Nachtclub',
+    'Generiere eine Rooftop-Bar',
+    'Generiere ein Aquarium',
+    'Generiere ein Lost Place'
+
+    
 ]
 
 
@@ -77,33 +98,30 @@ class PromptLocationWrapped extends React.Component {
         entity["image_objects"] = [{id: 0, score: 0, name: 'creation_form.png'}]
         this.state = {
             show: show,
-            prompt: random_prompt(),
             loadingState: 'prompt',
-            activate: true,
             error: null,
             entity: entity,
-            check: false
+            comments: [],
+            check: false,
+            prompt: random_prompt()
         }
 
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
+        this.handleFill = this.handleFill.bind(this)
         this.handleSave = this.handleSave.bind(this)
     }
 
-    handleChange(event) {
-        this.setState({prompt: event.target.value});
-    }
 
-    handleClick(event) {
-        event.preventDefault();
+
+    handleFill(prompt) {
         let self = this;
-        self.setState({loadingState: 'waiting'});
-
-        api.post('/api/npc_creator/locations/prompt/', {prompt: this.state.prompt, values: this.state.entity.primary_values}, {timeout: 240000} )
+        self.setState({loadingState: 'waiting', prompt: prompt});
+        api.post('/api/npc_creator/locations/prompt/', {prompt: prompt, values: this.state.entity.values}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
                     response.data.entity.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
-                    self.setState({ 'entity': response.data.entity })
+                    let comments = response.data.entity.values['Bewertungen']
+
+                    self.setState({ entity: response.data.entity, comments: comments})
                 } else {
                     self.setState({ 'error': i18next.t(response.data.error) });
                     setTimeout(function(){
@@ -127,7 +145,8 @@ class PromptLocationWrapped extends React.Component {
         let self = this;
         self.setState({loadingState: 'waiting'})
 
-        api.post('/api/npc_creator/locations/save/', {values: this.state.entity.primary_values})
+        console.log({values: this.state.entity.values});
+        api.post('/api/npc_creator/locations/save/', {values: this.state.entity.values})
             .then(function (response) {
                 if (response.data.type === 'success') {
                     window.location.href = '/locations/' + response.data.entity.id
@@ -173,35 +192,11 @@ class PromptLocationWrapped extends React.Component {
             return (<div key='nothing'></div>)
         } else if (this.state.loadingState === 'prompt') {
             prompt = <div key='prompt'>
-                <FrameLines style={{width: '100%'}}>
-                    <ul style={{margin: 0}}>
-                        <li className='fine-li'><Text>Beschreibe den Ort</Text></li>
-                        <li className='fine-li'><Text>Klick auf "Ausfüllen" um die Werte von GPT ausfüllen zu lassen</Text></li>
-                        <li className='fine-li'><Text>Kontrolliere und Korrigiere die Werte</Text></li>
-                        <li className='fine-li'><Text>Speicher und lass ein Bild erzeugen</Text></li>
-                    </ul>
-                    <form onSubmit={this.handleClick}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
-                                   type="text"
-                                   id="prompt"/>
-                        </div>
-                    </form>
-                </FrameLines>
+                <PromptInput entityType='Ort' prompt={this.state.prompt} handleSave={this.handleSave} handleFill={this.handleFill}></PromptInput>
             </div>
         } else if (this.state.loadingState === 'waiting') {
             prompt = <div key='waiting' style={{width: '100%'}}>
-                <FrameLines style={{width: '100%'}}>
-                    <Animator animator={{
-                        activate: this.state.activate,
-                        manager: 'stagger',
-                        duration: {stagger: 300}
-                    }}>
-                        <Text>Bitte warten...</Text><br/>
-                        <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
-                        <Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>.</Text>
-                    </Animator>
-                </FrameLines>
+                <LoadingBar/>
             </div>
         }
 
@@ -214,22 +209,16 @@ class PromptLocationWrapped extends React.Component {
             <div style={{margin: 15}}>
                 {prompt}
             </div>
-            <div style={{display: 'flex', alignItems: 'right', justifyContent: 'right', margin: 15}}>
-                <Button style={{margin: '3px 3px 3px 13px'}} FrameComponent={FramePentagon} onClick={this.handleClick} disabled={this.state.loadingState === 'waiting'}>
-                    <Text>Ausfüllen</Text>
-                </Button>
-                <Button FrameComponent={FramePentagon} style={{margin: 3}} onClick={this.handleSave} disabled={this.state.loadingState === 'waiting'}>
-                    <Text>Ort speichern und Bild generieren</Text>
-                </Button>
-            </div>
-            <div>
+            <div key={'cards'}>
                 <LocationCard entity={this.state.entity} editable={true} editableDisabled={disabled} check={this.state.check}/>
+                 <CommentCard key={'comments' + Math.random()} comments={this.state.comments}/>
             </div>
 
 
         </div>)
     }
-}
+} //
+
 
 
 

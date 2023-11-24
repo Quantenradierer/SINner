@@ -6,8 +6,14 @@ import api from "../axios";
 
 
 const EditableText = props => {
-    let attribute = props.entity.primary_values[props.attribute]
-    console.log(attribute)
+    let attributes = props.entity.values[props.attribute]
+    let attribute = ''
+    if (attributes != undefined && attributes.length > 0) {
+        attribute = attributes[0]
+    } else {
+        attribute = ''
+    }
+
     let definition = props.entity.attribute_definition[props.attribute]
     const [value, setValue] = useState( attribute || '');
 
@@ -16,7 +22,7 @@ const EditableText = props => {
     }, [props.entity, props.attribute]);
 
     const handleChange = (event) => {
-        props.entity.primary_values[props.attribute] = event.target.value
+        props.entity.values[props.attribute] = event.target.value
         setValue(event.target.value);
     };
 

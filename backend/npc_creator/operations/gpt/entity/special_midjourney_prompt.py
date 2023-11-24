@@ -12,9 +12,13 @@ def get_suffix_options():
 
 
 def special_midjourney_prompt(prompt, seed):
+    prompt = prompt.strip()
+    if not prompt.endswith("::"):
+        prompt += "::"
+
     multiprompts = get_multiprompts()
     suffix_options = get_suffix_options()
     seed_suffix = f"--seed {seed}"
 
-    prompt = f"{prompt}:: {multiprompts} {suffix_options} {seed_suffix}"
+    prompt = f"{prompt} {multiprompts} {suffix_options} {seed_suffix}"
     return None, prompt
