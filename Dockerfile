@@ -8,7 +8,7 @@ RUN apt-get install -y gunicorn
 COPY ./deployment/nginx/default.conf /etc/nginx/sites-enabled/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 
-ENV PUBLIC_NPC_IMAGE_PATH='/app/data/images/npc_creator/npcs'
+ENV PUBLIC_IMAGE_PATH='/app/data/images/npc_creator/'
 
 WORKDIR /app
 
