@@ -4,7 +4,7 @@ from npc_creator.repositories import template_image_repo
 
 
 def get_multiprompts():
-    return "cyberpunk::1"
+    return "cyberpunk::2"
 
 
 def get_suffix_options():
