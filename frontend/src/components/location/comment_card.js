@@ -4,7 +4,7 @@ import Comment from "./comment";
 import React from "react";
 
 const CommentCard = props => {
-    if (props.comments.length == 0) {
+    if (props.comments == undefined || props.comments.length == 0) {
         return <div/>
     }
 

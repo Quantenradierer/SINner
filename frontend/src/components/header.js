@@ -31,8 +31,6 @@ class Menu extends React.Component {
             <div className='menu'>
                 <MenuItems kind={'npcs'}/>
                 <MenuItems kind={'locations'}/>
-                <MenuItems kind={'critters'}/>
-                <MenuItems kind={'vehicles'}/>
             </div>
         );
     }

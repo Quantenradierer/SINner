@@ -77,7 +77,8 @@ const EXAMPLES = [
     'Generiere einen Nachtclub',
     'Generiere eine Rooftop-Bar',
     'Generiere ein Aquarium',
-    'Generiere ein Lost Place'
+    'Generiere ein Lost Place',
+    'Generiere eine Schatten Klinik'
 
     
 ]

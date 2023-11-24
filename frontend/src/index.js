@@ -94,7 +94,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs/:id/gallery",
-                element: <ImageGallery/>,
+                element: <ImageGallery factor={{'x': 4, 'y': 5}}  attribute={'Detailliertes Aussehen'} entity_type={'npcs'}/>,
                 loader: npcLoader.entity,
             },
             {
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "locations/:id/gallery",
-                element: <ImageGallery/>,
+                element: <ImageGallery factor={{'x': 7, 'y': 4}} attribute={'Aussehen'} entity_type={'locations'}/>,
                 loader: locationLoader.entity,
             },
             {

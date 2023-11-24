@@ -17,7 +17,7 @@ SQLITE_FILE = "data/npcs.sqlite"
 """
 directory for npc images
 """
-PUBLIC_ENTITY_IMAGE_PATH = os.getenv("PUBLIC_NPC_IMAGE_PATH")
+PUBLIC_ENTITY_IMAGE_PATH = os.getenv("PUBLIC_IMAGE_PATH")
 
 """
 file for 

@@ -30,7 +30,7 @@ class NPCListItem extends React.Component {
                 <a href={'/npcs/' + this.props.entity.id}>
                     <Card
                         image={{
-                            src: image_path(activeImage.name),
+                            src: image_path('npcs', activeImage.name),
                             alt: this.props.entity.image_generator_description
                         }}
                         title={this.props.entity.primary_values['Name']}

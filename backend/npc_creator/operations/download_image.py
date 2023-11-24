@@ -53,7 +53,12 @@ class DownloadImage:
 
     def add_images(self, image_paths):
         for name in image_paths:
-            Image.objects.create(entity=self.entity, name=name, generation=self.generation)
+            Image.objects.create(
+                entity=self.entity, name=name, generation=self.generation
+            )
+
+    def plural_entity_type(self):
+        return self.entity.kind.lower() + "s"
 
     def download_images(self):
         responses = retrieve_latest_messages()
@@ -71,15 +76,18 @@ class DownloadImage:
                     return Failure("download of midjourney image failed")
 
                 image_names = split_image(
-                    panel_image_path, self.images_names_iterator()
+                    panel_image_path,
+                    self.images_names_iterator(self.plural_entity_type()),
                 )
                 return Success(image_names)
         return Failure("could not find the correlated response or a OVERRIDE response")
 
     @staticmethod
-    def images_names_iterator():
+    def images_names_iterator(entity_type):
         while True:
-            yield os.path.join(config.PUBLIC_ENTITY_IMAGE_PATH, str(uuid.uuid1()) + ".png")
+            yield os.path.join(
+                config.PUBLIC_ENTITY_IMAGE_PATH, entity_type, str(uuid.uuid1()) + ".png"
+            )
 
 
 if __name__ == "__main__":

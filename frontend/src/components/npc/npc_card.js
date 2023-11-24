@@ -82,7 +82,7 @@ class NPCCard extends React.Component {
                 {state_label}
                 <Card
                     image={{
-                        src: image_path(activeImage.name),
+                        src: image_path('npcs', activeImage.name),
                         alt: this.props.entity.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}

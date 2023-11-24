@@ -25,7 +25,7 @@ class LocationCard extends React.Component {
                 <Card
                     hover
                     image={{
-                        src: image_path(activeImage.name),
+                        src: image_path('locations', activeImage.name),
                         alt: this.props.entity.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}

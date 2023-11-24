@@ -1,11 +1,11 @@
-import {NPC_IMAGE_PATH} from "./config";
+import {IMAGE_PATH} from "./config";
 
 
-function image_path(image_url, pk, default_image_number) {
+function image_path(entitytype, image_url) {
     if (image_url == undefined) {
         return ''
     }
-    return NPC_IMAGE_PATH + image_url
+    return IMAGE_PATH + entitytype + '/' + image_url
 }
 
 export default image_path;
