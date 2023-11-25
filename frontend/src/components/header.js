@@ -16,13 +16,14 @@ class MenuItems extends React.Component {
                 </div>
 
                 <div className="menu-submenu">
+                    <a href={`/${kind}_prompt`} className="neon-link">
+                        <span>Erstellen</span>
+                    </a>
+                    /
                     <a href={`/${kind}`} className="neon-link">
                         <span>Liste</span>
                     </a>
                     /
-                    <a href={`/${kind}_prompt`} className="neon-link">
-                        <span>Erstellen</span>
-                    </a>/
                     <a href={`/${kind}/random`} className="neon-link">
                         <span>Zufall</span>
                     </a>
