@@ -6,20 +6,28 @@ class MenuItems extends React.Component {
     render() {
         const kind = this.props.kind;
         return (
-            <div className='menuItem'>
-                <a href={`/${kind}`}><FrameLines style={{minWidth: '140px', textAlign: 'center'}}>{i18next.t('menu_' + kind)}</FrameLines></a>
-                <div className='subMenu'>
+            <div className="menu-item-container">
+
+
+                <div className="menu-item-title">
                     <a href={`/${kind}`}>
-                        <div style={{margin: '10px 5px 0px 5px'}}>Liste</div>
-                    </a>
-                    <a href={`/${kind}_prompt`}>
-                        <div style={{margin: '10px 5px 0px 5px'}}>Erstellen</div>
-                    </a>
-                    <a href={`/${kind}/random`}>
-                        <div style={{margin: '10px 5px 0px 5px'}}>Zufall</div>
+                        <Text className="neon-text">{i18next.t('menu_' + kind)}</Text>
                     </a>
                 </div>
 
+                <div className="menu-submenu">
+                    <a href={`/${kind}`} className="neon-link">
+                        <span>Liste</span>
+                    </a>
+                    /
+                    <a href={`/${kind}_prompt`} className="neon-link">
+                        <span>Erstellen</span>
+                    </a>/
+                    <a href={`/${kind}/random`} className="neon-link">
+                        <span>Zufall</span>
+                    </a>
+
+                </div>
             </div>
         );
     }
@@ -28,7 +36,7 @@ class MenuItems extends React.Component {
 class Menu extends React.Component {
     render() {
         return (
-            <div className='menu'>
+            <div className="menu-container">
                 <MenuItems kind={'npcs'}/>
                 <MenuItems kind={'locations'}/>
             </div>
