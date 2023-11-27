@@ -22,7 +22,7 @@ const CustomPrompt = props => {
     const [check, setCheck] = useState(false);
     const [editable, setEditable] = useState(true);
 
-    const relevantAttributes = ['Aussehen', 'Parameter']
+    const relevantAttributes = ['Aussehen']
 
     return (
         <Prompt entityType={'custom'} examples={EXAMPLES} entity={entity} setEntity={setEntity}
