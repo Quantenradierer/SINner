@@ -68,7 +68,17 @@ class GenericEntityView(viewsets.ModelViewSet):
     @action(detail=False, methods=["post"], permission_classes=[AllowAny])
     def prompt(self, request):
         data = json.loads(request.body.decode())
-        prompt = data.get("prompt")[:255]
+
+        prompt = data.get("prompt")
+        if not prompt:
+            return Response(
+                {
+                    "type": "error",
+                    "error": "Zum ausfüllen musst du einen Prompt eingeben.",
+                }
+            )
+
+        prompt = prompt[:255]
         values = data.get("values")
 
         entity = self.entity_class()

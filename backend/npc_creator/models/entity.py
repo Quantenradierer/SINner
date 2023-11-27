@@ -10,6 +10,7 @@ class AttributeDefinition:
     length: int
     reroll: bool
     additional_data: str = ""
+    optional: bool = False
 
 
 class Entity(models.Model):
@@ -53,10 +54,12 @@ class Entity(models.Model):
         return self.attributes
 
     def is_complete(self):
-        if len([value for value in self.primary_values.values() if value]) < len(
-            self.ATTRIBUTE_DEFINITION
-        ):
-            return False
+        for attr_def in self.ATTRIBUTE_DEFINITION:
+            if attr_def.optional:
+                continue
+
+            if not self.primary_values.get(attr_def.name, "").strip():
+                return False
         return True
 
     def has_image_description(self):

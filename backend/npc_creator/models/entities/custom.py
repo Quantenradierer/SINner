@@ -24,9 +24,9 @@ class Custom(Entity):
         AttributeDefinition(
             name="Aussehen", length=0, reroll=True, additional_data="innen"
         ),
-        # AttributeDefinition(
-        #    name="Parameter", length=0, reroll=True, additional_data=""
-        # ),
+        AttributeDefinition(
+            name="Parameter", length=0, reroll=True, additional_data="", optional=True
+        ),
     ]
     Fill = custom.Fill
     Translate = custom.Translate
