@@ -12,6 +12,7 @@ class Translate(entity.Translate):
 - add humans or even crowd of humans into the refined prompt if they fit into the scene
 - answer only with the refined version
 - end the refined version with :: then add the type of location at end again ending with ::
+- if it is a indoor location add the word 'ceiling' and end with :: again 
 """
 
     def prompt(self):
