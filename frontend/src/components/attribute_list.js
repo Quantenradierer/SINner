@@ -31,7 +31,7 @@ const AttributeList = props => {
     }
     items.pop()
 
-    return (<List>
+    return (<List style={{width: '100%'}}>
         {items}
     </List>)
 }

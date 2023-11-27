@@ -4,11 +4,14 @@ import Comment from "./comment";
 import React from "react";
 
 const CommentCard = props => {
-    if (props.comments == undefined || props.comments.length == 0) {
+    let comments = props.entity?.values?.Bewertungen
+    if (comments == undefined || comments.length == 0) {
         return <div/>
     }
 
-    const comment_data = props.comments || []
+
+
+    const comment_data = comments || []
     let comments_components = []
 
     for (let nr = 0; nr < comment_data.length; nr++) {

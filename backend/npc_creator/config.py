@@ -30,11 +30,6 @@ The images from midjourney will be saved temporary in this directory
 """
 MIDJOURNEY_TEMP_PATH = "data/midjourney"
 
-"""
-the prompt for midjourney
-"""
-MIDJOURNEY_PROMPT = "In Shadowrun/Cyberpunk: {image_generator_description}"
-
 
 """
 how often it shall be tried. The time between every try it calculated with '40 + pow(3, i)'

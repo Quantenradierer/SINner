@@ -291,7 +291,7 @@ class PromptWrapped extends React.Component {
 
 
 
-const Prompt = props => {
+const Prompt_npc = props => {
   const default_entity = useLoaderData()
   const navigate = useNavigate()
   const { state } = useNavigation()
@@ -303,4 +303,4 @@ const Prompt = props => {
   }
 }
 
-export default Prompt;
+export default Prompt_npc;

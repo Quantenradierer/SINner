@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
-import Prompt from "./components/prompt";
+import Prompt_npc from "./components/prompt_npc";
 import NPCComplete from "./components/npc/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
@@ -15,10 +15,13 @@ import ErrorPage from "./components/error_site";
 import Login from "./components/login";
 import Logout from "./components/logout";
 import ImageGallery from "./components/image_gallery";
-import PromptLocation from "./components/prompt_location";
+import PromptLocation from "./components/location/prompt_location";
 import LocationComplete from "./components/location/location_complete";
 import EntityLoader from "./loader/entity_loader";
 import LocationList from "./components/location/location_list";
+import CustomList from "./components/custom/list";
+import CustomPrompt from "./components/custom/prompt";
+import CustomComplete from "./components/custom/complete";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -71,6 +74,7 @@ const Root = props => {
 const npcLoader = new EntityLoader('npcs')
 const locationLoader = new EntityLoader('locations')
 const critterLoader = new EntityLoader('critters')
+const customLoader = new EntityLoader('customs')
 
 const router = createBrowserRouter([
     {
@@ -104,7 +108,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs_prompt/",
-                element: <Prompt/>,
+                element: <Prompt_npc/>,
                 loader: npcLoader.definition,
             },
             {
@@ -126,6 +130,26 @@ const router = createBrowserRouter([
                 path: "locations_prompt/",
                 element: <PromptLocation/>,
                 loader: locationLoader.definition,
+            },
+            {
+                path: "customs/:id",
+                element: <CustomComplete/>,
+                loader: customLoader.entity,
+            },
+            {
+                path: "customs/:id/gallery",
+                element: <ImageGallery factor={{'x': 5, 'y': 5}} attribute={'Aussehen'} entity_type={'customs'}/>,
+                loader: customLoader.entity,
+            },
+            {
+                path: "customs/",
+                element: <CustomList/>,
+                loader: customLoader.list,
+            },
+            {
+                path: "customs_prompt/",
+                element: <CustomPrompt/>,
+                loader: customLoader.definition,
             },
             {
                 path: "login/",

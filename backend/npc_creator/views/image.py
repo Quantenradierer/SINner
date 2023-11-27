@@ -1,20 +1,8 @@
-import rest_framework_simplejwt
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import (
-    IsAuthenticated,
-    AllowAny,
-    IsAuthenticatedOrReadOnly,
-)
-import json
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from npc_creator import config
-from npc_creator.jobs.generation_job import generation_job_async
-from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image import Image
 
 

@@ -17,6 +17,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models import Entity
+from npc_creator.models.entities.custom import Custom
 from npc_creator.models.entities.npc import Npc
 from npc_creator.models.entities.location import Location
 from npc_creator.models.image_generation import ImageGeneration
@@ -182,3 +183,8 @@ class NpcViewSet(GenericEntityView):
 class LocationViewSet(GenericEntityView):
     entity_class = Location
     queryset = Location.objects.order_by("-id")
+
+
+class CustomViewSet(GenericEntityView):
+    entity_class = Custom
+    queryset = Custom.objects.order_by("-id")

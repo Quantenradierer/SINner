@@ -1,7 +1,5 @@
 import random
 
-from npc_creator.repositories import template_image_repo
-
 
 def get_multiprompts():
     return "cyberpunk::0.3"

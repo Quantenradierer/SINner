@@ -1,2 +1,2 @@
-from .entity import NpcViewSet, LocationViewSet
+from .entity import NpcViewSet, LocationViewSet, CustomViewSet
 from .image import ImageViewSet

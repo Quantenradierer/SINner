@@ -1,11 +1,11 @@
-from npc_creator import config
-from npc_creator.config import MIDJOURNEY_PROMPT
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.services.midjourney.pass_prompt import pass_prompt
 
 
 class PassImagePrompt:
+    MIDJOURNEY_PROMPT = "In Shadowrun/Cyberpunk: {image_generator_description}"
+
     def special_midjourney_prompt(self):
         raise NotImplementedError
 
@@ -32,7 +32,7 @@ class PassImagePrompt:
             self.generate_entity_image_description()
             self.generation.description = self.entity.image_generator_description
 
-        prompt = MIDJOURNEY_PROMPT.format(
+        prompt = self.MIDJOURNEY_PROMPT.format(
             image_generator_description=self.generation.description
         )
         template, prompt = self.special_midjourney_prompt(prompt=prompt)

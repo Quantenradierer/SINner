@@ -16,7 +16,9 @@ class Entity(models.Model):
     class Kinds(models.TextChoices):
         NPC = "Npc", "Npc"
         LOCATION = "Location", "Location"
+        CUSTOM = "Custom", "Custom"
         CRITTER = "Critter", "Critter"
+        VEHICLE = "Vehicle", "Vehicle"
 
     kind = models.CharField(max_length=20, choices=Kinds.choices)
 
