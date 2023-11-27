@@ -16,6 +16,8 @@ const CustomCard = props => {
 
 
 const CustomPrompt = props => {
+    localStorage.setItem('custom_prompt', 'true');
+
     const default_entity = useLoaderData()
 
     const [entity, setEntity] = useState(default_entity);

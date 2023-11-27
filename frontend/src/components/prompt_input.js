@@ -33,14 +33,15 @@ class PromptInput extends React.Component {
     }
 
     render() {
+        let translation = i18next.t(`create_explanation_${this.props.entityType}`)
         return <FrameLines style={{width: '100%'}}>
             <ul style={{margin: 0}}>
-                <li className='fine-li'><Text>Beschreibe den {this.props.entityType}</Text></li>
+                <li className='fine-li'><Text>{translation}</Text></li>
                 <li className='fine-li'><Text>Klick auf "Ausfüllen" um die Werte von GPT ausfüllen zu lassen</Text></li>
                 <li className='fine-li'><Text>Kontrolliere und Korrigiere die Werte</Text></li>
                 <li className='fine-li'><Text>Speicher und lass ein Bild erzeugen</Text></li>
             </ul>
-            <form onSubmit={this.props.handleSave}>
+            <form onSubmit={this.handleFill}>
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
                            type="text"

@@ -16,7 +16,8 @@ class Fill(entity.Fill):
 - Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun, wie: ADL, CAS, CFS, Japanisches Kaiserreich, Tír na nÓg, Tír Tairngire oder UCAS
 - Relevante Gebiete sind unter anderem, aber nicht ausschließlich, Seattle, Chicago, Los Angeles, London, Hamburg, Paris, Berlin, Hong Kong, Neo-Tokyo
 - Gilden gibt es nicht mehr
-- Magische Sicherheit und Wachgeister gibt es nur in Sicherheitstechnisch gehobenen Locations
+- Wachgeister gibt es nicht
+- Magische Sicherheit gibt es nur in Sicherheitstechnisch gehobenen Locations
 - Die Bewertungen sollen ähnlich von Google Bewertungen von Google Maps sein
 - Antworte als JSON, nur mit strings, mit Ausnahme von "Bewertungen" wo eine Liste von Objects zurückkommt in der Form: 
 {

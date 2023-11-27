@@ -20,12 +20,14 @@ function CustomCard(props) {
     }
 
     return (
-        <FramePentagon style={{width: '100%'}}>
-            <Text>{props.entity.primary_values['Aussehen']}</Text>
-            <div style={{margin: 15, width: '100%'}}>
-                {items}
-            </div>
-        </FramePentagon>
+        <div style={{margin: 15}}>
+            <FramePentagon style={{width: '100%'}}>
+                <Text>{props.entity.primary_values['Aussehen']}</Text>
+                <div style={{margin: 15, width: '100%'}}>
+                    {items}
+                </div>
+            </FramePentagon>
+        </div>
     )
 }
 

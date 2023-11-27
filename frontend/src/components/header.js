@@ -36,10 +36,14 @@ class MenuItems extends React.Component {
 
 class Menu extends React.Component {
     render() {
+        let custom_prompts = localStorage.getItem('custom_prompt') === 'true';
+
+
         return (
             <div className="menu-container">
                 <MenuItems kind={'npcs'}/>
                 <MenuItems kind={'locations'}/>
+                {custom_prompts && <MenuItems kind='customs'/>}
             </div>
         );
     }

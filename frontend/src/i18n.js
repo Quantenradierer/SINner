@@ -17,6 +17,11 @@ const resources = {
             menu_locations: 'Locations',
             menu_critters: 'Critters',
             menu_vehicles: 'Vehicles',
+            menu_customs: "Bildgenerator",
+
+            create_explanation_npc: 'Beschreibe den NPC',
+            create_explanation_location: 'Beschreibe den Ort',
+            create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',
 
             attribute_metatyp: 'Metatyp',
             attribute_beruf: 'Beruf',
@@ -54,7 +59,6 @@ const resources = {
             attribute_verfügbarkeit_von_sicherheitssystemen: 'Sicherheit',
             attribute_aktuelle_aktionen_events: 'Aktionen',
             attribute_gerüchte_und_geschichten_über_die_location: 'Gerüchte',
-
 
             attribute_parameter: 'Parameter'
         },
