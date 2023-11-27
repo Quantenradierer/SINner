@@ -54,7 +54,7 @@ class PromptInput extends React.Component {
                 <Text>Ausfüllen</Text>
             </Button>
             <Button FrameComponent={FramePentagon} style={{margin: 3}} onClick={this.props.handleSave}>
-                <Text>Ort speichern und Bild generieren</Text>
+                <Text>Speichern und Bild generieren</Text>
             </Button>
         </div>
         </FrameLines>
