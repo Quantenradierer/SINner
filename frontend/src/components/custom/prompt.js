@@ -20,12 +20,13 @@ const CustomPrompt = props => {
 
     const [entity, setEntity] = useState(default_entity);
     const [check, setCheck] = useState(false);
+    const [editable, setEditable] = useState(true);
 
     const relevantAttributes = ['Aussehen', 'Parameter']
 
     return (
-        <Prompt entityType={'custom'} examples={EXAMPLES} entity={entity} setEntity={setEntity} editable={true}
-                editableDisabled={props.disabled}
+        <Prompt entityType={'custom'} examples={EXAMPLES} entity={entity} setEntity={setEntity}
+                setEditable={setEditable}
                 check={check} setCheck={setCheck}>
 
             <FramePentagon style={{width: 950, margin: 15}}>
@@ -36,7 +37,7 @@ const CustomPrompt = props => {
                                    attributes={relevantAttributes}
                                    approxLineSize={98}
                                    editable={true}
-                                   editableDisabled={false}
+                                   editableDisabled={!editable}
                                    check={check}/>
                 </div>
 
