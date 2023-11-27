@@ -10,23 +10,23 @@ export default class EntityLoader {
     }
 
      definition = async ({params, request})=> {
-        let url = new URL(request.url);
         try {
             const response = await api.get(`/api/npc_creator/${this.kind}/default/`)
             return response.data.entity
         } catch (error) {
+            console.log(error)
             return null
         }
     }
 
     entity = async ({params, request}) => {
-        let url = new URL(request.url);
         try {
             const response = await api.get(`/api/npc_creator/${this.kind}/${params.id}/`)
             if (response.status == 200) {
                 return response.data
             }
         } catch (error) {
+            console.log(error)
             return {}
         }
     }
@@ -39,6 +39,7 @@ export default class EntityLoader {
                 return response.data
             }
         } catch (error) {
+            console.log(error)
             return null
         }
     }
