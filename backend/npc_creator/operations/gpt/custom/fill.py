@@ -9,9 +9,10 @@ class Fill(entity.Fill):
         self.use_json = True
         self.system_prompt = (
             "- Antworte NUR als JSON in dem Format {'Aussehen': 'Eine gute Beschreibung für einen Bildgenerator'}\r\n"
-            "- Das JSON darf nur diesen einen String und keine weiteren Objects/Vertiefungen enthalten"
+            "- Das JSON darf nur diesen einen String und keine weiteren Objects/Vertiefungen enthalten\r\n"
             "- Frage nicht nach Details, sondern denke dir selbst Details aus\r\n"
             "- Fülle anhand der Eingabe das Aussehen aus \r\n"
+            "- Gib immer etwas neues aus, statt die Eingabe zu wiederholen\r\n"
         )
 
     def json_format(self):
