@@ -55,10 +55,10 @@ class GenericEntityView(viewsets.ModelViewSet):
     authentication_classes = [BasicAuthentication, SessionAuthentication]
 
     def get_queryset(self):
-        search_text = self.request.query_params.get("search", "")
+        search_text = self.request.query_params.get("search", "").strip()
 
         regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
-        return self.queryset.filter(attributes__regex=regex).distinct()
+        return self.queryset.filter(attributes__iregex=regex).distinct()
 
     @action(detail=False, methods=["get"])
     def random(self, request):
