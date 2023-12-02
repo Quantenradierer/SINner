@@ -58,7 +58,11 @@ class Entity(models.Model):
             if attr_def.optional:
                 continue
 
-            if not self.primary_values.get(attr_def.name, "").strip():
+            value = self.primary_values.get(attr_def.name, "")
+            if type(value) == str:
+                value = value.strip()
+
+            if not value:
                 return False
         return True
 
