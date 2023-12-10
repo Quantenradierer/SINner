@@ -10,12 +10,6 @@ from npc_creator.services.midjourney.download_midjourney_image import (
     download_midjourney_image,
 )
 
-from npc_creator.services.midjourney.find_correlated_response import (
-    find_correlated_responses,
-)
-from npc_creator.services.midjourney.retrieve_latest_messages import (
-    retrieve_latest_messages,
-)
 from npc_creator.services.midjourney.split_images import split_image
 
 
@@ -47,10 +41,6 @@ class DownloadImage:
         self.generation.save()
         return result_image_paths
 
-    @staticmethod
-    def panel_exists(panel_name):
-        return ImageGeneration.objects.filter(url=panel_name).exists()
-
     def add_images(self, image_paths):
         for name in image_paths:
             Image.objects.create(
@@ -61,26 +51,18 @@ class DownloadImage:
         return self.entity.kind.lower() + "s"
 
     def download_images(self):
-        responses = retrieve_latest_messages()
-        urls = find_correlated_responses(responses, self.generation.id)
+        panel_name = os.path.basename(urlparse(self.generation.url).path)
 
-        for url in urls:
-            panel_name = os.path.basename(urlparse(url).path)
+        panel_image_path = os.path.join(self.temp_image_path, panel_name)
+        success = download_midjourney_image(panel_image_path, url=self.generation.url)
+        if not success:
+            return Failure("download of midjourney image failed")
 
-            if not self.panel_exists(url):
-                self.generation.url = url
-
-                panel_image_path = os.path.join(self.temp_image_path, panel_name)
-                success = download_midjourney_image(panel_image_path, url=url)
-                if not success:
-                    return Failure("download of midjourney image failed")
-
-                image_names = split_image(
-                    panel_image_path,
-                    self.images_names_iterator(self.plural_entity_type()),
-                )
-                return Success(image_names)
-        return Failure("could not find the correlated response or a OVERRIDE response")
+        image_names = split_image(
+            panel_image_path,
+            self.images_names_iterator(self.plural_entity_type()),
+        )
+        return Success(image_names)
 
     @staticmethod
     def images_names_iterator(entity_type):
@@ -88,11 +70,3 @@ class DownloadImage:
             yield os.path.join(
                 config.PUBLIC_ENTITY_IMAGE_PATH, entity_type, str(uuid.uuid1()) + ".png"
             )
-
-
-if __name__ == "__main__":
-    from npc_creator.operations.download_image import DownloadImage
-    from npc_creator.models.image_generation import ImageGeneration
-
-    objects = list(ImageGeneration.objects.all())
-    print(DownloadImage(objects[-1]).call())

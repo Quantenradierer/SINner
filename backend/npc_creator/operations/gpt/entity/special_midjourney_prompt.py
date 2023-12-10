@@ -2,7 +2,7 @@ import random
 
 
 def get_multiprompts():
-    return "cyberpunk::0.3"
+    return "cyberpunk::0.3 portrait::-0.5"
 
 
 def get_suffix_options():

@@ -18,6 +18,7 @@ class PassImagePrompt:
         result = entity.Translate(entity=self.entity).call()
 
         if result:
+            entity.image_generator_description = result.data
             entity.save()
         return result
 

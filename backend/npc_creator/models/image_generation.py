@@ -3,7 +3,14 @@ from django.db import models
 from npc_creator.models import Entity, TemplateImage
 
 
+class ImageGenerationManager(models.Manager):
+    def panel_exists(self, panel_name):
+        return self.filter(url=panel_name).exists()
+
+
 class ImageGeneration(models.Model):
+    objects = ImageGenerationManager()
+
     class State(models.TextChoices):
         CREATED = "CR", "Created"
         IN_PROGRESS = "IN", "In Progress"
