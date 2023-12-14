@@ -10,7 +10,7 @@ class Translate(entity.Translate):
 - you are a professional illustrator with 100 years of experience
 - if you do a good job, you will receive 1000€ tip
 - generate a midjourney prompt for image generation
-- translate according to the gender at the start
+- do not use parameters
 - answer only in english, no matter the input language
 """
 

@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {useLoaderData} from "react-router";
 import i18next from "../../i18n";
 import AlternativeDialog from "../alternative_dialog";
 import Warning from "../warning";
 import LocationCard from "./location_card";
 import CommentCard from "./comment_card";
+import useRefreshEntityCard from "../use_refresh_entity_card";
 
 
 
@@ -44,8 +45,9 @@ class LocationCompleteWrapped extends React.Component {
 
 
 const LocationComplete = props => {
-  const entity = useLoaderData()
-
+  const loaded_entity = useLoaderData()
+  const [entity, setEntity] = useState(loaded_entity);
+  useRefreshEntityCard('locations', entity, setEntity)
   return <LocationCompleteWrapped entity={entity} {...props} />
 }
 

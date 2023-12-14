@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import NPCCard from "./npc_card";
 import NPCPrivate from "./npc_private";
 import NPCSkills from "./npc_skills";
@@ -9,6 +9,7 @@ import i18next from "../../i18n";
 import AlternativeDialog from "../alternative_dialog";
 import {random} from "animejs";
 import Warning from "../warning";
+import useRefreshEntityCard from "../use_refresh_entity_card";
 
 
 class NPCCompleteWrapped extends React.Component {
@@ -47,8 +48,9 @@ class NPCCompleteWrapped extends React.Component {
 
 
 const NPCComplete = props => {
-  const entity = useLoaderData()
-
+  const loaded_entity = useLoaderData()
+  const [entity, setEntity] = useState(loaded_entity);
+  useRefreshEntityCard('npcs', entity, setEntity)
   return <NPCCompleteWrapped entity={entity} {...props} />
 }
 
