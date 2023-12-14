@@ -103,7 +103,7 @@ class ListWrapped extends React.Component {
 }
 
 
-const List = props => {
+const EntityList = props => {
   const navigate = useNavigate()
   const { state } = useNavigation()
 
@@ -114,4 +114,4 @@ const List = props => {
   }
 }
 
-export default List;
+export default EntityList;

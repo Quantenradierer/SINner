@@ -7,10 +7,11 @@ class Translate(entity.Translate):
         super().__init__(**kwargs)
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """
-- Übersetze ins Englische
-- Übersetze in die Geschlechtsform entsprechend des Geschlechts welches am Anfang steht
-- Forme die Sätze entsprechend um, das der Midjourney Bildgenerator bessere Bilder erzeugt
-- Antworte nur mit der Übersetzung
+- you are a professional illustrator with 100 years of experience
+- if you do a good job, you will receive 1000€ tip
+- generate a midjourney prompt for image generation
+- translate according to the gender at the start
+- answer only in english, no matter the input language
 """
 
     def prompt(self):

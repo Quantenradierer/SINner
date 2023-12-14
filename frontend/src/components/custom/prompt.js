@@ -10,10 +10,6 @@ import AttributeList from "../attribute_list";
 
 const EXAMPLES = []
 
-const CustomCard = props => {
-
-}
-
 
 const CustomPrompt = props => {
     localStorage.setItem('custom_prompt', 'true');

@@ -1,20 +1,14 @@
 import React, {useState} from "react";
 import {
     Blockquote,
-    Button,
     Card,
-    FrameCorners,
-    FrameLines,
-    FramePentagon,
-    LoadingBars,
-    Table,
     Text
 } from "@arwes/core";
 import {useLoaderData} from "react-router";
 import image_path from "../../image_path";
 import active_image from "../../active_image";
 import Comment from "./comment";
-import List from "../entity/list";
+import EntityList from "../entity/list";
 
 
 class LocationListItem extends React.Component {
@@ -65,7 +59,7 @@ const LocationList = props => {
         items.push(<LocationListItem entity={entity} key={entity.id}/>)
     }
 
-    return <List entities={entities} {...props}>{items}</List>
+    return <EntityList entities={entities} {...props}>{items}</EntityList>
 }
 
 export default LocationList;

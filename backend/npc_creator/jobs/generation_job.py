@@ -19,8 +19,6 @@ from npc_creator.services.midjourney.retrieve_latest_messages import (
 def generation_job(generation_id: int) -> None:
     logging.debug(f"DownloadImageJob({generation_id}): Started")
     generation = ImageGeneration.objects.get(pk=generation_id)
-    time.sleep(600 + pow(4, generation.retry_count))
-    generation.refresh_from_db()
 
     entity = generation.entity.instance
 
@@ -51,6 +49,9 @@ def generation_job(generation_id: int) -> None:
     ):
         generation.retry_count += 1
         generation.save()
+
+        time.sleep(600 + pow(4, generation.retry_count))
+        generation.refresh_from_db()
         generation_job_async(generation)
 
 

@@ -2,9 +2,8 @@ import React from "react";
 import {FramePentagon} from "@arwes/core";
 
 import {useLoaderData} from "react-router";
-import image_path from "../../image_path";
-import List from "../entity/list";
 import CustomCard from "./card";
+import EntityList from "../entity/list";
 
 
 
@@ -18,7 +17,7 @@ const CustomList = props => {
         items.push(<CustomCard entity={entity} key={entity.id}/>)
     }
 
-    return <List entities={entities} {...props}>{items}</List>
+    return <EntityList entities={entities} {...props}>{items}</EntityList>
 }
 
 export default CustomList;

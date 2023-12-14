@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
-import Prompt_npc from "./components/prompt_npc";
+import Prompt from "./components/npc/prompt";
 import NPCComplete from "./components/npc/npc_complete";
 import Footer from "./components/footer";
 import api from "./axios";
@@ -18,7 +18,7 @@ import ImageGallery from "./components/image_gallery";
 import PromptLocation from "./components/location/prompt_location";
 import LocationComplete from "./components/location/location_complete";
 import EntityLoader from "./loader/entity_loader";
-import LocationList from "./components/location/location_list";
+import LocationList from "./components/location/list";
 import CustomList from "./components/custom/list";
 import CustomPrompt from "./components/custom/prompt";
 import CustomComplete from "./components/custom/complete";
@@ -108,7 +108,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs_prompt/",
-                element: <Prompt_npc/>,
+                element: <Prompt/>,
                 loader: npcLoader.definition,
             },
             {
