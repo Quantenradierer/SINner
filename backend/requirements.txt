@@ -12,3 +12,4 @@ djangorestframework-simplejwt
 markdown
 django-filter
 black
+websockets
