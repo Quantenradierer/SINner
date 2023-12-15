@@ -18,6 +18,7 @@ const resources = {
             menu_critters: 'Critters',
             menu_vehicles: 'Vehicles',
             menu_customs: "Bildgenerator",
+            menu_feedback: "Feedback",
 
             create_explanation_npc: 'Beschreibe den NPC',
             create_explanation_location: 'Beschreibe den Ort',

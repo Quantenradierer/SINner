@@ -22,6 +22,7 @@ import LocationList from "./components/location/list";
 import CustomList from "./components/custom/list";
 import CustomPrompt from "./components/custom/prompt";
 import CustomComplete from "./components/custom/complete";
+import Feedback from "./components/feedback";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -150,6 +151,10 @@ const router = createBrowserRouter([
                 path: "customs_prompt/",
                 element: <CustomPrompt/>,
                 loader: customLoader.definition,
+            },
+            {
+                path: "feedback/",
+                element: <Feedback/>
             },
             {
                 path: "login/",

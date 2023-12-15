@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from npc_creator.models import Entity, TemplateImage
+from npc_creator.models.feedback import Feedback
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
@@ -9,10 +10,7 @@ from npc_creator.models.image_generation import ImageGeneration
 
 @admin.register(Entity)
 class EntityAdmin(admin.ModelAdmin):
-    list_display = (
-        "id",
-        "image_generator_description"
-    )
+    list_display = ("id", "image_generator_description")
 
     search_fields = ["image_generator_description"]
 
@@ -53,3 +51,9 @@ class GptRequestAdmin(admin.ModelAdmin):
 class TemplateImageAdmin(admin.ModelAdmin):
     list_display = ("keyword", "url", "score", "created_at", "updated_at")
     search_fields = ["keyword", "url", "score", "created_at", "updated_at"]
+
+
+@admin.register(Feedback)
+class TemplateImageAdmin(admin.ModelAdmin):
+    list_display = ("comment", "email")
+    search_fields = ["comment", "email"]

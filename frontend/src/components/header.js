@@ -7,8 +7,6 @@ class MenuItems extends React.Component {
         const kind = this.props.kind;
         return (
             <div className="menu-item-container">
-
-
                 <div className="menu-item-title">
                     <a href={`/${kind}`}>
                         <Text className="neon-text">{i18next.t('menu_' + kind)}</Text>
@@ -34,6 +32,9 @@ class MenuItems extends React.Component {
     }
 }
 
+
+
+
 class Menu extends React.Component {
     render() {
         let custom_prompts = localStorage.getItem('custom_prompt') === 'true';
@@ -44,6 +45,13 @@ class Menu extends React.Component {
                 <MenuItems kind={'npcs'}/>
                 <MenuItems kind={'locations'}/>
                 {custom_prompts && <MenuItems kind='customs'/>}
+                <div className="menu-item-container">
+                    <div className="menu-item-title">
+                        <a href={`/feedback`}>
+                            <Text className="neon-text">{i18next.t('menu_feedback')}</Text>
+                        </a>
+                    </div>
+                </div>
             </div>
         );
     }
