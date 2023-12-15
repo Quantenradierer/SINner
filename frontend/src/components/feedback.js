@@ -25,14 +25,14 @@ function Feedback() {
     }
 
     return (
-        <FramePentagon key={'feedback' + wasSent} style={{width: 920}}>
+        <FramePentagon key={'feedback' + wasSent} style={{width: 950}}>
             {wasSent === 'sent' && <div key={'sent'}><Text>Danke für das Feedback!</Text></div>}
             {wasSent === 'error' &&
                 <div key={'error'}><Text>Selbst das senden von Feedback funktioniert gerade nicht. Bitte sende dein
                     Feedback per E-Mail an: <a href="mailto:schmidt@schattenakte.de">schmidt@schattenakte.de</a> </Text></div>}
 
             {wasSent === 'init' &&
-                <div key={'init'}>
+                <div key={'init'} style={{width: 880}}>
                     <form onSubmit={sendComment}>
                         <input style={{margin: 15}} type="text" id="email" placeholder="E-Mail (optional)"
                                onChange={e => setEMail(e.target.value)} value={email}/>
