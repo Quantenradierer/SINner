@@ -12,6 +12,7 @@ class Translate(entity.Translate):
 - generate a midjourney prompt for image generation
 - do not use parameters
 - answer only in english, no matter the input language
+- if it's a indoor location only describe the interior
 - add humans or even crowd of humans into the refined prompt if they fit into the scene
 - end the refined version with :: then add the type of location at end again ending with ::
 - answer only with the refined version
