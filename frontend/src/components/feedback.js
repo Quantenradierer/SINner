@@ -34,7 +34,7 @@ function Feedback() {
             {wasSent === 'init' &&
                 <div key={'init'} style={{width: 880}}>
                     <form onSubmit={sendComment}>
-                        <input style={{margin: 15}} type="text" id="email" placeholder="E-Mail (optional)"
+                        <input style={{margin: 15}} type="text" id="email" placeholder="Deine E-Mail (optional)"
                                onChange={e => setEMail(e.target.value)} value={email}/>
                         <textarea style={{margin: 15}} type="text" id="comment" rows={5}
                                   placeholder="Gibt es einen Bug? Verbesserungsvorschläge? Möchtest du dein Lieblingsrezept für Kekse teilen?"
