@@ -1,4 +1,5 @@
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -24,7 +25,7 @@ class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.prefetch_related().all()
     serializer_class = ImageSerializer
 
-    @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
+    @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def upvote(self, request, pk):
         image = Image.objects.filter(id=pk)[0]
         template = image.template
@@ -36,7 +37,7 @@ class ImageViewSet(viewsets.ModelViewSet):
             template.save()
         return Response({"type": "success"})
 
-    @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
+    @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def downvote(self, request, pk):
         image = Image.objects.filter(id=pk)[0]
         template = image.template

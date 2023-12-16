@@ -42,6 +42,11 @@ li::before {
   opacity: 1;
 }
 
+.votes-clicked {
+  opacity: 1;
+}
+
+
 .menu-container {
   display: flex;
   justify-content: space-around;
