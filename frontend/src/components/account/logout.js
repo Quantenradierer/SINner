@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {Button, FrameCorners, FrameLines, FramePentagon, LoadingBars, Text} from "@arwes/core";
-import api from "../axios";
+import api from "../../axios";
 
 
 const Logout = props => {

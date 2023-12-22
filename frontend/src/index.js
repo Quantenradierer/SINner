@@ -12,8 +12,8 @@ import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavi
 import Impressum from "./components/impressum";
 import Header from "./components/header";
 import ErrorPage from "./components/error_site";
-import Login from "./components/login";
-import Logout from "./components/logout";
+import Login from "./components/account/login";
+import Logout from "./components/account/logout";
 import ImageGallery from "./components/image_gallery";
 import PromptLocation from "./components/location/prompt_location";
 import LocationComplete from "./components/location/location_complete";
@@ -23,6 +23,7 @@ import CustomList from "./components/custom/list";
 import CustomPrompt from "./components/custom/prompt";
 import CustomComplete from "./components/custom/complete";
 import Feedback from "./components/feedback";
+import Register from "./components/account/register";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -157,6 +158,9 @@ const router = createBrowserRouter([
                 element: <Feedback/>
             },
             {
+                path: "register/",
+                element: <Register/>
+            },            {
                 path: "login/",
                 element: <Login/>
             },

@@ -3,6 +3,7 @@ import time
 from datetime import timedelta
 from time import sleep
 
+import rest_framework.permissions
 from django.core.cache import cache
 from django.utils.timezone import now
 from rest_framework.decorators import action
@@ -10,10 +11,9 @@ from rest_framework.serializers import ListSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import (
     AllowAny,
+    IsAuthenticated,
 )
 import json
-
-from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models import Entity
@@ -51,8 +51,8 @@ class GenericEntityView(viewsets.ModelViewSet):
     queryset = None
     serializer_class = EntitySerializer
 
-    GenerationOperation = None
-    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    authentication_classes = [rest_framework.authentication.BasicAuthentication]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         search_text = self.request.query_params.get("search", "").strip()
@@ -65,7 +65,7 @@ class GenericEntityView(viewsets.ModelViewSet):
         entity = self.queryset.order_by("?").first()
         return Response(self.serializer_class(entity).data)
 
-    @action(detail=False, methods=["post"], permission_classes=[AllowAny])
+    @action(detail=False, methods=["post"])
     def prompt(self, request):
         data = json.loads(request.body.decode())
 
@@ -94,7 +94,7 @@ class GenericEntityView(viewsets.ModelViewSet):
         else:
             return Response({"type": "error", "error": result.error})
 
-    @action(detail=False, methods=["post"], permission_classes=[AllowAny])
+    @action(detail=False, methods=["post"])
     def save(self, request):
         data = json.loads(request.body.decode())
         values = data.get("values")
@@ -120,7 +120,7 @@ class GenericEntityView(viewsets.ModelViewSet):
             {"type": "success", "entity": self.serializer_class(entity).data}
         )
 
-    @action(detail=False, methods=["get"], permission_classes=[AllowAny])
+    @action(detail=False, methods=["get"])
     def default(self, request):
         return Response(
             {
@@ -129,7 +129,7 @@ class GenericEntityView(viewsets.ModelViewSet):
             }
         )
 
-    @action(detail=True, methods=["post"], authentication_classes=[JWTAuthentication])
+    @action(detail=True, methods=["post"], authentication_classes=IsAuthenticated)
     def recreate_images(self, request, pk):
         entity = self.queryset.get(pk=pk)
 
@@ -150,7 +150,7 @@ class GenericEntityView(viewsets.ModelViewSet):
             {"type": "success", "entity": self.serializer_class(entity).data}
         )
 
-    @action(detail=True, methods=["post"], permission_classes=[AllowAny])
+    @action(detail=True, methods=["post"])
     def alternatives(self, request, pk):
         npc = npc_repo.find(pk)
 

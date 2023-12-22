@@ -18,6 +18,7 @@ from django.urls import include, path
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
+from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
 from core.views.logout import LogoutView
 
@@ -31,7 +32,8 @@ urlpatterns = [
         ),
     ),
     path("admin/", admin.site.urls),
-    path("token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),
-    path("token/logout/", LogoutView.as_view(), name="logout"),
+    path("auth/", include("djoser.urls")),
+    path("auth/", include("djoser.urls.authtoken")),
+    path("auth/jwt/refresh", TokenRefreshView.as_view(), name="token_refresh"),
+    path("auth/jwt/verify", TokenVerifyView.as_view(), name="token_verify"),
 ]

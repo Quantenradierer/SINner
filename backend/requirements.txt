@@ -8,8 +8,8 @@ PyMonad~=2.4.0
 gunicorn
 gevent
 django-cors-headers
-djangorestframework-simplejwt
 markdown
 django-filter
 black
 websockets
+djoser
