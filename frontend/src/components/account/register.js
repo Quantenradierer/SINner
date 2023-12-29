@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Button, FrameCorners, FramePentagon, Text} from "@arwes/core";
 import api from "../../axios";
 import {math} from "polished";
+import handleLogin from "../../loader/handle_login";
 
 
 
@@ -17,7 +18,7 @@ function Register() {
 
     const [error, setError] = useState('');
 
-    function handleLogin(event) {
+    function handleRegister(event) {
         event.preventDefault()
         api.defaults.xsrfCookieName = 'csrftoken'
         api.defaults.xsrfHeaderName = 'X-CSRFToken'
@@ -30,16 +31,14 @@ function Register() {
             re_password: repassword
         })
         .then((response) => {
-            console.log(response)
-
+            handleLogin(username, password)
         })
-        .catch((exception) => {
-            console.log(exception)
-            setUsernameHint(exception.response.data.username)
-            setEmailHint(exception.response.data.email)
-            setPasswordHint(exception.response.data.password)
-            setRepasswordHint(exception.response.data.re_password)
-            setError(exception.response.data.non_field_errors)
+        .catch((error) => {
+            setUsernameHint(error.response.data.username)
+            setEmailHint(error.response.data.email)
+            setPasswordHint(error.response.data.password)
+            setRepasswordHint(error.response.data.re_password)
+            setError(error.response.data.non_field_errors)
         });
 
     }
@@ -65,7 +64,7 @@ function Register() {
                         {repasswordHint && <div>{repasswordHint}</div>}
                     </div>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>
-                        <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={handleLogin}>
+                        <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={handleRegister}>
                             <Text>Register</Text>
                         </Button>
                     </div>

@@ -10,6 +10,7 @@ from .views import (
     CustomViewSet,
     ImageViewSet,
     FeedbackViewSet,
+    SceneViewSet
 )
 
 router = routers.DefaultRouter()
@@ -18,5 +19,6 @@ router.register(r"locations", LocationViewSet)
 router.register(r"customs", CustomViewSet)
 router.register(r"images", ImageViewSet)
 router.register(r"feedback", FeedbackViewSet)
+router.register(r"scenes", SceneViewSet)
 
 urlpatterns = [path("", include(router.urls))]

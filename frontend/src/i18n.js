@@ -20,6 +20,10 @@ const resources = {
             menu_customs: "Bildgenerator",
             menu_feedback: "Feedback",
 
+            menu_login: 'Login',
+            menu_register: 'Register',
+            menu_logout: 'Logout',
+
             create_explanation_npc: 'Beschreibe den NPC',
             create_explanation_location: 'Beschreibe den Ort',
             create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',

@@ -1,9 +1,5 @@
 import React from "react";
-import i18next from "../../i18n";
-import Warning from "../warning";
 import {FramePentagon, Text} from "@arwes/core";
-import EditableText from "../editable_text";
-import CustomComplete from "./complete";
 import image_path from "../../image_path";
 
 

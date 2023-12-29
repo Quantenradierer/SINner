@@ -5,3 +5,4 @@ from .image import Image
 from .image_generation import ImageGeneration
 from .entities import Npc
 from .entities import Location
+from .scene import Scene

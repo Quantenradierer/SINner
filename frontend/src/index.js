@@ -24,6 +24,8 @@ import CustomPrompt from "./components/custom/prompt";
 import CustomComplete from "./components/custom/complete";
 import Feedback from "./components/feedback";
 import Register from "./components/account/register";
+import SceneList from "./components/scene/list";
+import SceneLoader from "./loader/scene_loader";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -77,12 +79,13 @@ const npcLoader = new EntityLoader('npcs')
 const locationLoader = new EntityLoader('locations')
 const critterLoader = new EntityLoader('critters')
 const customLoader = new EntityLoader('customs')
+const sceneLoader = new SceneLoader()
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root/>,
-        errorElement: <Root outlet={<ErrorPage />}/>,
+        errorElement: <Root outlet={<ErrorPage/>}/>,
         children: [
             {
                 path: "",
@@ -100,7 +103,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs/:id/gallery",
-                element: <ImageGallery factor={{'x': 4, 'y': 5}}  attribute={'Detailliertes Aussehen'} entity_type={'npcs'}/>,
+                element: <ImageGallery factor={{'x': 4, 'y': 5}} attribute={'Detailliertes Aussehen'}
+                                       entity_type={'npcs'}/>,
                 loader: npcLoader.entity,
             },
             {
@@ -160,13 +164,18 @@ const router = createBrowserRouter([
             {
                 path: "register/",
                 element: <Register/>
-            },            {
+            },
+            {
                 path: "login/",
                 element: <Login/>
             },
             {
                 path: "logout/",
                 element: <Logout/>
+            }, {
+                path: "scenes/",
+                element: <SceneList/>,
+                loader: sceneLoader.list
             }
         ]
     }

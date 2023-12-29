@@ -51,8 +51,8 @@ class GenericEntityView(viewsets.ModelViewSet):
     queryset = None
     serializer_class = EntitySerializer
 
-    authentication_classes = [rest_framework.authentication.BasicAuthentication]
-    permission_classes = [AllowAny]
+    authentication_classes = [rest_framework.authentication.TokenAuthentication]
+    permission_classes = []
 
     def get_queryset(self):
         search_text = self.request.query_params.get("search", "").strip()

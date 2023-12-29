@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import {Button, FrameCorners, FramePentagon, Text} from "@arwes/core";
 import api from "../../axios";
 import {math} from "polished";
-
-
+import handleLogin from "../../loader/handle_login";
 
 
 function Login() {
@@ -14,26 +13,10 @@ function Login() {
 
     const [error, setError] = useState('');
 
-    function handleLogin(event) {
-        event.preventDefault()
-        api.defaults.xsrfCookieName = 'csrftoken'
-        api.defaults.xsrfHeaderName = 'X-CSRFToken'
-
-        const url = `http://localhost:8000/auth/token/login/`;
-        api.post(url, {
-            username: username,
-            password: password
-        })
-        .then((response) => {
-            console.log(response.data.auth_token)
-        })
-        .catch((exception) => {
-            console.log(exception)
-            setPasswordHint(exception.response.data.password)
-            setUsernameHint(exception.response.data.username)
-            setError(exception.response.data.non_field_errors)
-        });
-
+    function errorHandler(error) {
+        setPasswordHint(error.response.data.password)
+        setUsernameHint(error.response.data.username)
+        setError(error.response.data.non_field_errors)
     }
 
     return (
@@ -52,7 +35,7 @@ function Login() {
                         {passwordHint && <Text>{passwordHint}</Text>}
                     </div>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>
-                        <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={handleLogin}>
+                        <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={(event) => { event.preventDefault(); handleLogin(username, password, errorHandler)}}>
                             <Text>Login</Text>
                         </Button>
                     </div>

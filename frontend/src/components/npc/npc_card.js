@@ -9,6 +9,7 @@ import EditableText from "../editable_text";
 import AttributeList from "../attribute_list";
 import ImageGallery from "../image_gallery";
 import active_image from "../../active_image";
+import {AddToListMenu} from "../scene/add_to_list_menu";
 
 
 function allows_edit(npc) {
@@ -55,13 +56,13 @@ class NPCCard extends React.Component {
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),
                 data: <div><EditableText attribute={attribute}
-                                    entity={this.props.entity}
-                                    approxLineSize={58}
-                                    editable={this.props.editable}
-                                    editableDisabled={this.props.editableDisabled}
-                                    check={this.props.check}
-                                    setAlternatives={this.props.setAlternatives}
-                     /> </div>
+                                         entity={this.props.entity}
+                                         approxLineSize={58}
+                                         editable={this.props.editable}
+                                         editableDisabled={this.props.editableDisabled}
+                                         check={this.props.check}
+                                         setAlternatives={this.props.setAlternatives}
+                /></div>
             })
         )
 
@@ -86,7 +87,9 @@ class NPCCard extends React.Component {
                         alt: this.props.entity.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}
-                    title={<div><EditableText style={{width: '630px'}}
+                    title={<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <div>
+                            <EditableText style={{width: '630px'}}
                                           attribute='Name'
                                           entity={this.props.entity}
                                           approxLineSize={58}
@@ -95,22 +98,26 @@ class NPCCard extends React.Component {
                                           check={this.props.check}
                                           setAlternatives={this.props.setAlternatives}
 
-                    /> </div>}
+                            /></div>
+                        <div>
+                            <AddToListMenu show={!this.props.editable} entity_id={this.props.entity.id}/></div>
+                    </div>}
                     landscape
                 >
 
                     <div>
                         <Blockquote>
-                            <Text><div>
-                                <EditableText style={{margin: '1 0 0 0', width: '580px'}}
-                                              attribute='Catchphrase'
-                                              entity={this.props.entity}
-                                              approxLineSize={58}
-                                              editable={this.props.editable}
-                                              editableDisabled={this.props.editableDisabled}
-                                              check={this.props.check}
-                                              setAlternatives={this.props.setAlternatives}
-                                /> </div>
+                            <Text>
+                                <div>
+                                    <EditableText style={{margin: '1 0 0 0', width: '580px'}}
+                                                  attribute='Catchphrase'
+                                                  entity={this.props.entity}
+                                                  approxLineSize={58}
+                                                  editable={this.props.editable}
+                                                  editableDisabled={this.props.editableDisabled}
+                                                  check={this.props.check}
+                                                  setAlternatives={this.props.setAlternatives}
+                                    /></div>
                             </Text>
                         </Blockquote>
 
@@ -127,7 +134,7 @@ class NPCCard extends React.Component {
 
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.entity)}/>
 
-                    <div className={this.props.entity.id? '': 'hidden'}>
+                    <div className={this.props.entity.id ? '' : 'hidden'}>
                         <a href={"/npcs/" + this.props.entity.id + "/gallery"}>
                             <Button>Galerie</Button>
                         </a>
