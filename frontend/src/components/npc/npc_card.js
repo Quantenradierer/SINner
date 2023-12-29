@@ -55,13 +55,13 @@ class NPCCard extends React.Component {
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),
                 data: <div><EditableText attribute={attribute}
-                                    entity={this.props.entity}
-                                    approxLineSize={58}
-                                    editable={this.props.editable}
-                                    editableDisabled={this.props.editableDisabled}
-                                    check={this.props.check}
-                                    setAlternatives={this.props.setAlternatives}
-                     /> </div>
+                                         entity={this.props.entity}
+                                         approxLineSize={58}
+                                         editable={this.props.editable}
+                                         editableDisabled={this.props.editableDisabled}
+                                         check={this.props.check}
+                                         setAlternatives={this.props.setAlternatives}
+                /></div>
             })
         )
 
