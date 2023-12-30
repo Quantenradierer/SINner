@@ -39,6 +39,14 @@ class Message:
     def is_message_create(self):
         return self.message.get("t", "") == "MESSAGE_CREATE"
 
+    def is_right_channel(self):
+        data = self.d
+        if type(data) is not dict:
+            return False
+
+        channel_id = data.get("channel_id", {})
+        return channel_id == os.getenv("MJ_PRIVATE_DISCORD_CHANNEL_ID")
+
     def seed(self):
         result = re.findall(r"--seed (\d+)", self.d["content"])
 
@@ -163,7 +171,8 @@ class Discord(metaclass=SingletonMeta):
 
     def dispatch(self, message):
         if (
-            message.is_midjourney()
+            message.is_right_channel()
+            and message.is_midjourney()
             and message.is_message_create()
             and message.png_attachment()
             and message.seed()
