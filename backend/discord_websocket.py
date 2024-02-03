@@ -45,7 +45,7 @@ class Message:
             return False
 
         channel_id = data.get("channel_id", {})
-        return channel_id == os.getenv("MJ_PRIVATE_DISCORD_CHANNEL_ID")
+        return channel_id == os.getenv("MJ_CHANNEL_ID")
 
     def seed(self):
         result = re.findall(r"--seed (\d+)", self.d["content"])

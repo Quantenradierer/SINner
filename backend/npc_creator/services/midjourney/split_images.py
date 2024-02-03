@@ -33,7 +33,8 @@ def split_image(image_path: str, image_paths_iter: List[str]) -> List[str]:
         right = x + width // 2
         bottom = y + height // 2
 
-        im.crop((left, top, right, bottom)).save(file_path)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        im.crop((left, top, right, bottom)).save(file_path + ".png")
         result.append(os.path.basename(file_path))
     os.remove(image_path)
     return result

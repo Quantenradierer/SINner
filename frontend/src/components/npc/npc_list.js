@@ -14,7 +14,7 @@ function NPCListItem(props) {
             <a href={'/npcs/' + props.entity.id}>
                 <Card
                     image={{
-                        src: image_path('npcs', activeImage.name),
+                        src: image_path('npcs', activeImage.name, true),
                         alt: props.entity.image_generator_description
                     }}
                     title={props.entity.primary_values['Name']}

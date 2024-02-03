@@ -6,6 +6,7 @@ from npc_creator import config
 from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success, ReturnType
+from npc_creator.services.midjourney.create_thumbnails import create_thumbnail
 from npc_creator.services.midjourney.download_midjourney_image import (
     download_midjourney_image,
 )
@@ -50,6 +51,10 @@ class DownloadImage:
     def plural_entity_type(self):
         return self.entity.kind.lower() + "s"
 
+    @property
+    def entity_directory(self):
+        return os.path.join(config.PUBLIC_ENTITY_IMAGE_PATH, self.plural_entity_type())
+
     def download_images(self):
         panel_name = os.path.basename(urlparse(self.generation.url).path)
 
@@ -60,13 +65,14 @@ class DownloadImage:
 
         image_names = split_image(
             panel_image_path,
-            self.images_names_iterator(self.plural_entity_type()),
+            self.images_names_iterator(),
         )
+        for image_path in image_names:
+            success = create_thumbnail(os.path.join(self.entity_directory, image_path))
+            if not success:
+                return Failure("thumbnail creation failed")
         return Success(image_names)
 
-    @staticmethod
-    def images_names_iterator(entity_type):
+    def images_names_iterator(self) -> str:
         while True:
-            yield os.path.join(
-                config.PUBLIC_ENTITY_IMAGE_PATH, entity_type, str(uuid.uuid1()) + ".png"
-            )
+            yield os.path.join(self.entity_directory, str(uuid.uuid1()))
