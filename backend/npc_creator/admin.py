@@ -10,21 +10,22 @@ from npc_creator.models.image_generation import ImageGeneration
 
 @admin.register(Entity)
 class EntityAdmin(admin.ModelAdmin):
-    list_display = ("id", "image_generator_description")
+    list_display = ("id", "kind", "image_generator_description")
 
     search_fields = ["image_generator_description"]
 
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ("template", "entity", "created_at", "updated_at")
-    search_fields = ["template", "entity", "created_at", "updated_at"]
+    list_display = ("name", "score", "template", "entity", "created_at", "updated_at")
+    search_fields = ["name", "score", "template", "entity", "created_at", "updated_at"]
 
 
 @admin.register(ImageGeneration)
 class ImageGenerationAdmin(admin.ModelAdmin):
     list_display = (
         "description",
+        "template",
         "retry_count",
         "url",
         "entity",
@@ -33,6 +34,7 @@ class ImageGenerationAdmin(admin.ModelAdmin):
     )
     search_fields = [
         "description",
+        "template",
         "retry_count",
         "url",
         "entity",
