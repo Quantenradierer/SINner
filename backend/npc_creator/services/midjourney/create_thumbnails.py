@@ -27,7 +27,7 @@ def create_thumbnail(image_path: str) -> bool:
         os.path.basename(extensionless_image_path) + ".jpg",
     )
 
-    if os.path.exists(os.path.dirname(thumbnail_path)):
+    if os.file.exists(thumbnail_path):
         return True
 
     try:
