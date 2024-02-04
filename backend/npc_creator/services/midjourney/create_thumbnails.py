@@ -36,5 +36,8 @@ def create_thumbnail(image_path: str) -> bool:
         return False
 
     os.makedirs(os.path.dirname(thumbnail_path), exist_ok=True)
-    im.save(thumbnail_path, "JPEG")
+    try:
+        im.save(thumbnail_path, "JPEG")
+    except OSError:
+        return False
     return True
