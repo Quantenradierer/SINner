@@ -12,10 +12,13 @@ from npc_creator.services.midjourney.create_thumbnails import create_thumbnail
 def bulk_thumbnails(apps, schema_editor):
     def entity_directory(self, entity_type):
         return os.path.join(config.PUBLIC_ENTITY_IMAGE_PATH, entity_type + "s")
-    from npc_creator.models import Image #Image = apps.get_model("npc_creator", "Image")
+
+    Image = apps.get_model("npc_creator", "Image")
+
     for image in Image.objects.all():
         if not image.entity:
             continue
+
         create_thumbnail(
             os.path.join(
                 entity_directory(image.entity, image.entity.kind.lower()), image.name
