@@ -21,13 +21,13 @@ def create_thumbnail(image_path: str) -> bool:
 
     extensionless_image_path = os.path.splitext(image_path)[0]
 
-    thumbnail_path = os.path.join(
+    thumbnail_file = os.path.join(
         os.path.dirname(extensionless_image_path),
         "jpgs",
         os.path.basename(extensionless_image_path) + ".jpg",
     )
 
-    if os.file.exists(thumbnail_path):
+    if os.path.exists(thumbnail_file):
         return True
 
     try:
@@ -35,9 +35,9 @@ def create_thumbnail(image_path: str) -> bool:
     except (PIL.UnidentifiedImageError, FileNotFoundError):
         return False
 
-    os.makedirs(os.path.dirname(thumbnail_path), exist_ok=True)
+    os.makedirs(os.path.dirname(thumbnail_file), exist_ok=True)
     try:
-        im.save(thumbnail_path, "JPEG")
+        im.save(thumbnail_file, "JPEG")
     except OSError:
         return False
     return True
