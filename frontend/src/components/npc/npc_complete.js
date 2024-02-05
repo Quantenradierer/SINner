@@ -16,14 +16,8 @@ class NPCCompleteWrapped extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {attributeAlternative: null}
         this.interval = null;
 
-        this.setAlternatives = this.setAlternatives.bind(this);
-    }
-
-    setAlternatives(attribute) {
-        this.setState({attributeAlternative: attribute})
     }
 
     render() {
@@ -36,10 +30,9 @@ class NPCCompleteWrapped extends React.Component {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {warning}
 
-                {this.state.attributeAlternative && <AlternativeDialog entity={this.props.entity} attributeAlternative={this.state.attributeAlternative} setAlternatives={this.setAlternatives}/>}
-                <NPCCard entity={this.props.entity} setAlternatives={this.setAlternatives}/>
-                <NPCPrivate entity={this.props.entity} setAlternatives={this.setAlternatives}/>
-                <NPCSkills entity={this.props.entity} setAlternatives={this.setAlternatives}/>
+                <NPCCard entity={this.props.entity}/>
+                <NPCPrivate entity={this.props.entity}/>
+                <NPCSkills entity={this.props.entity}/>
             </div>
         )
 

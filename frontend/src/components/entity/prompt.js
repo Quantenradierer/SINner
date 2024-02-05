@@ -22,7 +22,7 @@ class PromptWrapped extends React.Component {
         let show = true
 
         let entity = props.entity
-        entity["image_objects"] = [{id: 0, score: 0, name: 'creation_form.png'}]
+        entity["image_objects"] = [{id: 0, score: 0, name: 'creation_form'}]
         this.state = {
             show: show,
             loadingState: 'prompt',
@@ -46,7 +46,7 @@ class PromptWrapped extends React.Component {
         api.post(`/api/npc_creator/${this.props.entityType}s/prompt/`, {prompt: prompt, values: this.state.entity.values}, {timeout: 240000} )
             .then(function (response) {
                 if (response.data.type === 'success') {
-                    response.data.entity.image_objects = [{id: 0, score: 0, name: 'creation_form.png'}]
+                    response.data.entity.image_objects = [{id: 0, score: 0, name: 'creation_form'}]
 
                     self.setState({ entity: response.data.entity})
                     self.props.setEntity(response.data.entity)

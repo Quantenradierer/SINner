@@ -47,13 +47,13 @@ const EditableText = props => {
         }
 
         rows = Math.min(4, rows);
-        let style = { padding: '2px', height: 4 + rows * 32 + 'px', backgroundColor: backgroundColor };
+        let style = { padding: '2px', height: 4 + rows * 32 + 'px', width: '100%', backgroundColor: backgroundColor };
 
         Object.assign(style, props.style);
         if (definition.length == 0) {
             return (<textarea style={style} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} />);
         } else {
-            return (<input type={"text"} maxLength={definition.length} style={style} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} />);
+            return (<div style={style}><input style={{height: '100%'}} type={"text"} maxLength={definition.length} disabled={props.editableDisabled} rows={rows} key={props.attribute} value={value} onChange={handleChange} /> </div>);
         }
     }
 }

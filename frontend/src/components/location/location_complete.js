@@ -14,14 +14,7 @@ class LocationCompleteWrapped extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {attributeAlternative: null}
         this.interval = null;
-
-        this.setAlternatives = this.setAlternatives.bind(this);
-    }
-
-    setAlternatives(attribute) {
-        this.setState({attributeAlternative: attribute})
     }
 
     render() {
@@ -33,10 +26,8 @@ class LocationCompleteWrapped extends React.Component {
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {warning}
-
-                {this.state.attributeAlternative && <AlternativeDialog entity={this.props.entity} attributeAlternative={this.state.attributeAlternative} setAlternatives={this.setAlternatives}/>}
-                <LocationCard entity={this.props.entity} setAlternatives={this.setAlternatives}/>
-                <CommentCard entity={this.props.entity  }/>
+                <LocationCard entity={this.props.entity}/>
+                <CommentCard entity={this.props.entity}/>
             </div>
         )
 

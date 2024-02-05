@@ -134,9 +134,9 @@ const NPCPrompt = props => {
                 setEditable={setEditable}
                 check={check} setCheck={setCheck}>
             <div>
-                <NPCCard entity={entity} editable={true} editableDisabled={props.disabled} check={check}/>
-                <NPCPrivate entity={entity} editable={true} editableDisabled={props.disabled} check={check}/>
-                <NPCSkills entity={entity} editable={true} editableDisabled={props.disabled} check={check}/>
+                <NPCCard entity={entity}  editable={true} editableDisabled={!editable}  check={check}/>
+                <NPCPrivate entity={entity}  editable={true} editableDisabled={!editable}  check={check}/>
+                <NPCSkills entity={entity}  editable={true} editableDisabled={!editable}  check={check}/>
             </div>
 
         </Prompt>)

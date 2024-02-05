@@ -54,14 +54,15 @@ class NPCCard extends React.Component {
         ]
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),
-                data: <div><EditableText attribute={attribute}
+                data:
+                    <EditableText attribute={attribute}
                                          entity={this.props.entity}
                                          approxLineSize={58}
                                          editable={this.props.editable}
                                          editableDisabled={this.props.editableDisabled}
                                          check={this.props.check}
                                          setAlternatives={this.props.setAlternatives}
-                /></div>
+                />
             })
         )
 
@@ -86,16 +87,15 @@ class NPCCard extends React.Component {
                         alt: this.props.entity.image_generator_description
                     }}
                     style={{width: 950, margin: 15}}
-                    title={<div><EditableText style={{width: '630px'}}
+                    title={<EditableText style={{width: '630px'}}
                                           attribute='Name'
                                           entity={this.props.entity}
                                           approxLineSize={58}
                                           editable={this.props.editable}
                                           editableDisabled={this.props.editableDisabled}
                                           check={this.props.check}
-                                          setAlternatives={this.props.setAlternatives}
 
-                    /> </div>}
+                    />}
                     landscape
                 >
 
@@ -109,7 +109,6 @@ class NPCCard extends React.Component {
                                               editable={this.props.editable}
                                               editableDisabled={this.props.editableDisabled}
                                               check={this.props.check}
-                                              setAlternatives={this.props.setAlternatives}
                                 /> </div>
                             </Text>
                         </Blockquote>
@@ -121,7 +120,6 @@ class NPCCard extends React.Component {
                                        editable={this.props.editable}
                                        editableDisabled={this.props.editableDisabled}
                                        check={this.props.check}
-                                       setAlternatives={this.props.setAlternatives}
                         />
                     </div>
 
