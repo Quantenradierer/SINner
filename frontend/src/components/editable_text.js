@@ -8,10 +8,10 @@ import api from "../axios";
 const EditableText = props => {
     let attributes = props.entity.values[props.attribute]
     let attribute = ''
-    if (attributes != undefined && attributes.length > 0) {
+    if (attributes != undefined && attributes instanceof Array) {
         attribute = attributes[0]
     } else {
-        attribute = ''
+        attribute = attributes
     }
 
     let definition = props.entity.attribute_definition[props.attribute]
@@ -25,10 +25,6 @@ const EditableText = props => {
         props.entity.values[props.attribute] = event.target.value
         setValue(event.target.value);
     };
-
-    async function handleAlternatives(event) {
-        props.setAlternatives(props.attribute)
-    }
 
     if (!props.editable) {
         return (

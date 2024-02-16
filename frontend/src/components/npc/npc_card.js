@@ -61,7 +61,6 @@ class NPCCard extends React.Component {
                                          editable={this.props.editable}
                                          editableDisabled={this.props.editableDisabled}
                                          check={this.props.check}
-                                         setAlternatives={this.props.setAlternatives}
                 />
             })
         )

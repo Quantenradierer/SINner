@@ -16,6 +16,11 @@ class Fill(entity.Fill):
             "- Gib immer etwas neues aus, statt die Eingabe zu wiederholen\r\n"
         )
 
+    def prompt(self):
+        return [self.user_prompt] + [
+            f"Aussehen: {self.entity.primary_values['Aussehen']}"
+        ]
+
     def json_format(self):
         return json.dumps(
             {

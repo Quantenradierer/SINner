@@ -20,7 +20,6 @@ const AttributeList = props => {
                               editable={props.editable}
                               editableDisabled={props.editableDisabled}
                               check={props.check}
-                              setAlternatives={props.setAlternatives}
                 />
 
 

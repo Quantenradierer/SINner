@@ -1,7 +1,7 @@
 import React from "react";
 import i18next from "../../i18n";
 import Warning from "../warning";
-import {FramePentagon, Text} from "@arwes/core";
+import {Button, FramePentagon, Text} from "@arwes/core";
 import EditableText from "../editable_text";
 import CustomComplete from "./complete";
 import image_path from "../../image_path";
@@ -19,13 +19,19 @@ function CustomCard(props) {
         )
     }
 
+    function RepeatImage(entity) {
+        window.location.href = '/customs_prompt/?parameter=' + entity.values['Parameter'] + '&aussehen=' + entity.values['Aussehen']
+    }
+
     return (
         <div style={{margin: 15}}>
             <FramePentagon style={{width: '100%'}}>
-                <Text>{props.entity.primary_values['Aussehen']}</Text>
+                <Text>{props.entity.values['Aussehen']}</Text>
+                <Text>{props.entity.values['Parameter']}</Text>
                 <div style={{margin: 15, width: '100%'}}>
                     {items}
                 </div>
+                <Button onClick={() => RepeatImage(props.entity)}>{i18next.t('Wiederholen')}</Button>
             </FramePentagon>
         </div>
     )

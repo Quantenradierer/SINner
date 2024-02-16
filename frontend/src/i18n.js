@@ -65,7 +65,24 @@ const resources = {
             attribute_aktuelle_aktionen_events: 'Aktionen',
             attribute_gerüchte_und_geschichten_über_die_location: 'Gerüchte',
 
-            attribute_parameter: 'Parameter'
+            attribute_parameter: 'Parameter',
+
+            "--s 50": "stylize low",
+            "--s 100": "stylize medium",
+            "--s 250": "stylize high",
+            "--s 750": "stylize very high",
+
+            "--ar 1:1": "Quadratisch (1:1)",
+            "--ar 2:3": "Hoch (2:3)",
+            "--ar 4:7": "Portrait (4:7)",
+            "--ar 3:2": "Breit (3:2)",
+            "--ar 7:4": "Landschaft (7:4)",
+
+            "--chaos 0": "Kein Chaos",
+            "--chaos 7": "Wenig Chaos",
+            "--chaos 25": "Mittleres Chaos",
+            "--chaos 50": "Hohes Chaos",
+            "--chaos 100": "Maximales Chaos",
         },
     },
     en: {
