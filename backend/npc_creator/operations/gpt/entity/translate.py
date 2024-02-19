@@ -11,7 +11,14 @@ class Translate(GptInterface):
     def prompt(self):
         raise NotImplementedError()
 
+    def remove_quotes(self, text):
+        if text.startswith('"') and text.endswith('"'):
+            return text[1:-1]
+        return text
+
     def interpret_result(self, success):
+        success.data = self.remove_quotes(success.data.strip())
+
         self.kwargs["entity"].image_generator_description = remove_banned_words(
             success.data.strip()
         )

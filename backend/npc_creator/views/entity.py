@@ -134,55 +134,15 @@ class GenericEntityView(viewsets.ModelViewSet):
         entity = self.queryset.get(pk=pk)
 
         for i in range(10):
-            if (
-                ImageGeneration.objects.filter(
-                    url__isnull=True, created_at__gt=now() - timedelta(hours=-1)
-                ).count()
-                < 10
-            ):
-                generation = ImageGeneration(entity=entity)
-                generation.save()
-                generation_job_async(generation)
+            generation = ImageGeneration(entity=entity)
+            generation.save()
+            generation_job_async(generation)
 
             time.sleep(random.random() + random.randint(3, 10))
 
         return Response(
             {"type": "success", "entity": self.serializer_class(entity).data}
         )
-
-    @action(detail=True, methods=["post"])
-    def alternatives(self, request, pk):
-        npc = npc_repo.find(pk)
-
-        data = json.loads(request.body.decode())
-        attribute = data.get("attribute", None)
-
-        if attribute not in npc.primary_values:
-            return Response({"type": "error", "error": "TODO"})
-
-        key = f"AlternativeAttributes-npc{npc.id}-{attribute}"
-        for i in range(600):
-            result = cache.get(key)
-            if not result:
-                break
-            sleep(0.1)
-
-        if not npc.attribute_set.filter(generation__gt=0, key=attribute).exists():
-            cache.set(key, "True")
-            result = AlternativeAttributes(npc=npc, attribute=attribute).call()
-            for alternative in result.data:
-                Attribute.objects.create(
-                    npc=npc, key=attribute, value=alternative, generation=1
-                )
-            cache.delete(key)
-
-        attributes = npc.attribute_set.filter(generation__gt=0, key=attribute)
-        if attributes:
-            return Response(
-                {"type": "success", "alternatives": [attr.value for attr in attributes]}
-            )
-
-        return Response({"type": "error", "error": "TODO"})
 
 
 class NpcViewSet(GenericEntityView):
