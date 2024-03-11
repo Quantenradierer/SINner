@@ -7,11 +7,14 @@ class Translate(entity.Translate):
         super().__init__(**kwargs)
         self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """
-- you are a professional illustrator with 100 years of experience
-- if you do a good job, you will receive 1000€ tip
+- if you do a good job, you will receive 200€ tip
+- do not use quotes for names
+- do not use simple quotes 
+- do only use double quotes for words which shall be visible as text in the image itself
 - generate a midjourney prompt for image generation
-- do not use parameters
+- do not use midjourney parameters
 - answer only in english, no matter the input language
+- answer only with the refined version, no further text
 """
 
     def prompt(self):

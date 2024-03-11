@@ -29,7 +29,6 @@ class PassImagePrompt(entity.PassImagePrompt):
             image_generator_description=self.generation.description
         )
         template, prompt = self.special_midjourney_prompt(prompt)
-
         if not pass_prompt(prompt):
             return Failure("sending_midjourney_prompt_was_unsuccessful")
 

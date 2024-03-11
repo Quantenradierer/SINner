@@ -31,25 +31,28 @@ def transform_gender(gender):
 
 
 def get_multiprompts(metatyp_gender):
+    return "shadowrun"
+
     return {
-        "troll_male": "small horns:: minotaur::0.8 clothes:: cyberpunk::0.3 bull::-0.1 animal::-0.1 ",
-        "troll_female": "female::2 suit:: minotaur::1.5 small horns:: wrinkles:: clothes:: cyberpunk::0.3 fur::-0.5 beard::-0.5 cyberpunk::",
-        "orc_male": "green skin::-0.3 clothes:: cyberpunk::0.3 human with orc tusks:: armor::-0.1 ",
-        "orc_female": "green skin::-0.3 clothes:: cyberpunk::0.3 human with orc tusks:: armor::-0.1 ",
-        "dwarf_male": "cyberpunk::0.3 dwarf:: gnome::-0.2 elf::-0.2",
-        "dwarf_female": "cyberpunk::0.3 dwarf:: female:: gnome::-0.2 elf::-0.2",
-    }.get(metatyp_gender, "cyberpunk::0.3")
+        "troll_male": "clothes:: small horns:: cyberpunk::0.5",
+        "troll_female": "female::2 clothes:: small horns:: cyberpunk::0.5 fur::-0.5 beard::-0.5",
+        "orc_male": "green skin::-0.3 clothes:: cyberpunk::0.5 human with orc tusks:: armor::-0.1 ",
+        "orc_female": "green skin::-0.3 clothes:: cyberpunk::0.5 human with orc tusks:: armor::-0.1 ",
+        "dwarf_male": "cyberpunk::0.5 dwarf:: gnome::-0.2 elf::-0.2",
+        "dwarf_female": "cyberpunk::0.5 dwarf:: female:: gnome::-0.2 elf::-0.2",
+    }.get(metatyp_gender, "cyberpunk::0.5")
 
 
 def get_suffix_options(metatyp_gender):
     return {
         "troll_male": "--chaos "
-        + str(random.randint(1, 6) * random.randint(1, 6) + random.randint(1, 6)),
+        + str(random.randint(1, 6) + random.randint(1, 6) + random.randint(1, 6)),
         "troll_female": "--chaos "
-        + str(random.randint(1, 6) * random.randint(1, 6) + random.randint(1, 6)),
+        + str(random.randint(1, 6) + random.randint(1, 6) + random.randint(1, 6)),
     }.get(
         metatyp_gender,
-        "--chaos " + str(random.randint(1, 6) * random.randint(1, 6) + 11),
+        "--chaos "
+        + str(random.randint(1, 6) + random.randint(1, 6) + random.randint(1, 6)),
     ) + " --ar 4:5"
 
 
