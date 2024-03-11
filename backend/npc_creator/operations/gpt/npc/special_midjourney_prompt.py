@@ -34,8 +34,8 @@ def get_multiprompts(metatyp_gender):
     return "shadowrun"
 
     return {
-        "troll_male": "clothes:: small horns:: cyberpunk::0.5",
-        "troll_female": "female::2 clothes:: small horns:: cyberpunk::0.5 fur::-0.5 beard::-0.5",
+        "troll_male": "clothes:: small horns:: troll:: cyberpunk:: cyberpunkbackground::",
+        "troll_female": "female::2 clothes:: small horns:: troll:: cyberpunk:: cyberpunkbackground:: ",
         "orc_male": "green skin::-0.3 clothes:: cyberpunk::0.5 human with orc tusks:: armor::-0.1 ",
         "orc_female": "green skin::-0.3 clothes:: cyberpunk::0.5 human with orc tusks:: armor::-0.1 ",
         "dwarf_male": "cyberpunk::0.5 dwarf:: gnome::-0.2 elf::-0.2",
