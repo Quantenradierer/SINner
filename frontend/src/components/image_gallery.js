@@ -22,7 +22,7 @@ class ImageGalleryWrapped extends React.Component {
     }
 
     async handleRecreateImages() {
-        await api.post('/api/npc_creator/npcs/' + this.state.entity.id + '/recreate_images/', {
+        await api.post('/api/npc_creator/' + this.props.entity_type + '/' + this.state.entity.id + '/recreate_images/', {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
@@ -36,7 +36,7 @@ class ImageGalleryWrapped extends React.Component {
         this.setState({votes: votes})
 
         await api.post('/api/npc_creator/images/' + image_number + '/upvote/', {headers: {'Content-Type': 'application/json'}})
-        let entity = await new EntityLoader('npcs').entity({'params': {'id': this.state.entity.id}, undefined})
+        let entity = await new EntityLoader(this.props.entity_type).entity({'params': {'id': this.state.entity.id}, undefined})
 
         this.setState({entity: entity});
     }
@@ -48,7 +48,7 @@ class ImageGalleryWrapped extends React.Component {
         this.setState({votes: votes})
 
         await api.post('/api/npc_creator/images/' + image_number + '/downvote/', {headers: {'Content-Type': 'application/json'}})
-        let entity = await new EntityLoader('npcs').entity({'params': {'id': this.state.entity.id}, undefined})
+        let entity = await new EntityLoader(this.props.entity_type).entity({'params': {'id': this.state.entity.id}, undefined})
 
         this.setState({entity: entity});
     }
