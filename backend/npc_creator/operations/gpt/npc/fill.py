@@ -54,5 +54,13 @@ class Fill(entity.Fill):
             if empty_attribute:
                 attributes = {empty_attribute: success.data}
 
+        attributes = self._clean_result(attributes)
         self.entity.add_values(attributes)
         return success
+
+    def _clean_result(self, attributes):
+        for attr in self.entity.ATTRIBUTE_DEFINITION:
+            if attr.name in attributes and attr.length:
+                attributes[attr.name] = attributes[attr.name][: attr.length].strip()
+
+        return attributes
