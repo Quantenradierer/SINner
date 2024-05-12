@@ -22,6 +22,7 @@ def pass_prompt(prompt: str) -> bool:
         requests.exceptions.RequestException: If an error occures while sending the request
 
     """
+
     payload = {
         "type": 2,
         "application_id": "936929561302675456",
@@ -29,7 +30,7 @@ def pass_prompt(prompt: str) -> bool:
         "channel_id": CHANNEL_ID,
         "session_id": "38985802",
         "data": {
-            "version": "1166847114203123795",
+            "version": "1237876415471554623",
             "id": "938956540159881230",
             "name": "imagine",
             "type": 1,
@@ -37,21 +38,25 @@ def pass_prompt(prompt: str) -> bool:
             "application_command": {
                 "id": "938956540159881230",
                 "application_id": "936929561302675456",
-                "version": "1166847114203123795",
+                "version": "1237876415471554623",
                 "default_member_permissions": None,
                 "type": 1,
                 "nsfw": False,
                 "name": "imagine",
                 "description": "Create images with Midjourney",
+                "description_localized": "Create images with Midjourney",
+                "name_localized": "imagine",
                 "dm_permission": True,
-                "contexts": None,
-                "integration_types": [0],
+                "contexts": [0, 1, 2],
+                "integration_types": [0, 1],
+                "global_popularity_rank": 1,
                 "options": [
                     {
                         "type": 3,
                         "name": "prompt",
                         "description": "The prompt to imagine",
                         "required": True,
+                        "name_localized": "prompt",
                     }
                 ],
             },
