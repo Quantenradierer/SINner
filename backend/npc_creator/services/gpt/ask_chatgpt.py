@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 
@@ -11,7 +12,7 @@ client = OpenAI()
 client.api_key = os.getenv("OPENAI_API_KEY")
 
 
-def ask_chatgpt_moderated(system_prompt, user_prompts, gpt, json=False):
+def ask_chatgpt_moderated(system_prompt, user_prompts, gpt, use_json=False):
     messages = [{"role": "system", "content": system_prompt}]
     messages += [{"role": "user", "content": prompt} for prompt in user_prompts]
 
@@ -29,11 +30,13 @@ def ask_chatgpt_moderated(system_prompt, user_prompts, gpt, json=False):
         return Failure("input_was_flagged_by_gpt", result)
 
     kwargs = {}
-    if json:
-        kwargs = {"response_format": { "type": "json_object" }}
+    if use_json:
+        kwargs = {"response_format": {"type": "json_object"}}
 
     try:
-        completion = client.chat.completions.create(model=gpt, messages=messages, **kwargs)
+        completion = client.chat.completions.create(
+            model=gpt, messages=messages, **kwargs
+        )
     except Exception as e:
         logging.info(f"GPT Error: {e}")
         return Failure("gpt_raised_an_error", e)
@@ -41,9 +44,12 @@ def ask_chatgpt_moderated(system_prompt, user_prompts, gpt, json=False):
     content = completion.choices[0].message.content
     logging.info(f"GPT Prompt: {completion}")
 
-    result = client.moderations.create(input=content)
+    result = client.moderations.create(input="\n".join([system_prompt, content]))
     if result.results[0].flagged:
         logging.info(f"GPT Error: ", result)
         return Failure("npc_was_flagged_by_gpt", result)
+
+    if use_json:
+        content = json.loads(content)
 
     return Success(content)

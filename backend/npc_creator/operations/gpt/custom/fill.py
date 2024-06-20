@@ -21,16 +21,8 @@ class Fill(entity.Fill):
             f"Aussehen: {self.entity.primary_values['Aussehen']}"
         ]
 
-    def json_format(self):
-        return json.dumps(
-            {
-                (attr.name, attr.additional_data)
-                for attr in self.entity.ATTRIBUTE_DEFINITION
-            }
-        )
-
     def interpret_result(self, success):
-        values = json.loads(success.data)
+        values = success.data
 
         self.entity.add_values(values)
         return success

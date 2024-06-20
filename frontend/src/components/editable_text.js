@@ -18,12 +18,12 @@ const EditableText = props => {
     const [value, setValue] = useState( attribute || '');
 
     useEffect(() => {
-        setValue(attribute || '');
+        setValue(attribute?.toString() || '');
     }, [props.entity, props.attribute]);
 
     const handleChange = (event) => {
         props.entity.values[props.attribute] = event.target.value
-        setValue(event.target.value);
+        setValue(event.target.value?.toString());
     };
 
     if (!props.editable) {

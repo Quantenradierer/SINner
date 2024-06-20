@@ -5,7 +5,6 @@ from .. import entity
 class Translate(entity.Translate):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """
 - if you do a good job, you will receive 200€ tip
 - do not use quotes for names
@@ -28,8 +27,6 @@ class Translate(entity.Translate):
                 beruf=npc.primary_values.get("Beruf", ""),
                 alter=npc.primary_values.get("Alter", ""),
                 ethni=npc.primary_values.get("Ethnizität"),
-                image_generator_description=npc.primary_values[
-                    "Detailliertes Aussehen"
-                ],
+                image_generator_description=npc.attributes["Detailliertes Aussehen"],
             ),
         ]

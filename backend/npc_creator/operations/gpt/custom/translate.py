@@ -5,7 +5,6 @@ from npc_creator.operations.gpt import entity
 class Translate(entity.Translate):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """
 - you are a professional illustrator with 100 years of experience
 - if you do a good job, you will receive 200€ tip
@@ -23,6 +22,6 @@ class Translate(entity.Translate):
 
         return [
             input_prompt.format(
-                image_generator_description=entity.primary_values["Aussehen"]
+                image_generator_description=entity.attributes["Aussehen"]
             ),
         ]

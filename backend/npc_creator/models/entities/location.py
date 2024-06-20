@@ -66,6 +66,7 @@ class Location(Entity):
             length=0,
             reroll=True,
             additional_data="",
+            type="list",
         ),
     ]
     Fill = location.Fill

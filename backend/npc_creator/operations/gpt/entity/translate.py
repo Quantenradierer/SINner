@@ -5,8 +5,8 @@ from npc_creator.services.banned_words_filter import remove_banned_words
 class Translate(GptInterface):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = ""
+        self.use_json = False
 
     def prompt(self):
         raise NotImplementedError()

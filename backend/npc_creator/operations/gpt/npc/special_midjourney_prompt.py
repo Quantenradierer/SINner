@@ -31,13 +31,11 @@ def transform_gender(gender):
 
 
 def get_multiprompts(metatyp_gender):
-    return "shadowrun"
-
     return {
         "troll_male": "clothes:: small horns:: troll:: cyberpunk:: cyberpunkbackground::",
         "troll_female": "female::2 clothes:: small horns:: troll:: cyberpunk:: cyberpunkbackground:: ",
-        "orc_male": "green skin::-0.3 clothes:: cyberpunk::0.5 human with orc tusks:: armor::-0.1 ",
-        "orc_female": "green skin::-0.3 clothes:: cyberpunk::0.5 human with orc tusks:: armor::-0.1 ",
+        "orc_male": "shadowrun:: modern orc::",
+        "orc_female": "shadowrun:: modern orc::",
         "dwarf_male": "cyberpunk::0.5 dwarf:: gnome::-0.2 elf::-0.2",
         "dwarf_female": "cyberpunk::0.5 dwarf:: female:: gnome::-0.2 elf::-0.2",
     }.get(metatyp_gender, "cyberpunk::0.5")
@@ -68,7 +66,6 @@ def special_midjourney_prompt(prompt, seed, metatyp, gender):
         template_url = template.url
     else:
         template_url = ""
-
     multiprompts = get_multiprompts(f"{metatyp}_{gender}")
     suffix_options = get_suffix_options(f"{metatyp}_{gender}")
 

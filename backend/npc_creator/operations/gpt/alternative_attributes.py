@@ -6,7 +6,6 @@ from npc_creator.operations.return_types import Success
 class AlternativeAttributes(GptInterface):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.gpt = GptInterface.GptVersion.GPT4_TURBO
         self.system_prompt = """
 - Es handelt sich um das Pen&Paper Rollenspiel Shadowrun
 - Für einen NPC-Generator werden anderen Ideen und Vorschläge für ein Attribute benötigt

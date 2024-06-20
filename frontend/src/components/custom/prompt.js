@@ -23,10 +23,10 @@ const CustomPrompt = props => {
     const search_params = url.searchParams;
 
     if (default_entity.values['Parameter'] == undefined) {
-        default_entity.values['Parameter'] = search_params.get('parameter');
+        default_entity.values['Parameter'] = search_params.get('parameter') || '';
     }
     if (default_entity.values['Aussehen'] == undefined) {
-        default_entity.values['Aussehen'] = search_params.get('aussehen');
+        default_entity.values['Aussehen'] = search_params.get('aussehen') || ''
     }
 
     const [entity, setEntity] = useState(default_entity);

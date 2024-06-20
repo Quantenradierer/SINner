@@ -10,8 +10,8 @@ class PassImagePrompt(entity.PassImagePrompt):
         return special_midjourney_prompt(
             prompt=prompt,
             seed=self.generation.id,
-            metatyp=self.entity.primary_values.get("Metatyp", ""),
-            gender=self.entity.primary_values.get("Geschlecht", ""),
+            metatyp=self.entity.attributes.get("Metatyp", ""),
+            gender=self.entity.attributes.get("Geschlecht", ""),
         )
 
     def call(self) -> Failure:

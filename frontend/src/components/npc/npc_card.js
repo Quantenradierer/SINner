@@ -40,17 +40,17 @@ class NPCCard extends React.Component {
 
     tableDataset(npc) {
         let attributes = [
-            'Konstitution (von 1-6)',
-            'Geschicklichkeit (von 1-6)',
-            'Reaktion (von 1-6)',
-            'Stärke (von 1-6)',
-            'Willenskraft (von 1-6)',
-            'Logik (von 1-6)',
-            'Intuition (von 1-6)',
-            'Charisma (von 1-6)',
-            'Glück (von 1-6)',
-            'Magie (von 0-6)',
-            'Resonanz (von 0-6)'
+            'Konstitution',
+            'Geschicklichkeit',
+            'Reaktion',
+            'Stärke',
+            'Willenskraft',
+            'Logik',
+            'Intuition',
+            'Charisma',
+            'Edge',
+            'Magie',
+            'Resonanz'
         ]
         let columns = attributes.map(attribute => new Object({
                 id: attribute.substring(0, 3),

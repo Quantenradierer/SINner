@@ -29,16 +29,8 @@ class Fill(entity.Fill):
 - Es sollen 5 Bewertungen generiert werden
 """
 
-    def json_format(self):
-        return json.dumps(
-            {
-                (attr.name, attr.additional_data)
-                for attr in self.entity.ATTRIBUTE_DEFINITION
-            }
-        )
-
     def interpret_result(self, success):
-        values = json.loads(success.data)
+        values = success.data
         if "innen" in values["Aussehen"]:
             values["Aussehen"] = values["Aussehen"]["innen"]
 

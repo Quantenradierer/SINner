@@ -11,6 +11,7 @@ class AttributeDefinition:
     reroll: bool
     additional_data: str = ""
     optional: bool = False
+    type: str = "string"
 
 
 class Entity(models.Model):
@@ -59,11 +60,10 @@ class Entity(models.Model):
                 continue
 
             value = self.primary_values.get(attr_def.name, "")
-            if type(value) == str:
+            if isinstance(value, str):
                 value = value.strip()
-
-            if not value:
-                return False
+                if not value:
+                    return False
         return True
 
     def has_image_description(self):
@@ -74,10 +74,13 @@ class Entity(models.Model):
 
     @property
     def primary_values(self):
-        return dict(
-            (key, values[0] if values else "")
-            for key, values in self.attributes.items()
-        )
+        result = {}
+        for attr_def in self.ATTRIBUTE_DEFINITION:
+            value = self.attributes.get(attr_def.name, "")
+            if value and type(value) is list and attr_def.type != "list":
+                value = value[0]
+            result[attr_def.name] = value
+        return result
 
     @property
     def attribute_names(self):
@@ -85,17 +88,21 @@ class Entity(models.Model):
 
     def add_values(self, new_values):
         for key, values in new_values.items():
-            if key not in self.attribute_names:
-                continue
-                # raise ValueError(
-                #    f"key {key} not in {self.__class__} ATTRIBUTE_DEFINITIONS"
-                # )
+            found_key = next(
+                (
+                    attr_def.name
+                    for attr_def in self.ATTRIBUTE_DEFINITION
+                    if attr_def.name.lower() == key.lower()
+                ),
+                None,
+            )
 
-            self.attributes[key] = self.attributes.get(key, list())
-            if type(values) == str:
-                if not values.strip():
-                    continue
-                values = [values]
+            if not found_key:
+                continue
+
+            self.attributes[found_key] = self.attributes.get(found_key, "")
+            if isinstance(values, str) and not values.strip():
+                continue
             self.attributes[key] = values
 
     @property
