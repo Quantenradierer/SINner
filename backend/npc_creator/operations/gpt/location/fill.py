@@ -31,7 +31,9 @@ class Fill(entity.Fill):
 
     def interpret_result(self, success):
         values = success.data
-        if "innen" in values["Aussehen"]:
+        if "innen" in values["Aussehen"] and isinstance(
+            values["Aussehen"]["innen"], dict
+        ):
             values["Aussehen"] = values["Aussehen"]["innen"]
 
         self.entity.add_values(values)
