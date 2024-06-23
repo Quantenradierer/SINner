@@ -13,14 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
+
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt import views as jwt_views
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
-from core.views.logout import LogoutView
 
 urlpatterns = [
     path(
@@ -28,6 +25,7 @@ urlpatterns = [
         include(
             [
                 path("npc_creator/", include("npc_creator.urls")),
+                #                path("users/", include("users.urls")),
             ]
         ),
     ),
