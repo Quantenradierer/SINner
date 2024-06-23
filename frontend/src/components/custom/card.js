@@ -5,7 +5,7 @@ import {Button, FramePentagon, Text} from "@arwes/core";
 import EditableText from "../editable_text";
 import CustomComplete from "./complete";
 import image_path from "../../image_path";
-
+import { Link } from "react-router-dom";
 
 
 
@@ -13,9 +13,9 @@ function CustomCard(props) {
     let items = []
     for (let image of props.entity?.image_objects || []) {
         items.push(
-            <a href={image_path('customs', image.name)}>
+            <Link to={image_path('customs', image.name)}>
                 <img style={{width: '24%'}} src={image_path('customs', image.name, true)}/>
-            </a>
+            </Link>
         )
     }
 

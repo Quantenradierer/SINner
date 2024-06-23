@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Button, FrameBox, FrameCorners, FrameLines, FramePentagon, FrameUnderline, Text} from "@arwes/core";
 import i18next from "../i18n";
 import is_logged_in from "../is_loggin_in";
+import { Link } from "react-router-dom";
 
 class MenuItems extends React.Component {
     render() {
@@ -9,24 +10,23 @@ class MenuItems extends React.Component {
         return (
             <div className="menu-item-container">
                 <div className="menu-item-title">
-                    <a href={`/${kind}`}>
+                    <Link to={`/${kind}`}>
                         <Text className="neon-text">{i18next.t('menu_' + kind)}</Text>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="menu-submenu">
-                    <a href={`/${kind}_prompt`} className="neon-link">
+                    <Link to={`/${kind}_prompt`} className="neon-link">
                         <span>Erstellen</span>
-                    </a>
+                    </Link>
                     /
-                    <a href={`/${kind}`} className="neon-link">
+                    <Link to={`/${kind}`} className="neon-link">
                         <span>Liste</span>
-                    </a>
+                    </Link>
                     /
-                    <a href={`/${kind}/random`} className="neon-link">
+                    <Link to={`/${kind}/random`} className="neon-link">
                         <span>Zufall</span>
-                    </a>
-
+                    </Link>
                 </div>
             </div>
         );
@@ -48,30 +48,30 @@ class Menu extends React.Component {
                 {custom_prompts && <MenuItems kind='customs'/>}
                 {!is_logged_in() && false && <div className="menu-item-container">
                     <div className="menu-item-title">
-                        <a href={`/login`}>
+                        <Link to={`/login`}>
                             <Text className="neon-text">{i18next.t('menu_login')}</Text>
-                        </a>
+                        </Link>
                     </div>
                 </div>}
                 {!is_logged_in() && false && <div className="menu-item-container">
                     <div className="menu-item-title">
-                        <a href={`/register`}>
+                        <Link to={`/register`}>
                             <Text className="neon-text">{i18next.t('menu_register')}</Text>
-                        </a>
+                        </Link>
                     </div>
                 </div>}
                 {is_logged_in() && <div className="menu-item-container">
                     <div className="menu-item-title">
-                        <a href={`/logout`}>
+                        <Link to={`/logout`}>
                             <Text className="neon-text">{i18next.t('menu_logout')}</Text>
-                        </a>
+                        </Link>
                     </div>
                 </div>}
                 <div className="menu-item-container">
                     <div className="menu-item-title">
-                        <a href={`/feedback`}>
+                        <Link to={`/feedback`}>
                             <Text className="neon-text">{i18next.t('menu_feedback')}</Text>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

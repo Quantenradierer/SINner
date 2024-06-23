@@ -9,7 +9,7 @@ import image_path from "../../image_path";
 import active_image from "../../active_image";
 import Comment from "./comment";
 import EntityList from "../entity/list";
-
+import { Link } from "react-router-dom";
 
 class LocationListItem extends React.Component {
 
@@ -26,7 +26,7 @@ class LocationListItem extends React.Component {
 
         return (<div style={{margin: 15}}>
 
-                <a href={'/locations/' + this.props.entity.id}>
+                <Link to={'/locations/' + this.props.entity.id}>
                     <Card
                         image={{
                             src: image_path('locations', activeImage.name, true),
@@ -44,7 +44,7 @@ class LocationListItem extends React.Component {
                         </Blockquote>
 
                     </Card>
-                </a>
+                </Link>
             </div>
         )
     }

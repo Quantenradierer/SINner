@@ -10,7 +10,6 @@ import AttributeList from "../attribute_list";
 import ImageGallery from "../image_gallery";
 import active_image from "../../active_image";
 
-
 function allows_edit(npc) {
   const queryParameters = new URLSearchParams(window.location.search)
   return !!queryParameters.get("access_key")
@@ -125,9 +124,9 @@ class NPCCard extends React.Component {
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.entity)}/>
 
                     <div className={this.props.entity.id? '': 'hidden'}>
-                        <a href={"/npcs/" + this.props.entity.id + "/gallery"}>
+                        <Link to={"/npcs/" + this.props.entity.id + "/gallery"}>
                             <Button>Galerie</Button>
-                        </a>
+                        </Link>
                     </div>
                 </Card>
             </div>

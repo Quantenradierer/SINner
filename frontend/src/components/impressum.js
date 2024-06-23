@@ -120,7 +120,8 @@ class Impressum extends React.Component {
                     </p>
                     <p>
                         <b>Warum wird das Bild nicht erzeugt?</b><br/>
-                        Manche Beschreibungen enthalten verbotene Wörter. Diese werden dann nicht erstellt.
+                        Unterschiedliche, schwer behebbare Bugs. In der Regel findet Midjourney das Motiv nicht in Ordnung.
+                        (z.B. Blut bei Ärzten, oder Narven, oder allein zusammengebundenes Haar weil es auf Englisch "tied up" heißt)
                     </p>
                     <p>
                         <b>Warum passen manche Bilder oder Beschreibungen nicht?</b><br/>
@@ -143,7 +144,7 @@ class Impressum extends React.Component {
                     <p>
                         <b>Wo kann ich Vorschläge für Änderungen einbringen - oder Fehler melden?</b><br/>
                         Entweder du schreibst an <a
-                        href='mailto:schmidt.bernd.1989@gmail.com?subject=Feedback&body=Message'>schmidt.bernd.1989@gmail.com</a> oder
+                        href='mailto:schmidt@schattenakte.de?subject=Feedback&body=Message'>schmidt@schattenakte.de</a> oder
                         du trägst hier ein Issue ein:
                         <a href='https://github.com/Quantenradierer/SINner/issues/new'>https://github.com/Quantenradierer/SINner/issues/new</a>
                     </p>

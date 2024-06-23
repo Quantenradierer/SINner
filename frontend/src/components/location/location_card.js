@@ -5,7 +5,7 @@ import EditableText from "../editable_text";
 import AttributeList from "../attribute_list";
 import active_image from "../../active_image";
 import useRefreshEntityCard from "../use_refresh_entity_card";
-
+import { Link } from "react-router-dom";
 
 
 class LocationCard extends React.Component {
@@ -50,9 +50,9 @@ class LocationCard extends React.Component {
                     </div>
 
                     <div className={this.props.entity.id? '': 'hidden'}>
-                        <a href={"/locations/" + this.props.entity.id + "/gallery"}>
+                        <Link to={"/locations/" + this.props.entity.id + "/gallery"}>
                             <Button>Galerie</Button>
-                        </a>
+                        </Link>
                     </div>
                 </Card>
             </div>
