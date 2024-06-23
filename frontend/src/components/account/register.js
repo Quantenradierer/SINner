@@ -43,24 +43,22 @@ function Register() {
 
     }
 
+    const errorColor = '#3c2021'
     return (
         <FramePentagon key={error}>
             <form>
-                {error && <FramePentagon  palette='secondary'>
-                    <Text>{error}</Text>
-                </FramePentagon>}
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     <div style={{margin: 5}}>
-                        <input type="text" id="username" placeholder="E-Mail" onChange={(e) => setUsername(e.target.value)} value={username}/>
+                        <input type="text" id="username" placeholder="E-Mail" onChange={(e) => setUsername(e.target.value)} value={username} style={{backgroundColor: emailHint? errorColor: ''}}/>
                         {usernameHint && <div>{usernameHint}</div>}
-                        {emailHint && <div>{emailHint}</div>}
+                        {emailHint && <div><text palette='secondary'>{emailHint}</text></div>}
                     </div>
                     <div style={{margin: 5}}>
-                        <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}/>
-                        {passwordHint && <div>{passwordHint}</div>}
+                        <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}  style={{backgroundColor: passwordHint? errorColor: ''}}/>
+                        {passwordHint && <div><text palette='secondary'>{passwordHint}</text></div>}
                     </div>
                     <div style={{margin: 5}}>
-                        <input type="password" id="repassword" placeholder="Password (wiederholt)" onChange={(e) => setRepassword(e.target.value)} value={repassword}/>
+                        <input type="password" id="repassword" placeholder="Password (wiederholt)" onChange={(e) => setRepassword(e.target.value)} value={repassword} style={{backgroundColor: repasswordHint? errorColor: ''}}/>
                         {repasswordHint && <div>{repasswordHint}</div>}
                     </div>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>
@@ -68,6 +66,9 @@ function Register() {
                             <Text>Register</Text>
                         </Button>
                     </div>
+                    {error && <FramePentagon  palette='secondary'>
+                    <Text>{error}</Text>
+                </FramePentagon>}
                 </div>
             </form>
         </FramePentagon>
