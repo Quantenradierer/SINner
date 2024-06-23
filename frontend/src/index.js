@@ -24,6 +24,7 @@ import CustomPrompt from "./components/custom/prompt";
 import CustomComplete from "./components/custom/complete";
 import Feedback from "./components/feedback";
 import Register from "./components/account/register";
+import UserProvider from './userProvider';
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -176,7 +177,9 @@ const router = createBrowserRouter([
 
 ReactDOM.render(
   <React.StrictMode>
+    <UserProvider>
       <Theme/>
+    </UserProvider>
   </React.StrictMode>,
     document.querySelector('#root')
 );
