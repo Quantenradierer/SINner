@@ -93,5 +93,10 @@ li::before {
 .menu-submenu {
   z-index: 1;
   margin-top: 25px;
+}
 
+.limitedText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

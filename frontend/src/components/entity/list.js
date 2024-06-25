@@ -80,7 +80,9 @@ class ListWrapped extends React.Component {
                     manager: 'stagger',
                     duration: {stagger: 200}
                 }}>
-                    {this.props.children}
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                        {this.props.children}
+                    </div>
                 </Animator>
 
                 <div style={{justifyContent: 'center', display: 'flex'}}>
