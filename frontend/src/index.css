@@ -95,8 +95,16 @@ li::before {
   margin-top: 25px;
 }
 
-.limitedText {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.clampText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.clampText4Liner {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
 }

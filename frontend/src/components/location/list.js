@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import {
-    Blockquote,
-    Card,
     Text
 } from "@arwes/core";
 import {useLoaderData} from "react-router";
@@ -10,6 +8,8 @@ import active_image from "../../active_image";
 import Comment from "./comment";
 import EntityList from "../entity/list";
 import { Link } from "react-router-dom";
+import Card from "../cyberpunk/card";
+import Blockquote from "../cyberpunk/blockquote";
 
 class LocationListItem extends React.Component {
 
@@ -19,13 +19,19 @@ class LocationListItem extends React.Component {
         let comments = this.props.entity.values['Bewertungen']
         let comment = undefined
 
+        const cardStyle = {
+        minWidth: 270,
+        maxWidth: 300,
+
+        };
+
+
         if (comments !== undefined) {
             let random_nr = Math.floor(Math.random() * comments.length);
             comment = comments[random_nr]
         }
 
-        return (<div style={{margin: 15}}>
-
+        return (<div style={{margin: '15px 7.5px 0px 7.5px'}}>
                 <Link to={'/locations/' + this.props.entity.id}>
                     <Card
                         image={{
@@ -34,12 +40,16 @@ class LocationListItem extends React.Component {
                         }}
                         title={this.props.entity.primary_values['Name']}
                         hover
-                        style={{}}
+                        style={cardStyle}
                     >
-                        <div style={{margin: '0px 0px 10px 0px'}}>
-                            <Text>{this.props.entity.primary_values['Typ']}</Text>
+                        <div>
+                            <Text>
+                                <div className="clampText">
+                                    {this.props.entity.primary_values['Typ']}
+                                </div>
+                            </Text>
                         </div>
-                        <Blockquote>
+                        <Blockquote  style={{height: '114px'}}>
                             <Comment name={comment?.name} rating={comment?.rating} comment={comment?.comment}/>
                         </Blockquote>
 

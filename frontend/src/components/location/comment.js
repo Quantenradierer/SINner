@@ -8,7 +8,9 @@ class Comment extends Component {
 
         return (<div key={'whole_comment'}>
             <div key={'starsnames'}><Text>{stars} <strong>{this.props.name}</strong></Text></div>
-            <div key={'comment'}><Text>{this.props.comment}</Text></div>
+            <div key={'comment'}><Text>
+                <div className="clampText4Liner">{this.props.comment}</div>
+            </Text></div>
         </div>)
     }
 }

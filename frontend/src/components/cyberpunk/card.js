@@ -37,39 +37,39 @@ const Card = props => {
 
     const [isHovered, setIsHovered] = React.useState(false);
 
-    const cardStyle = {
-        minWidth: 270,
-        maxWidth: 300,
-        height: 600,
-        transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-        transition: 'transform 0.3s ease-in-out'
-    };
-
-
 
     const textStyle = {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
+        paddingBottom: 10,
+        margin: 0
     };
+
+    const cardStyle = {
+        transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+        transition: 'transform 0.3s ease-in-out',
+        ...props.style || {},
+    }
 
     return (
         <div className="card" style={cardStyle}
              onMouseEnter={() => setIsHovered(true)}
              onMouseLeave={() => setIsHovered(false)}>
             <AnimatedLine runAnimation={runAnimation} style={{height: '100%'}}>
-                <FrameBox hover style={{padding: '0px 0px 0px 1px', margin: 0, maxWidth: 300, height: '100%', overflow: 'hidden'}} linesWidths={[0, 0, 0, 0]} >
-                    <div className="card-image" style={{height: 300, overflow: 'hidden'}}>
-                        <img src={props.image.src} alt={props.image.alt} />
+                <FrameBox hover style={{padding: '0px 0px 0px 1px', margin: 0, height: '100%', overflow: 'hidden'}}
+                          linesWidths={[0, 0, 0, 0]}>
+                    <div className="card-image" style={{height: props.imageHeight || 250, overflow: 'hidden'}}>
+                        <img src={props.image.src} alt={props.image.alt}
+                             style={{objectFit: 'cover', objectPosition: 'top', width: '100%', height: '100%'}}/>
                     </div>
-                    <div className="card-content" style={{padding: 5, overflow: 'auto'}}>
+                    <div className="card-content" style={{padding: 5}}>
                         <div>
-                            <h4 style={textStyle}>{props.title}</h4>
+                            <h6 className='clampText' style={{marginBottom: 10, WebkitLineClamp: 1}} >{props.title}</h6>
                         </div>
                         <div>
                             {props.children}
                         </div>
-
                     </div>
                 </FrameBox>
             </AnimatedLine>

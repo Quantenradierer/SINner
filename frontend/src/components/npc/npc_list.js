@@ -5,7 +5,7 @@ import image_path from "../../image_path";
 import active_image from "../../active_image";
 import EntityList from "../entity/list";
 import { Link } from "react-router-dom";
-import Card from "../card";
+import Card from "../cyberpunk/card";
 import Blockquote from "../cyberpunk/blockquote";
 
 function cutStreetname(name) {
@@ -15,7 +15,11 @@ function cutStreetname(name) {
 
 function NPCListItem(props) {
     let activeImage = active_image(props.entity.image_objects) || {}
-
+    const cardStyle = {
+        minWidth: 270,
+        maxWidth: 300,
+        height: 500
+    };
 
     return (<div style={{margin: '15px 7.5px 0px 7.5px'}}>
 
@@ -28,15 +32,11 @@ function NPCListItem(props) {
                     title={cutStreetname(props.entity.primary_values['Name'])}
                     landscape
                     hover
-                    style={{}}
+                    style={cardStyle}
                 >
-                    <Blockquote>
+                    <Blockquote style={{height: '52px'}}>
                         <Text>
-                            <div style={{
-                                display: '-webkit-box',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 2,
-                                overflow: 'hidden'}}>
+                            <div className="clampText">
                                 {props.entity.primary_values['Catchphrase']}
                             </div>
                         </Text>
