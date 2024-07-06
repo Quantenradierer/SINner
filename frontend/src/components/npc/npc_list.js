@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {List, Text} from "@arwes/core";
 import {useLoaderData} from "react-router";
 import image_path from "../../image_path";
@@ -7,6 +7,8 @@ import EntityList from "../entity/list";
 import { Link } from "react-router-dom";
 import Card from "../cyberpunk/card";
 import Blockquote from "../cyberpunk/blockquote";
+import EntityLoader from "../../loader/entity_loader";
+import {Animator} from "@arwes/animation";
 
 function cutStreetname(name) {
     const match = name.match(/['"](.*?)['"]/);
@@ -17,7 +19,7 @@ function NPCListItem(props) {
     let activeImage = active_image(props.entity.image_objects) || {}
     const cardStyle = {
         minWidth: 270,
-        maxWidth: 300,
+        maxWidth: 310,
         height: 500
     };
 
@@ -53,15 +55,15 @@ function NPCListItem(props) {
 }
 
 
-
 const NPCList = props => {
-    const entities = useLoaderData()
+    const loader = new EntityLoader('npcs')
 
-    const items = [];
-    for (const entity of entities.results) {
-        items.push(<NPCListItem entity={entity} key={entity.id}/>)
+    const createItem = (entity) => {
+        return <NPCListItem key={'NPCListItem' + entity.id} entity={entity}/>
     }
-    return <EntityList entities={entities} {...props}>{items}</EntityList>
+
+    return <EntityList createItem={createItem} loader={loader} {...props}></EntityList>
 }
+
 
 export default NPCList;

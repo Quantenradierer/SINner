@@ -19,6 +19,7 @@ const resources = {
             menu_vehicles: 'Vehicles',
             menu_customs: "Bildgenerator",
             menu_feedback: "Feedback",
+            menu_impressum: "Impressum",
 
             menu_login: 'Login',
             menu_register: 'Register',

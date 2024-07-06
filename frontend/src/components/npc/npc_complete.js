@@ -29,7 +29,6 @@ class NPCCompleteWrapped extends React.Component {
         }
         let activeImage = active_image(this.props.entity.image_objects) || {}
 
-        console.log(this.props.entity)
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Helmet>

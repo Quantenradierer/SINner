@@ -11,11 +11,7 @@ function redirectToImpressum() {
 
 const Footer = props => {
     return (
-            <Button FrameComponent={FrameLines}
-                         style={{textAlign: 'center'}}
-                         onClick={redirectToImpressum}>
-                    Impressum / Disclaimer / Datenschutz / Nutzungsbedingungen
-        </Button>
+        <div style={{height: 32}}></div>
     )
 }
 

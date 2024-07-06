@@ -9,7 +9,7 @@ const AttributeList = props => {
 
     for (const attribute of props.attributes) {
         items.push(
-            <li key={attribute} style={{padding: '7px 0 0 0', alignItems: 'top', display: 'flex'}}>
+            <li key={'LI' + attribute} style={{padding: '7px 0 0 0', alignItems: 'top', display: 'flex'}}>
                 <div>
                     <div style={{width: props.listItemWidth}}><Text><b>{i18next.t('attribute_' + attribute.replaceAll(' ', '_').replaceAll('/', '_').toLowerCase())}:</b></Text></div>
                 </div>

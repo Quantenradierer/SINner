@@ -33,8 +33,6 @@ const AnimatedLine = styled.div`
 `;
 
 const Card = props => {
-    const [runAnimation, setRunAnimation] = React.useState(false);
-
     const [isHovered, setIsHovered] = React.useState(false);
 
 
@@ -56,7 +54,7 @@ const Card = props => {
         <div className="card" style={cardStyle}
              onMouseEnter={() => setIsHovered(true)}
              onMouseLeave={() => setIsHovered(false)}>
-            <AnimatedLine runAnimation={runAnimation} style={{height: '100%'}}>
+            <AnimatedLine style={{height: '100%'}}>
                 <FrameBox hover style={{padding: '0px 0px 0px 1px', margin: 0, height: '100%', overflow: 'hidden'}}
                           linesWidths={[0, 0, 0, 0]}>
                     <div className="card-image" style={{height: props.imageHeight || 250, overflow: 'hidden'}}>

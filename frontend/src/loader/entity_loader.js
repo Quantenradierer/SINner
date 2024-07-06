@@ -32,9 +32,12 @@ export default class EntityLoader {
     }
 
     list = async ({params, request}) => {
+        const search = params.search || ''
+        const page = params.page || 1
+
         let url = new URL(request.url);
         try {
-            const response = await api.get(`/api/npc_creator/${this.kind}/${url.search}`)
+            const response = await api.get(`/api/npc_creator/${this.kind}/?search=${search}&page=${page}`)
             if (response.status == 200) {
                 return response.data
             }

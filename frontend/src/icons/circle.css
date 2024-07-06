@@ -1,0 +1,48 @@
+@keyframes draw {
+  from {
+    stroke-dasharray: 0 502;
+  }
+  to {
+    stroke-dasharray: 502 502;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-circle {
+  transform-origin: center;
+  animation: rotate 1s linear forwards;
+}
+
+
+.animated-circle {
+  stroke-dasharray: 502 502;
+  stroke-dashoffset: 0;
+  animation: draw 5s linear forwards;
+  stroke: #00F8F8;
+  stroke-width: 2;
+  fill: rgba(0, 248, 248, 0.2);
+}
+
+.hoverresize:hover {
+  transition: all 0.3s ease;
+  transform-origin: center;
+  transform: scale(1.2);
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -9,7 +9,7 @@ class UserProvider extends React.Component {
         error: null,
     };
     componentDidMount() {
-        this.fetchUserData();
+        //this.fetchUserData();
     }
 
     fetchUserData = async () => {

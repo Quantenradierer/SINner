@@ -25,6 +25,7 @@ import CustomComplete from "./components/custom/complete";
 import Feedback from "./components/feedback";
 import Register from "./components/account/register";
 import UserProvider from './userProvider';
+import Navigation from "./navigation";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -56,21 +57,11 @@ const Redirector = props => {
 
 const Root = props => {
     return (<div id="detail">
-        <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-            <div style={{justifyContent: 'center', display: 'flex', width: 950}}>
-                <Header/>
+        <Navigation>
+            <div style={{justifyContent: 'center', display: 'flex', width: '100%'}}>
+                    {props.outlet ? props.outlet : <Outlet/>}
             </div>
-        </div>
-        <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-            <div style={{justifyContent: 'center', display: 'flex', width: 950}}>
-                 {props.outlet ? props.outlet : <Outlet />}
-            </div>
-        </div>
-        <div style={{justifyContent: 'center', display: 'flex', margin: 15}}>
-            <div style={{justifyContent: 'center', display: 'flex', width: 950}}>
-                <Footer/>
-            </div>
-        </div>
+        </Navigation>
     </div>)
 }
 
@@ -91,6 +82,11 @@ const router = createBrowserRouter([
                 loader: npcLoader.list,
             },
             {
+                path: "create",
+                element: <Prompt/>,
+                loader: npcLoader.definition,
+            },
+            {
                 path: "impressum",
                 element: <Impressum/>
             },
@@ -108,10 +104,9 @@ const router = createBrowserRouter([
             {
                 path: "npcs/",
                 element: <NPCList/>,
-                loader: npcLoader.list,
             },
             {
-                path: "npcs_prompt/",
+                path: "npcs/create",
                 element: <Prompt/>,
                 loader: npcLoader.definition,
             },
@@ -128,10 +123,9 @@ const router = createBrowserRouter([
             {
                 path: "locations/",
                 element: <LocationList/>,
-                loader: locationLoader.list,
             },
             {
-                path: "locations_prompt/",
+                path: "locations/create",
                 element: <PromptLocation/>,
                 loader: locationLoader.definition,
             },
@@ -148,10 +142,9 @@ const router = createBrowserRouter([
             {
                 path: "customs/",
                 element: <CustomList/>,
-                loader: customLoader.list,
             },
             {
-                path: "customs_prompt/",
+                path: "customs/create",
                 element: <CustomPrompt/>,
                 loader: customLoader.definition,
             },

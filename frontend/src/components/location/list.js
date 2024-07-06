@@ -10,6 +10,8 @@ import EntityList from "../entity/list";
 import { Link } from "react-router-dom";
 import Card from "../cyberpunk/card";
 import Blockquote from "../cyberpunk/blockquote";
+import EntityLoader from "../../loader/entity_loader";
+import {Animator} from "@arwes/animation";
 
 class LocationListItem extends React.Component {
 
@@ -21,8 +23,8 @@ class LocationListItem extends React.Component {
 
         const cardStyle = {
         minWidth: 270,
-        maxWidth: 300,
-
+        maxWidth: 310,
+        height: 450
         };
 
 
@@ -49,7 +51,7 @@ class LocationListItem extends React.Component {
                                 </div>
                             </Text>
                         </div>
-                        <Blockquote  style={{height: '114px'}}>
+                        <Blockquote style={{height: '114px'}}>
                             <Comment name={comment?.name} rating={comment?.rating} comment={comment?.comment}/>
                         </Blockquote>
 
@@ -62,14 +64,13 @@ class LocationListItem extends React.Component {
 
 
 const LocationList = props => {
-    const entities = useLoaderData()
+    const loader = new EntityLoader('locations')
 
-    const items = [];
-    for (const entity of entities.results) {
-        items.push(<LocationListItem entity={entity} key={entity.id}/>)
+    const createItem = (entity) => {
+        return <LocationListItem key={'NPCListItem' + entity.id} entity={entity}/>
     }
 
-    return <EntityList entities={entities} {...props}>{items}</EntityList>
+    return <EntityList createItem={createItem} loader={loader} {...props}></EntityList>
 }
 
 export default LocationList;
