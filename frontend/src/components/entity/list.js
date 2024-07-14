@@ -114,25 +114,36 @@ class ListWrapped extends React.Component {
 
 render() {
     return (
-        <div style={{ maxWidth: 1315, width: '100%', position: 'relative' }}>
-            <div style={{ zIndex: 10, position: 'relative' }}>
-                <SearchPrompt searchCallback={this.props.searchCallback} />
-                <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    {this.props.children}
-                </div>
-            </div>
-            <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '90%' }}>
-                {/* No zIndex here to avoid unintended overlay */}
-                <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
-                    <div style={{ display: 'flex', maxWidth: 1370 + 24, width: '100%', flexDirection: 'row-reverse', justifyContent: 'flex-start', alignItems: 'flex-end', height: '100%' }}>
-                        <div style={{ zIndex: 100, position: 'relative' }}>
-                            {/* Ensure this has a larger zIndex */}
-                            <AddCircle />
-                            <UpCircle />
+        <div style={{maxWidth: 1315, width: '100%', position: 'relative'}}>
+            <div style={{zIndex: 1, position: 'fixed', top: 0, left: 0, width: '100%', height: '90%', pointerEvents: 'none'}}>
+                <div style={{display: 'flex', justifyContent: 'center', height: '100%', pointerEvents: 'none'}}>
+                    <div style={{
+                        display: 'flex',
+                        maxWidth: 1370 + 24,
+                        width: '100%',
+                        flexDirection: 'row-reverse',
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-end',
+                        height: '100%',
+                        pointerEvents: 'none'
+                    }}>
+                        <div style={{position: 'relative', pointerEvents: 'all'}}>
+                            <AddCircle/>
+                            <UpCircle/>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div style={{zIndex: 0, position: 'relative', pointerEvents: 'none'}}>
+                <div style={{pointerEvents: 'all'}}>
+                    <SearchPrompt searchCallback={this.props.searchCallback}/>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', pointerEvents: 'all'}}>
+                    {this.props.children}
+                </div>
+            </div>
+
         </div>
     );
 }
