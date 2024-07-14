@@ -123,10 +123,11 @@ const ImageGallery = props => {
   if (state === 'loading') {
       return <LoadingBars></LoadingBars>
   } else {
-      return <ImageGalleryWrapped navigate={navigate} entity={entity} {...props} />
+      return <div style={{maxWidth: 980, width: '100%', position: 'relative'}}>
+          <ImageGalleryWrapped navigate={navigate} entity={entity} {...props} />
+      </div>
   }
 }
-
 
 
 export default ImageGallery;

@@ -27,6 +27,7 @@ class LocationCompleteWrapped extends React.Component {
         }
         let activeImage = active_image(this.props.entity.image_objects) || {}
 
+        console.log(this.props.entity.values['Name'])
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                  <Helmet>

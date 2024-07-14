@@ -15,6 +15,9 @@ import UpCircle from "../../icons/upCircle";
 import { ReactComponent as SearchIcon } from '../../icons/search.svg';
 
 import { ReactComponent as XIcon } from '../../icons/x.svg';
+import {Helmet} from "react-helmet";
+import image_path from "../../image_path";
+import i18n from "../../i18n";
 
 
 class SearchPrompt extends React.Component {
@@ -112,41 +115,57 @@ class ListWrapped extends React.Component {
         }
     }
 
-render() {
-    return (
-        <div style={{maxWidth: 1315, width: '100%', position: 'relative'}}>
-            <div style={{zIndex: 1, position: 'fixed', top: 0, left: 0, width: '100%', height: '90%', pointerEvents: 'none'}}>
-                <div style={{display: 'flex', justifyContent: 'center', height: '100%', pointerEvents: 'none'}}>
-                    <div style={{
-                        display: 'flex',
-                        maxWidth: 1370 + 24,
-                        width: '100%',
-                        flexDirection: 'row-reverse',
-                        justifyContent: 'flex-start',
-                        alignItems: 'flex-end',
-                        height: '100%',
-                        pointerEvents: 'none'
-                    }}>
-                        <div style={{position: 'relative', pointerEvents: 'all'}}>
-                            <AddCircle/>
-                            <UpCircle/>
+    render() {
+        return (
+            <div style={{maxWidth: 1315, width: '100%', position: 'relative'}}>
+                <Helmet>
+                    <title>{i18n.t(`page_list_title_${this.props.loader.kind}`)}</title>
+                    <meta name="description" content={i18n.t(`page_list_description_${this.props.loader.kind}`)}/>
+                    <meta property="og:title" content={i18n.t(`page_list_title_${this.props.loader.kind}`)}/>
+                    <meta property="og:description" content={i18n.t(`page_list_description_${this.props.loader.kind}`)}/>
+                    <meta property="og:image" content=""/>
+                </Helmet>
+
+                <div style={{
+                    zIndex: 1,
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '90%',
+                    pointerEvents: 'none'
+                }}>
+                    <div style={{display: 'flex', justifyContent: 'center', height: '100%', pointerEvents: 'none'}}>
+                        <div style={{
+                            display: 'flex',
+                            maxWidth: 1370 + 24,
+                            width: '100%',
+                            flexDirection: 'row-reverse',
+                            justifyContent: 'flex-start',
+                            alignItems: 'flex-end',
+                            height: '100%',
+                            pointerEvents: 'none'
+                        }}>
+                            <div style={{position: 'relative', pointerEvents: 'all'}}>
+                                <AddCircle/>
+                                <UpCircle/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div style={{zIndex: 0, position: 'relative', pointerEvents: 'none'}}>
-                <div style={{pointerEvents: 'all'}}>
-                    <SearchPrompt searchCallback={this.props.searchCallback}/>
+                <div style={{zIndex: 0, position: 'relative', pointerEvents: 'none'}}>
+                    <div style={{pointerEvents: 'all'}}>
+                        <SearchPrompt searchCallback={this.props.searchCallback}/>
+                    </div>
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', pointerEvents: 'all'}}>
+                        {this.props.children}
+                    </div>
                 </div>
-                <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', pointerEvents: 'all'}}>
-                    {this.props.children}
-                </div>
-            </div>
 
-        </div>
-    );
-}
+            </div>
+        );
+    }
 }
 
 const EntityList = props => {

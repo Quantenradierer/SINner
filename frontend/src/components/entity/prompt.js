@@ -151,14 +151,16 @@ class PromptWrapped extends React.Component {
 
 
 const Prompt = props => {
-  const navigate = useNavigate()
-  const { state } = useNavigation()
+    const navigate = useNavigate()
+    const {state} = useNavigation()
 
-  if (state === 'loading') {
-      return <LoadingBars></LoadingBars>
-  } else {
-      return <PromptWrapped {...props} />
-  }
+    if (state === 'loading') {
+        return <LoadingBars></LoadingBars>
+    } else {
+        return <div style={{maxWidth: 980, width: '100%', position: 'relative'}}>
+            <PromptWrapped {...props} />
+        </div>
+    }
 }
 
 export default Prompt;

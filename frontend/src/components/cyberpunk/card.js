@@ -61,7 +61,7 @@ const Card = props => {
                         <img src={props.image.src} alt={props.image.alt}
                              style={{objectFit: 'cover', objectPosition: 'top', width: '100%', height: '100%'}}/>
                     </div>
-                    <div className="card-content" style={{padding: 5}}>
+                    <div className="card-content" style={{padding: 10}}>
                         <div>
                             <h6 className='clampText' style={{marginBottom: 10, WebkitLineClamp: 1}} >{props.title}</h6>
                         </div>
