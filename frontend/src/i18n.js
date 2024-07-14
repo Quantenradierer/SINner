@@ -25,6 +25,11 @@ const resources = {
             menu_register: 'Register',
             menu_logout: 'Logout',
 
+            page_list_title_npcs: 'Schattenakte - NPC Liste',
+            page_list_description_npcs: 'Liste aller generierten NPCs',
+            page_list_title_locations: 'Schattenakte - Location Liste',
+            page_list_description_locations: 'Liste aller generierten Locations',
+
             create_explanation_npc: 'Beschreibe den NPC',
             create_explanation_location: 'Beschreibe den Ort',
             create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',
