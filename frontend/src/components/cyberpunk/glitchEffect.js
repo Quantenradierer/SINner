@@ -8,6 +8,14 @@ const generateRandomPercentage = () => {
     return  Math.round(randomPercentage);
 }
 
+
+const generateRandomTransformation = () => {
+    if (Math.random() > 0.5) {
+        return `3px`
+    }
+    return `-3px`
+}
+
 const GlitchEffect = ({ children }) => {
     const [key, setKey] = useState(0); // Zustand hinzufügen
     const [randomPercentage, setRandomPercentage] = useState(generateRandomPercentage());
@@ -21,8 +29,7 @@ const GlitchEffect = ({ children }) => {
         return () => clearInterval(timer);
     }, []);
 
-    const  style= {  '--min-value': `${randomPercentage}%`, '--max-value': `${randomPercentage + 7}%` }
-
+const style = { '--min-value': `${randomPercentage}%`, '--max-value': `${randomPercentage + 7}%`, '--transform': `${generateRandomTransformation()}`};
     return (
         <div className="glitch-container">
             <div className="glitch-item unglitch-effect" style={style}>{children}</div>

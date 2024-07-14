@@ -40,7 +40,7 @@
 @keyframes glitch {
     0%, 100% {
         clip-path: inset(var(--min-value) 0 calc(100% - var(--max-value)) 0);
-        transform: translate(3px);
+        transform: translate(var(--transform));
     }
 
 }
