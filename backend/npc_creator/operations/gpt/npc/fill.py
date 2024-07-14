@@ -21,7 +21,7 @@ class Fill(entity.Fill):
 - Elfen sind maximal 70 Jahre alt
 - Erstelle standardmäßig weniger Personen mit afro-Ethnizität
 - Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun, wie: ADL, CAS, CFS, Japanisches Kaiserreich, Tír na nÓg, Tír Tairngire oder UCAS
-- Antworte die fehlenden und leeren Felder im JSON Format: {feld: wert, feld: wert, ...}
+- Antworte die fehlenden und leeren Felder im JSON Format: {feld: string, feld: string, ...}
 """
 
     @property
