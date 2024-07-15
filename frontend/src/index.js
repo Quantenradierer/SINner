@@ -57,11 +57,10 @@ const Redirector = props => {
 
 const Root = props => {
     return (<div id="detail">
-        <Navigation>
-            <div style={{justifyContent: 'center', display: 'flex', width: '100%'}}>
-                    {props.outlet ? props.outlet : <Outlet/>}
-            </div>
-        </Navigation>
+        <Header key={'header'}/>
+        <div key='content' style={{justifyContent: 'center', display: 'flex', width: '100%'}}>
+                {props.outlet ? props.outlet : <Outlet/>}
+        </div>
     </div>)
 }
 
@@ -76,6 +75,10 @@ const router = createBrowserRouter([
         element: <Root/>,
         errorElement: <Root outlet={<ErrorPage/>}/>,
         children: [
+            {
+                path: "/navi",
+                element: <Navigation/>,
+            },
             {
                 path: "",
                 element: <NPCList/>,

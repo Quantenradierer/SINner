@@ -22,11 +22,11 @@ class Translate(entity.Translate):
 
         return [
             input_prompt.format(
-                gender=npc.primary_values.get("Geschlecht", ""),
-                metatyp=npc.primary_values.get("Metatyp", ""),
-                beruf=npc.primary_values.get("Beruf", ""),
-                alter=npc.primary_values.get("Alter", ""),
-                ethni=npc.primary_values.get("Ethnizität"),
+                gender=npc.attributes.get("Geschlecht", ""),
+                metatyp=npc.attributes.get("Metatyp", ""),
+                beruf=npc.attributes.get("Beruf", ""),
+                alter=npc.attributes.get("Alter", ""),
+                ethni=npc.attributes.get("Ethnizität", ""),
                 image_generator_description=npc.attributes["Detailliertes Aussehen"],
             ),
         ]

@@ -20,7 +20,8 @@ function NPCListItem(props) {
     const cardStyle = {
         minWidth: 270,
         maxWidth: 310,
-        height: 500
+        height: 500,
+        imageHeight: 300,
     };
 
     return (<div style={{margin: '15px 7.5px 0px 7.5px'}}>
@@ -35,6 +36,7 @@ function NPCListItem(props) {
                     landscape
                     hover
                     style={cardStyle}
+                    {...cardStyle}
                 >
                     <Blockquote style={{height: '52px'}}>
                         <Text>

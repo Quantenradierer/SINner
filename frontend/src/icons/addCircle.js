@@ -10,8 +10,8 @@ const AddCircle = () => {
         <Link to={'create'} rel="noopener noreferrer">
           <g className="rotating-circle">
             <circle className="animated-circle" cx="25" cy="25" r="20"></circle>
-            <line x1="18" y1="25" x2="32" y2="25" stroke="#00F8F8" strokeWidth="3" />
-            <line x1="25" y1="18" x2="25" y2="32" stroke="#00F8F8" strokeWidth="3" />
+            <line x1="18" y1="25" x2="32" y2="25" stroke="#00F8F8" strokeWidth="3" strokeLinecap="round"/>
+            <line x1="25" y1="18" x2="25" y2="32" stroke="#00F8F8" strokeWidth="3" strokeLinecap="round"/>
           </g>
         </Link>
       </svg>

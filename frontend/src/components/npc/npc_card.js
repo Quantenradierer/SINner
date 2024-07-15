@@ -2,7 +2,7 @@ import React from "react";
 import {Blockquote, Button, Card, FrameLines, List, Table, Text} from "@arwes/core";
 import image_path from "../../image_path";
 import is_logged_in from "../../is_loggin_in";
-import {Link} from "react-router-dom";
+import {Link, useLinkClickHandler} from "react-router-dom";
 import api from "../../axios";
 import i18next from "../../i18n";
 import EditableText from "../editable_text";
@@ -18,7 +18,7 @@ function allows_edit(npc) {
 
 class NPCCard extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     tableHeaders() {
@@ -55,12 +55,12 @@ class NPCCard extends React.Component {
                 id: attribute.substring(0, 3),
                 data:
                     <EditableText attribute={attribute}
-                                         entity={this.props.entity}
-                                         approxLineSize={58}
-                                         editable={this.props.editable}
-                                         editableDisabled={this.props.editableDisabled}
-                                         check={this.props.check}
-                />
+                                  entity={this.props.entity}
+                                  approxLineSize={58}
+                                  editable={this.props.editable}
+                                  editableDisabled={this.props.editableDisabled}
+                                  check={this.props.check}
+                    />
             })
         )
 
@@ -82,16 +82,16 @@ class NPCCard extends React.Component {
                 <Card
                     image={{
                         src: image_path('npcs', activeImage.name),
-                        alt: this.props.entity.image_generator_description
+                        alt: this.props.entity.image_generator_description,
                     }}
                     style={{width: 950, margin: 15}}
                     title={<EditableText style={{width: '630px'}}
-                                          attribute='Name'
-                                          entity={this.props.entity}
-                                          approxLineSize={58}
-                                          editable={this.props.editable}
-                                          editableDisabled={this.props.editableDisabled}
-                                          check={this.props.check}
+                                         attribute='Name'
+                                         entity={this.props.entity}
+                                         approxLineSize={58}
+                                         editable={this.props.editable}
+                                         editableDisabled={this.props.editableDisabled}
+                                         check={this.props.check}
 
                     />}
                     landscape
@@ -99,15 +99,16 @@ class NPCCard extends React.Component {
 
                     <div>
                         <Blockquote>
-                            <Text><div>
-                                <EditableText style={{margin: '1 0 0 0', width: '580px'}}
-                                              attribute='Catchphrase'
-                                              entity={this.props.entity}
-                                              approxLineSize={58}
-                                              editable={this.props.editable}
-                                              editableDisabled={this.props.editableDisabled}
-                                              check={this.props.check}
-                                /> </div>
+                            <Text>
+                                <div>
+                                    <EditableText style={{margin: '1 0 0 0', width: '580px'}}
+                                                  attribute='Catchphrase'
+                                                  entity={this.props.entity}
+                                                  approxLineSize={58}
+                                                  editable={this.props.editable}
+                                                  editableDisabled={this.props.editableDisabled}
+                                                  check={this.props.check}
+                                    /></div>
                             </Text>
                         </Blockquote>
 
@@ -123,7 +124,7 @@ class NPCCard extends React.Component {
 
                     <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.entity)}/>
 
-                    <div className={this.props.entity.id? '': 'hidden'}>
+                    <div className={this.props.entity.id ? '' : 'hidden'}>
                         <Link to={"/npcs/" + this.props.entity.id + "/gallery"}>
                             <Button>Galerie</Button>
                         </Link>

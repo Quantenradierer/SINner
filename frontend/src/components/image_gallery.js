@@ -74,25 +74,31 @@ class ImageGalleryWrapped extends React.Component {
 
             items.push(
                 <div key={items.id} style={{display: 'flex'}}>
-                    <div key='scoring'>
-                        <div key='upvote' className={this.state.votes[image.id] === true? 'votes-clicked':'votes'}
-                             style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 70}}><a href=""
-                                                                                                              style={{fontSize: '32px'}}
-                                                                                                              onClick={(event) => this.upvote(event, image.id)}>👍</a>
+                    <a href={image_path(this.props.entity_type, image.name)}>
+                        <div key='scoring'>
+                            <div key='upvote'
+                                 className={this.state.votes[image.id] === true ? 'votes-clicked' : 'votes'}
+                                 style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 70}}><a
+                                href=""
+                                style={{fontSize: '32px'}}
+                                onClick={(event) => this.upvote(event, image.id)}>👍</a>
+                            </div>
+                            <div key='downvote'
+                                 className={this.state.votes[image.id] === false ? 'votes-clicked' : 'votes'}
+                                 style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 30}}><a
+                                href=""
+                                style={{fontSize: '32px'}}
+                                onClick={(event) => this.downvote(event, image.id)}>👎</a>
+                            </div>
                         </div>
-                        <div key='downvote' className={this.state.votes[image.id] === false? 'votes-clicked':'votes'}
-                             style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 30}}><a href=""
-                                                                                                              style={{fontSize: '32px'}}
-                                                                                                              onClick={(event) => this.downvote(event, image.id)}>👎</a>
-                        </div>
-                    </div>
-                    <img style={{
-                        margin: 15 - addSize,
-                        width: sizeX + addSize * 2,
-                        minHeight: sizeY + addSize * 2,
-                        boxShadow: glowEffect
-                    }}
-                         src={image_path(this.props.entity_type, image.name)}/>
+                        <img style={{
+                            margin: 15 - addSize,
+                            width: sizeX + addSize * 2,
+                            minHeight: sizeY + addSize * 2,
+                            boxShadow: glowEffect
+                        }}
+                             src={image_path(this.props.entity_type, image.name)}/>
+                    </a>
                 </div>)
         }
 
