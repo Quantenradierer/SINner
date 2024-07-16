@@ -1,3 +1,4 @@
+import uuid
 from dataclasses import dataclass
 
 from django.apps import apps
@@ -21,7 +22,9 @@ class Entity(models.Model):
         CUSTOM = "Custom", "Custom"
         CRITTER = "Critter", "Critter"
         VEHICLE = "Vehicle", "Vehicle"
+        OBJECTS = "Objects", "Objects"
 
+    uuid = models.UUIDField(editable=False, default=uuid.uuid4)
     kind = models.CharField(max_length=20, choices=Kinds.choices)
 
     image_generator_description = models.TextField(blank=True)
