@@ -28,23 +28,21 @@ const Header = (props) => {
                             justifyContent: 'space-between'
                         }}>
                             <div style={{width: 40}}></div>
-                                 {is_navi && <a href="#" onClick={handleClick}>
-                                     <h1 style={{
-                                         margin: 0,
-                                         display: 'flex',
-                                         flexDirection: 'column',
-                                         justifyContent: 'center'
-                                     }}>
-                                         <GlitchEffect>SCHATTENAKTE</GlitchEffect>
-                                     </h1>
-                                 </a>}
-                            {!is_navi && <Link to={'navi'}><h1
-                                style={{margin: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-                                <GlitchEffect>SCHATTENAKTE</GlitchEffect>
-                            </h1></Link>}
-
-                            {is_navi && <a href="#" onClick={handleClick}><BurgerMenu/></a>}
-                            {!is_navi && <Link to={'navi'}><BurgerMenu/></Link>}
+                            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                                {is_navi && <a href="#" onClick={handleClick}>
+                                    <h1 style={{margin: 0}}>
+                                        <GlitchEffect>SCHATTENAKTE</GlitchEffect>
+                                    </h1>
+                                </a>}
+                                {!is_navi && <Link to={'navi'}><h1
+                                    style={{margin: 0}}>
+                                    <GlitchEffect>SCHATTENAKTE</GlitchEffect>
+                                </h1></Link>}
+                            </div>
+                            <div>
+                                {is_navi && <a href="#" onClick={handleClick} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}><BurgerMenu/></a>}
+                                {!is_navi && <Link to={'navi'} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}><BurgerMenu/></Link>}
+                            </div>
                         </div>
                     </div>
                 </FrameLines>
