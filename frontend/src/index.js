@@ -4,9 +4,6 @@ import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
 import Prompt from "./components/npc/prompt";
-import NPCComplete from "./components/npc/npc_complete";
-import Footer from "./components/footer";
-import api from "./axios";
 import NPCList from "./components/npc/npc_list";
 import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavigate} from "react-router-dom";
 import Impressum from "./components/impressum";
@@ -26,6 +23,7 @@ import Feedback from "./components/feedback";
 import Register from "./components/account/register";
 import UserProvider from './userProvider';
 import Navigation from "./navigation";
+import NpcTabsHeader from "./components/npc/npcTabsHeader";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -76,7 +74,7 @@ const router = createBrowserRouter([
         errorElement: <Root outlet={<ErrorPage/>}/>,
         children: [
             {
-                path: "/navi",
+                path: "navi",
                 element: <Navigation/>,
             },
             {
@@ -95,13 +93,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs/:id",
-                element: <NPCComplete/>,
+                element: <NpcTabsHeader/>,
+                loader: npcLoader.entity,
+            },
+            {
+                path: "npcs/:id/sr6",
+                element: <NpcTabsHeader selectedTab='sr6'/>,
                 loader: npcLoader.entity,
             },
             {
                 path: "npcs/:id/gallery",
-                element: <ImageGallery factor={{'x': 4, 'y': 5}} attribute={'Detailliertes Aussehen'}
-                                       entity_type={'npcs'}/>,
+                element: <NpcTabsHeader selectedTab={'gallery'}/>,
                 loader: npcLoader.entity,
             },
             {

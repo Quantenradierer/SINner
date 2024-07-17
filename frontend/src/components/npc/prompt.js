@@ -1,15 +1,7 @@
 import React, {useState} from "react";
-import {Button, FrameCorners, FrameLines, FramePentagon, LoadingBars, Text} from "@arwes/core";
-import {Animator} from "@arwes/animation";
-import api from "../../axios";
-import i18next from "../../i18n";
-import NPCComplete from "./npc_complete";
 import NPCCard from "./npc_card";
 import NPCPrivate from "./npc_private";
-import NPCSkills from "./npc_skills";
 import {useLoaderData} from "react-router";
-import {useNavigate, useNavigation} from "react-router-dom";
-import AttributeList from "../attribute_list";
 import Prompt from "../entity/prompt";
 
 const EXAMPLES = [

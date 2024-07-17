@@ -1,5 +1,6 @@
 import random
 import time
+import uuid
 from datetime import timedelta
 from time import sleep
 
@@ -7,6 +8,7 @@ import rest_framework.permissions
 from django.core.cache import cache
 from django.utils.timezone import now
 from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
 from rest_framework.serializers import ListSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import (
@@ -33,6 +35,7 @@ from npc_creator.views.image import ImageSerializer
 
 class EntitySerializer(serializers.ModelSerializer):
     image_objects = ListSerializer(child=ImageSerializer())
+    id = serializers.SerializerMethodField("get_uuid_as_id")
 
     class Meta:
         model = Entity
@@ -45,6 +48,9 @@ class EntitySerializer(serializers.ModelSerializer):
             "values",
         ]
 
+    def get_uuid_as_id(self, obj):
+        return obj.uuid
+
 
 class GenericEntityView(viewsets.ModelViewSet):
     entity_class = None
@@ -53,6 +59,16 @@ class GenericEntityView(viewsets.ModelViewSet):
 
     authentication_classes = [rest_framework.authentication.TokenAuthentication]
     permission_classes = []
+
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+        if str(self.kwargs["pk"]).isdigit():
+            namespace_uuid = uuid.UUID("12345678-1234-5678-1234-567812345678")
+            self.kwargs["pk"] = uuid.uuid5(namespace_uuid, self.kwargs["pk"])
+
+        obj = get_object_or_404(queryset, uuid=self.kwargs["pk"])
+        self.check_object_permissions(self.request, obj)
+        return obj
 
     def get_queryset(self):
         search_text = self.request.query_params.get("search", "").strip()
@@ -147,14 +163,14 @@ class GenericEntityView(viewsets.ModelViewSet):
 
 class NpcViewSet(GenericEntityView):
     entity_class = Npc
-    queryset = Npc.objects.order_by("-id")
+    queryset = Npc.objects.order_by("-created_at")
 
 
 class LocationViewSet(GenericEntityView):
     entity_class = Location
-    queryset = Location.objects.order_by("-id")
+    queryset = Location.objects.order_by("-created_at")
 
 
 class CustomViewSet(GenericEntityView):
     entity_class = Custom
-    queryset = Custom.objects.order_by("-id")
+    queryset = Custom.objects.order_by("-created_at")

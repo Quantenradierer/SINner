@@ -7,10 +7,10 @@ class NPCPrivate extends React.Component {
 
     render() {
         const relevantAttributes = ['Hintergrundgeschichte', 'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele', 'Hobbys und Interessen',
-            'Familie', 'Kontakte']
+            'Familie', 'Kontakte', 'Stärken', 'Schwächen', 'Geheimnis']
 
         return (
-            <FramePentagon style={{width: 950, margin: 15}}>
+            <FramePentagon>
                 <AttributeList listItemWidth={105} entity={this.props.entity} attributes={relevantAttributes} approxLineSize={100} editable={this.props.editable} check={this.props.check}
                                        editableDisabled={this.props.editableDisabled} setAlternatives={this.props.setAlternatives}/>
             </FramePentagon>

@@ -28,11 +28,3 @@ class Migration(migrations.Migration):
         ),
         migrations.RunPython(generate_uuids),
     ]
-
-
-def copy_uuid(apps, schema_editor):
-    Entity = apps.get_model("npc_creator", "Entity")
-
-    for entity in Entity.objects.all():
-        entity.id = entity.temp_id
-        entity.save()

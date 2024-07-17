@@ -24,7 +24,7 @@ class Entity(models.Model):
         VEHICLE = "Vehicle", "Vehicle"
         OBJECTS = "Objects", "Objects"
 
-    uuid = models.UUIDField(editable=False, default=uuid.uuid4)
+    uuid = models.UUIDField(editable=False, default=uuid.uuid4, unique=True)
     kind = models.CharField(max_length=20, choices=Kinds.choices)
 
     image_generator_description = models.TextField(blank=True)

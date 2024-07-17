@@ -1,139 +1,66 @@
 import React from "react";
-import {Blockquote, Button, Card, FrameLines, List, Table, Text} from "@arwes/core";
+import {Blockquote, Button, Card, Text} from "@arwes/core";
 import image_path from "../../image_path";
-import is_logged_in from "../../is_loggin_in";
-import {Link, useLinkClickHandler} from "react-router-dom";
-import api from "../../axios";
-import i18next from "../../i18n";
 import EditableText from "../editable_text";
 import AttributeList from "../attribute_list";
-import ImageGallery from "../image_gallery";
 import active_image from "../../active_image";
-
-function allows_edit(npc) {
-  const queryParameters = new URLSearchParams(window.location.search)
-  return !!queryParameters.get("access_key")
-}
+import NPCPrivate from "./npc_private";
 
 
-class NPCCard extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+function NPCCard(props) {
+    let state_label = ''
+    let activeImage = active_image(props.entity.image_objects) || {}
 
-    tableHeaders() {
-        return [
-            {id: 'Kon', data: 'Kon'},
-            {id: 'Ges', data: 'Ges'},
-            {id: 'Rea', data: 'Rea'},
-            {id: 'Str', data: 'Str'},
-            {id: 'Wil', data: 'Wil'},
-            {id: 'Log', data: 'Log'},
-            {id: 'Int', data: 'Int'},
-            {id: 'Cha', data: 'Cha'},
-            {id: 'Edg', data: 'Edg'},
-            {id: 'Mag', data: 'Mag'},
-            {id: 'Res', data: 'Res'}
-        ];
-    }
+    const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten']
+    return (
+        <div>
+            {state_label}
+            <Card
+                image={{
+                    src: image_path('npcs', activeImage.name),
+                    alt: props.entity.image_generator_description,
+                }}
+                title={<EditableText style={{width: '630px'}}
+                                     attribute='Name'
+                                     entity={props.entity}
+                                     approxLineSize={58}
+                                     editable={props.editable}
+                                     editableDisabled={props.editableDisabled}
+                                     check={props.check}
 
-    tableDataset(npc) {
-        let attributes = [
-            'Konstitution',
-            'Geschicklichkeit',
-            'Reaktion',
-            'Stärke',
-            'Willenskraft',
-            'Logik',
-            'Intuition',
-            'Charisma',
-            'Edge',
-            'Magie',
-            'Resonanz'
-        ]
-        let columns = attributes.map(attribute => new Object({
-                id: attribute.substring(0, 3),
-                data:
-                    <EditableText attribute={attribute}
-                                  entity={this.props.entity}
-                                  approxLineSize={58}
-                                  editable={this.props.editable}
-                                  editableDisabled={this.props.editableDisabled}
-                                  check={this.props.check}
+                />}
+                landscape
+            >
+
+                <div>
+                    <Blockquote>
+                        <Text>
+                            <div>
+                                <EditableText style={{margin: '1 0 0 0', width: '580px'}}
+                                              attribute='Catchphrase'
+                                              entity={props.entity}
+                                              approxLineSize={58}
+                                              editable={props.editable}
+                                              editableDisabled={props.editableDisabled}
+                                              check={props.check}
+                                /></div>
+                        </Text>
+                    </Blockquote>
+
+                    <AttributeList listItemWidth={100}
+                                   entity={props.entity}
+                                   attributes={relevantAttributes}
+                                   approxLineSize={58}
+                                   editable={props.editable}
+                                   editableDisabled={props.editableDisabled}
+                                   check={props.check}
                     />
-            })
-        )
+                </div>
+            </Card>
+            <NPCPrivate entity={props.entity}/>
+        </div>
 
-
-        return [{
-            id: 0,
-            columns: columns
-        }]
-    }
-
-    render() {
-        let state_label = ''
-        let activeImage = active_image(this.props.entity.image_objects) || {}
-
-        const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten', 'Detailliertes Aussehen']
-        return (
-            <div>
-                {state_label}
-                <Card
-                    image={{
-                        src: image_path('npcs', activeImage.name),
-                        alt: this.props.entity.image_generator_description,
-                    }}
-                    style={{width: 950, margin: 15}}
-                    title={<EditableText style={{width: '630px'}}
-                                         attribute='Name'
-                                         entity={this.props.entity}
-                                         approxLineSize={58}
-                                         editable={this.props.editable}
-                                         editableDisabled={this.props.editableDisabled}
-                                         check={this.props.check}
-
-                    />}
-                    landscape
-                >
-
-                    <div>
-                        <Blockquote>
-                            <Text>
-                                <div>
-                                    <EditableText style={{margin: '1 0 0 0', width: '580px'}}
-                                                  attribute='Catchphrase'
-                                                  entity={this.props.entity}
-                                                  approxLineSize={58}
-                                                  editable={this.props.editable}
-                                                  editableDisabled={this.props.editableDisabled}
-                                                  check={this.props.check}
-                                    /></div>
-                            </Text>
-                        </Blockquote>
-
-                        <AttributeList listItemWidth={100}
-                                       entity={this.props.entity}
-                                       attributes={relevantAttributes}
-                                       approxLineSize={58}
-                                       editable={this.props.editable}
-                                       editableDisabled={this.props.editableDisabled}
-                                       check={this.props.check}
-                        />
-                    </div>
-
-                    <Table headers={this.tableHeaders()} dataset={this.tableDataset(this.props.entity)}/>
-
-                    <div className={this.props.entity.id ? '' : 'hidden'}>
-                        <Link to={"/npcs/" + this.props.entity.id + "/gallery"}>
-                            <Button>Galerie</Button>
-                        </Link>
-                    </div>
-                </Card>
-            </div>
-
-        )
-    }
+    )
 }
 
 export default NPCCard;
