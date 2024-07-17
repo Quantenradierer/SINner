@@ -9,7 +9,6 @@ from django.db import models
 class AttributeDefinition:
     name: str
     length: int
-    reroll: bool
     additional_data: str = ""
     optional: bool = False
     type: str = "string"

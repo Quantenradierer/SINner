@@ -21,11 +21,9 @@ class Custom(Entity):
     objects = CustomManager()
 
     ATTRIBUTE_DEFINITION = [
+        AttributeDefinition(name="Aussehen", length=0, additional_data="innen"),
         AttributeDefinition(
-            name="Aussehen", length=0, reroll=True, additional_data="innen"
-        ),
-        AttributeDefinition(
-            name="Parameter", length=0, reroll=True, additional_data="", optional=True
+            name="Parameter", length=0, additional_data="", optional=True
         ),
     ]
     Fill = custom.Fill
