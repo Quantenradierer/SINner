@@ -27,13 +27,13 @@ class PromptWrapped extends React.Component {
     }
 
 
-    handleGenerate = async () => {
+    handleGenerate = async (event) => {
+        event.preventDefault();
         const self = this;
         this.setState({loadingState: 'waiting'});
         const prompt = this.state.prompt
 
         const response = await api.post(`/api/npc_creator/${this.props.entityType}s/prompt/`, {prompt: prompt}, {timeout: 240000})
-        console.log(response)
         if (response.status === 200) {
             if (response.data.type === 'success') {
                 window.location.href = `/${self.props.entityType}s/${response.data.entity.id}`
