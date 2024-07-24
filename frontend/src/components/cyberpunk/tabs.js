@@ -33,7 +33,7 @@ function LoadingTab(props) {
 function Tabs(props) {
     var tabs = Object.keys(props.tabs).map((key) => {
         return <Link key={'Tab' + key} to={props.tabs[key].url}>
-            <FramePentagon squareSize={20} hideShapes={props.selectedTab != key} className='rotated' style={{margin: 0}}>
+            <FramePentagon squareSize={20} hideShapes={props.selectedTab != key} className='rotated' style={{margin: '0px 1px 0px 0px'}}>
                 <div className='rotated'>{i18n.t(`tab_header_${props.entityType}_${key}`)}</div>
             </FramePentagon>
         </Link>
