@@ -28,6 +28,6 @@ class Translate(entity.Translate):
 
         return [
             input_prompt.format(
-                image_generator_description=entity.attributes["Aussehen"]
+                image_generator_description=entity.attributes["appearance"]
             ),
         ]

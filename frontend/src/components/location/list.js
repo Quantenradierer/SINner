@@ -18,12 +18,11 @@ class LocationListItem extends React.Component {
     render() {
         let activeImage = active_image(this.props.entity.image_objects) || {}
 
-        let comments = this.props.entity.values['Bewertungen']
+        let comments = this.props.entity.values['reviews']
         let comment = undefined
 
         const cardStyle = {
-        minWidth: 270,
-        maxWidth: 310,
+        width: 310,
         height: 450
         };
 
@@ -40,14 +39,14 @@ class LocationListItem extends React.Component {
                             src: image_path('locations', activeImage.name, true),
                             alt: this.props.entity.image_generator_description
                         }}
-                        title={this.props.entity.primary_values['Name']}
+                        title={this.props.entity.values['name']}
                         hover
                         style={cardStyle}
                     >
                         <div>
                             <Text>
                                 <div className="clampText">
-                                    {this.props.entity.primary_values['Typ']}
+                                    {this.props.entity.values['type']}
                                 </div>
                             </Text>
                         </div>
@@ -67,7 +66,7 @@ const LocationList = props => {
     const loader = new EntityLoader('locations')
 
     const createItem = (entity) => {
-        return <LocationListItem key={'NPCListItem' + entity.id} entity={entity}/>
+        return <LocationListItem key={'LocationListItem' + entity.id} entity={entity}/>
     }
 
     return <EntityList createItem={createItem} loader={loader} {...props}></EntityList>

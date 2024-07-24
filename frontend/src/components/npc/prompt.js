@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import NPCCard from "./npc_card";
-import NPCPrivate from "./npc_private";
 import {useLoaderData} from "react-router";
 import Prompt from "../entity/prompt";
 
@@ -113,25 +111,12 @@ const EXAMPLES = [
 
 
 const NPCPrompt = props => {
-    const default_entity = useLoaderData()
-
-    const [entity, setEntity] = useState(default_entity);
     const [check, setCheck] = useState(false);
     const [editable, setEditable] = useState(true);
 
     const relevantAttributes = ['Aussehen', 'Parameter']
 
-    return (
-        <Prompt entityType={'npc'} examples={EXAMPLES} entity={entity} setEntity={setEntity}
-                setEditable={setEditable}
-                check={check} setCheck={setCheck}>
-            <div>
-                <NPCCard entity={entity}  editable={true} editableDisabled={!editable}  check={check}/>
-                <NPCPrivate entity={entity}  editable={true} editableDisabled={!editable}  check={check}/>
-                <NPCSkills entity={entity}  editable={true} editableDisabled={!editable}  check={check}/>
-            </div>
-
-        </Prompt>)
+    return (<Prompt entityType={'npc'} examples={EXAMPLES}/>)
 }
 
 

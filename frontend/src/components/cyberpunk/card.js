@@ -54,8 +54,8 @@ const Card = props => {
         <div className="card" style={cardStyle}
              onMouseEnter={() => setIsHovered(true)}
              onMouseLeave={() => setIsHovered(false)}>
-            <AnimatedLine style={{height: '100%'}}>
-                <FrameBox hover style={{padding: '0px 0px 0px 1px', margin: 0, height: '100%', overflow: 'hidden'}}
+            <AnimatedLine style={{height: '100%', width: '100%'}}>
+                <FrameBox hover style={{padding: '0px 0px 0px 1px', margin: 0, height: '100%', width: '100%', overflow: 'hidden'}}
                           linesWidths={[0, 0, 0, 0]}>
                     <div className="card-image" style={{height: props.imageHeight || 250, overflow: 'hidden'}}>
                         <img src={props.image.src} alt={props.image.alt}

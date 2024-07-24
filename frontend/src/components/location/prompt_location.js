@@ -108,18 +108,7 @@ const EXAMPLES = [
 ]
 
 const PromptLocation = props => {
-    const default_entity = useLoaderData()
-
-    const [entity, setEntity] = useState(default_entity);
-    const [check, setCheck] = useState(false);
-    const [editable, setEditable] = useState(true);
-
-    return (<Prompt entityType={'location'} examples={EXAMPLES} entity={entity} setEntity={setEntity} setEditable={setEditable}
-                    editableDisabled={props.disabled}
-                    check={check} setCheck={setCheck}>
-         <LocationCard entity={entity} editable={true} editableDisabled={!editable} check={check}/>
-         <CommentCard key={'comments' + Math.random()} entity={entity}/>
-    </Prompt>)
+    return (<Prompt entityType={'location'} examples={EXAMPLES}/>)
 }
 
 

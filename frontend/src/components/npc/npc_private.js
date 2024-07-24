@@ -6,8 +6,8 @@ import AttributeList from "../attribute_list";
 class NPCPrivate extends React.Component {
 
     render() {
-        const relevantAttributes = ['Hintergrundgeschichte', 'Erfahrungen', 'Ressentiments', 'Motivationen', 'Ziele', 'Hobbys und Interessen',
-            'Familie', 'Kontakte', 'Stärken', 'Schwächen', 'Geheimnis']
+        const relevantAttributes = ['backstory', 'experiences', 'resentments', 'motivations', 'goals', 'hobbies_and_interests',
+            'family', 'contacts', 'strengths', 'weaknesses', 'secret']
 
         return (
             <FramePentagon>

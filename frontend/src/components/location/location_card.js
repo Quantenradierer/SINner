@@ -13,7 +13,7 @@ class LocationCard extends React.Component {
         let state_label = ''
         let activeImage = active_image(this.props.entity.image_objects) || {}
 
-        const relevantAttributes = ['Typ', 'Aussehen', 'Besonderheiten', 'Hinweise', 'Verfügbarkeit von Sicherheitssystemen', 'Aktuelle Aktionen/Events', 'Gerüchte und Geschichten über die Location']
+        const relevantAttributes = ['type', 'appearance', 'special_features', 'remarks', 'security_systems', 'events', 'rumors_and_stories']
 
         return (
             <div>
@@ -24,9 +24,8 @@ class LocationCard extends React.Component {
                         src: image_path('locations', activeImage.name),
                         alt: this.props.entity.image_generator_description
                     }}
-                    style={{width: 950, margin: 15}}
                     title={<div><EditableText style={{width: '910px'}}
-                                          attribute='Name'
+                                          attribute='name'
                                           entity={this.props.entity}
                                           approxLineSize={58}
                                           editable={this.props.editable}
@@ -47,12 +46,6 @@ class LocationCard extends React.Component {
                                        check={this.props.check}
                                        setAlternatives={this.props.setAlternatives}
                         />
-                    </div>
-
-                    <div className={this.props.entity.id? '': 'hidden'}>
-                        <Link to={"/locations/" + this.props.entity.id + "/gallery"}>
-                            <Button>Galerie</Button>
-                        </Link>
                     </div>
                 </Card>
             </div>

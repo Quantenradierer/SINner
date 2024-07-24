@@ -13,21 +13,21 @@ function CustomCard(props) {
     let items = []
     for (let image of props.entity?.image_objects || []) {
         items.push(
-            <Link to={image_path('customs', image.name)}>
+            <a href={image_path('customs', image.name)}>
                 <img style={{width: '24%'}} src={image_path('customs', image.name, true)}/>
-            </Link>
+            </a>
         )
     }
 
     function RepeatImage(entity) {
-        window.location.href = '/customs_prompt/?parameter=' + entity.values['Parameter'] + '&aussehen=' + entity.values['Aussehen']
+        window.location.href = '/customs/create?parameter=' + entity.values['parameter'] + '&appearance=' + entity.values['appearance']
     }
 
     return (
         <div style={{margin: 15}}>
             <FramePentagon style={{width: '100%'}}>
-                <Text>{props.entity.values['Aussehen']}</Text>
-                <Text>{props.entity.values['Parameter']}</Text>
+                <Text>{props.entity.values['appearance']}</Text>
+                <Text>{props.entity.values['parameter']}</Text>
                 <div style={{margin: 15, width: '100%'}}>
                     {items}
                 </div>

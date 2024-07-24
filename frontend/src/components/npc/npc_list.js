@@ -18,21 +18,19 @@ function cutStreetname(name) {
 function NPCListItem(props) {
     let activeImage = active_image(props.entity.image_objects) || {}
     const cardStyle = {
-        minWidth: 270,
-        maxWidth: 310,
         height: 500,
         imageHeight: 300,
     };
+    console.log(props)
 
-    return (<div style={{margin: '15px 7.5px 0px 7.5px'}}>
-
+    return (<div style={{width: 310, margin: '15px 7.5px 0px 7.5px'}}>
             <Link to={'/npcs/' + props.entity.id}>
                 <Card
                     image={{
                         src: image_path('npcs', activeImage.name, true),
                         alt: props.entity.image_generator_description
                     }}
-                    title={cutStreetname(props.entity.primary_values['Name'])}
+                    title={cutStreetname(props.entity.values["name"])}
                     landscape
                     hover
                     style={cardStyle}
@@ -41,14 +39,14 @@ function NPCListItem(props) {
                     <Blockquote style={{height: '52px'}}>
                         <Text>
                             <div className="clampText">
-                                {props.entity.primary_values['Catchphrase']}
+                                {props.entity.values['catchphrase']}
                             </div>
                         </Text>
                     </Blockquote>
                     <div style={{height: '10px'}}></div>
                     <List>
-                        <li><Text><b>Metatyp:</b> {props.entity.primary_values['Metatyp']}</Text></li>
-                        <li><Text><b>Beruf:</b> {props.entity.primary_values['Beruf']}</Text></li>
+                        <li><Text><b>Metatyp:</b> {props.entity.values['metatype']}</Text></li>
+                        <li><Text><b>Beruf:</b> {props.entity.values['profession']}</Text></li>
                     </List>
                 </Card>
             </Link>

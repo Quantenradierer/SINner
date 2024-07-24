@@ -26,13 +26,14 @@ class Entity(models.Model):
     uuid = models.UUIDField(editable=False, default=uuid.uuid4, unique=True)
     kind = models.CharField(max_length=20, choices=Kinds.choices)
 
+    prompt = models.TextField(blank=True)
     image_generator_description = models.TextField(blank=True)
     attributes = models.JSONField(blank=False, null=False, default=dict)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    ATTRIBUTE_DEFINITION = []
+    SCHEMAS = []
     Fill = None
     Translate = None
     PassImagePrompt = None
@@ -56,17 +57,10 @@ class Entity(models.Model):
     def values(self):
         return self.attributes
 
-    def is_complete(self):
-        for attr_def in self.ATTRIBUTE_DEFINITION:
-            if attr_def.optional:
-                continue
+    def schema_complete(self, schema_name):
+        schema = self.SCHEMAS[schema_name]
 
-            value = self.primary_values.get(attr_def.name, "")
-            if isinstance(value, str):
-                value = value.strip()
-                if not value:
-                    return False
-        return True
+        return all(name in self.attributes for name in schema.__fields__.keys())
 
     def has_image_description(self):
         return bool(self.image_generator_description)
@@ -74,27 +68,13 @@ class Entity(models.Model):
     def __repr__(self):
         return f"<models.{self.__class__} id={self.id}>"
 
-    @property
-    def primary_values(self):
-        result = {}
-        for attr_def in self.ATTRIBUTE_DEFINITION:
-            value = self.attributes.get(attr_def.name, "")
-            if value and type(value) is list and attr_def.type != "list":
-                value = value[0]
-            result[attr_def.name] = value
-        return result
-
-    @property
-    def attribute_names(self):
-        return [attr_def.name for attr_def in self.ATTRIBUTE_DEFINITION]
-
     def add_values(self, new_values):
-        for key, values in new_values.items():
+        for name, values in new_values.items():
             found_key = next(
                 (
-                    attr_def.name
-                    for attr_def in self.ATTRIBUTE_DEFINITION
-                    if attr_def.name.lower() == key.lower()
+                    def_name
+                    for def_name in self.attribute_defintions.keys()
+                    if def_name.lower() == name.lower()
                 ),
                 None,
             )
@@ -105,14 +85,12 @@ class Entity(models.Model):
             self.attributes[found_key] = self.attributes.get(found_key, "")
             if isinstance(values, str) and not values.strip():
                 continue
-            self.attributes[key] = values
+            self.attributes[name] = values
 
     @property
-    def attribute_definition(self):
+    def attribute_defintions(self):
         result = {}
-        for attr_def in self.ATTRIBUTE_DEFINITION:
-            result[attr_def.name] = {
-                "length": attr_def.length,
-                "reroll": attr_def.reroll,
-            }
+        for schemas in self.SCHEMAS.values():
+            for name, attr in schemas.__fields__.items():
+                result[name] = attr
         return result

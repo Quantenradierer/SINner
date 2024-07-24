@@ -31,6 +31,19 @@ export default class EntityLoader {
         }
     }
 
+    withSchema = (name) => {
+        return async  ({params, request}) => {
+            try {
+                const response = await api.get(`/api/npc_creator/${this.kind}/${params.id}/?schema=${name}`)
+                return response.data
+            } catch (error) {
+                console.log(error)
+                return null
+            }
+        }
+    }
+
+
     list = async ({params, request}) => {
         const search = params.search || ''
         const page = params.page || 1

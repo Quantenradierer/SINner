@@ -1,13 +1,45 @@
 from django.db import models
+from pydantic import BaseModel, Field
 
 from npc_creator.models import Entity
 from npc_creator.models.entity import AttributeDefinition
 from npc_creator.operations.gpt import location, entity
 
 
+class GalleryAttributes(BaseModel):
+    appearance: str
+
+
 class LocationManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(kind=Entity.Kinds.LOCATION)
+
+
+class LocationAttributes(BaseModel):
+    appearance: str
+    name: str
+    type: str = Field(
+        ..., description="e.g., Bar, Club, Company, Residence, Underground, etc."
+    )
+    special_features: str = Field(
+        ..., description="magical activity, high-tech equipment, criminal activity"
+    )
+    remarks: str = Field(
+        ..., description="e.g., hidden passages, ambushes, frequent patrols"
+    )
+    security_systems: str = Field(
+        ..., description="e.g., cameras, spotlights, laser traps, etc."
+    )
+    events: str = Field(
+        ..., description="e.g., number of employees, guests, residents, etc."
+    )
+    rumors_and_stories: str = Field(
+        ..., description="e.g., concerts, happy hours, sales promotions, etc."
+    )
+
+
+class Comments(BaseModel):
+    reviews: list[dict[str, str]]
 
 
 class Location(Entity):
@@ -20,46 +52,12 @@ class Location(Entity):
 
     objects = LocationManager()
 
-    ATTRIBUTE_DEFINITION = [
-        AttributeDefinition(name="Aussehen", length=0, additional_data="innen"),
-        AttributeDefinition(name="Name", length=0, additional_data=""),
-        AttributeDefinition(
-            name="Typ",
-            length=0,
-            additional_data="z.B. Bar, Club, Unternehmen, Wohnhaus, Untergrund, etc.",
-        ),
-        AttributeDefinition(
-            name="Besonderheiten",
-            length=0,
-            additional_data="magische Aktivität, High Tech Ausstattung, Kriminelle Aktivität",
-        ),
-        AttributeDefinition(
-            name="Hinweise",
-            length=0,
-            additional_data="z.B. Versteckte Passagen, Hinterhalte, häufige Patrouillen",
-        ),
-        AttributeDefinition(
-            name="Verfügbarkeit von Sicherheitssystemen",
-            length=0,
-            additional_data="z.B. Kameras, Scheinwerfer, Lasertraps, etc",
-        ),
-        AttributeDefinition(
-            name="Aktuelle Aktionen/Events",
-            length=0,
-            additional_data="z.B. Anzahl der Mitarbeiter, Gäste, Bewohner, etc.",
-        ),
-        AttributeDefinition(
-            name="Gerüchte und Geschichten über die Location",
-            length=0,
-            additional_data="z.B. Konzerte, Happy Hours, Verkaufsaktionen, etc.",
-        ),
-        AttributeDefinition(
-            name="Bewertungen",
-            length=0,
-            additional_data="",
-            type="list",
-        ),
-    ]
+    SCHEMAS = {
+        "default": LocationAttributes,
+        "reviews": Comments,
+        "gallery": GalleryAttributes,
+    }
+
     Fill = location.Fill
     Translate = location.Translate
     PassImagePrompt = location.PassImagePrompt

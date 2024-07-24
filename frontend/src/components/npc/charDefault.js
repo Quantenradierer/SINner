@@ -5,24 +5,27 @@ import EditableText from "../editable_text";
 import AttributeList from "../attribute_list";
 import active_image from "../../active_image";
 import NPCPrivate from "./npc_private";
+import {useLoaderData} from "react-router";
+import {useNavigation, useParams} from "react-router-dom";
+import NpcTabsHeader from "./npcTabsHeader";
+import useEntitySchema from "../../loader/useEntitySchema";
 
 
-function NPCCard(props) {
-    let state_label = ''
-    let activeImage = active_image(props.entity.image_objects) || {}
+function charDefault(props) {
+    const entity = props.entity
+    let activeImage = active_image(entity.image_objects) || {}
 
-    const relevantAttributes = ['Metatyp', 'Beruf', 'Ethnizität', 'Geschlecht', 'Alter', 'Eigenarten']
+    const relevantAttributes = ['metatype', 'profession', 'ethnicity', 'gender', 'age', 'quirks']
     return (
         <div>
-            {state_label}
             <Card
                 image={{
                     src: image_path('npcs', activeImage.name),
-                    alt: props.entity.image_generator_description,
+                    alt: entity.image_generator_description,
                 }}
                 title={<EditableText style={{width: '630px'}}
-                                     attribute='Name'
-                                     entity={props.entity}
+                                     attribute='name'
+                                     entity={entity}
                                      approxLineSize={58}
                                      editable={props.editable}
                                      editableDisabled={props.editableDisabled}
@@ -37,8 +40,8 @@ function NPCCard(props) {
                         <Text>
                             <div>
                                 <EditableText style={{margin: '1 0 0 0', width: '580px'}}
-                                              attribute='Catchphrase'
-                                              entity={props.entity}
+                                              attribute='catchphrase'
+                                              entity={entity}
                                               approxLineSize={58}
                                               editable={props.editable}
                                               editableDisabled={props.editableDisabled}
@@ -48,7 +51,7 @@ function NPCCard(props) {
                     </Blockquote>
 
                     <AttributeList listItemWidth={100}
-                                   entity={props.entity}
+                                   entity={entity}
                                    attributes={relevantAttributes}
                                    approxLineSize={58}
                                    editable={props.editable}
@@ -57,10 +60,10 @@ function NPCCard(props) {
                     />
                 </div>
             </Card>
-            <NPCPrivate entity={props.entity}/>
+            <NPCPrivate entity={entity}/>
         </div>
 
     )
 }
 
-export default NPCCard;
+export default charDefault;

@@ -4,7 +4,7 @@ import Comment from "./comment";
 import React from "react";
 
 const CommentCard = props => {
-    let comments = props.entity?.values?.Bewertungen
+    let comments = props.entity?.values?.reviews
     if (comments == undefined || comments.length == 0) {
         return <div/>
     }
@@ -19,7 +19,7 @@ const CommentCard = props => {
     }
 
     return <div key={'commentcard' + comments_components.length}>
-        <FramePentagon style={{width: 950, margin: 15}}>
+        <FramePentagon>
             {comments_components}
         </FramePentagon>
     </div>

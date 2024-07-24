@@ -1,8 +1,14 @@
 from django.db import models
+from pydantic import BaseModel, Field
 
 from npc_creator.models import Entity
 from npc_creator.models.entity import AttributeDefinition
 from npc_creator.operations.gpt import custom
+
+
+class CustomAttributes(BaseModel):
+    appearance: str = Field(...)
+    parameter: str
 
 
 class CustomManager(models.Manager):
@@ -20,12 +26,7 @@ class Custom(Entity):
 
     objects = CustomManager()
 
-    ATTRIBUTE_DEFINITION = [
-        AttributeDefinition(name="Aussehen", length=0, additional_data="innen"),
-        AttributeDefinition(
-            name="Parameter", length=0, additional_data="", optional=True
-        ),
-    ]
+    SCHEMAS = {"default": CustomAttributes}
     Fill = custom.Fill
     Translate = custom.Translate
     PassImagePrompt = custom.PassImagePrompt

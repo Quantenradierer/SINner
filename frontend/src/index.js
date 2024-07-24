@@ -13,7 +13,6 @@ import Login from "./components/account/login";
 import Logout from "./components/account/logout";
 import ImageGallery from "./components/image_gallery";
 import PromptLocation from "./components/location/prompt_location";
-import LocationComplete from "./components/location/location_complete";
 import EntityLoader from "./loader/entity_loader";
 import LocationList from "./components/location/list";
 import CustomList from "./components/custom/list";
@@ -24,6 +23,9 @@ import Register from "./components/account/register";
 import UserProvider from './userProvider';
 import Navigation from "./navigation";
 import NpcTabsHeader from "./components/npc/npcTabsHeader";
+import LocationTabsHeader from "./components/location/locationTabsHeader";
+import CharDefault from "./components/npc/charDefault";
+import CharArcSR6 from "./components/npc/charArcSR6";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -85,7 +87,6 @@ const router = createBrowserRouter([
             {
                 path: "create",
                 element: <Prompt/>,
-                loader: npcLoader.definition,
             },
             {
                 path: "impressum",
@@ -93,18 +94,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs/:id",
-                element: <NpcTabsHeader/>,
-                loader: npcLoader.entity,
-            },
-            {
-                path: "npcs/:id/sr6",
-                element: <NpcTabsHeader selectedTab='sr6'/>,
-                loader: npcLoader.entity,
+                element:<NpcTabsHeader selectedTab='default' loader={npcLoader}/>,
             },
             {
                 path: "npcs/:id/gallery",
-                element: <NpcTabsHeader selectedTab={'gallery'}/>,
-                loader: npcLoader.entity,
+                element: <NpcTabsHeader selectedTab='gallery' loader={npcLoader}/>,
+            },
+            {
+                path: "npcs/:id/sr6",
+                element: <NpcTabsHeader selectedTab='sr6' loader={npcLoader}/>,
             },
             {
                 path: "npcs/",
@@ -113,17 +111,18 @@ const router = createBrowserRouter([
             {
                 path: "npcs/create",
                 element: <Prompt/>,
-                loader: npcLoader.definition,
             },
             {
                 path: "locations/:id",
-                element: <LocationComplete/>,
-                loader: locationLoader.entity,
+                element: <LocationTabsHeader selectedTab={'default'}/>,
             },
             {
                 path: "locations/:id/gallery",
-                element: <ImageGallery factor={{'x': 7, 'y': 4}} attribute={'Aussehen'} entity_type={'locations'}/>,
-                loader: locationLoader.entity,
+                element: <LocationTabsHeader selectedTab={'gallery'}/>,
+            },
+            {
+                path: "locations/:id/reviews",
+                element: <LocationTabsHeader selectedTab={'reviews'}/>,
             },
             {
                 path: "locations/",
@@ -132,17 +131,14 @@ const router = createBrowserRouter([
             {
                 path: "locations/create",
                 element: <PromptLocation/>,
-                loader: locationLoader.definition,
             },
             {
                 path: "customs/:id",
                 element: <CustomComplete/>,
-                loader: customLoader.entity,
             },
             {
                 path: "customs/:id/gallery",
                 element: <ImageGallery factor={{'x': 5, 'y': 5}} attribute={'Aussehen'} entity_type={'customs'}/>,
-                loader: customLoader.entity,
             },
             {
                 path: "customs/",
@@ -151,7 +147,6 @@ const router = createBrowserRouter([
             {
                 path: "customs/create",
                 element: <CustomPrompt/>,
-                loader: customLoader.definition,
             },
             {
                 path: "feedback/",

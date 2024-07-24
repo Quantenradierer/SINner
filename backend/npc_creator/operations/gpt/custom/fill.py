@@ -17,8 +17,8 @@ class Fill(entity.Fill):
         )
 
     def prompt(self):
-        return [self.user_prompt] + [
-            f"Aussehen: {self.entity.primary_values['Aussehen']}"
+        return [
+            self.entity.prompt,
         ]
 
     def interpret_result(self, success):

@@ -6,7 +6,6 @@ from npc_creator.operations.gpt import entity
 class Fill(entity.Fill):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.use_json = True
         self.system_prompt = """- Vervollständige eine Location für ein Shadowrun Pen & Paper Rollenspiel
 - Wenn keine Informationen gegeben sind, denke dir welche aus
 - Sei beim Namen kreativ, nicht nur Neon oder Nexus sondern auch alltägliche Namen, Bezeichner und geografische Orte
@@ -28,13 +27,3 @@ class Fill(entity.Fill):
 }
 - Es sollen 5 Bewertungen generiert werden
 """
-
-    def interpret_result(self, success):
-        values = success.data
-        if "innen" in values["Aussehen"] and isinstance(
-            values["Aussehen"]["innen"], dict
-        ):
-            values["Aussehen"] = values["Aussehen"]["innen"]
-
-        self.entity.add_values(values)
-        return success

@@ -1,4 +1,5 @@
 from django.db import models
+from pydantic import constr, BaseModel, Field
 
 from npc_creator.models import Entity
 from npc_creator.models.entity import AttributeDefinition
@@ -8,6 +9,88 @@ from npc_creator.operations.gpt import npc
 class NpcManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(kind=Entity.Kinds.NPC)
+
+
+class GalleryAttributes(BaseModel):
+    profession: str
+    metatype: constr(max_length=50)
+    age: constr(max_length=10)
+    appearance: str
+
+
+class StoryAttributes(BaseModel):
+    profession: str
+    metatype: constr(max_length=50)
+    ethnicity: str
+    gender: str
+    age: constr(max_length=10)
+    catchphrase: str
+    appearance: str
+    name: constr(max_length=100)
+    backstory: str
+    experiences: str
+    resentments: str
+    motivations: str
+    goals: str
+    strengths: str
+    weaknesses: str
+    hobbies_and_interests: str
+    quirks: str
+    family: str
+    contacts: str
+    secret: str
+
+
+class SR6Attributes(BaseModel):
+    skills: str
+    equipment: str = Field(..., description="String. Comma separated list of equipment")
+    lootable_items: str = Field(
+        ..., description="String. Comma separated list of items that can be looted"
+    )
+    constitution: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6, for dwarves 1-7, for orks 1-8, for trolls 1-9",
+    )
+    agility: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6, for elves 1-7, for trolls 1-5",
+    )
+    reaction: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6, for dwarves 1-5",
+    )
+    strength: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6, for dwarves and orks 1-8, for trolls 1-9",
+    )
+    willpower: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6, for dwarves 1-7",
+    )
+    logic: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6"
+    )
+    intuition: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6"
+    )
+    charisma: constr(max_length=2) = Field(
+        ...,
+        # description="For humans and other metatypes normally 1-6, for elves 1-8, for orks and trolls 1-5",
+    )
+    edge: constr(max_length=2) = Field(
+        ...,
+        # description="For humans 1-7, for all other metatypes normally 1-6",
+    )
+    magic: constr(max_length=2) = Field(
+        ...,
+        description="For magical characters normally 0-6. For non-magical characters 0",
+    )
+    resonance: constr(max_length=2) = Field(
+        ...,
+        description="For resonant characters normally 0-6. For non-resonant characters 0",
+    )
 
 
 class Npc(Entity):
@@ -20,86 +103,11 @@ class Npc(Entity):
 
     objects = NpcManager()
 
-    ATTRIBUTE_DEFINITION = [
-        AttributeDefinition(name="Beruf", length=0),
-        AttributeDefinition(name="Metatyp", length=50),
-        AttributeDefinition(name="Ethnizität", length=0),
-        AttributeDefinition(name="Geschlecht", length=0),
-        AttributeDefinition(name="Alter", length=10),
-        AttributeDefinition(name="Catchphrase", length=0),
-        AttributeDefinition(name="Detailliertes Aussehen", length=0),
-        AttributeDefinition(name="Name", length=100),
-        AttributeDefinition(name="Hintergrundgeschichte", length=0),
-        AttributeDefinition(name="Erfahrungen", length=0),
-        AttributeDefinition(name="Ressentiments", length=0),
-        AttributeDefinition(name="Motivationen", length=0),
-        AttributeDefinition(name="Ziele", length=0),
-        AttributeDefinition(name="Stärken", length=0),
-        AttributeDefinition(name="Schwächen", length=0),
-        AttributeDefinition(name="Fertigkeiten", length=0),
-        AttributeDefinition(name="Ausrüstung", length=0),
-        AttributeDefinition(name="Hobbys und Interessen", length=0),
-        AttributeDefinition(name="Eigenarten", length=0),
-        AttributeDefinition(name="Familie", length=0),
-        AttributeDefinition(name="Kontakte", length=0),
-        AttributeDefinition(name="Lootbare Gegenstände", length=0),
-        AttributeDefinition(name="Geheimnis", length=0),
-        AttributeDefinition(
-            name="Konstitution",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6, bei Zwergen 1-7, bei Orks 1-8, bei Trollen 1-9",
-        ),
-        AttributeDefinition(
-            name="Geschicklichkeit",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6, bei Elfen 1-7, bei Trollen 1-5",
-        ),
-        AttributeDefinition(
-            name="Reaktion",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6, bei Zwergen 1-5",
-        ),
-        AttributeDefinition(
-            name="Stärke",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6, bei Zwergen und Orks 1-8, bei Trollen 1-9",
-        ),
-        AttributeDefinition(
-            name="Willenskraft",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6, bei Zwergen 1-7",
-        ),
-        AttributeDefinition(
-            name="Logik",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6",
-        ),
-        AttributeDefinition(
-            name="Intuition",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6",
-        ),
-        AttributeDefinition(
-            name="Charisma",
-            length=2,
-            # additional_data="Bei Menschen und anderen Metatypen normalerweise 1-6, bei Elfen 1-8, bei Orks und Trollen 1-5",
-        ),
-        AttributeDefinition(
-            name="Edge",
-            length=2,
-            additional_data="Int. Bei Menschen 1-7, bei allen anderen Metatypen normalerweise 1-6",
-        ),
-        AttributeDefinition(
-            name="Magie",
-            length=2,
-            additional_data="Int. Normalerweise 0-6. Bei nicht magischen Charakteren 0",
-        ),
-        AttributeDefinition(
-            name="Resonanz",
-            length=2,
-            additional_data="Int. Normalerweise 0-6. Bei nicht Resonanzern 0",
-        ),
-    ]
+    SCHEMAS = {
+        "default": StoryAttributes,
+        "sr6": SR6Attributes,
+        "gallery": GalleryAttributes,
+    }
 
     Fill = npc.Fill
     Translate = npc.Translate

@@ -23,7 +23,6 @@ from npc_creator.models.entities.custom import Custom
 from npc_creator.models.entities.npc import Npc
 from npc_creator.models.entities.location import Location
 from npc_creator.models.image_generation import ImageGeneration
-from npc_creator.operations.gpt.alternative_attributes import AlternativeAttributes
 
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
@@ -41,10 +40,8 @@ class EntitySerializer(serializers.ModelSerializer):
         model = Entity
         fields = [
             "id",
-            "primary_values",
             "image_generator_description",
             "image_objects",
-            "attribute_definition",
             "values",
         ]
 
@@ -65,9 +62,16 @@ class GenericEntityView(viewsets.ModelViewSet):
         if str(self.kwargs["pk"]).isdigit():
             namespace_uuid = uuid.UUID("12345678-1234-5678-1234-567812345678")
             self.kwargs["pk"] = uuid.uuid5(namespace_uuid, self.kwargs["pk"])
-
         obj = get_object_or_404(queryset, uuid=self.kwargs["pk"])
         self.check_object_permissions(self.request, obj)
+
+        if "schema" in self.request.query_params:
+            self.entity_class().Fill(
+                entity=obj, schema=self.request.query_params["schema"]
+            ).call()
+
+        obj.refresh_from_db()
+
         return obj
 
     def get_queryset(self):
@@ -95,32 +99,12 @@ class GenericEntityView(viewsets.ModelViewSet):
             )
 
         prompt = prompt[:255]
-        values = data.get("values")
 
         entity = self.entity_class()
-        entity.add_values(values)
-        result = self.entity_class.Fill(user_prompt=prompt, entity=entity).call()
-        if result:
-            return Response(
-                {
-                    "type": "success",
-                    "entity": self.serializer_class(entity).data,
-                }
-            )
-        else:
+        entity.prompt = prompt
+        result = self.entity_class.Fill(entity=entity).call()
+        if not result:
             return Response({"type": "error", "error": result.error})
-
-    @action(detail=False, methods=["post"])
-    def save(self, request):
-        data = json.loads(request.body.decode())
-        values = data.get("values")
-
-        entity = self.entity_class()
-        entity.add_values(values)
-
-        if not entity.is_complete():
-            return Response({"type": "error", "error": "npc_incomplete"})
-        result = self.entity_class.Check(entity=entity).call()
 
         if not result:
             return Response(
@@ -134,15 +118,6 @@ class GenericEntityView(viewsets.ModelViewSet):
 
         return Response(
             {"type": "success", "entity": self.serializer_class(entity).data}
-        )
-
-    @action(detail=False, methods=["get"])
-    def default(self, request):
-        return Response(
-            {
-                "type": "success",
-                "entity": self.serializer_class(self.entity_class()).data,
-            }
         )
 
     @action(detail=True, methods=["post"], authentication_classes=IsAuthenticated)

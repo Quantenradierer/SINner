@@ -1,65 +1,57 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {useLocation, useParams, Link, useNavigation} from "react-router-dom";
+import Tabs from "../cyberpunk/tabs";
+import CharDefault from "./charDefault";
+import CharArcSR6 from "./charArcSR6";
 import Warning from "../warning";
-import i18next from "../../i18n";
 import active_image from "../../active_image";
+import ImageGallery from "../image_gallery";
 import {Helmet} from "react-helmet";
 import image_path from "../../image_path";
-import {FramePentagon} from "@arwes/core";
-import CharArcSR6 from "./charArcSR6";
-import NPCCard from "./npc_card";
-import ImageGallery from "../image_gallery";
-import {useLoaderData} from "react-router";
-import useRefreshEntityCard from "../use_refresh_entity_card";
-import {useLocation, useParams, Link} from "react-router-dom";
+import i18next from "i18next";
+import useEntitySchema from "../../loader/useEntitySchema";
+
+
 
 
 function NpcTabsHeader(props) {
-    const loaded_entity = useLoaderData()
-    const [entity, setEntity] = useState(loaded_entity);
-    useRefreshEntityCard('npcs', entity, setEntity)
-    const tab = props.selectedTab || 'story'
-    //const [tab, setTab] = useState(props.selectedTab || 'story')
-    const { id } = useParams();
+    const {id} = useParams();
+    const entityType = 'npcs';
+    const {entity, loading, error} = useEntitySchema(entityType, id, props.selectedTab);
 
-    let warning = ''
-    if (entity.image_objects.length == 0) {
-        warning = <Warning text={i18next.t('image_generation_in_progress')}/>
-    }
+    const tabs = {
+        'default': {
+            url: `/npcs/${id}`,
+            element: <CharDefault entity={entity}/>,
+            estimatedTime: 1000,
+        },
+        'sr6': {
+            url: `/npcs/${id}/sr6`,
+            element: <CharArcSR6 entity={entity}/>,
+            estimatedTime: 3500,
+        },
+        'gallery': {
+            url: `/npcs/${id}/gallery`,
+            element: <ImageGallery entity={entity} entityType={entityType} factor={{'x': 4, 'y': 5}}
+                                   attribute={'appearance'}/>,
+            estimatedTime: 1000,
+        }
+    };
+
     let activeImage = active_image(entity.image_objects) || {}
-
     return (
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div key={props.selectedTab} style={{display: 'flex', flexDirection: 'column'}}>
             <Helmet>
-                <title>Schattenakte - {entity.values['Name']}</title>
-                <meta name="description" content={entity.values['Catchphrase']}/>
-                <meta property="og:title" content={`Schattenakte - {entity.values['Name']}`}/>
-                <meta property="og:description" content={entity.values['Catchphrase']}/>
+                <title>Schattenakte - {entity.values['name']}</title>
+                <meta name="description" content={entity.values['catchphrase']}/>
+                <meta property="og:title" content={`Schattenakte - {entity.values['name']}`}/>
+                <meta property="og:description" content={entity.values['catchphrase']}/>
                 <meta property="og:image" content={image_path('npcs', activeImage.name, true)}/>
             </Helmet>
 
-            {warning}
-
-            <div style={{margin: 0, display: 'flex', justifyContent: 'left', alignItems: 'flex-end'}}>
-                <Link to={`/npcs/${id}`}><FramePentagon squareSize={20} hideShapes={tab != 'story'} className='rotated' style={{margin: 0}}>
-                    <div className='rotated'>Story</div>
-                </FramePentagon></Link>
-                <Link to={`/npcs/${id}/sr6`}><FramePentagon squareSize={20} hideShapes={tab != 'sr6'} className='rotated' style={{margin: 0}}>
-                    <div className='rotated'>SR6</div>
-                </FramePentagon></Link>
-                 <Link to={`/npcs/${id}/gallery`}><FramePentagon inversed squareSize={20} hideShapes={tab != 'gallery'} className='rotated' style={{margin: 0}}>
-                   <div className='rotated'>Galerie</div>
-                </FramePentagon></Link>
-            </div>
-
-            <div style={{width: 1050}}>
-                {tab == 'story' && <NPCCard entity={entity}/>}
-                {tab == 'sr6' && <CharArcSR6 entity={entity} entitytype={'npcs'}/>}
-                {tab == 'gallery' && <ImageGallery entity={entity} entity_type={'npcs'} factor={{'x': 4, 'y': 5}} attribute={'Detailliertes Aussehen'}/>}
-            </div>
+            <Tabs tabs={tabs} loading={loading} entityType={entityType} selectedTab={props.selectedTab || 'default'}/>
         </div>
     )
-
 }
-
 
 export default NpcTabsHeader;

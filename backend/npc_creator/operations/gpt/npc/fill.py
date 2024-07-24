@@ -22,17 +22,5 @@ class Fill(entity.Fill):
 - Erstelle standardmäßig weniger Personen mit afro-Ethnizität
 - Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun, wie: ADL, CAS, CFS, Japanisches Kaiserreich, Tír na nÓg, Tír Tairngire oder UCAS
 - Antworte die fehlenden und leeren Felder im JSON Format: {feld: string, feld: string, ...}
+- Antworte in Deutsch
 """
-
-    @property
-    def entity(self):
-        return self.kwargs["entity"]
-
-    @property
-    def user_prompt(self):
-        return self.kwargs.get("user_prompt", "")
-
-    def prompt(self):
-        return [
-            self.user_prompt,
-        ] + entity_prompt(self.entity)

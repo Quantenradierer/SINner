@@ -16,7 +16,7 @@ class PassImagePrompt(entity.PassImagePrompt):
     MIDJOURNEY_PROMPT = "{image_generator_description}"
 
     def special_midjourney_prompt(self, prompt):
-        parameters = self.entity.primary_values.get("Parameter", "")
+        parameters = self.entity.attributes.get("Parameter", "")
         return None, (
             special_midjourney_prompt(prompt, parameters, seed=self.generation.id)
         )

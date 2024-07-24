@@ -8,6 +8,7 @@ import is_logged_in from "../is_loggin_in";
 import image_path from "../image_path";
 import active_image from "../active_image";
 import EntityLoader from "../loader/entity_loader";
+import i18n from "../i18n";
 
 
 
@@ -22,7 +23,7 @@ class ImageGalleryWrapped extends React.Component {
     }
 
     async handleRecreateImages() {
-        await api.post('/api/npc_creator/' + this.props.entity_type + '/' + this.state.entity.id + '/recreate_images/', {
+        await api.post('/api/npc_creator/' + this.props.entityType + '/' + this.state.entity.id + '/recreate_images/', {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
@@ -36,7 +37,7 @@ class ImageGalleryWrapped extends React.Component {
         this.setState({votes: votes})
 
         await api.post('/api/npc_creator/images/' + image_number + '/upvote/', {headers: {'Content-Type': 'application/json'}})
-        let entity = await new EntityLoader(this.props.entity_type).entity({'params': {'id': this.state.entity.id}, undefined})
+        let entity = await new EntityLoader(this.props.entityType).entity({'params': {'id': this.state.entity.id}, undefined})
 
         this.setState({entity: entity});
     }
@@ -48,7 +49,7 @@ class ImageGalleryWrapped extends React.Component {
         this.setState({votes: votes})
 
         await api.post('/api/npc_creator/images/' + image_number + '/downvote/', {headers: {'Content-Type': 'application/json'}})
-        let entity = await new EntityLoader(this.props.entity_type).entity({'params': {'id': this.state.entity.id}, undefined})
+        let entity = await new EntityLoader(this.props.entityType).entity({'params': {'id': this.state.entity.id}, undefined})
 
         this.setState({entity: entity});
     }
@@ -74,7 +75,6 @@ class ImageGalleryWrapped extends React.Component {
 
             items.push(
                 <div key={items.id} style={{display: 'flex'}}>
-                    <a href={image_path(this.props.entity_type, image.name)}>
                         <div key='scoring'>
                             <div key='upvote'
                                  className={this.state.votes[image.id] === true ? 'votes-clicked' : 'votes'}
@@ -97,15 +97,14 @@ class ImageGalleryWrapped extends React.Component {
                             minHeight: sizeY + addSize * 2,
                             boxShadow: glowEffect
                         }}
-                             src={image_path(this.props.entity_type, image.name)}/>
-                    </a>
+                             src={image_path(this.props.entityType, image.name)}/>
                 </div>)
         }
 
         return (
             <FramePentagon>
                 <Text style={{margin: '10px 0px 20px 0px'}}>
-                    <b>Aussehen:</b> {this.state.entity.primary_values[this.props.attribute]}
+                    <b>{i18n.t('attribute_appearance')}:</b> {this.state.entity.values[this.props.attribute]}
                 </Text>
 
                 <div style={{flexWrap: 'wrap', display: 'flex', justifyContent: 'space-evenly'}}>

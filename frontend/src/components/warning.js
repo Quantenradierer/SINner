@@ -1,6 +1,5 @@
 import {FramePentagon, Text} from "@arwes/core";
 import React from "react";
-import NPCComplete from "./location/location_complete";
 
 const Warning = props => {
     return (<div key='error'  style={{width: 950, margin: 15}}>

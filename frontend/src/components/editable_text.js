@@ -14,7 +14,7 @@ const EditableText = props => {
         attribute = attributes
     }
 
-    let definition = props.entity.attribute_definition[props.attribute]
+    let definition = props.entity.attribute_definition&[props.attribute]
     const [value, setValue] = useState( attribute || '');
 
     useEffect(() => {
