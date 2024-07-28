@@ -102,7 +102,7 @@ class ImageGalleryWrapped extends React.Component {
         }
 
         return (
-            <FramePentagon>
+            <FramePentagon style={{width: '100%'}}>
                 <Text style={{margin: '10px 0px 20px 0px'}}>
                     <b>{i18n.t('attribute_appearance')}:</b> {this.state.entity.values[this.props.attribute]}
                 </Text>

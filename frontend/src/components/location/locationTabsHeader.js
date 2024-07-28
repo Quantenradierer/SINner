@@ -40,7 +40,7 @@ function LocationTabsHeader(props) {
 
     let activeImage = active_image(entity.image_objects) || {}
     return (
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex', flexDirection: 'column', maxWidth: '1250', width: '100%'}}>
             <Helmet>
                 <title>Schattenakte - {entity.values['name']}</title>
                 <meta name="description" content={entity.values['type']}/>

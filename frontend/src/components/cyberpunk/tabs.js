@@ -41,7 +41,7 @@ function Tabs(props) {
     const element = props.tabs[props.selectedTab].element
     const estimatedTime = props.tabs[props.selectedTab].estimatedTime
     return (
-        <div style={{display: 'flex', flexDirection: 'column', width: 1250}}>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
             <div style={{margin: 0, display: 'flex', justifyContent: 'left', alignItems: 'flex-end'}}>
                 {tabs}
             </div>

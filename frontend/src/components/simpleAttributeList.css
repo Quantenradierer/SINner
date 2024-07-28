@@ -1,0 +1,22 @@
+  .attr-list-item {
+    margin: 20px;
+    position: relative;
+    padding-left: -20px;
+
+  }
+
+  .attr-list-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+  }
+
+  .attr-list-item span {
+    text-indent: 0;
+            /*-20px;*/
+    padding-left: 0;
+            /* 10px;*/
+  }

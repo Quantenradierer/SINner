@@ -71,6 +71,7 @@ const CharArcSR6 = (props) => {
         <div key={entity.id}>
             <FramePentagon style={{margin: 0, padding: 0, width: '100%'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
+
                     <div style={{width: '100%'}}>
                         <div style={{width: '100%'}}>
                             <FrameLines hideTopLines={true} style={{padding: 10, margin: 0, width: '100%'}}>

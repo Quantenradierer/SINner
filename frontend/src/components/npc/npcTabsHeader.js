@@ -40,7 +40,7 @@ function NpcTabsHeader(props) {
 
     let activeImage = active_image(entity.image_objects) || {}
     return (
-        <div key={props.selectedTab} style={{display: 'flex', flexDirection: 'column'}}>
+        <div key={props.selectedTab} style={{display: 'flex', flexDirection: 'column', maxWidth: '1250px', width: '100%'}}>
             <Helmet>
                 <title>Schattenakte - {entity.values['name']}</title>
                 <meta name="description" content={entity.values['catchphrase']}/>

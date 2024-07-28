@@ -26,16 +26,24 @@ import NpcTabsHeader from "./components/npc/npcTabsHeader";
 import LocationTabsHeader from "./components/location/locationTabsHeader";
 import CharDefault from "./components/npc/charDefault";
 import CharArcSR6 from "./components/npc/charArcSR6";
+import {createTheme, createThemePaletteBasic, createThemePaletteElevation} from "@arwes/design";
+import {ThemeProvider} from "@emotion/react";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
 
-
+const themeSettings = {
+    palette: {
+        transparent: {
+            main: '#fff',
+        },
+    },
+};
 
 class Theme extends React.Component {
     render() {
         return (
-            <ArwesThemeProvider>
+            <ArwesThemeProvider themeSettings={themeSettings}>
                 <StylesBaseline styles={{
                     body: {fontFamily: ROOT_FONT_FAMILY},
                     'ul li::marker': {
@@ -48,11 +56,6 @@ class Theme extends React.Component {
             </ArwesThemeProvider>
         )
     }
-}
-
-const Redirector = props => {
-    window.location.href = "npcs/"
-    return <LoadingBars></LoadingBars>
 }
 
 const Root = props => {
