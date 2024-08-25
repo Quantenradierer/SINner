@@ -9,30 +9,30 @@ import {useLoaderData} from "react-router";
 import useRefreshEntityCard from "../use_refresh_entity_card";
 import {useLocation, useParams, Link} from "react-router-dom";
 import Tabs from "../cyberpunk/tabs";
-import LocationCard from "./location_card";
-import CommentCard from "./comment_card";
+import TabDefault from "./tabDefault";
+import TabReviews from "./tabReviews";
 import useEntitySchema from "../../loader/useEntitySchema";
+import {useEntity} from "../entityProvider";
 
 
 function LocationTabsHeader(props) {
     const { id } = useParams();
-    const entityType = 'locations';
-    const { entity, loading, error } = useEntitySchema(entityType, id, props.selectedTab);
+    const {entity, _} = useEntity();
 
     const tabs = {
         'default': {
             url: `/locations/${id}`,
-            element: <LocationCard entity={entity}/>,
+            element: <TabDefault/>,
             estimatedTime: 1000
         },
         'reviews': {
             url: `/locations/${id}/reviews`,
-            element: <CommentCard entity={entity}/>,
+            element: <TabReviews/>,
             estimatedTime: 5000
         },
         'gallery': {
             url: `/locations/${id}/gallery`,
-            element: <ImageGallery entity={entity} entityType={'locations'} factor={{'x': 5, 'y': 4}}
+            element: <ImageGallery factor={{'x': 5, 'y': 4}}
                                    attribute={'appearance'}/>,
             estimatedTime: 1000
         }
@@ -40,7 +40,8 @@ function LocationTabsHeader(props) {
 
     let activeImage = active_image(entity.image_objects) || {}
     return (
-        <div style={{display: 'flex', flexDirection: 'column', maxWidth: '1250', width: '100%'}}>
+        <div key={props.selectedTab}
+             style={{display: 'flex', flexDirection: 'column', maxWidth: '1270px', width: '100%', margin: 5}}>
             <Helmet>
                 <title>Schattenakte - {entity.values['name']}</title>
                 <meta name="description" content={entity.values['type']}/>
@@ -49,7 +50,7 @@ function LocationTabsHeader(props) {
                 <meta property="og:image" content={image_path('locations', activeImage.name, true)}/>
             </Helmet>
 
-            <Tabs tabs={tabs} loading={loading} entityType={entityType} selectedTab={props.selectedTab || 'default'}/>
+            <Tabs tabs={tabs}/>
         </div>
     )
 }

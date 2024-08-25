@@ -44,6 +44,8 @@ const resources = {
             create_explanation_location: 'Beschreibe den Ort. Du kannst das Gebiet oder eine grobe Beschreibung dazuschreiben. GPT erzeugt dann den Rest. Du kannst ihn danach noch abändern.',
             create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',
 
+            npc_entity_is_not_published: 'Dieser NPC wurde noch nicht veröffentlicht und kann nur durch die exakte URL aufgerufen werden. Speichere den Link, um später darauf zugreifen zu können.',
+
             attribute_metatype: 'Metatyp',
             attribute_profession: 'Beruf',
             attribute_ethnicity: 'Ethnizität',
@@ -56,7 +58,6 @@ const resources = {
             attribute_experiences: 'Erfahrung',
             attribute_resentments: 'Abneigung',
             attribute_motivations: 'Motivation',
-            attribute_goals: 'Ziele',
             attribute_hobbies_and_interests: 'Hobbys',
             attribute_family: 'Familie',
             attribute_contacts: 'Kontakte',
@@ -78,7 +79,6 @@ const resources = {
             attribute_events: 'Aktionen',
             attribute_rumors_and_stories: 'Gerüchte',
 
-
             attribute_parameter: 'Parameter',
 
             "--s 50": "stylize low",
@@ -99,6 +99,44 @@ const resources = {
             "--chaos 100": "Maximales Chaos",
 
             tab_loading_text: "Daten werden generiert...",
+
+
+            npc_card_title_background: 'Hintergrund',
+            npc_card_title_social: 'Soziales',
+            npc_card_title_personality: 'Persönlichkeit',
+            npc_card_title_skills_and_traits: 'Fähigkeiten und Eigenschaften',
+
+            npc_attribute_bod: 'Kon',
+            npc_attribute_agi: 'Agi',
+            npc_attribute_rea: 'Rea',
+            npc_attribute_str: 'Str',
+            npc_attribute_wil: 'Wil',
+            npc_attribute_log: 'Log',
+            npc_attribute_int: 'Int',
+            npc_attribute_cha: 'Cha',
+            npc_attribute_edg: 'Edg',
+            npc_attribute_mag: 'Mag',
+            npc_attribute_res: 'Res',
+
+            npc_skill_astral: 'Astral',
+            npc_skill_athletics: 'Athletik',
+            npc_skill_biotech: 'Biotech',
+            npc_skill_close_combat: 'Nahkampf',
+            npc_skill_con: 'Überreden',
+            npc_skill_conjuring: 'Beschwören',
+            npc_skill_cracking: 'Cracken',
+            npc_skill_electronics: 'Elektronik',
+            npc_skill_enchanting: 'Verzaubern',
+            npc_skill_engineering: 'Mechanik',
+            npc_skill_exotic_weapons: 'Exotische Waffen',
+            npc_skill_firearms: 'Feuerwaffen',
+            npc_skill_influence: 'Einfluss',
+            npc_skill_outdoors: 'Natur',
+            npc_skill_perception: 'Wahrnehmung',
+            npc_skill_piloting: 'Steuern',
+            npc_skill_sorcery: 'Hexerei',
+            npc_skill_stealth: 'Heimlichkeit',
+            npc_skill_tasking: 'Tasken',
         },
     },
     en: {
@@ -142,7 +180,6 @@ const resources = {
             "attribute_experiences": "Experiences",
             "attribute_resentments": "Resentments",
             "attribute_motivations": "Motivation",
-            "attribute_goals": "Goals",
             "attribute_hobbies_and_interests": "Hobbies",
             "attribute_family": "Family",
             "attribute_contacts": "Contacts",

@@ -15,7 +15,6 @@ TRANLSATION_DICT = {
     "Erfahrungen": "experiences",
     "Ressentiments": "resentments",
     "Motivationen": "motivations",
-    "Ziele": "goals",
     "Stärken": "strengths",
     "Schwächen": "weaknesses",
     "Hobbys und Interessen": "hobbies_and_interests",

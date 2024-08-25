@@ -9,29 +9,51 @@
 
 @media (min-width: 600px) {
     .container {
+        display: flex;
         flex-wrap: nowrap;
+        flex-direction: column;
     }
 
     .left-container {
-        flex: 1 1 25%;
-        min-width: 250px;
+        display: flex;
     }
 
-    .right-container {
-        flex: 1 1 75%;
+    .two-cols {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
     }
 
+    .col1 {
+        flex: 1 1 50%;
+        box-sizing: border-box;
+    }
+
+    .col2 {
+        flex: 1 1 50%;
+        box-sizing: border-box;
+    }
+
+    .attribute-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px;
+    }
 }
 
 .growing-img {
     transform: scale(0.8);
     transform-origin: center;
-    animation: grow 2s forwards;
+    animation: grow 1s forwards;
+}
+
+.pentagonframe-image {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--squareSize)), calc(100% - var(--squareSize)) 100%, 0 100%);
 }
 
 @keyframes grow {
     from {
-        transform: scale(0.8);
+        transform: scale(0.85);
     }
     to {
         transform: scale(1);

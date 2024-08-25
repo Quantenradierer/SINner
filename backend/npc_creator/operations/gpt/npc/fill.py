@@ -22,5 +22,7 @@ class Fill(entity.Fill):
 - Erstelle standardmäßig weniger Personen mit afro-Ethnizität
 - Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun, wie: ADL, CAS, CFS, Japanisches Kaiserreich, Tír na nÓg, Tír Tairngire oder UCAS
 - Antworte die fehlenden und leeren Felder im JSON Format: {feld: string, feld: string, ...}
+- Die Werte (Attribute und Skills) dürfen höher ausfallen wenn es für die Person Sinn ergibt 
 - Antworte in Deutsch
+
 """

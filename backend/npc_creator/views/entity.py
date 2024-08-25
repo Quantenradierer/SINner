@@ -27,7 +27,7 @@ from npc_creator.models.image_generation import ImageGeneration
 
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
-from rest_framework import serializers, viewsets
+from rest_framework import serializers, viewsets, status
 
 from npc_creator.views.image import ImageSerializer
 
@@ -40,6 +40,7 @@ class EntitySerializer(serializers.ModelSerializer):
         model = Entity
         fields = [
             "id",
+            "state",
             "image_generator_description",
             "image_objects",
             "values",
@@ -75,15 +76,30 @@ class GenericEntityView(viewsets.ModelViewSet):
         return obj
 
     def get_queryset(self):
-        search_text = self.request.query_params.get("search", "").strip()
+        if self.action == "list":
+            queryset = self.queryset.filter(state=Entity.States.PUBLISHED)
+            search_text = self.request.query_params.get("search", "").strip()
 
-        regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
-        return self.queryset.filter(attributes__iregex=regex).distinct()
+            regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
+            return queryset.filter(attributes__iregex=regex).distinct()
+        return self.queryset
 
     @action(detail=False, methods=["get"])
     def random(self, request):
         entity = self.queryset.order_by("?").first()
         return Response(self.serializer_class(entity).data)
+
+    def update(self, request, *args, **kwargs):
+        data = request.data
+
+        id = data.get("id")
+        entity = Entity.objects.get(id=id)
+
+        entity.add_values(data.get("values"))
+
+        entity.save()
+
+        return Response({}, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=["post"])
     def prompt(self, request):

@@ -2,7 +2,7 @@ import React from "react";
 import i18next from "../../i18n";
 import Warning from "../warning";
 import {Button, FramePentagon, Text} from "@arwes/core";
-import EditableText from "../editable_text";
+import EditableText from "../editableText";
 import CustomComplete from "./complete";
 import image_path from "../../image_path";
 import { Link } from "react-router-dom";

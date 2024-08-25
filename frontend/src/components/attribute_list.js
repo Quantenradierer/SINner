@@ -1,6 +1,6 @@
 import {Button, FrameLines, List, Text} from "@arwes/core";
 import React from "react";
-import EditableText from "./editable_text";
+import EditableText from "./editableText";
 import i18next from "../i18n";
 
 
@@ -34,12 +34,8 @@ const AttributeList = props => {
                     <div style={{width: props.listItemWidth}}><Text><b>{i18next.t('attribute_' + attribute.replaceAll(' ', '_').replaceAll('/', '_').toLowerCase())}:</b></Text></div>
                 </div>
                 <EditableText style={{margin: '-7px 0 0 0'}}
-                              attribute={attribute}
-                              entity={props.entity}
-                              approxLineSize={props.approxLineSize}
+                              attributeName={attribute}
                               editable={props.editable}
-                              editableDisabled={props.editableDisabled}
-                              check={props.check}
                 />
 
 

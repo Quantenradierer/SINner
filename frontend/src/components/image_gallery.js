@@ -9,6 +9,7 @@ import image_path from "../image_path";
 import active_image from "../active_image";
 import EntityLoader from "../loader/entity_loader";
 import i18n from "../i18n";
+import {useEntity} from "./entityProvider";
 
 
 
@@ -16,8 +17,10 @@ class ImageGalleryWrapped extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {entity: this.props.entity,
-                      votes: {}}
+        this.state = {
+            entity: this.props.entity,
+            votes: {}
+        }
 
         this.handleRecreateImages = this.handleRecreateImages.bind(this);
     }
@@ -37,7 +40,10 @@ class ImageGalleryWrapped extends React.Component {
         this.setState({votes: votes})
 
         await api.post('/api/npc_creator/images/' + image_number + '/upvote/', {headers: {'Content-Type': 'application/json'}})
-        let entity = await new EntityLoader(this.props.entityType).entity({'params': {'id': this.state.entity.id}, undefined})
+        let entity = await new EntityLoader(this.props.entityType).entity({
+            'params': {'id': this.state.entity.id},
+            undefined
+        })
 
         this.setState({entity: entity});
     }
@@ -49,7 +55,10 @@ class ImageGalleryWrapped extends React.Component {
         this.setState({votes: votes})
 
         await api.post('/api/npc_creator/images/' + image_number + '/downvote/', {headers: {'Content-Type': 'application/json'}})
-        let entity = await new EntityLoader(this.props.entityType).entity({'params': {'id': this.state.entity.id}, undefined})
+        let entity = await new EntityLoader(this.props.entityType).entity({
+            'params': {'id': this.state.entity.id},
+            undefined
+        })
 
         this.setState({entity: entity});
     }
@@ -75,34 +84,35 @@ class ImageGalleryWrapped extends React.Component {
 
             items.push(
                 <div key={items.id} style={{display: 'flex'}}>
-                        <div key='scoring'>
-                            <div key='upvote'
-                                 className={this.state.votes[image.id] === true ? 'votes-clicked' : 'votes'}
-                                 style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 70}}><a
-                                href=""
-                                style={{fontSize: '32px'}}
-                                onClick={(event) => this.upvote(event, image.id)}>👍</a>
-                            </div>
-                            <div key='downvote'
-                                 className={this.state.votes[image.id] === false ? 'votes-clicked' : 'votes'}
-                                 style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 30}}><a
-                                href=""
-                                style={{fontSize: '32px'}}
-                                onClick={(event) => this.downvote(event, image.id)}>👎</a>
-                            </div>
+                    <div key='scoring'>
+                        <div key='upvote'
+                             className={this.state.votes[image.id] === true ? 'votes-clicked' : 'votes'}
+                             style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 70}}><a
+                            href=""
+                            style={{fontSize: '32px'}}
+                            onClick={(event) => this.upvote(event, image.id)}>👍</a>
                         </div>
-                        <img style={{
-                            margin: 15 - addSize,
-                            width: sizeX + addSize * 2,
-                            minHeight: sizeY + addSize * 2,
-                            boxShadow: glowEffect
-                        }}
-                             src={image_path(this.props.entityType, image.name)}/>
+                        <div key='downvote'
+                             className={this.state.votes[image.id] === false ? 'votes-clicked' : 'votes'}
+                             style={{position: 'absolute', marginLeft: sizeX - 25, marginTop: sizeY - 30}}><a
+                            href=""
+                            style={{fontSize: '32px'}}
+                            onClick={(event) => this.downvote(event, image.id)}>👎</a>
+                        </div>
+                    </div>
+                    <img style={{
+                        margin: 15 - addSize,
+                        width: sizeX + addSize * 2,
+                        minHeight: sizeY + addSize * 2,
+                        boxShadow: glowEffect
+                    }}
+                         src={image_path(this.props.entityType, image.name)}/>
                 </div>)
         }
 
         return (
-            <FramePentagon style={{width: '100%'}}>
+            <div>
+
                 <Text style={{margin: '10px 0px 20px 0px'}}>
                     <b>{i18n.t('attribute_appearance')}:</b> {this.state.entity.values[this.props.attribute]}
                 </Text>
@@ -113,7 +123,8 @@ class ImageGalleryWrapped extends React.Component {
                 <div className={is_logged_in() ? '' : 'hidden'}>
                     <Button onClick={this.handleRecreateImages}>Neue Bilder</Button>
                 </div>
-            </FramePentagon>
+            </div>
+
 
         )
     }
@@ -121,15 +132,13 @@ class ImageGalleryWrapped extends React.Component {
 
 
 const ImageGallery = props => {
-  const entity = useLoaderData()
-  const navigate = useNavigate()
-  const { state } = useNavigation()
+  const {entity, _} = useEntity();
 
-  if (state === 'loading') {
+  if (entity.loading) {
       return <LoadingBars></LoadingBars>
   } else {
       return <div style={{width: '100%', position: 'relative'}}>
-          <ImageGalleryWrapped navigate={navigate} entity={entity} {...props} />
+          <ImageGalleryWrapped entity={entity} {...props} />
       </div>
   }
 }

@@ -31,7 +31,6 @@ class StoryAttributes(BaseModel):
     experiences: str
     resentments: str
     motivations: str
-    goals: str
     strengths: str
     weaknesses: str
     hobbies_and_interests: str
@@ -47,49 +46,72 @@ class SR6Attributes(BaseModel):
     lootable_items: str = Field(
         ..., description="String. Comma separated list of items that can be looted"
     )
-    constitution: constr(max_length=2) = Field(
+    constitution: int = Field(
         ...,
-        # description="For humans and other metatypes normally 1-6, for dwarves 1-7, for orks 1-8, for trolls 1-9",
+        description="Integer",
     )
-    agility: constr(max_length=2) = Field(
+    agility: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6, for elves 1-7, for trolls 1-5",
     )
-    reaction: constr(max_length=2) = Field(
+    reaction: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6, for dwarves 1-5",
     )
-    strength: constr(max_length=2) = Field(
+    strength: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6, for dwarves and orks 1-8, for trolls 1-9",
     )
-    willpower: constr(max_length=2) = Field(
+    willpower: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6, for dwarves 1-7",
     )
-    logic: constr(max_length=2) = Field(
+    logic: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6"
     )
-    intuition: constr(max_length=2) = Field(
+    intuition: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6"
     )
-    charisma: constr(max_length=2) = Field(
+    charisma: int = Field(
         ...,
         # description="For humans and other metatypes normally 1-6, for elves 1-8, for orks and trolls 1-5",
     )
-    edge: constr(max_length=2) = Field(
+    edge: int = Field(
         ...,
         # description="For humans 1-7, for all other metatypes normally 1-6",
     )
-    magic: constr(max_length=2) = Field(
+    magic: int = Field(
         ...,
         description="For magical characters normally 0-6. For non-magical characters 0",
     )
-    resonance: constr(max_length=2) = Field(
+    resonance: int = Field(
         ...,
         description="For resonant characters normally 0-6. For non-resonant characters 0",
+    )
+
+    skill_astral: int
+    skill_athletics: int
+    skill_biotech: int
+    skill_close_combat: int
+    skill_con: int
+    skill_conjuring: int
+    skill_cracking: int
+    skill_electronics: int
+    skill_enchanting: int
+    skill_engineering: int
+    skill_exotic_weapons: int
+    skill_firearms: int
+    skill_influence: int
+    skill_outdoors: int
+    skill_perception: int
+    skill_piloting: int
+    skill_sorcery: int
+    skill_stealth: int
+    skill_tasking: int = Field(
+        ...,
+        description="For non-resonant characters 0",
     )
 
 

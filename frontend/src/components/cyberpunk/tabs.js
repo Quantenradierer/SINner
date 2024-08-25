@@ -6,6 +6,9 @@ import useRefreshEntityCard from "../use_refresh_entity_card";
 import {useLocation, useParams, Link, useNavigation} from "react-router-dom";
 import i18n from "../../i18n";
 import EncryptedText from "./encryptedText";
+import {useEntity} from "../entityProvider";
+import {CustomFrame} from "./CustomFrame";
+import {Animator} from "@arwes/animation";
 
 function LoadingTab(props) {
       const [progress, setProgress] = React.useState(0);
@@ -31,23 +34,31 @@ function LoadingTab(props) {
 }
 
 function Tabs(props) {
+    const {entity, _} = useEntity();
+
     var tabs = Object.keys(props.tabs).map((key) => {
         return <Link key={'Tab' + key} to={props.tabs[key].url}>
-            <FramePentagon squareSize={20} hideShapes={props.selectedTab != key} className='rotated' style={{margin: '0px 1px 0px 0px'}}>
-                <div className='rotated'>{i18n.t(`tab_header_${props.entityType}_${key}`)}</div>
-            </FramePentagon>
+            <CustomFrame squareSize={20} hideShapes={entity.selectedTab != key} style={{margin: '0px 0px 0px 0px'}}>
+                <div>{i18n.t(`tab_header_${entity.entityType}_${key}`)}</div>
+            </CustomFrame>
         </Link>
     })
-    const element = props.tabs[props.selectedTab].element
-    const estimatedTime = props.tabs[props.selectedTab].estimatedTime
+    const element = props.tabs[entity.selectedTab].element
+    const estimatedTime = props.tabs[entity.selectedTab].estimatedTime
     return (
+
         <div style={{display: 'flex', flexDirection: 'column'}}>
             <div style={{margin: 0, display: 'flex', justifyContent: 'left', alignItems: 'flex-end'}}>
                 {tabs}
             </div>
             <div>
-                {!props.loading && element}
-                {props.loading && <LoadingTab estimatedTime={estimatedTime}/>}
+                <Animator  key={entity.selectedTab}>
+
+                <FramePentagon key={entity.selectedTab} className='surrounding-frame' style={{padding: 0, margin: 0}} squareSize={35}>
+                    {!entity.loading && element}
+                    {entity.loading && <LoadingTab estimatedTime={estimatedTime}/>}
+                </FramePentagon>
+                </Animator>
             </div>
         </div>
     )

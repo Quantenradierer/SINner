@@ -2,14 +2,15 @@ import image_path from "../../image_path";
 import {Blockquote, FramePentagon} from "@arwes/core";
 import Comment from "./comment";
 import React from "react";
+import {useEntity} from "../entityProvider";
 
-const CommentCard = props => {
-    let comments = props.entity?.values?.reviews
+const TabReviews = props => {
+    const { entity, _} = useEntity();
+
+    let comments = entity?.values?.reviews
     if (comments == undefined || comments.length == 0) {
         return <div/>
     }
-
-
 
     const comment_data = comments || []
     let comments_components = []
@@ -27,4 +28,4 @@ const CommentCard = props => {
 
 
 
-export default CommentCard;
+export default TabReviews;

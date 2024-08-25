@@ -23,8 +23,16 @@ class Entity(models.Model):
         VEHICLE = "Vehicle", "Vehicle"
         OBJECTS = "Objects", "Objects"
 
+    class States(models.TextChoices):
+        UNPUBLISHED = "Unpublished", "Unpublished"
+        PRIVATE = "Private", "Private"
+        PUBLISHED = "Published", "Published"
+
     uuid = models.UUIDField(editable=False, default=uuid.uuid4, unique=True)
     kind = models.CharField(max_length=20, choices=Kinds.choices)
+    state = models.CharField(
+        max_length=20, choices=States.choices, default=States.UNPUBLISHED
+    )
 
     prompt = models.TextField(blank=True)
     image_generator_description = models.TextField(blank=True)

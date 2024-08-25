@@ -24,10 +24,7 @@ import UserProvider from './userProvider';
 import Navigation from "./navigation";
 import NpcTabsHeader from "./components/npc/npcTabsHeader";
 import LocationTabsHeader from "./components/location/locationTabsHeader";
-import CharDefault from "./components/npc/charDefault";
-import CharArcSR6 from "./components/npc/charArcSR6";
-import {createTheme, createThemePaletteBasic, createThemePaletteElevation} from "@arwes/design";
-import {ThemeProvider} from "@emotion/react";
+import {EntityProvider} from "./components/entityProvider";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -97,15 +94,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs/:id",
-                element:<NpcTabsHeader selectedTab='default' loader={npcLoader}/>,
+                element:<EntityProvider entityType='npcs' selectedTab='default'><NpcTabsHeader/></EntityProvider>,
             },
             {
                 path: "npcs/:id/gallery",
-                element: <NpcTabsHeader selectedTab='gallery' loader={npcLoader}/>,
+                element: <EntityProvider entityType='npcs' selectedTab='gallery'><NpcTabsHeader/></EntityProvider>,
             },
             {
                 path: "npcs/:id/sr6",
-                element: <NpcTabsHeader selectedTab='sr6' loader={npcLoader}/>,
+                element: <EntityProvider entityType='npcs' selectedTab='sr6'><NpcTabsHeader/></EntityProvider>,
             },
             {
                 path: "npcs/",
@@ -117,15 +114,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "locations/:id",
-                element: <LocationTabsHeader selectedTab={'default'}/>,
+                element: <EntityProvider entityType='locations' selectedTab='default'><LocationTabsHeader/></EntityProvider>,
             },
             {
                 path: "locations/:id/gallery",
-                element: <LocationTabsHeader selectedTab={'gallery'}/>,
+                element: <EntityProvider entityType='locations' selectedTab='gallery'><LocationTabsHeader/></EntityProvider>,
             },
             {
                 path: "locations/:id/reviews",
-                element: <LocationTabsHeader selectedTab={'reviews'}/>,
+                element: <EntityProvider entityType='locations' selectedTab='reviews'><LocationTabsHeader/></EntityProvider>,
             },
             {
                 path: "locations/",

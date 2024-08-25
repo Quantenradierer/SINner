@@ -112,3 +112,12 @@ li::before {
 .rotated {
     transform: rotate(180deg);
 }
+
+.arwes-frame-pentagon {
+    width: 100%;
+}
+
+.surrounding-frame > .arwes-frame__structure > svg > g > g > path {
+    opacity: 0;
+}
+

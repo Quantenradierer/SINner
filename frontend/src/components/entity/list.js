@@ -18,6 +18,7 @@ import { ReactComponent as XIcon } from '../../icons/x.svg';
 import {Helmet} from "react-helmet";
 import image_path from "../../image_path";
 import i18n from "../../i18n";
+import OverlayButtons from "../../overlayButtons";
 
 
 class SearchPrompt extends React.Component {
@@ -126,33 +127,10 @@ class ListWrapped extends React.Component {
                     <meta property="og:image" content=""/>
                 </Helmet>
 
-                <div style={{
-                    zIndex: 1,
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '90%',
-                    pointerEvents: 'none'
-                }}>
-                    <div style={{display: 'flex', justifyContent: 'center', height: '100%', pointerEvents: 'none'}}>
-                        <div style={{
-                            display: 'flex',
-                            maxWidth: 1370 + 24,
-                            width: '100%',
-                            flexDirection: 'row-reverse',
-                            justifyContent: 'flex-start',
-                            alignItems: 'flex-end',
-                            height: '100%',
-                            pointerEvents: 'none'
-                        }}>
-                            <div style={{position: 'relative', pointerEvents: 'all'}}>
-                                <AddCircle/>
-                                <UpCircle/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <OverlayButtons>
+                    <AddCircle/>
+                    <UpCircle/>
+                </OverlayButtons>
 
                 <div style={{zIndex: 0, position: 'relative', pointerEvents: 'none'}}>
                     <div style={{pointerEvents: 'all'}}>

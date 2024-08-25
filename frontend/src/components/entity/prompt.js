@@ -99,7 +99,7 @@ class PromptWrapped extends React.Component {
                             justifyContent: 'right',
                             margin: '10px 0px 0px 0px'
                         }}>
-                            <Button FrameComponent={FramePentagon} style={{margin: 3}} onClick={this.handleGenerate}
+                            <Button FrameComponent={FramePentagon} style={{margin: 3, width: 150}} onClick={this.handleGenerate}
                                     disabled={disabled}>
                                 <Text>Generieren</Text>
                             </Button>

@@ -4,7 +4,7 @@ import Prompt from "../entity/prompt";
 import {useLoaderData} from "react-router";
 import CustomComplete from "./complete";
 import {Button, FrameBox, FrameCorners, FramePentagon, Text} from "@arwes/core";
-import EditableText from "../editable_text";
+import EditableText from "../editableText";
 import AttributeList from "../attribute_list";
 import {set} from "animejs";
 import i18next from "../../i18n";
@@ -22,11 +22,11 @@ const CustomPrompt = props => {
     const url = new URL(window.location.href);
     const search_params = url.searchParams;
 
-    if (default_entity.values['Parameter'] == undefined) {
-        default_entity.values['Parameter'] = search_params.get('parameter') || '';
+    if (default_entity.values['parameter'] == undefined) {
+        default_entity.values['parameter'] = search_params.get('parameter') || '';
     }
-    if (default_entity.values['Aussehen'] == undefined) {
-        default_entity.values['Aussehen'] = search_params.get('aussehen') || ''
+    if (default_entity.values['aussehen'] == undefined) {
+        default_entity.values['aussehen'] = search_params.get('aussehen') || ''
     }
 
     const [entity, setEntity] = useState(default_entity);
@@ -38,10 +38,10 @@ const CustomPrompt = props => {
     const aspectOptions = ['--ar 1:1', '--ar 2:3', '--ar 4:7', '--ar 3:2', '--ar 7:4' ]
     const chaosOptions = ['--chaos 0', '--chaos 7', '--chaos 25', '--chaos 50', '--chaos 100']
 
-    const relevantAttributes = ['Aussehen', 'Parameter']
+    const relevantAttributes = ['aussehen', 'parameter']
 
     function toggleParameterWithOptions(version, options) {
-        let parameters = entity.values['Parameter'] || ''
+        let parameters = entity.values['parameter'] || ''
         const onlyRemove = hasParameter(version)
 
         for (const v of options) {
@@ -53,17 +53,17 @@ const CustomPrompt = props => {
             parameters += ' ' + version
         }
         parameters = parameters.trim().replace('  ', ' ')
-        entity.values['Parameter'] = parameters
+        entity.values['parameter'] = parameters
         setEntity(Object.assign({}, entity))
     }
 
     function hasParameter(toggleParameter) {
-        let parameters = entity.values['Parameter'] || ''
+        let parameters = entity.values['parameter'] || ''
         return parameters.includes(toggleParameter)
     }
 
     function toggleOtherParameter(parameter) {
-        let parameters = entity.values['Parameter'] || ''
+        let parameters = entity.values['parameter'] || ''
 
         if (hasParameter(parameter)) {
             parameters = parameters.replace(parameter, '')
@@ -71,33 +71,33 @@ const CustomPrompt = props => {
             parameters = parameters.trim()
             parameters += ' ' + parameter
         }
-        entity.values['Parameter'] = parameters.trim()
+        entity.values['parameter'] = parameters.trim()
         setEntity(Object.assign({}, entity))
     }
 
     var versionButtons = []
     for (const o of modelsOptions) {
-        versionButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['Parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, modelsOptions)}>{i18next.t(o)}</Button>)
+        versionButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, modelsOptions)}>{i18next.t(o)}</Button>)
     }
 
     var stylizeButtons = []
     for (const o of stylizeOptions) {
-        stylizeButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['Parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, stylizeOptions)}>{i18next.t(o)}</Button>)
+        stylizeButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, stylizeOptions)}>{i18next.t(o)}</Button>)
     }
 
     var aspectRatioButtons = []
     for (const o of aspectOptions) {
-        aspectRatioButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['Parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, aspectOptions)}>{i18next.t(o)}</Button>)
+        aspectRatioButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, aspectOptions)}>{i18next.t(o)}</Button>)
     }
 
     var chaosButtons = []
     for (const o of chaosOptions) {
-        chaosButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['Parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, chaosOptions)}>{i18next.t(o)}</Button>)
+        chaosButtons.push(<Button key={o} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['parameter'] || '').includes(o)? '#0b8481 ':''}} onClick={() => toggleParameterWithOptions(o, chaosOptions)}>{i18next.t(o)}</Button>)
     }
 
     var otherButtons = []
-    otherButtons.push(<Button key={'--tile'} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['Parameter'] || '').includes('--tile')? '#0b8481 ':''}} onClick={() => toggleOtherParameter('--tile')}>{i18next.t('--tile')}</Button>)
-    otherButtons.push(<Button key={'--style raw'} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['Parameter'] || '').includes('--style raw')? '#0b8481 ':''}} onClick={() => toggleOtherParameter('--style raw')}>{i18next.t('--style raw')}</Button>)
+    otherButtons.push(<Button key={'--tile'} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['parameter'] || '').includes('--tile')? '#0b8481 ':''}} onClick={() => toggleOtherParameter('--tile')}>{i18next.t('--tile')}</Button>)
+    otherButtons.push(<Button key={'--style raw'} FrameComponent={FrameCorners} style={{margin: 5, backgroundColor: (entity.values['parameter'] || '').includes('--style raw')? '#0b8481 ':''}} onClick={() => toggleOtherParameter('--style raw')}>{i18next.t('--style raw')}</Button>)
 
 
     return (

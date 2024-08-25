@@ -21,7 +21,6 @@ function NPCListItem(props) {
         height: 500,
         imageHeight: 300,
     };
-    console.log(props)
 
     return (<div style={{width: 310, margin: '15px 7.5px 0px 7.5px'}}>
             <Link to={'/npcs/' + props.entity.id}>

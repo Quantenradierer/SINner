@@ -1,9 +1,6 @@
 import React, {useState} from "react";
-import LocationCard from "./location_card";
-import CommentCard from "./comment_card";
 
 import Prompt from "../entity/prompt";
-import {useLoaderData} from "react-router";
 
 
 const EXAMPLES = [
