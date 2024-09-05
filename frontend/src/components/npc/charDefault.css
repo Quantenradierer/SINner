@@ -5,7 +5,22 @@
     padding: 5px;
 }
 
+.tab-sr6-content {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
 
+.tab-sr6-container {
+    width: 100%;
+    padding: 5px;
+}
+
+.two-cols {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
 
 @media (min-width: 600px) {
     .container {
@@ -18,11 +33,7 @@
         display: flex;
     }
 
-    .two-cols {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-    }
+
 
     .col1 {
         flex: 1 1 50%;
@@ -39,6 +50,12 @@
         flex-wrap: wrap;
         padding: 0px;
     }
+
+    .tab-sr6-content {
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 .growing-img {
@@ -50,6 +67,8 @@
 .pentagonframe-image {
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--squareSize)), calc(100% - var(--squareSize)) 100%, 0 100%);
 }
+
+
 
 @keyframes grow {
     from {

@@ -105,7 +105,7 @@ const EXAMPLES = [
 ]
 
 const PromptLocation = props => {
-    return (<Prompt entityType={'location'} examples={EXAMPLES}/>)
+    return (<Prompt entityType='location' examples={EXAMPLES}/>)
 }
 
 

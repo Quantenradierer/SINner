@@ -5,15 +5,6 @@ from django.apps import apps
 from django.db import models
 
 
-@dataclass
-class AttributeDefinition:
-    name: str
-    length: int
-    additional_data: str = ""
-    optional: bool = False
-    type: str = "string"
-
-
 class Entity(models.Model):
     class Kinds(models.TextChoices):
         NPC = "Npc", "Npc"

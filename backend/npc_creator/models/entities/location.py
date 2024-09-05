@@ -2,7 +2,6 @@ from django.db import models
 from pydantic import BaseModel, Field
 
 from npc_creator.models import Entity
-from npc_creator.models.entity import AttributeDefinition
 from npc_creator.operations.gpt import location, entity
 
 
@@ -36,9 +35,6 @@ class LocationAttributes(BaseModel):
     rumors_and_stories: str = Field(
         ..., description="e.g., concerts, happy hours, sales promotions, etc."
     )
-
-
-class Comments(BaseModel):
     reviews: list[dict[str, str]]
 
 
@@ -54,7 +50,6 @@ class Location(Entity):
 
     SCHEMAS = {
         "default": LocationAttributes,
-        "reviews": Comments,
         "gallery": GalleryAttributes,
     }
 

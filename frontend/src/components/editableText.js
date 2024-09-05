@@ -14,17 +14,17 @@ const EditableText = ({attributeName}) => {
 
     useEffect(() => {
         setValue(attribute?.toString() || '');
-    }, [entity, attribute]);
+    }, [entity, attributeName]);
 
     const handleChange = (event) => {
-        entity.values[attribute] = event.target.value
+        entity.values[attributeName] = event.target.value
         setValue(event.target.value?.toString());
     };
 
     if (!entity.editable) {
         return (
-            <div style={{display: 'flex', width: '100%'}}>
-                <span style={{margin: '5px', width: '100%'}}><Text style={{width: '100%'}} key={attribute}>{value}</Text></span>
+            <div style={{width: '100%'}}>
+                <Text key={attribute}>{value}</Text>
             </div>);
     } else {
         let rows = 1;
@@ -32,7 +32,7 @@ const EditableText = ({attributeName}) => {
             rows = Math.ceil(value.length / 80);
         }
 
-        return (<textarea style={{width: '100%'}} rows={rows} key={'textarea' + attribute} value={value} onChange={handleChange} />);
+        return (<textarea style={{width: '100%'}} rows={rows} key={'textarea' + attributeName} value={value} onChange={handleChange} />);
     }
 }
 

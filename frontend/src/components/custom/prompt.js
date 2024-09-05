@@ -5,7 +5,6 @@ import {useLoaderData} from "react-router";
 import CustomComplete from "./complete";
 import {Button, FrameBox, FrameCorners, FramePentagon, Text} from "@arwes/core";
 import EditableText from "../editableText";
-import AttributeList from "../attribute_list";
 import {set} from "animejs";
 import i18next from "../../i18n";
 
@@ -101,7 +100,7 @@ const CustomPrompt = props => {
 
 
     return (
-        <Prompt entityType={'custom'} examples={EXAMPLES} entity={entity} setEntity={setEntity}
+        <Prompt examples={EXAMPLES} entity={entity} setEntity={setEntity}
                 setEditable={setEditable}
                 check={check} setCheck={setCheck}>
 

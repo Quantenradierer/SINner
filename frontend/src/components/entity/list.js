@@ -22,23 +22,30 @@ import OverlayButtons from "../../overlayButtons";
 
 
 class SearchPrompt extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {search: ''};
+  constructor(props) {
+    super(props);
+    this.state = { search: '' };
+    this.searchTimeout = null;
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+  }
 
-        this.handleSearchChange = this.handleSearchChange.bind(this);
+  handleSearchChange(event) {
+    const newSearchValue = event.target.value;
+    this.setState({ search: newSearchValue });
+
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
     }
 
-    handleSearchChange(event) {
-        this.setState({search: event.target.value});
-        this.props.searchCallback(event.target.value);
-    }
+    this.searchTimeout = setTimeout(() => {
+      this.props.searchCallback(newSearchValue);
+    }, 150);
+  }
 
-    clearSearch = () => {
-        this.setState({search: ""});
-        this.props.searchCallback(event.target.value);
-    };
-
+  clearSearch = () => {
+    this.setState({ search: "" });
+    this.props.searchCallback("");
+  };
 
     render() {
         return (

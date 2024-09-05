@@ -7,14 +7,14 @@ const EntityContext = createContext();
 const EntityProvider = ({ entityType, selectedTab, children }) => {
   const {id} = useParams();
   const {entity: fetchedEntity, loading, error} = useEntitySchema(entityType, id, selectedTab);
-  const [entity, setEntity] = useState({values: {name: ''}, image_objects: []});
+  const [entity, setEntity] = useState({values: {name: ''}, editable: false, image_objects: []});
 
-  entity.entityType = entityType;
   entity.selectedTab = selectedTab;
   entity.loading = loading;
-  entity.editable = true;
 
   useEffect(() => {
+    fetchedEntity.editable = fetchedEntity.state === 'Unpublished';
+    fetchedEntity.entityType = entityType;
     setEntity(fetchedEntity);
   }, [fetchedEntity, setEntity, loading]);
 
@@ -30,3 +30,7 @@ const useEntity = () => {
 };
 
 export { EntityProvider, useEntity };
+
+
+
+

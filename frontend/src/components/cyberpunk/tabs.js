@@ -23,12 +23,10 @@ function LoadingTab(props) {
       }, [progress]);
 
     return (
-        <FramePentagon style={{width: '100%', height: '100%'}}>
-            <div style={{display: "flex", flexDirection: 'column'}}>
+            <div style={{display: "flex", flexDirection: 'column', padding: 10}}>
                 <LoadingBars determinate progress={progress} length={20}/>
                 <Text style={{textAlign: 'center'}}>{i18n.t('tab_loading_text')}</Text>
             </div>
-        </FramePentagon>
     )
 
 }
@@ -38,8 +36,8 @@ function Tabs(props) {
 
     var tabs = Object.keys(props.tabs).map((key) => {
         return <Link key={'Tab' + key} to={props.tabs[key].url}>
-            <CustomFrame squareSize={20} hideShapes={entity.selectedTab != key} style={{margin: '0px 0px 0px 0px'}}>
-                <div>{i18n.t(`tab_header_${entity.entityType}_${key}`)}</div>
+            <CustomFrame squareSize={20} hideShapes={entity.selectedTab != key} style={{margin: '0'}}>
+                <div>{props.tabs[key].name}</div>
             </CustomFrame>
         </Link>
     })
@@ -47,17 +45,16 @@ function Tabs(props) {
     const estimatedTime = props.tabs[entity.selectedTab].estimatedTime
     return (
 
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex', flexDirection: 'column', marginBottom: 15}}>
             <div style={{margin: 0, display: 'flex', justifyContent: 'left', alignItems: 'flex-end'}}>
                 {tabs}
             </div>
             <div>
-                <Animator  key={entity.selectedTab}>
-
-                <FramePentagon key={entity.selectedTab} className='surrounding-frame' style={{padding: 0, margin: 0}} squareSize={35}>
-                    {!entity.loading && element}
-                    {entity.loading && <LoadingTab estimatedTime={estimatedTime}/>}
-                </FramePentagon>
+                <Animator key={entity.selectedTab + '_' + entity.loading}>
+                    <FramePentagon key={entity.selectedTab + '_' + entity.loading} className='surrounding-frame' style={{padding: 0, margin: 0}} squareSize={35}>
+                        {!entity.loading && element}
+                        {entity.loading && <LoadingTab key='loading-tab' estimatedTime={estimatedTime}/>}
+                    </FramePentagon>
                 </Animator>
             </div>
         </div>

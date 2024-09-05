@@ -93,13 +93,14 @@ class GenericEntityView(viewsets.ModelViewSet):
         data = request.data
 
         id = data.get("id")
-        entity = Entity.objects.get(id=id)
+        entity = self.entity_class.objects.get(uuid=id)
 
-        entity.add_values(data.get("values"))
+        if entity.state == Entity.States.UNPUBLISHED:
+            entity.add_values(data.get("values"))
+            entity.state = Entity.States.PUBLISHED
+            entity.save()
 
-        entity.save()
-
-        return Response({}, status=status.HTTP_200_OK)
+        return Response(self.serializer_class(entity).data)
 
     @action(detail=False, methods=["post"])
     def prompt(self, request):

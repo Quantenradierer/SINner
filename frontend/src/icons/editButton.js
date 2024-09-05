@@ -20,7 +20,6 @@ const EditButton = () => {
             <div style={{position: 'relative', top: 0, left: 0}}>
                 <EditIcon/>
             </div>
-
         </div>
     );
 };

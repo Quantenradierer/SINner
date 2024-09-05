@@ -2,7 +2,7 @@ import React, {createContext, useEffect, useState} from "react";
 import {useLocation, useParams, Link, useNavigation} from "react-router-dom";
 import Tabs from "../cyberpunk/tabs";
 import CharDefault from "./tabDefault";
-import CharArcSR6 from "./charArcSR6";
+import TabSR6 from "./tabSR6";
 import Warning from "../warning";
 import active_image from "../../active_image";
 import ImageGallery from "../image_gallery";
@@ -25,17 +25,20 @@ function NpcTabsHeader({selectedTab}) {
     const tabs = {
         'default': {
             url: `/npcs/${id}`,
+            name: i18next.t('tab_header_npcs_default'),
             element: <CharDefault/>,
             estimatedTime: 1000,
         },
         'sr6': {
             url: `/npcs/${id}/sr6`,
-            element: <CharArcSR6/>,
+            name: i18next.t('tab_header_npcs_sr6'),
+            element: <TabSR6/>,
             estimatedTime: 3500,
         },
         'gallery': {
             url: `/npcs/${id}/gallery`,
-            element: <ImageGallery entityType={entity.entityType} factor={{'x': 4, 'y': 5}}
+            name: i18next.t('tab_header_npcs_gallery'),
+            element: <ImageGallery factor={{'x': 4, 'y': 5}}
                                    attribute={'appearance'}/>,
             estimatedTime: 1000,
         }
@@ -44,7 +47,7 @@ function NpcTabsHeader({selectedTab}) {
     const warning = <Warning text={i18next.t("npc_entity_is_not_published")}/>;
     let activeImage = active_image(entity.image_objects) || {}
     return (
-        <div key={selectedTab} style={{display: 'flex', flexDirection: 'column', maxWidth: '1270px', width: '100%', margin: 5, paddingBottom: 15}}>
+        <div key={selectedTab + entity.state} style={{display: 'flex', flexDirection: 'column', maxWidth: '1270px', width: '100%', margin: 5}}>
 
             <Helmet>
                 <title>Schattenakte - {entity.values['name']}</title>

@@ -1,0 +1,33 @@
+.divider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 7px;
+  margin-top: 7px;
+  overflow: hidden;
+}
+
+.divider-line {
+  height: 1px;
+  background-color: #00F8F8;
+  flex: 0 1 0%;
+}
+
+.divider-line.animated {
+  animation: divider-grow 2s forwards;
+}
+
+.divider-title {
+  margin: 0 10px;
+  white-space: nowrap;
+}
+
+@keyframes divider-grow {
+  0% {
+    flex: 0 1 0%;
+  }
+  100% {
+    flex: 1 1 auto;
+  }
+}

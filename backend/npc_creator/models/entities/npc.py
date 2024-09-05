@@ -2,7 +2,6 @@ from django.db import models
 from pydantic import constr, BaseModel, Field
 
 from npc_creator.models import Entity
-from npc_creator.models.entity import AttributeDefinition
 from npc_creator.operations.gpt import npc
 
 
@@ -41,11 +40,7 @@ class StoryAttributes(BaseModel):
 
 
 class SR6Attributes(BaseModel):
-    skills: str
     equipment: str = Field(..., description="String. Comma separated list of equipment")
-    lootable_items: str = Field(
-        ..., description="String. Comma separated list of items that can be looted"
-    )
     constitution: int = Field(
         ...,
         description="Integer",

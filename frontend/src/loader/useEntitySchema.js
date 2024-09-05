@@ -3,15 +3,16 @@ import axios from 'axios';
 import api from "../axios";
 
 const useEntitySchema = (kind, id, name) => {
-  const [entity, setEntity] = useState({values: {name: ''}, image_objects: []});
+  const [entity, setEntity] = useState({ values: { name: '' }, image_objects: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [polling, setPolling] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log('Fetching data with polling:', polling);
       setLoading(true);
       setError(null);
-
       try {
         const response = await api.get(`/api/npc_creator/${kind}/${id}/?schema=${name}`);
         if (response.status === 200) {
@@ -27,11 +28,19 @@ const useEntitySchema = (kind, id, name) => {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, [kind, id, name]);
+  }, [kind, id, name, polling]);
 
-  return { entity, loading, error };
+  useEffect(() => {
+    console.log('Polling updated:', polling);
+  }, [polling]);
+
+  const refetch = () => {
+    console.log('Refetching', kind, id, name, polling);
+    setPolling(prevPolling => prevPolling + 1);
+  };
+
+  return { entity, loading, error, refetch };
 };
 
 export default useEntitySchema;

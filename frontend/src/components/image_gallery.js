@@ -106,13 +106,12 @@ class ImageGalleryWrapped extends React.Component {
                         minHeight: sizeY + addSize * 2,
                         boxShadow: glowEffect
                     }}
-                         src={image_path(this.props.entityType, image.name)}/>
+                         src={image_path(this.props.entity.entityType, image.name)}/>
                 </div>)
         }
 
         return (
-            <div>
-
+            <FramePentagon squareSize={35}>
                 <Text style={{margin: '10px 0px 20px 0px'}}>
                     <b>{i18n.t('attribute_appearance')}:</b> {this.state.entity.values[this.props.attribute]}
                 </Text>
@@ -123,7 +122,7 @@ class ImageGalleryWrapped extends React.Component {
                 <div className={is_logged_in() ? '' : 'hidden'}>
                     <Button onClick={this.handleRecreateImages}>Neue Bilder</Button>
                 </div>
-            </div>
+            </FramePentagon>
 
 
         )

@@ -19,6 +19,8 @@ import React, { useState } from 'react';
 import {position} from "polished";
 import {physicalCondition, stunCondition} from "./sr6Rules";
 import {useEntity} from "../entityProvider";
+import ImageFrame from "../cyberpunk/imageFrame";
+import {Animator} from "@arwes/animation";
 
 const SkillTable = ({entity}) => {
     const skills = [
@@ -32,8 +34,8 @@ const SkillTable = ({entity}) => {
     const secondHalfSkills = skills.slice(halfLength);
 
     const tableHeaders = [
-        {id: 'skill', data: 'Skill'},
-        {id: 'value', data: 'Value'}
+        {id: 'skill', data: i18n.t('npc_skill')},
+        {id: 'value', data: i18n.t('npc_skill_value')}
     ];
 
     const createTableContent = (skillSet) => {
@@ -41,7 +43,7 @@ const SkillTable = ({entity}) => {
             id: skill,
             columns: [
                 {id: 'skill', data: i18n.t('npc_' + skill)},
-                {id: 'value', data: entity.values[skill] || 0}
+                {id: 'value', data: <EditableText attributeName={skill}/>}
             ]
         }));
     };
@@ -50,13 +52,12 @@ const SkillTable = ({entity}) => {
     const secondTableContent = createTableContent(secondHalfSkills);
 
     return (
-        <div className={"two-cols"}>
+        <div className="two-cols">
             <div style={{width: '195px', margin: 5}}>
                 <Table className={"col1"} condensed headers={tableHeaders}
                        dataset={firstTableContent} columnWidths={['140px', '55px']}/>
             </div>
             <div style={{width: '195px', margin: 5}}>
-
                 <Table className={"col2"} condensed headers={tableHeaders} dataset={secondTableContent}
                        columnWidths={['140px', '55px']}/>
             </div>
@@ -106,21 +107,21 @@ const ConditionTable = ({ amount, title }) => {
     for (let i = 0; i < amount / 3; i++) {
         const y = buttonHeight / 2 + i * buttonHeight;
 
-        let end = 105
+        let end = buttonWidth * 2 + buttonWidth / 2;
         if (i === Math.floor(amount / 3)) {
             end = (((amount - 1) % 3)) * buttonWidth + buttonWidth / 2
         }
         pathData += `${buttonWidth / 2} ${y} ${end} ${y} `;
     }
 
-    return <FramePentagon style={{width: 'fit-content'}}>
-        {title}
+    return <FramePentagon style={{width: 'fit-content', paddingBottom: 15}} squareSize={35}>
+        <Text style={{marginBottom: 5}}>{title}</Text>
 
         <div style={{display: 'grid', width: 'fit-content', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0px'}}>
             {buttons}
             <div style={{position: 'absolute', opacity: '30%', pointerEvents: 'none'}}>
-                <svg width="200" height="1000" xmlns="http://www.w3.org/2000/svg">
-                    <path d={`M21 21 ${pathData}`} stroke="#00F8F8" stroke-width="3" fill="none"/>
+                <svg width={buttonWidth*3} height={buttonHeight*(amount / 3 + 1)} xmlns="http://www.w3.org/2000/svg">
+                    <path d={`M${buttonWidth/2} ${buttonHeight/2} ${pathData}`} stroke="#00F8F8" stroke-width="3" fill="none"/>
                 </svg>
             </div>
         </div>
@@ -128,7 +129,7 @@ const ConditionTable = ({ amount, title }) => {
 
 };
 
-const CharArcSR6 = (props) => {
+const TabSR6 = (props) => {
     const {entity, _} = useEntity();
     let activeImage = active_image(entity.image_objects) || {}
 
@@ -174,40 +175,61 @@ const CharArcSR6 = (props) => {
         columns: columns
     }]
     return (
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>
+            <Animator animator={{
+                combine: true, manager: 'stagger',
+                duration: {stagger: 250}
+            }}>
+                <div className="tab-sr6-content">
+                    <div className='left-container' style={{width: '100%', flexDirection: 'column'}}>
+                        <div className="tab-sr6-container">
+                            <FramePentagon style={{padding: 0}}>
+                                <FrameLines hideTopLines={true} style={{padding: 10, margin: 0, width: '100%'}}>
+                                    <h3 style={{margin: 0}}><Text>{entity.values['name']} </Text></h3>
+                                </FrameLines>
+                                <div style={{margin: '10px'}}>
+                                    <Table condensed headers={tableHeaders} dataset={tableContent}/>
+                                    <SkillTable entity={entity}/>
+                                </div>
+                            </FramePentagon>
+                        </div>
+                        <div className="tab-sr6-container">
+                            <FramePentagon>
+                                <div style={{}}>
+                                    <span><b>{i18n.t("attribute_equipment")}:</b> <Text>{entity.values['equipment']}</Text></span>
+                                    <br/>
+                                </div>
+                            </FramePentagon>
+                        </div>
+                    </div>
+                    <div className='right-container'>
 
-            <div style={{width: '100%'}}>
-
-                <span><h2><u>Der Charakterbogen ist noch in Arbeit.</u></h2></span>
-                <div style={{width: '100%'}}>
-                    <FrameLines hideTopLines={true} style={{padding: 10, margin: 0, width: '100%'}}>
-                        <h3 style={{margin: 0}}><Text>{entity.values['name']} </Text></h3>
-                    </FrameLines>
+                        <div style={{width: 'min-content'}}>
+                            <div className="tab-sr6-container">
+                                <ImageFrame style={{
+                                    maxWidth: '600px',
+                                    maxHeight: '400px',
+                                    minHeight: '150px',
+                                    overflow: 'hidden'
+                                }}/>
+                            </div>
+                            <div style={{display: 'flex'}}>
+                                <div className="tab-sr6-container">
+                                    <ConditionTable title={i18n.t('npc_physical_condition')}
+                                                    amount={physicalCondition(entity)}/>
+                                </div>
+                                <div className="tab-sr6-container">
+                                    <ConditionTable title={i18n.t('npc_stun_condition')}
+                                                    amount={stunCondition(entity)}/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
                 </div>
-                <div style={{width: '100%', padding: 10}}>
-                    <Table condensed headers={tableHeaders} dataset={tableContent}/>
-                    <span><b>{i18n.t("attribute_skills")}:</b> <Text>{entity.values['skills']}</Text></span>
-                    <br/>
-                    <span><b>{i18n.t("attribute_equipment")}:</b> <Text>{entity.values['equipment']}</Text></span>
-                    <br/>
-                    <span><b>{i18n.t("attribute_lootable_items")}:</b> <Text>{entity.values['lootable_items']}</Text></span>
-                    <br/>
-                    <br/>
-                    <SkillTable entity={entity}/>
-                    <ConditionTable title={'PhysicalCondition'} amount={physicalCondition(entity)}/>
-                    <ConditionTable title={'StunCondition'} amount={stunCondition(entity)}/>
-                    <br/>
-                </div>
-            </div>
-            <div style={{maxWidth: '200px', padding: '1px 1px 1px 0px'}}>
-            <div>
-                    <img style={{padding: 5, overflow: 'hidden'}}
-                         src={image_path('npcs', activeImage.name, true)}
-                         alt={entity.values['image_generator_description']}/>
-                </div>
-            </div>
+            </Animator>
         </div>
     )
 }
 
-export default CharArcSR6;
+export default TabSR6;

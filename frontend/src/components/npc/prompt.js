@@ -116,7 +116,7 @@ const NPCPrompt = props => {
 
     const relevantAttributes = ['Aussehen', 'Parameter']
 
-    return (<Prompt entityType={'npc'} examples={EXAMPLES}/>)
+    return (<Prompt entityType='npc' examples={EXAMPLES}/>)
 }
 
 

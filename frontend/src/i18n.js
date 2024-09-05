@@ -11,7 +11,7 @@ const resources = {
             npc_was_flagged_by_gpt: 'Der NPC wurde von GPT als unangemessen eingeschätzt. Versuche es erneut oder gib etwas anderes ein.',
             gpt_raised_an_error: 'GPT hat einen Fehler geworfen. Bitte versuche es später erneut.',
             npc_incomplete: 'Der NPC ist unvollständig. Bitte fülle alle Felder aus bevor du speicherst.',
-            image_generation_in_progress: 'Das Bild wird noch erzeugt. Bitte aktualisiere diese Seite in ein paar Minuten erneut.',
+            image_generation_in_progress: 'Das Bild wird derzeit erstellt und in Kürze angezeigt.',
             prompt_wait: "Wird generiert... bitte warten...",
 
             menu_npcs: 'NPCs',
@@ -44,7 +44,6 @@ const resources = {
             create_explanation_location: 'Beschreibe den Ort. Du kannst das Gebiet oder eine grobe Beschreibung dazuschreiben. GPT erzeugt dann den Rest. Du kannst ihn danach noch abändern.',
             create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',
 
-            npc_entity_is_not_published: 'Dieser NPC wurde noch nicht veröffentlicht und kann nur durch die exakte URL aufgerufen werden. Speichere den Link, um später darauf zugreifen zu können.',
 
             attribute_metatype: 'Metatyp',
             attribute_profession: 'Beruf',
@@ -54,7 +53,7 @@ const resources = {
             attribute_quirks: 'Eigenarten',
             attribute_appearance: 'Aussehen',
 
-            attribute_backstory: 'Hintergrund',
+            attribute_backstory: 'Geschichte',
             attribute_experiences: 'Erfahrung',
             attribute_resentments: 'Abneigung',
             attribute_motivations: 'Motivation',
@@ -66,7 +65,6 @@ const resources = {
             attribute_weaknesses: 'Schwächen',
             attribute_skills: 'Fertigkeiten',
             attribute_equipment: 'Ausrüstung',
-            attribute_lootable_items: 'Loot',
             attribute_secret: 'Geheimnis',
 
             attribute_name: 'Name',
@@ -104,7 +102,7 @@ const resources = {
             npc_card_title_background: 'Hintergrund',
             npc_card_title_social: 'Soziales',
             npc_card_title_personality: 'Persönlichkeit',
-            npc_card_title_skills_and_traits: 'Fähigkeiten und Eigenschaften',
+            npc_card_title_skills_and_traits: 'Eigenschaften',
 
             npc_attribute_bod: 'Kon',
             npc_attribute_agi: 'Agi',
@@ -137,6 +135,18 @@ const resources = {
             npc_skill_sorcery: 'Hexerei',
             npc_skill_stealth: 'Heimlichkeit',
             npc_skill_tasking: 'Tasken',
+
+            npc_entity_is_not_published: 'Dieser NPC wurde noch nicht veröffentlicht und kann nur durch die exakte URL aufgerufen werden. Speichere den Link, um später darauf zugreifen zu können.',
+
+            npc_skill: 'Fertigkeit',
+            npc_skill_value: 'Wert',
+
+            npc_physical_condition: 'Körperlich',
+            npc_stun_condition: 'Geistig',
+
+
+            location_entity_is_not_published: 'Diese Location wurde noch nicht veröffentlicht und kann nur durch die exakte URL aufgerufen werden. Speichere den Link, um später darauf zugreifen zu können.',
+
         },
     },
     en: {
@@ -188,7 +198,6 @@ const resources = {
             "attribute_weaknesses": "Weaknesses",
             "attribute_skills": "Skills",
             "attribute_equipment": "Equipment",
-            "attribute_lootable_items": "Loot",
             "attribute_secret": "Secret",
             "attribute_name": "Name",
             "attribute_typ": "Type",

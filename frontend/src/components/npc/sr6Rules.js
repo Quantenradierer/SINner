@@ -11,4 +11,5 @@ function initiativeBase(entity) {
     return entity.values['intuition'] + entity.values['reaction'];
 }
 
+
 export {physicalCondition, stunCondition};

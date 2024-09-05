@@ -1,35 +1,48 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './circle.css';
 import { ReactComponent as EditIcon } from './edit.svg';
 import {useEntity} from "../components/entityProvider";
 import EntityLoader from "../loader/entity_loader";
 import api from "../axios";
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import {FramePentagon} from "@arwes/core";
+
+
+
+
 
 const SaveButton = () => {
-    const {entity, _} = useEntity()
+    const {entity, setEntity} = useEntity()
 
-    const saveEntity = () => {
-        api.put('/api/' + entity.entityType + '/' + entity.id + '/save', entity)
+    const saveEntity = async (event) => {
+        event.preventDefault();
+        var response = await api.put('/api/npc_creator/' + entity.entityType + '/' + entity.id + '/', entity)
+        if (response.status === 200) {
+            var fetchedEntity = response.data
+            fetchedEntity.entityType = entity.entityType;
+            fetchedEntity.editable = fetchedEntity.state === 'Unpublished';
+            setEntity(fetchedEntity);
+        } else {
+
+        }
     };
+    if (!entity.editable) {
+        return <></>
+    }
 
     return (
-        <div className="hoverresize" style={{position: 'relative', top: 0, left: 0}}>
-            <div>
-                <a onClick={saveEntity}>
-                    <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                        <g className="rotating-circle">
-                            <circle className="animated-circle" cx="25" cy="25" r="20"></circle>
-                        </g>
-                        <path d="M15 25l7 7l13-13" stroke="#00B8B8" stroke-width="3" fill="none" stroke-linecap="round"/>
-                    </svg>
-                </a>
+        <a href="#" onClick={saveEntity}  target="_blank">
+            <div className="hoverresize">
+                <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                    <g className="rotating-circle">
+                        <circle className="animated-circle" cx="25" cy="25" r="20"></circle>
+                    </g>
+                    <path d="M15 25l7 7l13-13" stroke="#00B8B8" strokeWidth="3" fill="none"
+                          strokeLinecap="round"/>
+                </svg>
             </div>
-            <div style={{position: 'relative', top: 0, left: 0}}>
-                <EditIcon/>
-            </div>
-
-        </div>
+        </a>
     );
 };
 

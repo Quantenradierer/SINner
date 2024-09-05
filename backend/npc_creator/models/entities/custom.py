@@ -2,7 +2,6 @@ from django.db import models
 from pydantic import BaseModel, Field
 
 from npc_creator.models import Entity
-from npc_creator.models.entity import AttributeDefinition
 from npc_creator.operations.gpt import custom
 
 
