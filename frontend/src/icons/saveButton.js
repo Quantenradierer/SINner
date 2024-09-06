@@ -5,7 +5,6 @@ import {useEntity} from "../components/entityProvider";
 import EntityLoader from "../loader/entity_loader";
 import api from "../axios";
 import React, { useState } from 'react';
-import Modal from 'react-modal';
 import {FramePentagon} from "@arwes/core";
 
 
