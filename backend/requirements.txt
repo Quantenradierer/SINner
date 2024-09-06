@@ -13,3 +13,4 @@ django-filter
 black
 websockets
 djoser
+filelock
