@@ -4,7 +4,7 @@ import i18next from "../../i18n";
 import active_image from "../../active_image";
 import {Helmet} from "react-helmet";
 import image_path from "../../image_path";
-import ImageGallery from "../image_gallery";
+import ImageGallery from "../imageGallery";
 import {useLoaderData} from "react-router";
 import useRefreshEntityCard from "../use_refresh_entity_card";
 import {useLocation, useParams, Link} from "react-router-dom";

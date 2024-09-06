@@ -5,7 +5,7 @@ import CharDefault from "./tabDefault";
 import TabSR6 from "./tabSR6";
 import Warning from "../warning";
 import active_image from "../../active_image";
-import ImageGallery from "../image_gallery";
+import ImageGallery from "../imageGallery";
 import {Helmet} from "react-helmet";
 import image_path from "../../image_path";
 import i18next from "i18next";

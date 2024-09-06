@@ -4,7 +4,7 @@ import {Button, FrameLines, FramePentagon, Text} from "@arwes/core";
 
 const ErrorPage = props => {
     return (
-        <FramePentagon>
+        <FramePentagon style={{maxWidth: 800, width: '100%', margin: 10}}>
             <Text>
                 <p>
                     <b>Ups! Falsche Abbiegung in der Matrix genommen...</b><br/>

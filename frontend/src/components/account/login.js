@@ -20,7 +20,7 @@ function Login() {
     }
 
     return (
-        <FramePentagon key={error}>
+        <FramePentagon key={error}  style={{maxWidth: 800, width: '100%', margin: 10}}>
             <form>
                 {error && <FramePentagon  palette='secondary'>
                     <Text>{error}</Text>
