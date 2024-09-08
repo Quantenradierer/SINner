@@ -22,6 +22,20 @@
     flex-wrap: wrap;
 }
 
+
+    .col1 {
+        flex: 1 1 50%;
+        min-width: 300px;
+        box-sizing: border-box;
+    }
+
+    .col2 {
+        flex: 1 1 50%;
+        min-width: 300px;
+        box-sizing: border-box;
+    }
+
+
 @media (min-width: 600px) {
     .container {
         display: flex;
@@ -31,18 +45,6 @@
 
     .left-container {
         display: flex;
-    }
-
-
-
-    .col1 {
-        flex: 1 1 50%;
-        box-sizing: border-box;
-    }
-
-    .col2 {
-        flex: 1 1 50%;
-        box-sizing: border-box;
     }
 
     .attribute-cards-container {
