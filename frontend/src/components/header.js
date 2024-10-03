@@ -20,7 +20,7 @@ const Header = (props) => {
     return (
         <div className="no-print">
             <div style={{position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 1000}}>
-                <FrameLines style={{width: '100%', padding: 5}} hideTopLines={true}>
+                <FrameLines style={{width: '100%', paddingTop: 5, paddingBottom: 0}} hideTopLines={true}>
                     <div style={{display: 'flex', justifyContent: 'center'}}>
                         <div style={{
                             display: 'flex',
@@ -36,7 +36,7 @@ const Header = (props) => {
                                 textAlign: 'center'
                             }}>
                                 <Link to={'/'}>
-                                    <h1 style={{paddingTop: 2, margin: 0}}><GlitchEffect>SCHATTENAKTE</GlitchEffect></h1>
+                                    <h1 style={{padding: 0, margin: 0}}><GlitchEffect>SCHATTENAKTE</GlitchEffect></h1>
                                 </Link>
                             </div>
 
@@ -70,7 +70,7 @@ const Header = (props) => {
                     </div>
                 </FrameLines>
             </div>
-            <div style={{height: 60}}></div>
+            <div style={{height: 55}}></div>
         </div>
     );
 };

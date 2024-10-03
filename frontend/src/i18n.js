@@ -16,6 +16,10 @@ const resources = {
 
             header_profile: "Account",
 
+            page_prompt_title: "Schattenakte - Generator",
+            page_impressum_title: "Schattenakte - Impressum",
+            page_login_title: "Schattenakte - Login",
+            page_profile_title: "Schattenakte - Account",
             page_list_title: "Schattenakte - Liste",
             page_list_description: "Liste aller Akteneinträge",
 

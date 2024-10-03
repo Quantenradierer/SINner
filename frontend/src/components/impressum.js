@@ -1,9 +1,15 @@
 import React from "react";
 import {FramePentagon, List} from "@arwes/core";
+import {Helmet} from "react-helmet";
+import i18n from "../i18n";
 
 const Impressum  = props => {
         return (
             <div key={'impressum'}>
+                <Helmet>
+                    <title>{i18n.t(`page_impressum_title`)}</title>
+                </Helmet>
+
                 <FramePentagon style={{maxWidth: 1000}}>
                     <div>
                         <h1>Impressum:</h1>

@@ -224,10 +224,6 @@ const EntityList = ({ filter, favorites, emptyText }) => {
             <TabsHeader tabs={tabs}/>
             <Helmet>
                 <title>{i18n.t(`page_list_title`)}</title>
-                <meta name="description" content={i18n.t(`page_list_description`)}/>
-                <meta property="og:title" content={i18n.t(`page_list_title`)}/>
-                <meta property="og:description" content={i18n.t(`page_list_description`)}/>
-                <meta property="og:image" content=""/>
             </Helmet>
 
             <OverlayButtons>

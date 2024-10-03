@@ -5,6 +5,8 @@ import i18next from "../../i18n";
 import {useNavigate, useNavigation} from "react-router-dom";
 import LoadingBar from "../loading_bar";
 import {TabsHeader} from "../cyberpunk/tabsHeader";
+import {Helmet} from "react-helmet";
+import i18n from "../../i18n";
 
 
 function random_prompt(examples) {
@@ -81,6 +83,9 @@ class PromptWrapped extends React.Component {
         let disabled = this.state.loadingState === 'waiting'
 
         return (<div style={{width: '100%'}}>
+            <Helmet>
+                <title>{i18n.t(`page_prompt_title`)}</title>
+            </Helmet>
             <div style={{flex: 1}}>
                 <FrameLines style={{width: '100%'}}>
                     <Text>{translation}</Text>

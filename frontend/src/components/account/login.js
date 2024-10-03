@@ -5,6 +5,7 @@ import {math} from "polished";
 import handleLogin from "../../loader/handle_login";
 import {Link} from "react-router-dom";
 import i18n from "../../i18n";
+import {Helmet} from "react-helmet";
 
 
 function Login() {
@@ -23,6 +24,9 @@ function Login() {
 
     return (
         <FramePentagon key={error}  style={{maxWidth: 400, width: '100%', margin: 10}}>
+            <Helmet>
+                <title>{i18n.t(`page_login_title`)}</title>
+            </Helmet>
             <form>
                 {error && <FramePentagon  palette='secondary'>
                     <Text>{error}</Text>
