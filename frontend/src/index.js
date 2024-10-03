@@ -147,7 +147,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "customs/create",
-                element: <Navigate to="/npcs/create" />,
+                element: <></>,
             },
             {
                 path: "collections/",
