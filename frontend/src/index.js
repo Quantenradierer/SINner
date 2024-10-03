@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "",
-                element: <Navigate to="/npcs" replace />,
+                element: <Navigate to="/npcs" />,
             },
             {
                 path: "impressum",
@@ -147,7 +147,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "customs/create",
-                element: <Navigate to="/npcs/create" replace />,
+                element: <Navigate to="/npcs/create" />,
             },
             {
                 path: "collections/",
