@@ -5,10 +5,11 @@ import {useLoaderData} from "react-router";
 import useRefreshEntityCard from "../use_refresh_entity_card";
 import {useLocation, useParams, Link, useNavigation} from "react-router-dom";
 import i18n from "../../i18n";
-import EncryptedText from "./encryptedText";
+import EncryptedText from "../cyberpunk/encryptedText";
 import {useEntity} from "../entityProvider";
-import {CustomFrame} from "./CustomFrame";
+import {CustomFrame} from "../cyberpunk/CustomFrame";
 import {Animator} from "@arwes/animation";
+import "../../index.css";
 
 function LoadingTab(props) {
       const [progress, setProgress] = React.useState(0);
@@ -45,13 +46,13 @@ function Tabs(props) {
     const estimatedTime = props.tabs[entity.selectedTab].estimatedTime
     return (
 
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom: 15}}>
-            <div style={{margin: 0, display: 'flex', justifyContent: 'left', alignItems: 'flex-end'}}>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+            <div className="no-print" style={{margin: 0, display: 'flex', justifyContent: 'left', alignItems: 'flex-end'}}>
                 {tabs}
             </div>
             <div>
                 <Animator key={entity.selectedTab + '_' + entity.loading}>
-                    <FramePentagon key={entity.selectedTab + '_' + entity.loading} className='surrounding-frame' style={{padding: 0, margin: 0}} squareSize={35}>
+                    <FramePentagon className="no-print-arwes-frame surrounding-frame" key={entity.selectedTab + '_' + entity.loading} style={{padding: 0, margin: 0}} squareSize={35}>
                         {!entity.loading && element}
                         {entity.loading && <LoadingTab key='loading-tab' estimatedTime={estimatedTime}/>}
                     </FramePentagon>

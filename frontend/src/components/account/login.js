@@ -1,8 +1,10 @@
 import React, {useState} from "react";
-import {Button, FrameCorners, FramePentagon, Text} from "@arwes/core";
+import {Button, FrameBox, FrameCorners, FrameLines, FramePentagon, Text} from "@arwes/core";
 import api from "../../axios";
 import {math} from "polished";
 import handleLogin from "../../loader/handle_login";
+import {Link} from "react-router-dom";
+import i18n from "../../i18n";
 
 
 function Login() {
@@ -20,7 +22,7 @@ function Login() {
     }
 
     return (
-        <FramePentagon key={error}  style={{maxWidth: 800, width: '100%', margin: 10}}>
+        <FramePentagon key={error}  style={{maxWidth: 400, width: '100%', margin: 10}}>
             <form>
                 {error && <FramePentagon  palette='secondary'>
                     <Text>{error}</Text>
@@ -34,9 +36,10 @@ function Login() {
                         <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}/>
                         {passwordHint && <Text>{passwordHint}</Text>}
                     </div>
+                    <Link style={{}} to={'/register'}>{i18n.t('auth_signup_description')}</Link>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>
-                        <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={(event) => { event.preventDefault(); handleLogin(username, password, errorHandler)}}>
-                            <Text>Login</Text>
+                        <Button style={{margin: 3}} FrameComponent={FramePentagon} onClick={(event) => { event.preventDefault(); handleLogin(username, password, errorHandler)}}>
+                            <Text>Anmelden</Text>
                         </Button>
                     </div>
                 </div>

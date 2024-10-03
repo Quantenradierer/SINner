@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, FrameLines } from "@arwes/core";
+import {Button, FrameBox, FrameCorners, FrameHexagon, FrameLines, Text} from "@arwes/core";
 import GlitchEffect from "./cyberpunk/glitchEffect";
 import { ReactComponent as BurgerMenu } from '../icons/burger.svg';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
+import is_logged_in from "../is_loggin_in";
+import {ProfileButton} from "../icons/profileButton";
 
 const Header = (props) => {
     const navigate = useNavigate();
@@ -16,38 +18,59 @@ const Header = (props) => {
     const is_navi = location.pathname === '/navi'
 
     return (
-        <div>
+        <div className="no-print">
             <div style={{position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 1000}}>
-                <FrameLines style={{width: '100%'}} hideTopLines={true}>
+                <FrameLines style={{width: '100%', padding: 5}} hideTopLines={true}>
                     <div style={{display: 'flex', justifyContent: 'center'}}>
                         <div style={{
                             display: 'flex',
                             maxWidth: 1380,
                             width: '100%',
-                            flexDirection: 'row',
-                            justifyContent: 'space-between'
+                            alignItems: 'center',
+                            position: 'relative'
                         }}>
-                            <div style={{width: 40}}></div>
-                            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-                                {is_navi && <a href="#" onClick={handleClick}>
-                                    <h1 style={{margin: 0}}>
-                                        <GlitchEffect>SCHATTENAKTE</GlitchEffect>
-                                    </h1>
-                                </a>}
-                                {!is_navi && <Link to={'navi'}><h1
-                                    style={{margin: 0}}>
-                                    <GlitchEffect>SCHATTENAKTE</GlitchEffect>
-                                </h1></Link>}
+                            <div style={{
+                                position: 'absolute',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                textAlign: 'center'
+                            }}>
+                                <Link to={'/'}>
+                                    <h1 style={{paddingTop: 2, margin: 0}}><GlitchEffect>SCHATTENAKTE</GlitchEffect></h1>
+                                </Link>
                             </div>
-                            <div>
-                                {is_navi && <a href="#" onClick={handleClick} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}><BurgerMenu/></a>}
-                                {!is_navi && <Link to={'navi'} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}><BurgerMenu/></Link>}
+
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'flex-end',
+                                flexGrow: 1
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    marginRight: 15
+                                }}>
+                                    {!is_logged_in() && <Link to={'/login'}><FrameLines style={{margin: 0, padding: 5}}><Text>Anmelden</Text></FrameLines></Link>}
+                                    {is_logged_in() && <ProfileButton/>}
+                                </div>
+                                <div>
+                                    {is_navi ?
+                                        <a href="#" onClick={handleClick}
+                                           style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}><BurgerMenu/></a> :
+                                        <Link to={'navi'} style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center'
+                                        }}><BurgerMenu/></Link>}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </FrameLines>
             </div>
-            <div style={{height: 80}}></div>
+            <div style={{height: 60}}></div>
         </div>
     );
 };

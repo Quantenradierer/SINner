@@ -53,13 +53,13 @@ const SkillTable = ({entity}) => {
 
     return (
         <div className="two-cols">
-            <div style={{width: '195px', margin: 5}}>
+            <div style={{width: '175px', margin: 5}}>
                 <Table className={"col1"} condensed headers={tableHeaders}
-                       dataset={firstTableContent} columnWidths={['140px', '55px']}/>
+                       dataset={firstTableContent} columnWidths={['120px', '55px']}/>
             </div>
-            <div style={{width: '195px', margin: 5}}>
+            <div style={{width: '175px', margin: 5}}>
                 <Table className={"col2"} condensed headers={tableHeaders} dataset={secondTableContent}
-                       columnWidths={['140px', '55px']}/>
+                       columnWidths={['120px', '55px']}/>
             </div>
         </div>
     );

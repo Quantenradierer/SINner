@@ -8,13 +8,15 @@ import ImageGallery from "../imageGallery";
 import {useLoaderData} from "react-router";
 import useRefreshEntityCard from "../use_refresh_entity_card";
 import {useLocation, useParams, Link} from "react-router-dom";
-import Tabs from "../cyberpunk/tabs";
+import Tabs from "../entity/tabs";
 import TabDefault from "./tabDefault";
 import TabReviews from "./tabReviews";
 import useEntitySchema from "../../loader/useEntitySchema";
 import {useEntity} from "../entityProvider";
 import OverlayButtons from "../../overlayButtons";
 import SaveButton from "../../icons/saveButton";
+import is_logged_in from "../../is_loggin_in";
+import FavoriteButton from "../../icons/favoriteButton";
 
 
 function LocationTabsHeader({selectedTab}) {
@@ -54,6 +56,7 @@ function LocationTabsHeader({selectedTab}) {
             <Tabs tabs={tabs}/>
             <OverlayButtons>
                 <SaveButton/>
+                {is_logged_in() && <FavoriteButton/>}
             </OverlayButtons>
         </div>
     )

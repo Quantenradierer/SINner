@@ -3,6 +3,7 @@ import {Button, FrameCorners, FramePentagon, Text} from "@arwes/core";
 import api from "../../axios";
 import {math} from "polished";
 import handleLogin from "../../loader/handle_login";
+import i18n from "../../i18n";
 
 
 
@@ -45,7 +46,7 @@ function Register() {
 
     const errorColor = '#3c2021'
     return (
-        <FramePentagon key={error}>
+        <FramePentagon key={error} style={{maxWidth: 400}}>
             <form>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     <div style={{margin: 5}}>
@@ -63,7 +64,7 @@ function Register() {
                     </div>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>
                         <Button style={{margin: 3}} FrameComponent={FrameCorners} onClick={handleRegister}>
-                            <Text>Register</Text>
+                            <Text>{i18n.t('auth_signup')}</Text>
                         </Button>
                     </div>
                     {error && <FramePentagon  palette='secondary'>

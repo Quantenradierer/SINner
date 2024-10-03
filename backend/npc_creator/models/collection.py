@@ -12,3 +12,6 @@ class Collection(models.Model):
     )
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("name", "user")

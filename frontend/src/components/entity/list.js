@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {
-    Button,
-    FrameCorners,
-    FrameLines,
+    Button, FrameBox,
+    FrameCorners, FrameHexagon,
+    FrameLines, FramePentagon,
     LoadingBars,
     Table,
     Text
 } from "@arwes/core";
 import {Animator} from "@arwes/animation";
-import {useNavigate, useNavigation} from "react-router-dom";
+import {Link, useLocation, useNavigate, useNavigation} from "react-router-dom";
 import AddCircle from "../../icons/addCircle";
 import GlitchEffect from "../cyberpunk/glitchEffect";
 import UpCircle from "../../icons/upCircle";
@@ -19,38 +19,53 @@ import {Helmet} from "react-helmet";
 import image_path from "../../image_path";
 import i18n from "../../i18n";
 import OverlayButtons from "../../overlayButtons";
+import {useAtom} from "jotai";
+import {filterAtom} from "../../atom";
+import NPCListItem from "../npc/item";
+import LocationListItem from "../location/item";
+import EntityLoader from "../../loader/entity_loader";
+import i18next from "i18next";
+import {CustomFrame} from "../cyberpunk/CustomFrame";
+import {TabsHeader} from "../cyberpunk/tabsHeader";
+import is_loggin_in from "../../is_loggin_in";
+
+const CARDS = {
+    npc: NPCListItem,
+    location: LocationListItem
+}
+
 
 
 class SearchPrompt extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { search: '' };
-    this.searchTimeout = null;
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-  }
-
-  handleSearchChange(event) {
-    const newSearchValue = event.target.value;
-    this.setState({ search: newSearchValue });
-
-    if (this.searchTimeout) {
-      clearTimeout(this.searchTimeout);
+    constructor(props) {
+        super(props);
+        this.state = {search: ''};
+        this.searchTimeout = null;
+        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
-    this.searchTimeout = setTimeout(() => {
-      this.props.searchCallback(newSearchValue);
-    }, 150);
-  }
+    handleSearchChange(event) {
+        const newSearchValue = event.target.value;
+        this.setState({search: newSearchValue});
 
-  clearSearch = () => {
-    this.setState({ search: "" });
-    this.props.searchCallback("");
-  };
+        if (this.searchTimeout) {
+            clearTimeout(this.searchTimeout);
+        }
+
+        this.searchTimeout = setTimeout(() => {
+            this.props.searchCallback(newSearchValue);
+        }, 150);
+    }
+
+    clearSearch = () => {
+        this.setState({search: ""});
+        this.props.searchCallback("");
+    };
 
     render() {
         return (
-            <div style={{flexGrow: 1, margin: "0px 15px 0px 15px"}}>
-                <Animator animator={{enter: 500, exit: 500}}>
+            <div style={{}}>
+                <Animator animator={{enter: 300, exit: 300}}>
                     <FrameLines style={{display: "flex", flexDirection: "column"}}>
                         <div style={{position: "relative", width: "100%"}}>
               <span style={{
@@ -96,120 +111,145 @@ class SearchPrompt extends React.Component {
 }
 
 
-class ListWrapped extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.hasHandledNext = false;
-
-        this.handleScroll = this.handleScroll.bind(this);
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
-    handleScroll() {
-        const withinThreshold = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 300;
-        if (withinThreshold && !this.hasHandledNext) {
-            this.props.handleNext();
-            this.hasHandledNext = true;
-        } else if (!withinThreshold) {
-            this.hasHandledNext = false;
-        }
-    }
-
-    render() {
-        return (
-            <div style={{maxWidth: 1315, width: '100%', position: 'relative'}}>
-                <Helmet>
-                    <title>{i18n.t(`page_list_title_${this.props.loader.kind}`)}</title>
-                    <meta name="description" content={i18n.t(`page_list_description_${this.props.loader.kind}`)}/>
-                    <meta property="og:title" content={i18n.t(`page_list_title_${this.props.loader.kind}`)}/>
-                    <meta property="og:description" content={i18n.t(`page_list_description_${this.props.loader.kind}`)}/>
-                    <meta property="og:image" content=""/>
-                </Helmet>
-
-                <OverlayButtons>
-                    <AddCircle/>
-                    <UpCircle/>
-                </OverlayButtons>
-
-                <div style={{zIndex: 0, position: 'relative', pointerEvents: 'none'}}>
-                    <div style={{pointerEvents: 'all'}}>
-                        <SearchPrompt searchCallback={this.props.searchCallback}/>
-                    </div>
-                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', pointerEvents: 'all'}}>
-                        {this.props.children}
-                    </div>
-                </div>
-
-            </div>
-        );
-    }
-}
-
-const EntityList = props => {
-    const navigate = useNavigate()
-    const {state} = useNavigation()
+const EntityList = ({ filter, favorites, emptyText }) => {
+    const navigate = useNavigate();
+    const {state} = useNavigation();
 
     const [search, setSearch] = useState('');
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(null);
     const [mountedEntities, setMountedEntities] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const load = async (page, search, reset = false) => {
-        if (page == null) {
-            return
-        }
-        const response = await props.loader.list({params: {search: search, page: page}, request: {url: location}})
+    const loader = new EntityLoader();
 
-        if (reset === true) {
-            setMountedEntities([])
-        }
-        if (response == null) {
-            return
-        }
-        createItems(response.results)
-        setPage(response.next)
-    }
+    const [hasHandledNext, setHasHandledNext] = useState(false);
 
-    const searchCallback = async (value) => {
-        setSearch(value)
-        await load(1, value, true)
-    }
+    const tabs = {
+        'npcs': {
+            url: `/npcs`,
+            name: i18next.t('tab_header_npc_list'),
 
-    const handleNext = async () => {
-        await load(page, search)
-    }
+        },
+        'locations': {
+            url: `/locations`,
+            name: i18next.t('tab_header_locations_list'),
+        },
 
-    const createItems = (entities) => {
-        let items = []
-        for (const entity of entities) {
-            items.push(props.createItem(entity))
-        }
-        if (items.length > 0) {
-            setMountedEntities(prevEntities => [...prevEntities,
-                <Animator key={'Animator' + page} animator={{
-                    activate: true,
-                    manager: 'stagger',
-                    duration: {stagger: 200},
-                }}>{items}</Animator>]);
+    };
+
+    if (is_loggin_in()) {
+        tabs['favorites'] = {
+            url: `/collections`,
+            name: i18next.t('tab_header_favorites_list'),
         }
     }
+
+    const handleScroll = () => {
+        const withinThreshold = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 300;
+        if (withinThreshold && !hasHandledNext) {
+            setPage(prevPage => prevPage + 1); // Use functional update to avoid stale closure
+            setHasHandledNext(true);
+        } else if (!withinThreshold) {
+            setHasHandledNext(false);
+        }
+    };
 
     useEffect(() => {
-        load(1, search, true)
-    }, [])
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [hasHandledNext]);
 
-    if (state === 'loading') {
-        return <LoadingBars></LoadingBars>
-    } else {
-        return <ListWrapped navigate={navigate} handleNext={handleNext} searchCallback={searchCallback} {...props}>{mountedEntities}</ListWrapped>
-    }
-}
+    useEffect(() => {
+        setMountedEntities([]);
+        setPage(null);
+    }, [filter, search]);
+
+    useEffect(async () => {
+        const load = async () => {
+            setLoading(true);
+            const response = await loader.list({
+                params: {search, filter, page, favorites},
+                request: {url: location}
+            });
+            if (response == null) {
+                return;
+            }
+            createItems(response.results);
+        };
+
+        if (page === null) {
+            setPage(1);
+        } else {
+            load();
+        }
+    }, [page]);
+
+    const createItems = (entities) => {
+        let items = [];
+        for (const entity of entities) {
+            items.push(createItem(entity));
+        }
+        if (items.length > 0) {
+            setMountedEntities(prevEntities => [
+                ...prevEntities,
+                <Animator
+                    key={'Animator' + page}
+                    animator={{
+                        activate: true,
+                        manager: 'stagger',
+                        duration: {stagger: 200},
+                    }}>
+                    {items}
+                </Animator>,
+            ]);
+        }
+
+        setLoading(false);
+    };
+
+    const createItem = (entity) => {
+        const EntityComponent = CARDS[entity.kind.toLowerCase()];
+        if (EntityComponent) {
+            return <EntityComponent key={`${entity.kind}-${entity.id}`} entity={entity}/>;
+        }
+    };
+
+
+
+    return (
+        <div style={{width: '100%', position: 'relative'}}>
+            <TabsHeader tabs={tabs}/>
+            <Helmet>
+                <title>{i18n.t(`page_list_title`)}</title>
+                <meta name="description" content={i18n.t(`page_list_description`)}/>
+                <meta property="og:title" content={i18n.t(`page_list_title`)}/>
+                <meta property="og:description" content={i18n.t(`page_list_description`)}/>
+                <meta property="og:image" content=""/>
+            </Helmet>
+
+            <OverlayButtons>
+                <AddCircle/>
+                <UpCircle/>
+            </OverlayButtons>
+            <div style={{zIndex: 0, position: 'relative', pointerEvents: 'all'}}>
+                <div style={{width: '100%', pointerEvents: 'all'}}>
+                    <SearchPrompt searchCallback={(value) => setSearch(value)}/>
+                </div>
+                {!loading && mountedEntities.length == 0 && <div style={{paddingTop: 15, paddingBottom: 15}}>
+                    <FrameBox palette='secondary' style={{width: '100%', pointerEvents: 'all'}}><Text>{search? i18next.t('search_list_empty_text') : emptyText}</Text></FrameBox>
+                </div>}
+                <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', pointerEvents: 'all'}}>
+                    {mountedEntities}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+
 
 export default EntityList;

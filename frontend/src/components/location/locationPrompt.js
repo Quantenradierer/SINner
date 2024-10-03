@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import Prompt from "../entity/prompt";
+import Prompt from "../generic/prompt";
 
 
 const EXAMPLES = [
@@ -104,9 +104,9 @@ const EXAMPLES = [
     'Generiere eine gut vernetzte Schmugglerbar',
 ]
 
-const PromptLocation = props => {
+const LocationPrompt = props => {
     return (<Prompt entityType='location' examples={EXAMPLES}/>)
 }
 
 
-export default PromptLocation;
+export default LocationPrompt;

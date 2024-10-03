@@ -14,6 +14,19 @@ const resources = {
             image_generation_in_progress: 'Das Bild wird derzeit erstellt und in Kürze angezeigt.',
             prompt_wait: "Wird generiert... bitte warten...",
 
+            header_profile: "Account",
+
+            page_list_title: "Schattenakte - Liste",
+            page_list_description: "Liste aller Akteneinträge",
+
+            favorite_list_empty_text: "Du hast noch keine Favoriten hinzugefügt. Klicke auf das Sternsymbol in einem Eintrag, um ihn zu deinen Favoriten hinzuzufügen.",
+            search_list_empty_text: "Deine Suche ergab keine Ergebnisse. Versuche es mit einem anderen Suchbegriff.",
+            npc_list_empty_text: "Das sollte nie passieren. Entweder ist dein Internet oder der Server down. Versuche es später erneut.",
+            location_list_empty_text: "Das sollte nie passieren. Entweder ist dein Internet oder der Server down. Versuche es später erneut.",
+
+
+
+
             menu_npcs: 'NPCs',
             menu_locations: 'Locations',
             menu_critters: 'Critters',
@@ -26,12 +39,15 @@ const resources = {
             menu_register: 'Register',
             menu_logout: 'Logout',
 
-            page_list_title_npcs: 'Schattenakte - NPC Liste',
-            page_list_description_npcs: 'Liste aller generierten NPCs',
-            page_list_title_locations: 'Schattenakte - Location Liste',
-            page_list_description_locations: 'Liste aller generierten Locations',
-            page_list_title_customs: "Schattenakte - Bildgenerator",
-            page_list_description_customs: 'Liste aller generierten Bilder',
+
+
+            tab_header_npc_list: "NPCs",
+            tab_header_npc_create: "NPCs",
+            tab_header_locations_list: "Orte",
+            tab_header_locations_create: "Orte",
+            tab_header_customs_list: "Bildgenerator",
+            tab_header_customs_create: "Bildgenerator",
+            tab_header_favorites_list: "Favoriten",
 
             tab_header_npcs_default: 'NPC',
             tab_header_npcs_sr6: 'SR6',
@@ -44,6 +60,9 @@ const resources = {
             create_explanation_location: 'Beschreibe den Ort. Du kannst das Gebiet oder eine grobe Beschreibung dazuschreiben. GPT erzeugt dann den Rest. Du kannst ihn danach noch abändern.',
             create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',
 
+            entity_create: 'Erstellen',
+            entity_save: 'Veröffentlichen',
+            entity_favorite: 'Favorisieren',
 
             attribute_metatype: 'Metatyp',
             attribute_profession: 'Beruf',
@@ -147,6 +166,9 @@ const resources = {
 
             location_entity_is_not_published: 'Diese Location wurde noch nicht veröffentlicht und kann nur durch die exakte URL aufgerufen werden. Speichere den Link, um später darauf zugreifen zu können.',
 
+
+            auth_signup: 'Registrieren',
+            auth_signup_description: 'Noch keinen Account? Hier registrieren',
         },
     },
     en: {

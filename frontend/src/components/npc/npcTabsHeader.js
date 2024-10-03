@@ -1,6 +1,6 @@
 import React, {createContext, useEffect, useState} from "react";
 import {useLocation, useParams, Link, useNavigation} from "react-router-dom";
-import Tabs from "../cyberpunk/tabs";
+import Tabs from "../entity/tabs";
 import CharDefault from "./tabDefault";
 import TabSR6 from "./tabSR6";
 import Warning from "../warning";
@@ -14,6 +14,8 @@ import EditButton from "../../icons/editButton";
 import SaveButton from "../../icons/saveButton";
 import {useEntity} from "../entityProvider";
 import {CustomFrame} from "../cyberpunk/CustomFrame";
+import FavoriteButton from "../../icons/favoriteButton";
+import is_logged_in from "../../is_loggin_in";
 
 
 
@@ -43,11 +45,10 @@ function NpcTabsHeader({selectedTab}) {
             estimatedTime: 1000,
         }
     };
-
     const warning = <Warning text={i18next.t("npc_entity_is_not_published")}/>;
     let activeImage = active_image(entity.image_objects) || {}
     return (
-        <div key={selectedTab + entity.state} style={{display: 'flex', flexDirection: 'column', maxWidth: '1270px', width: '100%', margin: 5}}>
+        <div key={selectedTab + entity.state} style={{maxWidth: '1270px', width: '100%'}}>
 
             <Helmet>
                 <title>Schattenakte - {entity.values['name']}</title>
@@ -58,9 +59,11 @@ function NpcTabsHeader({selectedTab}) {
             </Helmet>
 
             {entity.state === 'Unpublished' && warning}
+
             <Tabs tabs={tabs}/>
             <OverlayButtons>
                 <SaveButton/>
+                {is_logged_in() && <FavoriteButton/>}
             </OverlayButtons>
         </div>
     )

@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import {AnimatorGeneralProvider} from '@arwes/animation';
 import {ArwesThemeProvider, LoadingBars, StylesBaseline} from '@arwes/core';
 import './index.css';
-import Prompt from "./components/npc/prompt";
-import NPCList from "./components/npc/list";
+import NPCPrompt from "./components/npc/npcPrompt";
 import {createBrowserRouter, Navigate, Outlet, redirect, RouterProvider, useNavigate} from "react-router-dom";
 import Impressum from "./components/impressum";
 import Header from "./components/header";
@@ -12,10 +11,8 @@ import ErrorPage from "./components/errorSite";
 import Login from "./components/account/login";
 import Logout from "./components/account/logout";
 import ImageGallery from "./components/imageGallery";
-import PromptLocation from "./components/location/prompt";
+import LocationPrompt from "./components/location/locationPrompt";
 import EntityLoader from "./loader/entity_loader";
-import LocationList from "./components/location/list";
-import CustomList from "./components/custom/list";
 import CustomPrompt from "./components/custom/prompt";
 import CustomComplete from "./components/custom/complete";
 import Feedback from "./components/feedback";
@@ -25,6 +22,9 @@ import Navigation from "./navigation";
 import NpcTabsHeader from "./components/npc/npcTabsHeader";
 import LocationTabsHeader from "./components/location/locationTabsHeader";
 import {EntityProvider} from "./components/entityProvider";
+import EntityList from "./components/entity/list";
+import i18n from "./i18n";
+import {Profile} from "./components/profile";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -59,7 +59,9 @@ const Root = props => {
     return (<div id="detail">
         <Header key={'header'}/>
         <div key='content' style={{justifyContent: 'center', display: 'flex', width: '100%'}}>
+            <div style={{maxWidth: '1350px', width: '100%', padding: 10, display: 'flex', justifyContent: 'center'}}>
                 {props.outlet ? props.outlet : <Outlet/>}
+            </div>
         </div>
     </div>)
 }
@@ -81,12 +83,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "",
-                element: <NPCList/>,
-                loader: npcLoader.list,
-            },
-            {
-                path: "create",
-                element: <Prompt/>,
+                element: <Navigate to="/npcs" replace />,
             },
             {
                 path: "impressum",
@@ -106,11 +103,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "npcs/",
-                element: <NPCList/>,
+                element: <EntityList filter={['Npc']} emptyText={i18n.t('npc_list_empty_text')}/>,
             },
             {
                 path: "npcs/create",
-                element: <Prompt/>,
+                element: <NPCPrompt/>,
             },
             {
                 path: "locations/:id",
@@ -126,11 +123,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "locations/",
-                element: <LocationList/>,
+                element: <EntityList filter={['Location']} emptyText={i18n.t('location_list_empty_text')}/>,
             },
             {
                 path: "locations/create",
-                element: <PromptLocation/>,
+                element: <LocationPrompt/>,
+            },
+            {
+                path: "collections/create",
+                element: <NPCPrompt/>,
             },
             {
                 path: "customs/:id",
@@ -142,11 +143,19 @@ const router = createBrowserRouter([
             },
             {
                 path: "customs/",
-                element: <CustomList/>,
+                element: <EntityList filter={['Custom']}/>,
             },
             {
                 path: "customs/create",
-                element: <CustomPrompt/>,
+                element: <Navigate to="/npcs/create" replace />,
+            },
+            {
+                path: "collections/",
+                element: <EntityList filter={['Npc', 'Location', 'Custom']} favorites={true} emptyText={i18n.t('favorite_list_empty_text')}/>,
+            },
+            {
+                path: "profile/",
+                element: <Profile/>,
             },
             {
                 path: "feedback/",

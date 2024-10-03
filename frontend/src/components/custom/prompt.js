@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import Prompt from "../entity/prompt";
+import Prompt from "../generic/prompt";
 import {useLoaderData} from "react-router";
 import CustomComplete from "./complete";
 import {Button, FrameBox, FrameCorners, FramePentagon, Text} from "@arwes/core";

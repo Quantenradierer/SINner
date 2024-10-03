@@ -5,7 +5,7 @@ import EditableText from "../editableText";
 import active_image from "../../active_image";
    import { css } from '@emotion/react';
 import {Animator} from "@arwes/animation";
-import './charDefault.css';
+import './npc.css';
 import {Frame} from "@arwes/core/lib/utils/Frame";
 import DividerAttributeList from "../dividerAttributeList";
 import AttributeCard from "./attributeCard";

@@ -52,7 +52,6 @@ const Navigation = props => {
         <div style={{
             position: 'absolute',
             width: '100%',
-            height: '100% - 64px',
             top: 70,
             left: 0,
             right: 0,
@@ -63,28 +62,14 @@ const Navigation = props => {
             zIndex: 100,
 
         }}>
-            <MenuHeader to="/npcs/" headerTitle={'NPC'}>
+            <MenuHeader to="/npcs/" headerTitle={''}>
                 <MenuLink to="/npcs/create">Erstellen</MenuLink>
-                <MenuLink to="/npcs/">Liste</MenuLink>
-                <MenuLink to="/npcs/random">Zufall</MenuLink>
+                <MenuLink to="/npcs">Liste</MenuLink>
             </MenuHeader>
-
-
-            <MenuHeader to="/locations" headerTitle={'Location'}>
-                <MenuLink to="/locations/create">Erstellen</MenuLink>
-                <MenuLink to="/locations/">Liste</MenuLink>
-                <MenuLink to="/locations/random">Zufall</MenuLink>
-            </MenuHeader>
-
-            {custom_prompts && <MenuHeader to="/customs" headerTitle={'Customs'}>
-                <MenuLink to="/customs/create">Erstellen</MenuLink>
-                <MenuLink to="/customs/">Liste</MenuLink>
-                <MenuLink to="/customs/random">Zufall</MenuLink>
-            </MenuHeader>}
 
             <MenuHeader headerTitle={'Sonstiges'}>
                 {!is_logged_in() && <MenuLink to="/login">{i18next.t('menu_login')}</MenuLink>}
-                {is_logged_in() && <MenuLink to="/login">{i18next.t('menu_logout')}</MenuLink>}
+                {is_logged_in() && <MenuLink to="/logout">{i18next.t('menu_logout')}</MenuLink>}
                 <MenuLink to="/impressum">{i18next.t('menu_impressum')}</MenuLink>
                 <MenuLink to="/feedback">{i18next.t('menu_feedback')}</MenuLink>
             </MenuHeader>

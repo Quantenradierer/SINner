@@ -1,4 +1,3 @@
-from .entity import NpcViewSet, LocationViewSet, CustomViewSet
+from .entity import EntityViewSet
 from .image import ImageViewSet
 from .feedback import FeedbackViewSet
-from .collection import CollectionViewSet

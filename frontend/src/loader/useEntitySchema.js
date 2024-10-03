@@ -14,7 +14,7 @@ const useEntitySchema = (kind, id, name) => {
       setLoading(true);
       setError(null);
       try {
-        const response = await api.get(`/api/npc_creator/${kind}/${id}/?schema=${name}`);
+        const response = await api.get(`/api/npc_creator/entities/${id}/?schema=${name}`);
         if (response.status === 200) {
           setEntity(response.data);
         } else {
@@ -30,10 +30,6 @@ const useEntitySchema = (kind, id, name) => {
     };
     fetchData();
   }, [kind, id, name, polling]);
-
-  useEffect(() => {
-    console.log('Polling updated:', polling);
-  }, [polling]);
 
   const refetch = () => {
     console.log('Refetching', kind, id, name, polling);

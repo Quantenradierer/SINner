@@ -4,6 +4,7 @@ import api from "../../axios";
 import i18next from "../../i18n";
 import {useNavigate, useNavigation} from "react-router-dom";
 import LoadingBar from "../loading_bar";
+import {TabsHeader} from "../cyberpunk/tabsHeader";
 
 
 function random_prompt(examples) {
@@ -11,6 +12,9 @@ function random_prompt(examples) {
 }
 
 class PromptWrapped extends React.Component {
+
+
+
     constructor(props) {
         super(props)
         let url = new URL(window.location.href)
@@ -33,7 +37,7 @@ class PromptWrapped extends React.Component {
         this.setState({loadingState: 'waiting'});
         const prompt = this.state.prompt
 
-        const response = await api.post(`/api/npc_creator/${this.props.entityType}s/prompt/`, {prompt: prompt}, {timeout: 240000})
+        const response = await api.post(`/api/npc_creator/entities/prompt/`, {kind: this.props.entityType, prompt: prompt}, {timeout: 180000})
         if (response.status === 200) {
             if (response.data.type === 'success') {
                 window.location.href = `/${self.props.entityType}s/${response.data.entity.id}`
@@ -76,39 +80,38 @@ class PromptWrapped extends React.Component {
 
         let disabled = this.state.loadingState === 'waiting'
 
-        return (<div>
+        return (<div style={{width: '100%'}}>
+            <div style={{flex: 1}}>
+                <FrameLines style={{width: '100%'}}>
+                    <Text>{translation}</Text>
+                    <form onSubmit={this.handleGenerate}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
+                                   type="text"
+                                   id="prompt"
+                                   disabled={disabled}/>
+                        </div>
+                    </form>
+
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'right',
+                        justifyContent: 'right',
+                        margin: '10px 0px 0px 0px'
+                    }}>
+                        <Button FrameComponent={FramePentagon} style={{margin: 3, width: 150}}
+                                onClick={this.handleGenerate}
+                                disabled={disabled}>
+                            <Text>Generieren</Text>
+                        </Button>
+                    </div>
+                </FrameLines>
+            </div>
             <div style={{margin: 15}}>
                 {errorDialog}
             </div>
-            <div style={{margin: 15}}>
-                <div key='prompt'>
-                    <FrameLines style={{width: '100%'}}>
-                        <Text>{translation}</Text>
-                        <form onSubmit={this.handleGenerate}>
-                            <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <input value={this.state.prompt} onChange={this.handleChange} maxLength="255"
-                                       type="text"
-                                       id="prompt"
-                                       disabled={disabled}/>
-                            </div>
-                        </form>
-
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'right',
-                            justifyContent: 'right',
-                            margin: '10px 0px 0px 0px'
-                        }}>
-                            <Button FrameComponent={FramePentagon} style={{margin: 3, width: 150}} onClick={this.handleGenerate}
-                                    disabled={disabled}>
-                                <Text>Generieren</Text>
-                            </Button>
-                        </div>
-                    </FrameLines>
-                </div>
-                <div style={{margin: '15px 0px 15px 0px'}}>
-                    {disabled && <LoadingBar/>}
-                </div>
+            <div style={{margin: '15px 0px 15px 0px'}}>
+                {disabled && <LoadingBar/>}
             </div>
         </div>)
     }
@@ -119,10 +122,25 @@ const Prompt = props => {
     const navigate = useNavigate()
     const {state} = useNavigation()
 
+  const tabs = {
+        'npcs': {
+            url: `/npcs/create`,
+            name: i18next.t('tab_header_npc_create'),
+            element: <></>
+        },
+        'locations': {
+            url: `/locations/create`,
+            name: i18next.t('tab_header_locations_create'),
+            element: <></>
+        }
+    };
+
+
     if (state === 'loading') {
         return <LoadingBars></LoadingBars>
     } else {
-        return <div style={{maxWidth: 980, width: '100%', position: 'relative'}}>
+        return <div style={{width: '100%', position: 'relative'}}>
+            <TabsHeader tabs={tabs}/>
             <PromptWrapped {...props} />
         </div>
     }

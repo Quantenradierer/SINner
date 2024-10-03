@@ -15,6 +15,7 @@ class Fill(entity.Fill):
 - Das Geheimnis muss detailliert beschrieben sein
 - Der Name ist in der Form 'Vorname "Rufname" Nachname' 
 - Sei beim Namen kreativ
+- Weniger Namen mit "Schatten", mehr Codenames und Spitznamen.
 - Nutze seltene und unübliche Namen 
 - Achte darauf, den NPC in die Shadowrun-Welt zu integrieren und ihn für die Spieler ansprechend zu gestalten
 - Zwerge sind keine Schmiede oder Braumeister, sondern gehen reguläre Berufe der Modernen Zeit nach

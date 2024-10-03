@@ -18,7 +18,7 @@
 
 .rotating-circle {
   transform-origin: center;
-  animation: rotate 1s linear forwards;
+  animation: rotate 1.3s linear forwards;
 }
 
 

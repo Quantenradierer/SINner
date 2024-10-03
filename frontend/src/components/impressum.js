@@ -14,8 +14,11 @@ const Impressum  = props => {
 
                             E-Mails: <a
                             href='mailto:schmidt@schattenakte.de?subject=Feedback&body=Message'>schmidt@schattenakte.de</a><br/>
+                            Telefonnummer: +49 160 40 88 626 (Impressumspflicht verlangt das leider)<br/>
                             <br/>
-                            Ich bin nur eine Privatperson und möchte mit diesen Dienst keine Rechte verletzen, <br/>
+
+                            Ich bin nur eine Privatperson und möchte hier keine Rechte verletzen und auch kein Geld
+                            verdienen, <br/>
                             sondern nur eine Hilfe für andere Spielleiter anbieten 🙂.<br/>
                         </p>
                         <h1>Disclaimer:</h1>
@@ -32,18 +35,15 @@ const Impressum  = props => {
                             Die erzeugten Texte und Bilder sollen keinesfalls Gewalt, Drogen oder andere
                             negative Aspekte verherrlichen. Das Ziel ist es, ein realistisches und vielschichtiges
                             Rollenspielerlebnis zu ermöglichen, ohne dabei unangemessene oder moralisch bedenkliche
-                            Inhalte
-                            zu fördern.
+                            Inhalte zu fördern.
 
                             Bitte beachten Sie, dass die Texte und Bilder in diesem Dienst der Unterhaltung und dem
                             Rollenspiel dienen und nicht als Unterstützung oder Befürwortung von illegalen oder
-                            schädlichen
-                            Aktivitäten verstanden werden sollten.
+                            schädlichen Aktivitäten verstanden werden sollten.
 
                             Ich setze mich für verantwortungsbewussten Umgang mit den generierten Inhalten ein und bitte
-                            die
-                            Nutzer, das Gleiche zu tun. Sollten Sie auf unangemessene oder bedenkliche Inhalte stoßen,
-                            zögern Sie bitte nicht, uns zu kontaktieren, damit ich die betreffenden Inhalte prüfen und
+                            die Nutzer, das Gleiche zu tun. Sollten Sie auf unangemessene oder bedenkliche Inhalte stoßen,
+                            zögern Sie bitte nicht, mich zu kontaktieren, damit ich die betreffenden Inhalte prüfen und
                             gegebenenfalls entfernen kann.
                         </p>
 
@@ -55,8 +55,7 @@ const Impressum  = props => {
                         </p>
                         <h1>Datenschutz:</h1>
                         <p>
-                            Sämtliche angezeigten Daten sind fiktiv, die von OpenAI/GPT sowie Midjourney generiert
-                            wurden.<br/>
+                            Sämtliche angezeigten Daten sind fiktiv, die von AI Technologien generiert wurden. (GPT, Midjourney, Stable Diffusion, Flux) <br/>
                         </p>
                         <br/>
                         Der Zugriff auf diese Webseite wird vom Webserver in Log-Dateien protokolliert.<br/>
@@ -90,8 +89,7 @@ const Impressum  = props => {
                                 Midjourney
                             </li>
                         </List>
-                        Cookies: Es werden keine Cookies von Drittanbietern gesetzt. Beim Login werden in eurem Browser
-                        (local storage, nicht per Cookie) Daten gesetzt um wiederzuerkennen.<br/>
+                        Cookies: Es werden keine Cookies von Drittanbietern gesetzt. Beim Login werden in eurem Browser Daten gesetzt um wiederzuerkennen.<br/>
                         <List>
                             <li><b>Welche Daten:</b> Eine Zeichenfolge die den eingeloggten Nutzer eindeutig
                                 identifiziert.
@@ -133,10 +131,8 @@ const Impressum  = props => {
                         </p>
                         <p>
                             <b>Warum wird das Bild nicht erzeugt?</b><br/>
-                            Unterschiedliche, schwer behebbare Bugs. In der Regel findet Midjourney das Motiv nicht in
-                            Ordnung.
-                            (z.B. Blut bei Ärzten, oder Narben, oder allein zusammengebundenes Haar weil es auf Englisch
-                            eine sexuelle Konnotation hat)
+                            Unterschiedliche Gründe. In der Regel findet Midjourney das Motiv nicht in
+                            Ordnung. (z.B. Blut bei Ärzten oder Narben)
                         </p>
                         <p>
                             <b>Warum passen manche Bilder oder Beschreibungen nicht?</b><br/>
@@ -151,10 +147,11 @@ const Impressum  = props => {
                         </p>
                         <p>
                             <b>Kostet das was?</b><br/>
-                            Nein. Der Dienst ist für euch kostenlos und wird es auch bleiben. Es gibt keine Werbung und
-                            keine Tracking-Tools.
+                            Nein. Der Dienst ist für euch kostenlos und wird es auch bleiben.
+                            Es gibt keine Werbung, keine Bezahlmöglichkeiten und keine Tracking-Tools.
+                            Diese wird es auch nie geben.
 
-                            Ich trage sämtliche Kosten für die Erstellung, welche sich auf ein paar Euro im Monat
+                            Ich trage sämtliche Kosten, welche sich auf ein paar Euro im Monat
                             belaufen.
                         </p>
                         <p>

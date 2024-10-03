@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useLoaderData} from "react-router";
-import Prompt from "../entity/prompt";
+import Prompt from "../generic/prompt";
 
 const EXAMPLES = [
     'Erstelle einen Werkstattbesitzer',

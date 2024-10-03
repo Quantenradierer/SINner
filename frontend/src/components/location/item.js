@@ -1,17 +1,11 @@
-import React, {useState} from "react";
-import {
-    Text
-} from "@arwes/core";
-import {useLoaderData} from "react-router";
-import image_path from "../../image_path";
+import React from "react";
 import active_image from "../../active_image";
-import Comment from "./comment";
-import EntityList from "../entity/list";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Card from "../cyberpunk/card";
+import image_path from "../../image_path";
+import {Text} from "@arwes/core";
 import Blockquote from "../cyberpunk/blockquote";
-import EntityLoader from "../../loader/entity_loader";
-import {Animator} from "@arwes/animation";
+import Comment from "./comment";
 
 class LocationListItem extends React.Component {
 
@@ -22,8 +16,8 @@ class LocationListItem extends React.Component {
         let comment = undefined
 
         const cardStyle = {
-        width: 310,
-        height: 450
+            width: 310,
+            height: 500
         };
 
 
@@ -32,7 +26,7 @@ class LocationListItem extends React.Component {
             comment = comments[random_nr]
         }
 
-        return (<div style={{margin: '15px 7.5px 0px 7.5px'}}>
+        return (<div style={{minWidth: 250, maxWidth: 310, width: '100%', margin: '15px 7.5px 0px 7.5px'}}>
                 <Link to={'/locations/' + this.props.entity.id}>
                     <Card
                         image={{
@@ -61,15 +55,4 @@ class LocationListItem extends React.Component {
     }
 }
 
-
-const LocationList = props => {
-    const loader = new EntityLoader('locations')
-
-    const createItem = (entity) => {
-        return <LocationListItem key={'LocationListItem' + entity.id} entity={entity}/>
-    }
-
-    return <EntityList createItem={createItem} loader={loader} {...props}></EntityList>
-}
-
-export default LocationList;
+export default LocationListItem;

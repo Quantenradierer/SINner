@@ -26,7 +26,7 @@ class ImageGalleryWrapped extends React.Component {
     }
 
     async handleRecreateImages() {
-        await api.post('/api/npc_creator/' + this.props.entityType + '/' + this.state.entity.id + '/recreate_images/', {
+        await api.post('/api/npc_creator/entities/' + this.state.entity.id + '/recreate_images/', {
                 refresh_token: localStorage.getItem('refresh_token')
             }, {headers: {'Content-Type': 'application/json'}},
             {withCredentials: true})
@@ -118,9 +118,6 @@ class ImageGalleryWrapped extends React.Component {
 
                 <div style={{flexWrap: 'wrap', display: 'flex', justifyContent: 'space-evenly'}}>
                     {items}
-                </div>
-                <div className={is_logged_in() ? '' : 'hidden'}>
-                    <Button onClick={this.handleRecreateImages}>Neue Bilder</Button>
                 </div>
             </FramePentagon>
 

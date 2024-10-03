@@ -19,13 +19,13 @@ import json
 
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models import Entity
+from npc_creator.models.collection import Collection
 from npc_creator.models.entities.custom import Custom
 from npc_creator.models.entities.npc import Npc
 from npc_creator.models.entities.location import Location
+from npc_creator.models.favorite import Favorite
 from npc_creator.models.image_generation import ImageGeneration
 
-
-from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 
 from rest_framework import serializers, viewsets, status
 
@@ -35,41 +35,67 @@ from npc_creator.views.image import ImageSerializer
 class EntitySerializer(serializers.ModelSerializer):
     image_objects = ListSerializer(child=ImageSerializer())
     id = serializers.SerializerMethodField("get_uuid_as_id")
+    collections = serializers.SerializerMethodField("get_requested_user_collections")
 
     class Meta:
         model = Entity
         fields = [
             "id",
             "state",
+            "kind",
             "image_generator_description",
             "image_objects",
             "values",
+            "collections",
         ]
 
     def get_uuid_as_id(self, obj):
         return obj.uuid
 
+    def get_requested_user_collections(self, obj):
+        request = self.context.get("request", None)
+        if request is not None and request.user.is_authenticated:
+            user = request.user
 
-class GenericEntityView(viewsets.ModelViewSet):
-    entity_class = None
-    queryset = None
+            return [
+                c.name
+                for c in Collection.objects.filter(
+                    user=user, favorites__entity_id=obj.id
+                )
+            ]
+
+        return []
+
+
+ENTITIES_CLASSES = {
+    "npc": Npc,
+    "npcs": Npc,
+    "location": Location,
+    "locations": Location,
+    "custom": Custom,
+    "customs": Custom,
+}
+
+
+class EntityViewSet(viewsets.ModelViewSet):
+    queryset = Entity.objects.order_by("-created_at")
     serializer_class = EntitySerializer
 
-    authentication_classes = [rest_framework.authentication.TokenAuthentication]
     permission_classes = []
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())
+
         if str(self.kwargs["pk"]).isdigit():
             namespace_uuid = uuid.UUID("12345678-1234-5678-1234-567812345678")
             self.kwargs["pk"] = uuid.uuid5(namespace_uuid, self.kwargs["pk"])
         obj = get_object_or_404(queryset, uuid=self.kwargs["pk"])
         self.check_object_permissions(self.request, obj)
 
+        obj = obj.instance
+
         if "schema" in self.request.query_params:
-            self.entity_class().Fill(
-                entity=obj, schema=self.request.query_params["schema"]
-            ).call()
+            obj.Fill(entity=obj, schema=self.request.query_params["schema"]).call()
 
         obj.refresh_from_db()
 
@@ -78,9 +104,18 @@ class GenericEntityView(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.action == "list":
             queryset = self.queryset.filter(state=Entity.States.PUBLISHED)
-            search_text = self.request.query_params.get("search", "").strip()
 
+            kinds = self.request.query_params.getlist("kind[]", [])
+            queryset = queryset.filter(kind__in=kinds)
+
+            search_text = self.request.query_params.get("search", "").strip()
             regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
+
+            favorites = self.request.query_params.get("favorites", False)
+            if favorites:
+                queryset = queryset.filter(favorite__collection__user=self.request.user)
+                queryset = queryset.order_by("-favorite__created_at")
+
             return queryset.filter(attributes__iregex=regex).distinct()
         return self.queryset
 
@@ -93,7 +128,7 @@ class GenericEntityView(viewsets.ModelViewSet):
         data = request.data
 
         id = data.get("id")
-        entity = self.entity_class.objects.get(uuid=id)
+        entity = Entity.objects.get(uuid=id).instance
 
         if entity.state == Entity.States.UNPUBLISHED:
             entity.add_values(data.get("values"))
@@ -117,9 +152,9 @@ class GenericEntityView(viewsets.ModelViewSet):
 
         prompt = prompt[:255]
 
-        entity = self.entity_class()
+        entity = ENTITIES_CLASSES[data.get("kind")]()
         entity.prompt = prompt
-        result = self.entity_class.Fill(entity=entity).call()
+        result = entity.Fill(entity=entity).call()
         if not result:
             return Response({"type": "error", "error": result.error})
 
@@ -137,32 +172,37 @@ class GenericEntityView(viewsets.ModelViewSet):
             {"type": "success", "entity": self.serializer_class(entity).data}
         )
 
-    @action(detail=True, methods=["post"], authentication_classes=IsAuthenticated)
+    @action(detail=True, methods=["patch"])
+    def favorite(self, request, pk):
+        if request.user.is_anonymous:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        data = json.loads(request.body.decode())
+        favorite = bool(data.get("favorite"))
+
+        entity = self.get_object()
+
+        collection, _ = Collection.objects.get_or_create(
+            user=request.user, name="favorite"
+        )
+
+        if favorite:
+            Favorite.objects.get_or_create(entity=entity, collection=collection)
+        elif not favorite:
+            collection.favorites.filter(entity=entity).delete()
+        return Response()
+
+    @action(detail=True, methods=["post"])
     def recreate_images(self, request, pk):
+        return
         entity = self.queryset.get(pk=pk)
 
-        for i in range(10):
-            generation = ImageGeneration(entity=entity)
-            generation.save()
-            generation_job_async(generation)
+        generation = ImageGeneration(entity=entity)
+        generation.save()
+        generation_job_async(generation)
 
-            time.sleep(random.random() + random.randint(3, 10))
+        time.sleep(random.random() + random.randint(3, 10))
 
         return Response(
             {"type": "success", "entity": self.serializer_class(entity).data}
         )
-
-
-class NpcViewSet(GenericEntityView):
-    entity_class = Npc
-    queryset = Npc.objects.order_by("-created_at")
-
-
-class LocationViewSet(GenericEntityView):
-    entity_class = Location
-    queryset = Location.objects.order_by("-created_at")
-
-
-class CustomViewSet(GenericEntityView):
-    entity_class = Custom
-    queryset = Custom.objects.order_by("-created_at")
