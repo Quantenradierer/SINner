@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "",
-                element: <Navigate to="/npcs" />,
+                element: <EntityList filter={['Npc']} />,
             },
             {
                 path: "impressum",
