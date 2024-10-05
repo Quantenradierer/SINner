@@ -2,6 +2,7 @@ import uuid
 from dataclasses import dataclass
 
 from django.apps import apps
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -28,6 +29,12 @@ class Entity(models.Model):
     prompt = models.TextField(blank=True)
     image_generator_description = models.TextField(blank=True)
     attributes = models.JSONField(blank=False, null=False, default=dict)
+    creator = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="entities",
+        null=True,
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

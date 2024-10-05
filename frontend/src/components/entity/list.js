@@ -112,7 +112,7 @@ class SearchPrompt extends React.Component {
 
 
 
-const EntityList = ({ filter, favorites, emptyText }) => {
+const EntityList = ({ filter, favorites, own, emptyText }) => {
     const navigate = useNavigate();
     const {state} = useNavigation();
 
@@ -143,12 +143,16 @@ const EntityList = ({ filter, favorites, emptyText }) => {
             url: `/collections`,
             name: i18next.t('tab_header_favorites_list'),
         }
+        tabs['own'] = {
+            url: `/own`,
+            name: i18next.t('tab_header_own_list'),
+        }
     }
 
     const handleScroll = () => {
         const withinThreshold = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 300;
         if (withinThreshold && !hasHandledNext) {
-            setPage(prevPage => prevPage + 1); // Use functional update to avoid stale closure
+            setPage(prevPage => prevPage + 1);
             setHasHandledNext(true);
         } else if (!withinThreshold) {
             setHasHandledNext(false);
@@ -171,7 +175,7 @@ const EntityList = ({ filter, favorites, emptyText }) => {
         const load = async () => {
             setLoading(true);
             const response = await loader.list({
-                params: {search, filter, page, favorites},
+                params: {search, filter, page, favorites, own},
                 request: {url: location}
             });
             if (response == null) {

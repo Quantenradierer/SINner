@@ -27,9 +27,7 @@ const resources = {
             search_list_empty_text: "Deine Suche ergab keine Ergebnisse. Versuche es mit einem anderen Suchbegriff.",
             npc_list_empty_text: "Das sollte nie passieren. Entweder ist dein Internet oder der Server down. Versuche es später erneut.",
             location_list_empty_text: "Das sollte nie passieren. Entweder ist dein Internet oder der Server down. Versuche es später erneut.",
-
-
-
+            own_list_empty_text: "Du hast noch keine Einträge erstellt. Klicke auf das Plus, um einen neuen Eintrag zu erstellen.",
 
             menu_npcs: 'NPCs',
             menu_locations: 'Locations',
@@ -52,6 +50,7 @@ const resources = {
             tab_header_customs_list: "Bildgenerator",
             tab_header_customs_create: "Bildgenerator",
             tab_header_favorites_list: "Favoriten",
+            tab_header_own_list: "Eigene Einträge",
 
             tab_header_npcs_default: 'NPC',
             tab_header_npcs_sr6: 'SR6',

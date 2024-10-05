@@ -131,7 +131,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "collections/create",
-                element: <NPCPrompt/>,
+                element: <Navigate to="/npcs/create" replace />,
+            },
+            {
+                path: "own/create",
+                element: <Navigate to="/npcs/create" replace />,
             },
             {
                 path: "customs/:id",
@@ -152,6 +156,10 @@ const router = createBrowserRouter([
             {
                 path: "collections/",
                 element: <EntityList filter={['Npc', 'Location', 'Custom']} favorites={true} emptyText={i18n.t('favorite_list_empty_text')}/>,
+            },
+            {
+                path: "own/",
+                element: <EntityList filter={['Npc', 'Location', 'Custom']} own={true} emptyText={i18n.t('own_list_empty_text')}/>,
             },
             {
                 path: "profile/",

@@ -103,18 +103,23 @@ class EntityViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.action == "list":
-            queryset = self.queryset.filter(state=Entity.States.PUBLISHED)
+            queryset = self.queryset
+
+            own = self.request.query_params.get("own", False)
+            favorites = self.request.query_params.get("favorites", False)
+            if own:
+                queryset = queryset.filter(creator=self.request.user)
+            elif favorites:
+                queryset = queryset.filter(favorite__collection__user=self.request.user)
+                queryset = queryset.order_by("-favorite__created_at")
+            else:
+                queryset = queryset.filter(state=Entity.States.PUBLISHED)
 
             kinds = self.request.query_params.getlist("kind[]", [])
             queryset = queryset.filter(kind__in=kinds)
 
             search_text = self.request.query_params.get("search", "").strip()
             regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
-
-            favorites = self.request.query_params.get("favorites", False)
-            if favorites:
-                queryset = queryset.filter(favorite__collection__user=self.request.user)
-                queryset = queryset.order_by("-favorite__created_at")
 
             return queryset.filter(attributes__iregex=regex).distinct()
         return self.queryset
@@ -163,6 +168,8 @@ class EntityViewSet(viewsets.ModelViewSet):
                 {"type": "error", "error": "custom", "message": result.error}
             )
 
+        if request.user.is_authenticated:
+            entity.creator = request.user
         entity.save()
         generation = ImageGeneration(entity=entity)
         generation.save()

@@ -16,10 +16,11 @@ export default class EntityLoader {
         const page = params.page || 1;
         const filtered = params.filter || [];
         const favorites = params.favorites || null;
+        const own = params.own || null;
 
         let url = new URL(request.url);
         try {
-            const response = await api.get(`/api/npc_creator/entities/`, {params: {kind: filtered, search: search, page: page, favorites: favorites}})
+            const response = await api.get(`/api/npc_creator/entities/`, {params: {kind: filtered, search: search, page: page, favorites: favorites, own: own}})
             if (response.status == 200) {
                 return response.data
             }

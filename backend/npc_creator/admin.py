@@ -12,7 +12,7 @@ from npc_creator.models.image_generation import ImageGeneration
 
 @admin.register(Entity)
 class EntityAdmin(admin.ModelAdmin):
-    list_display = ("id", "kind", "image_generator_description")
+    list_display = ("id", "kind", "creator", "image_generator_description")
 
     search_fields = ["image_generator_description"]
 
