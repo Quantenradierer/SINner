@@ -6,7 +6,7 @@ from django.db import migrations
 from gevent import os
 
 from npc_creator import config
-from npc_creator.services.midjourney.create_thumbnails import create_thumbnail
+from npc_creator.services.image_generation.create_thumbnails import create_thumbnail
 
 
 def bulk_thumbnails(apps, schema_editor):

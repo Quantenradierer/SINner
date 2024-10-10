@@ -2,7 +2,7 @@ import os
 import unittest
 from unittest.mock import patch, Mock
 
-from npc_creator.services.midjourney.retrieve_latest_messages import (
+from npc_creator.services.image_generation.retrieve_latest_messages import (
     retrieve_latest_messages,
 )
 

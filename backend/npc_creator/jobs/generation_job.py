@@ -8,10 +8,10 @@ from npc_creator import config
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.download_image import DownloadImage
 from npc_creator.operations.gpt.npc.pass_image_prompt import PassImagePrompt
-from npc_creator.services.midjourney.find_correlated_response import (
+from npc_creator.services.image_generation.find_correlated_response import (
     find_correlated_responses,
 )
-from npc_creator.services.midjourney.retrieve_latest_messages import (
+from npc_creator.services.image_generation.retrieve_latest_messages import (
     retrieve_latest_messages,
 )
 

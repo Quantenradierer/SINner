@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 from requests import HTTPError
 
-from npc_creator.services.midjourney.pass_prompt import pass_prompt
+from npc_creator.services.image_generation.pass_prompt import pass_prompt
 
 
 class TestPassPrompt(unittest.TestCase):

@@ -1,6 +1,6 @@
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success
-from npc_creator.services.midjourney.pass_prompt import pass_prompt
+from npc_creator.services.image_generation.pass_prompt import pass_prompt
 
 
 class PassImagePrompt:

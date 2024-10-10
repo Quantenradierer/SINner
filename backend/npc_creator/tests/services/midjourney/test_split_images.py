@@ -4,7 +4,7 @@ import unittest
 
 from PIL import Image
 
-from npc_creator.services.midjourney.split_images import split_image
+from npc_creator.services.image_generation.split_images import split_image
 
 
 class TestSplitImage(unittest.TestCase):

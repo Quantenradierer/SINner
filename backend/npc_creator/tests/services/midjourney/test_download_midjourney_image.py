@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 from requests.exceptions import RequestException
 
-from npc_creator.services.midjourney.download_midjourney_image import (
+from npc_creator.services.image_generation.download_midjourney_image import (
     download_midjourney_image,
 )
 

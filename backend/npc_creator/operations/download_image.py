@@ -6,12 +6,12 @@ from npc_creator import config
 from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success, ReturnType
-from npc_creator.services.midjourney.create_thumbnails import create_thumbnail
-from npc_creator.services.midjourney.download_midjourney_image import (
+from npc_creator.services.image_generation.create_thumbnails import create_thumbnail
+from npc_creator.services.image_generation.download_midjourney_image import (
     download_midjourney_image,
 )
 
-from npc_creator.services.midjourney.split_images import split_image
+from npc_creator.services.image_generation.split_images import split_image
 
 
 class DownloadImage:
