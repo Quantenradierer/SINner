@@ -16,6 +16,7 @@ import {useEntity} from "../entityProvider";
 import {CustomFrame} from "../cyberpunk/CustomFrame";
 import FavoriteButton from "../../icons/favoriteButton";
 import is_logged_in from "../../is_loggin_in";
+import Download from "../../icons/download";
 
 
 
@@ -63,6 +64,7 @@ function NpcTabsHeader({selectedTab}) {
             <Tabs tabs={tabs}/>
             <OverlayButtons>
                 <SaveButton/>
+                <Download/>
                 {is_logged_in() && <FavoriteButton/>}
             </OverlayButtons>
         </div>

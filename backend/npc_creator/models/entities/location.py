@@ -57,3 +57,4 @@ class Location(Entity):
     Translate = location.Translate
     PassImagePrompt = location.PassImagePrompt
     Check = entity.Check
+    Export = entity.Export

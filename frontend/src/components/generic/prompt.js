@@ -14,9 +14,6 @@ function random_prompt(examples) {
 }
 
 class PromptWrapped extends React.Component {
-
-
-
     constructor(props) {
         super(props)
         let url = new URL(window.location.href)
@@ -76,7 +73,7 @@ class PromptWrapped extends React.Component {
         let loadingBar = <div/>
         if (this.state.loadingState === 'waiting') {
             loadingBar = <div key='waiting' style={{width: '100%'}}>
-                <LoadingBar/>
+                <LoadingBar estimated_time={8000} steps={50} title={i18n.t("prompt_wait")}/>
             </div>
         }
 
@@ -116,7 +113,7 @@ class PromptWrapped extends React.Component {
                 {errorDialog}
             </div>
             <div style={{margin: '15px 0px 15px 0px'}}>
-                {disabled && <LoadingBar/>}
+                {disabled && <LoadingBar estimated_time={8000} steps={50} title={i18n.t("prompt_wait")}/>}
             </div>
         </div>)
     }

@@ -21,13 +21,14 @@ import {physicalCondition, stunCondition} from "./sr6Rules";
 import {useEntity} from "../entityProvider";
 import ImageFrame from "../cyberpunk/imageFrame";
 import {Animator} from "@arwes/animation";
+import Tabs from "../entity/tabs";
 
 const SkillTable = ({entity}) => {
     const skills = [
         "skill_astral", "skill_athletics", "skill_biotech", "skill_close_combat", "skill_con", "skill_conjuring",
-        "skill_cracking", "skill_electronics", "skill_enchanting", "skill_engineering", "skill_exotic_weapons",
+        "skill_cracking", "skill_electronics", "skill_enchanting", "skill_engineering",
         "skill_firearms", "skill_influence", "skill_outdoors", "skill_perception", "skill_piloting", "skill_sorcery",
-        "skill_stealth", "skill_tasking"
+        "skill_stealth", "skill_tasking", "skill_exotic_weapons"
     ];
     const halfLength = Math.ceil(skills.length / 2);
     const firstHalfSkills = skills.slice(0, halfLength);
@@ -128,6 +129,51 @@ const ConditionTable = ({ amount, title }) => {
     </FramePentagon>;
 
 };
+
+
+const WeaponTable = ({entity}) => {
+        const tableHeaders = [
+        {id: 'weapon', data: i18n.t('Waffe')},
+        {id: 'pool', data: i18n.t('Pool')},
+        {id: 'schaden', data: i18n.t('Schaden')},
+        {id: 'aw', data: i18n.t('AW')},
+        {id: 'mode', data: i18n.t('Modus')},
+        {id: 'ammo', data: i18n.t('Muni')},
+    ]
+    let columns = [{
+        id: 'weapon',
+        data: 'TBD Pistole'
+    },
+        {
+            id: 'pool',
+            data: 'TBD'
+        },
+        {
+            id: 'schaden',
+            data: 'TBD'
+        },
+        {
+            id: 'aw',
+            data: 'TBD'
+        },
+        {
+            id: 'mode',
+            data: 'TBD'
+        },
+        {
+            id: 'ammo',
+            data: 'TBD'
+        }]
+
+
+    const tableContent = [{
+        id: 0,
+        columns: columns
+    }]
+
+    return <Table condensed headers={tableHeaders} dataset={tableContent}/>
+
+}
 
 const TabSR6 = (props) => {
     const {entity, _} = useEntity();

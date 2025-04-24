@@ -6,7 +6,7 @@ import i18n from "../i18n";
 
 const AddCircle = () => {
   return (
-    <div title={i18n.t("entity_create")} className="hoverresize">
+    <div title={i18n.t("entity_export")} className="hoverresize">
       <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
         <Link to={'create'} rel="noopener noreferrer">
           <g className="rotating-circle">

@@ -4,6 +4,7 @@ import uuid
 from django.db import models
 from npc_creator.models import TemplateImage, Entity
 from npc_creator.models.image_generation import ImageGeneration
+from npc_creator.utils import entity_directory
 
 
 class Image(models.Model):
@@ -17,6 +18,10 @@ class Image(models.Model):
         ImageGeneration, null=True, on_delete=models.SET_NULL
     )
     entity = models.ForeignKey(Entity, null=True, on_delete=models.SET_NULL)
+
+    @property
+    def url(self):
+        return entity_directory(entity_kind=self.entity.kind) + "/" + self.name + ".png"
 
     @property
     def template(self):

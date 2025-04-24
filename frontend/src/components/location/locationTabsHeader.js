@@ -17,6 +17,7 @@ import OverlayButtons from "../../overlayButtons";
 import SaveButton from "../../icons/saveButton";
 import is_logged_in from "../../is_loggin_in";
 import FavoriteButton from "../../icons/favoriteButton";
+import Download from "../../icons/download";
 
 
 function LocationTabsHeader({selectedTab}) {

@@ -17,7 +17,7 @@ def entity_prompt(entity, schema_name, filled_values):
         if (name in values and filled_values) or (
             name not in values and not filled_values
         ):
-            result += f"'{name}': {json.dumps(values.get(name, ''))}{comment}\n"
+            result += f"'{name}': {json.dumps(values.get(name, attribute.annotation()))}{comment}\n"
 
     return f"{{\n{result}\n}}"
 

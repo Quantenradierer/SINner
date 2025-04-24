@@ -64,6 +64,17 @@ const resources = {
             create_explanation_custom: 'Beschreibe etwas grobes und lass GPT ausfüllen - oder gib unten direkt das Aussehen an',
 
             entity_create: 'Erstellen',
+            entity_generate_data: 'Generiere fehlende Daten ...',
+            entity_download: 'Download',
+            entity_download_title: 'Download',
+            entity_download_format_picker: "Wähle das Format aus:",
+            entity_download_foundryvtt: 'Foundry VTT',
+            entity_download_foundryvtt_description1: 'Lege einen neuen "Actor" in Foundry an.',
+            entity_download_foundryvtt_description2: 'Rechtsklick auf den Actor -> "Import data".',
+            entity_download_foundryvtt_description3: 'Wähle die heruntergeladene Datei.',
+            entity_download_foundryvtt_description4: 'Falls das Bild fehlt, importiere die Datei erneut.',
+            entity_download_roll20: 'Roll20',
+            entity_download_roll20_description: 'Kommt bald!',
             entity_save: 'Veröffentlichen',
             entity_favorite: 'Favorisieren',
 

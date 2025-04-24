@@ -17,6 +17,7 @@ import {CustomFrame} from "../cyberpunk/CustomFrame";
 import imageFrame from "../cyberpunk/imageFrame";
 import ImageFrame from "../cyberpunk/imageFrame";
 import AttributeList from "../attributeList";
+import {Spinner} from "../cyberpunk/spinner";
 
 
 

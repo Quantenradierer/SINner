@@ -74,7 +74,7 @@ class ImageGalleryWrapped extends React.Component {
 
 
         let activeImage = active_image(this.state.entity.image_objects)
-        for (let image of this.state.entity.image_objects) {
+        for (let image of [...this.state.entity.image_objects].reverse()) {
             let glowEffect = ''
             let addSize = 0
             if (image.id == activeImage.id) {
@@ -109,6 +109,8 @@ class ImageGalleryWrapped extends React.Component {
                          src={image_path(this.props.entity.entityType, image.name)}/>
                 </div>)
         }
+
+        
 
         return (
             <FramePentagon squareSize={35}>

@@ -1,17 +1,31 @@
 import React, {useEffect, useRef, useState} from "react";
+import {random} from "animejs";
 
 function randomChar() {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz';
     return chars[Math.floor(Math.random() * chars.length)];
 }
 
-const EncryptedText = props => {
-    let decodingMessage = props.children
-    let messageArray = decodingMessage.split('');
-    for (let i = 0; i < messageArray.length; i++) {
-        messageArray[i] = randomChar()
-    }
-    const [content, setContent] = useState(messageArray.join(''))
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+
+export const EncryptedTextState = Object.freeze({
+  STATIC: "static",
+  RUNNING: "running",
+  ENCRYPTING: "encrypting"
+});
+
+const EncryptedText = ({children, state}) => {
+    let decodingMessage = children.join('').split('');
+    let decryptedLength = decodingMessage.length;
+
+    const [content, setContent] = useState('')
     const contentRef = useRef(content);
 
     useEffect(() => {
@@ -20,28 +34,37 @@ const EncryptedText = props => {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            if (contentRef.current === decodingMessage) {
-                clearInterval(timer)
+            if (state == EncryptedTextState.STATIC && contentRef.current !== '') {
+                return;
             }
+            const encryptedMapping = new Array(decodingMessage.length).fill(0).fill(1, 0, decryptedLength);
 
-            let nameArray = contentRef.current.split('');
-
-            for (let i = 0; i < nameArray.length; i++) {
-                const randChar = randomChar();
-                if (nameArray[i] != decodingMessage[i]) {
-                    nameArray[i] = randChar
+            const encryptedMessage = shuffleArray(encryptedMapping).map((value, index) => {
+                if (value === 1) {
+                    return randomChar();
+                } else {
+                    return decodingMessage[index];
                 }
-
+            });
+            setContent(prevText => encryptedMessage.join(''));
+            if (state == EncryptedTextState.RUNNING) {
+                return;
             }
-            setContent(prevText => nameArray.join(''));
 
+            if (decryptedLength === 0) {
+                clearInterval(timer);
+                return;
+            }
+            decryptedLength -= 1;
 
-        }, 50);
+        }, 25);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [state]);
 
-    return <span style={{fontFamily: "monospace"}}>{content}</span>;
+    return <span style={{
+        fontFamily: "monospace",
+}}>{content}</span>;
 }
 
 export default EncryptedText;

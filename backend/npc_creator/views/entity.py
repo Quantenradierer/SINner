@@ -36,6 +36,9 @@ class EntitySerializer(serializers.ModelSerializer):
     image_objects = ListSerializer(child=ImageSerializer())
     id = serializers.SerializerMethodField("get_uuid_as_id")
     collections = serializers.SerializerMethodField("get_requested_user_collections")
+    image_generation_in_progress = serializers.SerializerMethodField(
+        "get_image_generation_in_progress"
+    )
 
     class Meta:
         model = Entity
@@ -47,10 +50,17 @@ class EntitySerializer(serializers.ModelSerializer):
             "image_objects",
             "values",
             "collections",
+            "image_generation_in_progress",
         ]
 
     def get_uuid_as_id(self, obj):
         return obj.uuid
+
+    def get_image_generation_in_progress(self, obj: Entity):
+        generation = obj.imagegeneration_set.filter(
+            state=ImageGeneration.State.IN_PROGRESS
+        ).first()
+        return bool(generation)
 
     def get_requested_user_collections(self, obj):
         request = self.context.get("request", None)
@@ -177,6 +187,17 @@ class EntityViewSet(viewsets.ModelViewSet):
 
         return Response(
             {"type": "success", "entity": self.serializer_class(entity).data}
+        )
+
+    @action(detail=True, methods=["get"])
+    def export(self, request, pk):
+        entity = self.get_object()
+
+        return Response(
+            entity.Export(
+                entity=entity, format=request.GET.get("fileformat", None)
+            ).call(),
+            content_type="application/json",
         )
 
     @action(detail=True, methods=["patch"])

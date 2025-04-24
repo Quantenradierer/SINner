@@ -1,0 +1,122 @@
+{
+  "SR6CORE-H-1": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_HELMET",
+    "name": "Helmet",
+    "defense_rating": 2,
+    "capacity": 6,
+    "availability": 0,
+    "cost": 500,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-1": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Synthleather Jacket",
+    "defense_rating": 3,
+    "capacity": 1,
+    "availability": 1,
+    "cost": 300,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-2": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Actioneer Business Clothes",
+    "defense_rating": 6,
+    "capacity": 2,
+    "availability": 2,
+    "cost": 1500,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-3": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Armor Clothing",
+    "defense_rating": 4,
+    "capacity": 2,
+    "availability": 2,
+    "cost": 500,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-4": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Armor Jacket",
+    "defense_rating": 8,
+    "capacity": 2,
+    "availability": 2,
+    "cost": 1000,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-5": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Armor Vest",
+    "defense_rating": 6,
+    "capacity": 2,
+    "availability": 2,
+    "cost": 750,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-6": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Chameleon Suit",
+    "defense_rating": 4,
+    "capacity": 4,
+    "availability": 4,
+    "cost": 2000,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-7": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Full Body Armor",
+    "defense_rating": 10,
+    "capacity": 4,
+    "availability": 4,
+    "cost": 2000,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-8": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Lined Coat",
+    "defense_rating": 7,
+    "capacity": 2,
+    "availability": 2,
+    "cost": 900,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-A-9": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_BODY",
+    "name": "Urban Explorer Jumpsuit",
+    "defense_rating": 6,
+    "capacity": 2,
+    "availability": 2,
+    "cost": 800,
+    "source": { "page": 266, "book": "SR6CORE" }
+  },
+  "SR6CORE-S-1": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_SHIELD",
+    "name": "Ballistic Shield",
+    "defense_rating": 4,
+    "capacity": 4,
+    "availability": 3,
+    "cost": 800,
+    "source": { "page": 267, "book": "SR6CORE" }
+  },
+  "SR6CORE-S-2": {
+    "type": "ARMOR",
+    "subtype": "ARMOR_SHIELD",
+    "name": "Riot Shield",
+    "defense_rating": 4,
+    "capacity": 4,
+    "availability": 4,
+    "cost": 1200,
+    "source": { "page": 267, "book": "SR6CORE" }
+  }
+}

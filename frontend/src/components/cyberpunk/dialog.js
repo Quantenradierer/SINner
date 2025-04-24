@@ -1,54 +1,82 @@
-import React, {useState} from "react";
-import {FramePentagon} from "@arwes/core";
+import React, {useState, useEffect} from "react";
+import {FrameLines, FramePentagon, Text} from "@arwes/core";
 import image_path from "../../image_path";
 import {Animator} from "@arwes/animation";
 
-const Dialog = ({clickableElement, content}) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Dialog = ({children, title, dialogState, setDialogState}) => {
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape' && dialogState) {
+        setDialogState(false);
+      }
+    }
 
-  function openDialog() {
-    setIsOpen(true);
-  }
-
-  function closeDialog() {
-    setIsOpen(false);
-  }
+    if (dialogState) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dialogState]);
 
   return (
-      <div>
-        <a onClick={openDialog} target="_blank">
-          {clickableElement}
-        </a>
-        <div style={{position: 'absolute'}}>
-          <div style={{position: 'absolute', left: 0, top: 0}}>
-            {isOpen && (
+      <>
+        {dialogState && (
+            <div
+                onClick={() => setDialogState(false)}
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 1000,
+                }}
+            >
+              <Animator>
                 <div
-                    onClick={closeDialog}
-                    style={{
-                      position: 'fixed',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                      zIndex: 1000,
-
-                    }}
+                    className="cut-corner"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{display: "inline-block"}}
                 >
-
-                  <Animator><FramePentagon>
-                    {content}
-                  </FramePentagon></Animator>
+                  <FramePentagon
+                        squareSize={35}
+                      style={{
+                        display: "inline-block",
+                        padding: "0px",
+                        backgroundColor: "#1a1a1a",
+                        width: "auto",
+                        height: "auto",
+                        textAlign: "center",
+                      }}
+                  >
+                    <FrameLines style={{
+                      width: '100%', padding: 5,
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}>
+                        <div style={{flex: 1, textAlign: 'center'}}><Text>{title}</Text></div>
+                        <div style={{marginLeft: 'auto', cursor: 'pointer'}} onClick={() => setDialogState(false)}>X</div>
+                      </div>
+                    </FrameLines>
+                    <div style={{padding: '20px'}}>
+                      {children}
+                    </div>
+                  </FramePentagon>
                 </div>
-            )}
-          </div>
-        </div>
-      </div>
+              </Animator>
+            </div>
+        )}
+      </>
   );
-}
+};
 
 
 export default Dialog;

@@ -1,6 +1,8 @@
 from django.db import models
 from pydantic import constr, BaseModel, Field
 
+from npc_creator.game_mechanics.armor import armor_loader
+from npc_creator.game_mechanics.weapons import weapon_loader
 from npc_creator.models import Entity
 from npc_creator.operations.gpt import npc
 
@@ -35,7 +37,10 @@ class StoryAttributes(BaseModel):
     hobbies_and_interests: str
     quirks: str
     family: str
-    contacts: str
+    contacts: str = Field(
+        ...,
+        description="String. A few contacts with their names and a few words about them.",
+    )
     secret: str
 
 
@@ -109,6 +114,15 @@ class SR6Attributes(BaseModel):
         description="For non-resonant characters 0",
     )
 
+    weapon_ids: list[str] = Field(
+        ...,
+        description="list of IDs from the weapons list",
+    )
+    armor_ids: list[str] = Field(
+        ...,
+        description="list of IDs from the armor list. Maximum 1 of each subtype.",
+    )
+
 
 class Npc(Entity):
     def __init__(self, *args, **kwargs):
@@ -130,3 +144,22 @@ class Npc(Entity):
     Translate = npc.Translate
     PassImagePrompt = npc.PassImagePrompt
     Check = npc.Check
+    Export = npc.Export
+
+    @property
+    def weapons(self):
+        weapon_ids = self.values.get("weapon_ids", [])
+        return [
+            weapon_loader.weapons[weapon_id]
+            for weapon_id in weapon_ids
+            if weapon_id in weapon_loader.weapons
+        ]
+
+    @property
+    def armors(self):
+        armor_ids = self.values.get("armor_ids", [])
+        return [
+            armor_loader.armors[armor_id]
+            for armor_id in armor_ids
+            if armor_id in armor_loader.armors
+        ]

@@ -23,7 +23,6 @@ const useImageWithPolling = (entityType, id, pollInterval = 10000) => {
   }, []);
 
   useEffect(() => {
-      console.log(polling, entity)
     if (polling && entity && entity.image_objects && entity.image_objects.length > 0) {
       clearInterval(polling);
       setPolling(null);

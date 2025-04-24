@@ -28,6 +28,7 @@ import i18next from "i18next";
 import {CustomFrame} from "../cyberpunk/CustomFrame";
 import {TabsHeader} from "../cyberpunk/tabsHeader";
 import is_loggin_in from "../../is_loggin_in";
+import Dialog from "../cyberpunk/dialog";
 
 const CARDS = {
     npc: NPCListItem,

@@ -10,7 +10,9 @@ from dataclasses import dataclass
 import websockets
 
 from npc_creator.operations import DownloadImage
-from npc_creator.services.midjourney.find_correlated_response import MIDJOURNEY_BOT_ID
+from npc_creator.services.image_generation.find_correlated_response import (
+    MIDJOURNEY_BOT_ID,
+)
 
 
 @dataclass

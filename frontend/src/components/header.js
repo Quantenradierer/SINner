@@ -51,8 +51,9 @@ const Header = (props) => {
                                     flexDirection: 'column',
                                     justifyContent: 'center',
                                     marginRight: 15
+
                                 }}>
-                                    {!is_logged_in() && <Link to={'/login'}><FrameLines style={{margin: 0, padding: 5}}><Text>Anmelden</Text></FrameLines></Link>}
+                                    {!is_logged_in() && <Link className={"mobile-hide"} to={'/login'}><FrameLines style={{margin: 0, padding: 5}}><Text>Anmelden</Text></FrameLines></Link>}
                                     {is_logged_in() && <ProfileButton/>}
                                 </div>
                                 <div>
