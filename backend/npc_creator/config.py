@@ -53,3 +53,4 @@ if "test" in sys.argv:
     requests.post = mock
 
 DEBUG = ENV != "production"
+USE_X_FORWARDED_HOST = True
