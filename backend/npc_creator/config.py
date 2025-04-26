@@ -5,6 +5,7 @@ import sys
 import openai
 import requests
 
+ENV = os.getenv("ENVIRONMENT", "development")
 
 logging.basicConfig(filename="schattenakte.log")
 logging.getLogger().setLevel(logging.DEBUG)
@@ -50,3 +51,5 @@ if "test" in sys.argv:
     openai.create = mock
     requests.get = mock
     requests.post = mock
+
+DEBUG = ENV != "production"
