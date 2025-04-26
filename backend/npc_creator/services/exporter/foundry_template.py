@@ -394,11 +394,9 @@ class AdeptPower(BaseModel):
     choice: str = ""
     cost: float = 0.0
     activation: str = ""
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
 
 
 class ComplexForm(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     duration: str = "sustained"
     fading: int = 3
     skill: str = ""
@@ -419,7 +417,6 @@ class Contact(BaseModel):
 
 
 class CritterPower(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     duration: str = "instantaneous"
     action: str = ""
     type: str = "physical"
@@ -427,11 +424,10 @@ class CritterPower(BaseModel):
 
 
 class Echo(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
+    pass
 
 
 class Focus(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     rating: int = 1
 
 
@@ -488,11 +484,9 @@ class Gear(BaseModel):
     vehicle: GearVehicle = GearVehicle()
     strWeapon: bool = False
     dualHand: bool = False
-    templates: list[str] = Field(default_factory=lambda: ["genesis", "dice-pool"])
 
 
 class Lifestyle(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     type: str = "low"
     paid: int = 1
     cost: int = 2000
@@ -509,24 +503,20 @@ class MartialArtStyle(BaseModel):
             "weapon": False,
         }
     )
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
 
 
 class MartialArtTech(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     style: str = ""
     choice: str = ""
 
 
 class Metamagic(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     level: bool = False
     adepts: bool = False
     mages: bool = False
 
 
 class Quality(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis", "quality-value"])
     category: str = ""
     level: bool = False
 
@@ -540,7 +530,6 @@ class RitualFeatures(BaseModel):
 
 
 class Ritual(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     threshold: int = 5
     features: RitualFeatures = RitualFeatures()
 
@@ -552,7 +541,6 @@ class Sin(BaseModel):
 
 
 class ItemSkill(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis", "skill-value"])
     genesisID: str = ""
     description: str = ""
     points: int = 0
@@ -560,7 +548,6 @@ class ItemSkill(BaseModel):
 
 
 class Software(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     type: str = "SOFTWARE"
     subtype: str = "AUTOSOFT"
     category: str = ""
@@ -568,7 +555,6 @@ class Software(BaseModel):
 
 
 class Spell(BaseModel):
-    templates: list[str] = Field(default_factory=lambda: ["genesis"])
     category: str = "health"
     duration: str = "instantaneous"
     drain: int = 1
@@ -624,8 +610,9 @@ class Item(BaseModel):
 
 
 class ExportSource(BaseModel):
+    npc_uuid: str = ""
     world: str = ""
-    system: str = "Schattenakte"
+    system: str = "schattenakte.de"
     coreVersion: str = ""
     systemVersion: str = ""
 

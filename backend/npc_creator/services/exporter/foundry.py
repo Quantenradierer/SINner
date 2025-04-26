@@ -1,6 +1,14 @@
 import math
 
-from .foundry_template import RootNPC, DefenseRating, ModWrapper, Gear, Item
+from .foundry_template import (
+    RootNPC,
+    DefenseRating,
+    ModWrapper,
+    Gear,
+    Item,
+    FlagsUNDOCUMENTED,
+    ExportSource,
+)
 import re
 import sys, os
 from PIL import Image, ImageDraw
@@ -217,6 +225,7 @@ def foundry_json(npc):
         + [
             unarmed_weapon(npc),
         ],
+        flags=FlagsUNDOCUMENTED(export_source=ExportSource(npc_uuid=str(npc.uuid))),
     )
 
     return root_npc.model_dump_json(indent=2)
