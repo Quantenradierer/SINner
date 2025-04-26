@@ -39,7 +39,7 @@ class StoryAttributes(BaseModel):
     family: str
     contacts: str = Field(
         ...,
-        description="String. A few contacts with their names and a few words about them.",
+        description="A text which describes the npcs personal and/or business contacts. NOT A JSON LIST",
     )
     secret: str
 
@@ -116,11 +116,11 @@ class SR6Attributes(BaseModel):
 
     weapon_ids: list[str] = Field(
         ...,
-        description="list of IDs from the weapons list",
+        description='list of IDs from the weapons list, e.g. ["weapon_id_1", "weapon_id_2"]',
     )
     armor_ids: list[str] = Field(
         ...,
-        description="list of IDs from the armor list. Maximum 1 of each subtype.",
+        description='list of IDs from the armor list. Maximum 1 of each subtype. e.g. ["armor_id_1", "helmet_id_2"]',
     )
 
 
