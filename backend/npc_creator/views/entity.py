@@ -117,7 +117,10 @@ class EntityViewSet(viewsets.ModelViewSet):
 
             own = self.request.query_params.get("own", False)
             favorites = self.request.query_params.get("favorites", False)
-            if own:
+            if own and self.request.user.is_superuser:
+                # admins see all entries
+                queryset = queryset.all()
+            elif own:
                 queryset = queryset.filter(creator=self.request.user)
             elif favorites:
                 queryset = queryset.filter(favorite__collection__user=self.request.user)
