@@ -12,6 +12,6 @@ fi
 python manage.py migrate
 python manage.py collectstatic --noinput
 
-gunicorn shadowrun.wsgi --bind 0.0.0.0:8010 --workers 3 --daemon
+gunicorn shadowrun.wsgi --bind 0.0.0.0:8010 --workers 6 --daemon
 
 nginx -g 'daemon off;'
