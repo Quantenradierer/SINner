@@ -37,7 +37,6 @@ Folgendes ist eine Liste der Waffen, gib in der Antwort nur die ID an:
 Folgendes ist eine Liste der Rüstzeug, gib in der Antwort nur die ID an:
     {json.dumps(list(self._armors()))}
 """
-        print({json.dumps(list(self._weapons()))})
 
     def _weapons(self):
         for weapon in weapon_loader.weapons.values():

@@ -1,3 +1,6 @@
+from enum import Enum
+from typing import Annotated
+
 from django.db import models
 from pydantic import constr, BaseModel, Field
 
@@ -7,6 +10,21 @@ from npc_creator.models import Entity
 from npc_creator.operations.gpt import npc
 
 
+class Metatype(Enum):
+    HUMAN = "human"
+    ORK = "ork"
+    DWARF = "dwarf"
+    ELF = "elf"
+    TROLL = "troll"
+    SPIRIT = "spirit"
+    AI = "ai"
+    OGER = "oger"
+    DRAKE = "drake"
+    ONI = "oni"
+    HOBGOBLIN = "hobgoblin"
+    OTHER = "other"
+
+
 class NpcManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(kind=Entity.Kinds.NPC)
@@ -14,14 +32,19 @@ class NpcManager(models.Manager):
 
 class GalleryAttributes(BaseModel):
     profession: str
-    metatype: constr(max_length=50)
-    age: constr(max_length=10)
+    metatype_enum: Metatype = Field(
+        description=f"available metatypes: {', '.join([m.value for m in Metatype])}"
+    )
+    age: Annotated[str, Field(max_length=10)]
     appearance: str
 
 
 class StoryAttributes(BaseModel):
     profession: str
     metatype: constr(max_length=50)
+    metatype_enum: Metatype = Field(
+        description=f"available metatypes: {', '.join([m.value for m in Metatype])}"
+    )
     ethnicity: str
     gender: str
     age: constr(max_length=10)
