@@ -1,0 +1,104 @@
+[
+  {
+    "id": "sr6core/accessory-ARgloves",
+    "type": "accessory",
+    "device_rating": 3,
+    "avail": "1",
+    "cost": 150,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-BiometricReader",
+    "type": "accessory",
+    "device_rating": 3,
+    "avail": "2",
+    "cost": 200,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-ElectronicPaper",
+    "type": "accessory",
+    "device_rating": 1,
+    "avail": "1",
+    "cost": 5,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-Printer",
+    "type": "accessory",
+    "device_rating": 3,
+    "avail": "1",
+    "cost": 25,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-SatelliteLink",
+    "type": "accessory",
+    "device_rating": 4,
+    "avail": "3",
+    "cost": 500,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-Simrig",
+    "type": "accessory",
+    "device_rating": 3,
+    "avail": "4",
+    "cost": 1000,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-SubvocalMic",
+    "type": "accessory",
+    "subtype": "Accessory",
+    "device_rating": 3,
+    "avail": "2",
+    "cost": 50,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-TridProjector",
+    "type": "accessory",
+    "subtype": "Accessory",
+    "device_rating": 3,
+    "avail": "1",
+    "cost": 200,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/accessory-Trodes",
+    "type": "accessory",
+    "subtype": "Accessory",
+    "device_rating": 3,
+    "avail": "1",
+    "cost": 70,
+    "source": {
+      "page": 268,
+      "book": "SR6Core"
+    }
+  }
+]

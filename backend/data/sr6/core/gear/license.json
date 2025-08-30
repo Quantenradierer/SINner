@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sr6core/identification-fake_license/1",
+    "type": "license",
+    "rating": 1,
+    "avail": "4I",
+    "cost": 200,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_license/2",
+    "type": "license",
+    "rating": 2,
+    "avail": "4I",
+    "cost": 400,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_license/3",
+    "type": "license",
+    "rating": 3,
+    "avail": "4I",
+    "cost": 600,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_license/4",
+    "type": "license",
+    "rating": 4,
+    "avail": "4I",
+    "cost": 800,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_license/5",
+    "type": "license",
+    "rating": 5,
+    "avail": "4I",
+    "cost": 1000,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_license/6",
+    "type": "license",
+    "rating": 6,
+    "avail": "4I",
+    "cost": 1200,
+    "source": { "page": 273, "book": "SR6Core" }
+  }
+]

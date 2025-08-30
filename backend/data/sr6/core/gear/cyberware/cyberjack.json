@@ -1,0 +1,80 @@
+[
+  {
+    "id": "sr6core/cyberjack/1",
+    "type": "cyberware",
+    "subtype": "cyberjack",
+    "rating": 1,
+    "D": 4,
+    "F": 3,
+    "avail": "3(L)",
+    "essence": 1,
+    "cost": 45000,
+    "source": { "page": 284, "book": "SR6Core" },
+    "wear_rules": ["Cyberjack +1 Matrix Initiative AR", "Cyberjack +1 Matrix Initiative VR Cold", "Cyberjack +1 Matrix Initiative VR Hot"]
+  },
+  {
+    "id": "sr6core/cyberjack/2",
+    "type": "cyberware",
+    "subtype": "cyberjack",
+    "rating": 2,
+    "D": 5,
+    "F": 4,
+    "avail": "3(L)",
+    "essence": 1.5,
+    "cost": 65000,
+    "source": { "page": 284, "book": "SR6Core" },
+    "wear_rules": ["Cyberjack +1 Matrix Initiative AR", "Cyberjack +1 Matrix Initiative VR Cold", "Cyberjack +1 Matrix Initiative VR Hot"]
+  },
+  {
+    "id": "sr6core/cyberjack/3",
+    "type": "cyberware",
+    "subtype": "cyberjack",
+    "rating": 3,
+    "D": 6,
+    "F": 5,
+    "avail": "3(L)",
+    "essence": 2,
+    "cost": 80000,
+    "source": { "page": 284, "book": "SR6Core" },
+    "wear_rules": ["Cyberjack +2 Matrix Initiative AR", "Cyberjack +2 Matrix Initiative VR Cold", "Cyberjack +2 Matrix Initiative VR Hot"]
+  },
+  {
+    "id": "sr6core/cyberjack/4",
+    "type": "cyberware",
+    "subtype": "cyberjack",
+    "rating": 4,
+    "D": 7,
+    "F": 6,
+    "avail": "4(L)",
+    "essence": 2.3,
+    "cost": 95000,
+    "source": { "page": 284, "book": "SR6Core" },
+    "wear_rules": ["Cyberjack +2 Matrix Initiative AR", "Cyberjack +2 Matrix Initiative VR Cold", "Cyberjack +2 Matrix Initiative VR Hot"]
+  },
+  {
+    "id": "sr6core/cyberjack/5",
+    "type": "cyberware",
+    "subtype": "cyberjack",
+    "rating": 5,
+    "D": 8,
+    "F": 7,
+    "avail": "5(L)",
+    "essence": 2.6,
+    "cost": 140000,
+    "source": { "page": 284, "book": "SR6Core" },
+    "wear_rules": ["Cyberjack +3 Matrix Initiative AR", "Cyberjack +3 Matrix Initiative VR Cold", "Cyberjack +3 Matrix Initiative VR Hot"]
+  },
+  {
+    "id": "sr6core/cyberjack/6",
+    "type": "cyberware",
+    "subtype": "cyberjack",
+    "rating": 6,
+    "D": 9,
+    "F": 8,
+    "avail": "6(L)",
+    "essence": 3,
+    "cost": 210000,
+    "source": { "page": 284, "book": "SR6Core" },
+    "wear_rules": ["Cyberjack +3 Matrix Initiative AR", "Cyberjack +3 Matrix Initiative VR Cold", "Cyberjack +3 Matrix Initiative VR Hot"]
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "id": "sr6core/audiodevice-directionalmic/1",
+    "type": "audiodevice",
+    "capacity": 1,
+    "avail": "2",
+    "cost": 50,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-directionalmic/2",
+    "type": "audiodevice",
+    "capacity": 2,
+    "avail": "2",
+    "cost": 100,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-directionalmic/3",
+    "type": "audiodevice",
+    "capacity": 3,
+    "avail": "2",
+    "cost": 150,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-directionalmic/4",
+    "type": "audiodevice",
+    "capacity": 4,
+    "avail": "2",
+    "cost": 200,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-directionalmic/5",
+    "type": "audiodevice",
+    "capacity": 5,
+    "avail": "2",
+    "cost": 250,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-directionalmic/6",
+    "type": "audiodevice",
+    "capacity": 6,
+    "avail": "2",
+    "cost": 300,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+
+  {
+    "id": "sr6core/audiodevice-earbuds/1",
+    "type": "audiodevice",
+    "capacity": 1,
+    "avail": "1",
+    "cost": 50,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-earbuds/2",
+    "type": "audiodevice",
+    "capacity": 2,
+    "avail": "1",
+    "cost": 100,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-earbuds/3",
+    "type": "audiodevice",
+    "capacity": 3,
+    "avail": "1",
+    "cost": 150,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+
+  {
+    "id": "sr6core/audiodevice-headphones/1",
+    "type": "audiodevice",
+    "capacity": 1,
+    "avail": "1",
+    "cost": 50,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-headphones/2",
+    "type": "audiodevice",
+    "capacity": 2,
+    "avail": "1",
+    "cost": 100,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-headphones/3",
+    "type": "audiodevice",
+    "capacity": 3,
+    "avail": "1",
+    "cost": 150,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-headphones/4",
+    "type": "audiodevice",
+    "capacity": 4,
+    "avail": "1",
+    "cost": 200,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-headphones/5",
+    "type": "audiodevice",
+    "capacity": 5,
+    "avail": "1",
+    "cost": 250,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-headphones/6",
+    "type": "audiodevice",
+    "capacity": 6,
+    "avail": "1",
+    "cost": 300,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+
+  {
+    "id": "sr6core/audiodevice-lasermic/1",
+    "type": "audiodevice",
+    "capacity": 1,
+    "avail": "2",
+    "cost": 100,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-lasermic/2",
+    "type": "audiodevice",
+    "capacity": 2,
+    "avail": "2",
+    "cost": 200,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-lasermic/3",
+    "type": "audiodevice",
+    "capacity": 3,
+    "avail": "2",
+    "cost": 300,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-lasermic/4",
+    "type": "audiodevice",
+    "capacity": 4,
+    "avail": "2",
+    "cost": 400,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-lasermic/5",
+    "type": "audiodevice",
+    "capacity": 5,
+    "avail": "2",
+    "cost": 500,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-lasermic/6",
+    "type": "audiodevice",
+    "capacity": 6,
+    "avail": "2",
+    "cost": 600,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+
+  {
+    "id": "sr6core/audiodevice-omnimic/1",
+    "type": "audiodevice",
+    "capacity": 1,
+    "avail": "1",
+    "cost": 50,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-omnimic/2",
+    "type": "audiodevice",
+    "capacity": 2,
+    "avail": "1",
+    "cost": 100,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-omnimic/3",
+    "type": "audiodevice",
+    "capacity": 3,
+    "avail": "1",
+    "cost": 150,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-omnimic/4",
+    "type": "audiodevice",
+    "capacity": 4,
+    "avail": "1",
+    "cost": 200,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-omnimic/5",
+    "type": "audiodevice",
+    "capacity": 5,
+    "avail": "1",
+    "cost": 250,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/audiodevice-omnimic/6",
+    "type": "audiodevice",
+    "capacity": 6,
+    "avail": "1",
+    "cost": 300,
+    "source": { "page": 276, "book": "SR6Core" }
+  }
+]

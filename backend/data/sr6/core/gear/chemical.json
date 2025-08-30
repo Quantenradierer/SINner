@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sr6core/chemicals-glue-solvent",
+    "type": "chemical",
+    "avail": "1",
+    "cost": 90,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/chemicals-glue-sprayer",
+    "type": "chemical",
+    "avail": "1",
+    "cost": 150,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/chemicals-thermite-burning-bar",
+    "type": "chemical",
+    "avail": "5(L)",
+    "cost": 500,
+    "source": { "page": 279, "book": "SR6Core" }
+  }
+]

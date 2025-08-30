@@ -1,0 +1,178 @@
+[
+  {
+    "id": "SR6Core/weapon_accessory/airburst_link",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "3",
+    "cost": 600,
+    "rule": "Allows grenade/rocket launchers to airburst projectiles; reduces scatter distance to 2m/net hit when wireless; prevents Hit the Deck by targets. Requires wireless mode to function.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/bipod",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Under",
+    "avail": "1",
+    "cost": 200,
+    "rule": "Provides +2 Attack Rating (AR) when deployed. Wireless: +3 AR if used while prone/sitting.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/concealable_holster",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "1",
+    "cost": 150,
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/gas_vent_system",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Barrel",
+    "avail": "3",
+    "cost": 500,
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/gyro_mount",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Under",
+    "avail": "3",
+    "cost": 1400,
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/hidden_arm_slide",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "2",
+    "cost": 350,
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/imaging_scope",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Top",
+    "avail": "1",
+    "cost": 350,
+    "rule": "Allows for magnified visual targeting, typically improving AR at distance (specific methods in vision rules).",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/laser_sight",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Top or Under",
+    "avail": "1",
+    "cost": 125,
+    "rule": "Standard laser aiming; generally provides bonuses to specific aiming actions.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/periscope",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Top",
+    "avail": "2",
+    "cost": 70,
+    "rule": "Allows viewing/firing over cover from greater safety.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/quick_draw_holster",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "2",
+    "cost": 175,
+    "rule": "Provides bonus Minor Action when using Quick-Draw Action.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/shock_pad",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "2",
+    "cost": 50,
+    "rule": "Reduces Semi-Auto/Burst Fire AR modifiers by 1.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/silencer",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Barrel",
+    "avail": "4",
+    "cost": 500,
+    "rule": "Raises Perception threshold by 2 to detect/locate shooter. Major Action to attach/remove. Not for revolvers/shotguns. Wireless: alerts to nearby quick movement in response.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/smart_firing_platform",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Under",
+    "avail": "5",
+    "cost": 2500,
+    "rule": "Robotic tripod: mounts one smartgun weapon, pilot fires (DR3/Targeting 3). Negates AR adj. for Semi/Burst, +3 AR for Full Auto. Can fire remotely via VR (with smartlink implant).",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/smartgun_system_internal",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "1(L)",
+    "cost": 500,
+    "rule": "Adds smartgun capability built-in. +2 AR if user has smartlink, camera for firing from cover, digital ammo tracking, wireless: +1 dice pool and Minor Actions for ejection/mode change.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/smartgun_system_external",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Top or Under",
+    "avail": "2(L)",
+    "cost": 200,
+    "rule": "External smartgun upgrade, same effects as internal; must be installed with Engineering+Logic.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/spare_clip",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "2",
+    "cost": 5,
+    "rule": "Spare magazine for weapon. Wireless: reports current ammo count, even without smartgun.",
+    "source": { "book": "SR6Core", "page": 260 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/speed_loader",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "—",
+    "avail": "1",
+    "cost": 25,
+    "rule": "Fully reloads revolver as Minor Action. Wireless: transmits type and count of rounds.",
+    "source": { "book": "SR6Core", "page": 261 }
+  },
+  {
+    "id": "SR6Core/weapon_accessory/tripod",
+    "type": "weaponmod",
+    "mod_for": {"type":  ["weapon"]},
+    "mount": "Under",
+    "avail": "2",
+    "cost": 500,
+    "rule": "Negates AR penalty for Semi-Auto/Burst, +3 AR for Full-Auto. Major Action to attach, Minor Action to fold/deploy. Wireless: free Minor Action each turn to fold/deploy/remove.",
+    "source": { "book": "SR6Core", "page": 261 }
+  }
+]

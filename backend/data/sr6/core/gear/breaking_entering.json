@@ -1,0 +1,251 @@
+[
+  {
+    "id": "sr6core/breakingandentering-autopicker/1",
+    "type": "breakingandentering",
+    "rating": 1,
+    "avail": "4",
+    "cost": 500,
+    "rule": "Autopicker +1 lockpicking",
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-autopicker/2",
+    "type": "breakingandentering",
+    "rating": 2,
+    "avail": "4",
+    "cost": 1000,
+    "rule": "Autopicker +1 lockpicking",
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-autopicker/3",
+    "type": "breakingandentering",
+    "rating": 3,
+    "avail": "4",
+    "cost": 1500,
+    "rule": "Autopicker +1 lockpicking",
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-autopicker/4",
+    "type": "breakingandentering",
+    "rating": 4,
+    "avail": "4",
+    "cost": 2000,
+    "rule": "Autopicker +1 lockpicking",
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-autopicker/5",
+    "type": "breakingandentering",
+    "rating": 5,
+    "avail": "4",
+    "cost": 2500,
+    "rule": "Autopicker +1 lockpicking",
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-autopicker/6",
+    "type": "breakingandentering",
+    "rating": 6,
+    "avail": "4",
+    "cost": 3000,
+    "rule": "Autopicker +1 lockpicking",
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-cellularglovemolder/1",
+    "type": "breakingandentering",
+    "rating": 1,
+    "avail": "6(I)",
+    "cost": 500,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-cellularglovemolder/2",
+    "type": "breakingandentering",
+    "rating": 2,
+    "avail": "6(I)",
+    "cost": 1000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-cellularglovemolder/3",
+    "type": "breakingandentering",
+    "rating": 3,
+    "avail": "6(I)",
+    "cost": 1500,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-cellularglovemolder/4",
+    "type": "breakingandentering",
+    "rating": 4,
+    "avail": "6(I)",
+    "cost": 2000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-chiselwreckingbar",
+    "type": "breakingandentering",
+    "avail": "1",
+    "cost": 20,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-keycardcopier/1",
+    "type": "breakingandentering",
+    "rating": 1,
+    "avail": "4(I)",
+    "cost": 600,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-keycardcopier/2",
+    "type": "breakingandentering",
+    "rating": 2,
+    "avail": "4(I)",
+    "cost": 1200,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-keycardcopier/3",
+    "type": "breakingandentering",
+    "rating": 3,
+    "avail": "4(I)",
+    "cost": 1800,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-keycardcopier/4",
+    "type": "breakingandentering",
+    "rating": 4,
+    "avail": "4(I)",
+    "cost": 2400,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-keycardcopier/5",
+    "type": "breakingandentering",
+    "rating": 5,
+    "avail": "4(I)",
+    "cost": 3000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-keycardcopier/6",
+    "type": "breakingandentering",
+    "rating": 6,
+    "avail": "4(I)",
+    "cost": 3600,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-lockpickset",
+    "type": "breakingandentering",
+    "avail": "2",
+    "cost": 250,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-maglockpasskey/1",
+    "type": "breakingandentering",
+    "rating": 1,
+    "avail": "3(I)",
+    "cost": 2000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-maglockpasskey/2",
+    "type": "breakingandentering",
+    "rating": 2,
+    "avail": "3(I)",
+    "cost": 4000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-maglockpasskey/3",
+    "type": "breakingandentering",
+    "rating": 3,
+    "avail": "3(I)",
+    "cost": 6000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-maglockpasskey/4",
+    "type": "breakingandentering",
+    "rating": 4,
+    "avail": "3(I)",
+    "cost": 8000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-miniwelder",
+    "type": "breakingandentering",
+    "avail": "1",
+    "cost": 250,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-miniwelderfuelcanister",
+    "type": "breakingandentering",
+    "avail": "1",
+    "cost": 80,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-monofilamentchainsaw",
+    "type": "breakingandentering",
+    "avail": "3",
+    "cost": 500,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-sequencer/1",
+    "type": "breakingandentering",
+    "rating": 1,
+    "avail": "4(I)",
+    "cost": 250,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-sequencer/2",
+    "type": "breakingandentering",
+    "rating": 2,
+    "avail": "4(I)",
+    "cost": 500,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-sequencer/3",
+    "type": "breakingandentering",
+    "rating": 3,
+    "avail": "4(I)",
+    "cost": 750,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-sequencer/4",
+    "type": "breakingandentering",
+    "rating": 4,
+    "avail": "4(I)",
+    "cost": 1000,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-sequencer/5",
+    "type": "breakingandentering",
+    "rating": 5,
+    "avail": "4(I)",
+    "cost": 1250,
+    "source": { "page": 279, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/breakingandentering-sequencer/6",
+    "type": "breakingandentering",
+    "rating": 6,
+    "avail": "4(I)",
+    "cost": 1500,
+    "source": { "page": 279, "book": "SR6Core" }
+  }
+]

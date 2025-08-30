@@ -1,0 +1,182 @@
+[
+  {
+    "id": "sr6core/survival-chemsuit/1",
+    "type": "survivalgear",
+    "rating": 1,
+    "avail": "4",
+    "cost": 150,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-chemsuit/2",
+    "type": "survivalgear",
+    "rating": 2,
+    "avail": "4",
+    "cost": 300,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-chemsuit/3",
+    "type": "survivalgear",
+    "rating": 3,
+    "avail": "4",
+    "cost": 450,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-chemsuit/4",
+    "type": "survivalgear",
+    "rating": 4,
+    "avail": "4",
+    "cost": 600,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-chemsuit/5",
+    "type": "survivalgear",
+    "rating": 5,
+    "avail": "4",
+    "cost": 750,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-chemsuit/6",
+    "type": "survivalgear",
+    "rating": 6,
+    "avail": "4",
+    "cost": 900,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-climbinggear",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 200,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-divinggear",
+    "type": "survivalgear",
+    "avail": "3",
+    "cost": 2000,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-flashlight",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 25,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-gasmask",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 200,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-geckotapegloves",
+    "type": "survivalgear",
+    "avail": "3",
+    "cost": 250,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-hazmatsuit",
+    "type": "survivalgear",
+    "avail": "3",
+    "cost": 3000,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-lightstick",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 25,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-magnesiumtorch",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 5,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-microflarelauncher",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 175,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-microflares",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 25,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-rappellinggloves",
+    "type": "survivalgear",
+    "avail": "1",
+    "cost": 50,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-respirator/1",
+    "type": "survivalgear",
+    "rating": 1,
+    "avail": "1",
+    "cost": 50,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-respirator/2",
+    "type": "survivalgear",
+    "rating": 2,
+    "avail": "1",
+    "cost": 100,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-respirator/3",
+    "type": "survivalgear",
+    "rating": 3,
+    "avail": "1",
+    "cost": 150,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-respirator/4",
+    "type": "survivalgear",
+    "rating": 4,
+    "avail": "1",
+    "cost": 200,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-respirator/5",
+    "type": "survivalgear",
+    "rating": 5,
+    "avail": "1",
+    "cost": 250,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-respirator/6",
+    "type": "survivalgear",
+    "rating": 6,
+    "avail": "1",
+    "cost": 300,
+    "source": { "page": 280, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/survival-survivalkit",
+    "type": "survivalgear",
+    "avail": "2",
+    "cost": 200,
+    "source": { "page": 280, "book": "SR6Core" }
+  }
+]

@@ -1,0 +1,356 @@
+[
+  {
+    "id": "sr6core/bone-lacing-plastic",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.5,
+    "avail": "3(L)",
+    "cost": 8000,
+    "wear_rules": [
+      "Cyberware/Bone Lacing/Body +1",
+      "Cyberware/Bone Lacing/Defense +1",
+      "Cyberware/Bone Lacing/Unarmed Damage 3P",
+      "Cyberware/Bone Lacing/Unarmed Attack Rating +1",
+      "Cyberware/Bone Lacing/Unarmed Physical Damage"
+    ],
+    "source": { "page": 286, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bone-lacing-aluminum",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1,
+    "avail": "4(L)",
+    "cost": 18000,
+    "wear_rules": [
+      "Cyberware/Bone Lacing/Body +2",
+      "Cyberware/Bone Lacing/Defense +1",
+      "Cyberware/Bone Lacing/Unarmed Damage 4P",
+      "Cyberware/Bone Lacing/Unarmed Attack Rating +2",
+      "Cyberware/Bone Lacing/Unarmed Physical Damage"
+    ],
+    "source": { "page": 286, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bone-lacing-titanium",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1.5,
+    "avail": "6(L)",
+    "cost": 30000,
+    "wear_rules": [
+      "Cyberware/Bone Lacing/Body +2",
+      "Cyberware/Bone Lacing/Defense +2",
+      "Cyberware/Bone Lacing/Unarmed Damage 4P",
+      "Cyberware/Bone Lacing/Unarmed Attack Rating +3",
+      "Cyberware/Bone Lacing/Unarmed Physical Damage"
+    ],
+    "source": { "page": 286, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-dermal_plating/1",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.3,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 4000,
+    "wear_rules": ["Cyberware/Dermal Plating/Defense Rating +1"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-dermal_plating/2",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.6,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 8000,
+    "wear_rules": ["Cyberware/Dermal Plating/Defense Rating +2"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-dermal_plating/3",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.9,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 12000,
+    "wear_rules": ["Cyberware/Dermal Plating/Defense Rating +3"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-dermal_plating/4",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1.2,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 16000,
+    "wear_rules": ["Cyberware/Dermal Plating/Defense Rating +4"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-fingertip_compartment",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "2",
+    "cost": 3000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-grapple_gun",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.5,
+    "capacity": 4,
+    "avail": "3",
+    "cost": 5000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-internal_air_tank/1",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.25,
+    "capacity": 1,
+    "avail": "2",
+    "cost": 4500,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-internal_air_tank/2",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.5,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 9000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-internal_air_tank/3",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.75,
+    "capacity": 3,
+    "avail": "2",
+    "cost": 13500,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-internal_air_tank/4",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1.0,
+    "capacity": 4,
+    "avail": "2",
+    "cost": 18000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-muscle_replacement/1",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.7,
+    "capacity": null,
+    "avail": "3(L)",
+    "cost": 30000,
+    "wear_rules": ["Cyberware/Muscle Replacement/Agility +1", "Cyberware/Muscle Replacement/Strength +1"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-muscle_replacement/2",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1.4,
+    "capacity": null,
+    "avail": "3(L)",
+    "cost": 60000,
+    "wear_rules": ["Cyberware/Muscle Replacement/Agility +2", "Cyberware/Muscle Replacement/Strength +2"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-muscle_replacement/3",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 2.1,
+    "capacity": null,
+    "avail": "3(L)",
+    "cost": 90000,
+    "wear_rules": ["Cyberware/Muscle Replacement/Agility +3", "Cyberware/Muscle Replacement/Strength +3"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-muscle_replacement/4",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 2.8,
+    "capacity": null,
+    "avail": "3(L)",
+    "cost": 120000,
+    "wear_rules": ["Cyberware/Muscle Replacement/Agility +4", "Cyberware/Muscle Replacement/Strength +4"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-reaction_enhancers/1",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.3,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 15000,
+    "wear_rules": ["Cyberware/Reaction Enhancers/Reaction +1"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-reaction_enhancers/2",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.6,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 30000,
+    "wear_rules": ["Cyberware/Reaction Enhancers/Reaction +2"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-reaction_enhancers/3",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.9,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 45000,
+    "wear_rules": ["Cyberware/Reaction Enhancers/Reaction +3"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-reaction_enhancers/4",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1.2,
+    "capacity": null,
+    "avail": "4(L)",
+    "cost": 60000,
+    "wear_rules": ["Cyberware/Reaction Enhancers/Reaction +4"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-skillwires/1",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.1,
+    "capacity": null,
+    "avail": "4",
+    "cost": 20000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-skillwires/2",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.2,
+    "capacity": null,
+    "avail": "4",
+    "cost": 40000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-skillwires/3",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.3,
+    "capacity": null,
+    "avail": "4",
+    "cost": 60000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-skillwires/4",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.4,
+    "capacity": null,
+    "avail": "4",
+    "cost": 80000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-skillwires/5",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.5,
+    "capacity": null,
+    "avail": "4",
+    "cost": 100000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-skillwires/6",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.6,
+    "capacity": null,
+    "avail": "4",
+    "cost": 120000,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-smuggling_compartment",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 0.2,
+    "capacity": 2,
+    "avail": "3",
+    "cost": 7500,
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-wired_reflexes/1",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 1,
+    "capacity": null,
+    "avail": "3(L)",
+    "cost": 40000,
+    "wear_rules": ["Cyberware/Wired Reflexes/Reaction +1", "Cyberware/Wired Reflexes/Initiative Dices +1"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-wired_reflexes/2",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 2,
+    "capacity": null,
+    "avail": "3(L)",
+    "cost": 150000,
+    "wear_rules": ["Cyberware/Wired Reflexes/Reaction +2", "Cyberware/Wired Reflexes/Initiative Dices +2"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-wired_reflexes/3",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 3,
+    "capacity": null,
+    "avail": "4(I)",
+    "cost": 250000,
+    "wear_rules": ["Cyberware/Wired Reflexes/Reaction +3", "Cyberware/Wired Reflexes/Initiative Dices +3"],
+    "source": { "page": 288, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/bodyware-wired_reflexes/4",
+    "type": "cyberware",
+    "subtype": "bodyware",
+    "essence": 4,
+    "capacity": null,
+    "avail": "6(I)",
+    "cost": 400000,
+    "wear_rules": ["Cyberware/Wired Reflexes/Reaction +4", "Cyberware/Wired Reflexes/Initiative Dices +4"],
+    "source": { "page": 288, "book": "SR6Core" }
+  }
+]

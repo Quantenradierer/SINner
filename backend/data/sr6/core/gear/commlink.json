@@ -1,0 +1,68 @@
+[
+  {
+    "id": "sr6core/commlink-1",
+    "type": "commlink",
+    "device_rating": 1,
+    "D": 1,
+    "F": 0,
+    "active_program_slots": 0,
+    "avail": "2",
+    "cost": 100,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/commlink-2",
+    "type": "commlink",
+    "device_rating": 2,
+    "D": 1,
+    "F": 1 ,
+    "active_program_slots": 1,
+    "avail": "2",
+    "cost": 700,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/commlink-3",
+    "type": "commlink",
+    "device_rating": 3,
+    "D": 2,
+    "F": 0,
+    "active_program_slots": 1,
+    "avail": "2",
+    "cost": 1000,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/commlink-4",
+    "type": "commlink",
+    "device_rating": 4,
+    "D": 2,
+    "F": 1,
+    "active_program_slots": 2,
+    "avail": "2",
+    "cost": 2500,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/commlink-5",
+    "type": "commlink",
+    "device_rating": 5,
+    "D": 3,
+    "F": 0,
+    "active_program_slots": 2,
+    "avail": "3",
+    "cost": 5000,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/commlink-6",
+    "type": "commlink",
+    "device_rating": 6,
+    "D": 3,
+    "F": 1,
+    "active_program_slots": 3,
+    "avail": "3",
+    "cost": 8000,
+    "source": { "page": 267, "book": "SR6Core" }
+  }
+]

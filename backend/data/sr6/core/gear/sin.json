@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sr6core/identification-fake_sin/1",
+    "type": "sin",
+    "rating": 1,
+    "avail": "4I",
+    "cost": 2500,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_sin/2",
+    "type": "sin",
+    "rating": 2,
+    "avail": "4I",
+    "cost": 5000,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_sin/3",
+    "type": "sin",
+    "rating": 3,
+    "avail": "4I",
+    "cost": 7500,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_sin/4",
+    "type": "sin",
+    "rating": 4,
+    "avail": "4I",
+    "cost": 10000,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_sin/5",
+    "type": "sin",
+    "rating": 5,
+    "avail": "4I",
+    "cost": 12500,
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/identification-fake_sin/6",
+    "type": "sin",
+    "rating": 6,
+    "avail": "4I",
+    "cost": 15000,
+    "source": { "page": 273, "book": "SR6Core" }
+  }
+]

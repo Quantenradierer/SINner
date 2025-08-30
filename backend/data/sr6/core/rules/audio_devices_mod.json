@@ -1,0 +1,10 @@
+
+[
+  {
+    "id": "Audio Device Modification - Aural Enhancement",
+    "source": { "page": 275, "book": "SR6Core" },
+    "modifies": "character.skills.perception.aural",
+    "modifier_type": "ADD",
+    "modification": "1"
+  }
+]

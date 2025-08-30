@@ -1,0 +1,46 @@
+[
+  {
+    "id": "sr6core/RFID-standard",
+    "type": "rfid",
+    "device_rating": 1,
+    "avail": "1",
+    "cost": 1,
+    "source": {
+      "page": 269,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/RFID-datachip",
+    "type": "rfid",
+    "device_rating": 1,
+    "avail": "1",
+    "cost": 5,
+    "source": {
+      "page": 269,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/RFID-security-stealth",
+    "type": "rfid",
+    "device_rating": 3,
+    "avail": "2",
+    "cost": 10,
+    "source": {
+      "page": 269,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/RFID-sensor",
+    "type": "rfid",
+    "device_rating": 2,
+    "avail": "2",
+    "cost": 40,
+    "source": {
+      "page": 269,
+      "book": "SR6Core"
+    }
+  }
+]

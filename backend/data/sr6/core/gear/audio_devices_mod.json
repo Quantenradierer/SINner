@@ -1,0 +1,43 @@
+[
+  {
+    "id": "sr6core/audioenhancement/1",
+    "type": "audiodevicemod",
+    "capacity": 1,
+    "avail": "1",
+    "cost": 500,
+    "wear_rules": ["Audio Device Modification - Aural Enhancement"],
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/selectsoundfilter/1",
+    "type": "audiodevicemod",
+    "capacity": 1,
+    "avail": "3",
+    "cost": 250,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/selectsoundfilter/2",
+    "type": "audiodevicemod",
+    "capacity": 2,
+    "avail": "3",
+    "cost": 500,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/selectsoundfilter/3",
+    "type": "audiodevicemod",
+    "capacity": 3,
+    "avail": "3",
+    "cost": 750,
+    "source": { "page": 276, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/spatialrecognizer/1",
+    "type": "audiodevicemod",
+    "capacity": 2,
+    "avail": "2",
+    "cost": 1000,
+    "source": { "page": 276, "book": "SR6Core" }
+  }
+]

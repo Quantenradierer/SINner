@@ -1,0 +1,134 @@
+[
+  {
+    "id": "sr6core/H-1",
+    "type": "armor",
+    "subtype": "ARMOR_HELMET",
+    "defense_rating": 2,
+    "capacity": 6,
+    "avail": "0",
+    "cost": 500,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-1",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 3,
+    "capacity": 1,
+    "avail": "1",
+    "cost": 300,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-2",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 6,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 1500,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-3",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 4,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 500,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-4",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 8,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 1000,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-5",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 6,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 750,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-6",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 4,
+    "capacity": 4,
+    "avail": "4",
+    "cost": 2000,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-7",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 10,
+    "capacity": 4,
+    "avail": "4",
+    "cost": 2000,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-8",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 7,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 900,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/A-9",
+    "type": "armor",
+    "subtype": "ARMOR_BODY",
+    "defense_rating": 6,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 800,
+    "source": { "page": 266, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/S-1",
+    "type": "armor",
+    "subtype": "ARMOR_SHIELD",
+    "defense_rating": 4,
+    "capacity": 4,
+    "avail": "3",
+    "cost": 800,
+    "source": { "page": 267, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  },
+  {
+    "id": "sr6core/S-2",
+    "type": "armor",
+    "subtype": "ARMOR_SHIELD",
+    "defense_rating": 4,
+    "capacity": 4,
+    "avail": "4",
+    "cost": 1200,
+    "source": { "page": 267, "book": "SR6Core" },
+    "wear_rules": ["Armor Defense Rating"]
+  }
+]

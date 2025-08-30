@@ -1,0 +1,216 @@
+[
+  {
+    "id": "sr6core/cybereyes/1",
+    "type": "cyberware",
+    "subtype": "eyeware",
+    "rating": 1,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "2",
+    "cost": 1000,
+    "replacement": ["eye"],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cybereyes/2",
+    "type": "cyberware",
+    "subtype": "eyeware",
+    "rating": 2,
+    "essence": 0.2,
+    "capacity": 4,
+    "avail": "2",
+    "cost": 4000,
+    "replacement": ["eye"],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cybereyes/3",
+    "type": "cyberware",
+    "subtype": "eyeware",
+    "rating": 3,
+    "essence": 0.3,
+    "capacity": 8,
+    "avail": "3",
+    "cost": 6000,
+    "replacement": ["eye"],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cybereyes/4",
+    "type": "cyberware",
+    "subtype": "eyeware",
+    "rating": 4,
+    "essence": 0.4,
+    "capacity": 12,
+    "avail": "3",
+    "cost": 10000,
+    "replacement": ["eye"],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cybereyes/5",
+    "type": "cyberware",
+    "subtype": "eyeware",
+    "rating": 5,
+    "essence": 0.5,
+    "capacity": 16,
+    "avail": "3",
+    "cost": 16000,
+    "replacement": ["eye"],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/flare-compensation",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "2",
+    "cost": 1000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/image-link",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.1,
+    "capacity": null,
+    "avail": "2",
+    "cost": 800,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/low-light-vision",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.1,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 1500,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/ocular-drone",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.3,
+    "capacity": 6,
+    "avail": "3",
+    "cost": 6000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/retinal-duplication/1",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "rating": 1,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "5(I)",
+    "cost": 20000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/retinal-duplication/2",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "rating": 2,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "5(I)",
+    "cost": 40000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/retinal-duplication/3",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "rating": 3,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "5(I)",
+    "cost": 60000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/retinal-duplication/4",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "rating": 4,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "5(I)",
+    "cost": 80000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/retinal-duplication/5",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "rating": 5,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "5(I)",
+    "cost": 100000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/retinal-duplication/6",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "rating": 6,
+    "essence": 0.1,
+    "capacity": 1,
+    "avail": "5(I)",
+    "cost": 120000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/smartlink",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.2,
+    "capacity": 3,
+    "avail": "3(L)",
+    "cost": 4000,
+    "wear_rules": [
+      "Cyberware/Cybereye/Smartlink/Attack Rating Close +2",
+      "Cyberware/Cybereye/Smartlink/Attack Rating Near +2",
+      "Cyberware/Cybereye/Smartlink/Attack Rating Medium +2",
+      "Cyberware/Cybereye/Smartlink/Attack Rating Far +2",
+      "Cyberware/Cybereye/Smartlink/Attack Rating Very Far +2"
+    ],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/thermographic-vision",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.1,
+    "capacity": 2,
+    "avail": "2",
+    "cost": 2000,
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/vision-enhancement",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.1,
+    "capacity": 2,
+    "avail": "3",
+    "cost": 4000,
+    "wear_rules": ["Cybereye Vision enhancement +1 Visual Perception"],
+    "source": { "page": 285, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/vision-magnification",
+    "type": "cyberwaremod",
+    "subtype": "eyewaremod",
+    "essence": 0.1,
+    "capacity": 2,
+    "avail": "3",
+    "cost": 2000,
+    "source": { "page": 285, "book": "SR6Core" }
+  }
+]

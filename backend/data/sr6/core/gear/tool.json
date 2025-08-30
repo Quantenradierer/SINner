@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sr6core/tools-kit",
+    "type": "tool",
+    "cost": 500,
+    "avail": "1",
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/tools-shop",
+    "type": "tool",
+    "cost": 5000,
+    "avail": "4",
+    "source": { "page": 273, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/tools-facility",
+    "type": "tool",
+    "cost": 50000,
+    "avail": "7",
+    "source": { "page": 273, "book": "SR6Core" }
+  }
+]

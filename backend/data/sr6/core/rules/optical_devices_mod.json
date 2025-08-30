@@ -1,0 +1,18 @@
+
+[
+  {
+    "id": "Optical Device Modification - Smartlink",
+    "source": { "page": 275, "book": "SR6Core" },
+    "modifies": "[w.attack_dices for w in character.weapons]",
+    "modifier_type": "ADD",
+    "enable": "weapon.smartlink_active",
+    "modification": "1"
+  },
+  {
+    "id": "Optical Device Modification - Vision Enhancement",
+    "source": { "page": 275, "book": "SR6Core" },
+    "modifies": "character.skills.perception.visual",
+    "modifier_type": "ADD",
+    "modification": "1"
+  }
+]

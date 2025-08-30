@@ -1,0 +1,285 @@
+[
+  {
+    "id": "sr6core/biotech-biomonitor",
+    "type": "biotech",
+    "avail": "2",
+    "cost": 300,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-basic/month",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 500,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-basic/year",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 5000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-gold/month",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 2500,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-gold/year",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 25000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-platinum/month",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 5000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-platinum/year",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 50000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-docwagon-contract-superplatinum/year",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 100000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-disposable-syringe",
+    "type": "biotech",
+    "avail": "2",
+    "cost": 10,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit/1",
+    "type": "biotech",
+    "rating": 1,
+    "avail": "3",
+    "cost": 250,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit/2",
+    "type": "biotech",
+    "rating": 2,
+    "avail": "3",
+    "cost": 500,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit/3",
+    "type": "biotech",
+    "rating": 3,
+    "avail": "3",
+    "cost": 750,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit/4",
+    "type": "biotech",
+    "rating": 4,
+    "avail": "3",
+    "cost": 1000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit/5",
+    "type": "biotech",
+    "rating": 5,
+    "avail": "3",
+    "cost": 1250,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit/6",
+    "type": "biotech",
+    "rating": 6,
+    "avail": "3",
+    "cost": 1500,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-medkit-supplies",
+    "type": "biotech",
+    "avail": "1",
+    "cost": 100,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-antidote-patch",
+    "type": "biotech",
+    "avail": "3",
+    "cost": 150,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-chem-patch",
+    "type": "biotech",
+    "avail": "3",
+    "cost": 200,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-stim-patch/1",
+    "type": "biotech",
+    "rating": 1,
+    "avail": "3",
+    "cost": 25,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-stim-patch/2",
+    "type": "biotech",
+    "rating": 2,
+    "avail": "3",
+    "cost": 50,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-stim-patch/3",
+    "type": "biotech",
+    "rating": 3,
+    "avail": "3",
+    "cost": 75,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-stim-patch/4",
+    "type": "biotech",
+    "rating": 4,
+    "avail": "3",
+    "cost": 100,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-stim-patch/5",
+    "type": "biotech",
+    "rating": 5,
+    "avail": "3",
+    "cost": 125,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-stim-patch/6",
+    "type": "biotech",
+    "rating": 6,
+    "avail": "3",
+    "cost": 150,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/1",
+    "type": "biotech",
+    "rating": 1,
+    "avail": "3",
+    "cost": 10,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/2",
+    "type": "biotech",
+    "rating": 2,
+    "avail": "3",
+    "cost": 40,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/3",
+    "type": "biotech",
+    "rating": 3,
+    "avail": "3",
+    "cost": 90,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/4",
+    "type": "biotech",
+    "rating": 4,
+    "avail": "3",
+    "cost": 160,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/5",
+    "type": "biotech",
+    "rating": 5,
+    "avail": "3",
+    "cost": 250,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/6",
+    "type": "biotech",
+    "rating": 6,
+    "avail": "3",
+    "cost": 360,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/7",
+    "type": "biotech",
+    "rating": 7,
+    "avail": "3",
+    "cost": 490,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/8",
+    "type": "biotech",
+    "rating": 8,
+    "avail": "3",
+    "cost": 640,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/9",
+    "type": "biotech",
+    "rating": 9,
+    "avail": "3",
+    "cost": 810,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/10",
+    "type": "biotech",
+    "rating": 10,
+    "avail": "3",
+    "cost": 1000,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/11",
+    "type": "biotech",
+    "rating": 11,
+    "avail": "3",
+    "cost": 1210,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-tranq-patch/12",
+    "type": "biotech",
+    "rating": 12,
+    "avail": "3",
+    "cost": 1440,
+    "source": { "page": 282, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/biotech-trauma-patch",
+    "type": "biotech",
+    "avail": "3",
+    "cost": 500,
+    "source": { "page": 282, "book": "SR6Core" }
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "sr6core/cyberdeck-1",
+    "type": "cyberdeck",
+    "device_rating": 1,
+    "A": 4,
+    "S": 3,
+    "active_program_slots": 2,
+    "avail": "3",
+    "cost": 24750,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cyberdeck-2",
+    "type": "cyberdeck",
+    "device_rating": 2,
+    "A": 5,
+    "S": 4,
+    "active_program_slots": 4,
+    "avail": "3",
+    "cost": 61500,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cyberdeck-3",
+    "type": "cyberdeck",
+    "device_rating": 3,
+    "A": 6,
+    "S": 5,
+    "active_program_slots": 6,
+    "avail": "3",
+    "cost": 107000,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cyberdeck-4",
+    "type": "cyberdeck",
+    "device_rating": 4,
+    "A": 7,
+    "S": 6,
+    "active_program_slots": 8,
+    "avail": "4",
+    "cost": 95000,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cyberdeck-5",
+    "type": "cyberdeck",
+    "device_rating": 5,
+    "A": 8,
+    "S": 7,
+    "active_program_slots": 10,
+    "avail": "5",
+    "cost": 172500,
+    "source": { "page": 267, "book": "SR6Core" }
+  },
+  {
+    "id": "sr6core/cyberdeck-6",
+    "type": "cyberdeck",
+    "device_rating": 6,
+    "A": 9,
+    "S": 8,
+    "active_program_slots": 12,
+    "avail": "6",
+    "cost": 410600,
+    "source": { "page": 267, "book": "SR6Core" }
+  }
+]

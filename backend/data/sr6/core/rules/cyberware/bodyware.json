@@ -1,0 +1,244 @@
+[
+  {
+    "id": "Cyberware/Bone Lacing/Body +1",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.attributes.body",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Body +2",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.attributes.body",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Defense +1",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.defense_rating",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Defense +2",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.defense_rating",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Unarmed Damage 3P",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.unarmed.damage",
+    "modifier_type": "REPLACEMENT",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Unarmed Damage 4P",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.unarmed.damage",
+    "modifier_type": "REPLACEMENT",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Unarmed Attack Rating +1",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.unarmed.attack_rating_0",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Unarmed Attack Rating +2",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.unarmed.attack_rating_0",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Unarmed Attack Rating +3",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.unarmed.attack_rating_0",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Dermal Plating/Defense Rating +1",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.defense_rating",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Dermal Plating/Defense Rating +2",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.defense_rating",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Dermal Plating/Defense Rating +3",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.defense_rating",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Dermal Plating/Defense Rating +4",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.defense_rating",
+    "modifier_type": "ADD",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Agility +1",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.agility",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Strength +1",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.strength",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Agility +2",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.agility",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Strength +2",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.strength",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Agility +3",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.agility",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Strength +3",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.strength",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Agility +4",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.agility",
+    "modifier_type": "ADD",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Muscle Replacement/Strength +4",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.strength",
+    "modifier_type": "ADD",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Reaction Enhancers/Reaction +1",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Reaction Enhancers/Reaction +2",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Reaction Enhancers/Reaction +3",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Reaction Enhancers/Reaction +4",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Reaction +1",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Reaction +2",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Reaction +3",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Reaction +4",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.attributes.reaction",
+    "modifier_type": "ADD",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Initiative Dices +1",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.physical_initiative_dices",
+    "modifier_type": "ADD",
+    "modification": "1"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Initiative Dices +2",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.physical_initiative_dices",
+    "modifier_type": "ADD",
+    "modification": "2"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Initiative Dices +3",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.physical_initiative_dices",
+    "modifier_type": "ADD",
+    "modification": "3"
+  },
+  {
+    "id": "Cyberware/Wired Reflexes/Initiative Dices +4",
+    "source": { "page": 287, "book": "SR6Core" },
+    "modifies": "character.physical_initiative_dices",
+    "modifier_type": "ADD",
+    "modification": "4"
+  },
+  {
+    "id": "Cyberware/Bone Lacing/Unarmed Physical Damage",
+    "source": { "page": 286, "book": "SR6Core" },
+    "modifies": "character.unarmed.damage_type",
+    "modifier_type": "REPLACEMENT",
+    "modification": "'P'"
+  }
+]
+
+
+
+
