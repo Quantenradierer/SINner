@@ -1,290 +1,386 @@
 [
   {
-    "id": "sr6core/optics-binoculars/1",
+    "id": "sr6core/opticaldevice/optics_binoculars/1",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "1",
     "cost": 50,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-binoculars/2",
+    "id": "sr6core/opticaldevice/optics_binoculars/2",
     "type": "opticaldevice",
     "rating": 2,
     "capacity": 2,
     "avail": "1",
     "cost": 100,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-binoculars/3",
+    "id": "sr6core/opticaldevice/optics_binoculars/3",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "1",
     "cost": 150,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-binoculars_optical",
+    "id": "sr6core/opticaldevice/optics_binoculars_optical",
     "type": "opticaldevice",
     "rating": null,
     "capacity": null,
     "avail": "1",
     "cost": 50,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-camera/1",
+    "id": "sr6core/opticaldevice/optics_camera/1",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "1",
     "cost": 100,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-camera/2",
+    "id": "sr6core/opticaldevice/optics_camera/2",
     "type": "opticaldevice",
     "rating": 2,
     "capacity": 2,
     "avail": "1",
     "cost": 200,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-camera/3",
+    "id": "sr6core/opticaldevice/optics_camera/3",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "1",
     "cost": 300,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-camera/4",
+    "id": "sr6core/opticaldevice/optics_camera/4",
     "type": "opticaldevice",
     "rating": 4,
     "capacity": 4,
     "avail": "1",
     "cost": 400,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-camera/5",
+    "id": "sr6core/opticaldevice/optics_camera/5",
     "type": "opticaldevice",
     "rating": 5,
     "capacity": 5,
     "avail": "1",
     "cost": 500,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-camera/6",
+    "id": "sr6core/opticaldevice/optics_camera/6",
     "type": "opticaldevice",
     "rating": 6,
     "capacity": 6,
     "avail": "1",
     "cost": 600,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-microcamera",
+    "id": "sr6core/opticaldevice/optics_microcamera",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "1",
     "cost": 100,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-contacts/1",
+    "id": "sr6core/opticaldevice/optics_contacts/1",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "2",
     "cost": 200,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-contacts/2",
+    "id": "sr6core/opticaldevice/optics_contacts/2",
     "type": "opticaldevice",
     "rating": 2,
     "capacity": 2,
     "avail": "2",
     "cost": 400,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-contacts/3",
+    "id": "sr6core/opticaldevice/optics_contacts/3",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "2",
     "cost": 600,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-endoscope",
+    "id": "sr6core/opticaldevice/optics_endoscope",
     "type": "opticaldevice",
     "rating": null,
     "capacity": null,
     "avail": "3",
     "cost": 250,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-glasses/1",
+    "id": "sr6core/opticaldevice/optics_glasses/1",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "1",
     "cost": 100,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-glasses/2",
+    "id": "sr6core/opticaldevice/optics_glasses/2",
     "type": "opticaldevice",
     "rating": 2,
     "capacity": 2,
     "avail": "1",
     "cost": 200,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-glasses/3",
+    "id": "sr6core/opticaldevice/optics_glasses/3",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "1",
     "cost": 300,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-glasses/4",
+    "id": "sr6core/opticaldevice/optics_glasses/4",
     "type": "opticaldevice",
     "rating": 4,
     "capacity": 4,
     "avail": "1",
     "cost": 400,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-goggles/1",
+    "id": "sr6core/opticaldevice/optics_goggles/1",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "1",
     "cost": 50,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-goggles/2",
+    "id": "sr6core/opticaldevice/optics_goggles/2",
     "type": "opticaldevice",
     "rating": 2,
     "capacity": 2,
     "avail": "1",
     "cost": 100,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-goggles/3",
+    "id": "sr6core/opticaldevice/optics_goggles/3",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "1",
     "cost": 150,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-goggles/4",
+    "id": "sr6core/opticaldevice/optics_goggles/4",
     "type": "opticaldevice",
     "rating": 4,
     "capacity": 4,
     "avail": "1",
     "cost": 200,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-goggles/5",
+    "id": "sr6core/opticaldevice/optics_goggles/5",
     "type": "opticaldevice",
     "rating": 5,
     "capacity": 5,
     "avail": "1",
     "cost": 250,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-goggles/6",
+    "id": "sr6core/opticaldevice/optics_goggles/6",
     "type": "opticaldevice",
     "rating": 6,
     "capacity": 6,
     "avail": "1",
     "cost": 300,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-imaging_scope",
+    "id": "sr6core/opticaldevice/optics_imaging_scope",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "1",
     "cost": 300,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-monocle/1",
+    "id": "sr6core/opticaldevice/optics_monocle/1",
     "type": "opticaldevice",
     "rating": 1,
     "capacity": 1,
     "avail": "1",
     "cost": 120,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-monocle/2",
+    "id": "sr6core/opticaldevice/optics_monocle/2",
     "type": "opticaldevice",
     "rating": 2,
     "capacity": 2,
     "avail": "1",
     "cost": 240,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-monocle/3",
+    "id": "sr6core/opticaldevice/optics_monocle/3",
     "type": "opticaldevice",
     "rating": 3,
     "capacity": 3,
     "avail": "1",
     "cost": 360,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-monocle/4",
+    "id": "sr6core/opticaldevice/optics_monocle/4",
     "type": "opticaldevice",
     "rating": 4,
     "capacity": 4,
     "avail": "1",
     "cost": 480,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-mage_sight_goggles",
+    "id": "sr6core/opticaldevice/optics_mage_sight_goggles",
     "type": "opticaldevice",
     "rating": null,
     "capacity": null,
     "avail": "5",
     "cost": 3000,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/optics-periscope",
+    "id": "sr6core/opticaldevice/optics_periscope",
     "type": "opticaldevice",
     "rating": null,
     "capacity": null,
     "avail": "2",
     "cost": 50,
-    "source": { "page": 274, "book": "SR6Core" }
+    "source": {
+      "page": 274,
+      "book": "SR6Core"
+    }
   }
 ]

@@ -1,2086 +1,2080 @@
 [
-   {
-      "id":"SR6Core-HO-1",
-      "type":"weapon",
-      "subtype":"holdouts",
-      "skill":"firearms",
-      "cnt":"4",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2",
-      "cost":435,
-      "damage":3,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         6,
-         2,
-         null,
-         null
-      ],
-      "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HO-2",
-      "type":"weapon",
-      "subtype":"holdouts",
-      "skill":"firearms",
-      "cnt":"6",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2",
-      "cost":200,
-      "damage":2,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         8,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HO-3",
-      "type":"weapon",
-      "subtype":"holdouts",
-      "skill":"firearms",
-      "cnt":"6",
-      "damage_note":"(b)",
-      "rating":null,
-      "avail":"2",
-      "cost":345,
-      "damage":2,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         12,
-         7,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-1",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"16",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":350,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         7,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-2",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"16",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":400,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         7,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-3",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"21",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":260,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-4",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"21",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":460,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":true,
-      "attack_rating":[
-         9,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-5",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"11",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":230,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-6",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"30",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":390,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         9,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-LP-7",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"8",
-      "damage_note":"(cy)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":250,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         7,
-         10,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":253,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HP-1",
-      "type":"weapon",
-      "subtype":"pistols_light",
-      "skill":"firearms",
-      "cnt":"15",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":750,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         10,
-         10,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HP-2",
-      "type":"weapon",
-      "subtype":"pistols_heavy",
-      "skill":"firearms",
-      "cnt":"30",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(L)",
-      "cost":610,
-      "damage":4,
-      "damage_type":"P",
-      "damage_note":"(f)",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         12,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HP-3",
-      "type":"weapon",
-      "subtype":"pistols_heavy",
-      "skill":"firearms",
-      "cnt":"10",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":315,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         9,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HP-4",
-      "type":"weapon",
-      "subtype":"pistols_heavy",
-      "skill":"firearms",
-      "cnt":"14",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":275,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HP-5",
-      "type":"weapon",
-      "subtype":"pistols_heavy",
-      "skill":"firearms",
-      "cnt":"14",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":500,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-HP-6",
-      "type":"weapon",
-      "subtype":"pistols_heavy",
-      "skill":"firearms",
-      "cnt":"6",
-      "damage_note":"(cy)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":400,
-      "damage":4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         11,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MP-1",
-      "type":"weapon",
-      "subtype":"machine_pistols",
-      "skill":"firearms",
-      "cnt":"40",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(L)",
-      "cost":520,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         9,
-         9,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MP-2",
-      "type":"weapon",
-      "subtype":"machine_pistols",
-      "skill":"firearms",
-      "cnt":"35",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":510,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         10,
-         9,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MP-3",
-      "type":"weapon",
-      "subtype":"machine_pistols",
-      "skill":"firearms",
-      "cnt":"30",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":690,
-      "damage":2,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":true,
-      "attack_rating":[
-         8,
-         8,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":254,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-1",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"32",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":730,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         9,
-         9,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-2",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"32",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":785,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         10,
-         10,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-3",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"32",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":840,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         10,
-         11,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-4",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"50",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(L)",
-      "cost":925,
-      "damage":4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         9,
-         12,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-5",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"28",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":825,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         10,
-         11,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-6",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"32",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":750,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         11,
-         9,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-7",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"30",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":725,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         10,
-         10,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SMG-8",
-      "type":"weapon",
-      "subtype":"submachine_guns",
-      "skill":"firearms",
-      "cnt":"24",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":455,
-      "damage":3,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         8,
-         8,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":255,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SG-1",
-      "type":"weapon",
-      "subtype":"shotguns",
-      "skill":"firearms",
-      "cnt":"5",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":330,
-      "damage":4,
-      "damage_type":"P",
-      "ss":true,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         7,
-         10,
-         6,
-         null,
-         null
-      ],
-            "source":{
-         "page":256,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SG-2",
-      "type":"weapon",
-      "subtype":"shotguns",
-      "skill":"firearms",
-      "cnt":"10",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(L)",
-      "cost":700,
-      "damage":4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         4,
-         11,
-         7,
-         null,
-         null
-      ],
-            "source":{
-         "page":256,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SG-3",
-      "type":"weapon",
-      "subtype":"shotguns",
-      "skill":"firearms",
-      "cnt":"2",
-      "damage_note":"(b)",
-      "rating":null,
-      "avail":"5(L)",
-      "cost":325,
-      "damage":4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         3,
-         12,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":256,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-SG-4",
-      "type":"weapon",
-      "subtype":"shotguns",
-      "skill":"firearms",
-      "cnt":"8",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":325,
-      "damage":5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         8,
-         4,
-         null,
-         null
-      ],
-            "source":{
-         "page":256,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-1",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"38",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":2100,
-      "damage":5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         4,
-         11,
-         9,
-         7,
-         1
-      ],
-            "source":{
-         "page":257,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-2",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"42",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"5(L)",
-      "cost":3400,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         4,
-         10,
-         9,
-         7,
-         2
-      ],
-            "source":{
-         "page":257,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-3",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"40",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":5100,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         5,
-         8,
-         8,
-         8,
-         4
-      ],
-            "source":{
-         "page":257,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-4",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"35",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":2100,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         3,
-         11,
-         10,
-         6,
-         1
-      ],
-            "source":{
-         "page":257,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-5",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"60",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"5(L)",
-      "cost":3200,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         4,
-         11,
-         10,
-         7,
-         2
-      ],
-            "source":{
-         "page":257,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-6",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"14",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(I)",
-      "cost":11000,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         3,
-         10,
-         10,
-         10,
-         10
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-7",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"20",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"5(I)",
-      "cost":9050,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":false,
-      "attack_rating":[
-         3,
-         8,
-         11,
-         8,
-         8
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-8",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"15",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"5(I)",
-      "cost":13200,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         3,
-         6,
-         9,
-         11,
-         12
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-9",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"5",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":12000,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         2,
-         7,
-         10,
-         12,
-         11
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-10",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"8",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"2(L)",
-      "cost":11100,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         2,
-         6,
-         10,
-         12,
-         11
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-R-11",
-      "type":"weapon",
-      "subtype":"assault_rifle",
-      "skill":"firearms",
-      "cnt":"10",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"6(I)",
-      "cost":15200,
-      "damage": 6,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         1,
-         8,
-         11,
-         16,
-         14
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MG-1",
-      "type":"weapon",
-      "subtype":"mmg",
-      "skill":"firearms",
-      "cnt":"50",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(L)",
-      "cost":4175,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         2,
-         11,
-         12,
-         7,
-         3
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MG-2",
-      "type":"weapon",
-      "subtype":"mmg",
-      "skill":"firearms",
-      "cnt":"50",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"4(L)",
-      "cost":6900,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         1,
-         10,
-         11,
-         7,
-         6
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MG-3",
-      "type":"weapon",
-      "subtype":"hmg",
-      "skill":"firearms",
-      "cnt":"50",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"5(L)",
-      "cost":8000,
-      "damage": 6,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":true,
-      "fa":true,
-      "attack_rating":[
-         1,
-         10,
-         12,
-         8,
-         7
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-MG-4",
-      "type":"weapon",
-      "subtype":"assault_cannon",
-      "skill":"firearms",
-      "cnt":"15",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"6(I)",
-      "cost":10000,
-      "damage": 7,
-      "damage_type":"P",
-      "ss":false,
-      "sa":true,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         1,
-         9,
-         12,
-         8,
-         6
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-E-1",
-      "type":"weapon",
-      "subtype":"special",
-      "skill":"exotic_weapons",
-      "cnt":"20",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"3(L)",
-      "cost":560,
-      "damage": 0,
-      "damage_type":null,
-      "damage_note":"Special",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         12,
-         9,
-         null,
-         null
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-E-2",
-      "type":"weapon",
-      "subtype":"special",
-      "skill":"exotic_weapons",
-      "cnt":"5",
-      "damage_note":"(c)",
-      "rating":null,
-      "avail":"2",
-      "cost":510,
-      "damage": 1,
-      "damage_type":"P",
-      "damage_note":"+ Special",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         10,
-         8,
-         null,
-         null
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-E-3",
-      "type":"weapon",
-      "subtype":"special",
-      "skill":"exotic_weapons",
-      "cnt":"6",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"3",
-      "cost":710,
-      "damage": 1,
-      "damage_type":"P",
-      "damage_note":"+ Special",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         5,
-         8,
-         11,
-         3,
-         null
-      ],
-            "source":{
-         "page":258,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-T-1",
-      "type":"weapon",
-      "subtype":"tasers",
-      "skill":"firearms",
-      "cnt":"4",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"1",
-      "cost":325,
-      "damage": 4,
-      "damage_type":"S",
-      "damage_note":"(e)",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         9,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-T-2",
-      "type":"weapon",
-      "subtype":"tasers",
-      "skill":"firearms",
-      "cnt":"4",
-      "damage_note":"(m)",
-      "rating":null,
-      "avail":"1",
-      "cost":350,
-      "damage": 4,
-      "damage_type":"S",
-      "damage_note":"(e)",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         9,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-CB-1",
-      "type":"weapon",
-      "subtype":"crossbows",
-      "skill":"firearms",
-      "cnt":null,
-      "rating":null,
-      "avail":"3",
-      "cost":150,
-      "damage": 2,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         8,
-         2,
-         null,
-         null
-      ],
-            "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-CB-2",
-      "type":"weapon",
-      "subtype":"crossbows",
-      "skill":"firearms",
-      "cnt":null,
-      "rating":null,
-      "avail":"3(L)",
-      "cost":290,
-      "damage": 3,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         2,
-         10,
-         4,
-         2,
-         null
-      ],
-      "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-CB-3",
-      "type":"weapon",
-      "subtype":"crossbows",
-      "skill":"firearms",
-      "cnt":null,
-      "rating":null,
-      "avail":"4(L)",
-      "cost":425,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         2,
-         8,
-         6,
-         4,
-         null
-      ],
-            "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-1",
-      "type":"weapon",
-      "subtype":"clubs",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"1",
-      "cost":15,
-      "damage": 2,
-      "damage_type":"S",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         5,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-2",
-      "type":"weapon",
-      "subtype":"clubs",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":250,
-      "damage": 4,
-      "damage_type":"S",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-3",
-      "type":"weapon",
-      "subtype":"clubs",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"1",
-      "cost":150,
-      "damage": 4,
-      "damage_type":"S",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-4",
-      "type":"weapon",
-      "subtype":"clubs",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":52,
-      "damage": 2,
-      "damage_type":"S",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         5,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-5",
-      "type":"weapon",
-      "subtype":"clubs",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"1",
-      "cost":75,
-      "damage": 2,
-      "damage_type":"S",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-6",
-      "type":"weapon",
-      "subtype":"clubs",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":600,
-      "damage": 5,
-      "damage_type":"S",
-      "damage_note":"(e)",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-7",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"4",
-      "cost":500,
-      "damage": 5,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-8",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"1",
-      "cost":20,
-      "damage": 2,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         1,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-9",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":220,
-      "damage": 3,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         2,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-10",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":250,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         2,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-11",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"3",
-      "cost":185,
-      "damage": 3,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-12",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"3",
-      "cost":350,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-13",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"3",
-      "cost":320,
-      "damage": 3,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-14",
-      "type":"weapon",
-      "subtype":"blades",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":210,
-      "damage": 4,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         8,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-15",
-      "type":"weapon",
-      "subtype":"unarmed",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"1",
-      "cost":100,
-      "damage": 3,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-16",
-      "type":"weapon",
-      "subtype":"close_combat",
-      "skill":"close_combat",
-      "cnt":null,
-      "rating":null,
-      "avail":"4",
-      "cost":790,
-      "damage": 4,
-      "damage_type":"S",
-      "damage_note":"(e)",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         5,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-17",
-      "type":"weapon",
-      "subtype":"whips",
-      "skill":"exotic_weapons",
-      "cnt":null,
-      "rating":null,
-      "avail":"4",
-      "cost":255,
-      "damage": 1,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         6,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-M-18",
-      "type":"weapon",
-      "subtype":"whips",
-      "skill":"exotic_weapons",
-      "cnt":null,
-      "rating":null,
-      "avail":"6(I)",
-      "cost":1300,
-      "damage": 6,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         14,
-         null,
-         null,
-         null,
-         null
-      ],
-            "source":{
-         "page":249,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-TH-1",
-      "type":"weapon",
-      "subtype":"throwing",
-      "skill":"athletics",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":155,
-      "damage": 2,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         10,
-         9,
-         3,
-         null,
-         null
-      ],
-            "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-      "id":"SR6Core-TH-2",
-      "type":"weapon",
-      "subtype":"throwing",
-      "skill":"athletics",
-      "cnt":null,
-      "rating":null,
-      "avail":"2",
-      "cost":160,
-      "damage": 2,
-      "damage_type":"P",
-      "ss":true,
-      "sa":false,
-      "bf":false,
-      "fa":false,
-      "attack_rating":[
-         9,
-         11,
-         5,
-         null,
-         null
-      ],
-            "source":{
-         "page":250,
-         "book":"SR6Core"
-      }
-   },
-   {
-     "id": "SR6Core/weapon/unarmed",
-     "type": "weapon",
-     "subtype": "unarmed",
-     "skill": "close_combat",
-     "cnt": null,
-     "rating": null,
-     "avail": "1",
-     "cost": 0,
-     "damage": 0,
-     "damage_type": "S",
-     "ss": true,
-     "sa": false,
-     "bf": false,
-     "fa": false,
-     "attack_rating": [
-       2,
-       null,
-       null,
-       null,
-       null
-     ],
-     "source": {
-       "page": 114,
-       "book": "SR6Core"
-     }
-}
+  {
+    "id": "sr6core/weapon/fichetti tiffani needler",
+    "type": "weapon",
+    "subtype": "holdouts",
+    "skill": "firearms",
+    "cnt": "4",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2",
+    "cost": 435,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      6,
+      2,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/streetline special",
+    "type": "weapon",
+    "subtype": "holdouts",
+    "skill": "firearms",
+    "cnt": "6",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2",
+    "cost": 200,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      8,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/walther palm pistol",
+    "type": "weapon",
+    "subtype": "holdouts",
+    "skill": "firearms",
+    "cnt": "6",
+    "damage_note": "(b)",
+    "rating": null,
+    "avail": "2",
+    "cost": 345,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      12,
+      7,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares light fire 70",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "16",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 350,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      7,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares light fire 75",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "16",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 400,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      7,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/beretta 101t",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "21",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 260,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/beretta 201t",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "21",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 460,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": true,
+    "attack_rating": [
+      9,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt america l36",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "11",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 230,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/fichetti security 600",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "30",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 390,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      9,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ruger redhawk",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "8",
+    "damage_note": "(cy)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 250,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      7,
+      10,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 253,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares predator vi",
+    "type": "weapon",
+    "subtype": "pistols_light",
+    "skill": "firearms",
+    "cnt": "15",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 750,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      10,
+      10,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares viper slivergun",
+    "type": "weapon",
+    "subtype": "pistols_heavy",
+    "skill": "firearms",
+    "cnt": "30",
+    "damage_note": "(f)",
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 610,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      12,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/browning ultra power",
+    "type": "weapon",
+    "subtype": "pistols_heavy",
+    "skill": "firearms",
+    "cnt": "10",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 315,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      9,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt government 2076",
+    "type": "weapon",
+    "subtype": "pistols_heavy",
+    "skill": "firearms",
+    "cnt": "14",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 275,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt manhunter",
+    "type": "weapon",
+    "subtype": "pistols_heavy",
+    "skill": "firearms",
+    "cnt": "14",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 500,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ruger super warhawk",
+    "type": "weapon",
+    "subtype": "pistols_heavy",
+    "skill": "firearms",
+    "cnt": "6",
+    "damage_note": "(cy)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 400,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      11,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares crusader ii",
+    "type": "weapon",
+    "subtype": "machine_pistols",
+    "skill": "firearms",
+    "cnt": "40",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 520,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      9,
+      9,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ceska black scorpion",
+    "type": "weapon",
+    "subtype": "machine_pistols",
+    "skill": "firearms",
+    "cnt": "35",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 510,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      10,
+      9,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/steyr tmp",
+    "type": "weapon",
+    "subtype": "machine_pistols",
+    "skill": "firearms",
+    "cnt": "30",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 690,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": true,
+    "attack_rating": [
+      8,
+      8,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 254,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt cobra tz-100",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "32",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 730,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      9,
+      9,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt cobra tz-110",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "32",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 785,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      10,
+      10,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt cobra tz-120",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "32",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 840,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      10,
+      11,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/fn p93 praetor",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "50",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 925,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      9,
+      12,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/hk-227",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "28",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 825,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      10,
+      11,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ingram smartgun xi",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "32",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 750,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      11,
+      9,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/sck model 100",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "30",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 725,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      10,
+      10,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/uzi iv",
+    "type": "weapon",
+    "subtype": "submachine_guns",
+    "skill": "firearms",
+    "cnt": "24",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 455,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      8,
+      8,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 255,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/defiance t-250",
+    "type": "weapon",
+    "subtype": "shotguns",
+    "skill": "firearms",
+    "cnt": "5",
+    "damage_note": "(m)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 330,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": true,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      7,
+      10,
+      6,
+      null,
+      null
+    ],
+    "source": {
+      "page": 256,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/mossberg cmdt",
+    "type": "weapon",
+    "subtype": "shotguns",
+    "skill": "firearms",
+    "cnt": "10",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 700,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      4,
+      11,
+      7,
+      null,
+      null
+    ],
+    "source": {
+      "page": 256,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/pjss model 55",
+    "type": "weapon",
+    "subtype": "shotguns",
+    "skill": "firearms",
+    "cnt": "2",
+    "damage_note": "(b)",
+    "rating": null,
+    "avail": "5(L)",
+    "cost": 325,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      3,
+      12,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 256,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/remington roomsweeper",
+    "type": "weapon",
+    "subtype": "shotguns",
+    "skill": "firearms",
+    "cnt": "8",
+    "damage_note": "(m)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 325,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      8,
+      4,
+      null,
+      null
+    ],
+    "source": {
+      "page": 256,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ak-97",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "38",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 2100,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      4,
+      11,
+      9,
+      7,
+      1
+    ],
+    "source": {
+      "page": 257,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares alpha",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "42",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "5(L)",
+    "cost": 3400,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      4,
+      10,
+      9,
+      7,
+      2
+    ],
+    "source": {
+      "page": 257,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/colt m23",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "40",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 5100,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      5,
+      8,
+      8,
+      8,
+      4
+    ],
+    "source": {
+      "page": 257,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/fn-har",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "35",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 2100,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      3,
+      11,
+      10,
+      6,
+      1
+    ],
+    "source": {
+      "page": 257,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/yamaha raiden",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "60",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "5(L)",
+    "cost": 3200,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      4,
+      11,
+      10,
+      7,
+      2
+    ],
+    "source": {
+      "page": 257,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares desert strike",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "14",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "4(I)",
+    "cost": 11000,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      3,
+      10,
+      10,
+      10,
+      10
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/cavalier arms crockett ebr",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "20",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "5(I)",
+    "cost": 9050,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": false,
+    "attack_rating": [
+      3,
+      8,
+      11,
+      8,
+      8
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ranger arms sm-5",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "15",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "5(I)",
+    "cost": 13200,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      3,
+      6,
+      9,
+      11,
+      12
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/remington 900",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "5",
+    "damage_note": "(m)",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 12000,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      2,
+      7,
+      10,
+      12,
+      11
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ruger 101",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "8",
+    "damage_note": "(m)",
+    "rating": null,
+    "avail": "2(L)",
+    "cost": 11100,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      2,
+      6,
+      10,
+      12,
+      11
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/barret model 122",
+    "type": "weapon",
+    "subtype": "assault_rifle",
+    "skill": "firearms",
+    "cnt": "10",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "6(I)",
+    "cost": 15200,
+    "damage": 6,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      1,
+      8,
+      11,
+      16,
+      14
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ingram valiant",
+    "type": "weapon",
+    "subtype": "mmg",
+    "skill": "firearms",
+    "cnt": "50",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 4175,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      2,
+      11,
+      12,
+      7,
+      3
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/stoner-ares m202",
+    "type": "weapon",
+    "subtype": "mmg",
+    "skill": "firearms",
+    "cnt": "50",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 6900,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      1,
+      10,
+      11,
+      7,
+      6
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/rpk hmg",
+    "type": "weapon",
+    "subtype": "hmg",
+    "skill": "firearms",
+    "cnt": "50",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "5(L)",
+    "cost": 8000,
+    "damage": 6,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": true,
+    "fa": true,
+    "attack_rating": [
+      1,
+      10,
+      12,
+      8,
+      7
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/panther xxl",
+    "type": "weapon",
+    "subtype": "assault_cannon",
+    "skill": "firearms",
+    "cnt": "15",
+    "damage_note": "(c)",
+    "rating": null,
+    "avail": "6(I)",
+    "cost": 10000,
+    "damage": 7,
+    "damage_type": "P",
+    "ss": false,
+    "sa": true,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      1,
+      9,
+      12,
+      8,
+      6
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/ares super squirt",
+    "type": "weapon",
+    "subtype": "special",
+    "skill": "exotic_weapons",
+    "cnt": "20",
+    "damage_note": "Special",
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 560,
+    "damage": 0,
+    "damage_type": null,
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      12,
+      9,
+      null,
+      null
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/parashield dart pistol",
+    "type": "weapon",
+    "subtype": "special",
+    "skill": "exotic_weapons",
+    "cnt": "5",
+    "damage_note": "+ Special",
+    "rating": null,
+    "avail": "2",
+    "cost": 510,
+    "damage": 1,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      10,
+      8,
+      null,
+      null
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/parashield dart rifle",
+    "type": "weapon",
+    "subtype": "special",
+    "skill": "exotic_weapons",
+    "cnt": "6",
+    "damage_note": "+ Special",
+    "rating": null,
+    "avail": "3",
+    "cost": 710,
+    "damage": 1,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      5,
+      8,
+      11,
+      3,
+      null
+    ],
+    "source": {
+      "page": 258,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/yamaha pulsar i/ii",
+    "type": "weapon",
+    "subtype": "tasers",
+    "skill": "firearms",
+    "cnt": "4",
+    "damage_note": "(e)",
+    "rating": null,
+    "avail": "1",
+    "cost": 325,
+    "damage": 4,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      9,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/yamaha pulsar ii",
+    "type": "weapon",
+    "subtype": "tasers",
+    "skill": "firearms",
+    "cnt": "4",
+    "damage_note": "(e)",
+    "rating": null,
+    "avail": "1",
+    "cost": 350,
+    "damage": 4,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      9,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/light crossbow",
+    "type": "weapon",
+    "subtype": "crossbows",
+    "skill": "firearms",
+    "cnt": null,
+    "rating": null,
+    "avail": "3",
+    "cost": 150,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      8,
+      2,
+      null,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/standard crossbow",
+    "type": "weapon",
+    "subtype": "crossbows",
+    "skill": "firearms",
+    "cnt": null,
+    "rating": null,
+    "avail": "3(L)",
+    "cost": 290,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      2,
+      10,
+      4,
+      2,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/heavy crossbow",
+    "type": "weapon",
+    "subtype": "crossbows",
+    "skill": "firearms",
+    "cnt": null,
+    "rating": null,
+    "avail": "4(L)",
+    "cost": 425,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      2,
+      8,
+      6,
+      4,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/bike chain",
+    "type": "weapon",
+    "subtype": "clubs",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "1",
+    "cost": 15,
+    "damage": 2,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      5,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/telescoping staff",
+    "type": "weapon",
+    "subtype": "clubs",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 250,
+    "damage": 4,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/staff",
+    "type": "weapon",
+    "subtype": "clubs",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "1",
+    "cost": 150,
+    "damage": 4,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/extendable baton",
+    "type": "weapon",
+    "subtype": "clubs",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 52,
+    "damage": 2,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      5,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/sap",
+    "type": "weapon",
+    "subtype": "clubs",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "1",
+    "cost": 75,
+    "damage": 2,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/stun baton",
+    "type": "weapon",
+    "subtype": "clubs",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 600,
+    "damage": 5,
+    "damage_type": "S",
+    "damage_note": "(e)",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/combat axe",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "4",
+    "cost": 500,
+    "damage": 5,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/knife",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "1",
+    "cost": 20,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      1,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/combat/survival knife",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 220,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      2,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/survival knife",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 250,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      2,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/forearm snap blades",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "3",
+    "cost": 185,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/katana",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "3",
+    "cost": 350,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/sword",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "3",
+    "cost": 320,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/polearm",
+    "type": "weapon",
+    "subtype": "blades",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 210,
+    "damage": 4,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      8,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/knucks",
+    "type": "weapon",
+    "subtype": "unarmed",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "1",
+    "cost": 100,
+    "damage": 3,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/shock gloves",
+    "type": "weapon",
+    "subtype": "close_combat",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "4",
+    "cost": 790,
+    "damage": 4,
+    "damage_type": "S",
+    "damage_note": "(e)",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      5,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/bullwhip",
+    "type": "weapon",
+    "subtype": "whips",
+    "skill": "exotic_weapons",
+    "cnt": null,
+    "rating": null,
+    "avail": "4",
+    "cost": 255,
+    "damage": 1,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      6,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/monofilament whip",
+    "type": "weapon",
+    "subtype": "whips",
+    "skill": "exotic_weapons",
+    "cnt": null,
+    "rating": null,
+    "avail": "6(I)",
+    "cost": 1300,
+    "damage": 6,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      14,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 249,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/throwing knives",
+    "type": "weapon",
+    "subtype": "throwing",
+    "skill": "athletics",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 155,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      10,
+      9,
+      3,
+      null,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/throwing stars",
+    "type": "weapon",
+    "subtype": "throwing",
+    "skill": "athletics",
+    "cnt": null,
+    "rating": null,
+    "avail": "2",
+    "cost": 160,
+    "damage": 2,
+    "damage_type": "P",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      9,
+      11,
+      5,
+      null,
+      null
+    ],
+    "source": {
+      "page": 250,
+      "book": "SR6Core"
+    }
+  },
+  {
+    "id": "sr6core/weapon/weapon/unarmed",
+    "type": "weapon",
+    "subtype": "unarmed",
+    "skill": "close_combat",
+    "cnt": null,
+    "rating": null,
+    "avail": "1",
+    "cost": 0,
+    "damage": 0,
+    "damage_type": "S",
+    "ss": true,
+    "sa": false,
+    "bf": false,
+    "fa": false,
+    "attack_rating": [
+      2,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": {
+      "page": 114,
+      "book": "SR6Core"
+    }
+  }
 ]

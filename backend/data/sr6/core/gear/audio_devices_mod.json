@@ -1,43 +1,60 @@
 [
   {
-    "id": "sr6core/audioenhancement/1",
+    "id": "sr6core/audiodevicemod/audioenhancement/1",
     "type": "audiodevicemod",
     "capacity": 1,
     "avail": "1",
     "cost": 500,
-    "wear_rules": ["Audio Device Modification - Aural Enhancement"],
-    "source": { "page": 276, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/audio device modification - aural enhancement"
+    ],
+    "source": {
+      "page": 276,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/selectsoundfilter/1",
+    "id": "sr6core/audiodevicemod/selectsoundfilter/1",
     "type": "audiodevicemod",
     "capacity": 1,
     "avail": "3",
     "cost": 250,
-    "source": { "page": 276, "book": "SR6Core" }
+    "source": {
+      "page": 276,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/selectsoundfilter/2",
+    "id": "sr6core/audiodevicemod/selectsoundfilter/2",
     "type": "audiodevicemod",
     "capacity": 2,
     "avail": "3",
     "cost": 500,
-    "source": { "page": 276, "book": "SR6Core" }
+    "source": {
+      "page": 276,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/selectsoundfilter/3",
+    "id": "sr6core/audiodevicemod/selectsoundfilter/3",
     "type": "audiodevicemod",
     "capacity": 3,
     "avail": "3",
     "cost": 750,
-    "source": { "page": 276, "book": "SR6Core" }
+    "source": {
+      "page": 276,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/spatialrecognizer/1",
+    "id": "sr6core/audiodevicemod/spatialrecognizer/1",
     "type": "audiodevicemod",
     "capacity": 2,
     "avail": "2",
     "cost": 1000,
-    "source": { "page": 276, "book": "SR6Core" }
+    "source": {
+      "page": 276,
+      "book": "SR6Core"
+    }
   }
 ]

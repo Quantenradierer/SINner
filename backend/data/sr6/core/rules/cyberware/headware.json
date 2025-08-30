@@ -1,71 +1,98 @@
 [
   {
-    "id": "Cyberware Olfactorybooster Olfactory Perception +1",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware olfactorybooster olfactory perception +1",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.perception.olfactory",
     "modifier_type": "ADD",
     "modification": "1"
   },
-    {
-    "id": "Cyberware Olfactorybooster Olfactory Perception +2",
-    "source": { "page": 284, "book": "SR6Core" },
+  {
+    "id": "sr6core/cyberware olfactorybooster olfactory perception +2",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.perception.olfactory",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware Olfactorybooster Olfactory Perception +3",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware olfactorybooster olfactory perception +3",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.perception.olfactory",
     "modifier_type": "ADD",
     "modification": "3"
   },
   {
-    "id": "Cyberware Tastebooster Taste Perception +1",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware tastebooster taste perception +1",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.perception.taste",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "Cyberware Tastebooster Taste Perception +2",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware tastebooster taste perception +2",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.perception.taste",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware Tastebooster Taste Perception +3",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware tastebooster taste perception +3",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.perception.taste",
     "modifier_type": "ADD",
     "modification": "3"
   },
   {
-    "id": "Cyberware Voice Modulator Soundbased Con +1",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware voice modulator soundbased con +1",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.con",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "Cyberware Voice Modulator Soundbased Con +2",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware voice modulator soundbased con +2",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.con",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware Voice Modulator Soundbased Con +3",
-    "source": { "page": 284, "book": "SR6Core" },
+    "id": "sr6core/cyberware voice modulator soundbased con +3",
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled",
     "modifies": "character.skills.con",
     "modifier_type": "ADD",

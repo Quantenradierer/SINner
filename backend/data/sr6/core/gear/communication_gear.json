@@ -1,198 +1,282 @@
 [
   {
-    "id": "sr6core/commgear-bugscanner",
+    "id": "sr6core/communicationgear/commgear_bugscanner",
     "type": "communicationgear",
     "avail": "3",
     "cost": 200,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-datatap",
+    "id": "sr6core/communicationgear/commgear_datatap",
     "type": "communicationgear",
     "avail": "2",
     "cost": 300,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-headjammer/1",
+    "id": "sr6core/communicationgear/commgear_headjammer/1",
     "type": "communicationgear",
     "avail": "5",
     "cost": 150,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-headjammer/2",
+    "id": "sr6core/communicationgear/commgear_headjammer/2",
     "type": "communicationgear",
     "avail": "5",
     "cost": 300,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-headjammer/3",
+    "id": "sr6core/communicationgear/commgear_headjammer/3",
     "type": "communicationgear",
     "avail": "5",
     "cost": 450,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-headjammer/4",
+    "id": "sr6core/communicationgear/commgear_headjammer/4",
     "type": "communicationgear",
     "avail": "5",
     "cost": 600,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-headjammer/5",
+    "id": "sr6core/communicationgear/commgear_headjammer/5",
     "type": "communicationgear",
     "avail": "5",
     "cost": 750,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-headjammer/6",
+    "id": "sr6core/communicationgear/commgear_headjammer/6",
     "type": "communicationgear",
     "avail": "5",
     "cost": 900,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-area/1",
+    "id": "sr6core/communicationgear/commgear_jammer_area/1",
     "type": "communicationgear",
     "avail": "4",
     "cost": 200,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-area/2",
+    "id": "sr6core/communicationgear/commgear_jammer_area/2",
     "type": "communicationgear",
     "avail": "4",
     "cost": 400,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-area/3",
+    "id": "sr6core/communicationgear/commgear_jammer_area/3",
     "type": "communicationgear",
     "avail": "4",
     "cost": 600,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-area/4",
+    "id": "sr6core/communicationgear/commgear_jammer_area/4",
     "type": "communicationgear",
     "avail": "4",
     "cost": 800,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-area/5",
+    "id": "sr6core/communicationgear/commgear_jammer_area/5",
     "type": "communicationgear",
     "avail": "4",
     "cost": 1000,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-area/6",
+    "id": "sr6core/communicationgear/commgear_jammer_area/6",
     "type": "communicationgear",
     "avail": "4",
     "cost": 1200,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-directional/1",
+    "id": "sr6core/communicationgear/commgear_jammer_directional/1",
     "type": "communicationgear",
     "avail": "4",
     "cost": 200,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-directional/2",
+    "id": "sr6core/communicationgear/commgear_jammer_directional/2",
     "type": "communicationgear",
     "avail": "4",
     "cost": 400,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-directional/3",
+    "id": "sr6core/communicationgear/commgear_jammer_directional/3",
     "type": "communicationgear",
     "avail": "4",
     "cost": 600,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-directional/4",
+    "id": "sr6core/communicationgear/commgear_jammer_directional/4",
     "type": "communicationgear",
     "avail": "4",
     "cost": 800,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-directional/5",
+    "id": "sr6core/communicationgear/commgear_jammer_directional/5",
     "type": "communicationgear",
     "avail": "4",
     "cost": 1000,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-jammer-directional/6",
+    "id": "sr6core/communicationgear/commgear_jammer_directional/6",
     "type": "communicationgear",
     "avail": "4",
     "cost": 1200,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-microtransceiver",
+    "id": "sr6core/communicationgear/commgear_microtransceiver",
     "type": "communicationgear",
     "avail": "1",
     "cost": 100,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-tageraser",
+    "id": "sr6core/communicationgear/commgear_tageraser",
     "type": "communicationgear",
     "avail": "3",
     "cost": 450,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-whitenoise/1",
+    "id": "sr6core/communicationgear/commgear_whitenoise/1",
     "type": "communicationgear",
     "avail": "3",
     "cost": 50,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-whitenoise/2",
+    "id": "sr6core/communicationgear/commgear_whitenoise/2",
     "type": "communicationgear",
     "avail": "3",
     "cost": 100,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-whitenoise/3",
+    "id": "sr6core/communicationgear/commgear_whitenoise/3",
     "type": "communicationgear",
     "avail": "3",
     "cost": 150,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-whitenoise/4",
+    "id": "sr6core/communicationgear/commgear_whitenoise/4",
     "type": "communicationgear",
     "avail": "3",
     "cost": 200,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-whitenoise/5",
+    "id": "sr6core/communicationgear/commgear_whitenoise/5",
     "type": "communicationgear",
     "avail": "3",
     "cost": 250,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/commgear-whitenoise/6",
+    "id": "sr6core/communicationgear/commgear_whitenoise/6",
     "type": "communicationgear",
     "avail": "3",
     "cost": 300,
-    "source": { "page": 271, "book": "SR6Core" }
+    "source": {
+      "page": 271,
+      "book": "SR6Core"
+    }
   }
 ]

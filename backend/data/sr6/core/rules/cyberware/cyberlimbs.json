@@ -1,360 +1,492 @@
 [
   {
-    "id": "Cyberware/Limb/Physical Condition Monitor +1",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cyberware/limb/physical condition monitor +1",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "modifies": "character.physical_condition_monitor",
     "modifier_type": "ADD",
     "modification": "1"
   },
-
   {
-    "id": "Cyberware/Right Arm Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right arm replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_arm.body",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Arm Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right arm replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_arm.agility",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Arm Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right arm replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_arm.reaction",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Arm Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right arm replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_arm.strength",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Right Forearm Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right forearm replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Forearm Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right forearm replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Forearm Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right forearm replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Forearm Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right forearm replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Right Hand Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right hand replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_hand.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Hand Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right hand replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_hand.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Hand Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right hand replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_hand.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Hand Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right hand replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_hand.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Left Arm Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left arm replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_arm.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Arm Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left arm replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_arm.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Arm Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left arm replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_arm.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Arm Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left arm replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_arm.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Left Forearm Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left forearm replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Forearm Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left forearm replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Forearm Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left forearm replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Forearm Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left forearm replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Left Hand Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left hand replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_hand.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Hand Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left hand replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_hand.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Hand Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left hand replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_hand.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Hand Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left hand replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_hand.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
-
-
   {
-    "id": "Cyberware/Right Leg Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right leg replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_leg.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Leg Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right leg replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_leg.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Leg Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right leg replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_leg.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Leg Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right leg replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_leg.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Right Lower Leg Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right lower leg replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Lower Leg Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right lower leg replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Lower Leg Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right lower leg replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Lower Leg Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right lower leg replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_forearm.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Right Foot Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right foot replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_foot.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Foot Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right foot replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_foot.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Foot Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right foot replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_foot.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Right Foot Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/right foot replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.right_foot.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Left Leg Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left leg replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_leg.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Leg Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left leg replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_leg.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Leg Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left leg replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_leg.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Leg Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left leg replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_leg.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Left Lower Leg Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left lower leg replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Lower Leg Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left lower leg replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Lower Leg Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left lower leg replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Lower Leg Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left lower leg replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_forearm.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
-
   {
-    "id": "Cyberware/Left Foot Replacement/Body",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left foot replacement/body",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_foot.body",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Foot Replacement/Agility",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left foot replacement/agility",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_foot.agility",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Foot Replacement/Reaction",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left foot replacement/reaction",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_foot.reaction",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Left Foot Replacement/Strength",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/left foot replacement/strength",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.left_foot.strength",
-     "modifier_type": "REPLACEMENT",
+    "modifier_type": "REPLACEMENT",
     "modification": "2"
   }
-
 ]

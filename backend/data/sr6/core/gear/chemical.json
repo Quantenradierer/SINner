@@ -1,23 +1,32 @@
 [
   {
-    "id": "sr6core/chemicals-glue-solvent",
+    "id": "sr6core/chemical/chemicals_glue_solvent",
     "type": "chemical",
     "avail": "1",
     "cost": 90,
-    "source": { "page": 279, "book": "SR6Core" }
+    "source": {
+      "page": 279,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/chemicals-glue-sprayer",
+    "id": "sr6core/chemical/chemicals_glue_sprayer",
     "type": "chemical",
     "avail": "1",
     "cost": 150,
-    "source": { "page": 279, "book": "SR6Core" }
+    "source": {
+      "page": 279,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/chemicals-thermite-burning-bar",
+    "id": "sr6core/chemical/chemicals_thermite_burning_bar",
     "type": "chemical",
     "avail": "5(L)",
     "cost": 500,
-    "source": { "page": 279, "book": "SR6Core" }
+    "source": {
+      "page": 279,
+      "book": "SR6Core"
+    }
   }
 ]

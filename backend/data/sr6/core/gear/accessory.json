@@ -1,6 +1,6 @@
 [
   {
-    "id": "sr6core/accessory-ARgloves",
+    "id": "sr6core/accessory/argloves",
     "type": "accessory",
     "device_rating": 3,
     "avail": "1",
@@ -11,7 +11,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-BiometricReader",
+    "id": "sr6core/accessory/biometricreader",
     "type": "accessory",
     "device_rating": 3,
     "avail": "2",
@@ -22,7 +22,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-ElectronicPaper",
+    "id": "sr6core/accessory/electronicpaper",
     "type": "accessory",
     "device_rating": 1,
     "avail": "1",
@@ -33,7 +33,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-Printer",
+    "id": "sr6core/accessory/printer",
     "type": "accessory",
     "device_rating": 3,
     "avail": "1",
@@ -44,7 +44,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-SatelliteLink",
+    "id": "sr6core/accessory/satellitelink",
     "type": "accessory",
     "device_rating": 4,
     "avail": "3",
@@ -55,7 +55,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-Simrig",
+    "id": "sr6core/accessory/simrig",
     "type": "accessory",
     "device_rating": 3,
     "avail": "4",
@@ -66,7 +66,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-SubvocalMic",
+    "id": "sr6core/accessory/subvocalmic",
     "type": "accessory",
     "subtype": "Accessory",
     "device_rating": 3,
@@ -78,7 +78,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-TridProjector",
+    "id": "sr6core/accessory/tridprojector",
     "type": "accessory",
     "subtype": "Accessory",
     "device_rating": 3,
@@ -90,7 +90,7 @@
     }
   },
   {
-    "id": "sr6core/accessory-Trodes",
+    "id": "sr6core/accessory/trodes",
     "type": "accessory",
     "subtype": "Accessory",
     "device_rating": 3,

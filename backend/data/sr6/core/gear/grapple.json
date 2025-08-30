@@ -1,44 +1,62 @@
 [
   {
-    "id": "sr6core/grapplegun",
+    "id": "sr6core/grapple/grapplegun",
     "type": "grapple",
     "avail": "3",
     "cost": 500,
-    "source": { "page": 281, "book": "SR6Core" }
+    "source": {
+      "page": 281,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/grapplegun-microwire",
+    "id": "sr6core/grapple/grapplegun_microwire",
     "type": "grapple",
     "avail": "2",
     "cost": 50,
-    "source": { "page": 281, "book": "SR6Core" }
+    "source": {
+      "page": 281,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/grapplegun-myomericrope",
+    "id": "sr6core/grapple/grapplegun_myomericrope",
     "type": "grapple",
     "avail": "4",
     "cost": 200,
-    "source": { "page": 281, "book": "SR6Core" }
+    "source": {
+      "page": 281,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/grapplegun-standardrope",
+    "id": "sr6core/grapple/grapplegun_standardrope",
     "type": "grapple",
     "avail": "1",
     "cost": 50,
-    "source": { "page": 281, "book": "SR6Core" }
+    "source": {
+      "page": 281,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/grapplegun-stealthrope",
+    "id": "sr6core/grapple/grapplegun_stealthrope",
     "type": "grapple",
     "avail": "3(I)",
     "cost": 85,
-    "source": { "page": 281, "book": "SR6Core" }
+    "source": {
+      "page": 281,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/grapplegun-catalyststick",
+    "id": "sr6core/grapple/grapplegun_catalyststick",
     "type": "grapple",
     "avail": "3(I)",
     "cost": 120,
-    "source": { "page": 281, "book": "SR6Core" }
+    "source": {
+      "page": 281,
+      "book": "SR6Core"
+    }
   }
 ]

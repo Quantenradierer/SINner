@@ -1,6 +1,6 @@
 [
   {
-    "id": "character/{limb}/{attribute}",
+    "id": "sr6core/character/{limb}/{attribute}",
     "parameter": {
       "limb": [
         "right_arm",
@@ -15,14 +15,16 @@
         "strength"
       ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{limb}.{attribute}",
     "modifier_type": "BASE",
     "modification": "character.attributes.{attribute}"
   },
-
   {
-    "id": "character/{direction}_forearm/{attribute}",
+    "id": "sr6core/character/{direction}_forearm/{attribute}",
     "parameter": {
       "attribute": [
         "body",
@@ -30,17 +32,21 @@
         "reaction",
         "strength"
       ],
-      "direction": ["left", "right"]
+      "direction": [
+        "left",
+        "right"
+      ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{direction}_forearm.{attribute}",
     "modifier_type": "BASE",
     "modification": "character.{direction}_arm.{attribute}"
   },
-
-
   {
-    "id": "character/{direction}_hand/{attribute}",
+    "id": "sr6core/character/{direction}_hand/{attribute}",
     "parameter": {
       "attribute": [
         "body",
@@ -48,16 +54,21 @@
         "reaction",
         "strength"
       ],
-      "direction": ["left", "right"]
+      "direction": [
+        "left",
+        "right"
+      ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{direction}_hand.{attribute}",
     "modifier_type": "BASE",
     "modification": "character.{direction}_forearm.{attribute}"
   },
-
   {
-    "id": "character/{direction}_lower_leg/{attribute}",
+    "id": "sr6core/character/{direction}_lower_leg/{attribute}",
     "parameter": {
       "attribute": [
         "body",
@@ -65,17 +76,21 @@
         "reaction",
         "strength"
       ],
-      "direction": ["left", "right"]
+      "direction": [
+        "left",
+        "right"
+      ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{direction}_lower_leg.{attribute}",
     "modifier_type": "BASE",
     "modification": "character.{direction}_leg.{attribute}"
   },
-
-
   {
-    "id": "character/{direction}_foot/{attribute}",
+    "id": "sr6core/character/{direction}_foot/{attribute}",
     "parameter": {
       "attribute": [
         "body",
@@ -83,18 +98,21 @@
         "reaction",
         "strength"
       ],
-      "direction": ["left", "right"]
+      "direction": [
+        "left",
+        "right"
+      ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{direction}_foot.{attribute}",
     "modifier_type": "BASE",
     "modification": "character.{direction}_lower_leg.{attribute}"
   },
-
-  
-  
   {
-    "id": "character/{limb}/limit/{attribute}",
+    "id": "sr6core/character/{limb}/limit/{attribute}",
     "parameter": {
       "attribute": [
         "body",
@@ -117,7 +135,10 @@
         "left_foot"
       ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{limb}.{attribute}",
     "modifier_type": "LIMIT",
     "modification": "min(character.attributes.{attribute} + 4, character.{limb}.{attribute})"

@@ -1,6 +1,6 @@
 [
   {
-    "id": "sr6core/cyberjack/1",
+    "id": "sr6core/cyberware/cyberjack/1",
     "type": "cyberware",
     "subtype": "cyberjack",
     "rating": 1,
@@ -9,11 +9,18 @@
     "avail": "3(L)",
     "essence": 1,
     "cost": 45000,
-    "source": { "page": 284, "book": "SR6Core" },
-    "wear_rules": ["Cyberjack +1 Matrix Initiative AR", "Cyberjack +1 Matrix Initiative VR Cold", "Cyberjack +1 Matrix Initiative VR Hot"]
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberjack +1 matrix initiative ar",
+      "sr6core/cyberjack +1 matrix initiative vr cold",
+      "sr6core/cyberjack +1 matrix initiative vr hot"
+    ]
   },
   {
-    "id": "sr6core/cyberjack/2",
+    "id": "sr6core/cyberware/cyberjack/2",
     "type": "cyberware",
     "subtype": "cyberjack",
     "rating": 2,
@@ -22,11 +29,18 @@
     "avail": "3(L)",
     "essence": 1.5,
     "cost": 65000,
-    "source": { "page": 284, "book": "SR6Core" },
-    "wear_rules": ["Cyberjack +1 Matrix Initiative AR", "Cyberjack +1 Matrix Initiative VR Cold", "Cyberjack +1 Matrix Initiative VR Hot"]
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberjack +1 matrix initiative ar",
+      "sr6core/cyberjack +1 matrix initiative vr cold",
+      "sr6core/cyberjack +1 matrix initiative vr hot"
+    ]
   },
   {
-    "id": "sr6core/cyberjack/3",
+    "id": "sr6core/cyberware/cyberjack/3",
     "type": "cyberware",
     "subtype": "cyberjack",
     "rating": 3,
@@ -35,11 +49,18 @@
     "avail": "3(L)",
     "essence": 2,
     "cost": 80000,
-    "source": { "page": 284, "book": "SR6Core" },
-    "wear_rules": ["Cyberjack +2 Matrix Initiative AR", "Cyberjack +2 Matrix Initiative VR Cold", "Cyberjack +2 Matrix Initiative VR Hot"]
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberjack +2 matrix initiative ar",
+      "sr6core/cyberjack +2 matrix initiative vr cold",
+      "sr6core/cyberjack +2 matrix initiative vr hot"
+    ]
   },
   {
-    "id": "sr6core/cyberjack/4",
+    "id": "sr6core/cyberware/cyberjack/4",
     "type": "cyberware",
     "subtype": "cyberjack",
     "rating": 4,
@@ -48,11 +69,18 @@
     "avail": "4(L)",
     "essence": 2.3,
     "cost": 95000,
-    "source": { "page": 284, "book": "SR6Core" },
-    "wear_rules": ["Cyberjack +2 Matrix Initiative AR", "Cyberjack +2 Matrix Initiative VR Cold", "Cyberjack +2 Matrix Initiative VR Hot"]
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberjack +2 matrix initiative ar",
+      "sr6core/cyberjack +2 matrix initiative vr cold",
+      "sr6core/cyberjack +2 matrix initiative vr hot"
+    ]
   },
   {
-    "id": "sr6core/cyberjack/5",
+    "id": "sr6core/cyberware/cyberjack/5",
     "type": "cyberware",
     "subtype": "cyberjack",
     "rating": 5,
@@ -61,11 +89,18 @@
     "avail": "5(L)",
     "essence": 2.6,
     "cost": 140000,
-    "source": { "page": 284, "book": "SR6Core" },
-    "wear_rules": ["Cyberjack +3 Matrix Initiative AR", "Cyberjack +3 Matrix Initiative VR Cold", "Cyberjack +3 Matrix Initiative VR Hot"]
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberjack +3 matrix initiative ar",
+      "sr6core/cyberjack +3 matrix initiative vr cold",
+      "sr6core/cyberjack +3 matrix initiative vr hot"
+    ]
   },
   {
-    "id": "sr6core/cyberjack/6",
+    "id": "sr6core/cyberware/cyberjack/6",
     "type": "cyberware",
     "subtype": "cyberjack",
     "rating": 6,
@@ -74,7 +109,14 @@
     "avail": "6(L)",
     "essence": 3,
     "cost": 210000,
-    "source": { "page": 284, "book": "SR6Core" },
-    "wear_rules": ["Cyberjack +3 Matrix Initiative AR", "Cyberjack +3 Matrix Initiative VR Cold", "Cyberjack +3 Matrix Initiative VR Hot"]
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberjack +3 matrix initiative ar",
+      "sr6core/cyberjack +3 matrix initiative vr cold",
+      "sr6core/cyberjack +3 matrix initiative vr hot"
+    ]
   }
 ]

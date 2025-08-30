@@ -1,53 +1,67 @@
 [
   {
-    "id": "Cybereye Vision enhancement +1 Visual Perception",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cybereye vision enhancement +1 visual perception",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "modifies": "character.skills.perception.visual",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "Cyberware/Cybereye/Smartlink/Attack Rating Close +2",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cybereye/smartlink/attack rating close +2",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled and character.current_weapon.has_smartlink",
     "modifies": "[w.attack_rating_0 for w in character.weapons]",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Cybereye/Smartlink/Attack Rating Near +2",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cybereye/smartlink/attack rating near +2",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled and character.current_weapon.has_smartlink",
     "modifies": "[w.attack_rating_1 for w in character.weapons]",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Cybereye/Smartlink/Attack Rating Medium +2",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cybereye/smartlink/attack rating medium +2",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled and character.current_weapon.has_smartlink",
     "modifies": "[w.attack_rating_2 for w in character.weapons]",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Cybereye/Smartlink/Attack Rating Far +2",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cybereye/smartlink/attack rating far +2",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled and character.current_weapon.has_smartlink",
     "modifies": "[w.attack_rating_3 for w in character.weapons]",
     "modifier_type": "ADD",
     "modification": "2"
   },
   {
-    "id": "Cyberware/Cybereye/Smartlink/Attack Rating Very Far +2",
-    "source": { "page": 285, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cybereye/smartlink/attack rating very far +2",
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    },
     "enable": "cyberware.wifi_enabled and character.current_weapon.has_smartlink",
     "modifies": "[w.attack_rating_4 for w in character.weapons]",
     "modifier_type": "ADD",
     "modification": "2"
   }
-
-
-
-
 ]

@@ -1,6 +1,6 @@
 [
   {
-    "id": "sr6core/RFID-standard",
+    "id": "sr6core/rfid/standard",
     "type": "rfid",
     "device_rating": 1,
     "avail": "1",
@@ -11,7 +11,7 @@
     }
   },
   {
-    "id": "sr6core/RFID-datachip",
+    "id": "sr6core/rfid/datachip",
     "type": "rfid",
     "device_rating": 1,
     "avail": "1",
@@ -22,7 +22,7 @@
     }
   },
   {
-    "id": "sr6core/RFID-security-stealth",
+    "id": "sr6core/rfid/security_stealth",
     "type": "rfid",
     "device_rating": 3,
     "avail": "2",
@@ -33,7 +33,7 @@
     }
   },
   {
-    "id": "sr6core/RFID-sensor",
+    "id": "sr6core/rfid/sensor",
     "type": "rfid",
     "device_rating": 2,
     "avail": "2",

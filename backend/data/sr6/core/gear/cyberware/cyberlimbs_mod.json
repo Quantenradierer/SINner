@@ -1,6 +1,6 @@
 [
   {
-    "id": "SR6Core/cyberware/{limb}/{attribute}/1",
+    "id": "sr6core/cyberwaremod/cyberware/{limb}/{attribute}/1",
     "parameter": {
       "limb": [
         "right_arm",
@@ -23,16 +23,23 @@
     },
     "type": "cyberwaremod",
     "mod_for": {
-      "replacement": ["{limb}"]
+      "replacement": [
+        "{limb}"
+      ]
     },
     "capacity": 1,
     "avail": "1",
     "cost": 5000,
-    "source": { "page": 289, "book": "SR6Core" },
-    "wear_rules": ["cyberware/{limb}/{attribute}/1"]
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberware/{limb}/{attribute}/1"
+    ]
   },
   {
-    "id": "SR6Core/cyberware/cyberlimb/defense_rating/1",
+    "id": "sr6core/cyberwaremod/cyberware/cyberlimb/defense_rating/1",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -53,12 +60,16 @@
     "capacity": 1,
     "avail": "1",
     "cost": 5000,
-    "source": { "page": 289, "book": "SR6Core" },
-    "wear_rules": ["cyberware/cyberlimb/defense_rating/1"]
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/cyberware/cyberlimb/defense_rating/1"
+    ]
   },
-
   {
-    "id": "sr6core/cyberlimbaccessory-gyromount",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_gyromount",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -75,13 +86,17 @@
         "left_lower_leg",
         "left_foot"
       ]
-    },    "capacity": 8,
+    },
+    "capacity": 8,
     "avail": "5(I)",
     "cost": 6000,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-slide",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_slide",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -102,10 +117,13 @@
     "capacity": 3,
     "avail": "5(L)",
     "cost": 3000,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-holster",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_holster",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -126,10 +144,13 @@
     "capacity": 5,
     "avail": "4",
     "cost": 2000,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-hydraulicjacks/1",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_hydraulicjacks/1",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -140,10 +161,13 @@
     "capacity": 1,
     "avail": "4",
     "cost": 2500,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-hydraulicjacks/2",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_hydraulicjacks/2",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -154,10 +178,13 @@
     "capacity": 2,
     "avail": "4",
     "cost": 5000,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-hydraulicjacks/3",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_hydraulicjacks/3",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -168,10 +195,13 @@
     "capacity": 3,
     "avail": "4",
     "cost": 7500,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-hydraulicjacks/4",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_hydraulicjacks/4",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -182,10 +212,13 @@
     "capacity": 4,
     "avail": "4",
     "cost": 10000,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimbaccessory-smugglingcompartment",
+    "id": "sr6core/cyberwaremod/cyberlimbaccessory_smugglingcompartment",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -206,24 +239,33 @@
     "capacity": 5,
     "avail": "2",
     "cost": 6000,
-    "source": { "page": 289, "book": "SR6Core" }
+    "source": {
+      "page": 289,
+      "book": "SR6Core"
+    }
   },
-
   {
-    "id": "SR6Core/cyberwaremod/cyberjaw",
+    "id": "sr6core/cyberwaremod/cyberwaremod/cyberjaw",
     "type": "cyberwaremod",
     "mod_for": {
-      "replacement": ["skull"]
+      "replacement": [
+        "skull"
+      ]
     },
     "essence": "0.1",
     "capacity": "1",
     "avail": "2",
     "cost": 1500,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/cyberjaw"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/cyberjaw"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/hardening",
+    "id": "sr6core/cyberwaremod/cyberwaremod/hardening",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -245,11 +287,16 @@
     "capacity": "1",
     "avail": "2",
     "cost": 2500,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/hardening"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/hardening"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/shock_limb",
+    "id": "sr6core/cyberwaremod/cyberwaremod/shock_limb",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -263,11 +310,16 @@
     "capacity": "1",
     "avail": "3",
     "cost": 5000,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/shock_limb"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/shock_limb"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/handblade",
+    "id": "sr6core/cyberwaremod/cyberwaremod/handblade",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -279,11 +331,16 @@
     "capacity": "1",
     "avail": "4(I)",
     "cost": 2000,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/handblade"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/handblade"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/retractable_handblade",
+    "id": "sr6core/cyberwaremod/cyberwaremod/retractable_handblade",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -295,11 +352,16 @@
     "capacity": "2",
     "avail": "4(I)",
     "cost": 2500,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/handblade"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/handblade"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/hand_razors",
+    "id": "sr6core/cyberwaremod/cyberwaremod/hand_razors",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -311,11 +373,16 @@
     "capacity": "1",
     "avail": "3(I)",
     "cost": 1000,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/hand_razors"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/hand_razors"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/retractable_hand_razors",
+    "id": "sr6core/cyberwaremod/cyberwaremod/retractable_hand_razors",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -327,11 +394,16 @@
     "capacity": "2",
     "avail": "3(I)",
     "cost": 1250,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": ["SR6Core/cyber_implant_weapon/hand_razors"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/hand_razors"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/spurs",
+    "id": "sr6core/cyberwaremod/cyberwaremod/spurs",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -347,11 +419,16 @@
     "capacity": "1",
     "avail": "4(I)",
     "cost": 3000,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": [ "SR6Core/cyber_implant_weapon/spurs"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/spurs"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/retractable_spurs",
+    "id": "sr6core/cyberwaremod/cyberwaremod/retractable_spurs",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -367,11 +444,16 @@
     "capacity": "3",
     "avail": "4(I)",
     "cost": 5000,
-    "source": { "page": 290, "book": "SR6Core" },
-    "add_gears": [ "SR6Core/cyber_implant_weapon/spurs"]
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    },
+    "add_gears": [
+      "SR6Core/cyber_implant_weapon/spurs"
+    ]
   },
   {
-    "id": "SR6Core/cyberwaremod/holdout_pistol",
+    "id": "sr6core/cyberwaremod/cyberwaremod/holdout_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -393,10 +475,13 @@
     "capacity": "2",
     "avail": "3(L)",
     "cost": 2000,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/light_pistol",
+    "id": "sr6core/cyberwaremod/cyberwaremod/light_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -418,10 +503,13 @@
     "capacity": "4",
     "avail": "3(L)",
     "cost": 3000,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/machine_pistol",
+    "id": "sr6core/cyberwaremod/cyberwaremod/machine_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -443,10 +531,13 @@
     "capacity": "6",
     "avail": "4(L)",
     "cost": 3500,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/heavy_pistol",
+    "id": "sr6core/cyberwaremod/cyberwaremod/heavy_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -468,10 +559,13 @@
     "capacity": "6",
     "avail": "4(L)",
     "cost": 4300,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/smg",
+    "id": "sr6core/cyberwaremod/cyberwaremod/smg",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -493,10 +587,13 @@
     "capacity": "8",
     "avail": "5(L)",
     "cost": 4800,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/shotgun",
+    "id": "sr6core/cyberwaremod/cyberwaremod/shotgun",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -518,10 +615,13 @@
     "capacity": "10",
     "avail": "5(L)",
     "cost": 8500,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/grenade_launcher",
+    "id": "sr6core/cyberwaremod/cyberwaremod/grenade_launcher",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -543,10 +643,13 @@
     "capacity": "15",
     "avail": "6(I)",
     "cost": 24000,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/external_clip_port",
+    "id": "sr6core/cyberwaremod/cyberwaremod/external_clip_port",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -568,10 +671,13 @@
     "capacity": "1",
     "avail": "1",
     "cost": 1000,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/laser_sight",
+    "id": "sr6core/cyberwaremod/cyberwaremod/laser_sight",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -593,10 +699,13 @@
     "capacity": "1",
     "avail": "1",
     "cost": 1000,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "SR6Core/cyberwaremod/silencer_suppressor",
+    "id": "sr6core/cyberwaremod/cyberwaremod/silencer_suppressor",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -618,6 +727,9 @@
     "capacity": "2",
     "avail": "4(I)",
     "cost": 1000,
-    "source": { "page": 290, "book": "SR6Core" }
+    "source": {
+      "page": 290,
+      "book": "SR6Core"
+    }
   }
 ]

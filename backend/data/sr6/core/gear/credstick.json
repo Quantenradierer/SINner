@@ -1,42 +1,57 @@
 [
   {
-    "id": "sr6core/credstick-standard",
+    "id": "sr6core/credstick/standard",
     "type": "credstick",
     "max_value": 5000,
     "avail": "1",
     "cost": 5,
-    "source": { "page": 273, "book": "SR6Core" }
+    "source": {
+      "page": 273,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/credstick-silver",
+    "id": "sr6core/credstick/silver",
     "type": "credstick",
     "max_value": 20000,
     "avail": "1",
     "cost": 20,
-    "source": { "page": 273, "book": "SR6Core" }
+    "source": {
+      "page": 273,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/credstick-gold",
+    "id": "sr6core/credstick/gold",
     "type": "credstick",
     "max_value": 100000,
     "avail": "2",
     "cost": 100,
-    "source": { "page": 273, "book": "SR6Core" }
+    "source": {
+      "page": 273,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/credstick-platinum",
+    "id": "sr6core/credstick/platinum",
     "type": "credstick",
     "max_value": 500000,
     "avail": "3",
     "cost": 500,
-    "source": { "page": 273, "book": "SR6Core" }
+    "source": {
+      "page": 273,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/credstick-ebony",
+    "id": "sr6core/credstick/ebony",
     "type": "credstick",
     "max_value": 1000000,
     "avail": "5",
     "cost": 1000,
-    "source": { "page": 273, "book": "SR6Core" }
+    "source": {
+      "page": 273,
+      "book": "SR6Core"
+    }
   }
 ]

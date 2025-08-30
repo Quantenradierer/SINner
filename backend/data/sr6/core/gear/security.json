@@ -1,156 +1,222 @@
 [
   {
-    "id": "sr6core/containment-manacles",
+    "id": "sr6core/security/containment_manacles",
     "type": "security",
     "avail": "3",
     "cost": 250,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/lock/1",
+    "id": "sr6core/security/lock/1",
     "type": "security",
     "avail": "2",
     "cost": 10,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/lock/2",
+    "id": "sr6core/security/lock/2",
     "type": "security",
     "avail": "2",
     "cost": 20,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/lock/3",
+    "id": "sr6core/security/lock/3",
     "type": "security",
     "avail": "2",
     "cost": 30,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/lock/4",
+    "id": "sr6core/security/lock/4",
     "type": "security",
     "avail": "2",
     "cost": 40,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/lock/5",
+    "id": "sr6core/security/lock/5",
     "type": "security",
     "avail": "2",
     "cost": 50,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/lock/6",
+    "id": "sr6core/security/lock/6",
     "type": "security",
     "avail": "2",
     "cost": 60,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/1",
+    "id": "sr6core/security/maglock/1",
     "type": "security",
     "avail": "3",
     "cost": 100,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/2",
+    "id": "sr6core/security/maglock/2",
     "type": "security",
     "avail": "3",
     "cost": 200,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/3",
+    "id": "sr6core/security/maglock/3",
     "type": "security",
     "avail": "3",
     "cost": 300,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/4",
+    "id": "sr6core/security/maglock/4",
     "type": "security",
     "avail": "3",
     "cost": 400,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/5",
+    "id": "sr6core/security/maglock/5",
     "type": "security",
     "avail": "3",
     "cost": 500,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/6",
+    "id": "sr6core/security/maglock/6",
     "type": "security",
     "avail": "3",
     "cost": 600,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/7",
+    "id": "sr6core/security/maglock/7",
     "type": "security",
     "avail": "3",
     "cost": 700,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/8",
+    "id": "sr6core/security/maglock/8",
     "type": "security",
     "avail": "3",
     "cost": 800,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/maglock/9",
+    "id": "sr6core/security/maglock/9",
     "type": "security",
     "avail": "3",
     "cost": 900,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/keypad",
+    "id": "sr6core/security/keypad",
     "type": "security",
     "avail": "1",
     "cost": 50,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/card-reader",
+    "id": "sr6core/security/card_reader",
     "type": "security",
     "avail": "1",
     "cost": 50,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/biometric-reader",
+    "id": "sr6core/security/biometric_reader",
     "type": "security",
     "avail": "2",
     "cost": 200,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/metal-restraints",
+    "id": "sr6core/security/metal_restraints",
     "type": "security",
     "avail": "1",
     "cost": 20,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/plasteel-restraints",
+    "id": "sr6core/security/plasteel_restraints",
     "type": "security",
     "avail": "2",
     "cost": 50,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/plastic-straps",
+    "id": "sr6core/security/plastic_straps",
     "type": "security",
     "avail": "1",
     "cost": 5,
-    "source": { "page": 278, "book": "SR6Core" }
+    "source": {
+      "page": 278,
+      "book": "SR6Core"
+    }
   }
 ]

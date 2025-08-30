@@ -1,20 +1,26 @@
 [
   {
-    "id": "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.physical_condition_monitor",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "cyberware/cyberlimb/defense_rating/1",
-    "source": { "page": 288, "book": "SR6Core" },
+    "id": "sr6core/cyberware/cyberlimb/defense_rating/1",
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.defense_rating",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "cyberware/{limb}/{attribute}/1",
+    "id": "sr6core/cyberware/{limb}/{attribute}/1",
     "parameter": {
       "limb": [
         "right_arm",
@@ -35,7 +41,10 @@
         "agility"
       ]
     },
-    "source": { "page": 288, "book": "SR6Core" },
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    },
     "modifies": "character.{limb}.{attribute}",
     "modifier_type": "ADD",
     "modification": "1"

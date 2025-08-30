@@ -1,307 +1,415 @@
 [
   {
-    "id": "sr6core/headware-commlink",
+    "id": "sr6core/cyberware/headware_commlink",
     "type": "cyberware",
     "subtype": "headware",
     "essence": 0.2,
     "capacity": 2,
     "avail": "2",
     "cost": 2000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-controlrig/1",
+    "id": "sr6core/cyberware/headware_controlrig/1",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 1,
     "essence": 1,
     "avail": "4(L)",
     "cost": 30000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-controlrig/2",
+    "id": "sr6core/cyberware/headware_controlrig/2",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 2,
     "essence": 2,
     "avail": "4(L)",
     "cost": 120000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-controlrig/3",
+    "id": "sr6core/cyberware/headware_controlrig/3",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 3,
     "essence": 3,
     "avail": "4(L)",
     "cost": 270000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-cortexkinkbomb",
+    "id": "sr6core/cyberware/headware_cortexkinkbomb",
     "type": "cyberware",
     "subtype": "headware",
     "essence": null,
     "capacity": 1,
     "avail": "6(I)",
     "cost": 10000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-cortexmicrobomb",
+    "id": "sr6core/cyberware/headware_cortexmicrobomb",
     "type": "cyberware",
     "subtype": "headware",
     "essence": null,
     "capacity": 2,
     "avail": "6(I)",
     "cost": 25000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-cortexareabomb",
+    "id": "sr6core/cyberware/headware_cortexareabomb",
     "type": "cyberware",
     "subtype": "headware",
     "essence": null,
     "capacity": 3,
     "avail": "6(I)",
     "cost": 40000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-cyberdeck",
+    "id": "sr6core/cyberware/headware_cyberdeck",
     "type": "cyberware",
     "subtype": "headware",
     "essence": 0.4,
     "capacity": 4,
     "avail": "4(L)",
     "cost": 5000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-datajack",
+    "id": "sr6core/cyberware/headware_datajack",
     "type": "cyberware",
     "subtype": "headware",
     "essence": 0.1,
     "avail": "2",
     "cost": 1000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-datalock/1",
+    "id": "sr6core/cyberware/headware_datalock/1",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 1,
     "essence": 0.1,
     "avail": "4",
     "cost": 1000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-datalock/2",
+    "id": "sr6core/cyberware/headware_datalock/2",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 2,
     "essence": 0.1,
     "avail": "4",
     "cost": 2000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-datalock/12",
+    "id": "sr6core/cyberware/headware_datalock/12",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 12,
     "essence": 0.1,
     "avail": "4",
     "cost": 12000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-olfactorybooster/1",
+    "id": "sr6core/cyberware/headware_olfactorybooster/1",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 1,
     "essence": 0.2,
     "avail": "3",
     "cost": 4000,
-    "wear_rules": ["Cyberware Olfactorybooster Olfactory Perception +1"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware olfactorybooster olfactory perception +1"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-olfactorybooster/2",
+    "id": "sr6core/cyberware/headware_olfactorybooster/2",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 2,
     "essence": 0.2,
     "avail": "3",
     "cost": 8000,
-    "wear_rules": ["Cyberware Olfactorybooster Olfactory Perception +2"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware olfactorybooster olfactory perception +2"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-olfactorybooster/3",
+    "id": "sr6core/cyberware/headware_olfactorybooster/3",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 3,
     "essence": 0.2,
     "avail": "3",
     "cost": 12000,
-    "wear_rules": ["Cyberware Olfactorybooster Olfactory Perception +3"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware olfactorybooster olfactory perception +3"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
-    {
-    "id": "sr6core/headware-simrig",
+  {
+    "id": "sr6core/cyberware/headware_simrig",
     "type": "cyberware",
     "subtype": "headware",
     "essence": 0.2,
     "avail": "4(L)",
     "cost": 4000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-skilljack/1",
+    "id": "sr6core/cyberware/headware_skilljack/1",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 1,
     "essence": 0.1,
     "avail": "4",
     "cost": 20000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-skilljack/2",
+    "id": "sr6core/cyberware/headware_skilljack/2",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 2,
     "essence": 0.2,
     "avail": "4",
     "cost": 40000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-skilljack/3",
+    "id": "sr6core/cyberware/headware_skilljack/3",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 3,
     "essence": 0.3,
     "avail": "4",
     "cost": 60000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-skilljack/4",
+    "id": "sr6core/cyberware/headware_skilljack/4",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 4,
     "essence": 0.4,
     "avail": "4",
     "cost": 80000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-skilljack/5",
+    "id": "sr6core/cyberware/headware_skilljack/5",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 5,
     "essence": 0.5,
     "avail": "4",
     "cost": 100000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-skilljack/6",
+    "id": "sr6core/cyberware/headware_skilljack/6",
     "type": "cyberware",
     "subtype": "headware",
     "rating": 6,
     "essence": 0.6,
     "avail": "4",
     "cost": 120000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-tastebooster/1",
+    "id": "sr6core/cyberwaremod/headware_tastebooster/1",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "rating": 1,
     "essence": 0.2,
     "avail": "3",
     "cost": 3000,
-    "wear_rules": ["Cyberware Tastebooster Taste Perception +1"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware tastebooster taste perception +1"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-tastebooster/2",
+    "id": "sr6core/cyberwaremod/headware_tastebooster/2",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "rating": 2,
     "essence": 0.2,
     "avail": "3",
     "cost": 6000,
-    "wear_rules": ["Cyberware Tastebooster Taste Perception +2"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware tastebooster taste perception +2"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-tastebooster/3",
+    "id": "sr6core/cyberwaremod/headware_tastebooster/3",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "rating": 3,
     "essence": 0.2,
     "avail": "3",
     "cost": 9000,
-    "wear_rules": ["Cyberware Tastebooster Taste Perception +3"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware tastebooster taste perception +3"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-toothcompartment",
+    "id": "sr6core/cyberwaremod/headware_toothcompartment",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "avail": "4",
     "cost": 800,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-ultrasoundsensor",
+    "id": "sr6core/cyberwaremod/headware_ultrasoundsensor",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "essence": 0.3,
     "capacity": 2,
     "avail": "4",
     "cost": 36000,
-    "source": { "page": 284, "book": "SR6Core" }
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-voicemodulator/1",
+    "id": "sr6core/cyberwaremod/headware_voicemodulator/1",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "rating": 1,
     "essence": 0.2,
     "avail": "4(L)",
     "cost": 5000,
-    "wear_rules": ["Cyberware Voice Modulator Soundbased Con +1"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware voice modulator soundbased con +1"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-voicemodulator/2",
+    "id": "sr6core/cyberwaremod/headware_voicemodulator/2",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "rating": 2,
     "essence": 0.2,
     "avail": "4(L)",
     "cost": 10000,
-    "wear_rules": ["Cyberware Voice Modulator Soundbased Con +2"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware voice modulator soundbased con +2"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/headware-voicemodulator/3",
+    "id": "sr6core/cyberwaremod/headware_voicemodulator/3",
     "type": "cyberwaremod",
     "subtype": "headwaremod",
     "rating": 3,
     "essence": 0.2,
     "avail": "4(L)",
     "cost": 15000,
-    "wear_rules": ["Cyberware Voice Modulator Soundbased Con +3"],
-    "source": { "page": 284, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware voice modulator soundbased con +3"
+    ],
+    "source": {
+      "page": 284,
+      "book": "SR6Core"
+    }
   }
 ]

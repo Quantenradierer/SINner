@@ -1,489 +1,654 @@
 [
   {
-    "id": "sr6core/cyberlimb-skull/synthetic",
+    "id": "sr6core/cyberware/cyberlimb_skull/synthetic",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["skull"],
+    "replacement": [
+      "skull"
+    ],
     "essence": 0.75,
     "avail": "5",
     "cost": 15000,
     "capacity": 2,
-    "wear_rules": ["Cyberware/Cyberlimb/Physical Condition Monitor +1"],
-    "source": { "page": 288, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1"
+    ],
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-skull/obvious",
+    "id": "sr6core/cyberware/cyberlimb_skull/obvious",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["skull"],
+    "replacement": [
+      "skull"
+    ],
     "essence": 0.75,
     "avail": "5",
     "cost": 10000,
     "capacity": 4,
-    "wear_rules": ["Cyberware/Cyberlimb/Physical Condition Monitor +1"],
-    "source": { "page": 288, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1"
+    ],
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-torso/synthetic",
+    "id": "sr6core/cyberware/cyberlimb_torso/synthetic",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["torso"],
+    "replacement": [
+      "torso"
+    ],
     "essence": 1.5,
     "avail": "4",
     "cost": 25000,
     "capacity": 5,
-    "wear_rules": ["Cyberware/Cyberlimb/Physical Condition Monitor +1"],
-    "source": { "page": 288, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1"
+    ],
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-torso/obvious",
+    "id": "sr6core/cyberware/cyberlimb_torso/obvious",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["torso"],
+    "replacement": [
+      "torso"
+    ],
     "essence": 1.5,
     "avail": "4",
     "cost": 20000,
     "capacity": 10,
-    "wear_rules": ["Cyberware/Cyberlimb/Physical Condition Monitor +1"],
-    "source": { "page": 288, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1"
+    ],
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-arm/synthetic/right",
+    "id": "sr6core/cyberware/cyberlimb_arm/synthetic/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_arm", "right_forearm", "right_hand"],
+    "replacement": [
+      "right_arm",
+      "right_forearm",
+      "right_hand"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 20000,
     "capacity": 8,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Arm Replacement/Body",
-      "Cyberware/Right Arm Replacement/Agility",
-      "Cyberware/Right Arm Replacement/Reaction",
-      "Cyberware/Right Arm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right arm replacement/body",
+      "sr6core/cyberware/right arm replacement/agility",
+      "sr6core/cyberware/right arm replacement/reaction",
+      "sr6core/cyberware/right arm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-arm/obvious/right",
+    "id": "sr6core/cyberware/cyberlimb_arm/obvious/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_arm", "right_forearm", "right_hand"],
+    "replacement": [
+      "right_arm",
+      "right_forearm",
+      "right_hand"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 15000,
     "capacity": 15,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Arm Replacement/Body",
-      "Cyberware/Right Arm Replacement/Agility",
-      "Cyberware/Right Arm Replacement/Reaction",
-      "Cyberware/Right Arm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right arm replacement/body",
+      "sr6core/cyberware/right arm replacement/agility",
+      "sr6core/cyberware/right arm replacement/reaction",
+      "sr6core/cyberware/right arm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-arm/synthetic/left",
+    "id": "sr6core/cyberware/cyberlimb_arm/synthetic/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_arm", "left_forearm", "left_hand"],
+    "replacement": [
+      "left_arm",
+      "left_forearm",
+      "left_hand"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 20000,
     "capacity": 8,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Arm Replacement/Body",
-      "Cyberware/Left Arm Replacement/Agility",
-      "Cyberware/Left Arm Replacement/Reaction",
-      "Cyberware/Left Arm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left arm replacement/body",
+      "sr6core/cyberware/left arm replacement/agility",
+      "sr6core/cyberware/left arm replacement/reaction",
+      "sr6core/cyberware/left arm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-arm/obvious/left",
+    "id": "sr6core/cyberware/cyberlimb_arm/obvious/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_arm", "left_forearm", "left_hand"],
+    "replacement": [
+      "left_arm",
+      "left_forearm",
+      "left_hand"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 15000,
     "capacity": 15,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Arm Replacement/Body",
-      "Cyberware/Left Arm Replacement/Agility",
-      "Cyberware/Left Arm Replacement/Reaction",
-      "Cyberware/Left Arm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left arm replacement/body",
+      "sr6core/cyberware/left arm replacement/agility",
+      "sr6core/cyberware/left arm replacement/reaction",
+      "sr6core/cyberware/left arm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-forearm/synthetic/right",
+    "id": "sr6core/cyberware/cyberlimb_forearm/synthetic/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_forearm", "right_hand"],
+    "replacement": [
+      "right_forearm",
+      "right_hand"
+    ],
     "essence": 0.45,
     "avail": "3",
     "cost": 12000,
     "capacity": 5,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Forearm Replacement/Body",
-      "Cyberware/Right Forearm Replacement/Agility",
-      "Cyberware/Right Forearm Replacement/Reaction",
-      "Cyberware/Right Forearm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right forearm replacement/body",
+      "sr6core/cyberware/right forearm replacement/agility",
+      "sr6core/cyberware/right forearm replacement/reaction",
+      "sr6core/cyberware/right forearm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-
   {
-    "id": "sr6core/cyberlimb-forearm/obvious/right",
+    "id": "sr6core/cyberware/cyberlimb_forearm/obvious/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_forearm", "right_hand"],
+    "replacement": [
+      "right_forearm",
+      "right_hand"
+    ],
     "essence": 0.45,
     "avail": "3",
     "cost": 10000,
     "capacity": 10,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Forearm Replacement/Body",
-      "Cyberware/Right Forearm Replacement/Agility",
-      "Cyberware/Right Forearm Replacement/Reaction",
-      "Cyberware/Right Forearm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right forearm replacement/body",
+      "sr6core/cyberware/right forearm replacement/agility",
+      "sr6core/cyberware/right forearm replacement/reaction",
+      "sr6core/cyberware/right forearm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-forearm/synthetic/left",
+    "id": "sr6core/cyberware/cyberlimb_forearm/synthetic/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_forearm", "left_hand"],
+    "replacement": [
+      "left_forearm",
+      "left_hand"
+    ],
     "essence": 0.45,
     "avail": "3",
     "cost": 12000,
     "capacity": 5,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Forearm Replacement/Body",
-      "Cyberware/Left Forearm Replacement/Agility",
-      "Cyberware/Left Forearm Replacement/Reaction",
-      "Cyberware/Left Forearm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left forearm replacement/body",
+      "sr6core/cyberware/left forearm replacement/agility",
+      "sr6core/cyberware/left forearm replacement/reaction",
+      "sr6core/cyberware/left forearm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-forearm/obvious/left",
+    "id": "sr6core/cyberware/cyberlimb_forearm/obvious/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_forearm", "left_hand"],
+    "replacement": [
+      "left_forearm",
+      "left_hand"
+    ],
     "essence": 0.45,
     "avail": "3",
     "cost": 10000,
     "capacity": 10,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Forearm Replacement/Body",
-      "Cyberware/Left Forearm Replacement/Agility",
-      "Cyberware/Left Forearm Replacement/Reaction",
-      "Cyberware/Left Forearm Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left forearm replacement/body",
+      "sr6core/cyberware/left forearm replacement/agility",
+      "sr6core/cyberware/left forearm replacement/reaction",
+      "sr6core/cyberware/left forearm replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-
   {
-    "id": "sr6core/cyberlimb-hand/synthetic/right",
+    "id": "sr6core/cyberware/cyberlimb_hand/synthetic/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_hand"],
+    "replacement": [
+      "right_hand"
+    ],
     "essence": 0.25,
     "avail": "3",
     "cost": 6000,
     "capacity": 2,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Hand Replacement/Body",
-      "Cyberware/Right Hand Replacement/Agility",
-      "Cyberware/Right Hand Replacement/Reaction",
-      "Cyberware/Right Hand Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right hand replacement/body",
+      "sr6core/cyberware/right hand replacement/agility",
+      "sr6core/cyberware/right hand replacement/reaction",
+      "sr6core/cyberware/right hand replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-hand/obvious/right",
+    "id": "sr6core/cyberware/cyberlimb_hand/obvious/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_hand"],
+    "replacement": [
+      "right_hand"
+    ],
     "essence": 0.25,
     "avail": "3",
     "cost": 5000,
     "capacity": 4,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Hand Replacement/Body",
-      "Cyberware/Right Hand Replacement/Agility",
-      "Cyberware/Right Hand Replacement/Reaction",
-      "Cyberware/Right Hand Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right hand replacement/body",
+      "sr6core/cyberware/right hand replacement/agility",
+      "sr6core/cyberware/right hand replacement/reaction",
+      "sr6core/cyberware/right hand replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-
   {
-    "id": "sr6core/cyberlimb-hand/synthetic/left",
+    "id": "sr6core/cyberware/cyberlimb_hand/synthetic/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_hand"],
+    "replacement": [
+      "left_hand"
+    ],
     "essence": 0.25,
     "avail": "3",
     "cost": 6000,
     "capacity": 2,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Hand Replacement/Body",
-      "Cyberware/Left Hand Replacement/Agility",
-      "Cyberware/Left Hand Replacement/Reaction",
-      "Cyberware/Left Hand Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left hand replacement/body",
+      "sr6core/cyberware/left hand replacement/agility",
+      "sr6core/cyberware/left hand replacement/reaction",
+      "sr6core/cyberware/left hand replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-hand/obvious/left",
+    "id": "sr6core/cyberware/cyberlimb_hand/obvious/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_hand"],
+    "replacement": [
+      "left_hand"
+    ],
     "essence": 0.25,
     "avail": "3",
     "cost": 5000,
     "capacity": 4,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Hand Replacement/Body",
-      "Cyberware/Left Hand Replacement/Agility",
-      "Cyberware/Left Hand Replacement/Reaction",
-      "Cyberware/Left Hand Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left hand replacement/body",
+      "sr6core/cyberware/left hand replacement/agility",
+      "sr6core/cyberware/left hand replacement/reaction",
+      "sr6core/cyberware/left hand replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-
-
   {
-    "id": "sr6core/cyberlimb-leg/synthetic/right",
+    "id": "sr6core/cyberware/cyberlimb_leg/synthetic/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_leg", "right_lower_leg", "right_foot"],
+    "replacement": [
+      "right_leg",
+      "right_lower_leg",
+      "right_foot"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 20000,
     "capacity": 10,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Leg Replacement/Body",
-      "Cyberware/Right Leg Replacement/Agility",
-      "Cyberware/Right Leg Replacement/Reaction",
-      "Cyberware/Right Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right leg replacement/body",
+      "sr6core/cyberware/right leg replacement/agility",
+      "sr6core/cyberware/right leg replacement/reaction",
+      "sr6core/cyberware/right leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-leg/obvious/right",
+    "id": "sr6core/cyberware/cyberlimb_leg/obvious/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_leg", "right_lower_leg", "right_foot"],
+    "replacement": [
+      "right_leg",
+      "right_lower_leg",
+      "right_foot"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 15000,
     "capacity": 20,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Leg Replacement/Body",
-      "Cyberware/Right Leg Replacement/Agility",
-      "Cyberware/Right Leg Replacement/Reaction",
-      "Cyberware/Right Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right leg replacement/body",
+      "sr6core/cyberware/right leg replacement/agility",
+      "sr6core/cyberware/right leg replacement/reaction",
+      "sr6core/cyberware/right leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-    {
-    "id": "sr6core/cyberlimb-leg/synthetic/left",
+  {
+    "id": "sr6core/cyberware/cyberlimb_leg/synthetic/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_leg", "left_lower_leg", "left_foot"],
+    "replacement": [
+      "left_leg",
+      "left_lower_leg",
+      "left_foot"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 20000,
     "capacity": 10,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Leg Replacement/Body",
-      "Cyberware/Left Leg Replacement/Agility",
-      "Cyberware/Left Leg Replacement/Reaction",
-      "Cyberware/Left Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left leg replacement/body",
+      "sr6core/cyberware/left leg replacement/agility",
+      "sr6core/cyberware/left leg replacement/reaction",
+      "sr6core/cyberware/left leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-leg/obvious/left",
+    "id": "sr6core/cyberware/cyberlimb_leg/obvious/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_leg", "left_lower_leg", "left_foot"],
+    "replacement": [
+      "left_leg",
+      "left_lower_leg",
+      "left_foot"
+    ],
     "essence": 1,
     "avail": "4",
     "cost": 15000,
     "capacity": 20,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Leg Replacement/Body",
-      "Cyberware/Left Leg Replacement/Agility",
-      "Cyberware/Left Leg Replacement/Reaction",
-      "Cyberware/Left Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left leg replacement/body",
+      "sr6core/cyberware/left leg replacement/agility",
+      "sr6core/cyberware/left leg replacement/reaction",
+      "sr6core/cyberware/left leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-
   {
-    "id": "sr6core/cyberlimb-lowerleg/synthetic/right",
+    "id": "sr6core/cyberware/cyberlimb_lowerleg/synthetic/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_lower_leg", "right_foot"],
+    "replacement": [
+      "right_lower_leg",
+      "right_foot"
+    ],
     "essence": 0.45,
     "avail": "4",
     "cost": 12000,
     "capacity": 6,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Lower Leg Replacement/Body",
-      "Cyberware/Right Lower Leg Replacement/Agility",
-      "Cyberware/Right Lower Leg Replacement/Reaction",
-      "Cyberware/Right Lower Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right lower leg replacement/body",
+      "sr6core/cyberware/right lower leg replacement/agility",
+      "sr6core/cyberware/right lower leg replacement/reaction",
+      "sr6core/cyberware/right lower leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-lowerleg/obvious/right",
+    "id": "sr6core/cyberware/cyberlimb_lowerleg/obvious/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_lower_leg", "right_foot"],
+    "replacement": [
+      "right_lower_leg",
+      "right_foot"
+    ],
     "essence": 0.45,
     "avail": "4",
     "cost": 10000,
     "capacity": 12,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Lower Leg Replacement/Body",
-      "Cyberware/Right Lower Leg Replacement/Agility",
-      "Cyberware/Right Lower Leg Replacement/Reaction",
-      "Cyberware/Right Lower Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right lower leg replacement/body",
+      "sr6core/cyberware/right lower leg replacement/agility",
+      "sr6core/cyberware/right lower leg replacement/reaction",
+      "sr6core/cyberware/right lower leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-    {
-    "id": "sr6core/cyberlimb-lowerleg/synthetic/left",
+  {
+    "id": "sr6core/cyberware/cyberlimb_lowerleg/synthetic/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_lower_leg", "left_foot"],
+    "replacement": [
+      "left_lower_leg",
+      "left_foot"
+    ],
     "essence": 0.45,
     "avail": "4",
     "cost": 12000,
     "capacity": 6,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Lower Leg Replacement/Body",
-      "Cyberware/Left Lower Leg Replacement/Agility",
-      "Cyberware/Left Lower Leg Replacement/Reaction",
-      "Cyberware/Left Lower Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left lower leg replacement/body",
+      "sr6core/cyberware/left lower leg replacement/agility",
+      "sr6core/cyberware/left lower leg replacement/reaction",
+      "sr6core/cyberware/left lower leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-lowerleg/obvious/left",
+    "id": "sr6core/cyberware/cyberlimb_lowerleg/obvious/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_lower_leg", "left_foot"],
+    "replacement": [
+      "left_lower_leg",
+      "left_foot"
+    ],
     "essence": 0.45,
     "avail": "4",
     "cost": 10000,
     "capacity": 12,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Lower Leg Replacement/Body",
-      "Cyberware/Left Lower Leg Replacement/Agility",
-      "Cyberware/Left Lower Leg Replacement/Reaction",
-      "Cyberware/Left Lower Leg Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left lower leg replacement/body",
+      "sr6core/cyberware/left lower leg replacement/agility",
+      "sr6core/cyberware/left lower leg replacement/reaction",
+      "sr6core/cyberware/left lower leg replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
-
   {
-    "id": "sr6core/cyberlimb-foot/synthetic/right",
+    "id": "sr6core/cyberware/cyberlimb_foot/synthetic/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_foot"],
+    "replacement": [
+      "right_foot"
+    ],
     "essence": 0.25,
     "avail": "4",
     "cost": 6000,
     "capacity": 2,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Foot Replacement/Body",
-      "Cyberware/Right Foot Replacement/Agility",
-      "Cyberware/Right Foot Replacement/Reaction",
-      "Cyberware/Right Foot Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right foot replacement/body",
+      "sr6core/cyberware/right foot replacement/agility",
+      "sr6core/cyberware/right foot replacement/reaction",
+      "sr6core/cyberware/right foot replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-foot/obvious/right",
+    "id": "sr6core/cyberware/cyberlimb_foot/obvious/right",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["right_foot"],
+    "replacement": [
+      "right_foot"
+    ],
     "essence": 0.25,
     "avail": "4",
     "cost": 5000,
     "capacity": 4,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Right Foot Replacement/Body",
-      "Cyberware/Right Foot Replacement/Agility",
-      "Cyberware/Right Foot Replacement/Reaction",
-      "Cyberware/Right Foot Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/right foot replacement/body",
+      "sr6core/cyberware/right foot replacement/agility",
+      "sr6core/cyberware/right foot replacement/reaction",
+      "sr6core/cyberware/right foot replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-foot/synthetic/left",
+    "id": "sr6core/cyberware/cyberlimb_foot/synthetic/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_foot"],
+    "replacement": [
+      "left_foot"
+    ],
     "essence": 0.25,
     "avail": "4",
     "cost": 6000,
     "capacity": 2,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Foot Replacement/Body",
-      "Cyberware/Left Foot Replacement/Agility",
-      "Cyberware/Left Foot Replacement/Reaction",
-      "Cyberware/Left Foot Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left foot replacement/body",
+      "sr6core/cyberware/left foot replacement/agility",
+      "sr6core/cyberware/left foot replacement/reaction",
+      "sr6core/cyberware/left foot replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cyberlimb-foot/obvious/left",
+    "id": "sr6core/cyberware/cyberlimb_foot/obvious/left",
     "type": "cyberware",
     "subtype": "cyberlimbs",
-    "replacement": ["left_foot"],
+    "replacement": [
+      "left_foot"
+    ],
     "essence": 0.25,
     "avail": "4",
     "cost": 5000,
     "capacity": 4,
     "wear_rules": [
-      "Cyberware/Cyberlimb/Physical Condition Monitor +1",
-      "Cyberware/Left Foot Replacement/Body",
-      "Cyberware/Left Foot Replacement/Agility",
-      "Cyberware/Left Foot Replacement/Reaction",
-      "Cyberware/Left Foot Replacement/Strength"
+      "sr6core/cyberware/cyberlimb/physical condition monitor +1",
+      "sr6core/cyberware/left foot replacement/body",
+      "sr6core/cyberware/left foot replacement/agility",
+      "sr6core/cyberware/left foot replacement/reaction",
+      "sr6core/cyberware/left foot replacement/strength"
     ],
-    "source": { "page": 288, "book": "SR6Core" }
+    "source": {
+      "page": 288,
+      "book": "SR6Core"
+    }
   }
 ]

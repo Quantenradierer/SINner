@@ -1,66 +1,90 @@
 [
   {
-    "id": "sr6core/sensorfunction-atmosphere",
+    "id": "sr6core/sensorhousingmod/sensorfunction_atmosphere",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-cyberwarescanner",
+    "id": "sr6core/sensorhousingmod/sensorfunction_cyberwarescanner",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-geigercounter",
+    "id": "sr6core/sensorhousingmod/sensorfunction_geigercounter",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-laserrangefinder",
+    "id": "sr6core/sensorhousingmod/sensorfunction_laserrangefinder",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-madscanner",
+    "id": "sr6core/sensorhousingmod/sensorfunction_madscanner",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-motionsensor",
+    "id": "sr6core/sensorhousingmod/sensorfunction_motionsensor",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-olfactoryscanner",
+    "id": "sr6core/sensorhousingmod/sensorfunction_olfactoryscanner",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorfunction-ultrasound",
+    "id": "sr6core/sensorhousingmod/sensorfunction_ultrasound",
     "type": "sensorhousingmod",
     "avail": "0",
     "cost": 0,
     "capacity": 1,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   }
 ]

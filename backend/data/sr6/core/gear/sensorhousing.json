@@ -1,146 +1,200 @@
 [
   {
-    "id": "sr6core/sensor-handheldhousing/1",
+    "id": "sr6core/sensorhousing/sensor_handheldhousing/1",
     "type": "sensorhousing",
     "capacity": 1,
     "avail": "1",
     "cost": 100,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-handheldhousing/2",
+    "id": "sr6core/sensorhousing/sensor_handheldhousing/2",
     "type": "sensorhousing",
     "capacity": 2,
     "avail": "1",
     "cost": 200,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-handheldhousing/3",
+    "id": "sr6core/sensorhousing/sensor_handheldhousing/3",
     "type": "sensorhousing",
     "capacity": 3,
     "avail": "1",
     "cost": 300,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-wallmountedhousing/1",
+    "id": "sr6core/sensorhousing/sensor_wallmountedhousing/1",
     "type": "sensorhousing",
     "capacity": 1,
     "avail": "1",
     "cost": 250,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-wallmountedhousing/2",
+    "id": "sr6core/sensorhousing/sensor_wallmountedhousing/2",
     "type": "sensorhousing",
     "capacity": 2,
     "avail": "1",
     "cost": 500,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-wallmountedhousing/3",
+    "id": "sr6core/sensorhousing/sensor_wallmountedhousing/3",
     "type": "sensorhousing",
     "capacity": 3,
     "avail": "1",
     "cost": 750,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-wallmountedhousing/4",
+    "id": "sr6core/sensorhousing/sensor_wallmountedhousing/4",
     "type": "sensorhousing",
     "capacity": 4,
     "avail": "1",
     "cost": 1000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-wallmountedhousing/5",
+    "id": "sr6core/sensorhousing/sensor_wallmountedhousing/5",
     "type": "sensorhousing",
     "capacity": 5,
     "avail": "1",
     "cost": 1250,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-wallmountedhousing/6",
+    "id": "sr6core/sensorhousing/sensor_wallmountedhousing/6",
     "type": "sensorhousing",
     "capacity": 6,
     "avail": "1",
     "cost": 1500,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/1",
+    "id": "sr6core/sensorhousing/sensorarray/1",
     "type": "sensorhousing",
     "capacity": 1,
     "avail": "3",
     "cost": 1000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/2",
+    "id": "sr6core/sensorhousing/sensorarray/2",
     "type": "sensorhousing",
     "capacity": 2,
     "avail": "3",
     "cost": 2000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/3",
+    "id": "sr6core/sensorhousing/sensorarray/3",
     "type": "sensorhousing",
     "capacity": 3,
     "avail": "3",
     "cost": 3000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/4",
+    "id": "sr6core/sensorhousing/sensorarray/4",
     "type": "sensorhousing",
     "capacity": 4,
     "avail": "3",
     "cost": 4000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/5",
+    "id": "sr6core/sensorhousing/sensorarray/5",
     "type": "sensorhousing",
     "capacity": 5,
     "avail": "3",
     "cost": 5000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/6",
+    "id": "sr6core/sensorhousing/sensorarray/6",
     "type": "sensorhousing",
     "capacity": 6,
     "avail": "3",
     "cost": 6000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/7",
+    "id": "sr6core/sensorhousing/sensorarray/7",
     "type": "sensorhousing",
     "capacity": 7,
     "avail": "3",
     "cost": 7000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensorarray/8",
+    "id": "sr6core/sensorhousing/sensorarray/8",
     "type": "sensorhousing",
     "capacity": 8,
     "avail": "3",
     "cost": 8000,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/sensor-single/1",
+    "id": "sr6core/sensorhousing/sensor_single/1",
     "type": "sensorhousing",
     "capacity": 1,
     "avail": "2",
     "cost": 100,
-    "source": { "page": 277, "book": "SR6Core" }
+    "source": {
+      "page": 277,
+      "book": "SR6Core"
+    }
   }
 ]

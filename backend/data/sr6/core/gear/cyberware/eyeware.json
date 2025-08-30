@@ -1,6 +1,6 @@
 [
   {
-    "id": "sr6core/cybereyes/1",
+    "id": "sr6core/cyberware/cybereyes/1",
     "type": "cyberware",
     "subtype": "eyeware",
     "rating": 1,
@@ -8,11 +8,16 @@
     "capacity": 1,
     "avail": "2",
     "cost": 1000,
-    "replacement": ["eye"],
-    "source": { "page": 285, "book": "SR6Core" }
+    "replacement": [
+      "eye"
+    ],
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cybereyes/2",
+    "id": "sr6core/cyberware/cybereyes/2",
     "type": "cyberware",
     "subtype": "eyeware",
     "rating": 2,
@@ -20,11 +25,16 @@
     "capacity": 4,
     "avail": "2",
     "cost": 4000,
-    "replacement": ["eye"],
-    "source": { "page": 285, "book": "SR6Core" }
+    "replacement": [
+      "eye"
+    ],
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cybereyes/3",
+    "id": "sr6core/cyberware/cybereyes/3",
     "type": "cyberware",
     "subtype": "eyeware",
     "rating": 3,
@@ -32,11 +42,16 @@
     "capacity": 8,
     "avail": "3",
     "cost": 6000,
-    "replacement": ["eye"],
-    "source": { "page": 285, "book": "SR6Core" }
+    "replacement": [
+      "eye"
+    ],
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cybereyes/4",
+    "id": "sr6core/cyberware/cybereyes/4",
     "type": "cyberware",
     "subtype": "eyeware",
     "rating": 4,
@@ -44,11 +59,16 @@
     "capacity": 12,
     "avail": "3",
     "cost": 10000,
-    "replacement": ["eye"],
-    "source": { "page": 285, "book": "SR6Core" }
+    "replacement": [
+      "eye"
+    ],
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/cybereyes/5",
+    "id": "sr6core/cyberware/cybereyes/5",
     "type": "cyberware",
     "subtype": "eyeware",
     "rating": 5,
@@ -56,51 +76,68 @@
     "capacity": 16,
     "avail": "3",
     "cost": 16000,
-    "replacement": ["eye"],
-    "source": { "page": 285, "book": "SR6Core" }
+    "replacement": [
+      "eye"
+    ],
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/flare-compensation",
+    "id": "sr6core/cyberwaremod/flare_compensation",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.1,
     "capacity": 1,
     "avail": "2",
     "cost": 1000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/image-link",
+    "id": "sr6core/cyberwaremod/image_link",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.1,
     "capacity": null,
     "avail": "2",
     "cost": 800,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/low-light-vision",
+    "id": "sr6core/cyberwaremod/low_light_vision",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.1,
     "capacity": 2,
     "avail": "2",
     "cost": 1500,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/ocular-drone",
+    "id": "sr6core/cyberwaremod/ocular_drone",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.3,
     "capacity": 6,
     "avail": "3",
     "cost": 6000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/retinal-duplication/1",
+    "id": "sr6core/cyberwaremod/retinal_duplication/1",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "rating": 1,
@@ -108,10 +145,13 @@
     "capacity": 1,
     "avail": "5(I)",
     "cost": 20000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/retinal-duplication/2",
+    "id": "sr6core/cyberwaremod/retinal_duplication/2",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "rating": 2,
@@ -119,10 +159,13 @@
     "capacity": 1,
     "avail": "5(I)",
     "cost": 40000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/retinal-duplication/3",
+    "id": "sr6core/cyberwaremod/retinal_duplication/3",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "rating": 3,
@@ -130,10 +173,13 @@
     "capacity": 1,
     "avail": "5(I)",
     "cost": 60000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/retinal-duplication/4",
+    "id": "sr6core/cyberwaremod/retinal_duplication/4",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "rating": 4,
@@ -141,10 +187,13 @@
     "capacity": 1,
     "avail": "5(I)",
     "cost": 80000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/retinal-duplication/5",
+    "id": "sr6core/cyberwaremod/retinal_duplication/5",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "rating": 5,
@@ -152,10 +201,13 @@
     "capacity": 1,
     "avail": "5(I)",
     "cost": 100000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/retinal-duplication/6",
+    "id": "sr6core/cyberwaremod/retinal_duplication/6",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "rating": 6,
@@ -163,10 +215,13 @@
     "capacity": 1,
     "avail": "5(I)",
     "cost": 120000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/smartlink",
+    "id": "sr6core/cyberwaremod/smartlink",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.2,
@@ -174,43 +229,57 @@
     "avail": "3(L)",
     "cost": 4000,
     "wear_rules": [
-      "Cyberware/Cybereye/Smartlink/Attack Rating Close +2",
-      "Cyberware/Cybereye/Smartlink/Attack Rating Near +2",
-      "Cyberware/Cybereye/Smartlink/Attack Rating Medium +2",
-      "Cyberware/Cybereye/Smartlink/Attack Rating Far +2",
-      "Cyberware/Cybereye/Smartlink/Attack Rating Very Far +2"
+      "sr6core/cyberware/cybereye/smartlink/attack rating close +2",
+      "sr6core/cyberware/cybereye/smartlink/attack rating near +2",
+      "sr6core/cyberware/cybereye/smartlink/attack rating medium +2",
+      "sr6core/cyberware/cybereye/smartlink/attack rating far +2",
+      "sr6core/cyberware/cybereye/smartlink/attack rating very far +2"
     ],
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/thermographic-vision",
+    "id": "sr6core/cyberwaremod/thermographic_vision",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.1,
     "capacity": 2,
     "avail": "2",
     "cost": 2000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/vision-enhancement",
+    "id": "sr6core/cyberwaremod/vision_enhancement",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.1,
     "capacity": 2,
     "avail": "3",
     "cost": 4000,
-    "wear_rules": ["Cybereye Vision enhancement +1 Visual Perception"],
-    "source": { "page": 285, "book": "SR6Core" }
+    "wear_rules": [
+      "sr6core/cybereye vision enhancement +1 visual perception"
+    ],
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/vision-magnification",
+    "id": "sr6core/cyberwaremod/vision_magnification",
     "type": "cyberwaremod",
     "subtype": "eyewaremod",
     "essence": 0.1,
     "capacity": 2,
     "avail": "3",
     "cost": 2000,
-    "source": { "page": 285, "book": "SR6Core" }
+    "source": {
+      "page": 285,
+      "book": "SR6Core"
+    }
   }
 ]

@@ -1,68 +1,96 @@
 [
   {
-    "id": "sr6core/opticsmod-flarecompensation",
+    "id": "sr6core/opticaldevicemod/opticsmod_flarecompensation",
     "type": "opticaldevicemod",
     "capacity": 1,
     "avail": "1",
     "cost": 250,
-    "source": { "page": 275, "book": "SR6Core" }
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/opticsmod-imagelink",
+    "id": "sr6core/opticaldevicemod/opticsmod_imagelink",
     "type": "opticaldevicemod",
     "capacity": 1,
     "avail": "1",
     "cost": 25,
-    "source": { "page": 275, "book": "SR6Core" }
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/opticsmod-lowlightvision",
+    "id": "sr6core/opticaldevicemod/opticsmod_lowlightvision",
     "type": "opticaldevicemod",
     "capacity": 2,
     "avail": "2",
     "cost": 500,
-    "source": { "page": 275, "book": "SR6Core" }
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/opticsmod-smartlink",
+    "id": "sr6core/opticaldevicemod/opticsmod_smartlink",
     "type": "opticaldevicemod",
     "capacity": 2,
     "avail": "2",
     "cost": 2000,
-    "source": { "page": 275, "book": "SR6Core" },
-    "wear_rules": ["Optical Device Modification - Smartlink"]
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/optical device modification - smartlink"
+    ]
   },
   {
-    "id": "sr6core/opticsmod-thermographicvision",
+    "id": "sr6core/opticaldevicemod/opticsmod_thermographicvision",
     "type": "opticaldevicemod",
     "capacity": 2,
     "avail": "2",
     "cost": 500,
-    "source": { "page": 275, "book": "SR6Core" }
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/opticsmod-ultrasoundlink",
+    "id": "sr6core/opticaldevicemod/opticsmod_ultrasoundlink",
     "type": "opticaldevicemod",
     "capacity": 1,
     "avail": "1",
     "cost": 300,
-    "source": { "page": 275, "book": "SR6Core" }
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    }
   },
   {
-    "id": "sr6core/opticsmod-visionenhancement",
+    "id": "sr6core/opticaldevicemod/opticsmod_visionenhancement",
     "type": "opticaldevicemod",
     "capacity": 1,
     "avail": "2",
     "cost": 500,
-    "source": { "page": 275, "book": "SR6Core" },
-    "wear_rules": ["Optical Device Modification - Vision Enhancement"]
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    },
+    "wear_rules": [
+      "sr6core/optical device modification - vision enhancement"
+    ]
   },
   {
-    "id": "sr6core/opticsmod-visionmagnification",
+    "id": "sr6core/opticaldevicemod/opticsmod_visionmagnification",
     "type": "opticaldevicemod",
     "capacity": 1,
     "avail": "1",
     "cost": 250,
-    "source": { "page": 275, "book": "SR6Core" }
+    "source": {
+      "page": 275,
+      "book": "SR6Core"
+    }
   }
 ]
