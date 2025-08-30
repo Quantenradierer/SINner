@@ -2051,7 +2051,7 @@
     }
   },
   {
-    "id": "sr6core/weapon/weapon/unarmed",
+    "id": "sr6core/weapon/unarmed",
     "type": "weapon",
     "subtype": "unarmed",
     "skill": "close_combat",

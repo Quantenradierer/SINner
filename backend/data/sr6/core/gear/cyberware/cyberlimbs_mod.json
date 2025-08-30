@@ -1,6 +1,6 @@
 [
   {
-    "id": "sr6core/cyberwaremod/cyberware/{limb}/{attribute}/1",
+    "id": "sr6core/cyberwaremod/{limb}/{attribute}/1",
     "parameter": {
       "limb": [
         "right_arm",
@@ -39,7 +39,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberware/cyberlimb/defense_rating/1",
+    "id": "sr6core/cyberwaremod/cyberlimb/defense_rating/1",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -245,7 +245,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/cyberjaw",
+    "id": "sr6core/cyberwaremod/cyberjaw",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -265,7 +265,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/hardening",
+    "id": "sr6core/cyberwaremod/hardening",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -296,7 +296,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/shock_limb",
+    "id": "sr6core/cyberwaremod/shock_limb",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -319,7 +319,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/handblade",
+    "id": "sr6core/cyberwaremod/handblade",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -340,7 +340,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/retractable_handblade",
+    "id": "sr6core/cyberwaremod/retractable_handblade",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -361,7 +361,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/hand_razors",
+    "id": "sr6core/cyberwaremod/hand_razors",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -382,7 +382,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/retractable_hand_razors",
+    "id": "sr6core/cyberwaremod/retractable_hand_razors",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -403,7 +403,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/spurs",
+    "id": "sr6core/cyberwaremod/spurs",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -428,7 +428,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/retractable_spurs",
+    "id": "sr6core/cyberwaremod/retractable_spurs",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -453,7 +453,7 @@
     ]
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/holdout_pistol",
+    "id": "sr6core/cyberwaremod/holdout_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -481,7 +481,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/light_pistol",
+    "id": "sr6core/cyberwaremod/light_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -509,7 +509,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/machine_pistol",
+    "id": "sr6core/cyberwaremod/machine_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -537,7 +537,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/heavy_pistol",
+    "id": "sr6core/cyberwaremod/heavy_pistol",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -565,7 +565,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/smg",
+    "id": "sr6core/cyberwaremod/smg",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -593,7 +593,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/shotgun",
+    "id": "sr6core/cyberwaremod/shotgun",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -621,7 +621,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/grenade_launcher",
+    "id": "sr6core/cyberwaremod/grenade_launcher",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -649,7 +649,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/external_clip_port",
+    "id": "sr6core/cyberwaremod/external_clip_port",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -677,7 +677,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/laser_sight",
+    "id": "sr6core/cyberwaremod/laser_sight",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [
@@ -705,7 +705,7 @@
     }
   },
   {
-    "id": "sr6core/cyberwaremod/cyberwaremod/silencer_suppressor",
+    "id": "sr6core/cyberwaremod/silencer_suppressor",
     "type": "cyberwaremod",
     "mod_for": {
       "replacement": [

@@ -1,6 +1,6 @@
 [
   {
-    "id": "sr6core/weaponmod/weapon_accessory/airburst_link",
+    "id": "sr6core/weaponmod/airburst_link",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -17,7 +17,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/bipod",
+    "id": "sr6core/weaponmod/bipod",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -34,7 +34,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/concealable_holster",
+    "id": "sr6core/weaponmod/concealable_holster",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -50,7 +50,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/gas_vent_system",
+    "id": "sr6core/weaponmod/gas_vent_system",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -66,7 +66,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/gyro_mount",
+    "id": "sr6core/weaponmod/gyro_mount",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -82,7 +82,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/hidden_arm_slide",
+    "id": "sr6core/weaponmod/hidden_arm_slide",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -98,7 +98,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/imaging_scope",
+    "id": "sr6core/weaponmod/imaging_scope",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -115,7 +115,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/laser_sight",
+    "id": "sr6core/weaponmod/laser_sight",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -132,7 +132,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/periscope",
+    "id": "sr6core/weaponmod/periscope",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -149,7 +149,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/quick_draw_holster",
+    "id": "sr6core/weaponmod/quick_draw_holster",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -166,7 +166,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/shock_pad",
+    "id": "sr6core/weaponmod/shock_pad",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -183,7 +183,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/silencer",
+    "id": "sr6core/weaponmod/silencer",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -200,7 +200,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/smart_firing_platform",
+    "id": "sr6core/weaponmod/smart_firing_platform",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -217,7 +217,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/smartgun_system_internal",
+    "id": "sr6core/weaponmod/smartgun_system_internal",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -234,7 +234,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/smartgun_system_external",
+    "id": "sr6core/weaponmod/smartgun_system_external",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -251,7 +251,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/spare_clip",
+    "id": "sr6core/weaponmod/spare_clip",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -268,7 +268,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/speed_loader",
+    "id": "sr6core/weaponmod/speed_loader",
     "type": "weaponmod",
     "mod_for": {
       "type": [
@@ -285,7 +285,7 @@
     }
   },
   {
-    "id": "sr6core/weaponmod/weapon_accessory/tripod",
+    "id": "sr6core/weaponmod/tripod",
     "type": "weaponmod",
     "mod_for": {
       "type": [
