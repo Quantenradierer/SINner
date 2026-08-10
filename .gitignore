@@ -1,7 +1,7 @@
 /.idea/
 /backend/data/npcs.sqlite
 /frontend/public/images/npcs/*.png
-/frontend/public/images/npc_creator/npcs/*
+/frontend/public/images/npc_creator/npcs/**
 /node_modules/
 /backend/.env
 /backend/*.log
