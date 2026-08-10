@@ -6,8 +6,21 @@ import openai
 import requests
 
 
-logging.basicConfig(filename="schattenakte.log")
+# logging.basicConfig(filename="schattenakte.log")
 logging.getLogger().setLevel(logging.DEBUG)
+
+LOGGING = {
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}
+
 
 """
 file for the database

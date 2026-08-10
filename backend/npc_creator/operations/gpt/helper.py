@@ -29,5 +29,3 @@ def entity_prompt(entity, schema_name, filled_values):
 
     return f"{{\n{result}\n}}"
 
-
-# min([metadata.max_length for metadata in attribute.metadata])

@@ -5,6 +5,8 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.db import models
 
+import re
+
 
 class Entity(models.Model):
     class Kinds(models.TextChoices):
@@ -65,7 +67,7 @@ class Entity(models.Model):
 
     def schema_complete(self, schema_name):
         schema = self.SCHEMAS[schema_name]
-
+        print(list(name for name in schema.__fields__.keys()))
         return all(name in self.attributes for name in schema.__fields__.keys())
 
     def has_image_description(self):

@@ -22,7 +22,7 @@ class Fill(GptInterface):
 
     def prompt(self):
         return (
-            [self.entity.prompt]
+            [self.system_prompt, self.entity.prompt]
             + [entity_prompt(self.entity, "default", filled_values=True)]
             + [entity_prompt(self.entity, self.schema, filled_values=False)]
         )
@@ -35,9 +35,12 @@ class Fill(GptInterface):
 
     def call(self):
         lock = FileLock(f"lock-{self.entity.uuid}.lock")
+        print('Z')
         with lock:
+            print('A')
             if self.entity.id:
                 self.entity.refresh_from_db()
+            print('B', self.entity.schema_complete(self.schema))
             if self.entity.schema_complete(self.schema):
                 return Success()
 

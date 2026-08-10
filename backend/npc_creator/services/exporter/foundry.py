@@ -1,22 +1,22 @@
 import math
 
+
 from .foundry_template import (
     RootNPC,
     DefenseRating,
     ModWrapper,
-    Gear,
+    FoundryGear,
     Item,
     FlagsUNDOCUMENTED,
     ExportSource,
 )
-import re
-import sys, os
+from npc_creator.game_mechanics.sr6.gear import Gear
+
 from PIL import Image, ImageDraw
 import io
 import base64
 from npc_creator.services.exporter.foundry_template import (
     ActorNPC,
-    ActorPlayer,
     Attributes,
     Stat,
     MagicAttr,
@@ -26,8 +26,6 @@ from npc_creator.services.exporter.foundry_template import (
     Skills,
     Skill,
 )
-from ...game_mechanics.armor import Armor
-from ...game_mechanics.weapons import Weapon
 
 
 def base64_encoded_image(content: bytes) -> bytes:
@@ -76,7 +74,7 @@ def cut_potrait(image_path, center=None, radius=None):
     return buffered.getvalue()
 
 
-def foundry_armor(armor: Armor) -> Gear:
+def foundry_armor(armor: Gear) -> FoundryGear:
     return Item(
         type="gear",
         name=armor.name,
@@ -97,11 +95,11 @@ def foundry_armor(armor: Armor) -> Gear:
     )
 
 
-def foundry_weapon(weapon: Weapon) -> Gear:
+def foundry_weapon(weapon: Gear) -> FoundryGear:
     return Item(
         type="gear",
         name=weapon.name,
-        system=Gear(
+        system=FoundryGear(
             type=weapon.kind,
             subtype=weapon.subtype,
             count=1,
@@ -124,13 +122,13 @@ def foundry_weapon(weapon: Weapon) -> Gear:
     )
 
 
-def unarmed_weapon(npc) -> Gear:
+def unarmed_weapon(npc) -> FoundryGear:
     dmg = math.ceil(int(npc.values["strength"]) / 2)
     attack_rating = int(npc.values["strength"]) + int(npc.values["reaction"])
     return Item(
         type="gear",
         name="Unarmed",
-        system=Gear(
+        system=FoundryGear(
             type="WEAPON_CLOSE_COMBAT",
             subtype="unarmed",
             count=1,

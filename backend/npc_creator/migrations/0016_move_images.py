@@ -3,11 +3,9 @@
 from django.db import migrations, models
 
 
-
 class Migration(migrations.Migration):
     dependencies = [
         ("npc_creator", "0015_add_image_generation"),
     ]
 
-    operations = [
-    ]
+    operations = []

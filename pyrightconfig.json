@@ -1,0 +1,11 @@
+{
+  "reportImplicitOverride": false,
+  "executionEnvironments": [
+    {
+      "root": "backend",
+      "pythonVersion": "3.12",
+      "extraPaths": [
+      ]
+    }
+  ]
+}

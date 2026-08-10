@@ -10,17 +10,20 @@
     "modification": "1"
   },
   {
-    "id": "sr6core/cyberware/cyberlimb/defense_rating/1",
+    "id": "sr6core/cyberware/cyberlimb/defense_rating/{rating}",
+    "parameter": {
+      "rating": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
     "source": {
       "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
     "modifier_type": "ADD",
-    "modification": "1"
+    "modification": "{rating}"
   },
   {
-    "id": "sr6core/cyberware/{limb}/{attribute}/1",
+    "id": "sr6core/cyberware/{limb}/{attribute}/{rating}",
     "parameter": {
       "limb": [
         "right_arm",
@@ -39,7 +42,8 @@
       "attribute": [
         "strength",
         "agility"
-      ]
+      ],
+      "rating": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
     "source": {
       "page": 288,
@@ -47,6 +51,6 @@
     },
     "modifies": "character.{limb}.{attribute}",
     "modifier_type": "ADD",
-    "modification": "1"
+    "modification": "{rating}"
   }
 ]

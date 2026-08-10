@@ -30,7 +30,9 @@ class TestPassImagePrompt(BaseIntegrationTest):
         mock_response.status_code = 200
         mock_post.return_value = mock_response
 
-        npc = Entity(id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ""})
+        npc = Entity(
+            id=self.npc_id, attributes={config.VISUAL_APPEARANCE_ATTRIBUTE: ""}
+        )
         self.assertEqual("init", npc.image_generator_state)
 
         self.assertTrue(PassImagePrompt(npc).call())

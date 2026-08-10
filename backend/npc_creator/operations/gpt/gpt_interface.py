@@ -9,6 +9,12 @@ class GptInterface:
     class GptVersion(Enum):
         GPT4_O = "gpt-4o"
         GPT4_O_Mini = "gpt-4o-mini"
+        GPT4_1 = "gpt-4.1"
+        GPT4_1_Mini = "gpt-4.1-mini"
+        GPT4_1_Nano = "gpt-4.1-nano"
+        GPT5 = "gpt-5"
+        GPT5_Mini = "gpt-5-mini"
+        GPT5_Nano = "gpt-5-nano"
 
     def __init__(self, **kwargs):
         self.kwargs = kwargs

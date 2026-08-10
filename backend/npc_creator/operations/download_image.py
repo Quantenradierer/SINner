@@ -2,7 +2,6 @@ import os.path
 import uuid
 from urllib.parse import urlparse
 
-from npc_creator import config
 from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success, ReturnType

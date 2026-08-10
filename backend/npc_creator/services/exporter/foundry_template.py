@@ -435,7 +435,7 @@ class GearVehicle(BaseModel):
     opMode: str = "manual"
 
 
-class Gear(BaseModel):
+class FoundryGear(BaseModel):
     type: str = ""
     subtype: str = ""
     ammocap: int = 0
@@ -596,7 +596,7 @@ class Item(BaseModel):
     critterpower: CritterPower = CritterPower()
     echo: Echo = Echo()
     focus: Focus = Focus()
-    system: Gear = Gear()
+    system: FoundryGear = FoundryGear()
     lifestyle: Lifestyle = Lifestyle()
     martialartstyle: MartialArtStyle = MartialArtStyle()
     martialarttech: MartialArtTech = MartialArtTech()

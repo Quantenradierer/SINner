@@ -6,7 +6,7 @@ from django.db import migrations
 
 
 def convert_attributes_data(apps, schema_editor):
-    Npc = apps.get_model('npc_creator', 'Npc')
+    Npc = apps.get_model("npc_creator", "Npc")
 
     for npc in Npc.objects.all():
         npc_attributes = npc.attribute_set.all()
@@ -29,5 +29,5 @@ class Migration(migrations.Migration):
             field=models.JSONField(default=[]),
             preserve_default=False,
         ),
-        migrations.RunPython(convert_attributes_data)
+        migrations.RunPython(convert_attributes_data),
     ]

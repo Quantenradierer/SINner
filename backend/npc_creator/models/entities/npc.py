@@ -1,28 +1,15 @@
-from enum import Enum
 from typing import Annotated
 
 from django.db import models
 from pydantic import constr, BaseModel, Field
 
-from npc_creator.game_mechanics.armor import armor_loader
-from npc_creator.game_mechanics.weapons import weapon_loader
+from npc_creator.game_mechanics.manager import ALL_GEAR
+from npc_creator.game_mechanics.named_list_with_mods import MinimalGear
+from npc_creator.game_mechanics.sr6.character import Metatype, Gender
+from npc_creator.game_mechanics.sr6.gear import Gear
+from npc_creator.game_mechanics.sr6.object_type import ObjectType
 from npc_creator.models import Entity
 from npc_creator.operations.gpt import npc
-
-
-class Metatype(Enum):
-    HUMAN = "human"
-    ORK = "ork"
-    DWARF = "dwarf"
-    ELF = "elf"
-    TROLL = "troll"
-    SPIRIT = "spirit"
-    AI = "ai"
-    OGER = "oger"
-    DRAKE = "drake"
-    ONI = "oni"
-    HOBGOBLIN = "hobgoblin"
-    OTHER = "other"
 
 
 class NpcManager(models.Manager):
@@ -35,7 +22,12 @@ class GalleryAttributes(BaseModel):
     metatype_enum: Metatype = Field(
         description=f"available metatypes: {', '.join([m.value for m in Metatype])}"
     )
+    ethnicity: str
     age: Annotated[str, Field(max_length=10)]
+    gender: constr(max_length=20)
+    gender_enum: Gender = Field(
+        description=f"available genders {', '.join([m.value for m in Gender])}"
+    )
     appearance: str
 
 
@@ -46,7 +38,10 @@ class StoryAttributes(BaseModel):
         description=f"available metatypes: {', '.join([m.value for m in Metatype])}"
     )
     ethnicity: str
-    gender: str
+    gender: constr(max_length=50)
+    gender_enum: Gender = Field(
+        description=f"available genders {', '.join([m.value for m in Gender])}"
+    )
     age: constr(max_length=10)
     catchphrase: str
     appearance: str
@@ -68,7 +63,6 @@ class StoryAttributes(BaseModel):
 
 
 class SR6Attributes(BaseModel):
-    equipment: str = Field(..., description="String. Comma separated list of equipment")
     constitution: int = Field(
         ...,
         description="Integer",
@@ -137,6 +131,13 @@ class SR6Attributes(BaseModel):
         description="For non-resonant characters 0",
     )
 
+
+class SR6Equipment(BaseModel):
+    #equipment: str = Field(..., description="String. Comma separated list of equipment")
+    equipment: list[MinimalGear] = Field(
+        ..., description="Fill this if empty. See equipment list for ids and structure"
+    )
+    """
     weapon_ids: list[str] = Field(
         ...,
         description='list of IDs from the weapons list, e.g. ["weapon_id_1", "weapon_id_2"]',
@@ -145,6 +146,7 @@ class SR6Attributes(BaseModel):
         ...,
         description='list of IDs from the armor list. Maximum 1 of each subtype. e.g. ["armor_id_1", "helmet_id_2"]',
     )
+    """
 
 
 class Npc(Entity):
@@ -160,6 +162,7 @@ class Npc(Entity):
     SCHEMAS = {
         "default": StoryAttributes,
         "sr6": SR6Attributes,
+        "sr6equipment": SR6Equipment,
         "gallery": GalleryAttributes,
     }
 
@@ -170,19 +173,13 @@ class Npc(Entity):
     Export = npc.Export
 
     @property
-    def weapons(self):
+    def weapons(self) -> list[Gear]:
         weapon_ids = self.values.get("weapon_ids", [])
         return [
-            weapon_loader.weapons[weapon_id]
-            for weapon_id in weapon_ids
-            if weapon_id in weapon_loader.weapons
+            ALL_GEAR[weapon_id] for weapon_id in weapon_ids if weapon_id in ALL_GEAR
         ]
 
     @property
-    def armors(self):
+    def armors(self) -> list[Gear]:
         armor_ids = self.values.get("armor_ids", [])
-        return [
-            armor_loader.armors[armor_id]
-            for armor_id in armor_ids
-            if armor_id in armor_loader.armors
-        ]
+        return [ALL_GEAR[armor_id] for armor_id in armor_ids if armor_id in ALL_GEAR]

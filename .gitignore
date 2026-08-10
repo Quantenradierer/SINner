@@ -1,8 +1,16 @@
 /.idea/
 /backend/data/npcs.sqlite
 /frontend/public/images/npcs/*.png
+/frontend/public/images/npc_creator/npcs/*
 /node_modules/
 /backend/.env
 /backend/*.log
 /*.log
 /backend/data/db.sqlite3
+/frontend/public/*
+__pycache__
+*.lock
+*. Lock
+.lock.json
+.env.local
+.env.*.local

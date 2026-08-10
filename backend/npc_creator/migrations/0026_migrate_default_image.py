@@ -10,12 +10,9 @@ import os
 from npc_creator.models.image import Image
 
 
-
-
 class Migration(migrations.Migration):
     dependencies = [
         ("npc_creator", "0025_migrate_image_list_to_image_model"),
     ]
 
-    operations = [
-    ]
+    operations = []

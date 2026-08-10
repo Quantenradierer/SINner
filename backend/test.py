@@ -1,30 +1,39 @@
-import random
-from collections import defaultdict
-
-REROLLS = 2
-DICES = 5
-
-SAMPLE_SIZE = 10000000
+from PIL import Image
 
 
-def roll():
-    successes = 0
-    for i in range(DICES):
-        successes += random.randint(1, 3) == 3
+def tile_image(input_path, output_path, grid_rows=10, grid_cols=10):
+    # Open the input image
+    img = Image.open(input_path)
+    w, h = img.size
 
-    for _ in range(REROLLS):
-        if successes < DICES:
-            successes += random.randint(1, 3) == 3
+    # Use the same mode as the input (supports RGBA for transparency)
+    mode = img.mode
 
-    return successes
+    # Create a new image with size 10x10 tiles of the original image
+    tiled_img = Image.new(
+        mode, (w * grid_cols, h * grid_rows), (0, 0, 0, 0) if "A" in mode else None
+    )
+    h -= 150
+    w -= 120
+    for row in range(grid_rows):
+        for col in range(grid_cols):
+            # Checkerboard: rotate every second tile by 180°
+            if (row + col) % 2 == 1:
+                tile = img.rotate(180)
+            else:
+                tile = img
+
+            # Paste, using mask if image has an alpha channel
+            tiled_img.paste(
+                tile, (col * w, row * h), mask=tile if "A" in mode else None
+            )
+
+    # Save the result as PNG to preserve transparency
+    tiled_img.save(output_path, "PNG")
+    print(f"Tiled image saved to {output_path}")
 
 
-results = defaultdict(int)
-
-for _ in range(SAMPLE_SIZE):
-    successes = roll()
-    results[successes] += 1
-
-print("Erfolge:")
-for key in sorted(results.keys()):
-    print(key, "|", results[key] / SAMPLE_SIZE)
+if __name__ == "__main__":
+    input_image = "v.png"  # Replace with your input filename
+    output_image = "tiled_output.png"  # Output filename
+    tile_image(input_image, output_image, grid_rows=10, grid_cols=10)

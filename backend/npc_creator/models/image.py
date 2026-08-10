@@ -1,8 +1,5 @@
-import os
-import uuid
-
 from django.db import models
-from npc_creator.models import TemplateImage, Entity
+from npc_creator.models import Entity
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.utils import entity_directory
 
