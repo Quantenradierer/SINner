@@ -58,7 +58,7 @@ class TemplateImageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Feedback)
-class TemplateImageAdmin(admin.ModelAdmin):
+class FeedbackAdmin(admin.ModelAdmin):
     list_display = ("comment", "email")
     search_fields = ["comment", "email"]
 

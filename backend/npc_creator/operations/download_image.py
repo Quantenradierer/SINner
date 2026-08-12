@@ -9,7 +9,8 @@ from npc_creator.services.image_generation.create_thumbnails import create_thumb
 from npc_creator.services.image_generation.download_midjourney_image import (
     download_midjourney_image,
 )
-
+from npc_creator.services.image_generation.factory import ImageGeneratorFactory
+from npc_creator.services.image_generation.interface import ImageGeneratorInterface
 from npc_creator.services.image_generation.split_images import split_image
 from npc_creator.utils import entity_directory
 
@@ -19,7 +20,7 @@ class DownloadImage:
         """
         Constructor of the GenerateImage class.
         """
-
+        
         self.generation = generation
         self.entity = self.generation.entity
         self.temp_image_path = temp_image_path
@@ -27,7 +28,7 @@ class DownloadImage:
     def call(self) -> ReturnType:
         """
         downloads and saves the image to the npc
-
+        
         Returns:
             ReturnType: True if the image was successfully saved, False otherwise.
         """
@@ -49,6 +50,25 @@ class DownloadImage:
             )
 
     def download_images(self):
+        # First check if we're using a new backend instead of midjourney
+        # Get the appropriate image generator (this would be implemented separately)
+        generator = ImageGeneratorFactory.create_generator()
+        
+        # If using a new backend and we have a direct URL, use it normally
+        # Otherwise, if we still need to process Midjourney-type URLs or handle differently
+        if generator is None:
+            # Fall back to original Midjourney logic
+            return self._download_midjourney_images()
+        else:
+            # Handle new backend logic - this would require a more specific implementation 
+            # for each backend type
+            pass
+            
+        # Default fallback to original behavior
+        return self._download_midjourney_images()
+
+    def _download_midjourney_images(self):
+        """Original Midjourney download logic."""
         panel_name = os.path.basename(urlparse(self.generation.url).path)
 
         panel_image_path = os.path.join(self.temp_image_path, panel_name)

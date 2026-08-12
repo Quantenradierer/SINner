@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "rest_framework_simplejwt.token_blacklist",
     "djoser",
+    "constance",
+    "constance.backends.database",
     "npc_creator.apps.NpcCreatorConfig",
 ]
 
@@ -178,6 +180,18 @@ DJOSER = {
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# ... existing settings ...
+
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
+
+CONSTANCE_CONFIG = {
+    "IMAGE_GENERATION_BACKEND": (
+        "midjourney",
+        "Select the image generation backend to use (midjourney, dalle, gpt-vision)",
+        str
+    ),
+}
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("JWT",),
