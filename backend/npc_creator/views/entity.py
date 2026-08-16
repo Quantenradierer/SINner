@@ -188,11 +188,6 @@ class EntityViewSet(
         if not result:
             return Response({"type": "error", "error": result.error})
 
-        if not result:
-            return Response(
-                {"type": "error", "error": "custom", "message": result.error}
-            )
-
         if request.user.is_authenticated:
             entity.creator = request.user
         entity.save()
