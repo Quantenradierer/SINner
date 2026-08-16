@@ -27,7 +27,7 @@ from npc_creator.models.favorite import Favorite
 from npc_creator.models.image_generation import ImageGeneration
 
 
-from rest_framework import serializers, viewsets, status
+from rest_framework import mixins, serializers, viewsets, status
 
 from npc_creator.views.image import ImageSerializer
 
@@ -87,7 +87,14 @@ ENTITIES_CLASSES = {
 }
 
 
-class EntityViewSet(viewsets.ModelViewSet):
+class EntityViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet,
+):
+    """Entities can only be created via the `prompt` action and are never deletable."""
+
     queryset = Entity.objects.order_by("-created_at")
     serializer_class = EntitySerializer
 
@@ -148,10 +155,18 @@ class EntityViewSet(viewsets.ModelViewSet):
         id = data.get("id")
         entity = Entity.objects.get(uuid=id).instance
 
-        if entity.state == Entity.States.UNPUBLISHED:
-            entity.add_values(data.get("values"))
-            entity.state = Entity.States.PUBLISHED
-            entity.save()
+        if entity.state != Entity.States.UNPUBLISHED:
+            return Response(
+                {
+                    "type": "error",
+                    "error": "This entity is already published and can no longer be edited.",
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        entity.add_values(data.get("values"))
+        entity.state = Entity.States.PUBLISHED
+        entity.save()
 
         return Response(self.serializer_class(entity).data)
 
