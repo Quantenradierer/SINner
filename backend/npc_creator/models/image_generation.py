@@ -1,7 +1,5 @@
 from django.db import models
 
-from npc_creator.models import Entity, TemplateImage
-
 
 class ImageGenerationManager(models.Manager):
     def panel_exists(self, panel_name):
@@ -24,11 +22,11 @@ class ImageGeneration(models.Model):
         default=State.CREATED,
     )
 
-    template = models.ForeignKey(TemplateImage, null=True, on_delete=models.SET_NULL)
+    template = models.ForeignKey('TemplateImage', null=True, on_delete=models.SET_NULL)
     description = models.TextField(blank=True)
     retry_count = models.IntegerField(default=0)
     url = models.CharField(max_length=256)
-    entity = models.ForeignKey(Entity, on_delete=models.CASCADE, db_index=True)
+    entity = models.ForeignKey('Entity', on_delete=models.CASCADE, db_index=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

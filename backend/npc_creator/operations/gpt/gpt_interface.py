@@ -1,6 +1,8 @@
 import json
 from enum import Enum
 
+from constance import config
+
 from npc_creator.models.gpt_request import GptRequest
 from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
 
@@ -19,7 +21,10 @@ class GptInterface:
     def __init__(self, **kwargs):
         self.kwargs = kwargs
         self.request = GptRequest(kind=str(self.__class__.__name__))
-        self.gpt = GptInterface.GptVersion.GPT4_O_Mini
+        try:
+            self.gpt = GptInterface.GptVersion(config.DEFAULT_GPT_MODEL)
+        except ValueError:
+            self.gpt = GptInterface.GptVersion.GPT4_O_Mini
         self.system_prompt = ""
         self.use_json = True
 
