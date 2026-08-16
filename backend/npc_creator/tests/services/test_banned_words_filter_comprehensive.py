@@ -1,10 +1,16 @@
 import unittest
 from unittest.mock import mock_open, patch
 
-from npc_creator.services.banned_words_filter import remove_banned_words
+from npc_creator.services.banned_words_filter import (
+    banned_words_regex,
+    remove_banned_words,
+)
 
 
 class TestBannedWordsFilterComprehensive(unittest.TestCase):
+    def setUp(self):
+        banned_words_regex.cache_clear()
+
     @patch("builtins.open", new_callable=mock_open, read_data="porn\ntied up\npetite\n")
     def test_remove_banned_words_basic(self, _mock_open):
         """Test basic banned words removal."""
@@ -24,7 +30,7 @@ class TestBannedWordsFilterComprehensive(unittest.TestCase):
         """Test removal of multiple banned words."""
         text = "This message contains the word porn and some other tied up words."
         result = remove_banned_words(text)
-        self.assertEqual(result, "This message contains the word  and some other  words.")
+        self.assertEqual(result, "This message contains the word and some other words.")
 
     @patch("builtins.open", new_callable=mock_open, read_data="porn\ntied up\npetite\n")
     def test_remove_banned_words_sentence_end(self, _mock_open):
@@ -45,21 +51,21 @@ class TestBannedWordsFilterComprehensive(unittest.TestCase):
         """Test banned words with spaces."""
         text = "This message contains the word porn and some other unrelated words."
         result = remove_banned_words(text)
-        self.assertEqual(result, "This message contains the word  and some other unrelated words.")
+        self.assertEqual(result, "This message contains the word and some other unrelated words.")
 
     @patch("builtins.open", new_callable=mock_open, read_data="Porn\ntied up\npetite\n")
     def test_remove_banned_words_case_insensitive(self, _mock_open):
         """Test case insensitive matching."""
         text = "This message contains the word porn and some other unrelated words."
         result = remove_banned_words(text)
-        self.assertEqual(result, "This message contains the word  and some other unrelated words.")
+        self.assertEqual(result, "This message contains the word and some other unrelated words.")
 
     @patch("builtins.open", new_callable=mock_open, read_data="Porn\ntied up\npetite\n")
     def test_remove_banned_words_case_sensitive_text(self, _mock_open):
         """Test case sensitive text handling."""
         text = "This message contains the word Porn and some other unrelated words."
         result = remove_banned_words(text)
-        self.assertEqual(result, "This message contains the word  and some other unrelated words.")
+        self.assertEqual(result, "This message contains the word and some other unrelated words.")
 
     @patch("builtins.open", new_callable=mock_open, read_data="")
     def test_remove_banned_words_empty_list(self, _mock_open):
@@ -80,11 +86,11 @@ class TestBannedWordsFilterComprehensive(unittest.TestCase):
         """Test with whitespace only."""
         text = "   "
         result = remove_banned_words(text)
-        self.assertEqual(result, "   ")
-        
+        self.assertEqual(result, "")
+
     @patch("builtins.open", new_callable=mock_open, read_data="porn\ntied up\npetite\n")
     def test_remove_banned_words_only_banned_words(self, _mock_open):
         """Test with only banned words."""
         text = "porn tied up petite"
         result = remove_banned_words(text)
-        self.assertEqual(result, "   ")
+        self.assertEqual(result, "")

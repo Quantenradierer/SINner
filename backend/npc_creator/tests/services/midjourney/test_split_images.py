@@ -22,13 +22,16 @@ class TestSplitImage(unittest.TestCase):
 
     def test_split_image(self):
         # Test splitting the test image.
-        split_filenames = split_image(self.test_image_path, self.tempdir.name)
+        output_paths = (
+            os.path.join(self.tempdir.name, f"split_{i}") for i in range(4)
+        )
+        split_filenames = split_image(self.test_image_path, output_paths)
 
         # Check that 4 files were created.
         self.assertEqual(len(list(split_filenames)), 4)
 
         # Check that each split file has the expected dimensions.
         for i, split_filename in enumerate(split_filenames):
-            split_file_path = os.path.join(self.tempdir.name, split_filename)
+            split_file_path = os.path.join(self.tempdir.name, split_filename + ".png")
             with Image.open(split_file_path) as splitted_image:
                 self.assertEqual(splitted_image.size, (25, 25))

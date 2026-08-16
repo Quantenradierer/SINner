@@ -1,23 +1,46 @@
+import json
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
-from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt
+from npc_creator.services.gpt.ask_chatgpt import ask_chatgpt_moderated
 
 
-class TestAskChatgpt(unittest.TestCase):
-    @patch("openai.ChatCompletion.create")
-    def test_ask_chatgpt(self, mock_create):
-        mock_create.return_value = {
-            "choices": [{"message": {"content": "This is the Chat GPT response."}}]
-        }
-        prompts = ["This is the Chat GPT prompt."]
-        expected = "This is the Chat GPT response."
-        actual = ask_chatgpt("", prompts)
-        self.assertEqual(actual, expected)
+def make_completion(content):
+    completion = Mock()
+    completion.choices = [Mock(message=Mock(content=content))]
+    return completion
 
-    @patch("openai.ChatCompletion.create", side_effect=Exception("Test Error"))
-    def test_ask_chatgpt_error(self, _mock_create):
-        prompts = "This is the Chat GPT prompt."
-        expected = None
-        actual = ask_chatgpt("", prompts)
-        self.assertEqual(actual, expected)
+
+class TestAskChatgptModerated(unittest.TestCase):
+    @patch("npc_creator.services.gpt.ask_chatgpt.client")
+    def test_ask_chatgpt_moderated_success(self, mock_client):
+        mock_client.chat.completions.create.return_value = make_completion(
+            "This is the Chat GPT response."
+        )
+
+        result = ask_chatgpt_moderated("system prompt", ["user prompt"], "gpt-4o-mini")
+
+        self.assertTrue(result)
+        self.assertEqual(result.data, "This is the Chat GPT response.")
+
+    @patch("npc_creator.services.gpt.ask_chatgpt.client")
+    def test_ask_chatgpt_moderated_json(self, mock_client):
+        mock_client.chat.completions.create.return_value = make_completion(
+            json.dumps({"key": "value"})
+        )
+
+        result = ask_chatgpt_moderated(
+            "system prompt", ["user prompt"], "gpt-4o-mini", use_json=True
+        )
+
+        self.assertTrue(result)
+        self.assertEqual(result.data, {"key": "value"})
+
+    @patch("npc_creator.services.gpt.ask_chatgpt.client")
+    def test_ask_chatgpt_moderated_error(self, mock_client):
+        mock_client.chat.completions.create.side_effect = Exception("Test Error")
+
+        result = ask_chatgpt_moderated("system prompt", ["user prompt"], "gpt-4o-mini")
+
+        self.assertFalse(result)
+        self.assertEqual(result.error, "gpt_raised_an_error")

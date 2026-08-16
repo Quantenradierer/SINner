@@ -18,7 +18,7 @@ class Check(GptInterface):
         return self.kwargs["entity"]
 
     def prompt(self):
-        return entity_prompt(self.entity)
+        return [entity_prompt(self.entity, "default", filled_values=True)]
 
     def interpret_result(self, success):
         if not success.data:

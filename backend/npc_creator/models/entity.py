@@ -67,7 +67,6 @@ class Entity(models.Model):
 
     def schema_complete(self, schema_name):
         schema = self.SCHEMAS[schema_name]
-        print(list(name for name in schema.__fields__.keys()))
         return all(name in self.attributes for name in schema.__fields__.keys())
 
     def has_image_description(self):
@@ -93,7 +92,7 @@ class Entity(models.Model):
             self.attributes[found_key] = self.attributes.get(found_key, "")
             if isinstance(values, str) and not values.strip():
                 continue
-            self.attributes[name] = values
+            self.attributes[found_key] = values
 
     @property
     def attribute_defintions(self):

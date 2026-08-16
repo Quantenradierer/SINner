@@ -15,3 +15,6 @@ class Collection(models.Model):
 
     class Meta:
         unique_together = ("name", "user")
+
+    def __str__(self):
+        return f"Collection: {self.name}"

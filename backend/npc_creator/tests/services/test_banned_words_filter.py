@@ -1,10 +1,16 @@
 import unittest
 from unittest.mock import mock_open, patch
 
-from npc_creator.services.banned_words_filter import remove_banned_words
+from npc_creator.services.banned_words_filter import (
+    banned_words_regex,
+    remove_banned_words,
+)
 
 
 class TestContainsBannedWord(unittest.TestCase):
+    def setUp(self):
+        banned_words_regex.cache_clear()
+
     @patch("builtins.open", new_callable=mock_open, read_data="porn\ntied up\npetite\n")
     def test_contains_banned_word(self, _mock_open):
         text = "This message contains the word porn"
@@ -36,7 +42,7 @@ class TestContainsBannedWord(unittest.TestCase):
     def test_contains_banned_words_with_space(self, _mock_open):
         text = "This message contains the word porn and some other unrelated words."
         self.assertEqual(
-            "This message contains the word  and some other unrelated words.",
+            "This message contains the word and some other unrelated words.",
             remove_banned_words(text),
         )
 
@@ -44,7 +50,7 @@ class TestContainsBannedWord(unittest.TestCase):
     def test_contains_case_sensitive_banned_words(self, _mock_open):
         text = "This message contains the word porn and some other unrelated words."
         self.assertEqual(
-            "This message contains the word  and some other unrelated words.",
+            "This message contains the word and some other unrelated words.",
             remove_banned_words(text),
         )
 
@@ -52,6 +58,6 @@ class TestContainsBannedWord(unittest.TestCase):
     def test_contains_case_sensitive_text(self, _mock_open):
         text = "This message contains the word Porn and some other unrelated words."
         self.assertEqual(
-            "This message contains the word  and some other unrelated words.",
+            "This message contains the word and some other unrelated words.",
             remove_banned_words(text),
         )

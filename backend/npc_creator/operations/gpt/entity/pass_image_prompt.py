@@ -28,8 +28,10 @@ class PassImagePrompt:
             bool: True if the image creation was started, False otherwise.
         """
         if not self.generation.description:
-            self.generate_entity_image_description()
-            self.generation.description = self.entity.image_generator_description
+            result = self.generate_entity_image_description()
+            self.generation.description = (
+                result.data if result else self.entity.image_generator_description
+            )
 
         prompt = self.IMAGE_PROMPT_FORMAT.format(
             image_generator_description=self.generation.description

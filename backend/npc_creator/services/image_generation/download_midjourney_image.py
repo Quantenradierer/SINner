@@ -1,26 +1,22 @@
-import os
-from typing import Optional
-
 import requests
 
 
-def download_midjourney_image(save_path: str, url: str) -> Optional[str]:
+def download_midjourney_image(save_path: str, url: str) -> bool:
     """
-    Download an image from the given URL and save it in a local directory.
+    Download an image from the given URL and save it to the given file path.
 
     Parameters
     ----------
     save_path : str
-        The path to the directory where the downloaded image will be saved.
+        The full file path where the downloaded image will be saved.
     url : str
         The URL of the image to download.
 
     Returns
     -------
-    str
-        If the image is downloaded and saved successfully, returns the full
-        path to the saved image on the local filesystem. If an error occurs,
-        returns an empty string.
+    bool
+        True if the image was downloaded and saved successfully, False if
+        the request failed.
     """
     try:
         response = requests.get(url)

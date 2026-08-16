@@ -35,12 +35,9 @@ class Fill(GptInterface):
 
     def call(self):
         lock = FileLock(f"lock-{self.entity.uuid}.lock")
-        print('Z')
         with lock:
-            print('A')
             if self.entity.id:
                 self.entity.refresh_from_db()
-            print('B', self.entity.schema_complete(self.schema))
             if self.entity.schema_complete(self.schema):
                 return Success()
 

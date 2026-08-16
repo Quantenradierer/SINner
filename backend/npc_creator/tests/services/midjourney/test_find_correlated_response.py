@@ -1,73 +1,87 @@
 import unittest
 
-from npc_creator.services.image_generation.find_image_responses import (
-    find_correlated_response,
+from npc_creator.services.image_generation.find_correlated_response import (
     MIDJOURNEY_BOT_ID,
+    find_correlated_responses,
 )
 
 
-class TestFindCorrelatedResponse(unittest.TestCase):
+class TestFindCorrelatedResponses(unittest.TestCase):
     def setUp(self):
+        self.seed = 111
         self.responses = [
             {
-                "content": "This is a response with no attachments",
+                "content": "This is a response with no attachments --seed 111",
                 "author": {"id": "123"},
                 "attachments": [],
             },
             {
-                "content": "This is a response with an attachment that is not a PNG",
-                "author": {"id": "456"},
+                "content": "This is a response with a non-PNG attachment --seed 111",
+                "author": {"id": MIDJOURNEY_BOT_ID},
                 "attachments": [{"url": "https://example.com/not_a_png.txt"}],
             },
             {
-                "content": "OVERRIDE This is a response with a PNG attachment",
-                "author": {"id": "789"},
-                "attachments": [{"url": "https://example.com/image.png"}],
+                "content": "This is a response with the wrong seed --seed 222",
+                "author": {"id": MIDJOURNEY_BOT_ID},
+                "attachments": [{"url": "https://example.com/wrong_seed.png"}],
             },
             {
-                "content": "This is a response from the MIDJOURNEY_BOT with an search text and a PNG attachment",
+                "content": "This is a matching response --seed 111",
                 "author": {"id": MIDJOURNEY_BOT_ID},
                 "attachments": [{"url": "https://example.com/image.png"}],
             },
         ]
 
-    def test_returns_correct_url(self):
-        url = find_correlated_response(self.responses, "with a PNG attachment")
-        self.assertEqual("https://example.com/image.png", url)
+    def test_returns_matching_urls(self):
+        urls = list(find_correlated_responses(self.responses, self.seed))
+        self.assertEqual(["https://example.com/image.png"], urls)
 
-    def test_returns_none_if_no_correlated_response(self):
-        url = find_correlated_response(self.responses, "not_found")
-        self.assertIsNone(url)
+    def test_returns_empty_if_no_seed_matches(self):
+        urls = list(find_correlated_responses(self.responses, 999))
+        self.assertEqual([], urls)
 
     def test_ignores_responses_with_no_attachments(self):
-        url = find_correlated_response(self.responses, "no attachments")
-        self.assertIsNone(url)
+        responses = [self.responses[0]]
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual([], urls)
 
     def test_ignores_responses_with_non_png_attachments(self):
-        url = find_correlated_response(self.responses, "not_a_png")
-        self.assertIsNone(url)
+        responses = [self.responses[1]]
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual([], urls)
 
-    def test_allows_override_search_text_for_non_MIDJOURNEY_BOT_responses(self):
-        url = find_correlated_response(self.responses, "override")
-        self.assertIsNone(url)
+    def test_ignores_non_bot_responses_without_override(self):
+        responses = [
+            {
+                "content": "This is a response with a matching seed --seed 111",
+                "author": {"id": "someone-else"},
+                "attachments": [{"url": "https://example.com/ignored.png"}],
+            }
+        ]
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual([], urls)
 
-    def test_allows_override_search_text_for_MIDJOURNEY_BOT_responses(self):
-        responses = self.responses.copy()
-        url = find_correlated_response(
-            responses, "This is a response with a PNG attachment"
-        )
-        self.assertEqual("https://example.com/image.png", url)
+    def test_allows_override_for_non_bot_responses(self):
+        responses = [
+            {
+                "content": "OVERRIDE This is a response with a matching seed --seed 111",
+                "author": {"id": "someone-else"},
+                "attachments": [{"url": "https://example.com/override.png"}],
+            }
+        ]
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual(["https://example.com/override.png"], urls)
 
     def test_handles_empty_responses_list(self):
-        url = find_correlated_response([], "image")
-        self.assertIsNone(url)
+        urls = list(find_correlated_responses([], self.seed))
+        self.assertEqual([], urls)
 
-    def test_handles_empty_search_text(self):
-        url = find_correlated_response(self.responses, "")
-        self.assertIsNone(url)
+    def test_handles_falsy_search_seed(self):
+        urls = list(find_correlated_responses(self.responses, None))
+        self.assertEqual([], urls)
 
     def test_handles_missing_message_keys(self):
-        responses = self.responses.copy()
+        responses = [dict(self.responses[3])]
         del responses[0]["content"]
-        url = find_correlated_response(responses, "image")
-        self.assertIsNone(url)
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual([], urls)

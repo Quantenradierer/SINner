@@ -3,10 +3,9 @@
 from django.db import migrations
 from django.db.migrations import RunPython
 
-from npc_creator.models.entities.npc import Npc
-
 
 def clean_attributes(apps, schema_editor):
+    Npc = apps.get_model("npc_creator", "Npc")
     for npc in Npc.objects.all():
         npc.attributes = _clean_attributes(npc, npc.attributes)
         npc.save()

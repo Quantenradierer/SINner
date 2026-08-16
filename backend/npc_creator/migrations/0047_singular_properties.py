@@ -3,12 +3,12 @@
 
 from django.db.migrations import RunPython
 
-from npc_creator.models import Entity
 from django.conf import settings
 from django.db import migrations
 
 
 def convert_attributes(apps, schema_editor):
+    Entity = apps.get_model("npc_creator", "Entity")
     for npc in Entity.objects.all():
         for key, value in npc.attributes.items():
             if (isinstance(value, list) or isinstance(value, tuple)) and len(

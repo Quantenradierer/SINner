@@ -19,9 +19,8 @@ class TestFavorite(TestCase):
             name="Test Collection", user=self.user
         )
         self.entity = Entity.objects.create(
-            kind="npc",
-            data={"name": "Test NPC"},
-            description="A test NPC",
+            kind=Entity.Kinds.NPC,
+            attributes={"name": "Test NPC"},
         )
 
     def test_favorite_creation(self):

@@ -24,12 +24,13 @@ class DownloadMidjourneyImageTest(unittest.TestCase):
         mock_get.return_value = type(
             "MockResponse", (object,), {"content": self.content}
         )
-        local_path = download_midjourney_image(self.tempdir.name, self.url)
-        self.assertTrue(os.path.exists(local_path))
+        local_path = os.path.join(self.tempdir.name, "image.png")
+        self.assertTrue(download_midjourney_image(local_path, self.url))
         with open(local_path, "rb") as f:
             self.assertEqual(f.read(), self.content)
 
     @patch("requests.get")
     def test_request_error(self, mock_get):
         mock_get.side_effect = RequestException
-        self.assertIsNone(download_midjourney_image(self.tempdir.name, self.url))
+        local_path = os.path.join(self.tempdir.name, "image.png")
+        self.assertFalse(download_midjourney_image(local_path, self.url))
