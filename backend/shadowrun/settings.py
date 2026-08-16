@@ -185,21 +185,62 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 
+CONSTANCE_ADDITIONAL_FIELDS = {
+    "image_backend_select": [
+        "django.forms.fields.ChoiceField",
+        {
+            "widget": "django.forms.Select",
+            "choices": (
+                ("midjourney", "midjourney"),
+                ("dalle", "dalle"),
+                ("gpt-vision", "gpt-vision"),
+            ),
+        },
+    ],
+    "gpt_model_select": [
+        "django.forms.fields.ChoiceField",
+        {
+            "widget": "django.forms.Select",
+            "choices": (
+                ("gpt-4o", "gpt-4o"),
+                ("gpt-4o-mini", "gpt-4o-mini"),
+                ("gpt-4.1", "gpt-4.1"),
+                ("gpt-4.1-mini", "gpt-4.1-mini"),
+                ("gpt-4.1-nano", "gpt-4.1-nano"),
+                ("gpt-5", "gpt-5"),
+                ("gpt-5-mini", "gpt-5-mini"),
+                ("gpt-5-nano", "gpt-5-nano"),
+            ),
+        },
+    ],
+    "dalle_model_select": [
+        "django.forms.fields.ChoiceField",
+        {
+            "widget": "django.forms.Select",
+            "choices": (
+                ("gpt-image-1", "gpt-image-1"),
+                ("dall-e-3", "dall-e-3"),
+                ("dall-e-2", "dall-e-2"),
+            ),
+        },
+    ],
+}
+
 CONSTANCE_CONFIG = {
     "IMAGE_GENERATION_BACKEND": (
         "midjourney",
         "Select the image generation backend to use (midjourney, dalle, gpt-vision)",
-        str
+        "image_backend_select"
     ),
     "DEFAULT_GPT_MODEL": (
         "gpt-4o",
         "Default GPT model to use for text generation",
-        str
+        "gpt_model_select"
     ),
     "DALLE_MODEL": (
         "gpt-image-1",
         "Default DALL-E model to use for image generation",
-        str
+        "dalle_model_select"
     ),
 }
 
