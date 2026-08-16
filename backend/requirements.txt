@@ -1,6 +1,6 @@
-djangorestframework~=3.14.0
-djangorestframework-simplejwt~=5.3.1
-Django~=4.1.8
+djangorestframework~=3.18.0
+djangorestframework-simplejwt~=5.5.1
+Django~=6.1.0
 python-dotenv~=1.0.0
 requests~=2.28.2
 Pillow~=11.2.1
