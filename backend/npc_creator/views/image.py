@@ -1,4 +1,5 @@
 from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
@@ -24,7 +25,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def upvote(self, request, pk):
-        image = Image.objects.filter(id=pk)[0]
+        image = get_object_or_404(Image, id=pk)
         template = image.template
 
         image.upvote()
@@ -36,7 +37,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"], permission_classes=[AllowAny])
     def downvote(self, request, pk):
-        image = Image.objects.filter(id=pk)[0]
+        image = get_object_or_404(Image, id=pk)
         template = image.template
 
         image.downvote()
