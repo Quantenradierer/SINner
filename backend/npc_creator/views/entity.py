@@ -1,8 +1,5 @@
-import random
-import time
 import uuid
 from datetime import timedelta
-from time import sleep
 
 import rest_framework.permissions
 from django.core.cache import cache
@@ -237,18 +234,3 @@ class EntityViewSet(
         elif not favorite:
             collection.favorites.filter(entity=entity).delete()
         return Response()
-
-    @action(detail=True, methods=["post"])
-    def recreate_images(self, request, pk):
-        return
-        entity = self.queryset.get(pk=pk)
-
-        generation = ImageGeneration(entity=entity)
-        generation.save()
-        generation_job_async(generation)
-
-        time.sleep(random.random() + random.randint(3, 10))
-
-        return Response(
-            {"type": "success", "entity": self.serializer_class(entity).data}
-        )

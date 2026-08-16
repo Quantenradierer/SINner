@@ -21,16 +21,6 @@ class ImageGalleryWrapped extends React.Component {
             entity: this.props.entity,
             votes: {}
         }
-
-        this.handleRecreateImages = this.handleRecreateImages.bind(this);
-    }
-
-    async handleRecreateImages() {
-        await api.post('/api/npc_creator/entities/' + this.state.entity.id + '/recreate_images/', {
-                refresh_token: localStorage.getItem('refresh_token')
-            }, {headers: {'Content-Type': 'application/json'}},
-            {withCredentials: true})
-        window.location.reload()
     }
 
     async upvote(event, image_number) {
