@@ -3,7 +3,7 @@
 from django.db import migrations
 from django.db.migrations import RunPython
 
-from npc_creator.models import Npc
+from npc_creator.models.entities.npc import Npc
 
 
 def clean_attributes(apps, schema_editor):

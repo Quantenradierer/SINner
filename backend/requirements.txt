@@ -15,3 +15,5 @@ websockets
 djoser
 filelock
 basedpyright
+django-constance
+simpleeval
