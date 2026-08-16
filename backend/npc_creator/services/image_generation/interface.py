@@ -6,15 +6,15 @@ class ImageGeneratorInterface(ABC):
     """Abstract base class for all image generation implementations."""
 
     @abstractmethod
-    def generate_image(self, prompt: str) -> Optional[str]:
+    def generate_image(self, prompt: str) -> Optional[bytes]:
         """
         Generate an image from a prompt.
-        
+
         Args:
             prompt (str): The prompt to use for image generation
-            
+
         Returns:
-            str: URL of generated image, or None if failed
+            bytes: raw image data (PNG), or None if failed
         """
         pass
 

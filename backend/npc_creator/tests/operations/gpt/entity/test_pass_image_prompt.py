@@ -23,23 +23,39 @@ def make_generation(description=""):
 
 
 class TestPassImagePromptWithFactoryBackend(unittest.TestCase):
+    def setUp(self):
+        save_patcher = patch(
+            "npc_creator.operations.gpt.entity.pass_image_prompt.save_generated_image"
+        )
+        self.addCleanup(save_patcher.stop)
+        self.mock_save = save_patcher.start()
+        self.mock_save.return_value = "some-file-name"
+
+        image_patcher = patch("npc_creator.operations.gpt.entity.pass_image_prompt.Image")
+        self.addCleanup(image_patcher.stop)
+        self.mock_image = image_patcher.start()
+
     @patch("npc_creator.operations.gpt.entity.pass_image_prompt.ImageGeneratorFactory")
-    def test_call_success_sets_url_and_state(self, mock_factory):
+    def test_call_success_saves_image_and_marks_done(self, mock_factory):
         generator = Mock()
-        generator.generate_image.return_value = "https://example.com/image.png"
+        generator.generate_image.return_value = b"raw-image-bytes"
         mock_factory.create_generator.return_value = generator
 
         generation = make_generation(description="a description")
+        generation.entity.kind = "Npc"
 
         result = PassImagePrompt(generation).call()
 
         self.assertTrue(result)
-        self.assertEqual("https://example.com/image.png", generation.url)
-        self.assertEqual(ImageGeneration.State.IN_PROGRESS, generation.state)
+        self.mock_save.assert_called_once_with(b"raw-image-bytes", "Npc")
+        self.mock_image.objects.create.assert_called_once_with(
+            entity=generation.entity, name="some-file-name", generation=generation
+        )
+        self.assertEqual(ImageGeneration.State.DONE, generation.state)
         generation.save.assert_called_once()
 
     @patch("npc_creator.operations.gpt.entity.pass_image_prompt.ImageGeneratorFactory")
-    def test_call_failure_when_generator_returns_no_url(self, mock_factory):
+    def test_call_failure_when_generator_returns_no_image(self, mock_factory):
         generator = Mock()
         generator.generate_image.return_value = None
         mock_factory.create_generator.return_value = generator
@@ -50,14 +66,16 @@ class TestPassImagePromptWithFactoryBackend(unittest.TestCase):
 
         self.assertFalse(result)
         self.assertEqual("image_generation_failed", result.error)
+        self.mock_save.assert_not_called()
 
     @patch("npc_creator.operations.gpt.entity.pass_image_prompt.ImageGeneratorFactory")
     def test_generates_description_when_missing(self, mock_factory):
         generator = Mock()
-        generator.generate_image.return_value = "https://example.com/image.png"
+        generator.generate_image.return_value = b"raw-image-bytes"
         mock_factory.create_generator.return_value = generator
 
         generation = make_generation(description="")
+        generation.entity.kind = "Npc"
         translate_result = Success("a generated description")
         generation.entity.instance.Translate.return_value.call.return_value = (
             translate_result
@@ -73,10 +91,11 @@ class TestPassImagePromptWithFactoryBackend(unittest.TestCase):
     @patch("npc_creator.operations.gpt.entity.pass_image_prompt.ImageGeneratorFactory")
     def test_skips_description_generation_when_already_present(self, mock_factory):
         generator = Mock()
-        generator.generate_image.return_value = "https://example.com/image.png"
+        generator.generate_image.return_value = b"raw-image-bytes"
         mock_factory.create_generator.return_value = generator
 
         generation = make_generation(description="already there")
+        generation.entity.kind = "Npc"
 
         PassImagePrompt(generation).call()
 

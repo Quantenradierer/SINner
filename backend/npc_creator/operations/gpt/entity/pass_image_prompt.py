@@ -1,6 +1,10 @@
+from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.services.image_generation.factory import ImageGeneratorFactory
+from npc_creator.services.image_generation.save_generated_image import (
+    save_generated_image,
+)
 
 
 class PassImagePrompt:
@@ -42,18 +46,20 @@ class PassImagePrompt:
         
         # If we have a specific generator, use it; otherwise fallback to legacy Midjourney behavior
         if generator is not None:
-            # Use new backend approach - generate image and get URL
-            image_url = generator.generate_image(prompt)
-            if image_url:
-                # Update the generation with the result
-                self.generation.url = image_url
-                self.generation.state = ImageGeneration.State.IN_PROGRESS
-                self.generation.save()
-                
-                result = Success()
-                return result
-            else:
+            # New backends return the finished image directly (no Discord
+            # round-trip, no Midjourney-style 4-up grid to split), so save
+            # it and mark the generation done right away.
+            image_bytes = generator.generate_image(prompt)
+            if not image_bytes:
                 return Failure("image_generation_failed")
+
+            name = save_generated_image(image_bytes, self.entity.kind)
+            Image.objects.create(entity=self.entity, name=name, generation=self.generation)
+
+            self.generation.state = ImageGeneration.State.DONE
+            self.generation.save()
+
+            return Success()
         else:
             # Fallback to original Midjourney behavior for backward compatibility
             template, prompt = self.special_midjourney_prompt(prompt=prompt)

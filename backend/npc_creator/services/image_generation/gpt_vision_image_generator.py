@@ -1,3 +1,5 @@
+import base64
+import logging
 import os
 from typing import Optional
 
@@ -7,46 +9,45 @@ from npc_creator.services.image_generation.interface import ImageGeneratorInterf
 
 
 class GptVisionImageGenerator(ImageGeneratorInterface):
-    """Image generator using OpenAI's GPT-4 Vision model."""
+    """Image generator using OpenAI's chat-based image generation tool."""
+
+    MODEL = "gpt-4.1-mini"
 
     def __init__(self):
         self.client = OpenAI()
         if not os.getenv("OPENAI_API_KEY"):
             raise ValueError("OPENAI_API_KEY environment variable is required")
-            
+
         self.client.api_key = os.getenv("OPENAI_API_KEY")
 
-    def generate_image(self, prompt: str) -> Optional[str]:
+    def generate_image(self, prompt: str) -> Optional[bytes]:
         """
-        Generate an image using GPT-4 Vision model.
-        
+        Generate an image via a chat completion using the image_generation tool.
+
         Args:
             prompt (str): The prompt to use for image generation
-            
+
         Returns:
-            str: URL of generated image, or None if failed
+            bytes: raw PNG image data, or None if failed
         """
         try:
-            # For GPT-4V, we send the prompt in a way that generates an image response
-            # This is simplified - actual implementation would vary based on API capabilities
-            response = self.client.chat.completions.create(
-                model="gpt-4-vision-preview",  # or gpt-4-turbo
-                messages=[
-                    {
-                        "role": "user",
-                        "content": [
-                            {"type": "text", "text": f"Generate an image: {prompt}"},
-                        ],
-                    }
-                ],
-                max_tokens=300,
+            response = self.client.responses.create(
+                model=self.MODEL,
+                input=f"Generate an image: {prompt}",
+                tools=[{"type": "image_generation"}],
             )
-            
-            # Extract URL from response if available (this would need actual API documentation)
-            # For now, returning None as this is a placeholder
-            return None
+
+            image_calls = [
+                output
+                for output in response.output
+                if output.type == "image_generation_call"
+            ]
+            if not image_calls or not image_calls[0].result:
+                return None
+
+            return base64.b64decode(image_calls[0].result)
         except Exception as e:
-            print(f"Error generating image with GPT-4V: {e}")
+            logging.error(f"Error generating image with GPT image tool: {e}")
             return None
 
     def is_available(self) -> bool:

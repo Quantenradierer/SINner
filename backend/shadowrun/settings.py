@@ -191,6 +191,16 @@ CONSTANCE_CONFIG = {
         "Select the image generation backend to use (midjourney, dalle, gpt-vision)",
         str
     ),
+    "DEFAULT_GPT_MODEL": (
+        "gpt-4o",
+        "Default GPT model to use for text generation",
+        str
+    ),
+    "DALLE_MODEL": (
+        "gpt-image-1",
+        "Default DALL-E model to use for image generation",
+        str
+    ),
 }
 
 SIMPLE_JWT = {
