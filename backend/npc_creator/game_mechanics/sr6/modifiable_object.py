@@ -50,7 +50,7 @@ class ModifiableObject(BaseModel):
 
             order = ["BASE", "REPLACEMENT", "ADD", "LIMIT"]
             order_map = {v: i for i, v in enumerate(order)}
-            modifies.mods.sort(key=lambda obj: order_map[rule.modifier_type])
+            modifies.mods.sort(key=lambda obj: order_map[obj.modifier_type])
 
             self.apply_rules.append(rule)
 

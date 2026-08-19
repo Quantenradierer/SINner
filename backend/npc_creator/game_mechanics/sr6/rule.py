@@ -71,7 +71,7 @@ class Rule(BaseModel):
         elif self.modifier_type == ModifierType.ADD:
             return value + result
         elif self.modifier_type == ModifierType.LIMIT:
-            return value
+            return result
         raise NotImplementedError(f"Unknown modifier type: {self.modifier_type}")
 
 
