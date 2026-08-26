@@ -9,7 +9,10 @@
     "source": {
       "page": 279,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/autopicker +1 lockpicking"
+    ]
   },
   {
     "id": "sr6core/breakingandentering/autopicker/2",
@@ -21,7 +24,10 @@
     "source": {
       "page": 279,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/autopicker +1 lockpicking"
+    ]
   },
   {
     "id": "sr6core/breakingandentering/autopicker/3",
@@ -33,7 +39,10 @@
     "source": {
       "page": 279,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/autopicker +1 lockpicking"
+    ]
   },
   {
     "id": "sr6core/breakingandentering/autopicker/4",
@@ -45,7 +54,10 @@
     "source": {
       "page": 279,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/autopicker +1 lockpicking"
+    ]
   },
   {
     "id": "sr6core/breakingandentering/autopicker/5",
@@ -57,7 +69,10 @@
     "source": {
       "page": 279,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/autopicker +1 lockpicking"
+    ]
   },
   {
     "id": "sr6core/breakingandentering/autopicker/6",
@@ -69,7 +84,10 @@
     "source": {
       "page": 279,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/autopicker +1 lockpicking"
+    ]
   },
   {
     "id": "sr6core/breakingandentering/cellularglovemolder/1",

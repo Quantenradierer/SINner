@@ -182,22 +182,22 @@
   {
     "id": "sr6core/base defense direct spell",
     "source": {
-      "page": 130,
+      "page": 137,
       "book": "SR6Core"
     },
     "modifies": "character.defense_direct_spell",
     "modifier_type": "BASE",
-    "modification": "character.attributes.willpower.mod"
+    "modification": "character.attributes.willpower.mod + character.attributes.intuition.mod"
   },
   {
     "id": "sr6core/base defense indirect spell",
     "source": {
-      "page": 132,
+      "page": 137,
       "book": "SR6Core"
     },
     "modifies": "character.defense_indirect_spell",
     "modifier_type": "BASE",
-    "modification": "character.attributes.reaction.mod + character.attributes.intuition.mod"
+    "modification": "character.attributes.reaction.mod + character.attributes.willpower.mod"
   },
   {
     "id": "sr6core/base resist toxin",
@@ -212,7 +212,7 @@
   {
     "id": "sr6core/base composure",
     "source": {
-      "page": 67,
+      "page": 37,
       "book": "SR6Core"
     },
     "modifies": "character.composure",
@@ -222,7 +222,7 @@
   {
     "id": "sr6core/base judge intentions",
     "source": {
-      "page": 67,
+      "page": 37,
       "book": "SR6Core"
     },
     "modifies": "character.judge_intentions",
@@ -232,7 +232,7 @@
   {
     "id": "sr6core/base memory",
     "source": {
-      "page": 67,
+      "page": 37,
       "book": "SR6Core"
     },
     "modifies": "character.memory",
@@ -242,7 +242,7 @@
   {
     "id": "sr6core/base lift carry",
     "source": {
-      "page": 67,
+      "page": 37,
       "book": "SR6Core"
     },
     "modifies": "character.lift_carry",

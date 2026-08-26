@@ -295,7 +295,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.right_forearm.body",
+    "modifies": "character.right_lower_leg.body",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -305,7 +305,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.right_forearm.agility",
+    "modifies": "character.right_lower_leg.agility",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -315,7 +315,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.right_forearm.reaction",
+    "modifies": "character.right_lower_leg.reaction",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -325,7 +325,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.right_forearm.strength",
+    "modifies": "character.right_lower_leg.strength",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -415,7 +415,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.left_forearm.body",
+    "modifies": "character.left_lower_leg.body",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -425,7 +425,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.left_forearm.agility",
+    "modifies": "character.left_lower_leg.agility",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -435,7 +435,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.left_forearm.reaction",
+    "modifies": "character.left_lower_leg.reaction",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },
@@ -445,7 +445,7 @@
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.left_forearm.strength",
+    "modifies": "character.left_lower_leg.strength",
     "modifier_type": "REPLACEMENT",
     "modification": "2"
   },

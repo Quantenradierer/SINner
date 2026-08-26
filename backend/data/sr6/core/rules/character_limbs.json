@@ -141,6 +141,6 @@
     },
     "modifies": "character.{limb}.{attribute}",
     "modifier_type": "LIMIT",
-    "modification": "min(character.attributes.{attribute} + 4, character.{limb}.{attribute})"
+    "modification": "min(character.attributes.{attribute}.mod + 4, value)"
   }
 ]

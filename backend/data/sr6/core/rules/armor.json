@@ -2,7 +2,7 @@
   {
     "id": "sr6core/armor defense rating",
     "source": {
-      "page": 108,
+      "page": 112,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",

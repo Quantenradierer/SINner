@@ -74,6 +74,65 @@ class TestEnableBaseRules(unittest.TestCase):
     def test_matrix_vr_hot_sim_initiative_dices(self):
         self.assertEqual(self.character.initiative_matrix_vr_hot_dices.mod, 3)
 
+    def test_defense_direct_spell_sums_willpower_and_intuition(self):
+        # regression: JSON used to have willpower only, missing intuition
+        self.assertEqual(self.character.defense_direct_spell.mod, 7)
+
+    def test_defense_indirect_spell_sums_reaction_and_willpower(self):
+        # regression: JSON used to have reaction+intuition (swapped with
+        # willpower, copy-pasted from the direct-spell rule)
+        self.assertEqual(self.character.defense_indirect_spell.mod, 8)
+
+
+class TestAutopickerLockpickingBonus(unittest.TestCase):
+    """Regression test: the autopicker gear items used the free-text
+    `rule` field instead of `wear_rules`, so the bonus never applied even
+    after the attribute-path typo (character.engineering.lockpicking,
+    missing .skills.) was fixed."""
+
+    def test_autopicker_adds_to_lockpicking_specialisation(self):
+        from npc_creator.game_mechanics.manager import ALL_GEAR
+
+        character = make_character()
+        character.enable_base_rules()
+        before = character.skills.engineering.lockpicking.mod
+
+        autopicker = ALL_GEAR["sr6core/breakingandentering/autopicker/1"].model_copy(
+            deep=True
+        )
+        character.add_gear(autopicker)
+
+        self.assertEqual(character.skills.engineering.lockpicking.mod, before + 1)
+
+
+class TestCyberlimbAttributeLimit(unittest.TestCase):
+    """Regression test for a crash bug: character_limbs.json's LIMIT rule
+    referenced character.{limb}.{attribute} (the ModifiableValue object)
+    instead of the pipeline's `value`, and was missing .mod on the
+    natural-attribute lookup - both raised TypeError whenever the rule
+    actually ran (see rule.py's calc: min() between a ModifiableValue and
+    an int)."""
+
+    def test_cyberlimb_replacement_value_is_clamped_at_natural_plus_four(self):
+        from npc_creator.game_mechanics.manager import ALL_RULES
+
+        character = make_character()
+        character.attributes.body.points = 3
+
+        limit_rule = ALL_RULES["sr6core/character/right_arm/limit/body"]
+        replacement_rule = limit_rule.model_copy(
+            update={
+                "modifier_type": "REPLACEMENT",
+                "modification": "9",
+                "modifies": "character.right_arm.body",
+            }
+        )
+        character.apply_rule(replacement_rule)
+        character.apply_rule(limit_rule)
+
+        # natural body(3) + 4 = 7, clamps the replacement's 9 down to 7
+        self.assertEqual(character.right_arm.body.mod, 7)
+
 
 class TestCyberjackMatrixInitiativeBonus(unittest.TestCase):
     """Regression test for the errata-driven cyberjack rewrite: the bonus

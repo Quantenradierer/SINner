@@ -2,7 +2,7 @@
   {
     "id": "sr6core/audio device modification - aural enhancement",
     "source": {
-      "page": 275,
+      "page": 277,
       "book": "SR6Core"
     },
     "modifies": "character.skills.perception.aural",

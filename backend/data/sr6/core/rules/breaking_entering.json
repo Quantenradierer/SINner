@@ -2,10 +2,10 @@
   {
     "id": "sr6core/autopicker +1 lockpicking",
     "source": {
-      "page": 108,
+      "page": 279,
       "book": "SR6Core"
     },
-    "modifies": "character.engineering.lockpicking",
+    "modifies": "character.skills.engineering.lockpicking",
     "modifier_type": "ADD",
     "modification": "1"
   }

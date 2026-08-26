@@ -2,7 +2,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/body +1",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.body",
@@ -12,7 +12,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/body +2",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.body",
@@ -22,7 +22,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/defense +1",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -32,7 +32,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/defense +2",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -42,7 +42,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/unarmed damage 3p",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.unarmed.damage",
@@ -52,7 +52,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/unarmed damage 4p",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.unarmed.damage",
@@ -62,7 +62,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/unarmed attack rating +1",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.unarmed.attack_rating_0",
@@ -72,7 +72,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/unarmed attack rating +2",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.unarmed.attack_rating_0",
@@ -82,7 +82,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/unarmed attack rating +3",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.unarmed.attack_rating_0",
@@ -92,7 +92,7 @@
   {
     "id": "sr6core/cyberware/dermal plating/defense rating +1",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -102,7 +102,7 @@
   {
     "id": "sr6core/cyberware/dermal plating/defense rating +2",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -112,7 +112,7 @@
   {
     "id": "sr6core/cyberware/dermal plating/defense rating +3",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -122,7 +122,7 @@
   {
     "id": "sr6core/cyberware/dermal plating/defense rating +4",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -132,7 +132,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/agility +1",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.agility",
@@ -142,7 +142,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/strength +1",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.strength",
@@ -152,7 +152,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/agility +2",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.agility",
@@ -162,7 +162,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/strength +2",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.strength",
@@ -172,7 +172,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/agility +3",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.agility",
@@ -182,7 +182,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/strength +3",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.strength",
@@ -192,7 +192,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/agility +4",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.agility",
@@ -202,7 +202,7 @@
   {
     "id": "sr6core/cyberware/muscle replacement/strength +4",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.strength",
@@ -212,7 +212,7 @@
   {
     "id": "sr6core/cyberware/reaction enhancers/reaction +1",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -222,7 +222,7 @@
   {
     "id": "sr6core/cyberware/reaction enhancers/reaction +2",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -232,7 +232,7 @@
   {
     "id": "sr6core/cyberware/reaction enhancers/reaction +3",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -242,7 +242,7 @@
   {
     "id": "sr6core/cyberware/reaction enhancers/reaction +4",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -252,7 +252,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/reaction +1",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -262,7 +262,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/reaction +2",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -272,7 +272,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/reaction +3",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -282,7 +282,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/reaction +4",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.attributes.reaction",
@@ -292,7 +292,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/initiative dices +1",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_dices",
@@ -302,7 +302,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/initiative dices +2",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_dices",
@@ -312,7 +312,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/initiative dices +3",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_dices",
@@ -322,7 +322,7 @@
   {
     "id": "sr6core/cyberware/wired reflexes/initiative dices +4",
     "source": {
-      "page": 287,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_dices",
@@ -332,7 +332,7 @@
   {
     "id": "sr6core/cyberware/bone lacing/unarmed physical damage",
     "source": {
-      "page": 286,
+      "page": 288,
       "book": "SR6Core"
     },
     "modifies": "character.unarmed.damage_type",
