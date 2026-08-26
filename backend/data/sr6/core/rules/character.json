@@ -32,12 +32,12 @@
   {
     "id": "sr6core/base astral initiative dices",
     "source": {
-      "page": 161,
+      "page": 163,
       "book": "SR6Core"
     },
     "modifies": "character.astral_initiative_dices",
     "modifier_type": "BASE",
-    "modification": "1"
+    "modification": "3"
   },
   {
     "id": "sr6core/base astral initiative limit dices",
@@ -97,7 +97,7 @@
     },
     "modifies": "character.initiative_matrix_vr_cold_dices",
     "modifier_type": "BASE",
-    "modification": "1"
+    "modification": "2"
   },
   {
     "id": "sr6core/base initiative matrix vr cold limit dices",
@@ -127,7 +127,7 @@
     },
     "modifies": "character.initiative_matrix_vr_hot_dices",
     "modifier_type": "BASE",
-    "modification": "2"
+    "modification": "3"
   },
   {
     "id": "sr6core/base initiative matrix vr hot limit dices",

@@ -1,92 +1,22 @@
 [
   {
-    "id": "sr6core/cyberjack +1 matrix initiative ar",
+    "id": "sr6core/cyberjack +1 matrix initiative dice vr",
     "source": {
       "page": 284,
       "book": "SR6Core"
     },
-    "modifies": "character.initiative_matrix_ar_base",
+    "modifies": "[character.initiative_matrix_vr_cold_dices, character.initiative_matrix_vr_hot_dices]",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "sr6core/cyberjack +1 matrix initiative vr cold",
+    "id": "sr6core/cyberjack +2 matrix initiative dice vr",
     "source": {
       "page": 284,
       "book": "SR6Core"
     },
-    "modifies": "character.initiative_matrix_vr_cold_base",
-    "modifier_type": "ADD",
-    "modification": "1"
-  },
-  {
-    "id": "sr6core/cyberjack +1 matrix initiative vr hot",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_vr_hot_base",
-    "modifier_type": "ADD",
-    "modification": "1"
-  },
-  {
-    "id": "sr6core/cyberjack +2 matrix initiative ar",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_ar_base",
+    "modifies": "[character.initiative_matrix_vr_cold_dices, character.initiative_matrix_vr_hot_dices]",
     "modifier_type": "ADD",
     "modification": "2"
-  },
-  {
-    "id": "sr6core/cyberjack +2 matrix initiative vr cold",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_vr_cold_base",
-    "modifier_type": "ADD",
-    "modification": "2"
-  },
-  {
-    "id": "sr6core/cyberjack +2 matrix initiative vr hot",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_vr_hot_base",
-    "modifier_type": "ADD",
-    "modification": "2"
-  },
-  {
-    "id": "sr6core/cyberjack +3 matrix initiative ar",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_ar_base",
-    "modifier_type": "ADD",
-    "modification": "3"
-  },
-  {
-    "id": "sr6core/cyberjack +3 matrix initiative vr cold",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_vr_cold_base",
-    "modifier_type": "ADD",
-    "modification": "3"
-  },
-  {
-    "id": "sr6core/cyberjack +3 matrix initiative vr hot",
-    "source": {
-      "page": 284,
-      "book": "SR6Core"
-    },
-    "modifies": "character.initiative_matrix_vr_hot_base",
-    "modifier_type": "ADD",
-    "modification": "3"
   }
 ]

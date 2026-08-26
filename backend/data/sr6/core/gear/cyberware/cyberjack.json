@@ -14,9 +14,7 @@
       "book": "SR6Core"
     },
     "wear_rules": [
-      "sr6core/cyberjack +1 matrix initiative ar",
-      "sr6core/cyberjack +1 matrix initiative vr cold",
-      "sr6core/cyberjack +1 matrix initiative vr hot"
+      "sr6core/cyberjack +1 matrix initiative dice vr"
     ]
   },
   {
@@ -34,9 +32,7 @@
       "book": "SR6Core"
     },
     "wear_rules": [
-      "sr6core/cyberjack +1 matrix initiative ar",
-      "sr6core/cyberjack +1 matrix initiative vr cold",
-      "sr6core/cyberjack +1 matrix initiative vr hot"
+      "sr6core/cyberjack +1 matrix initiative dice vr"
     ]
   },
   {
@@ -54,9 +50,7 @@
       "book": "SR6Core"
     },
     "wear_rules": [
-      "sr6core/cyberjack +2 matrix initiative ar",
-      "sr6core/cyberjack +2 matrix initiative vr cold",
-      "sr6core/cyberjack +2 matrix initiative vr hot"
+      "sr6core/cyberjack +1 matrix initiative dice vr"
     ]
   },
   {
@@ -74,9 +68,7 @@
       "book": "SR6Core"
     },
     "wear_rules": [
-      "sr6core/cyberjack +2 matrix initiative ar",
-      "sr6core/cyberjack +2 matrix initiative vr cold",
-      "sr6core/cyberjack +2 matrix initiative vr hot"
+      "sr6core/cyberjack +2 matrix initiative dice vr"
     ]
   },
   {
@@ -94,9 +86,7 @@
       "book": "SR6Core"
     },
     "wear_rules": [
-      "sr6core/cyberjack +3 matrix initiative ar",
-      "sr6core/cyberjack +3 matrix initiative vr cold",
-      "sr6core/cyberjack +3 matrix initiative vr hot"
+      "sr6core/cyberjack +2 matrix initiative dice vr"
     ]
   },
   {
@@ -114,9 +104,7 @@
       "book": "SR6Core"
     },
     "wear_rules": [
-      "sr6core/cyberjack +3 matrix initiative ar",
-      "sr6core/cyberjack +3 matrix initiative vr cold",
-      "sr6core/cyberjack +3 matrix initiative vr hot"
+      "sr6core/cyberjack +2 matrix initiative dice vr"
     ]
   }
 ]
