@@ -47,7 +47,27 @@ class Rule(BaseModel):
             logging.error(f"Available context: {self.context}")
             raise
 
+    def is_enabled(self) -> bool:
+        if self.enable is None:
+            return True
+        try:
+            return bool(
+                simple_eval(
+                    self.enable,
+                    names=self.context,
+                    functions={"min": min, "max": max},
+                )
+            )
+        except Exception:
+            # the condition references gear/state that isn't wired up for
+            # this object (e.g. no weapon in context) - treat as not met
+            # rather than crashing rule application.
+            return False
+
     def calc(self, value: int) -> int:
+        if not self.is_enabled():
+            return value
+
         try:
             result: int = cast(
                 int,

@@ -5,12 +5,18 @@ from npc_creator.game_mechanics.sr6.rule import Rule
 from npc_creator.game_mechanics.sr6.source import Source
 
 
-def make_rule(modifier_type: str, modification: str, context: dict | None = None) -> Rule:
+def make_rule(
+    modifier_type: str,
+    modification: str,
+    context: dict | None = None,
+    enable: str | None = None,
+) -> Rule:
     return Rule(
         id=f"test/{modifier_type.lower()}",
         modifies="character.foo",
         modifier_type=modifier_type,
         modification=modification,
+        enable=enable,
         source=Source(page=1, book="SR6Core"),
         context=context or {},
     )
@@ -70,6 +76,27 @@ class TestRuleCalcMissingAttribute(unittest.TestCase):
             "ADD", "dummy.missing", context={"dummy": self._RaisesOnAccess()}
         )
         self.assertEqual(rule.calc(7), 7)
+
+
+class TestRuleCalcEnable(unittest.TestCase):
+    def test_no_enable_condition_always_applies(self):
+        rule = make_rule("ADD", "4")
+        self.assertEqual(rule.calc(2), 6)
+
+    def test_true_condition_applies_the_rule(self):
+        rule = make_rule("ADD", "4", context={"flag": True}, enable="flag")
+        self.assertEqual(rule.calc(2), 6)
+
+    def test_false_condition_leaves_value_unchanged(self):
+        rule = make_rule("ADD", "4", context={"flag": False}, enable="flag")
+        self.assertEqual(rule.calc(2), 2)
+
+    def test_unevaluable_condition_is_treated_as_disabled(self):
+        # regression: enable referencing gear/state not wired into this
+        # object's context must not crash rule application - it should
+        # just behave as if the condition wasn't met.
+        rule = make_rule("ADD", "4", context={}, enable="weapon.smartlink_active")
+        self.assertEqual(rule.calc(2), 2)
 
 
 class TestRuleEvalModifies(unittest.TestCase):
