@@ -14,13 +14,11 @@
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating": [
-      6,
-      null,
-      null,
-      null,
-      null
-    ],
+    "attack_rating_0": 6,
+    "attack_rating_1": 0,
+    "attack_rating_2": 0,
+    "attack_rating_3": 0,
+    "attack_rating_4": 0,
     "source": {
       "page": 290,
       "book": "SR6Core"
@@ -42,13 +40,11 @@
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating": [
-      5,
-      null,
-      null,
-      null,
-      null
-    ],
+    "attack_rating_0": 5,
+    "attack_rating_1": 0,
+    "attack_rating_2": 0,
+    "attack_rating_3": 0,
+    "attack_rating_4": 0,
     "source": {
       "page": 290,
       "book": "SR6Core"
@@ -69,13 +65,11 @@
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating": [
-      6,
-      null,
-      null,
-      null,
-      null
-    ],
+    "attack_rating_0": 6,
+    "attack_rating_1": 0,
+    "attack_rating_2": 0,
+    "attack_rating_3": 0,
+    "attack_rating_4": 0,
     "source": {
       "page": 290,
       "book": "SR6Core"
@@ -96,13 +90,11 @@
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating": [
-      6,
-      null,
-      null,
-      null,
-      null
-    ],
+    "attack_rating_0": 6,
+    "attack_rating_1": 0,
+    "attack_rating_2": 0,
+    "attack_rating_3": 0,
+    "attack_rating_4": 0,
     "source": {
       "page": 290,
       "book": "SR6Core"
@@ -123,13 +115,11 @@
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating": [
-      7,
-      null,
-      null,
-      null,
-      null
-    ],
+    "attack_rating_0": 7,
+    "attack_rating_1": 0,
+    "attack_rating_2": 0,
+    "attack_rating_3": 0,
+    "attack_rating_4": 0,
     "source": {
       "page": 290,
       "book": "SR6Core"
@@ -150,13 +140,11 @@
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating": [
-      2,
-      null,
-      null,
-      null,
-      null
-    ],
+    "attack_rating_0": 2,
+    "attack_rating_1": 0,
+    "attack_rating_2": 0,
+    "attack_rating_3": 0,
+    "attack_rating_4": 0,
     "source": {
       "page": 290,
       "book": "SR6Core"

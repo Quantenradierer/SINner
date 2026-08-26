@@ -406,7 +406,15 @@ def roll20_npc(char: SR6Character) -> R20Character:
             skill=w.skill,
             pool=w.cnt or 0,
             damage=w.damage,
-            attackRating=str(w.attack_rating),
+            attackRating=str(
+                [
+                    w.attack_rating_0.mod,
+                    w.attack_rating_1.mod,
+                    w.attack_rating_2.mod,
+                    w.attack_rating_3.mod,
+                    w.attack_rating_4.mod,
+                ]
+            ),
             wifi=[],
             accessories=[],
             page="",

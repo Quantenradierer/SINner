@@ -116,7 +116,13 @@ def foundry_weapon(weapon: Gear) -> FoundryGear:
             dmg=weapon.damage,
             stun=weapon.damage_type == "S",
             dmgDef=f"{weapon.damage}{weapon.damage_type or ''} {weapon.damage_note}",
-            attackRating=[r or 0 for r in weapon.attack_rating],
+            attackRating=[
+                weapon.attack_rating_0.mod,
+                weapon.attack_rating_1.mod,
+                weapon.attack_rating_2.mod,
+                weapon.attack_rating_3.mod,
+                weapon.attack_rating_4.mod,
+            ],
             modes={"BF": weapon.bf, "FA": weapon.fa, "SA": weapon.sa, "SS": weapon.ss},
         ),
     )

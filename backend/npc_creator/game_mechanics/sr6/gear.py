@@ -1,7 +1,7 @@
 from enum import StrEnum
 from typing import Literal
 
-from pydantic import ConfigDict, Field, field_validator
+from pydantic import ConfigDict, Field
 
 
 from npc_creator.game_mechanics.sr6.modifiable_object import ModifiableObject
@@ -98,10 +98,8 @@ class Gear(ModifiableObject):
     # bodyware
     essence: float | None = None
 
-    # TODO: remove
     mount: str | None = None
     rule: str | None = None
-    attack_rating: list[int | None] = Field(default_factory=list)
 
     @property
     def is_mod(self):
