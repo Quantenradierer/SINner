@@ -250,702 +250,182 @@
     "modification": "character.attributes.body.mod + character.attributes.willpower.mod"
   },
   {
-    "id": "sr6core/specialisation astral_combat from astral",
+    "id": "sr6core/specialisation of astral",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.astral.astral_combat",
+    "modifies": "[character.skills.astral.astral_combat, character.skills.astral.astral_signatures, character.skills.astral.emotional_states, character.skills.astral.spirit_types]",
     "modifier_type": "BASE",
     "modification": "character.skills.astral.mod"
   },
   {
-    "id": "sr6core/specialisation astral_signatures from astral",
+    "id": "sr6core/specialisation of athletics",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.astral.astral_signatures",
-    "modifier_type": "BASE",
-    "modification": "character.skills.astral.mod"
-  },
-  {
-    "id": "sr6core/specialisation emotional_states from astral",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.astral.emotional_states",
-    "modifier_type": "BASE",
-    "modification": "character.skills.astral.mod"
-  },
-  {
-    "id": "sr6core/specialisation spirit_types from astral",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.astral.spirit_types",
-    "modifier_type": "BASE",
-    "modification": "character.skills.astral.mod"
-  },
-  {
-    "id": "sr6core/specialisation climbing from athletics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.athletics.climbing",
+    "modifies": "[character.skills.athletics.climbing, character.skills.athletics.flying, character.skills.athletics.gymnastics, character.skills.athletics.sprinting, character.skills.athletics.swimming, character.skills.athletics.throwing]",
     "modifier_type": "BASE",
     "modification": "character.skills.athletics.mod"
   },
   {
-    "id": "sr6core/specialisation flying from athletics",
+    "id": "sr6core/specialisation of biotech",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.athletics.flying",
-    "modifier_type": "BASE",
-    "modification": "character.skills.athletics.mod"
-  },
-  {
-    "id": "sr6core/specialisation gymnastics from athletics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.athletics.gymnastics",
-    "modifier_type": "BASE",
-    "modification": "character.skills.athletics.mod"
-  },
-  {
-    "id": "sr6core/specialisation sprinting from athletics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.athletics.sprinting",
-    "modifier_type": "BASE",
-    "modification": "character.skills.athletics.mod"
-  },
-  {
-    "id": "sr6core/specialisation swimming from athletics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.athletics.swimming",
-    "modifier_type": "BASE",
-    "modification": "character.skills.athletics.mod"
-  },
-  {
-    "id": "sr6core/specialisation throwing from athletics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.athletics.throwing",
-    "modifier_type": "BASE",
-    "modification": "character.skills.athletics.mod"
-  },
-  {
-    "id": "sr6core/specialisation biotechnology from biotech",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.biotech.biotechnology",
+    "modifies": "[character.skills.biotech.biotechnology, character.skills.biotech.cybertechnology, character.skills.biotech.first_aid, character.skills.biotech.medicine]",
     "modifier_type": "BASE",
     "modification": "character.skills.biotech.mod"
   },
   {
-    "id": "sr6core/specialisation cybertechnology from biotech",
+    "id": "sr6core/specialisation of close_combat",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.biotech.cybertechnology",
-    "modifier_type": "BASE",
-    "modification": "character.skills.biotech.mod"
-  },
-  {
-    "id": "sr6core/specialisation first_aid from biotech",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.biotech.first_aid",
-    "modifier_type": "BASE",
-    "modification": "character.skills.biotech.mod"
-  },
-  {
-    "id": "sr6core/specialisation medicine from biotech",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.biotech.medicine",
-    "modifier_type": "BASE",
-    "modification": "character.skills.biotech.mod"
-  },
-  {
-    "id": "sr6core/specialisation blades from close_combat",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.close_combat.blades",
+    "modifies": "[character.skills.close_combat.blades, character.skills.close_combat.clubs, character.skills.close_combat.unarmed_combat]",
     "modifier_type": "BASE",
     "modification": "character.skills.close_combat.mod"
   },
   {
-    "id": "sr6core/specialisation clubs from close_combat",
+    "id": "sr6core/specialisation of con",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.close_combat.clubs",
-    "modifier_type": "BASE",
-    "modification": "character.skills.close_combat.mod"
-  },
-  {
-    "id": "sr6core/specialisation unarmed_combat from close_combat",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.close_combat.unarmed_combat",
-    "modifier_type": "BASE",
-    "modification": "character.skills.close_combat.mod"
-  },
-  {
-    "id": "sr6core/specialisation acting from con",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.con.acting",
+    "modifies": "[character.skills.con.acting, character.skills.con.disguise, character.skills.con.impersonation, character.skills.con.performance]",
     "modifier_type": "BASE",
     "modification": "character.skills.con.mod"
   },
   {
-    "id": "sr6core/specialisation disguise from con",
+    "id": "sr6core/specialisation of conjuring",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.con.disguise",
-    "modifier_type": "BASE",
-    "modification": "character.skills.con.mod"
-  },
-  {
-    "id": "sr6core/specialisation impersonation from con",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.con.impersonation",
-    "modifier_type": "BASE",
-    "modification": "character.skills.con.mod"
-  },
-  {
-    "id": "sr6core/specialisation performance from con",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.con.performance",
-    "modifier_type": "BASE",
-    "modification": "character.skills.con.mod"
-  },
-  {
-    "id": "sr6core/specialisation banishing from conjuring",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.conjuring.banishing",
+    "modifies": "[character.skills.conjuring.banishing, character.skills.conjuring.binding, character.skills.conjuring.summoning]",
     "modifier_type": "BASE",
     "modification": "character.skills.conjuring.mod"
   },
   {
-    "id": "sr6core/specialisation binding from conjuring",
+    "id": "sr6core/specialisation of cracking",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.conjuring.binding",
-    "modifier_type": "BASE",
-    "modification": "character.skills.conjuring.mod"
-  },
-  {
-    "id": "sr6core/specialisation summoning from conjuring",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.conjuring.summoning",
-    "modifier_type": "BASE",
-    "modification": "character.skills.conjuring.mod"
-  },
-  {
-    "id": "sr6core/specialisation cybercombat from cracking",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.cracking.cybercombat",
+    "modifies": "[character.skills.cracking.cybercombat, character.skills.cracking.electronic_warfare, character.skills.cracking.hacking]",
     "modifier_type": "BASE",
     "modification": "character.skills.cracking.mod"
   },
   {
-    "id": "sr6core/specialisation electronic_warfare from cracking",
+    "id": "sr6core/specialisation of electronics",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.cracking.electronic_warfare",
-    "modifier_type": "BASE",
-    "modification": "character.skills.cracking.mod"
-  },
-  {
-    "id": "sr6core/specialisation hacking from cracking",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.cracking.hacking",
-    "modifier_type": "BASE",
-    "modification": "character.skills.cracking.mod"
-  },
-  {
-    "id": "sr6core/specialisation computer from electronics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.electronics.computer",
+    "modifies": "[character.skills.electronics.computer, character.skills.electronics.hardware, character.skills.electronics.software]",
     "modifier_type": "BASE",
     "modification": "character.skills.electronics.mod"
   },
   {
-    "id": "sr6core/specialisation hardware from electronics",
+    "id": "sr6core/specialisation of enchanting",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.electronics.hardware",
-    "modifier_type": "BASE",
-    "modification": "character.skills.electronics.mod"
-  },
-  {
-    "id": "sr6core/specialisation software from electronics",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.electronics.software",
-    "modifier_type": "BASE",
-    "modification": "character.skills.electronics.mod"
-  },
-  {
-    "id": "sr6core/specialisation alchemy from enchanting",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.enchanting.alchemy",
+    "modifies": "[character.skills.enchanting.alchemy, character.skills.enchanting.artificing, character.skills.enchanting.disenchanting]",
     "modifier_type": "BASE",
     "modification": "character.skills.enchanting.mod"
   },
   {
-    "id": "sr6core/specialisation artificing from enchanting",
+    "id": "sr6core/specialisation of engineering",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.enchanting.artificing",
-    "modifier_type": "BASE",
-    "modification": "character.skills.enchanting.mod"
-  },
-  {
-    "id": "sr6core/specialisation disenchanting from enchanting",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.enchanting.disenchanting",
-    "modifier_type": "BASE",
-    "modification": "character.skills.enchanting.mod"
-  },
-  {
-    "id": "sr6core/specialisation aeronautics_mechanic from engineering",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.engineering.aeronautics_mechanic",
+    "modifies": "[character.skills.engineering.aeronautics_mechanic, character.skills.engineering.automotive_mechanic, character.skills.engineering.demolitions, character.skills.engineering.gunnery, character.skills.engineering.industrial_mechanic, character.skills.engineering.lockpicking, character.skills.engineering.nautical_mechanic]",
     "modifier_type": "BASE",
     "modification": "character.skills.engineering.mod"
   },
   {
-    "id": "sr6core/specialisation automotive_mechanic from engineering",
+    "id": "sr6core/specialisation of firearms",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.engineering.automotive_mechanic",
-    "modifier_type": "BASE",
-    "modification": "character.skills.engineering.mod"
-  },
-  {
-    "id": "sr6core/specialisation demolitions from engineering",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.engineering.demolitions",
-    "modifier_type": "BASE",
-    "modification": "character.skills.engineering.mod"
-  },
-  {
-    "id": "sr6core/specialisation gunnery from engineering",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.engineering.gunnery",
-    "modifier_type": "BASE",
-    "modification": "character.skills.engineering.mod"
-  },
-  {
-    "id": "sr6core/specialisation industrial_mechanic from engineering",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.engineering.industrial_mechanic",
-    "modifier_type": "BASE",
-    "modification": "character.skills.engineering.mod"
-  },
-  {
-    "id": "sr6core/specialisation lockpicking from engineering",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.engineering.lockpicking",
-    "modifier_type": "BASE",
-    "modification": "character.skills.engineering.mod"
-  },
-  {
-    "id": "sr6core/specialisation nautical_mechanic from engineering",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.engineering.nautical_mechanic",
-    "modifier_type": "BASE",
-    "modification": "character.skills.engineering.mod"
-  },
-  {
-    "id": "sr6core/specialisation automatics from firearms",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.firearms.automatics",
+    "modifies": "[character.skills.firearms.automatics, character.skills.firearms.longarms, character.skills.firearms.pistols, character.skills.firearms.rifles, character.skills.firearms.shotguns]",
     "modifier_type": "BASE",
     "modification": "character.skills.firearms.mod"
   },
   {
-    "id": "sr6core/specialisation longarms from firearms",
+    "id": "sr6core/specialisation of influence",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.firearms.longarms",
-    "modifier_type": "BASE",
-    "modification": "character.skills.firearms.mod"
-  },
-  {
-    "id": "sr6core/specialisation pistols from firearms",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.firearms.pistols",
-    "modifier_type": "BASE",
-    "modification": "character.skills.firearms.mod"
-  },
-  {
-    "id": "sr6core/specialisation rifles from firearms",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.firearms.rifles",
-    "modifier_type": "BASE",
-    "modification": "character.skills.firearms.mod"
-  },
-  {
-    "id": "sr6core/specialisation shotguns from firearms",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.firearms.shotguns",
-    "modifier_type": "BASE",
-    "modification": "character.skills.firearms.mod"
-  },
-  {
-    "id": "sr6core/specialisation etiquette from influence",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.influence.etiquette",
+    "modifies": "[character.skills.influence.etiquette, character.skills.influence.instruction, character.skills.influence.intimidation, character.skills.influence.leadership, character.skills.influence.negotiation]",
     "modifier_type": "BASE",
     "modification": "character.skills.influence.mod"
   },
   {
-    "id": "sr6core/specialisation instruction from influence",
+    "id": "sr6core/specialisation of outdoors",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.influence.instruction",
-    "modifier_type": "BASE",
-    "modification": "character.skills.influence.mod"
-  },
-  {
-    "id": "sr6core/specialisation intimidation from influence",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.influence.intimidation",
-    "modifier_type": "BASE",
-    "modification": "character.skills.influence.mod"
-  },
-  {
-    "id": "sr6core/specialisation leadership from influence",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.influence.leadership",
-    "modifier_type": "BASE",
-    "modification": "character.skills.influence.mod"
-  },
-  {
-    "id": "sr6core/specialisation negotiation from influence",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.influence.negotiation",
-    "modifier_type": "BASE",
-    "modification": "character.skills.influence.mod"
-  },
-  {
-    "id": "sr6core/specialisation navigation from outdoors",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.outdoors.navigation",
+    "modifies": "[character.skills.outdoors.navigation, character.skills.outdoors.survival, character.skills.outdoors.tracking]",
     "modifier_type": "BASE",
     "modification": "character.skills.outdoors.mod"
   },
   {
-    "id": "sr6core/specialisation survival from outdoors",
+    "id": "sr6core/specialisation of perception",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.outdoors.survival",
-    "modifier_type": "BASE",
-    "modification": "character.skills.outdoors.mod"
-  },
-  {
-    "id": "sr6core/specialisation tracking from outdoors",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.outdoors.tracking",
-    "modifier_type": "BASE",
-    "modification": "character.skills.outdoors.mod"
-  },
-  {
-    "id": "sr6core/specialisation visual from perception",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.perception.visual",
+    "modifies": "[character.skills.perception.visual, character.skills.perception.aural, character.skills.perception.tactile, character.skills.perception.olfactory, character.skills.perception.taste]",
     "modifier_type": "BASE",
     "modification": "character.skills.perception.mod"
   },
   {
-    "id": "sr6core/specialisation aural from perception",
+    "id": "sr6core/specialisation of piloting",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.perception.aural",
-    "modifier_type": "BASE",
-    "modification": "character.skills.perception.mod"
-  },
-  {
-    "id": "sr6core/specialisation tactile from perception",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.perception.tactile",
-    "modifier_type": "BASE",
-    "modification": "character.skills.perception.mod"
-  },
-  {
-    "id": "sr6core/specialisation olfactory from perception",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.perception.olfactory",
-    "modifier_type": "BASE",
-    "modification": "character.skills.perception.mod"
-  },
-  {
-    "id": "sr6core/specialisation taste from perception",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.perception.taste",
-    "modifier_type": "BASE",
-    "modification": "character.skills.perception.mod"
-  },
-  {
-    "id": "sr6core/specialisation ground_craft from piloting",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.piloting.ground_craft",
+    "modifies": "[character.skills.piloting.ground_craft, character.skills.piloting.aircraft, character.skills.piloting.watercraft]",
     "modifier_type": "BASE",
     "modification": "character.skills.piloting.mod"
   },
   {
-    "id": "sr6core/specialisation aircraft from piloting",
+    "id": "sr6core/specialisation of sorcery",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.piloting.aircraft",
-    "modifier_type": "BASE",
-    "modification": "character.skills.piloting.mod"
-  },
-  {
-    "id": "sr6core/specialisation watercraft from piloting",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.piloting.watercraft",
-    "modifier_type": "BASE",
-    "modification": "character.skills.piloting.mod"
-  },
-  {
-    "id": "sr6core/specialisation counterspelling from sorcery",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.sorcery.counterspelling",
+    "modifies": "[character.skills.sorcery.counterspelling, character.skills.sorcery.ritual_spellcasting, character.skills.sorcery.spellcasting]",
     "modifier_type": "BASE",
     "modification": "character.skills.sorcery.mod"
   },
   {
-    "id": "sr6core/specialisation ritual_spellcasting from sorcery",
+    "id": "sr6core/specialisation of stealth",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.sorcery.ritual_spellcasting",
-    "modifier_type": "BASE",
-    "modification": "character.skills.sorcery.mod"
-  },
-  {
-    "id": "sr6core/specialisation spellcasting from sorcery",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.sorcery.spellcasting",
-    "modifier_type": "BASE",
-    "modification": "character.skills.sorcery.mod"
-  },
-  {
-    "id": "sr6core/specialisation disguise from stealth",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.stealth.disguise",
+    "modifies": "[character.skills.stealth.disguise, character.skills.stealth.palming, character.skills.stealth.sneaking]",
     "modifier_type": "BASE",
     "modification": "character.skills.stealth.mod"
   },
   {
-    "id": "sr6core/specialisation palming from stealth",
+    "id": "sr6core/specialisation of tasking",
     "source": {
       "page": 93,
       "book": "SR6Core"
     },
-    "modifies": "character.skills.stealth.palming",
-    "modifier_type": "BASE",
-    "modification": "character.skills.stealth.mod"
-  },
-  {
-    "id": "sr6core/specialisation sneaking from stealth",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.stealth.sneaking",
-    "modifier_type": "BASE",
-    "modification": "character.skills.stealth.mod"
-  },
-  {
-    "id": "sr6core/specialisation compiling from tasking",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.tasking.compiling",
-    "modifier_type": "BASE",
-    "modification": "character.skills.tasking.mod"
-  },
-  {
-    "id": "sr6core/specialisation decompiling from tasking",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.tasking.decompiling",
-    "modifier_type": "BASE",
-    "modification": "character.skills.tasking.mod"
-  },
-  {
-    "id": "sr6core/specialisation registering from tasking",
-    "source": {
-      "page": 93,
-      "book": "SR6Core"
-    },
-    "modifies": "character.skills.tasking.registering",
+    "modifies": "[character.skills.tasking.compiling, character.skills.tasking.decompiling, character.skills.tasking.registering]",
     "modifier_type": "BASE",
     "modification": "character.skills.tasking.mod"
   }
