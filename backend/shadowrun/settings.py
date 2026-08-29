@@ -218,6 +218,7 @@ CONSTANCE_ADDITIONAL_FIELDS = {
         {
             "widget": "django.forms.Select",
             "choices": (
+                ("gpt-image-2", "gpt-image-2"),
                 ("gpt-image-1", "gpt-image-1"),
                 ("dall-e-3", "dall-e-3"),
                 ("dall-e-2", "dall-e-2"),
@@ -233,7 +234,7 @@ CONSTANCE_CONFIG = {
         "image_backend_select"
     ),
     "DEFAULT_GPT_MODEL": (
-        "gpt-4o",
+        "gpt-4.1-mini",
         "Default GPT model to use for text generation",
         "gpt_model_select"
     ),
