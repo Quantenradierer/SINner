@@ -52,5 +52,5 @@ for i in $(seq 1 20); do
     sleep 3
 done
 
-# 6. Drop dangling images.
-docker image prune -f
+# 6. Drop dangling images (best-effort; never fail the deploy over cleanup).
+docker image prune -f || true
