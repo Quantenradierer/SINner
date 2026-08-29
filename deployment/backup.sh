@@ -71,7 +71,7 @@ find "$BACKUP_DIR" -maxdepth 1 -name 'db_*.sqlite3.gz' -mtime "+${RETENTION_DAYS
 if [ "${SINNER_BACKUP_IMAGES:-0}" = "1" ]; then
     echo "==> archiving generated images"
     docker run --rm -e TS="$ts" \
-        -v "${VOLUME}:/app/data:ro" -v "${BACKUP_DIR}:/out:rw" \
+        -v "${VOLUME}:/app/data:ro" -v "${BACKUP_DIR}:/out:rw,z" \
         --entrypoint sh "$IMAGE" -c \
         'tar czf "/out/images_${TS}.tar.gz" -C /app/data images midjourney 2>/dev/null || true'
     echo "    $(du -h "${BACKUP_DIR}/images_${ts}.tar.gz" 2>/dev/null | cut -f1 || echo '?')  ${BACKUP_DIR}/images_${ts}.tar.gz"

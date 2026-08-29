@@ -65,7 +65,7 @@ compose stop web
 echo "==> snapshotting current DB and swapping in the backup"
 if ! docker run --rm -i \
         -e SRC_NAME="$SRC_NAME" -e TS="$ts" \
-        -v "${VOLUME}:/app/data" -v "${SRC_DIR}:/backups:rw" \
+        -v "${VOLUME}:/app/data" -v "${SRC_DIR}:/backups:rw,z" \
         --entrypoint sh "$IMAGE" -s <<'EOSH'
 set -e
 if [ -f /app/data/db.sqlite3 ]; then
@@ -81,16 +81,18 @@ echo "    integrity_check: $r"
 [ "$r" = ok ]
 EOSH
 then
-    echo "!! integrity check failed — rolling back to pre-restore snapshot" >&2
+    echo "!! restore failed — rolling back to the pre-restore snapshot" >&2
     docker run --rm -i -e TS="$ts" \
-        -v "${VOLUME}:/app/data" -v "${SRC_DIR}:/backups:rw" \
-        --entrypoint sh "$IMAGE" -s <<'EOSH'
+        -v "${VOLUME}:/app/data" -v "${SRC_DIR}:/backups:rw,z" \
+        --entrypoint sh "$IMAGE" -s <<'EOSH' || echo "   (nothing to roll back, or rollback copy failed — see above)" >&2
 set -e
-cp "/backups/pre-restore_${TS}.sqlite3" /app/data/db.sqlite3
-rm -f /app/data/db.sqlite3-wal /app/data/db.sqlite3-shm /app/data/db.sqlite3-journal
+if [ -f "/backups/pre-restore_${TS}.sqlite3" ]; then
+    cp "/backups/pre-restore_${TS}.sqlite3" /app/data/db.sqlite3
+    rm -f /app/data/db.sqlite3-wal /app/data/db.sqlite3-shm /app/data/db.sqlite3-journal
+fi
 EOSH
     compose up -d
-    echo "rolled back. app restarted with the previous database." >&2
+    echo "app restarted with the previous database." >&2
     exit 1
 fi
 
