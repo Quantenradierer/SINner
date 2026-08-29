@@ -12,9 +12,12 @@ from rest_framework import serializers, viewsets
 
 
 class ImageSerializer(serializers.ModelSerializer):
+    file_url = serializers.ReadOnlyField()
+    thumbnail_url = serializers.ReadOnlyField()
+
     class Meta:
         model = Image
-        fields = ["id", "name", "score"]
+        fields = ["id", "name", "score", "file_url", "thumbnail_url"]
 
 
 class ImageViewSet(viewsets.ModelViewSet):

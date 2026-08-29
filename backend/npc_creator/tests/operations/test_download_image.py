@@ -22,25 +22,26 @@ class TestDownloadImage(TestCase):
         )
 
     @patch("npc_creator.operations.download_image.download_midjourney_image")
-    @patch("npc_creator.operations.download_image.split_image")
-    @patch("npc_creator.operations.download_image.create_thumbnail")
-    def test_call_success(
-        self, mock_create_thumbnail, mock_split_image, mock_download
+    @patch("npc_creator.operations.download_image.split_image_to_bytes")
+    def test_call_success_stores_one_image_per_quadrant(
+        self, mock_split, mock_download
     ):
         mock_download.return_value = True
-        mock_split_image.return_value = ["test_image_1", "test_image_2"]
-        mock_create_thumbnail.return_value = True
+        mock_split.return_value = [b"q1", b"q2"]
 
-        result = DownloadImage(self.generation).call()
+        with patch(
+            "npc_creator.operations.download_image.store_entity_image"
+        ) as mock_store:
+            mock_store.side_effect = lambda data, entity, generation: Image.objects.create(
+                entity=entity, generation=generation, name=data.decode()
+            )
+            result = DownloadImage(self.generation).call()
 
         self.assertTrue(result)
-        self.assertEqual(["test_image_1", "test_image_2"], result.data)
+        self.assertEqual(2, len(result.data))
         self.generation.refresh_from_db()
         self.assertEqual(ImageGeneration.State.DOWNLOADED, self.generation.state)
-        image_names = list(
-            Image.objects.filter(entity=self.entity).values_list("name", flat=True)
-        )
-        self.assertEqual(["test_image_1", "test_image_2"], image_names)
+        self.assertEqual(2, Image.objects.filter(entity=self.entity).count())
 
     @patch("npc_creator.operations.download_image.download_midjourney_image")
     def test_call_failure_on_download(self, mock_download):
@@ -52,26 +53,12 @@ class TestDownloadImage(TestCase):
         self.assertEqual("download of midjourney image failed", result.error)
 
     @patch("npc_creator.operations.download_image.download_midjourney_image")
-    @patch("npc_creator.operations.download_image.split_image")
-    @patch("npc_creator.operations.download_image.create_thumbnail")
-    def test_call_failure_on_thumbnail(
-        self, mock_create_thumbnail, mock_split_image, mock_download
-    ):
+    @patch("npc_creator.operations.download_image.split_image_to_bytes")
+    def test_call_failure_when_split_yields_nothing(self, mock_split, mock_download):
         mock_download.return_value = True
-        mock_split_image.return_value = ["test_image_1"]
-        mock_create_thumbnail.return_value = False
+        mock_split.return_value = []
 
         result = DownloadImage(self.generation).call()
 
         self.assertFalse(result)
-        self.assertEqual("thumbnail creation failed", result.error)
-
-    def test_add_images_creates_an_image_per_path(self):
-        downloader = DownloadImage(self.generation)
-        downloader.add_images(["test1.jpg", "test2.jpg"])
-
-        created_images = Image.objects.filter(generation=self.generation)
-        self.assertEqual(2, created_images.count())
-        image_names = [img.name for img in created_images]
-        self.assertIn("test1.jpg", image_names)
-        self.assertIn("test2.jpg", image_names)
+        self.assertEqual("splitting the midjourney image failed", result.error)

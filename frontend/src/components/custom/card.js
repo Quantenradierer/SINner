@@ -13,8 +13,8 @@ function CustomCard(props) {
     let items = []
     for (let image of props.entity?.image_objects || []) {
         items.push(
-            <a href={image_path('customs', image.name)}>
-                <img style={{width: '24%'}} src={image_path('customs', image.name, true)}/>
+            <a href={image_path('customs', image)}>
+                <img style={{width: '24%'}} src={image_path('customs', image, true)}/>
             </a>
         )
     }

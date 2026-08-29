@@ -24,7 +24,7 @@ function NPCListItem(props) {
 
                 <Card
                     image={{
-                        src: image_path('npcs', activeImage.name, true),
+                        src: image_path('npcs', activeImage, true),
                         alt: props.entity.image_generator_description
                     }}
                     title={cutStreetname(props.entity.values["name"])}

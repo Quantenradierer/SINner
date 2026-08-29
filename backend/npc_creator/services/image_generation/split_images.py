@@ -1,3 +1,4 @@
+import io
 import os.path
 from typing import List
 
@@ -5,17 +6,11 @@ import PIL
 from PIL import Image
 
 
-def split_image(image_path: str, image_paths_iter: List[str]) -> List[str]:
-    """
-    Splits an image into 4 equally sized parts and saves each part as a separate file in the specified output directory.
+def split_image_to_bytes(image_path: str) -> List[bytes]:
+    """Split a Midjourney 2x2 grid into its four quadrants.
 
-    Args:
-        image_path (str): Path to the image file to be split.
-        image_paths_iter (str): pathes where to save the items
-
-    Returns:
-        List[str]: A list of the filenames of the splitted files.
-
+    Returns the four quadrants as PNG-encoded bytes and deletes the source
+    file. Returns an empty list if the source is not a readable image.
     """
     try:
         im = Image.open(image_path)
@@ -23,18 +18,14 @@ def split_image(image_path: str, image_paths_iter: List[str]) -> List[str]:
         return []
 
     width, height = im.size
+    half_w, half_h = width // 2, height // 2
+    offsets = [(0, 0), (half_w, 0), (0, half_h), (half_w, half_h)]
 
-    result = []
+    quadrants = []
+    for x, y in offsets:
+        buffer = io.BytesIO()
+        im.crop((x, y, x + half_w, y + half_h)).save(buffer, "PNG")
+        quadrants.append(buffer.getvalue())
 
-    splits = [[0, 0], [width // 2, 0], [0, height // 2], [width // 2, height // 2]]
-    for (x, y), file_path in zip(splits, image_paths_iter):
-        left = x
-        top = y
-        right = x + width // 2
-        bottom = y + height // 2
-
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        im.crop((left, top, right, bottom)).save(file_path + ".png")
-        result.append(os.path.basename(file_path))
     os.remove(image_path)
-    return result
+    return quadrants

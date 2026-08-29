@@ -1,10 +1,7 @@
-from npc_creator.models.image import Image
 from npc_creator.models.image_generation import ImageGeneration
 from npc_creator.operations.return_types import Failure, Success
 from npc_creator.services.image_generation.factory import ImageGeneratorFactory
-from npc_creator.services.image_generation.save_generated_image import (
-    save_generated_image,
-)
+from npc_creator.services.image_generation.store_image import store_entity_image
 
 
 class PassImagePrompt:
@@ -53,8 +50,7 @@ class PassImagePrompt:
             if not image_bytes:
                 return Failure("image_generation_failed")
 
-            name = save_generated_image(image_bytes, self.entity.kind)
-            Image.objects.create(entity=self.entity, name=name, generation=self.generation)
+            store_entity_image(image_bytes, self.entity, self.generation)
 
             self.generation.state = ImageGeneration.State.DONE
             self.generation.save()

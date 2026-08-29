@@ -56,7 +56,7 @@ function NpcTabsHeader({selectedTab}) {
                 <meta name="description" content={entity.values['catchphrase']}/>
                 <meta property="og:title" content={`Schattenakte - {entity.values['name']}`}/>
                 <meta property="og:description" content={entity.values['catchphrase']}/>
-                <meta property="og:image" content={image_path('npcs', activeImage.name, true)}/>
+                <meta property="og:image" content={image_path('npcs', activeImage, true)}/>
             </Helmet>
 
             {entity.state === 'Unpublished' && warning}
