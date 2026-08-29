@@ -1423,7 +1423,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/telescoping staff",
@@ -1448,7 +1451,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/staff",
@@ -1473,7 +1479,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/extendable baton",
@@ -1498,7 +1507,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/sap",
@@ -1523,7 +1535,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/stun baton",
@@ -1549,7 +1564,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/combat axe",
@@ -1574,7 +1592,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/knife",
@@ -1599,7 +1620,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/combat/survival knife",
@@ -1624,7 +1648,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/survival knife",
@@ -1635,7 +1662,7 @@
     "rating": null,
     "avail": "2",
     "cost": 250,
-    "damage": 4,
+    "damage": 3,
     "damage_type": "P",
     "ss": true,
     "sa": false,
@@ -1649,7 +1676,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/forearm snap blades",
@@ -1674,7 +1704,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/katana",
@@ -1699,7 +1732,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/sword",
@@ -1724,7 +1760,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/polearm",
@@ -1749,7 +1788,10 @@
     "source": {
       "page": 249,
       "book": "SR6Core"
-    }
+    },
+    "wear_rules": [
+      "sr6core/melee weapon strength to attack rating"
+    ]
   },
   {
     "id": "sr6core/weapon/knucks",
@@ -1911,19 +1953,19 @@
     "rating": null,
     "avail": "1",
     "cost": 0,
-    "damage": 0,
+    "damage": 2,
     "damage_type": "S",
     "ss": true,
     "sa": false,
     "bf": false,
     "fa": false,
-    "attack_rating_0": 2,
+    "attack_rating_0": 0,
     "attack_rating_1": 0,
     "attack_rating_2": 0,
     "attack_rating_3": 0,
     "attack_rating_4": 0,
     "source": {
-      "page": 114,
+      "page": 112,
       "book": "SR6Core"
     }
   }

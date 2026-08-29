@@ -123,6 +123,7 @@ class Electronics(ModifiableValue):
     computer: ModifiableValue = Field(default_factory=ModifiableValue)
     hardware: ModifiableValue = Field(default_factory=ModifiableValue)
     software: ModifiableValue = Field(default_factory=ModifiableValue)
+    complex_forms: ModifiableValue = Field(default_factory=ModifiableValue)
 
 
 class Enchanting(ModifiableValue):
@@ -146,11 +147,17 @@ class ExoticWeapons(ModifiableValue):
 
 
 class Firearms(ModifiableValue):
-    automatics: ModifiableValue = Field(default_factory=ModifiableValue)
-    longarms: ModifiableValue = Field(default_factory=ModifiableValue)
-    pistols: ModifiableValue = Field(default_factory=ModifiableValue)
+    # SR6 Grundregelwerk 3. Auflage / Errata S. 97: ten Feuerwaffen specializations
+    holdout_pistols: ModifiableValue = Field(default_factory=ModifiableValue)
+    light_pistols: ModifiableValue = Field(default_factory=ModifiableValue)
+    heavy_pistols: ModifiableValue = Field(default_factory=ModifiableValue)
+    machine_pistols: ModifiableValue = Field(default_factory=ModifiableValue)
+    submachine_guns: ModifiableValue = Field(default_factory=ModifiableValue)
     rifles: ModifiableValue = Field(default_factory=ModifiableValue)
+    machine_guns: ModifiableValue = Field(default_factory=ModifiableValue)
+    assault_cannons: ModifiableValue = Field(default_factory=ModifiableValue)
     shotguns: ModifiableValue = Field(default_factory=ModifiableValue)
+    tasers: ModifiableValue = Field(default_factory=ModifiableValue)
 
 
 class Influence(ModifiableValue):
@@ -188,7 +195,9 @@ class Sorcery(ModifiableValue):
 
 
 class Stealth(ModifiableValue):
-    disguise: ModifiableValue = Field(default_factory=ModifiableValue)
+    # SR6 GRW 3. Auflage S. 97: Fingerfertigkeit / Schleichen / Tarnung
+    # (Verkleiden/"disguise" is a Con specialization, not a Stealth one)
+    camouflage: ModifiableValue = Field(default_factory=ModifiableValue)
     palming: ModifiableValue = Field(default_factory=ModifiableValue)
     sneaking: ModifiableValue = Field(default_factory=ModifiableValue)
 

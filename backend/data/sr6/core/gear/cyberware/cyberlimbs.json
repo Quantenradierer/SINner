@@ -90,9 +90,7 @@
     "capacity": 8,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right arm replacement/body",
       "sr6core/cyberware/right arm replacement/agility",
-      "sr6core/cyberware/right arm replacement/reaction",
       "sr6core/cyberware/right arm replacement/strength"
     ],
     "source": {
@@ -115,9 +113,7 @@
     "capacity": 15,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right arm replacement/body",
       "sr6core/cyberware/right arm replacement/agility",
-      "sr6core/cyberware/right arm replacement/reaction",
       "sr6core/cyberware/right arm replacement/strength"
     ],
     "source": {
@@ -140,9 +136,7 @@
     "capacity": 8,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left arm replacement/body",
       "sr6core/cyberware/left arm replacement/agility",
-      "sr6core/cyberware/left arm replacement/reaction",
       "sr6core/cyberware/left arm replacement/strength"
     ],
     "source": {
@@ -165,9 +159,7 @@
     "capacity": 15,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left arm replacement/body",
       "sr6core/cyberware/left arm replacement/agility",
-      "sr6core/cyberware/left arm replacement/reaction",
       "sr6core/cyberware/left arm replacement/strength"
     ],
     "source": {
@@ -189,9 +181,7 @@
     "capacity": 5,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right forearm replacement/body",
       "sr6core/cyberware/right forearm replacement/agility",
-      "sr6core/cyberware/right forearm replacement/reaction",
       "sr6core/cyberware/right forearm replacement/strength"
     ],
     "source": {
@@ -213,9 +203,7 @@
     "capacity": 10,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right forearm replacement/body",
       "sr6core/cyberware/right forearm replacement/agility",
-      "sr6core/cyberware/right forearm replacement/reaction",
       "sr6core/cyberware/right forearm replacement/strength"
     ],
     "source": {
@@ -237,9 +225,7 @@
     "capacity": 5,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left forearm replacement/body",
       "sr6core/cyberware/left forearm replacement/agility",
-      "sr6core/cyberware/left forearm replacement/reaction",
       "sr6core/cyberware/left forearm replacement/strength"
     ],
     "source": {
@@ -261,9 +247,7 @@
     "capacity": 10,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left forearm replacement/body",
       "sr6core/cyberware/left forearm replacement/agility",
-      "sr6core/cyberware/left forearm replacement/reaction",
       "sr6core/cyberware/left forearm replacement/strength"
     ],
     "source": {
@@ -284,9 +268,7 @@
     "capacity": 2,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right hand replacement/body",
       "sr6core/cyberware/right hand replacement/agility",
-      "sr6core/cyberware/right hand replacement/reaction",
       "sr6core/cyberware/right hand replacement/strength"
     ],
     "source": {
@@ -307,9 +289,7 @@
     "capacity": 4,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right hand replacement/body",
       "sr6core/cyberware/right hand replacement/agility",
-      "sr6core/cyberware/right hand replacement/reaction",
       "sr6core/cyberware/right hand replacement/strength"
     ],
     "source": {
@@ -330,9 +310,7 @@
     "capacity": 2,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left hand replacement/body",
       "sr6core/cyberware/left hand replacement/agility",
-      "sr6core/cyberware/left hand replacement/reaction",
       "sr6core/cyberware/left hand replacement/strength"
     ],
     "source": {
@@ -353,9 +331,7 @@
     "capacity": 4,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left hand replacement/body",
       "sr6core/cyberware/left hand replacement/agility",
-      "sr6core/cyberware/left hand replacement/reaction",
       "sr6core/cyberware/left hand replacement/strength"
     ],
     "source": {
@@ -378,9 +354,7 @@
     "capacity": 10,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right leg replacement/body",
       "sr6core/cyberware/right leg replacement/agility",
-      "sr6core/cyberware/right leg replacement/reaction",
       "sr6core/cyberware/right leg replacement/strength"
     ],
     "source": {
@@ -403,9 +377,7 @@
     "capacity": 20,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right leg replacement/body",
       "sr6core/cyberware/right leg replacement/agility",
-      "sr6core/cyberware/right leg replacement/reaction",
       "sr6core/cyberware/right leg replacement/strength"
     ],
     "source": {
@@ -428,9 +400,7 @@
     "capacity": 10,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left leg replacement/body",
       "sr6core/cyberware/left leg replacement/agility",
-      "sr6core/cyberware/left leg replacement/reaction",
       "sr6core/cyberware/left leg replacement/strength"
     ],
     "source": {
@@ -453,9 +423,7 @@
     "capacity": 20,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left leg replacement/body",
       "sr6core/cyberware/left leg replacement/agility",
-      "sr6core/cyberware/left leg replacement/reaction",
       "sr6core/cyberware/left leg replacement/strength"
     ],
     "source": {
@@ -477,9 +445,7 @@
     "capacity": 6,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right lower leg replacement/body",
       "sr6core/cyberware/right lower leg replacement/agility",
-      "sr6core/cyberware/right lower leg replacement/reaction",
       "sr6core/cyberware/right lower leg replacement/strength"
     ],
     "source": {
@@ -501,9 +467,7 @@
     "capacity": 12,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right lower leg replacement/body",
       "sr6core/cyberware/right lower leg replacement/agility",
-      "sr6core/cyberware/right lower leg replacement/reaction",
       "sr6core/cyberware/right lower leg replacement/strength"
     ],
     "source": {
@@ -525,9 +489,7 @@
     "capacity": 6,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left lower leg replacement/body",
       "sr6core/cyberware/left lower leg replacement/agility",
-      "sr6core/cyberware/left lower leg replacement/reaction",
       "sr6core/cyberware/left lower leg replacement/strength"
     ],
     "source": {
@@ -549,9 +511,7 @@
     "capacity": 12,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left lower leg replacement/body",
       "sr6core/cyberware/left lower leg replacement/agility",
-      "sr6core/cyberware/left lower leg replacement/reaction",
       "sr6core/cyberware/left lower leg replacement/strength"
     ],
     "source": {
@@ -572,9 +532,7 @@
     "capacity": 2,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right foot replacement/body",
       "sr6core/cyberware/right foot replacement/agility",
-      "sr6core/cyberware/right foot replacement/reaction",
       "sr6core/cyberware/right foot replacement/strength"
     ],
     "source": {
@@ -595,9 +553,7 @@
     "capacity": 4,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/right foot replacement/body",
       "sr6core/cyberware/right foot replacement/agility",
-      "sr6core/cyberware/right foot replacement/reaction",
       "sr6core/cyberware/right foot replacement/strength"
     ],
     "source": {
@@ -618,9 +574,7 @@
     "capacity": 2,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left foot replacement/body",
       "sr6core/cyberware/left foot replacement/agility",
-      "sr6core/cyberware/left foot replacement/reaction",
       "sr6core/cyberware/left foot replacement/strength"
     ],
     "source": {
@@ -641,9 +595,7 @@
     "capacity": 4,
     "wear_rules": [
       "sr6core/cyberware/cyberlimb/physical condition monitor +1",
-      "sr6core/cyberware/left foot replacement/body",
       "sr6core/cyberware/left foot replacement/agility",
-      "sr6core/cyberware/left foot replacement/reaction",
       "sr6core/cyberware/left foot replacement/strength"
     ],
     "source": {

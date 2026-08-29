@@ -1,6 +1,3 @@
-import math
-
-
 from .foundry_template import (
     RootNPC,
     DefenseRating,
@@ -129,7 +126,10 @@ def foundry_weapon(weapon: Gear) -> FoundryGear:
 
 
 def unarmed_weapon(npc) -> FoundryGear:
-    dmg = math.ceil(int(npc.values["strength"]) / 2)
+    # SR6 GRW S. 112: unarmed melee base damage is a flat 2S (Strength adds to
+    # the dice pool, not to the damage value); the SR5 "Strength / 2" formula
+    # no longer applies.
+    dmg = 2
     attack_rating = int(npc.values["strength"]) + int(npc.values["reaction"])
     return Item(
         type="gear",

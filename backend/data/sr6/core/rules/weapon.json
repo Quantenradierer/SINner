@@ -1,0 +1,22 @@
+[
+  {
+    "id": "sr6core/unarmed attack rating",
+    "source": {
+      "page": 41,
+      "book": "SR6Core"
+    },
+    "modifies": "character.unarmed.attack_rating_0",
+    "modifier_type": "BASE",
+    "modification": "character.attributes.reaction.mod + character.attributes.strength.mod"
+  },
+  {
+    "id": "sr6core/melee weapon strength to attack rating",
+    "source": {
+      "page": 245,
+      "book": "SR6Core"
+    },
+    "modifies": "weapon.attack_rating_0",
+    "modifier_type": "ADD",
+    "modification": "character.attributes.strength.mod"
+  }
+]

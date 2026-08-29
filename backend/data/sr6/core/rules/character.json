@@ -2,7 +2,7 @@
   {
     "id": "sr6core/base physical initiative dices",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_dices",
@@ -12,7 +12,7 @@
   {
     "id": "sr6core/base physical initiative limit dices",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_dices",
@@ -22,7 +22,7 @@
   {
     "id": "sr6core/base physical initiative base",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.physical_initiative_base",
@@ -42,7 +42,7 @@
   {
     "id": "sr6core/base astral initiative limit dices",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.astral_initiative_dices",
@@ -52,7 +52,7 @@
   {
     "id": "sr6core/base astral initiative base",
     "source": {
-      "page": 161,
+      "page": 163,
       "book": "SR6Core"
     },
     "modifies": "character.astral_initiative_base",
@@ -72,7 +72,7 @@
   {
     "id": "sr6core/base initiative matrix ar limit dices",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.initiative_matrix_ar_dices",
@@ -102,7 +102,7 @@
   {
     "id": "sr6core/base initiative matrix vr cold limit dices",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.initiative_matrix_vr_cold_dices",
@@ -132,7 +132,7 @@
   {
     "id": "sr6core/base initiative matrix vr hot limit dices",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.initiative_matrix_vr_hot_dices",
@@ -152,7 +152,7 @@
   {
     "id": "sr6core/base defense rating",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.defense_rating",
@@ -162,7 +162,7 @@
   {
     "id": "sr6core/base defense pool physical",
     "source": {
-      "page": 39,
+      "page": 41,
       "book": "SR6Core"
     },
     "modifies": "character.defense_pool_physical",
@@ -172,7 +172,7 @@
   {
     "id": "sr6core/base defense astral",
     "source": {
-      "page": 161,
+      "page": 163,
       "book": "SR6Core"
     },
     "modifies": "character.defense_astral",
@@ -202,7 +202,7 @@
   {
     "id": "sr6core/base resist toxin",
     "source": {
-      "page": 123,
+      "page": 124,
       "book": "SR6Core"
     },
     "modifies": "character.resist_toxin",
@@ -322,10 +322,10 @@
   {
     "id": "sr6core/specialisation of electronics",
     "source": {
-      "page": 93,
+      "page": 96,
       "book": "SR6Core"
     },
-    "modifies": "[character.skills.electronics.computer, character.skills.electronics.hardware, character.skills.electronics.software]",
+    "modifies": "[character.skills.electronics.computer, character.skills.electronics.hardware, character.skills.electronics.software, character.skills.electronics.complex_forms]",
     "modifier_type": "BASE",
     "modification": "character.skills.electronics.mod"
   },
@@ -352,10 +352,10 @@
   {
     "id": "sr6core/specialisation of firearms",
     "source": {
-      "page": 93,
+      "page": 97,
       "book": "SR6Core"
     },
-    "modifies": "[character.skills.firearms.automatics, character.skills.firearms.longarms, character.skills.firearms.pistols, character.skills.firearms.rifles, character.skills.firearms.shotguns]",
+    "modifies": "[character.skills.firearms.holdout_pistols, character.skills.firearms.light_pistols, character.skills.firearms.heavy_pistols, character.skills.firearms.machine_pistols, character.skills.firearms.submachine_guns, character.skills.firearms.rifles, character.skills.firearms.machine_guns, character.skills.firearms.assault_cannons, character.skills.firearms.shotguns, character.skills.firearms.tasers]",
     "modifier_type": "BASE",
     "modification": "character.skills.firearms.mod"
   },
@@ -412,10 +412,10 @@
   {
     "id": "sr6core/specialisation of stealth",
     "source": {
-      "page": 93,
+      "page": 97,
       "book": "SR6Core"
     },
-    "modifies": "[character.skills.stealth.disguise, character.skills.stealth.palming, character.skills.stealth.sneaking]",
+    "modifies": "[character.skills.stealth.camouflage, character.skills.stealth.palming, character.skills.stealth.sneaking]",
     "modifier_type": "BASE",
     "modification": "character.skills.stealth.mod"
   },
