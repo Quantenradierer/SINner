@@ -4,6 +4,7 @@
 /frontend/public/images/npc_creator/npcs/**
 /node_modules/
 /backend/.env
+/.env
 /backend/*.log
 /*.log
 /backend/data/db.sqlite3

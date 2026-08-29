@@ -1,0 +1,36 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sinner:latest
+    container_name: sinner
+    restart: unless-stopped
+    ports:
+      - "4117:80"
+    env_file:
+      - .env
+    volumes:
+      - sinner-data:/app/data
+    healthcheck:
+      # exercises nginx -> gunicorn without needing curl in the image
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:80/admin/login/')"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  sinner-data:
+    # the volume you already created with `docker volume create sinner-data`
+    external: true
+    name: sinner-data

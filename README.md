@@ -70,7 +70,25 @@ I have tried DALL-E 2, but the results are not suitable.
 
 # Docker
 
-Creates a volume to store the current database (sqlite) and the images
-`docker volume create sinner-data`
+The app runs as a single container (nginx + gunicorn), managed with Docker Compose.
 
-use the `dockerscript.sh` to run everything. 
+## First-time setup on the server
+
+1. Create the data volume (database + images):
+   `docker volume create sinner-data`
+2. Create the environment file:
+   `cp deployment/env.example .env` and fill it in.
+   `.env` lives in the repo root, is git-ignored, and is injected by Compose —
+   it is never baked into the image.
+
+## Deploying
+
+Run `./dockerscript.sh`. It builds the frontend on the host, builds the image,
+tags it with the current commit (`sinner:<sha>`) for rollback, recreates the
+container via `docker compose up -d`, and waits for the healthcheck.
+
+Other useful commands:
+
+- `docker compose logs -f web` — follow logs
+- `docker compose ps` — status (shows `healthy` / `unhealthy`)
+- Rollback: `docker tag sinner:<previous-sha> sinner:latest && docker compose up -d`

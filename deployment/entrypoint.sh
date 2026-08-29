@@ -1,17 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-mkdir data/images
-mkdir data/images/npc_creator/
-mkdir data/images/npc_creator/npcs
-mkdir data/midjourney
+mkdir -p data/images/npc_creator/npcs data/midjourney
 
-if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; then
-    (python manage.py createsuperuser --no-input)
+if [ -n "${DJANGO_SUPERUSER_USERNAME:-}" ] && [ -n "${DJANGO_SUPERUSER_PASSWORD:-}" ]; then
+    python manage.py createsuperuser --no-input || true
 fi
 
-python manage.py migrate
+python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
-gunicorn shadowrun.wsgi --bind 0.0.0.0:8010 --workers 6 --daemon
+# bind / workers / logging live in gunicorn.conf.py
+gunicorn shadowrun.wsgi --daemon
 
-nginx -g 'daemon off;'
+exec nginx -g 'daemon off;'

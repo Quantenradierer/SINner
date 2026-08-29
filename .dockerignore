@@ -1,0 +1,38 @@
+# Build context trim. NOTE: frontend/build IS required and kept
+# (the frontend is built on the host before `docker compose build`).
+
+# VCS / IDE / tooling
+.git
+.gitignore
+.idea
+.mypy_cache
+.pre-commit-config.yaml
+pyrightconfig.json
+
+# Python
+**/__pycache__
+**/*.pyc
+backend/venv
+venv
+.venv
+backend/migrations_backup
+
+# Logs / lock files
+*.log
+backend/*.log
+**/*.lock
+
+# Local data & secrets — must never be baked into the image
+.env
+backend/.env
+backend/data
+backups
+
+# Node modules (source is copied, build output comes from the host)
+node_modules
+frontend/node_modules
+
+# Docs
+docs
+CONTEXT.md
+README.md
