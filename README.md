@@ -92,3 +92,8 @@ Other useful commands:
 - `docker compose logs -f web` — follow logs
 - `docker compose ps` — status (shows `healthy` / `unhealthy`)
 - Rollback: `docker tag sinner:<previous-sha> sinner:latest && docker compose up -d`
+
+## Backups
+
+`deployment/backup.sh` and `deployment/restore.sh` handle consistent SQLite
+snapshots, retention and offsite copies. See `deployment/BACKUP.md`.
