@@ -1,4 +1,4 @@
-# Build context trim. NOTE: frontend/build IS required and kept
+# Build context trim. The image only needs backend/ and frontend/build/
 # (the frontend is built on the host before `docker compose build`).
 
 # VCS / IDE / tooling
@@ -12,14 +12,12 @@ pyrightconfig.json
 # Python
 **/__pycache__
 **/*.pyc
-backend/venv
-venv
-.venv
+**/venv
+**/.venv
 backend/migrations_backup
 
 # Logs / lock files
-*.log
-backend/*.log
+**/*.log
 **/*.lock
 
 # Local data & secrets — must never be baked into the image
@@ -28,9 +26,15 @@ backend/.env
 backend/data
 backups
 
-# Node modules (source is copied, build output comes from the host)
-node_modules
-frontend/node_modules
+# Frontend: only frontend/build/ is copied into the image
+**/node_modules
+frontend/public
+frontend/src
+frontend/package-lock.json
+# generated NPC/location images are served by nginx from the data volume,
+# not from the React build — keep only the static placeholder
+frontend/build/images/npc_creator
+frontend/build/images/npcs
 
 # Docs
 docs

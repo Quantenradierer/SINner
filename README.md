@@ -74,18 +74,25 @@ The app runs as a single container (nginx + gunicorn), managed with Docker Compo
 
 ## First-time setup on the server
 
-1. Create the data volume (database + images):
-   `docker volume create sinner-data`
-2. Create the environment file:
-   `cp deployment/env.example .env` and fill it in.
-   `.env` lives in the repo root, is git-ignored, and is injected by Compose —
-   it is never baked into the image.
+```bash
+git clone <repo> && cd SINner
+./deployment/setup.sh            # checks prereqs, creates the volume + backup
+                                 # dir, and writes .env with a fresh secret key
+# edit .env: set DJANGO_HOST, OPENAI_API_KEY, MJ_* ...
+./deployment/setup.sh --all      # re-run: + backup cron + boot unit + deploy
+```
+
+`setup.sh` is idempotent. Flags: `--cron` (daily backup job), `--systemd`
+(bring the stack up on boot), `--deploy` (run `./dockerscript.sh` at the end),
+`--all` (all three). `.env` lives in the repo root, is git-ignored, and is
+injected by Compose — it is never baked into the image.
 
 ## Deploying
 
 Run `./dockerscript.sh`. It builds the frontend on the host, builds the image,
-tags it with the current commit (`sinner:<sha>`) for rollback, recreates the
-container via `docker compose up -d`, and waits for the healthcheck.
+tags it with the current commit (`sinner:<sha>`) for rollback, **backs up the
+live database**, recreates the container via `docker compose up -d`, and waits
+for the healthcheck. Set `SKIP_BACKUP=1` to skip the pre-deploy backup.
 
 Other useful commands:
 
