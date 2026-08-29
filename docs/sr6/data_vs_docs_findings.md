@@ -32,6 +32,32 @@ Katana-AW = 10+STÄ, Feuerwaffen-AW unverändert.
 
 ---
 
+## Nachtrag (2026-08-29): fehlende Grund-Regeln ergänzt
+
+Vier abgeleitete Charakterwerte hatten ein Feld im Modell, aber **keine BASE-Regel** — sie blieben
+still auf `0`. Beim `physical_condition_monitor` war das ein echter Bug: die Cyberware-`+1`-Regeln
+addierten auf eine Basis von 0.
+
+| Neue Regel (`character.json`) | Formel | Quelle |
+|---|---|---|
+| `sr6core/base physical condition monitor` | `ceil(Konstitution / 2) + 8` | S. 40 |
+| `sr6core/base stun condition monitor` | `ceil(Willenskraft / 2) + 8` | S. 40 |
+| `sr6core/base resist physical damage` | `Konstitution` (Schadenswiderstand, Schritt 4) | S. 108 |
+| `sr6core/base resist astral damage` | `Willenskraft` (Astralkampf) | S. 163 |
+
+Engine: `ceil` / `floor` / `round` waren laut `rules/readme.md` in `modification`-Ausdrücken
+verfügbar, wurden aber nie an `simple_eval` übergeben. Jetzt zentral als `RULE_FUNCTIONS`
+in `rule.py` (`min`, `max`, `ceil`, `floor`, `round`).
+
+**Weiterhin offen — blockiert, nicht vergessen:** Bioware (Muskeltoner/-augmentation, Knochendichte,
+Zerebralbooster, Synaptik-Beschleuniger, Schadenskompensator, Thrombozytenfabrik, Orthoskin …),
+Cyberohren, Adeptenkräfte, Vor-/Nachteile, Zauber/Foki sind im `data/`-Katalog **gar nicht
+vorhanden** — dafür müssen erst Gear-Einträge (und teils neue Modellfelder: Skillwires,
+Wundmodifikator-Unterdrückung, Bewegungsrate, Steuer-Rig) angelegt werden. Reine Regel-Ergänzungen
+reichen dort nicht.
+
+---
+
 ## A. Wert- / Mechanik-Abweichungen
 
 ### A1 — Waffenloser Grundschaden

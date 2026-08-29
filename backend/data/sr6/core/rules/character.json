@@ -210,6 +210,46 @@
     "modification": "character.attributes.body.mod + character.attributes.willpower.mod"
   },
   {
+    "id": "sr6core/base resist physical damage",
+    "source": {
+      "page": 108,
+      "book": "SR6Core"
+    },
+    "modifies": "character.resist_physical_damage",
+    "modifier_type": "BASE",
+    "modification": "character.attributes.body.mod"
+  },
+  {
+    "id": "sr6core/base resist astral damage",
+    "source": {
+      "page": 163,
+      "book": "SR6Core"
+    },
+    "modifies": "character.resist_astral_damage",
+    "modifier_type": "BASE",
+    "modification": "character.attributes.willpower.mod"
+  },
+  {
+    "id": "sr6core/base physical condition monitor",
+    "source": {
+      "page": 40,
+      "book": "SR6Core"
+    },
+    "modifies": "character.physical_condition_monitor",
+    "modifier_type": "BASE",
+    "modification": "ceil(character.attributes.body.mod / 2) + 8"
+  },
+  {
+    "id": "sr6core/base stun condition monitor",
+    "source": {
+      "page": 40,
+      "book": "SR6Core"
+    },
+    "modifies": "character.stun_condition_monitor",
+    "modifier_type": "BASE",
+    "modification": "ceil(character.attributes.willpower.mod / 2) + 8"
+  },
+  {
     "id": "sr6core/base composure",
     "source": {
       "page": 37,

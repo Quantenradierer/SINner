@@ -1,4 +1,5 @@
 import logging
+import math
 from enum import StrEnum
 from typing import Any, Literal, cast
 from pydantic import BaseModel, ConfigDict, Field
@@ -8,6 +9,17 @@ from npc_creator.game_mechanics.sr6.eval_errors import NotExistingAttributeError
 from npc_creator.game_mechanics.sr6.object_type import ObjectType
 from npc_creator.game_mechanics.sr6.source import Source
 from simpleeval import EvalWithCompoundTypes, NameNotDefined, simple_eval
+
+# functions made available inside every rule's `modification` / `enable`
+# expression. SR6 is full of "÷ 2, aufgerundet" style formulas, so ceil/floor
+# need to be reachable (see data/sr6/core/rules/readme.md).
+RULE_FUNCTIONS = {
+    "min": min,
+    "max": max,
+    "ceil": math.ceil,
+    "floor": math.floor,
+    "round": round,
+}
 
 
 class ModifierType(StrEnum):
@@ -55,7 +67,7 @@ class Rule(BaseModel):
                 simple_eval(
                     self.enable,
                     names=self.context,
-                    functions={"min": min, "max": max},
+                    functions=RULE_FUNCTIONS,
                 )
             )
         except Exception:
@@ -74,7 +86,7 @@ class Rule(BaseModel):
                 simple_eval(
                     self.modification,
                     names={"value": value, **self.context},
-                    functions={"min": min, "max": max},
+                    functions=RULE_FUNCTIONS,
                 ),
             )
         except NameNotDefined:
