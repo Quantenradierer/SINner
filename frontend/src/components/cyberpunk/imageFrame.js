@@ -47,10 +47,10 @@ function ImageFrame({style}) {
 
     return <FramePentagon className='growing-img' style={{padding: 5, margin: 0}} squareSize={35}>
         <div className='pentagonframe-image' style={{'--squareSize': '35px'}}>
-            {activeImage && <a href={image_path(entity.entityType, activeImage.name)} target="_blank">
+            {activeImage && <a href={image_path(entity.entityType, activeImage)} target="_blank">
                 <div style={style}>
                     <img
-                        src={image_path(entity.entityType, activeImage.name)}
+                        src={image_path(entity.entityType, activeImage)}
                         alt={entity.image_generator_description}
                         style={{
                             display: 'block',

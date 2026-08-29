@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-mkdir -p data/images/npc_creator/npcs data/midjourney
+mkdir -p data/images/npc_creator/npcs data/midjourney data/media
 
 if [ -n "${DJANGO_SUPERUSER_USERNAME:-}" ] && [ -n "${DJANGO_SUPERUSER_PASSWORD:-}" ]; then
     python manage.py createsuperuser --no-input || true

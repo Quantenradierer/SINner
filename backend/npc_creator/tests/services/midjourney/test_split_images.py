@@ -1,37 +1,36 @@
+import io
 import os
 import tempfile
 import unittest
 
 from PIL import Image
 
-from npc_creator.services.image_generation.split_images import split_image
+from npc_creator.services.image_generation.split_images import split_image_to_bytes
 
 
 class TestSplitImage(unittest.TestCase):
     def setUp(self):
-        # Create a test output directory.
         self.tempdir = tempfile.TemporaryDirectory()
-
-        # Create a test image file.
         self.test_image_path = os.path.join(self.tempdir.name, "test_image.png")
-        im = Image.new("RGB", (50, 50), color=(255, 0, 0))
-        im.save(self.test_image_path)
+        Image.new("RGB", (50, 50), color=(255, 0, 0)).save(self.test_image_path)
 
     def tearDown(self):
         self.tempdir.cleanup()
 
-    def test_split_image(self):
-        # Test splitting the test image.
-        output_paths = (
-            os.path.join(self.tempdir.name, f"split_{i}") for i in range(4)
-        )
-        split_filenames = split_image(self.test_image_path, output_paths)
+    def test_split_image_returns_four_quadrants_as_bytes(self):
+        quadrants = split_image_to_bytes(self.test_image_path)
 
-        # Check that 4 files were created.
-        self.assertEqual(len(list(split_filenames)), 4)
+        self.assertEqual(4, len(quadrants))
+        for data in quadrants:
+            with Image.open(io.BytesIO(data)) as quadrant:
+                self.assertEqual((25, 25), quadrant.size)
 
-        # Check that each split file has the expected dimensions.
-        for i, split_filename in enumerate(split_filenames):
-            split_file_path = os.path.join(self.tempdir.name, split_filename + ".png")
-            with Image.open(split_file_path) as splitted_image:
-                self.assertEqual(splitted_image.size, (25, 25))
+    def test_source_file_is_removed(self):
+        split_image_to_bytes(self.test_image_path)
+        self.assertFalse(os.path.exists(self.test_image_path))
+
+    def test_unreadable_source_returns_empty_list(self):
+        bad_path = os.path.join(self.tempdir.name, "not_an_image.png")
+        with open(bad_path, "w") as f:
+            f.write("nope")
+        self.assertEqual([], split_image_to_bytes(bad_path))

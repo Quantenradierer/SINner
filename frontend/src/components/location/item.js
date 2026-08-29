@@ -30,7 +30,7 @@ class LocationListItem extends React.Component {
                 <Link to={'/locations/' + this.props.entity.id}>
                     <Card
                         image={{
-                            src: image_path('locations', activeImage.name, true),
+                            src: image_path('locations', activeImage, true),
                             alt: this.props.entity.image_generator_description
                         }}
                         title={this.props.entity.values['name']}

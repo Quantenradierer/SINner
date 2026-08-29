@@ -96,7 +96,7 @@ class ImageGalleryWrapped extends React.Component {
                         minHeight: sizeY + addSize * 2,
                         boxShadow: glowEffect
                     }}
-                         src={image_path(this.props.entity.entityType, image.name)}/>
+                         src={image_path(this.props.entity.entityType, image)}/>
                 </div>)
         }
 
