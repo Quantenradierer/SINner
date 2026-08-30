@@ -17,6 +17,7 @@ class SampleSchema(BaseModel):
     name: str = Field(description="Name of the character")
     age: int
     gender: Gender
+    tags: list[dict[str, str]]
 
 
 def make_entity(values):
@@ -58,6 +59,13 @@ class TestEntityPrompt(unittest.TestCase):
         result = entity_prompt(entity, "default", filled_values=False)
 
         self.assertIn(f"'age': {json.dumps(0)}", result)
+
+    def test_missing_parameterized_generic_attribute_defaults_to_type_default(self):
+        entity = make_entity({})
+
+        result = entity_prompt(entity, "default", filled_values=False)
+
+        self.assertIn(f"'tags': {json.dumps([])}", result)
 
     def test_result_is_wrapped_in_braces(self):
         entity = make_entity({"name": "John"})
