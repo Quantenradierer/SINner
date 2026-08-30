@@ -27,4 +27,9 @@ Verfügbare Ausrüstung:
         return json.dumps(list(gear_list))
 
     def interpret_result(self, success):
-        print('XXXX', success.data)
+        # GPT is asked for a plain JSON list of gear IDs; also accept the
+        # schema-shaped {"equipment": [...]} response. The base implementation
+        # persists the values onto the entity.
+        if isinstance(success.data, list):
+            success.data = {"equipment": success.data}
+        return super().interpret_result(success)

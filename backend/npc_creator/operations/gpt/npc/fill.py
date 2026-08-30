@@ -13,8 +13,14 @@ class Fill:
 
     def call(self):
         if self.schema == "sr6equipment":
-            result = EquipmentFill(entity=self.entity, schema=self.schema).call()
-        else:
-            result = GenericFill(entity=self.entity, schema=self.schema).call()
+            return EquipmentFill(entity=self.entity, schema=self.schema).call()
+
+        result = GenericFill(entity=self.entity, schema=self.schema).call()
+
+        # The SR6 sheet shows an "Ausrüstung" box, but equipment lives in its
+        # own schema with a dedicated prompt. Fill it alongside the sr6 request
+        # so the box is populated without a separate client call.
+        if self.schema == "sr6":
+            EquipmentFill(entity=self.entity, schema="sr6equipment").call()
 
         return result
