@@ -21,9 +21,11 @@ COPY backend/requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY backend/ ./
-COPY deployment/entrypoint.sh ./entrypoint.sh
+# Keep the entrypoint outside /app: local dev bind-mounts ./backend over /app
+# and would otherwise shadow it.
+COPY deployment/entrypoint.sh /entrypoint.sh
 COPY frontend/build/ /www/data/
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["./entrypoint.sh"]
+CMD ["/entrypoint.sh"]
