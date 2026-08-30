@@ -14,6 +14,7 @@ from rest_framework.permissions import (
 )
 import json
 
+from npc_creator.game_mechanics.reference_names import resolve_equipment
 from npc_creator.jobs.generation_job import generation_job_async
 from npc_creator.models import Entity
 from npc_creator.models.collection import Collection
@@ -36,6 +37,7 @@ class EntitySerializer(serializers.ModelSerializer):
     image_generation_in_progress = serializers.SerializerMethodField(
         "get_image_generation_in_progress"
     )
+    equipment_display = serializers.SerializerMethodField("get_equipment_display")
 
     class Meta:
         model = Entity
@@ -48,7 +50,12 @@ class EntitySerializer(serializers.ModelSerializer):
             "values",
             "collections",
             "image_generation_in_progress",
+            "equipment_display",
         ]
+
+    def get_equipment_display(self, obj: Entity):
+        """Equipment ids resolved to readable names ([{"id", "name"}, ...])."""
+        return resolve_equipment((obj.values or {}).get("equipment"))
 
     def get_uuid_as_id(self, obj):
         return obj.uuid

@@ -23,6 +23,26 @@ import ImageFrame from "../cyberpunk/imageFrame";
 import {Animator} from "@arwes/animation";
 import Tabs from "../entity/tabs";
 
+// The backend resolves equipment ids to readable names in `entity.equipment_display`
+// ([{id, name}, ...]). Fall back to whatever is in entity.values['equipment']
+// (legacy comma-separated string, or a list of ids / {id, mods} objects).
+const equipmentText = (entity) => {
+    const resolved = entity.equipment_display;
+    if (Array.isArray(resolved) && resolved.length) {
+        return resolved.map(item => item.name || item.id).join(', ');
+    }
+    const raw = entity.values && entity.values['equipment'];
+    if (!raw) return '';
+    if (typeof raw === 'string') return raw;
+    if (Array.isArray(raw)) {
+        return raw
+            .map(item => (typeof item === 'string' ? item : item && item.id))
+            .filter(Boolean)
+            .join(', ');
+    }
+    return String(raw);
+};
+
 const SkillTable = ({entity}) => {
     const skills = [
         "skill_astral", "skill_athletics", "skill_biotech", "skill_close_combat", "skill_con", "skill_conjuring",
@@ -242,7 +262,7 @@ const TabSR6 = (props) => {
                         <div className="tab-sr6-container">
                             <FramePentagon>
                                 <div style={{}}>
-                                    <span><b>{i18n.t("attribute_equipment")}:</b> <Text>{entity.values['equipment']}</Text></span>
+                                    <span><b>{i18n.t("attribute_equipment")}:</b> <Text>{equipmentText(entity)}</Text></span>
                                     <br/>
                                 </div>
                             </FramePentagon>
