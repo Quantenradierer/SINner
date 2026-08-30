@@ -1,7 +1,17 @@
+import re
 from typing import Optional, List, Dict
 from urllib.parse import urlparse
 
 MIDJOURNEY_BOT_ID = "936929561302675456"
+
+# Midjourney has shipped grid attachments as .png and (since ~v6) .webp.
+IMAGE_EXTENSIONS = (".png", ".webp", ".jpg", ".jpeg")
+
+
+def _is_image_attachment(attachment: Dict[str, any]) -> bool:
+    if str(attachment.get("content_type", "")).startswith("image/"):
+        return True
+    return urlparse(attachment.get("url", "")).path.lower().endswith(IMAGE_EXTENSIONS)
 
 
 def find_correlated_responses(
@@ -20,7 +30,7 @@ def find_correlated_responses(
     Returns
     -------
     List[str]
-        a list of URLs for all messages that matches the search criteria and contains a PNG attachment
+        a list of URLs for all messages that matches the search criteria and contains an image attachment
     """
     if not search_seed:
         return []
@@ -32,7 +42,7 @@ def find_correlated_responses(
         ):
             continue
 
-        if f"--seed {search_seed}" not in message["content"]:
+        if not re.search(rf"--seed {search_seed}(?!\d)", message["content"]):
             continue
         if (
             message["author"]["id"] != MIDJOURNEY_BOT_ID
@@ -42,9 +52,9 @@ def find_correlated_responses(
         if not message["attachments"] or "url" not in message["attachments"][0]:
             continue
 
-        url = message["attachments"][0]["url"]
-        if not urlparse(url).path.lower().endswith(".png"):
+        attachment = message["attachments"][0]
+        if not _is_image_attachment(attachment):
             continue
 
-        yield url
+        yield attachment["url"]
     return []

@@ -17,9 +17,22 @@ from npc_creator.services.image_generation.retrieve_latest_messages import (
 
 
 def generation_job(generation_id: int) -> None:
-    logging.debug(f"DownloadImageJob({generation_id}): Started")
-    generation = ImageGeneration.objects.get(pk=generation_id)
+    """Thread entry point: never let an exception vanish into a dead daemon
+    thread. On failure, mark the generation FAILED so the UI stops polling
+    forever and the cause shows up in the logs."""
+    try:
+        _run_generation_job(generation_id)
+    except Exception:
+        logging.exception(f"DownloadImageJob({generation_id}): failed")
+        ImageGeneration.objects.filter(pk=generation_id).exclude(
+            state__in=[ImageGeneration.State.DOWNLOADED, ImageGeneration.State.DONE]
+        ).update(state=ImageGeneration.State.FAILED)
 
+
+def advance_generation(generation: ImageGeneration) -> None:
+    """Move a generation one step forward, without any retry/backoff:
+    kick off the image prompt when it is still CREATED, or look for a
+    finished Midjourney grid and download it when it is IN_PROGRESS."""
     entity = generation.entity.instance
 
     if generation.state == ImageGeneration.State.CREATED:
@@ -29,18 +42,25 @@ def generation_job(generation_id: int) -> None:
         )
 
     if generation.state == ImageGeneration.State.IN_PROGRESS:
-        responses = retrieve_latest_messages()
-        urls = find_correlated_responses(responses, generation.id)
+        if not generation.url:
+            responses = retrieve_latest_messages()
+            for url in find_correlated_responses(responses, generation.id):
+                if not ImageGeneration.objects.panel_exists(url):
+                    generation.url = url
+                    break
 
-        for url in urls:
-            if not ImageGeneration.objects.panel_exists(url):
-                generation.url = url
-                break
+        if generation.url:
+            result = DownloadImage(generation).call()
+            logging.debug(
+                f"DownloadImageJob({generation.id}): DownloadImage Operation {result}"
+            )
 
-        result = DownloadImage(generation).call()
-        logging.debug(
-            f"DownloadImageJob({generation.id}): DownloadImage Operation {result}"
-        )
+
+def _run_generation_job(generation_id: int) -> None:
+    logging.debug(f"DownloadImageJob({generation_id}): Started")
+    generation = ImageGeneration.objects.get(pk=generation_id)
+
+    advance_generation(generation)
 
     generation.refresh_from_db()
     if (

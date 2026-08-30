@@ -56,7 +56,7 @@ class Message:
         if len(result) > 0:
             return int(result[0])
 
-    def png_attachment(self):
+    def image_attachment(self):
         data = self.d
         if type(data) is not dict:
             return False
@@ -65,7 +65,8 @@ class Message:
             return
 
         attachment = self.d["attachments"][0]
-        if attachment.get("content_type", None) != "image/png":
+        # Midjourney grids arrive as image/png or (since ~v6) image/webp.
+        if not str(attachment.get("content_type", "")).startswith("image/"):
             return
 
         return attachment.get("url", None)
@@ -176,16 +177,19 @@ class Discord(metaclass=SingletonMeta):
             message.is_right_channel()
             and message.is_midjourney()
             and message.is_message_create()
-            and message.png_attachment()
+            and message.image_attachment()
             and message.seed()
         ):
             from npc_creator.models import ImageGeneration
 
-            if ImageGeneration.objects.panel_exists(message.png_attachment()):
+            url = message.image_attachment()
+            if ImageGeneration.objects.panel_exists(url):
                 return
 
-            generation = ImageGeneration.objects.get(pk=message.seed())
-            generation.url = message.png_attachment()
+            generation = ImageGeneration.objects.filter(pk=message.seed()).first()
+            if generation is None:
+                return
+            generation.url = url
             DownloadImage(generation).call()
             generation.save()
 

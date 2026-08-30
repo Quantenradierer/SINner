@@ -45,8 +45,37 @@ class TestFindCorrelatedResponses(unittest.TestCase):
         urls = list(find_correlated_responses(responses, self.seed))
         self.assertEqual([], urls)
 
-    def test_ignores_responses_with_non_png_attachments(self):
+    def test_ignores_responses_with_non_image_attachments(self):
         responses = [self.responses[1]]
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual([], urls)
+
+    def test_accepts_webp_attachments(self):
+        responses = [
+            {
+                "content": "matching response --seed 111 --v 6.1",
+                "author": {"id": MIDJOURNEY_BOT_ID},
+                "attachments": [
+                    {
+                        "url": "https://cdn.discordapp.com/attachments/1/2/grid.webp?ex=abc",
+                        "content_type": "image/webp",
+                    }
+                ],
+            }
+        ]
+        urls = list(find_correlated_responses(responses, self.seed))
+        self.assertEqual(
+            ["https://cdn.discordapp.com/attachments/1/2/grid.webp?ex=abc"], urls
+        )
+
+    def test_seed_match_is_not_a_prefix_match(self):
+        responses = [
+            {
+                "content": "response for a different job --seed 1110 --v 6.1",
+                "author": {"id": MIDJOURNEY_BOT_ID},
+                "attachments": [{"url": "https://example.com/other.png"}],
+            }
+        ]
         urls = list(find_correlated_responses(responses, self.seed))
         self.assertEqual([], urls)
 
