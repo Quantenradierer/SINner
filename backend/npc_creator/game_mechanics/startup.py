@@ -13,13 +13,13 @@ from npc_creator.game_mechanics.sr6.gear_collection import GearCollection
 
 from npc_creator.game_mechanics.sr6.gear import Gear
 from npc_creator.game_mechanics.manager import ALL_GEAR, ALL_RULES
-from shadowrun.settings import BASE_DIR
+from npc_creator import config
+
+SR6_DATA_DIR = os.path.join(config.REFERENCE_DIR, "sr6", "core")
 
 
 def gear_files() -> Iterable[str]:
-    for root, dirs, files in os.walk(
-        os.path.join(BASE_DIR, "data", "sr6", "core", "gear")
-    ):
+    for root, dirs, files in os.walk(os.path.join(SR6_DATA_DIR, "gear")):
         paths = [
             os.path.join(root, filename)
             for filename in files
@@ -77,9 +77,7 @@ def _load_gear():
 
 
 def rule_files() -> Iterable[str]:
-    for root, dirs, files in os.walk(
-        os.path.join(BASE_DIR, "data", "sr6", "core", "rules")
-    ):
+    for root, dirs, files in os.walk(os.path.join(SR6_DATA_DIR, "rules")):
         paths = [
             os.path.join(root, filename)
             for filename in files

@@ -33,9 +33,15 @@ directory for npc images
 PUBLIC_ENTITY_IMAGE_PATH = os.getenv("PUBLIC_IMAGE_PATH")
 
 """
-file for 
+Static reference data that ships inside the package (baked into the image,
+never shadowed by the mutable /app/data volume).
 """
-BANNED_WORD_FILE = "data/midjourney_banned_words.txt"
+REFERENCE_DIR = os.path.join(os.path.dirname(__file__), "reference")
+
+"""
+file with words midjourney rejects, one per line
+"""
+BANNED_WORD_FILE = os.path.join(REFERENCE_DIR, "midjourney_banned_words.txt")
 
 
 """

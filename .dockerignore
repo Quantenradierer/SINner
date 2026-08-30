@@ -20,7 +20,10 @@ backend/migrations_backup
 **/*.log
 **/*.lock
 
-# Local data & secrets — must never be baked into the image
+# Local data & secrets — must never be baked into the image.
+# backend/data holds only mutable state (sqlite DBs, uploaded media) and is
+# the mount point of the runtime volume. Static reference data the app reads
+# at runtime lives in backend/npc_creator/reference/ so it ships in the image.
 .env
 backend/.env
 backend/data

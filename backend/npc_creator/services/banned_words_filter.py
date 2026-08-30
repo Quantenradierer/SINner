@@ -1,5 +1,6 @@
 from functools import cache
 from typing import List
+import logging
 import re
 
 from npc_creator import config
@@ -13,8 +14,12 @@ def banned_words_regex() -> List[str]:
     Returns:
         List[str]: List of banned words as regex, where each word is surrounded by spaces and converted to lowercase.
     """
-    with open(config.BANNED_WORD_FILE) as file:
-        words = file.readlines()
+    try:
+        with open(config.BANNED_WORD_FILE) as file:
+            words = file.readlines()
+    except OSError as e:
+        logging.warning(f"banned words file unavailable ({e}); skipping filter")
+        return []
     return [
         re.compile(f"(?i)[.,\-\"' ]{word.strip().lower()}[.,\-\"' ]")
         for word in words
