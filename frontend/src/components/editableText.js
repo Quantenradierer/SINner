@@ -2,6 +2,7 @@ import {Button, FrameLines, FramePentagon, Text} from "@arwes/core";
 import React, {useEffect, useState} from "react";
 import api from "../axios";
 import {useEntity} from "./entityProvider";
+import {translateAttributeValue} from "../i18n";
 
 
 
@@ -10,10 +11,11 @@ const EditableText = ({attributeName}) => {
     const {entity, _} = useEntity();
 
     let attribute = entity.values[attributeName]
-    const [value, setValue] = useState( attribute || '');
+    const displayValue = translateAttributeValue(attributeName, attribute)
+    const [value, setValue] = useState( displayValue || '');
 
     useEffect(() => {
-        setValue(attribute?.toString() || '');
+        setValue(displayValue?.toString() || '');
     }, [entity, attributeName]);
 
     const handleChange = (event) => {

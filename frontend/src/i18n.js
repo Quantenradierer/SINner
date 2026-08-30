@@ -112,6 +112,45 @@ const resources = {
 
             attribute_parameter: 'Parameter',
 
+            metatype_human: 'Mensch',
+            metatype_ork: 'Ork',
+            metatype_dwarf: 'Zwerg',
+            metatype_elf: 'Elf',
+            metatype_troll: 'Troll',
+            metatype_spirit: 'Geist',
+            metatype_ai: 'KI',
+            metatype_ogre: 'Oger',
+            metatype_drake: 'Drake',
+            metatype_oni: 'Oni',
+            metatype_hobgoblin: 'Hobgoblin',
+            metatype_other: 'Andere',
+            metatype_giant: 'Riese',
+            metatype_cyclop: 'Zyklop',
+            metatype_minotaur: 'Minotaur',
+            metatype_fomorian: 'Fomori',
+            metatype_satyr: 'Satyr',
+            metatype_nocturne: 'Nocturna',
+            metatype_wakyambi: 'Wakyambi',
+            metatype_xapiri: 'Xapiri',
+            metatype_dryad: 'Dryade',
+            metatype_dalakitnon: 'Dalakitnon',
+            metatype_valkyrie: 'Walküre',
+            metatype_nartaki: 'Nartaki',
+            metatype_duende: 'Duende',
+            metatype_hanuman: 'Hanuman',
+            metatype_menehune: 'Menehune',
+            metatype_koborokuru: 'Koborokuru',
+            metatype_gnome: 'Gnom',
+            metatype_centaur: 'Zentaur',
+            metatype_naga: 'Naga',
+            metatype_pixie: 'Pixie',
+            metatype_sasquatch: 'Sasquatch',
+
+            gender_male: 'Männlich',
+            gender_female: 'Weiblich',
+            gender_divers: 'Divers',
+            gender_other: 'Andere',
+
             "--s 50": "stylize low",
             "--s 100": "stylize medium",
             "--s 250": "stylize high",
@@ -246,6 +285,43 @@ const resources = {
             "attribute_aktuelle_aktionen_events": "Actions",
             "attribute_gerüchte_und_geschichten_über_die_location": "Rumors",
             "attribute_parameter": "Parameter",
+            "metatype_human": "Human",
+            "metatype_ork": "Ork",
+            "metatype_dwarf": "Dwarf",
+            "metatype_elf": "Elf",
+            "metatype_troll": "Troll",
+            "metatype_spirit": "Spirit",
+            "metatype_ai": "AI",
+            "metatype_ogre": "Ogre",
+            "metatype_drake": "Drake",
+            "metatype_oni": "Oni",
+            "metatype_hobgoblin": "Hobgoblin",
+            "metatype_other": "Other",
+            "metatype_giant": "Giant",
+            "metatype_cyclop": "Cyclops",
+            "metatype_minotaur": "Minotaur",
+            "metatype_fomorian": "Fomorian",
+            "metatype_satyr": "Satyr",
+            "metatype_nocturne": "Nocturne",
+            "metatype_wakyambi": "Wakyambi",
+            "metatype_xapiri": "Xapiri",
+            "metatype_dryad": "Dryad",
+            "metatype_dalakitnon": "Dalakitnon",
+            "metatype_valkyrie": "Valkyrie",
+            "metatype_nartaki": "Nartaki",
+            "metatype_duende": "Duende",
+            "metatype_hanuman": "Hanuman",
+            "metatype_menehune": "Menehune",
+            "metatype_koborokuru": "Koborokuru",
+            "metatype_gnome": "Gnome",
+            "metatype_centaur": "Centaur",
+            "metatype_naga": "Naga",
+            "metatype_pixie": "Pixie",
+            "metatype_sasquatch": "Sasquatch",
+            "gender_male": "Male",
+            "gender_female": "Female",
+            "gender_divers": "Diverse",
+            "gender_other": "Other",
             "--s 50": "stylize low",
             "--s 100": "stylize medium",
             "--s 250": "stylize high",
@@ -263,6 +339,21 @@ const resources = {
         }
     },
 };
+
+// NPC attributes whose stored value is a canonical english enum token
+// (see backend Metatype / Gender). The token is kept as-is in entity.values;
+// only the displayed text is localized via the `<attr>_<token>` keys above.
+const ENUM_VALUE_ATTRIBUTES = ['metatype', 'gender'];
+
+export function translateAttributeValue(attributeName, value) {
+    if (value === null || value === undefined) return value;
+    if (!ENUM_VALUE_ATTRIBUTES.includes(attributeName)) return value;
+
+    const token = String(value).trim().toLowerCase();
+    if (!token) return value;
+
+    return i18next.t(`${attributeName}_${token}`, {defaultValue: String(value)});
+}
 
 i18next
     .use(initReactI18next)

@@ -28,6 +28,7 @@ class GenericFill(entity.Fill):
 - Beachte die geänderte Weltordnung, Länder und Regionen der Sechsten Welt von Shadowrun, wie: ADL, CAS, CFS, Japanisches Kaiserreich, Tír na nÓg, Tír Tairngire oder UCAS
 - Die Werte (Attribute und Skills) dürfen höher ausfallen wenn es für die Person Sinn ergibt 
 - Antworte in Deutsch
+- Felder wie 'metatype' und 'gender' enthalten den deutschen, lesbaren Begriff (z.B. "Mensch", "Männlich"). Die zugehörigen '*_enum'-Felder enthalten den englischen Wert aus der Auswahlliste im Kommentar (z.B. "human", "male"). Übernimm nicht den englischen enum-Wert in das lesbare Feld.
 - Antworte im JSON-Format, und achte auf die Datentypen
 - Antworte im selben Format, was dir gegeben wird. Füge keine verschalteten Datenstukturen hinzu, außer es wird explizit beschrieben
 """
