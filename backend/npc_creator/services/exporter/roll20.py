@@ -414,7 +414,7 @@ def _armors(char: SR6Character) -> list[R20Armor]:
             R20Armor(
                 name=name_for(gear.id),
                 rating=gear.defense_rating or 0,
-                socialrating=0,
+                socialrating=gear.social_rating or 0,
                 accessories=[],
                 isIgnored=False,
                 page="",

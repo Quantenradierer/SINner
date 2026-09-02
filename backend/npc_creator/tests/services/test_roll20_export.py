@@ -107,12 +107,27 @@ class Roll20ExportTest(TestCase):
 
         self.assertEqual(2, data["armors"][0]["rating"])
         self.assertTrue(data["armors"][0]["primary"])
+        self.assertEqual(-4, data["armors"][0]["socialrating"])  # helmet
 
         self.assertEqual(1.0, data["augmentations"][0]["essence"])
 
         matrix = data["matrixItems"][0]
         self.assertEqual("COMMLINK", matrix["subType"])
         self.assertEqual(2, matrix["deviceRating"])
+
+    def test_armor_social_rating(self):
+        # values from Feuer frei! p. 177 (social table for the core armor)
+        data = self.export(
+            equipment=[
+                "sr6core/armor/armor vest",
+                "sr6core/armor/armor clothing",
+            ]
+        )
+        armors = {a["name"]: a for a in data["armors"]}
+        self.assertEqual(-1, armors["Panzerweste"]["socialrating"])
+        self.assertEqual(3, armors["Panzerweste"]["rating"])
+        # Panzerkleidung has no social modifier ("-" in the table)
+        self.assertEqual(0, armors["Panzerkleidung"]["socialrating"])
 
     # --- strict precondition (shared with the Foundry exporter) -------------
     def test_missing_skill_is_rejected(self):

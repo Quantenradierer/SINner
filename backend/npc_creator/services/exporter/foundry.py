@@ -287,6 +287,7 @@ def _armor_item(gear: Gear) -> Item:
             **_common_gear_fields(gear),
             type="ARMOR",
             defense=gear.defense_rating or 0,
+            social=gear.social_rating or 0,
             capacity=gear.capacity or 0,
             usedForPool=True,
         ),

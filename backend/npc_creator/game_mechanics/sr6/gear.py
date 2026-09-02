@@ -74,6 +74,8 @@ class Gear(ModifiableObject):
 
     # armor
     defense_rating: int | None = None
+    # social-test modifier for obvious armor (not in SR6 core; sourced per item)
+    social_rating: int | None = None
 
     # weapon
     cnt: str | None = None

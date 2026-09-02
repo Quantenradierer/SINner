@@ -102,10 +102,18 @@ class FoundryExportTest(TestCase):
 
         armor = by_type["ARMOR"][0]
         self.assertEqual(2, armor["system"]["defense"])
+        self.assertEqual(-4, armor["system"]["social"])  # helmet (Feuer frei! p. 177)
 
         unarmed = by_type["WEAPON_CLOSE_COMBAT"][0]
         self.assertEqual("UNARMED", unarmed["system"]["subtype"])
         self.assertEqual(11, unarmed["system"]["attackRating"][0])  # str 6 + rea 5
+
+    def test_armor_social_modifier(self):
+        npc = self.make_npc(equipment=["sr6core/armor/armor vest"])
+        items = json.loads(foundry_json(npc))["items"]
+        vest = next(i for i in items if i["system"].get("type") == "ARMOR")
+        self.assertEqual(3, vest["system"]["defense"])
+        self.assertEqual(-1, vest["system"]["social"])
 
     def test_export_source_flag(self):
         npc = self.make_npc()
