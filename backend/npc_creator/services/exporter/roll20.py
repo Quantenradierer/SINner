@@ -565,8 +565,10 @@ if __name__ == "__main__":
         f"Perception: {char.skills.perception.mod}, Visual: {char.skills.perception.visual.mod}"
     )
 
-    for o in npc.weapons + npc.armors:
-        char.add_gear(o)
+    for entry in npc.values.get("equipment") or []:
+        gear = ALL_GEAR.get(entry if isinstance(entry, str) else entry.get("id"))
+        if gear is not None:
+            char.add_gear(gear)
 
     for id, gear in ALL_GEAR.items():
         if gear.is_mod:

@@ -11,9 +11,10 @@ import {Animator} from "@arwes/animation";
 import LoadingBar from "../components/loading_bar";
 
 
-const download = async (setWaiting, entity, dialogState, setDialogState) => {
+const download = async (setWaiting, entity, setError) => {
 
   setWaiting(true);
+  setError(null);
   try {
     const response = await api.get(`/api/npc_creator/entities/${entity.id}/export/`, {params: {fileformat: 'foundryvtt'}})
     if (response.status !== 200) {
@@ -33,6 +34,11 @@ const download = async (setWaiting, entity, dialogState, setDialogState) => {
     setWaiting(false);
   } catch (error) {
     console.error('Error downloading file:', error);
+    const message = error?.response?.data?.error
+      || i18n.t("entity_download_error");
+    setError(message);
+    setWaiting(false);
+    throw error;
   }
 };
 
@@ -40,13 +46,15 @@ const download = async (setWaiting, entity, dialogState, setDialogState) => {
 const DownloadState = Object.freeze({
   NOT_STARTED: "not started",
   DOWNLOADING: "downloading",
-  DONE: "done"
+  DONE: "done",
+  ERROR: "error"
 });
 
 
 const DownloadDialog = ({dialogState, setDialogState}) => {
   const [downloadWaiting, setDownloadingWaiting] = React.useState(false);
   const [foundryDownload, setFoundryDownload] = React.useState(DownloadState.NOT_STARTED);
+  const [downloadError, setDownloadError] = React.useState(null);
 
   const {entity, _} = useEntity();
   const estimatedTime = 10;
@@ -68,8 +76,12 @@ const DownloadDialog = ({dialogState, setDialogState}) => {
         <div style={{cursor: "pointer"}} onClick={async () => {
           if (!downloadWaiting) {
             setFoundryDownload(DownloadState.DOWNLOADING);
-            await download(setDownloadingWaiting, entity, dialogState, setDialogState)
-            setFoundryDownload(DownloadState.DONE);
+            try {
+              await download(setDownloadingWaiting, entity, setDownloadError)
+              setFoundryDownload(DownloadState.DONE);
+            } catch (error) {
+              setFoundryDownload(DownloadState.ERROR);
+            }
           }
         }}>
           <FrameBox style={{width: '100%'}}>
@@ -78,6 +90,10 @@ const DownloadDialog = ({dialogState, setDialogState}) => {
               {foundryDownload === DownloadState.DOWNLOADING &&
                   <Animator key={Math.random()} animator={{enter: 300, exit: 300}}><LoadingBar steps={45} estimated_time={12000} title={i18n.t("entity_generate_data")}/></Animator>
               }
+              {foundryDownload === DownloadState.ERROR &&
+              <p key={Math.random()} style={{marginBottom: 0, textAlign: 'left', color: '#ff8a8a'}}>
+                {downloadError}
+              </p>}
               {foundryDownload === DownloadState.DONE &&
               <p key={Math.random()} style={{marginBottom: 0, textAlign: 'left'}}>
                 <span state={encryptMapping[foundryDownload]}>- {i18n.t("entity_download_foundryvtt_description1")}</span><br/>

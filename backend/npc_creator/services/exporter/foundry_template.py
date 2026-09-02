@@ -1,5 +1,22 @@
-from typing import Any, Dict, List, Literal, Annotated
-from pydantic import BaseModel, Field, BeforeValidator
+"""Pydantic models mirroring the Foundry VTT ``shadowrun6-eden`` data model.
+
+These describe the JSON that the eden system's native *Import Data* action
+expects for an Actor of type ``npc`` (Foundry v10+ data model, so the actor
+payload lives under ``system``, not the legacy ``data`` key).
+
+The shapes are transcribed from the system's ``template.json``:
+https://bitbucket.org/rpgframework-cloud/shadowrun6-eden/src/master/template.json
+
+Only what the exporter actually fills is modelled with intent (attributes,
+skills, gear items, tradition); the remaining sub-templates (condition
+monitors, initiative, defense ratings, movement, ...) are emitted at their
+eden defaults because the eden NPC sheet derives them from the attributes on
+import.
+"""
+
+from typing import Annotated, Any, Dict, List, Literal
+
+from pydantic import BaseModel, BeforeValidator, Field
 
 
 def parse_int(value: Any, default: int = 0) -> int:
@@ -12,6 +29,9 @@ def parse_int(value: Any, default: int = 0) -> int:
 ErrorProneInt = Annotated[int, BeforeValidator(lambda v: parse_int(value=v, default=0))]
 
 
+# --------------------------------------------------------------------------- #
+# attribute-template
+# --------------------------------------------------------------------------- #
 class Stat(BaseModel):
     base: ErrorProneInt = 2
     mod: ErrorProneInt = 0
@@ -39,91 +59,65 @@ class EdgAttr(BaseModel):
 
 
 class EssenceAttr(BaseModel):
-    base: ErrorProneInt = 6
-    mod: ErrorProneInt = 0
-    pool: ErrorProneInt = 6
+    base: float = 6
+    mod: float = 0
+    pool: float = 6
 
 
 class Attributes(BaseModel):
-    bod: Stat = Stat()
-    agi: Stat = Stat()
-    rea: Stat = Stat()
-    str: Stat = Stat()
-    wil: Stat = Stat()
-    log: Stat = Stat()
-    int: Stat = Stat()
-    cha: Stat = Stat()
-    mag: MagicAttr = MagicAttr()
-    res: ResAttr = ResAttr()
-    # edg: EdgAttr = EdgAttr()
-    essence: EssenceAttr = EssenceAttr()
+    bod: Stat = Field(default_factory=Stat)
+    agi: Stat = Field(default_factory=Stat)
+    rea: Stat = Field(default_factory=Stat)
+    str: Stat = Field(default_factory=Stat)
+    wil: Stat = Field(default_factory=Stat)
+    log: Stat = Field(default_factory=Stat)
+    int: Stat = Field(default_factory=Stat)
+    cha: Stat = Field(default_factory=Stat)
+    mag: MagicAttr = Field(default_factory=MagicAttr)
+    res: ResAttr = Field(default_factory=ResAttr)
+    edg: EdgAttr = Field(default_factory=EdgAttr)
+    essence: EssenceAttr = Field(default_factory=EssenceAttr)
 
 
-class AttributeTemplate(BaseModel):
-    attributes: Attributes = Attributes()
-    metatype: str = "human"
-    type: str = "mundane"
-    gender: str = ""
-
-
+# --------------------------------------------------------------------------- #
+# derived / defense / resist templates (emitted at defaults)
+# --------------------------------------------------------------------------- #
 class ModWrapper(BaseModel):
     mod: ErrorProneInt = 0
 
 
 class Derived(BaseModel):
-    composure: ModWrapper = ModWrapper()
-    judge_intentions: ModWrapper = ModWrapper()
-    memory: ModWrapper = ModWrapper()
-    lift_carry: ModWrapper = ModWrapper()
-    matrix_perception: ModWrapper = ModWrapper()
-
-
-class DerivedTemplate(BaseModel):
-    derived: Derived = Derived()
+    composure: ModWrapper = Field(default_factory=ModWrapper)
+    judge_intentions: ModWrapper = Field(default_factory=ModWrapper)
+    memory: ModWrapper = Field(default_factory=ModWrapper)
+    lift_carry: ModWrapper = Field(default_factory=ModWrapper)
+    matrix_perception: ModWrapper = Field(default_factory=ModWrapper)
 
 
 class DefenseRating(BaseModel):
-    physical: ModWrapper = ModWrapper()
-    matrix: ModWrapper = ModWrapper()
-    vehicle: ModWrapper = ModWrapper()
-    astral: ModWrapper = ModWrapper()
-    social: ModWrapper = ModWrapper()
-
-
-class DefenseratingTemplate(BaseModel):
-    defenserating: DefenseRating = DefenseRating()
-
-
-class AttackRating(BaseModel):
-    physical: ModWrapper = ModWrapper()
-    astral: ModWrapper = ModWrapper()
-    matrix: ModWrapper = ModWrapper()
-    vehicle: ModWrapper = ModWrapper()
-    social: ModWrapper = ModWrapper()
-
-
-class AttackratingTemplate(BaseModel):
-    attackrating: AttackRating = AttackRating()
+    physical: ModWrapper = Field(default_factory=ModWrapper)
+    matrix: ModWrapper = Field(default_factory=ModWrapper)
+    vehicle: ModWrapper = Field(default_factory=ModWrapper)
+    astral: ModWrapper = Field(default_factory=ModWrapper)
+    social: ModWrapper = Field(default_factory=ModWrapper)
 
 
 class ResistPool(BaseModel):
-    physical: ModWrapper = ModWrapper()
-    astral: ModWrapper = ModWrapper()
-    spells_direct: ModWrapper = ModWrapper()
-    spells_indirect: ModWrapper = ModWrapper()
-    spells_other: ModWrapper = ModWrapper()
-    vehicle: ModWrapper = ModWrapper()
-    toxin: ModWrapper = ModWrapper()
-    damage_physical: ModWrapper = ModWrapper()
-    damage_astral: ModWrapper = ModWrapper()
+    physical: ModWrapper = Field(default_factory=ModWrapper)
+    astral: ModWrapper = Field(default_factory=ModWrapper)
+    spells_direct: ModWrapper = Field(default_factory=ModWrapper)
+    spells_indirect: ModWrapper = Field(default_factory=ModWrapper)
+    spells_other: ModWrapper = Field(default_factory=ModWrapper)
+    vehicle: ModWrapper = Field(default_factory=ModWrapper)
+    toxin: ModWrapper = Field(default_factory=ModWrapper)
+    damage_physical: ModWrapper = Field(default_factory=ModWrapper)
+    damage_astral: ModWrapper = Field(default_factory=ModWrapper)
 
 
-class ResistTemplate(BaseModel):
-    defensepool: ResistPool = ResistPool()
-
-
+# --------------------------------------------------------------------------- #
+# monitor-template (fields sit at the system root)
+# --------------------------------------------------------------------------- #
 class MonitoringStat(BaseModel):
-    base: int = 9
     mod: int = 0
     modString: str = ""
     value: int = 9
@@ -144,13 +138,9 @@ class EdgeStat(BaseModel):
     max: ErrorProneInt = 1
 
 
-class MonitorTemplate(BaseModel):
-    physical: MonitoringStat = MonitoringStat()
-    stun: MonitoringStat = MonitoringStat()
-    overflow: OverflowStat = OverflowStat()
-    edge: EdgeStat = EdgeStat()
-
-
+# --------------------------------------------------------------------------- #
+# initiative-template
+# --------------------------------------------------------------------------- #
 class InitiativeDice(BaseModel):
     mod: int = 0
     dice: int = 1
@@ -158,40 +148,15 @@ class InitiativeDice(BaseModel):
 
 
 class InitiativeData(BaseModel):
-    astral: InitiativeDice = InitiativeDice()
-    matrix: InitiativeDice = InitiativeDice()
-    physical: InitiativeDice = InitiativeDice()
+    astral: InitiativeDice = Field(default_factory=InitiativeDice)
+    matrix: InitiativeDice = Field(default_factory=InitiativeDice)
+    physical: InitiativeDice = Field(default_factory=InitiativeDice)
     actions: int = 0
 
 
-class InitiativeTemplate(BaseModel):
-    initiative: InitiativeData = InitiativeData()
-
-
-class MovementTemplate(BaseModel):
-    walk: int = 5
-    sprint: int = 10
-    perHit: int = 1
-
-
-class VehicleSkillStat(BaseModel):
-    points: int = 0
-    modifier: int = 0
-    pool: int = 0
-
-
-class VehicleSkills(BaseModel):
-    piloting: VehicleSkillStat = VehicleSkillStat()
-    evasion: VehicleSkillStat = VehicleSkillStat()
-    perception: VehicleSkillStat = VehicleSkillStat()
-    cracking: VehicleSkillStat = VehicleSkillStat()
-    stealth: VehicleSkillStat = VehicleSkillStat()
-
-
-class VehicleskillTemplate(BaseModel):
-    skills: VehicleSkills = VehicleSkills()
-
-
+# --------------------------------------------------------------------------- #
+# skill-template
+# --------------------------------------------------------------------------- #
 class Skill(BaseModel):
     points: ErrorProneInt = 0
     specialization: str = ""
@@ -200,116 +165,91 @@ class Skill(BaseModel):
     augment: ErrorProneInt = 0
 
 
+SKILL_NAMES = (
+    "astral",
+    "athletics",
+    "biotech",
+    "close_combat",
+    "con",
+    "conjuring",
+    "cracking",
+    "electronics",
+    "enchanting",
+    "engineering",
+    "exotic_weapons",
+    "firearms",
+    "influence",
+    "outdoors",
+    "perception",
+    "piloting",
+    "sorcery",
+    "stealth",
+    "tasking",
+)
+
+
 class Skills(BaseModel):
-    astral: Skill = Skill()
-    athletics: Skill = Skill()
-    biotech: Skill = Skill()
-    close_combat: Skill = Skill()
-    con: Skill = Skill()
-    conjuring: Skill = Skill()
-    cracking: Skill = Skill()
-    electronics: Skill = Skill()
-    enchanting: Skill = Skill()
-    engineering: Skill = Skill()
-    exotic_weapons: Skill = Skill()
-    firearms: Skill = Skill()
-    influence: Skill = Skill()
-    outdoors: Skill = Skill()
-    perception: Skill = Skill()
-    piloting: Skill = Skill()
-    sorcery: Skill = Skill()
-    stealth: Skill = Skill()
-    tasking: Skill = Skill()
+    astral: Skill = Field(default_factory=Skill)
+    athletics: Skill = Field(default_factory=Skill)
+    biotech: Skill = Field(default_factory=Skill)
+    close_combat: Skill = Field(default_factory=Skill)
+    con: Skill = Field(default_factory=Skill)
+    conjuring: Skill = Field(default_factory=Skill)
+    cracking: Skill = Field(default_factory=Skill)
+    electronics: Skill = Field(default_factory=Skill)
+    enchanting: Skill = Field(default_factory=Skill)
+    engineering: Skill = Field(default_factory=Skill)
+    exotic_weapons: Skill = Field(default_factory=Skill)
+    firearms: Skill = Field(default_factory=Skill)
+    influence: Skill = Field(default_factory=Skill)
+    outdoors: Skill = Field(default_factory=Skill)
+    perception: Skill = Field(default_factory=Skill)
+    piloting: Skill = Field(default_factory=Skill)
+    sorcery: Skill = Field(default_factory=Skill)
+    stealth: Skill = Field(default_factory=Skill)
+    tasking: Skill = Field(default_factory=Skill)
 
 
-class SkillTemplate(BaseModel):
-    skills: Skills = Field(default_factory=lambda: Skills())
-
-
+# --------------------------------------------------------------------------- #
+# magic-template
+# --------------------------------------------------------------------------- #
 class Tradition(BaseModel):
     genesisID: str = ""
     name: str = ""
     attribute: str = "log"
 
 
-class MagicTemplate(BaseModel):
-    tradition: Tradition = Tradition()
-
-
-class DeviceMod(BaseModel):
-    a: int = 0
-    s: int = 0
-    d: int = 0
-    f: int = 0
-
-
-class ModContainer(BaseModel):
-    mod: DeviceMod = DeviceMod()
-
-
-class Used(BaseModel):
-    a: int = 0
-    s: int = 0
-    d: int = 0
-    f: int = 0
-
-
-class PersonaData(BaseModel):
-    device: ModContainer = Field(default_factory=lambda: ModContainer())
-    living: ModContainer = Field(default_factory=lambda: ModContainer())
-    used: Used = Used()
-
-
-class PersonaTemplate(BaseModel):
-    persona: PersonaData = PersonaData()
-
-
-class KnowledgeTemplate(BaseModel):
-    pass
-
-
-class ActorPlayer(
-    AttributeTemplate,
-    MonitorTemplate,
-    DerivedTemplate,
-    # DefenseratingTemplate,
-    ResistTemplate,
-    # InitiativeTemplate,
-    MovementTemplate,
-    SkillTemplate,
-    KnowledgeTemplate,
-    MagicTemplate,
-    PersonaTemplate,
-):
-    name: str = ""
-    metatype: str = ""
-    mortype: str = "mundane"
-    matrixIni: str = "vrcold"
+# --------------------------------------------------------------------------- #
+# Actor: npc
+# --------------------------------------------------------------------------- #
+class ActorNPC(BaseModel):
+    # attribute-template
+    attributes: Attributes = Field(default_factory=Attributes)
+    metatype: str = "human"
+    # eden's template.json fixes ``system.type`` to "npc" for the NPC actor;
+    # the awakened/mundane distinction lives in ``mortype``.
+    type: str = "npc"
     gender: str = ""
-    nuyen: int = 0
-    overwatch: int = 0
-    notes: str = ""
-    karma: int = 0
-    karma_total: int = 0
-    heat: int = 0
-    reputation: int = 0
-
-
-class ActorNPC(
-    AttributeTemplate,
-    MonitorTemplate,
-    DerivedTemplate,
-    # DefenseratingTemplate,
-    ResistTemplate,
-    # InitiativeTemplate,
-    MovementTemplate,
-    SkillTemplate,
-    KnowledgeTemplate,
-    MagicTemplate,
-    PersonaTemplate,
-):
-    name: str = ""
-    type: str = "mundane"
+    # derived / defense / resist templates
+    derived: Derived = Field(default_factory=Derived)
+    defenserating: DefenseRating = Field(default_factory=DefenseRating)
+    defensepool: ResistPool = Field(default_factory=ResistPool)
+    # monitor-template (flat at the system root)
+    physical: MonitoringStat = Field(default_factory=MonitoringStat)
+    stun: MonitoringStat = Field(default_factory=MonitoringStat)
+    overflow: OverflowStat = Field(default_factory=OverflowStat)
+    edge: EdgeStat = Field(default_factory=EdgeStat)
+    # initiative-template
+    initiative: InitiativeData = Field(default_factory=InitiativeData)
+    # movement-template (flat at the system root)
+    walk: int = 5
+    sprint: int = 10
+    perHit: int = 1
+    # skill-template
+    skills: Skills = Field(default_factory=Skills)
+    # magic-template
+    tradition: Tradition = Field(default_factory=Tradition)
+    # npc actor fields
     mortype: str = "mundane"
     matrixIni: str = "vrcold"
     rating: int = 1
@@ -317,149 +257,51 @@ class ActorNPC(
     editmode: bool = False
 
 
-class ActorCritter(
-    AttributeTemplate,
-    MonitorTemplate,
-    # InitiativeTemplate,
-    SkillTemplate,
-    KnowledgeTemplate,
-):
-    name: str = ""
-    editmode: bool = False
-
-
-class ActorSpirit(
-    AttributeTemplate,
-    MonitorTemplate,
-    # InitiativeTemplate,
-    SkillTemplate,
-    KnowledgeTemplate,
-):
-    name: str = ""
-    rating: int = 1
-    spiritType: str = ""
-    editmode: bool = False
-
-
-class ActorVehicleVehicle(BaseModel):
-    belongs: str = ""
-    opMode: str = "manual"
-    offRoad: bool = False
-    speed: int = 0
-
-
-class ActorVehicle(MonitorTemplate, VehicleskillTemplate):
-    handlOn: int = 1
-    handlOff: int = 2
-    accOn: int = 3
-    accOff: int = 4
-    spdiOn: int = 5
-    spdiOff: int = 0
-    tspd: int = 0
-    bod: int = 0
-    arm: int = 0
-    pil: int = 0
-    sen: int = 0
-    sea: int = 0
-    vtype: str = ""
-    vehicle: ActorVehicleVehicle = ActorVehicleVehicle()
-    notes: str = ""
-
-
-class GenesisTemplate(BaseModel):
-    genesisID: str = "-"
-    description: str = ""
-
-
-class SkillValueTemplate(BaseModel):
-    points: int = 0
-    modifier: int = 0
-
-
-class DicePoolTemplate(BaseModel):
-    modifier: int = 0
-    wild: bool = False
-    pool: int = 0
-
-
-class QualityValueTemplate(BaseModel):
-    value: int = 0
-    explain: str = ""
-    modifier: list[int] = Field(default_factory=list)
-
-
-class AdeptPower(BaseModel):
-    hasLevel: bool = False
-    level: int = 0
-    choice: str = ""
-    cost: float = 0.0
-    activation: str = ""
-
-
-class ComplexForm(BaseModel):
-    duration: str = "sustained"
-    fading: int = 3
-    skill: str = ""
-    skillSpec: str = ""
-    attrib: str = "res"
-    threshold: int = 0
-    oppAttr1: str = ""
-    oppAttr2: str = ""
-
-
-class Contact(BaseModel):
-    name: str = "Someone"
-    rating: int = 1
-    loyalty: int = 1
-    favors: int = 0
-    type: str = ""
-    description: str = ""
-
-
-class CritterPower(BaseModel):
-    duration: str = "instantaneous"
-    action: str = ""
-    type: str = "physical"
-    range: str = "self"
-
-
-class Echo(BaseModel):
-    pass
-
-
-class Focus(BaseModel):
-    rating: int = 1
-
-
+# --------------------------------------------------------------------------- #
+# Item: gear  (system.type is the eden ITEMTYPE enum; the document type stays
+# "gear")
+# --------------------------------------------------------------------------- #
 class GearVehicle(BaseModel):
     opMode: str = "manual"
 
 
 class FoundryGear(BaseModel):
-    type: str = ""
+    # genesis template
+    genesisID: str = ""
+    description: str = ""
+    # dice-pool template
+    modifier: int = 0
+    wild: bool = False
+    pool: int = 0
+    # gear
+    type: str = "ACCESSORY"
     subtype: str = ""
+    count: int = 1
+    countable: bool = True
+    availDef: str = ""
+    avail: ErrorProneInt = 0
     ammocap: int = 0
     ammocount: int = 0
-    skill: str = ""
-    skillSpec: str = ""
-    dmg: int = 0
-    dmgDef: str = ""
-    stun: bool = False
-    attackRating: list[int | None] = Field(default_factory=lambda: [0, 0, 0, 0, 0])
-    modes: Dict[str, bool] = Field(
-        default_factory=lambda: {"BF": False, "FA": False, "SA": False, "SS": False}
-    )
+    priceDef: str = ""
+    price: ErrorProneInt = 0
+    customName: str = ""
     usedForPool: bool = False
     notes: str = ""
     accessories: str = ""
     needsRating: bool = False
-    rating: int = 0
+    rating: ErrorProneInt = 0
     skill: str = ""
     skillSpec: str = ""
-
+    dmg: ErrorProneInt = 0
+    stun: bool = False
+    dmgDef: str = ""
+    attackRating: List[int | None] = Field(default_factory=lambda: [0, 0, 0, 0, 0])
+    modes: Dict[str, bool] = Field(
+        default_factory=lambda: {"BF": False, "FA": False, "SA": False, "SS": False}
+    )
     defense: int = 0
     social: int = 0
-    essence: int = 0
+    essence: float = 0
     capacity: int = 0
     natural: bool = False
     devRating: int = 0
@@ -481,134 +323,22 @@ class FoundryGear(BaseModel):
     sen: int = 0
     sea: int = 0
     vtype: str = ""
-    vehicle: GearVehicle = GearVehicle()
+    vehicle: GearVehicle = Field(default_factory=GearVehicle)
     strWeapon: bool = False
     dualHand: bool = False
 
 
-class Lifestyle(BaseModel):
-    type: str = "low"
-    paid: int = 1
-    cost: int = 2000
-    sin: str = ""
-
-
-class MartialArtStyle(BaseModel):
-    category: Dict[str, bool] = Field(
-        default_factory=lambda: {
-            "grappling": False,
-            "mobility": False,
-            "ranged": False,
-            "striking": False,
-            "weapon": False,
-        }
-    )
-
-
-class MartialArtTech(BaseModel):
-    style: str = ""
-    choice: str = ""
-
-
-class Metamagic(BaseModel):
-    level: bool = False
-    adepts: bool = False
-    mages: bool = False
-
-
-class Quality(BaseModel):
-    category: str = ""
-    level: bool = False
-
-
-class RitualFeatures(BaseModel):
-    anchored: bool = False
-    material_link: bool = False
-    minion: bool = False
-    spell: bool = False
-    spotter: bool = False
-
-
-class Ritual(BaseModel):
-    threshold: int = 5
-    features: RitualFeatures = RitualFeatures()
-
-
-class Sin(BaseModel):
-    name: str = "Someone"
-    quality: str = "REAL_SIN"
-    description: str = ""
-
-
-class ItemSkill(BaseModel):
-    genesisID: str = ""
-    description: str = ""
-    points: int = 0
-    modifier: int = 0
-
-
-class Software(BaseModel):
-    type: str = "SOFTWARE"
-    subtype: str = "AUTOSOFT"
-    category: str = ""
-    rating: int = 1
-
-
-class Spell(BaseModel):
-    category: str = "health"
-    duration: str = "instantaneous"
-    drain: int = 1
-    type: str = "physical"
-    range: str = "self"
-    damage: str = "physical"
-    alchemic: bool = False
-    multiSense: bool = False
-    isOpposed: bool = True
-    withEssence: bool = False
-    wildDie: bool = False
-    isSustained: bool = False
-
-
 class Item(BaseModel):
-    type: Literal[
-        "complexform",
-        "contact",
-        "critterpower",
-        "echo",
-        "gear",
-        "lifestyle",
-        "martialartstyle",
-        "martialarttech",
-        "metamagic",
-        "quality",
-        "sin",
-        "skill",
-        "adeptpower",
-        "spell",
-        "ritual",
-        "focus",
-        "software",
-    ]
     name: str = "Unnamed"
-    adeptpower: AdeptPower = AdeptPower()
-    complexform: ComplexForm = ComplexForm()
-    contact: Contact = Contact()
-    critterpower: CritterPower = CritterPower()
-    echo: Echo = Echo()
-    focus: Focus = Focus()
-    system: FoundryGear = FoundryGear()
-    lifestyle: Lifestyle = Lifestyle()
-    martialartstyle: MartialArtStyle = MartialArtStyle()
-    martialarttech: MartialArtTech = MartialArtTech()
-    metamagic: Metamagic = Metamagic()
-    quality: Quality = Quality()
-    ritual: Ritual = Ritual()
-    sin: Sin = Sin()
-    skill: ItemSkill = ItemSkill()
-    software: Software = Software()
-    spell: Spell = Spell()
+    type: Literal["gear"] = "gear"
+    img: str | None = None
+    system: FoundryGear = Field(default_factory=FoundryGear)
+    effects: list = Field(default_factory=list)
 
 
+# --------------------------------------------------------------------------- #
+# Root actor document
+# --------------------------------------------------------------------------- #
 class ExportSource(BaseModel):
     npc_uuid: str = ""
     world: str = ""
@@ -617,44 +347,16 @@ class ExportSource(BaseModel):
     systemVersion: str = ""
 
 
-class FlagsUNDOCUMENTED(BaseModel):
+class Flags(BaseModel):
     exportSource: ExportSource = Field(default_factory=ExportSource)
 
 
-class RootUNDOCUMENTED(BaseModel):
-    img: str | None = None
-    flags: FlagsUNDOCUMENTED = Field(default_factory=FlagsUNDOCUMENTED)
-
-
-class RootBase(RootUNDOCUMENTED):
-    items: list[Item] = []
+class RootNPC(BaseModel):
     name: str
-    sort: int = 0
-
-    # effects: list[???]
-    # token: ???
-
-
-class RootPlayer(RootBase):
-    type: Literal["Player"] = "Player"
-    data: ActorPlayer = Field(default_factory=ActorPlayer)
-
-
-class RootNPC(RootBase):
     type: Literal["NPC"] = "NPC"
-    data: ActorNPC = Field(default_factory=ActorNPC)
-
-
-class RootCritter(RootBase):
-    type: Literal["Critter"] = "Critter"
-    data: ActorCritter = Field(default_factory=ActorCritter)
-
-
-class RootSpirit(RootBase):
-    type: Literal["Spirit"] = "Spirit"
-    data: ActorSpirit = Field(default_factory=ActorSpirit)
-
-
-class RootVehicle(RootBase):
-    type: Literal["Vehicle"] = "Vehicle"
-    data: ActorVehicle = Field(default_factory=ActorVehicle)
+    img: str | None = None
+    system: ActorNPC = Field(default_factory=ActorNPC)
+    items: list[Item] = Field(default_factory=list)
+    effects: list = Field(default_factory=list)
+    flags: Flags = Field(default_factory=Flags)
+    sort: int = 0

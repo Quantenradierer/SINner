@@ -73,6 +73,7 @@ const resources = {
             entity_download_foundryvtt_description2: 'Rechtsklick auf den Actor -> "Import data".',
             entity_download_foundryvtt_description3: 'Wähle die heruntergeladene Datei.',
             entity_download_foundryvtt_description4: 'Falls das Bild fehlt, importiere die Datei erneut.',
+            entity_download_error: 'Export fehlgeschlagen. Bitte fülle den NPC vollständig aus und versuche es erneut.',
             entity_download_roll20: 'Roll20',
             entity_download_roll20_description: 'Kommt bald!',
             entity_save: 'Veröffentlichen',

@@ -23,6 +23,7 @@ from npc_creator.models.entities.npc import Npc
 from npc_creator.models.entities.location import Location
 from npc_creator.models.favorite import Favorite
 from npc_creator.models.image_generation import ImageGeneration
+from npc_creator.services.exporter.foundry import ExportError
 
 
 from rest_framework import mixins, serializers, viewsets, status
@@ -210,12 +211,17 @@ class EntityViewSet(
     def export(self, request, pk):
         entity = self.get_object()
 
-        return Response(
-            entity.Export(
+        try:
+            payload = entity.Export(
                 entity=entity, format=request.GET.get("fileformat", None)
-            ).call(),
-            content_type="application/json",
-        )
+            ).call()
+        except ExportError as exc:
+            return Response(
+                {"type": "error", "error": str(exc)},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+
+        return Response(payload, content_type="application/json")
 
     @action(detail=True, methods=["patch"])
     def favorite(self, request, pk):

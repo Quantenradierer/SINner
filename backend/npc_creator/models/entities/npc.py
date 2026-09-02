@@ -3,11 +3,8 @@ from typing import Annotated
 from django.db import models
 from pydantic import constr, BaseModel, Field
 
-from npc_creator.game_mechanics.manager import ALL_GEAR
 from npc_creator.game_mechanics.named_list_with_mods import MinimalGear
 from npc_creator.game_mechanics.sr6.character import Metatype, Gender
-from npc_creator.game_mechanics.sr6.gear import Gear
-from npc_creator.game_mechanics.sr6.object_type import ObjectType
 from npc_creator.models import Entity
 from npc_creator.operations.gpt import npc
 
@@ -171,15 +168,3 @@ class Npc(Entity):
     PassImagePrompt = npc.PassImagePrompt
     Check = npc.Check
     Export = npc.Export
-
-    @property
-    def weapons(self) -> list[Gear]:
-        weapon_ids = self.values.get("weapon_ids", [])
-        return [
-            ALL_GEAR[weapon_id] for weapon_id in weapon_ids if weapon_id in ALL_GEAR
-        ]
-
-    @property
-    def armors(self) -> list[Gear]:
-        armor_ids = self.values.get("armor_ids", [])
-        return [ALL_GEAR[armor_id] for armor_id in armor_ids if armor_id in ALL_GEAR]

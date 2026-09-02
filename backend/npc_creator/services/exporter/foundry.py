@@ -1,235 +1,410 @@
-from .foundry_template import (
-    RootNPC,
-    DefenseRating,
-    ModWrapper,
-    FoundryGear,
-    Item,
-    FlagsUNDOCUMENTED,
-    ExportSource,
-)
-from npc_creator.game_mechanics.sr6.gear import Gear
+"""Export an NPC as Foundry VTT ``shadowrun6-eden`` actor JSON.
+
+The output is what the eden system's native *Import Data* action consumes for an
+Actor of type ``npc``. See :mod:`.foundry_template` for the target schema.
+
+The exporter is strict: :func:`assert_exportable` raises :class:`ExportError`
+unless the NPC carries clean SR6 mechanical data (all attributes, all 19 skills,
+a valid metatype, and an ``equipment`` list whose every entry resolves to known
+gear). Callers turn that into an HTTP 422 so the user learns why the download
+was refused. NPCs are run through the SR6 fill pipeline before export, so a
+failure here means the fill produced something unusable.
+"""
+
+import base64
+import io
+import logging
 
 from PIL import Image, ImageDraw
-import io
-import base64
+
+from npc_creator.game_mechanics.manager import ALL_GEAR
+from npc_creator.game_mechanics.reference_names import name_for
+from npc_creator.game_mechanics.sr6.character import Metatype
+from npc_creator.game_mechanics.sr6.gear import Gear
+from npc_creator.game_mechanics.sr6.object_type import ObjectType
 from npc_creator.services.exporter.foundry_template import (
+    SKILL_NAMES,
     ActorNPC,
     Attributes,
-    Stat,
+    EdgAttr,
+    EdgeStat,
+    EssenceAttr,
+    ExportSource,
+    Flags,
+    FoundryGear,
+    Item,
     MagicAttr,
     ResAttr,
-    EdgAttr,
-    EssenceAttr,
-    Skills,
+    RootNPC,
     Skill,
+    Skills,
+    Stat,
+    Tradition,
+    parse_int,
 )
 
-
-def base64_encoded_image(content: bytes) -> bytes:
-    img = base64.b64encode(content)
-    return b"data:image/png;base64," + img
+log = logging.getLogger(__name__)
 
 
-def translate_metatype(metatype: str) -> str:
-    return metatype
+class ExportError(RuntimeError):
+    """An NPC lacks the clean SR6 data a Foundry export needs."""
 
 
-def translate_magictype(npc) -> str:
-    return "Unknown"
+# eden attribute key -> npc.values key
+ATTR_SOURCE = {
+    "bod": "constitution",
+    "agi": "agility",
+    "rea": "reaction",
+    "str": "strength",
+    "wil": "willpower",
+    "log": "logic",
+    "int": "intuition",
+    "cha": "charisma",
+}
+
+VALID_METATYPES = {m.value for m in Metatype}
+
+# ObjectType -> eden Item("gear").system.type for non-weapon, non-armor gear
+GENERIC_GEAR_TYPE = {
+    ObjectType.Armor: "ARMOR",
+    ObjectType.Cyberware: "CYBERWARE",
+    ObjectType.CyberwareMod: "CYBERWARE",
+    ObjectType.Biotech: "BIOWARE",
+    ObjectType.Commlink: "ELECTRONICS",
+    ObjectType.Cyberdeck: "ELECTRONICS",
+    ObjectType.CommunicationGear: "ELECTRONICS",
+    ObjectType.OpticalDevice: "ELECTRONICS",
+    ObjectType.OpticalDeviceMod: "ELECTRONICS",
+    ObjectType.AudioDevice: "ELECTRONICS",
+    ObjectType.AudioDeviceMod: "ELECTRONICS",
+    ObjectType.Sensorhousing: "ELECTRONICS",
+    ObjectType.SensorhousingMod: "ELECTRONICS",
+    ObjectType.RFID: "ELECTRONICS",
+    ObjectType.Software: "SOFTWARE",
+    ObjectType.Tool: "TOOLS",
+    ObjectType.Security: "TOOLS",
+    ObjectType.BreakingEntering: "TOOLS",
+    ObjectType.SurvivalGear: "TOOLS",
+    ObjectType.Grapple: "TOOLS",
+    ObjectType.Chemical: "ACCESSORY",
+    ObjectType.Accessory: "ACCESSORY",
+    ObjectType.WeaponMod: "ACCESSORY",
+    ObjectType.Credstick: "ACCESSORY",
+    ObjectType.License: "ACCESSORY",
+    ObjectType.SIN: "ACCESSORY",
+}
 
 
-def cut_potrait(image_path, center=None, radius=None):
-    # Open the input image
-    image = Image.open(image_path).convert("RGBA")
+# --------------------------------------------------------------------------- #
+# small helpers
+# --------------------------------------------------------------------------- #
+def _clean_int(value):
+    """Return ``value`` as an int, or ``None`` if it is not a plain number.
 
-    # Determine the size of the image
+    Accepts ints and numeric strings (``"3"``); rejects ``None``, booleans,
+    dicts, lists and free text.
+    """
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    if isinstance(value, str):
+        try:
+            return int(value.strip())
+        except ValueError:
+            return None
+    return None
+
+
+def _avail_number(avail) -> int:
+    """Leading integer of an availability string (``"8F"`` -> 8)."""
+    digits = ""
+    for char in str(avail or ""):
+        if char.isdigit():
+            digits += char
+        else:
+            break
+    return int(digits) if digits else 0
+
+
+def _equipment_id(entry):
+    if isinstance(entry, str):
+        return entry
+    if isinstance(entry, dict):
+        return entry.get("id")
+    return None
+
+
+def _display_name(gear: Gear) -> str:
+    return name_for(gear.id)
+
+
+# --------------------------------------------------------------------------- #
+# strict precondition
+# --------------------------------------------------------------------------- #
+def assert_exportable(npc) -> None:
+    values = npc.values or {}
+    problems: list[str] = []
+
+    for key in (*ATTR_SOURCE.values(), "edge", "magic", "resonance"):
+        if _clean_int(values.get(key)) is None:
+            problems.append(key)
+
+    for name in SKILL_NAMES:
+        if _clean_int(values.get(f"skill_{name}")) is None:
+            problems.append(f"skill_{name}")
+
+    if values.get("metatype_enum") not in VALID_METATYPES:
+        problems.append("metatype_enum")
+
+    equipment = values.get("equipment")
+    if not isinstance(equipment, list):
+        problems.append("equipment (not a list)")
+    else:
+        for entry in equipment:
+            gear_id = _equipment_id(entry)
+            if not gear_id or gear_id not in ALL_GEAR:
+                problems.append(f"equipment entry {entry!r}")
+
+    if problems:
+        raise ExportError(
+            "This NPC is missing clean SR6 data and cannot be exported to "
+            "Foundry. Re-run the SR6 fill and try again. Unusable: "
+            + ", ".join(problems)
+        )
+
+
+# --------------------------------------------------------------------------- #
+# portrait
+# --------------------------------------------------------------------------- #
+def _circle_crop(raw: bytes) -> bytes:
+    image = Image.open(io.BytesIO(raw)).convert("RGBA")
     width, height = image.size
-    # If no radius is specified, calculate it based on the image size
-    if radius is None:
-        radius = min(width, height) // 2
+    radius = min(width, height) // 2
+    center = (width // 2, radius)
 
-    # If no center is specified, use the center of the image
-    if center is None:
-        center = (width // 2, radius)
-
-    # Create a black mask with the same size as the image
     mask = Image.new("L", (width, height), 0)
-
-    # Draw a white circle on the mask
     draw = ImageDraw.Draw(mask)
-    left_up_point = (center[0] - radius, center[1] - radius)
-    right_down_point = (center[0] + radius, center[1] + radius)
-    draw.ellipse([left_up_point, right_down_point], fill=255)
+    draw.ellipse(
+        [center[0] - radius, center[1] - radius, center[0] + radius, center[1] + radius],
+        fill=255,
+    )
 
-    # Apply the mask to the image
     result = Image.new("RGBA", (radius * 2, radius * 2))
     result.paste(image, (-center[0] + radius, -center[1] + radius), mask=mask)
 
-    # Save the resulting image to a bytes buffer
-    buffered = io.BytesIO()
-    result.save(buffered, format="png")
-    return buffered.getvalue()
+    buffer = io.BytesIO()
+    result.save(buffer, format="png")
+    return buffer.getvalue()
 
 
-def foundry_armor(armor: Gear) -> FoundryGear:
+def _portrait_data_uri(npc) -> str | None:
+    images = [img for img in npc.image_set.all() if img.file]
+    if not images:
+        return None
+    image = max(images, key=lambda img: img.score)
+    try:
+        with image.file.open("rb") as handle:
+            raw = handle.read()
+        encoded = base64.b64encode(_circle_crop(raw)).decode("ascii")
+        return "data:image/png;base64," + encoded
+    except Exception:  # storage miss, unreadable file, decode error
+        log.warning(
+            "foundry export: portrait unavailable for npc %s", npc.uuid, exc_info=True
+        )
+        return None
+
+
+# --------------------------------------------------------------------------- #
+# gear -> items
+# --------------------------------------------------------------------------- #
+def _weapon_eden_type(gear: Gear) -> str:
+    skill = (gear.skill or "").lower()
+    if skill == "close_combat":
+        return "WEAPON_CLOSE_COMBAT"
+    if skill == "exotic_weapons":
+        return "WEAPON_SPECIAL"
+    if skill in ("athletics", "archery"):
+        return "WEAPON_RANGED"
+    return "WEAPON_FIREARMS"
+
+
+def _common_gear_fields(gear: Gear) -> dict:
+    name = _display_name(gear)
+    return dict(
+        genesisID=gear.id,
+        description=gear.rule or "",
+        subtype=(gear.subtype or "").upper(),
+        availDef=str(gear.avail or ""),
+        avail=_avail_number(gear.avail),
+        priceDef=str(gear.cost or ""),
+        price=gear.cost or 0,
+        customName=name,
+        rating=gear.rating or 0,
+    )
+
+
+def _weapon_item(gear: Gear) -> Item:
+    damage = gear.damage.mod
+    damage_type = gear.damage_type.value or "P"
+    note = f" {gear.damage_note}" if gear.damage_note else ""
     return Item(
-        type="gear",
-        name=armor.name,
-        system=Gear(
-            type=armor.type,
-            subtype=armor.subtype,
-            count=1,
-            countable=True,
-            availDef=str(armor.availability),
-            avail=armor.availability,
-            priceDef=str(armor.cost or ""),
-            price=armor.cost,
-            customName=armor.name,
-            defense=armor.defense_rating,
-            capacity=armor.capacity,
+        name=_display_name(gear),
+        system=FoundryGear(
+            **_common_gear_fields(gear),
+            type=_weapon_eden_type(gear),
+            skill=gear.skill or "",
+            skillSpec=(gear.subtype or "").lower(),
+            dmg=damage,
+            stun=damage_type == "S",
+            dmgDef=f"{damage}{damage_type}{note}".strip(),
+            attackRating=[
+                gear.attack_rating_0.mod,
+                gear.attack_rating_1.mod,
+                gear.attack_rating_2.mod,
+                gear.attack_rating_3.mod,
+                gear.attack_rating_4.mod,
+            ],
+            modes={
+                "SS": bool(gear.ss),
+                "SA": bool(gear.sa),
+                "BF": bool(gear.bf),
+                "FA": bool(gear.fa),
+            },
+            ammocap=parse_int(gear.cnt, 0),
+            ammocount=parse_int(gear.cnt, 0),
             usedForPool=True,
         ),
     )
 
 
-def foundry_weapon(weapon: Gear) -> FoundryGear:
+def _armor_item(gear: Gear) -> Item:
     return Item(
-        type="gear",
-        name=weapon.name,
+        name=_display_name(gear),
         system=FoundryGear(
-            type=weapon.kind,
-            subtype=weapon.subtype,
-            count=1,
-            countable=True,
-            availDef=weapon.avail,
-            avail=weapon.avail,
-            priceDef=str(weapon.price or ""),
-            price=weapon.price,
-            customName=weapon.name,
-            ammocap=weapon.cnt or 0,
-            ammocount=weapon.cnt or 0,
-            skill=weapon.skill,
-            skillSpec=weapon.subtype.lower(),
-            dmg=weapon.damage,
-            stun=weapon.damage_type == "S",
-            dmgDef=f"{weapon.damage}{weapon.damage_type or ''} {weapon.damage_note}",
-            attackRating=[
-                weapon.attack_rating_0.mod,
-                weapon.attack_rating_1.mod,
-                weapon.attack_rating_2.mod,
-                weapon.attack_rating_3.mod,
-                weapon.attack_rating_4.mod,
-            ],
-            modes={"BF": weapon.bf, "FA": weapon.fa, "SA": weapon.sa, "SS": weapon.ss},
+            **_common_gear_fields(gear),
+            type="ARMOR",
+            defense=gear.defense_rating or 0,
+            capacity=gear.capacity or 0,
+            usedForPool=True,
         ),
     )
 
 
-def unarmed_weapon(npc) -> FoundryGear:
-    # SR6 GRW S. 112: unarmed melee base damage is a flat 2S (Strength adds to
-    # the dice pool, not to the damage value); the SR5 "Strength / 2" formula
-    # no longer applies.
-    dmg = 2
-    attack_rating = int(npc.values["strength"]) + int(npc.values["reaction"])
+def _generic_item(gear: Gear) -> Item:
     return Item(
-        type="gear",
-        name="Unarmed",
+        name=_display_name(gear),
+        system=FoundryGear(
+            **_common_gear_fields(gear),
+            type=GENERIC_GEAR_TYPE.get(gear.type, "ACCESSORY"),
+            essence=gear.essence or 0,
+            devRating=gear.device_rating or 0,
+        ),
+    )
+
+
+def _gear_item(gear: Gear) -> Item:
+    if gear.type == ObjectType.Weapon:
+        return _weapon_item(gear)
+    if gear.type == ObjectType.Armor:
+        return _armor_item(gear)
+    return _generic_item(gear)
+
+
+def _unarmed_item(npc) -> Item:
+    # SR6 GRW p. 112: unarmed melee base damage is a flat 2S; Strength feeds the
+    # dice pool, not the damage value.
+    attack_rating = _clean_int(npc.values["strength"]) + _clean_int(
+        npc.values["reaction"]
+    )
+    return Item(
+        name="Unbewaffnet",
         system=FoundryGear(
             type="WEAPON_CLOSE_COMBAT",
-            subtype="unarmed",
+            subtype="UNARMED",
+            customName="Unbewaffnet",
             count=1,
             countable=False,
-            availDef="0",
-            avail=0,
-            priceDef="0",
-            price=0,
-            customName="Unarmed",
-            dmg=dmg,
+            dmg=2,
             stun=True,
-            dmgDef=f"{dmg}S Stun",
+            dmgDef="2S",
             attackRating=[attack_rating, 0, 0, 0, 0],
             skill="close_combat",
-            skillSpec="close combat",
+            skillSpec="unarmed",
+            usedForPool=True,
         ),
     )
 
 
-def foundry_json(npc):
+# --------------------------------------------------------------------------- #
+# entrypoint
+# --------------------------------------------------------------------------- #
+def _mortype(magic: int, resonance: int) -> str:
+    if resonance > 0:
+        return "technomancer"
+    if magic > 0:
+        return "magician"
+    return "mundane"
+
+
+def foundry_json(npc) -> str:
+    assert_exportable(npc)
+    values = npc.values
+
+    magic = _clean_int(values["magic"])
+    resonance = _clean_int(values["resonance"])
+    edge = _clean_int(values["edge"])
+    mortype = _mortype(magic, resonance)
+
+    gears = [ALL_GEAR[_equipment_id(entry)] for entry in values["equipment"]]
+
+    essence = 6.0
+    for gear in gears:
+        if gear.essence:
+            essence -= gear.essence
+    essence = max(essence, 0.0)
+
+    attributes = Attributes(
+        **{
+            eden_key: Stat(
+                base=_clean_int(values[source]), pool=_clean_int(values[source])
+            )
+            for eden_key, source in ATTR_SOURCE.items()
+        },
+        mag=MagicAttr(base=magic, pool=magic),
+        res=ResAttr(base=resonance, pool=resonance),
+        edg=EdgAttr(current=edge, max=edge),
+        essence=EssenceAttr(base=essence, pool=essence),
+    )
+
+    skills = Skills(
+        **{
+            name: Skill(points=_clean_int(values[f"skill_{name}"]))
+            for name in SKILL_NAMES
+        }
+    )
 
     actor = ActorNPC(
-        type=translate_magictype(npc),
-        mortype=translate_magictype(npc),
-        metatype=translate_metatype(npc.values["metatype"]),
-        edge=EdgAttr(current=npc.values["edge"], max=npc.values["edge"]).model_dump(),
-        attributes=Attributes(
-            bod=Stat(base=npc.values["constitution"], pool=npc.values["constitution"]),
-            agi=Stat(base=npc.values["agility"], pool=npc.values["agility"]),
-            rea=Stat(base=npc.values["reaction"], pool=npc.values["reaction"]),
-            str=Stat(base=npc.values["strength"], pool=npc.values["strength"]),
-            wil=Stat(base=npc.values["willpower"], pool=npc.values["willpower"]),
-            log=Stat(base=npc.values["logic"], pool=npc.values["logic"]),
-            int=Stat(base=npc.values["intuition"], pool=npc.values["intuition"]),
-            cha=Stat(base=npc.values["charisma"], pool=npc.values["charisma"]),
-            mag=MagicAttr(base=npc.values["magic"], pool=npc.values["magic"]),
-            res=ResAttr(base=npc.values["resonance"], pool=npc.values["resonance"]),
-            edg=EdgAttr(current=npc.values["edge"], max=npc.values["edge"]),
-            essence=EssenceAttr(base="6", pool="6"),
-        ),
-        skills=Skills(
-            astral=Skill(base=npc.values["skill_astral"]),
-            athletics=Skill(points=npc.values["skill_athletics"]),
-            biotech=Skill(points=npc.values["skill_biotech"]),
-            close_combat=Skill(points=npc.values["skill_close_combat"]),
-            con=Skill(points=npc.values["skill_con"]),
-            conjuring=Skill(points=npc.values["skill_conjuring"]),
-            cracking=Skill(points=npc.values["skill_cracking"]),
-            electronics=Skill(points=npc.values["skill_electronics"]),
-            enchanting=Skill(points=npc.values["skill_enchanting"]),
-            engineering=Skill(points=npc.values["skill_engineering"]),
-            exotic_weapons=Skill(points=npc.values["skill_exotic_weapons"]),
-            firearms=Skill(points=npc.values["skill_firearms"]),
-            influence=Skill(points=npc.values["skill_influence"]),
-            outdoors=Skill(points=npc.values["skill_outdoors"]),
-            perception=Skill(points=npc.values["skill_perception"]),
-            piloting=Skill(points=npc.values["skill_piloting"]),
-            sorcery=Skill(points=npc.values["skill_sorcery"]),
-            stealth=Skill(points=npc.values["skill_stealth"]),
-            tasking=Skill(points=npc.values["skill_tasking"]),
-        ),
-        defenserating=DefenseRating(
-            physical=ModWrapper(),
-            matrix=ModWrapper(),
-            astral=ModWrapper(),
-        ),
+        attributes=attributes,
+        metatype=values["metatype_enum"],
+        type="npc",
+        mortype=mortype,
+        gender=values.get("gender_enum") or "",
+        skills=skills,
+        edge=EdgeStat(value=edge, max=edge),
+        tradition=Tradition(attribute="wil" if mortype == "technomancer" else "log"),
     )
 
-    if npc.image_set.exists():
-        image = max(npc.image_set.all(), key=lambda x: x.score)
-        try:
-            img = base64_encoded_image(
-                cut_potrait(
-                    image.url,
-                    radius=None,
-                )
-            )
-        except FileNotFoundError:
-            img = b""
-    else:
-        img = b""
+    items = [_gear_item(gear) for gear in gears] + [_unarmed_item(npc)]
 
-    weapons = [foundry_weapon(weapon) for weapon in npc.weapons]
-    armors = [foundry_armor(armor) for armor in npc.armors]
-
-    root_npc = RootNPC(
-        name=npc.values["name"],
-        img=img,
-        data=actor.model_dump(),
-        items=weapons
-        + armors
-        + [
-            unarmed_weapon(npc),
-        ],
-        flags=FlagsUNDOCUMENTED(export_source=ExportSource(npc_uuid=str(npc.uuid))),
+    root = RootNPC(
+        name=values.get("name") or "NPC",
+        img=_portrait_data_uri(npc),
+        system=actor,
+        items=items,
+        flags=Flags(exportSource=ExportSource(npc_uuid=str(npc.uuid))),
     )
 
-    return root_npc.model_dump_json(indent=2)
+    return root.model_dump_json(indent=2, exclude_none=True)
