@@ -1,4 +1,14 @@
-from typing import List, Optional, Any
+"""Pydantic models for the Genesis / Roll20 Shadowrun 6E character JSON.
+
+The target is the ``"system": "SHADOWRUN6"`` export format (currently
+``version`` ``3.2.0``) that the Roll20 SR6 character sheet's *Import* button
+consumes. Field names and casing mirror that schema exactly; unknown sections
+are still emitted (as empty lists / ``null``) because the importer expects the
+full set of keys.
+"""
+
+from typing import Any, List, Optional
+
 from pydantic import BaseModel
 
 
@@ -37,7 +47,7 @@ class R20Skill(BaseModel):
     description: str
 
 
-class R20Weapon(BaseModel):
+class R20CloseCombatWeapon(BaseModel):
     name: str
     type: str
     subtype: str
@@ -52,6 +62,44 @@ class R20Weapon(BaseModel):
     primary: bool
 
 
+class R20LongRangeWeapon(BaseModel):
+    name: str
+    type: str
+    subtype: str
+    skill: Optional[str]
+    pool: int
+    damage: str
+    attackRating: str
+    mode: Optional[str]
+    ammunition: str
+    wifi: List[Any]
+    accessories: List[Any]
+    page: str
+    description: str
+    primary: bool
+
+
+class R20Armor(BaseModel):
+    name: str
+    rating: int
+    socialrating: int
+    accessories: List[Any]
+    isIgnored: bool
+    page: str
+    description: str
+    primary: bool
+
+
+class R20Augmentation(BaseModel):
+    name: str
+    level: Optional[int]
+    essence: float
+    page: str
+    quality: Optional[str]
+    description: str
+    accessories: List[Any]
+
+
 class R20Item(BaseModel):
     name: str
     count: int
@@ -60,27 +108,6 @@ class R20Item(BaseModel):
     subType: str
     page: str
     accessories: List[Any]
-    description: str
-
-
-class R20Drone(BaseModel):
-    name: str
-    type: Optional[str]
-    subtype: Optional[str]
-    count: int
-    handlOn: int
-    handlOff: int
-    accelOn: int
-    accelOff: int
-    speedIntOn: int
-    speedIntOff: int
-    speed: int
-    body: int
-    armor: int
-    pilot: int
-    sensor: int
-    page: str
-    accessories: Optional[Any]
     description: str
 
 
@@ -98,6 +125,19 @@ class R20MatrixItem(BaseModel):
     accessories: List[Any]
     programs: List[Any]
     description: str
+
+
+class R20Sin(BaseModel):
+    name: str
+    description: Optional[str]
+    quality: int
+
+
+class R20License(BaseModel):
+    name: str
+    sin: str
+    type: Optional[str]
+    rating: str
 
 
 class R20Character(BaseModel):
@@ -127,17 +167,17 @@ class R20Character(BaseModel):
     echoes: Optional[Any]
     complexForms: List[Any]
     adeptPowers: List[Any]
-    longRangeWeapons: List[Any]
-    closeCombatWeapons: List[R20Weapon]
-    armors: List[Any]
+    longRangeWeapons: List[R20LongRangeWeapon]
+    closeCombatWeapons: List[R20CloseCombatWeapon]
+    armors: List[R20Armor]
     items: List[R20Item]
-    augmentations: List[Any]
+    augmentations: List[R20Augmentation]
     vehicles: List[Any]
-    drones: List[R20Drone]
+    drones: List[Any]
     lifestyles: List[Any]
-    sins: List[Any]
+    sins: List[R20Sin]
     contacts: List[Any]
-    licenses: List[Any]
+    licenses: List[R20License]
     matrixItems: List[R20MatrixItem]
     martialArts: List[Any]
     signatureManeuvers: List[Any]

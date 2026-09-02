@@ -75,7 +75,8 @@ const resources = {
             entity_download_foundryvtt_description4: 'Falls das Bild fehlt, importiere die Datei erneut.',
             entity_download_error: 'Export fehlgeschlagen. Bitte fülle den NPC vollständig aus und versuche es erneut.',
             entity_download_roll20: 'Roll20',
-            entity_download_roll20_description: 'Kommt bald!',
+            entity_download_roll20_description1: 'Öffne den Shadowrun-6-Charakterbogen in Roll20 und den Reiter "Import".',
+            entity_download_roll20_description2: 'Lade die heruntergeladene JSON-Datei hoch.',
             entity_save: 'Veröffentlichen',
             entity_favorite: 'Favorisieren',
 

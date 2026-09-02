@@ -11,12 +11,12 @@ import {Animator} from "@arwes/animation";
 import LoadingBar from "../components/loading_bar";
 
 
-const download = async (setWaiting, entity, setError) => {
+const download = async (setWaiting, entity, setError, fileformat) => {
 
   setWaiting(true);
   setError(null);
   try {
-    const response = await api.get(`/api/npc_creator/entities/${entity.id}/export/`, {params: {fileformat: 'foundryvtt'}})
+    const response = await api.get(`/api/npc_creator/entities/${entity.id}/export/`, {params: {fileformat}})
     if (response.status !== 200) {
       throw new Error('Failed to download file' + response.status);
     }
@@ -25,7 +25,7 @@ const download = async (setWaiting, entity, setError) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${entity.values.name} - ${entity.values.profession}.json`;
+    a.download = `${entity.values.name} - ${entity.values.profession} (${fileformat}).json`;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -51,19 +51,55 @@ const DownloadState = Object.freeze({
 });
 
 
+const encryptMapping = {
+  [DownloadState.NOT_STARTED]: EncryptedTextState.STATIC,
+  [DownloadState.DOWNLOADING]: EncryptedTextState.RUNNING,
+  [DownloadState.DONE]: EncryptedTextState.ENCRYPTING
+}
+
+
+const FormatBox = ({entity, fileformat, title, descriptions}) => {
+  const [waiting, setWaiting] = React.useState(false);
+  const [state, setState] = React.useState(DownloadState.NOT_STARTED);
+  const [error, setError] = React.useState(null);
+
+  return <div style={{cursor: "pointer", marginBottom: '10px'}} onClick={async () => {
+    if (!waiting) {
+      setState(DownloadState.DOWNLOADING);
+      try {
+        await download(setWaiting, entity, setError, fileformat)
+        setState(DownloadState.DONE);
+      } catch (e) {
+        setState(DownloadState.ERROR);
+      }
+    }
+  }}>
+    <FrameBox style={{width: '100%'}}>
+      <div>
+        <Text style={{fontSize: '20px', fontWeight: 'bold'}}>{title}</Text><br/>
+        {state === DownloadState.DOWNLOADING &&
+            <Animator key={Math.random()} animator={{enter: 300, exit: 300}}><LoadingBar steps={45}
+                                                                                        estimated_time={12000}
+                                                                                        title={i18n.t("entity_generate_data")}/></Animator>
+        }
+        {state === DownloadState.ERROR &&
+        <p key={Math.random()} style={{marginBottom: 0, textAlign: 'left', color: '#ff8a8a'}}>
+          {error}
+        </p>}
+        {state === DownloadState.DONE &&
+        <p key={Math.random()} style={{marginBottom: 0, textAlign: 'left'}}>
+          {descriptions.map((line, index) =>
+            <span key={index} state={encryptMapping[state]}>- {line}<br/></span>
+          )}
+        </p>}
+      </div>
+    </FrameBox>
+  </div>
+}
+
+
 const DownloadDialog = ({dialogState, setDialogState}) => {
-  const [downloadWaiting, setDownloadingWaiting] = React.useState(false);
-  const [foundryDownload, setFoundryDownload] = React.useState(DownloadState.NOT_STARTED);
-  const [downloadError, setDownloadError] = React.useState(null);
-
   const {entity, _} = useEntity();
-  const estimatedTime = 10;
-
-  const encryptMapping = {
-    [DownloadState.NOT_STARTED]: EncryptedTextState.STATIC,
-    [DownloadState.DOWNLOADING]: EncryptedTextState.RUNNING,
-    [DownloadState.DONE]: EncryptedTextState.ENCRYPTING
-  }
 
   return <Dialog dialogState={dialogState} setDialogState={setDialogState} title={i18n.t("entity_download")}>
     <div style={{maxSize: '560px'}}>
@@ -73,37 +109,26 @@ const DownloadDialog = ({dialogState, setDialogState}) => {
         </h3>
       </div>
       <div>
-        <div style={{cursor: "pointer"}} onClick={async () => {
-          if (!downloadWaiting) {
-            setFoundryDownload(DownloadState.DOWNLOADING);
-            try {
-              await download(setDownloadingWaiting, entity, setDownloadError)
-              setFoundryDownload(DownloadState.DONE);
-            } catch (error) {
-              setFoundryDownload(DownloadState.ERROR);
-            }
-          }
-        }}>
-          <FrameBox style={{width: '100%'}}>
-            <div>
-              <Text style={{ fontSize: '20px', fontWeight: 'bold' }}>{i18n.t("entity_download_foundryvtt")}</Text><br/>
-              {foundryDownload === DownloadState.DOWNLOADING &&
-                  <Animator key={Math.random()} animator={{enter: 300, exit: 300}}><LoadingBar steps={45} estimated_time={12000} title={i18n.t("entity_generate_data")}/></Animator>
-              }
-              {foundryDownload === DownloadState.ERROR &&
-              <p key={Math.random()} style={{marginBottom: 0, textAlign: 'left', color: '#ff8a8a'}}>
-                {downloadError}
-              </p>}
-              {foundryDownload === DownloadState.DONE &&
-              <p key={Math.random()} style={{marginBottom: 0, textAlign: 'left'}}>
-                <span state={encryptMapping[foundryDownload]}>- {i18n.t("entity_download_foundryvtt_description1")}</span><br/>
-                <span state={encryptMapping[foundryDownload]}>- {i18n.t("entity_download_foundryvtt_description2")}</span><br/>
-                <span state={encryptMapping[foundryDownload]}>- {i18n.t("entity_download_foundryvtt_description3")}</span><br/>
-                <span state={encryptMapping[foundryDownload]}>- {i18n.t("entity_download_foundryvtt_description4")}</span><br/>
-              </p>}
-            </div>
-          </FrameBox>
-        </div>
+        <FormatBox
+          entity={entity}
+          fileformat="foundryvtt"
+          title={i18n.t("entity_download_foundryvtt")}
+          descriptions={[
+            i18n.t("entity_download_foundryvtt_description1"),
+            i18n.t("entity_download_foundryvtt_description2"),
+            i18n.t("entity_download_foundryvtt_description3"),
+            i18n.t("entity_download_foundryvtt_description4"),
+          ]}
+        />
+        <FormatBox
+          entity={entity}
+          fileformat="roll20"
+          title={i18n.t("entity_download_roll20")}
+          descriptions={[
+            i18n.t("entity_download_roll20_description1"),
+            i18n.t("entity_download_roll20_description2"),
+          ]}
+        />
       </div>
     </div>
   </Dialog>
