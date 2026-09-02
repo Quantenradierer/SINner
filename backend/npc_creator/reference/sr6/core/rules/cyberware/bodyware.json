@@ -1,21 +1,21 @@
 [
   {
-    "id": "sr6core/cyberware/bone lacing/body +1",
+    "id": "sr6core/cyberware/bone lacing/damage resistance +1",
     "source": {
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.attributes.body",
+    "modifies": "character.resist_physical_damage",
     "modifier_type": "ADD",
     "modification": "1"
   },
   {
-    "id": "sr6core/cyberware/bone lacing/body +2",
+    "id": "sr6core/cyberware/bone lacing/damage resistance +2",
     "source": {
       "page": 288,
       "book": "SR6Core"
     },
-    "modifies": "character.attributes.body",
+    "modifies": "character.resist_physical_damage",
     "modifier_type": "ADD",
     "modification": "2"
   },

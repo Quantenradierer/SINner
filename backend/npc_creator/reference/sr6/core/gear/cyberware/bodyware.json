@@ -7,7 +7,7 @@
     "avail": "3(L)",
     "cost": 8000,
     "wear_rules": [
-      "sr6core/cyberware/bone lacing/body +1",
+      "sr6core/cyberware/bone lacing/damage resistance +1",
       "sr6core/cyberware/bone lacing/defense +1",
       "sr6core/cyberware/bone lacing/unarmed damage 3p",
       "sr6core/cyberware/bone lacing/unarmed attack rating +1",
@@ -26,7 +26,7 @@
     "avail": "4(L)",
     "cost": 18000,
     "wear_rules": [
-      "sr6core/cyberware/bone lacing/body +2",
+      "sr6core/cyberware/bone lacing/damage resistance +2",
       "sr6core/cyberware/bone lacing/defense +1",
       "sr6core/cyberware/bone lacing/unarmed damage 4p",
       "sr6core/cyberware/bone lacing/unarmed attack rating +2",
@@ -45,7 +45,7 @@
     "avail": "6(L)",
     "cost": 30000,
     "wear_rules": [
-      "sr6core/cyberware/bone lacing/body +2",
+      "sr6core/cyberware/bone lacing/damage resistance +2",
       "sr6core/cyberware/bone lacing/defense +2",
       "sr6core/cyberware/bone lacing/unarmed damage 4p",
       "sr6core/cyberware/bone lacing/unarmed attack rating +3",
