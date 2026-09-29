@@ -40,7 +40,7 @@ class Command(BaseCommand):
         total = pending.count()
         self.stdout.write(f"{total} image(s) without a stored file")
 
-        done = skipped = missing = 0
+        done = skipped = missing = failed = 0
         for image in pending.iterator():
             if limit and done >= limit:
                 break
@@ -63,13 +63,20 @@ class Command(BaseCommand):
             with open(legacy, "rb") as fh:
                 raw = fh.read()
 
+            # Encode both before writing anything, so a corrupt source leaves
+            # no orphaned files behind. Truncated/damaged PNGs exist on disk;
+            # report them and keep going instead of aborting the whole run.
+            try:
+                full = encode_webp(raw)
+                thumb = encode_webp(raw, THUMBNAIL_SIZE)
+            except OSError as exc:
+                self.stderr.write(f"  unreadable source: {legacy} ({exc})")
+                failed += 1
+                continue
+
             stem = image.name
-            image.file.save(f"{stem}.webp", ContentFile(encode_webp(raw)), save=False)
-            image.thumbnail.save(
-                f"{stem}.thumb.webp",
-                ContentFile(encode_webp(raw, THUMBNAIL_SIZE)),
-                save=False,
-            )
+            image.file.save(f"{stem}.webp", ContentFile(full), save=False)
+            image.thumbnail.save(f"{stem}.thumb.webp", ContentFile(thumb), save=False)
             image.save(update_fields=["file", "thumbnail"])
             done += 1
 
@@ -88,6 +95,7 @@ class Command(BaseCommand):
 
         self.stdout.write(
             self.style.SUCCESS(
-                f"converted={done} skipped={skipped} missing_source={missing}"
+                f"converted={done} skipped={skipped} missing_source={missing} "
+                f"unreadable_source={failed}"
             )
         )
