@@ -39,6 +39,11 @@ never shadowed by the mutable /app/data volume).
 REFERENCE_DIR = os.path.join(os.path.dirname(__file__), "reference")
 
 """
+TypeSafe model for equipment selection; used when TYPESAFE_API_KEY is set
+"""
+JEV_MODEL = "jev-latest"
+
+"""
 file with words midjourney rejects, one per line
 """
 BANNED_WORD_FILE = os.path.join(REFERENCE_DIR, "midjourney_banned_words.txt")

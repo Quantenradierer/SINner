@@ -1,9 +1,6 @@
-
-from pydantic import BaseModel
-
-
-from npc_creator.operations.gpt.npc.equipment_fill import EquipmentFill
 from npc_creator.operations.gpt.npc.generic_fill import GenericFill
+from npc_creator.operations.jev.equipment_fill import JevEquipmentFill
+from npc_creator.operations.jev.sr6_fill import JevSr6Fill
 
 
 class Fill:
@@ -13,14 +10,13 @@ class Fill:
 
     def call(self):
         if self.schema == "sr6equipment":
-            return EquipmentFill(entity=self.entity, schema=self.schema).call()
-
-        result = GenericFill(entity=self.entity, schema=self.schema).call()
-
-        # The SR6 sheet shows an "Ausrüstung" box, but equipment lives in its
-        # own schema with a dedicated prompt. Fill it alongside the sr6 request
-        # so the box is populated without a separate client call.
+            return JevEquipmentFill(entity=self.entity, schema=self.schema).call()
         if self.schema == "sr6":
-            EquipmentFill(entity=self.entity, schema="sr6equipment").call()
+            result = JevSr6Fill(entity=self.entity, schema=self.schema).call()
+            # The SR6 sheet shows an "Ausrüstung" box, but equipment lives in
+            # its own schema. Fill it alongside the sr6 request so the box is
+            # populated without a separate client call.
+            JevEquipmentFill(entity=self.entity, schema="sr6equipment").call()
+            return result
 
-        return result
+        return GenericFill(entity=self.entity, schema=self.schema).call()
