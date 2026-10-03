@@ -29,21 +29,42 @@ LEVELS = [
 ]
 
 
-# magic, resonance and skills may be 0; the core attributes and edge may not
-MAY_BE_ZERO_PREFIXES = ("skill_", "magic", "resonance")
+NORMAL_RANGE = "Normal range is 1-6 for most metatypes; never 0."
+AWAKENED = "Most NPCs are not awakened: 0 unless the NPC is a magic user."
+RESONANT = "Most NPCs are not technomancers: 0 unless the NPC is a technomancer."
+
+# what the old GPT schema told its model, as hints per field
+HINTS = {
+    "agility": f"{NORMAL_RANGE} Elves up to 7, trolls up to 5.",
+    "reaction": f"{NORMAL_RANGE} Dwarves up to 5.",
+    "strength": f"{NORMAL_RANGE} Dwarves and orks up to 8, trolls up to 9.",
+    "willpower": f"{NORMAL_RANGE} Dwarves up to 7.",
+    "charisma": f"{NORMAL_RANGE} Elves up to 8, orks and trolls up to 5.",
+    "edge": "Humans 1-7, all other metatypes 1-6; never 0.",
+    "magic": f"{AWAKENED} A character never has both magic and resonance.",
+    "resonance": f"{RESONANT} A character never has both magic and resonance.",
+    "skill_astral": "0 unless the NPC has magic.",
+    "skill_conjuring": "0 unless the NPC has magic.",
+    "skill_sorcery": "0 unless the NPC has magic.",
+    "skill_enchanting": "0 unless the NPC has magic.",
+    "skill_tasking": "Always 0, except for technomancers. Hackers, deckers, riggers and everyone else without resonance have 0.",
+}
+
+
+def hint(name):
+    if name in HINTS:
+        return HINTS[name]
+    if name.startswith("skill_"):
+        return "Most people have few skill points; 0 if the NPC has no use for it."
+    return NORMAL_RANGE
 
 
 def build_questions(fields) -> dict:
-    def hint(name):
-        if name.startswith(MAY_BE_ZERO_PREFIXES):
-            return ""
-        return " This is never 0."
-
     return {
         name: Score(
             instructions=(
                 f"How high is the Shadowrun NPC's {name.replace('_', ' ')}, "
-                f"given the NPC described in `npc`?{hint(name)}"
+                f"given the NPC described in `npc`? {hint(name)}"
             ),
             criteria=LEVELS,
         )
