@@ -3,6 +3,7 @@ import {useLocation, useParams, Link, useNavigation} from "react-router-dom";
 import Tabs from "../entity/tabs";
 import CharDefault from "./tabDefault";
 import TabSR6 from "./tabSR6";
+import TabSR5 from "./tabSR5";
 import Warning from "../warning";
 import active_image from "../../active_image";
 import ImageGallery from "../imageGallery";
@@ -37,6 +38,12 @@ function NpcTabsHeader({selectedTab}) {
             name: i18next.t('tab_header_npcs_sr6'),
             element: <TabSR6/>,
             estimatedTime: 3500,
+        },
+        'sr5': {
+            url: `/npcs/${id}/sr5`,
+            name: i18next.t('tab_header_npcs_sr5'),
+            element: <TabSR5/>,
+            estimatedTime: 2500,
         },
         'gallery': {
             url: `/npcs/${id}/gallery`,

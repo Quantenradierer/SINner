@@ -76,6 +76,35 @@ def npc_state_without(values: dict, fields) -> dict:
     return npc_state({k: v for k, v in values.items() if k not in fields})
 
 
+def fill_fields(entity, fields, questions, kind):
+    """Ask Jev for ``fields`` and store the rounded answers on the entity."""
+    state = npc_state_without(entity.values, fields)
+    if entity.prompt and "prompt" not in state["npc"]:
+        state["npc"]["prompt"] = entity.prompt
+
+    request = GptRequest(kind=kind)
+    request.input = {"state": state, "questions": list(fields)}
+    try:
+        answers = TypeSafeClient(model=config.JEV_MODEL).system_one(state, questions)
+    except TypeSafeError as e:
+        logging.info(f"Jev Error: {e}")
+        request.output = str(e)
+        request.failed()
+        request.save()
+        return Failure("jev_raised_an_error", e)
+
+    values = {name: round(answers.scores[name].score) for name in fields}
+    request.output = json.dumps(
+        {"request_id": answers.request_id, "usage": answers.usage.model_dump() if answers.usage else None, "values": values}
+    )
+    request.finished()
+    request.save()
+
+    entity.add_values(values)
+    entity.save()
+    return Success(values)
+
+
 class JevSr6Fill:
     def __init__(self, entity, schema: str = "sr6"):
         self.entity = entity
@@ -91,30 +120,10 @@ class JevSr6Fill:
             return self._fill()
 
     def _fill(self):
-        fields = list(self.entity.SCHEMAS[self.schema].model_fields)
-        state = npc_state_without(self.entity.values, fields)
-        if self.entity.prompt and "prompt" not in state["npc"]:
-            state["npc"]["prompt"] = self.entity.prompt
-        questions = build_questions(fields)
-
-        request = GptRequest(kind=self.__class__.__name__)
-        request.input = {"state": state, "questions": fields}
-        try:
-            answers = TypeSafeClient(model=config.JEV_MODEL).system_one(state, questions)
-        except TypeSafeError as e:
-            logging.info(f"Jev Error: {e}")
-            request.output = str(e)
-            request.failed()
-            request.save()
-            return Failure("jev_raised_an_error", e)
-
-        values = {name: round(answers.scores[name].score) for name in fields}
-        request.output = json.dumps(
-            {"request_id": answers.request_id, "usage": answers.usage.model_dump() if answers.usage else None, "values": values}
-        )
-        request.finished()
-        request.save()
-
-        self.entity.add_values(values)
-        self.entity.save()
-        return Success(values)
+        # only what is missing: the attributes may already exist from the sr5 sheet
+        fields = [
+            name
+            for name in self.entity.SCHEMAS[self.schema].model_fields
+            if name not in self.entity.attributes
+        ]
+        return fill_fields(self.entity, fields, build_questions(fields), self.__class__.__name__)

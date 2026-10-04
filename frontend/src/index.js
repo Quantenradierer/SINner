@@ -102,6 +102,10 @@ const router = createBrowserRouter([
                 element: <EntityProvider entityType='npcs' selectedTab='sr6'><NpcTabsHeader/></EntityProvider>,
             },
             {
+                path: "npcs/:id/sr5",
+                element: <EntityProvider entityType='npcs' selectedTab='sr5'><NpcTabsHeader/></EntityProvider>,
+            },
+            {
                 path: "npcs/",
                 element: <EntityList filter={['Npc']} emptyText={i18n.t('npc_list_empty_text')}/>,
             },

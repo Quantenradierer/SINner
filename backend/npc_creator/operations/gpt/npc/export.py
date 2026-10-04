@@ -14,6 +14,8 @@ class Export:
 
     def call(self):
         for schema in self.entity.SCHEMAS.keys():
+            if schema == "sr5":  # the exports are SR6 only
+                continue
             self.entity.Fill(entity=self.entity, schema=schema).call()
             continue
 

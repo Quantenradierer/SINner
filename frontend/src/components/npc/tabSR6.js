@@ -1,8 +1,6 @@
 
 
 import {
-    Button,
-    FrameBox,
     FrameCorners,
     FrameHexagon,
     FrameLines,
@@ -15,9 +13,9 @@ import EditableText from "../editableText";
 import image_path from "../../image_path";
 import active_image from "../../active_image";
 import i18n from "../../i18n";
-import React, { useState } from 'react';
-import {position} from "polished";
+import React from 'react';
 import {physicalCondition, stunCondition} from "./sr6Rules";
+import {AttributeTable, ConditionTable} from "./sheetParts";
 import {useEntity} from "../entityProvider";
 import ImageFrame from "../cyberpunk/imageFrame";
 import {Animator} from "@arwes/animation";
@@ -86,71 +84,6 @@ const SkillTable = ({entity}) => {
     );
 };
 
-function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-const ConditionTable = ({ amount, title }) => {
-    if (!isNumeric(amount)) {
-        return null;
-    }
-    const [activeStates, setActiveStates] = useState(Array(amount).fill(false));
-
-    const buttonWidth = 42;
-    const buttonHeight = 42;
-
-    const toggleActiveState = (index) => {
-        setActiveStates(prevStates => {
-            const newStates = [...prevStates];
-            newStates[index] = !newStates[index];
-            return newStates;
-        });
-    };
-
-    const buttons = [];
-    for (let i = 0; i < amount; i++) {
-        const malus = Math.floor((i + 1) / 3);
-        buttons.push(
-            <Button
-                key={'ConditionTableButton' + i}
-                style={{width: buttonWidth, height: buttonHeight}}
-                FrameComponent={FrameBox}
-                active={true}
-                onClick={() => toggleActiveState(i)}
-                palette={activeStates[i] ? 'error' : 'success'}
-            >
-                <Text>{malus > 0 && '-'}{malus}</Text>
-            </Button>
-        );
-    }
-
-    let pathData = '';
-    for (let i = 0; i < amount / 3; i++) {
-        const y = buttonHeight / 2 + i * buttonHeight;
-
-        let end = buttonWidth * 2 + buttonWidth / 2;
-        if (i === Math.floor(amount / 3)) {
-            end = (((amount - 1) % 3)) * buttonWidth + buttonWidth / 2
-        }
-        pathData += `${buttonWidth / 2} ${y} ${end} ${y} `;
-    }
-
-    return <FramePentagon style={{width: 'fit-content', paddingBottom: 15}} squareSize={35}>
-        <Text style={{marginBottom: 5}}>{title}</Text>
-
-        <div style={{display: 'grid', width: 'fit-content', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0px'}}>
-            {buttons}
-            <div style={{position: 'absolute', opacity: '30%', pointerEvents: 'none'}}>
-                <svg width={buttonWidth*3} height={buttonHeight*(amount / 3 + 1)} xmlns="http://www.w3.org/2000/svg">
-                    <path d={`M${buttonWidth/2} ${buttonHeight/2} ${pathData}`} stroke="#00F8F8" stroke-width="3" fill="none"/>
-                </svg>
-            </div>
-        </div>
-    </FramePentagon>;
-
-};
-
-
 const WeaponTable = ({entity}) => {
         const tableHeaders = [
         {id: 'weapon', data: i18n.t('Waffe')},
@@ -199,47 +132,6 @@ const TabSR6 = (props) => {
     const {entity, _} = useEntity();
     let activeImage = active_image(entity.image_objects) || {}
 
-    const tableHeaders = [
-        {id: 'bod', data: i18n.t('npc_attribute_bod')},
-        {id: 'agi', data: i18n.t('npc_attribute_agi')},
-        {id: 'rea', data: i18n.t('npc_attribute_rea')},
-        {id: 'str', data: i18n.t('npc_attribute_str')},
-        {id: 'wil', data: i18n.t('npc_attribute_wil')},
-        {id: 'log', data: i18n.t('npc_attribute_log')},
-        {id: 'int', data: i18n.t('npc_attribute_int')},
-        {id: 'cha', data: i18n.t('npc_attribute_cha')},
-        {id: 'edg', data: i18n.t('npc_attribute_edg')},
-        {id: 'mag', data: i18n.t('npc_attribute_mag')},
-        {id: 'res', data: i18n.t('npc_attribute_res')}
-    ]
-
-    let attributes = [
-        'constitution',
-        'agility',
-        'reaction',
-        'strength',
-        'willpower',
-        'logic',
-        'intuition',
-        'charisma',
-        'edge',
-        'magic',
-        'resonance'
-    ]
-    let columns = attributes.map(attribute => new Object({
-            id: attribute.substring(0, 3),
-            data:
-                <EditableText attributeName={attribute}
-                              entity={entity}
-                              check={false}
-                />
-        })
-    )
-
-    const tableContent = [{
-        id: 0,
-        columns: columns
-    }]
     return (
         <div>
             <Animator animator={{
@@ -254,7 +146,7 @@ const TabSR6 = (props) => {
                                     <h3 style={{margin: 0}}><Text>{entity.values['name']} </Text></h3>
                                 </FrameLines>
                                 <div style={{margin: '10px'}}>
-                                    <Table condensed headers={tableHeaders} dataset={tableContent}/>
+                                    <AttributeTable entity={entity}/>
                                     <SkillTable entity={entity}/>
                                 </div>
                             </FramePentagon>

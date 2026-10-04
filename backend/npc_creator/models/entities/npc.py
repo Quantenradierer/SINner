@@ -1,9 +1,10 @@
 from typing import Annotated
 
 from django.db import models
-from pydantic import constr, BaseModel, Field
+from pydantic import constr, BaseModel, Field, create_model
 
 from npc_creator.game_mechanics.named_list_with_mods import MinimalGear
+from npc_creator.game_mechanics.sr5.skills import SKILL_NAMES
 from npc_creator.game_mechanics.sr6.character import Metatype, Gender
 from npc_creator.models import Entity
 from npc_creator.operations.gpt import npc
@@ -59,7 +60,9 @@ class StoryAttributes(BaseModel):
     secret: str
 
 
-class SR6Attributes(BaseModel):
+class CoreAttributes(BaseModel):
+    """The attributes Shadowrun 5 and 6 share."""
+
     constitution: int = Field(
         ...,
         description="Integer",
@@ -105,6 +108,8 @@ class SR6Attributes(BaseModel):
         description="For resonant characters normally 0-6. For non-resonant characters 0",
     )
 
+
+class SR6Attributes(CoreAttributes):
     skill_astral: int
     skill_athletics: int
     skill_biotech: int
@@ -127,6 +132,13 @@ class SR6Attributes(BaseModel):
         ...,
         description="For non-resonant characters 0",
     )
+
+
+SR5Attributes = create_model(
+    "SR5Attributes",
+    __base__=CoreAttributes,
+    **{key: (int, ...) for key in SKILL_NAMES},
+)
 
 
 class SR6Equipment(BaseModel):
@@ -159,6 +171,7 @@ class Npc(Entity):
     SCHEMAS = {
         "default": StoryAttributes,
         "sr6": SR6Attributes,
+        "sr5": SR5Attributes,
         "sr6equipment": SR6Equipment,
         "gallery": GalleryAttributes,
     }
