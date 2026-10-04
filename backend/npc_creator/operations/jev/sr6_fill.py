@@ -41,12 +41,12 @@ HINTS = {
     "willpower": f"{NORMAL_RANGE} Dwarves up to 7.",
     "charisma": f"{NORMAL_RANGE} Elves up to 8, orks and trolls up to 5.",
     "edge": "Humans 1-7, all other metatypes 1-6; never 0.",
-    "magic": f"{AWAKENED} A character never has both magic and resonance.",
-    "resonance": f"{RESONANT} A character never has both magic and resonance.",
-    "skill_astral": "0 unless the NPC has magic.",
-    "skill_conjuring": "0 unless the NPC has magic.",
-    "skill_sorcery": "0 unless the NPC has magic.",
-    "skill_enchanting": "0 unless the NPC has magic.",
+    "magic": f"{AWAKENED} Always 0 for technomancers: magic and resonance exclude each other.",
+    "resonance": f"{RESONANT} Always 0 for mages, shamans, adepts and all other magic users: magic and resonance exclude each other.",
+    "skill_astral": "0 unless the NPC has magic. Always 0 for technomancers.",
+    "skill_conjuring": "0 unless the NPC has magic. Always 0 for technomancers.",
+    "skill_sorcery": "0 unless the NPC has magic. Always 0 for technomancers.",
+    "skill_enchanting": "0 unless the NPC has magic. Always 0 for technomancers.",
     "skill_tasking": "Always 0, except for technomancers. Hackers, deckers, riggers and everyone else without resonance have 0.",
 }
 
