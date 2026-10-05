@@ -9,6 +9,9 @@ from typing import Any
 # Selectable image themes: public name -> roomplanner theme.
 THEMES = {"neon2": "neon2_sprites", "modern2": "modern2_sprites"}
 DEFAULT_THEME = "neon2"
+# Language of the room names in the images and the VTT files (roomplanner.i18n.Language values).
+LANGUAGES = ("de", "en")
+DEFAULT_LANGUAGE = "de"
 
 MIN_SIDE_CELLS = 8
 MAX_SIDE_CELLS = 120  # 60 m
@@ -31,12 +34,14 @@ class RequestError(ValueError):
 class FloorplanRequest:
     params: Any  # roomplanner.params.GenerationParams
     theme: str  # key of THEMES
+    language: str = DEFAULT_LANGUAGE  # of LANGUAGES
 
     def as_attributes(self) -> dict[str, Any]:
         """JSON stored on the entity; feeds the gallery search and the detail page."""
         return {
             "params": self.params.model_dump(mode="json"),
             "theme": self.theme,
+            "language": self.language,
             "name": f"{self.params.building_type.value} "
             f"{self.params.width}x{self.params.depth}",
         }
@@ -63,6 +68,7 @@ def parse_request(data: object) -> FloorplanRequest:
 
     raw = dict(raw)
     raw.pop("room", None)  # a single room is a debugging mode; always the whole building
+    raw.pop("chamfer", None)  # corner cutting is gone
     # Generation is deterministic per seed; pin it so the stored request reproduces.
     if raw.get("seed") is None:
         import secrets
@@ -89,11 +95,16 @@ def parse_request(data: object) -> FloorplanRequest:
     theme = data.get("theme", DEFAULT_THEME)
     if theme not in THEMES:
         raise RequestError(f"theme must be one of {', '.join(THEMES)}")
-    return FloorplanRequest(params=params, theme=theme)
+    language = data.get("language", DEFAULT_LANGUAGE)
+    if language not in LANGUAGES:
+        raise RequestError(f"language must be one of {', '.join(LANGUAGES)}")
+    return FloorplanRequest(params=params, theme=theme, language=language)
 
 
-def options() -> dict[str, Any]:
-    """Choices and caps for the form."""
+def options(language: str = DEFAULT_LANGUAGE) -> dict[str, Any]:
+    """Choices and caps for the form, with the room and object names in `language`."""
+    from roomplanner.i18n import Language, web_catalogue
+
     from roomplanner.geometry import Side
     from roomplanner.params import (
         BuildingType,
@@ -111,11 +122,17 @@ def options() -> dict[str, Any]:
         "shape": [s.value for s in Shape],
         "sides": [s.value for s in Side],
         "themes": list(THEMES),
+        "languages": list(LANGUAGES),
+        "names": {
+            key: names
+            for key, names in web_catalogue(Language(language)).items()
+            if key in ("rooms", "objects")
+        },
         "limits": {
             "side_cells": [MIN_SIDE_CELLS, MAX_SIDE_CELLS],
             "floors_above": [1, MAX_FLOORS_ABOVE],
             "floors_below": [0, MAX_FLOORS_BELOW],
             "seed": [0, SEED_RANGE],
         },
-        "defaults": {"theme": DEFAULT_THEME},
+        "defaults": {"theme": DEFAULT_THEME, "language": DEFAULT_LANGUAGE},
     }

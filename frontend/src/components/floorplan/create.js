@@ -1,7 +1,7 @@
 import React from "react";
 import i18next from "../../i18n";
 import {TabsHeader} from "../cyberpunk/tabsHeader";
-import {pretty} from "./overlay";
+import {optionLabel} from "./names";
 import "./floorplan.css";
 
 const FORM_KEY = "floorplan.form";
@@ -9,7 +9,7 @@ const SEED_MAX = 2 ** 31;
 
 export const DEFAULT_FORM = {
     building_type: "office", width: 48, depth: 30, floors_above: 1, floors_below: 0,
-    shape: "rectangle", chamfer: 0, wealth: "middle", condition: "maintained", security: "low",
+    shape: "rectangle", wealth: "middle", condition: "maintained", security: "low",
     street_side: "S", service_side: "", seed: "", theme: "neon2",
 };
 
@@ -35,7 +35,7 @@ export function formFromAttributes(attributes) {
     return {
         ...DEFAULT_FORM,
         building_type: p.building_type, width: p.width, depth: p.depth,
-        floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape, chamfer: p.chamfer,
+        floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape,
         wealth: p.wealth, condition: p.condition, security: p.security, street_side: p.street_side,
         service_side: p.service_side || "", seed: p.seed ?? "", theme: attributes.theme,
     };
@@ -45,18 +45,13 @@ const requestFromForm = (v) => ({
     params: {
         building_type: v.building_type, width: +v.width, depth: +v.depth,
         floors_above: +v.floors_above, floors_below: +v.floors_below, shape: v.shape,
-        chamfer: +v.chamfer, wealth: v.wealth, condition: v.condition, security: v.security,
+        wealth: v.wealth, condition: v.condition, security: v.security,
         street_side: v.street_side, service_side: v.service_side || null,
         seed: v.seed === "" ? null : +v.seed,
     },
     theme: v.theme,
+    language: i18next.language,  // of the room names baked into the images
 });
-
-// Options are translated where a `floorplan_opt_<value>` key exists, else shown as roomplanner names them.
-const optionLabel = (value) => {
-    const key = `floorplan_opt_${value}`;
-    return i18next.exists(key) ? i18next.t(key) : pretty(value);
-};
 
 function Select({name, values, form, set, blank}) {
     return (
@@ -123,10 +118,6 @@ export default function ParamsForm({options, form, set, onSubmit}) {
                 <select value={form.shape} onChange={(e) => set("shape", e.target.value)}>
                     {options.shape.map((v) => <option key={v} value={v}>{optionLabel(v)}</option>)}
                 </select>
-            </Field>
-            <Field label={i18next.t("floorplan_chamfer")}>
-                <input type="number" min="0" value={form.chamfer}
-                       onChange={(e) => set("chamfer", e.target.value)}/>
             </Field>
             <Field label={i18next.t("floorplan_wealth")}>
                 <Select name="wealth" values={options.wealth} form={form} set={set}/>

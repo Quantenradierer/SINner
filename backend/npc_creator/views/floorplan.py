@@ -11,6 +11,8 @@ from npc_creator.models import Entity
 from npc_creator.models.entities.floorplan import Floorplan
 from npc_creator.models.floorplan import FloorplanFile, FloorplanGeneration
 from npc_creator.services.floorplan.request import (
+    DEFAULT_LANGUAGE,
+    LANGUAGES,
     PADDING,
     RequestError,
     options,
@@ -37,7 +39,10 @@ class FloorplanViewSet(viewsets.ViewSet):
     @action(detail=False, methods=["get"])
     def options(self, request):
         try:
-            return Response(options())
+            language = request.query_params.get("lang", DEFAULT_LANGUAGE)
+            return Response(
+                options(language if language in LANGUAGES else DEFAULT_LANGUAGE)
+            )
         except ImportError:
             return _error(
                 "Floorplan generation is not installed.",

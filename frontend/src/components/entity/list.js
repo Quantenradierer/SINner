@@ -81,7 +81,7 @@ class SearchPrompt extends React.Component {
                 <SearchIcon/>
               </span>
                             <input
-                                placeholder="Wortsuche / RegEx"
+                                placeholder={i18next.t("search_placeholder")}
                                 type="text"
                                 name="search"
                                 id="search"

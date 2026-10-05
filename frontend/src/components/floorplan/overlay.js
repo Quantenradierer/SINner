@@ -1,4 +1,6 @@
 import React from "react";
+import i18next from "../../i18n";
+import {objectName, pretty, roomName} from "./names";
 
 // Port of the overlay layers of the Floorplaner page (roomplanner/ui/index.html).
 // Coordinates are cells; the SVG's viewBox maps them onto the themed image.
@@ -16,7 +18,7 @@ export const LAYERS = [
     ["grid", false, "#7a8190"],
 ];
 
-export const pretty = (text) => String(text).replace(/_/g, " ");
+export {pretty};
 
 const cellsPath = (cells) => cells.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join("");
 
@@ -60,12 +62,12 @@ const CHAR_PX = ROOM_LABEL_PX * 0.55;  // average glyph width on screen
 function labelLines(room, zoom) {
     const [x0, y0, x1, y1] = bounds(room.cells);
     const width = (x1 - x0) * zoom, height = (y1 - y0) * zoom;
-    const name = pretty(room.type);
+    const name = roomName(room.type);
     if (width < name.length * CHAR_PX || height < ROOM_LABEL_PX * 1.6) return null;
     const lines = [[name, 1, "600"]];
     const detail = `${room.id} · ${room.cells.length * M2_PER_CELL} m²`;
     if (height >= ROOM_LABEL_PX * 3 && width >= detail.length * CHAR_PX * .8) lines.push([detail, .8]);
-    if (room.unit && height >= ROOM_LABEL_PX * 4.2) lines.push([`unit ${room.unit}`, .8]);
+    if (room.unit && height >= ROOM_LABEL_PX * 4.2) lines.push([`${i18next.t("floorplan_unit")} ${room.unit}`, .8]);
     return lines;
 }
 
@@ -91,12 +93,12 @@ export function roomInfo(room, floor) {
     const devices = floor.devices.filter((d) => d.room === room.id).map((d) => d.kind);
     const [x0, y0, x1, y1] = bounds(room.cells);
     return {
-        type: pretty(room.type),
+        type: roomName(room.type),
         id: room.id,
-        summary: `${room.cells.length} cells · ${room.cells.length * M2_PER_CELL} m² · ` +
+        summary: `${room.cells.length} ${i18next.t("floorplan_cells")} · ${room.cells.length * M2_PER_CELL} m² · ` +
             `${(x1 - x0) * .5}×${(y1 - y0) * .5} m`,
         unit: room.unit,
-        furniture: Object.entries(counts).map(([k, n]) => (n > 1 ? `${n}× ` : "") + pretty(k)),
+        furniture: Object.entries(counts).map(([k, n]) => (n > 1 ? `${n}× ` : "") + objectName(k)),
         devices: devices.map(pretty),
     };
 }
@@ -130,7 +132,7 @@ export default function FloorOverlay({building, floor, padding, zoom, layers: L,
                             <circle cx={light.x} cy={light.y} r={.25} fill={light.colour}
                                     stroke={light.state === "on" ? "#000" : "#f00"} strokeWidth={.08}
                                     strokeDasharray={light.state === "flicker" ? ".1 .1" : "none"}>
-                                <title>{`${light.kind} light · ${light.state} · r ${light.radius}`}</title>
+                                <title>{i18next.t("floorplan_light_title", {kind: light.kind, state: light.state, radius: light.radius})}</title>
                             </circle>
                         </React.Fragment>
                     );
@@ -149,12 +151,12 @@ export default function FloorOverlay({building, floor, padding, zoom, layers: L,
                             <rect x={obj.x + .05} y={obj.y + .05} width={obj.w - .1} height={obj.h - .1}
                                   fill={obj.blocking === false ? "rgba(155,227,122,.08)" : "rgba(155,227,122,.22)"}
                                   stroke="#9be37a" strokeWidth={.06} rx={.1}>
-                                <title>{`${obj.kind} (${obj.w}×${obj.h}, faces ${obj.facing})`}</title>
+                                <title>{`${objectName(obj.kind)} (${obj.w}×${obj.h}, ${i18next.t("floorplan_faces")} ${obj.facing})`}</title>
                             </rect>
                             {/* Front marker: a dot on the side the object faces. */}
                             <circle cx={fx} cy={fy} r={.12} fill="#9be37a"/>
                             {labelSize >= .22 && <Label x={obj.x + obj.w / 2} y={obj.y + obj.h / 2 + labelSize * .35}
-                                                        lines={[[pretty(obj.kind), 1]]} size={labelSize}
+                                                        lines={[[objectName(obj.kind), 1]]} size={labelSize}
                                                         colour="#d8f7c6"/>}
                         </React.Fragment>
                     );

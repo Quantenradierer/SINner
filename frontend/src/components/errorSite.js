@@ -1,4 +1,5 @@
 import React from "react";
+import i18next from "../i18n";
 import {Button, FrameLines, FramePentagon, Text} from "@arwes/core";
 
 
@@ -7,13 +8,11 @@ const ErrorPage = props => {
         <FramePentagon style={{maxWidth: 800, width: '100%', margin: 10}}>
             <Text>
                 <p>
-                    <b>Ups! Falsche Abbiegung in der Matrix genommen...</b><br/>
+                    <b>{i18next.t("error_title")}</b><br/>
                     <br/>
-                    Hey Chummer,<br/>
+                    {i18next.t("error_greeting")}<br/>
                     <br/>
-                    es sieht so aus, als hätten wir eine unerwartete Störung in der Matrix. Vielleicht wurde die
-                    gesuchte Verbindung von einem feindlichen Megakonzern gelöscht oder ein
-                    rachsüchtiger Sprite hat sie in den digitalen Abgrund gezogen.
+                    {i18next.t("error_body")}
                 </p>
             </Text>
         </FramePentagon>

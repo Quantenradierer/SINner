@@ -33,17 +33,17 @@ function Login() {
                 </FramePentagon>}
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     <div style={{margin: 5}}>
-                        <input type="text" id="username" placeholder="E-Mail" onChange={(e) => setUsername(e.target.value)} value={username}/>
+                        <input type="text" id="username" placeholder={i18n.t("auth_email")} onChange={(e) => setUsername(e.target.value)} value={username}/>
                         {usernameHint && <Text>{usernameHint}</Text>}
                     </div>
                     <div style={{margin: 5}}>
-                        <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}/>
+                        <input type="password" id="password" placeholder={i18n.t("auth_password")} onChange={(e) => setPassword(e.target.value)} value={password}/>
                         {passwordHint && <Text>{passwordHint}</Text>}
                     </div>
                     <Link style={{}} to={'/register'}>{i18n.t('auth_signup_description')}</Link>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>
                         <Button style={{margin: 3}} FrameComponent={FramePentagon} onClick={(event) => { event.preventDefault(); handleLogin(username, password, errorHandler)}}>
-                            <Text>Anmelden</Text>
+                            <Text>{i18n.t("auth_login")}</Text>
                         </Button>
                     </div>
                 </div>

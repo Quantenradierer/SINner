@@ -5,13 +5,9 @@ import active_image from "../../active_image";
 import image_path from "../../image_path";
 import Card from "../cyberpunk/card";
 import i18next from "../../i18n";
-import {pretty} from "./overlay";
+import {floorplanTitle, optionLabel} from "./names";
 
-const label = (_, value) => {
-    if (!value) return '';
-    const key = `floorplan_opt_${value}`;
-    return i18next.exists(key) ? i18next.t(key) : pretty(value);
-};
+const label = (_, value) => (value ? optionLabel(value) : '');
 
 const FloorplanListItem = ({entity}) => {
     const image = active_image(entity.image_objects) || {};
@@ -23,8 +19,8 @@ const FloorplanListItem = ({entity}) => {
         <div style={{minWidth: 250, maxWidth: 310, width: '100%', margin: '15px 7.5px 0px 7.5px'}}>
             <Link to={'/floorplans/' + entity.id}>
                 <Card
-                    image={{src: image_path('floorplans', image, true), alt: entity.values.name}}
-                    title={pretty(entity.values.name || '')}
+                    image={{src: image_path('floorplans', image, true), alt: floorplanTitle(entity.values.params)}}
+                    title={floorplanTitle(entity.values.params)}
                     hover
                     style={{width: 310, height: 400}}
                 >

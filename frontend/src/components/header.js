@@ -5,6 +5,7 @@ import { ReactComponent as BurgerMenu } from '../icons/burger.svg';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import is_logged_in from "../is_loggin_in";
 import {ProfileButton} from "../icons/profileButton";
+import i18next, {LANGUAGES, setLanguage} from "../i18n";
 
 const Header = (props) => {
     const navigate = useNavigate();
@@ -53,7 +54,19 @@ const Header = (props) => {
                                     marginRight: 15
 
                                 }}>
-                                    {!is_logged_in() && <Link className={"mobile-hide"} to={'/login'}><FrameLines style={{margin: 0, padding: 5}}><Text>Anmelden</Text></FrameLines></Link>}
+                                    <div role="group" aria-label={i18next.t("language_label")}
+                                         style={{display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 2}}>
+                                        {LANGUAGES.map((l) => (
+                                            <a key={l} href="#" lang={l} aria-current={l === i18next.language}
+                                               onClick={(e) => { e.preventDefault(); setLanguage(l); }}
+                                               style={{
+                                                   textTransform: 'uppercase', fontSize: '.85em',
+                                                   opacity: l === i18next.language ? 1 : .55,
+                                                   textDecoration: l === i18next.language ? 'underline' : 'none',
+                                               }}>{l}</a>
+                                        ))}
+                                    </div>
+                                    {!is_logged_in() && <Link className={"mobile-hide"} to={'/login'}><FrameLines style={{margin: 0, padding: 5}}><Text>{i18next.t("auth_login")}</Text></FrameLines></Link>}
                                     {is_logged_in() && <ProfileButton/>}
                                 </div>
                                 <div>

@@ -35,6 +35,13 @@ class TestParseRequest(TestCase):
         request = parse_request({"params": PARAMS})
 
         self.assertEqual("neon2", request.theme)
+        self.assertEqual("de", request.language)
+
+    def test_language_is_kept_and_stored(self):
+        request = parse_request({"params": PARAMS, "language": "en"})
+
+        self.assertEqual("en", request.language)
+        self.assertEqual("en", request.as_attributes()["language"])
 
     def test_rejects_what_exceeds_a_cap(self):
         for change in (
@@ -48,7 +55,7 @@ class TestParseRequest(TestCase):
                 parse_request({"params": {**PARAMS, **change}})
 
     def test_rejects_bad_options(self):
-        for extra in ({"theme": "neon"},):
+        for extra in ({"theme": "neon"}, {"language": "fr"}):
             with self.subTest(extra), self.assertRaises(RequestError):
                 parse_request({"params": PARAMS, **extra})
 
@@ -193,6 +200,17 @@ class TestFloorplanApi(TestCase):
         self.assertEqual(["neon2", "modern2"], options["themes"])
         self.assertIn("office", options["building_types"])
         self.assertEqual([1, 6], options["limits"]["floors_above"])
+
+    def test_options_name_rooms_in_the_requested_language(self):
+        german = self.client.get("/api/npc_creator/floorplans/options/?lang=de").json()
+        english = self.client.get("/api/npc_creator/floorplans/options/?lang=en").json()
+        unknown = self.client.get("/api/npc_creator/floorplans/options/?lang=fr").json()
+
+        self.assertEqual("Schlafzimmer", german["names"]["rooms"]["bedroom"])
+        self.assertNotEqual(
+            german["names"]["rooms"]["bedroom"], english["names"]["rooms"].get("bedroom")
+        )
+        self.assertEqual(german["names"], unknown["names"])
 
     def test_unknown_floorplan_is_404(self):
         response = self.client.get("/api/npc_creator/floorplans/00000000-0000-0000-0000-000000000000/")

@@ -8,7 +8,7 @@ import useFloorplan from "../../loader/use_floorplan";
 import Warning from "../warning";
 import ParamsForm, {FloorplanTabs, formFromAttributes, recallForm, rememberForm, requestFromFormValues} from "./create";
 import FloorplanViewer from "./viewer";
-import {pretty} from "./overlay";
+import {floorplanTitle, setNames} from "./names";
 
 function Progress({status}) {
     const total = Math.max(status.steps_total, 1);
@@ -42,8 +42,11 @@ export default function FloorplanWorkspace() {
     const [published, setPublished] = useState(false);
 
     useEffect(() => {
-        api.get("/api/npc_creator/floorplans/options/")
-            .then((response) => setOptions(response.data))
+        api.get("/api/npc_creator/floorplans/options/", {params: {lang: i18next.language}})
+            .then((response) => {
+                setNames(response.data.names);
+                setOptions(response.data);
+            })
             .catch(() => setMessage(i18next.t("floorplan_options_failed")));
     }, []);
 
@@ -91,7 +94,7 @@ export default function FloorplanWorkspace() {
     const failed = status && status.state === "failed" ? status.error || i18next.t("floorplan_failed") : null;
     const isPublished = floorplan && (floorplan.state === "Published" || published);
     const canPublish = floorplan && !isPublished && status && status.state === "done";
-    const title = floorplan ? pretty(floorplan.attributes.name) : i18next.t("tab_header_floorplans_create");
+    const title = floorplan ? floorplanTitle(floorplan.attributes.params) : i18next.t("tab_header_floorplans_create");
 
     let placeholder = i18next.t("floorplan_empty");
     if (id && !error && !floorplan) placeholder = i18next.t("floorplan_loading");

@@ -104,7 +104,7 @@ class PromptWrapped extends React.Component {
                         <Button FrameComponent={FramePentagon} style={{margin: 3, width: 150}}
                                 onClick={this.handleGenerate}
                                 disabled={disabled}>
-                            <Text>Generieren</Text>
+                            <Text>{i18next.t("prompt_generate")}</Text>
                         </Button>
                     </div>
                 </FrameLines>

@@ -26,21 +26,20 @@ function Feedback() {
 
     return (
         <FramePentagon key={'feedback' + wasSent} style={{width: 950}}>
-            {wasSent === 'sent' && <div key={'sent'}><Text>Danke für das Feedback!</Text></div>}
+            {wasSent === 'sent' && <div key={'sent'}><Text>{i18next.t("feedback_thanks")}</Text></div>}
             {wasSent === 'error' &&
-                <div key={'error'}><Text>Selbst das senden von Feedback funktioniert gerade nicht. Bitte sende dein
-                    Feedback per E-Mail an: <a href="mailto:schmidt@schattenakte.de">schmidt@schattenakte.de</a> </Text></div>}
+                <div key={'error'}><Text>{i18next.t("feedback_error")} <a href="mailto:schmidt@schattenakte.de">schmidt@schattenakte.de</a> </Text></div>}
 
             {wasSent === 'init' &&
                 <div key={'init'} style={{width: 880}}>
                     <form onSubmit={sendComment}>
-                        <input style={{margin: 15}} type="text" id="email" placeholder="Deine E-Mail (optional)"
+                        <input style={{margin: 15}} type="text" id="email" placeholder={i18next.t("feedback_email_placeholder")}
                                onChange={e => setEMail(e.target.value)} value={email}/>
                         <textarea style={{margin: 15}} type="text" id="comment" rows={5}
-                                  placeholder="Gibt es einen Bug? Verbesserungsvorschläge? Möchtest du dein Lieblingsrezept für Kekse teilen?"
+                                  placeholder={i18next.t("feedback_comment_placeholder")}
                                   onChange={e => setComment(e.target.value)} value={comment}/>
                         <div style={{display: 'flex', justifyContent: 'right'}}>
-                            <Button disabled={comment.length == 0} FrameComponent={FramePentagon}>Absenden</Button>
+                            <Button disabled={comment.length == 0} FrameComponent={FramePentagon}>{i18next.t("feedback_send")}</Button>
                         </div>
                     </form>
                 </div>

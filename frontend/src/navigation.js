@@ -63,16 +63,16 @@ const Navigation = props => {
 
         }}>
             <MenuHeader to="/npcs/" headerTitle={''}>
-                <MenuLink to="/npcs/create">Erstellen</MenuLink>
-                <MenuLink to="/npcs">Liste</MenuLink>
+                <MenuLink to="/npcs/create">{i18next.t("ui_create")}</MenuLink>
+                <MenuLink to="/npcs">{i18next.t("ui_list")}</MenuLink>
             </MenuHeader>
 
             <MenuHeader to="/floorplans/" headerTitle={i18next.t('menu_floorplans')}>
-                <MenuLink to="/floorplans/create">Erstellen</MenuLink>
-                <MenuLink to="/floorplans">Liste</MenuLink>
+                <MenuLink to="/floorplans/create">{i18next.t("ui_create")}</MenuLink>
+                <MenuLink to="/floorplans">{i18next.t("ui_list")}</MenuLink>
             </MenuHeader>
 
-            <MenuHeader headerTitle={'Sonstiges'}>
+            <MenuHeader headerTitle={i18next.t('menu_misc')}>
                 {!is_logged_in() && <MenuLink to="/login">{i18next.t('menu_login')}</MenuLink>}
                 {is_logged_in() && <MenuLink to="/logout">{i18next.t('menu_logout')}</MenuLink>}
                 <MenuLink to="/impressum">{i18next.t('menu_impressum')}</MenuLink>

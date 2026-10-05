@@ -32,6 +32,7 @@ def render_floorplan(
     from roomplanner.export.common import ExportOptions
     from roomplanner.export.uvtt import uvtt_json
     from roomplanner.generator import generate
+    from roomplanner.i18n import Language
     from roomplanner.render.image import RenderOptions, render_floor
     from roomplanner.render.theme import load_theme
     from roomplanner.serialization import to_json
@@ -43,10 +44,15 @@ def render_floorplan(
     building = generate(request.params)
     progress(1, steps_total)
 
+    language = Language(request.language)
     options = RenderOptions(
-        CELL_PX, padding=PADDING, lighting=True, supersample=SUPERSAMPLE
+        CELL_PX,
+        padding=PADDING,
+        lighting=True,
+        supersample=SUPERSAMPLE,
+        language=language,
     )
-    export_options = ExportOptions(cell_px=CELL_PX)
+    export_options = ExportOptions(cell_px=CELL_PX, language=language)
     for done, floor in enumerate(building.floors, start=2):
         picture = render_floor(building, floor, theme, options)
         buffer = io.BytesIO()

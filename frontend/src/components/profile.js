@@ -11,8 +11,8 @@ export const Profile = () => {
                 <title>{i18n.t(`page_profile_title`)}</title>
             </Helmet>
 
-            <h1>Account</h1>
-            <Text>An dieser Seite wird dran noch gearbeitet.</Text>
+            <h1>{i18n.t("header_profile")}</h1>
+            <Text>{i18n.t("profile_wip")}</Text>
             <br/>
             <br/>
             <br/>

@@ -6,7 +6,7 @@ import Blockquote from "../cyberpunk/blockquote";
 import {List, Text} from "@arwes/core";
 import React, {useState} from "react";
 import {Animator} from "@arwes/animation";
-import {translateAttributeValue} from "../../i18n";
+import i18next, {translateAttributeValue} from "../../i18n";
 
 function cutStreetname(name) {
     const match = name.match(/['"](.*?)['"]/);
@@ -43,8 +43,8 @@ function NPCListItem(props) {
                     </Blockquote>
                     <div style={{height: '10px'}}></div>
                     <List>
-                        <li><Text><b>Metatyp:</b> {translateAttributeValue('metatype', props.entity.values['metatype'])}</Text></li>
-                        <li><Text><b>Beruf:</b> {props.entity.values['profession']}</Text></li>
+                        <li><Text><b>{i18next.t("npc_metatype")}:</b> {translateAttributeValue('metatype', props.entity.values['metatype'])}</Text></li>
+                        <li><Text><b>{i18next.t("npc_profession")}:</b> {props.entity.values['profession']}</Text></li>
                     </List>
                 </Card>
             </Link>

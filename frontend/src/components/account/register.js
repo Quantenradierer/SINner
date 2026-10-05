@@ -50,16 +50,16 @@ function Register() {
             <form>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     <div style={{margin: 5}}>
-                        <input type="text" id="username" placeholder="E-Mail" onChange={(e) => setUsername(e.target.value)} value={username} style={{backgroundColor: emailHint? errorColor: ''}}/>
+                        <input type="text" id="username" placeholder={i18n.t("auth_email")} onChange={(e) => setUsername(e.target.value)} value={username} style={{backgroundColor: emailHint? errorColor: ''}}/>
                         {usernameHint && <div>{usernameHint}</div>}
                         {emailHint && <div><text palette='secondary'>{emailHint}</text></div>}
                     </div>
                     <div style={{margin: 5}}>
-                        <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}  style={{backgroundColor: passwordHint? errorColor: ''}}/>
+                        <input type="password" id="password" placeholder={i18n.t("auth_password")} onChange={(e) => setPassword(e.target.value)} value={password}  style={{backgroundColor: passwordHint? errorColor: ''}}/>
                         {passwordHint && <div><text palette='secondary'>{passwordHint}</text></div>}
                     </div>
                     <div style={{margin: 5}}>
-                        <input type="password" id="repassword" placeholder="Password (wiederholt)" onChange={(e) => setRepassword(e.target.value)} value={repassword} style={{backgroundColor: repasswordHint? errorColor: ''}}/>
+                        <input type="password" id="repassword" placeholder={i18n.t("auth_password_repeat")} onChange={(e) => setRepassword(e.target.value)} value={repassword} style={{backgroundColor: repasswordHint? errorColor: ''}}/>
                         {repasswordHint && <div>{repasswordHint}</div>}
                     </div>
                     <div style={{margin: 5, display: 'flex', flexDirection: 'column'}}>

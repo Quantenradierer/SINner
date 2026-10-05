@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import i18next from "../../i18n";
-import FloorOverlay, {LAYERS, pretty, roomInfo} from "./overlay";
+import FloorOverlay, {LAYERS, roomInfo} from "./overlay";
+import {optionLabel} from "./names";
 import "./floorplan.css";
 
 const MIN_ZOOM = 2;
@@ -62,7 +63,7 @@ function Tip({tip}) {
  * floorplan, then `placeholder` fills the map area. `actions` go into the download row.
  */
 // Grid lines every this many cells.
-const GRID_STEP = 3;
+const GRID_STEP = 2;
 
 export default function FloorplanViewer({floorplan, building, sidebar, sidebarFooter, actions, placeholder}) {
     const [level, setLevel] = useState(0);
@@ -197,7 +198,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                 {building && (
                     <div className="bar downloads">
                         <span className="caption">
-                            {pretty(building.params.building_type)} · {building.width}×{building.height}{" "}
+                            {optionLabel(building.params.building_type)} · {building.width}×{building.height}{" "}
                             ({building.width * .5}×{building.height * .5} m) · {i18next.t("floorplan_seed")} {building.seed}
                         </span>
                         <span className="spacer"/>
