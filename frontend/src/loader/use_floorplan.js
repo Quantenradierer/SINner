@@ -11,7 +11,7 @@ const isRunning = (status) => status && (status.state === 'queued' || status.sta
 const getFloorplan = async (id) => (await api.get(`/api/npc_creator/floorplans/${id}/`)).data;
 
 /**
- * Loads a floorplan and, while it renders, polls its status with a growing delay.
+ * Loads a floorplan (nothing for an empty id) and, while it renders, polls its status with a growing delay.
  * Stops on done/failed (then loads the finished floorplan) and after repeated network
  * errors. Returns {floorplan, status, building, error}; `status.state` is
  * queued | rendering | done | failed.
@@ -62,6 +62,7 @@ export default function useFloorplan(id) {
         setStatus(null);
         setBuilding(null);
         setError(null);
+        if (!id) return undefined;
         load().then(() => {
             if (!cancelled) timer = setTimeout(() => poll(FIRST_DELAY, 0), 0);
         }).catch((e) => !cancelled && setError(e));

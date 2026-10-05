@@ -1,4 +1,4 @@
-.floorplan-form label.field { display: flex; flex-direction: column; gap: 2px; margin: 6px 0; font-size: 0.85em; color: #8fbcbc; }
+.floorplan-form label.field { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 2px; margin: 6px 0; font-size: 0.85em; color: #8fbcbc; }
 .floorplan-form input[type=number], .floorplan-form select, .floorplan-viewer input[type=number] {
     font: inherit; color: #d9fafa; background: #0b1a1d; border: 1px solid #0a6e6e; padding: 4px 6px; min-width: 0; width: 100%; box-sizing: border-box;
 }
@@ -8,13 +8,12 @@
 .floorplan-form .checks { display: flex; flex-wrap: wrap; gap: 4px 14px; }
 .floorplan-form .checks label { display: flex; gap: 5px; align-items: center; cursor: pointer; }
 .floorplan-form .row { display: flex; gap: 6px; align-items: center; }
-.floorplan-form .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 24px; }
 
-.floorplan-viewer { display: flex; gap: 12px; align-items: flex-start; width: 100%; }
-.floorplan-viewer aside { width: 210px; flex: none; }
+.floorplan-viewer { display: flex; gap: 12px; align-items: stretch; width: 100%; height: calc(100vh - 190px); min-height: 480px; }
+.floorplan-viewer aside { width: 290px; flex: none; overflow-y: auto; padding-right: 6px; }
 .floorplan-viewer aside label { display: flex; gap: 6px; align-items: center; margin: 4px 0; cursor: pointer; font-size: 0.9em; }
 .floorplan-viewer .swatch { width: 10px; height: 10px; flex: none; }
-.floorplan-viewer main { flex: 1; min-width: 0; }
+.floorplan-viewer main { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
 .floorplan-viewer .bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
 .floorplan-viewer .bar .spacer { flex: 1; }
 .floorplan-viewer .bar button, .floorplan-viewer .bar a.fp-button {
@@ -22,7 +21,7 @@
 }
 .floorplan-viewer .bar button:hover, .floorplan-viewer .bar a.fp-button:hover { border-color: #00f8f8; }
 .floorplan-viewer .bar button.active { background: #00f8f8; color: #031213; }
-.floorplan-viewport { height: 70vh; overflow: auto; position: relative; border: 1px solid #0a4e4e; background: #06090b; }
+.floorplan-viewport { flex: 1; min-height: 0; overflow: auto; position: relative; border: 1px solid #0a4e4e; background: #06090b; }
 .floorplan-stage { position: relative; margin: 16px; }
 .floorplan-stage img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .floorplan-viewer svg text { font-family: inherit; pointer-events: none; }
@@ -33,10 +32,13 @@
 .floorplan-warnings { margin: 8px 0 0; padding-left: 20px; color: #f5c35b; }
 
 @media (max-width: 800px) {
-    .floorplan-viewer { flex-direction: column; }
-    .floorplan-viewer aside { width: 100%; }
+    .floorplan-viewer { flex-direction: column; height: auto; }
+    .floorplan-viewer aside { width: 100%; overflow-y: visible; }
+    .floorplan-viewport { height: 70vh; flex: none; }
 }
 
 .floorplan-form input[type=checkbox], .floorplan-viewer input[type=checkbox] { margin: 0; width: auto; flex: none; }
 .floorplan-form .checks label, .floorplan-viewer aside label { justify-content: flex-start; text-align: left; white-space: nowrap; }
 .floorplan-viewer aside label.grid-step { white-space: normal; flex-direction: column; align-items: flex-start; }
+.floorplan-placeholder { padding: 40px 20px; text-align: center; color: #8fbcbc; }
+.floorplan-form h4:first-child, .floorplan-viewer aside > h4:first-child { margin-top: 0; }

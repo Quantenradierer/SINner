@@ -1,11 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {Button, FrameLines, FramePentagon, Text} from "@arwes/core";
-import {Helmet} from "react-helmet";
-import {useNavigate} from "react-router-dom";
-import api from "../../axios";
+import React from "react";
+import {Button, FramePentagon, Text} from "@arwes/core";
 import i18next from "../../i18n";
 import {TabsHeader} from "../cyberpunk/tabsHeader";
-import Warning from "../warning";
 import {pretty} from "./overlay";
 import "./floorplan.css";
 
@@ -93,170 +89,126 @@ export const FloorplanTabs = () => (
     }}/>
 );
 
-export default function FloorplanCreate() {
-    const navigate = useNavigate();
-    const [options, setOptions] = useState(null);
-    const [form, setForm] = useState(recallForm);
-    const [error, setError] = useState(null);
-    const [busy, setBusy] = useState(false);
+/** The request body for the API from the form values. */
+export const requestFromFormValues = requestFromForm;
 
-    useEffect(() => {
-        api.get("/api/npc_creator/floorplans/options/")
-            .then((response) => setOptions(response.data))
-            .catch(() => setError(i18next.t("floorplan_options_failed")));
-    }, []);
-
-    const set = (name, value) => setForm((f) => {
-        const next = {...f, [name]: value};
-        if (name === "building_type" && options && !options.rooms[value].includes(next.room)) next.room = "";
-        return next;
-    });
+/** Sidebar with every generation parameter; `set(name, value)` updates one, `onSubmit` generates. */
+export default function ParamsForm({options, form, set, onSubmit, busy}) {
     const lone = form.room !== "";
-    const limits = options?.limits;
-
-    const submit = async (event) => {
-        event.preventDefault();
-        setBusy(true);
-        setError(null);
-        rememberForm(form);
-        try {
-            const response = await api.post("/api/npc_creator/floorplans/", requestFromForm(form));
-            navigate(`/floorplans/${response.data.id}`);
-        } catch (e) {
-            setError(e.response?.data?.error || i18next.t("prompt_failed_connection"));
-            setBusy(false);
-        }
-    };
+    const limits = options.limits;
 
     return (
-        <div style={{width: "100%", position: "relative"}}>
-            <Helmet><title>{i18next.t("page_floorplan_create_title")}</title></Helmet>
-            <FloorplanTabs/>
-            <FrameLines style={{width: "100%"}}>
-                <Text>{i18next.t("create_explanation_floorplan")}</Text>
-                {options && (
-                    <form className="floorplan-form" onSubmit={submit}>
-                        <div className="grid">
-                            <div>
-                                <h4>{i18next.t("floorplan_building")}</h4>
-                                <Field label={i18next.t("floorplan_type")}>
-                                    <Select name="building_type" values={options.building_types} form={form} set={set}/>
-                                </Field>
-                                <Field label={i18next.t("floorplan_room")}>
-                                    <Select name="room" values={options.rooms[form.building_type]} form={form}
-                                            set={set} blank={i18next.t("floorplan_whole_building")}/>
-                                </Field>
-                                <div className="pair">
-                                    <Field label={i18next.t("floorplan_width")}>
-                                        <NumberInput name="width" form={form} set={set} min={limits.side_cells[0]}
-                                                max={limits.side_cells[1]}/>
-                                    </Field>
-                                    <Field label={i18next.t("floorplan_depth")}>
-                                        <NumberInput name="depth" form={form} set={set} min={limits.side_cells[0]}
-                                                max={limits.side_cells[1]}/>
-                                    </Field>
-                                </div>
-                                <div className="pair" style={{opacity: lone ? .45 : 1}}>
-                                    <Field label={i18next.t("floorplan_floors_above")}>
-                                        <input type="number" disabled={lone} value={form.floors_above}
-                                               min={limits.floors_above[0]} max={limits.floors_above[1]}
-                                               onChange={(e) => set("floors_above", e.target.value)}/>
-                                    </Field>
-                                    <Field label={i18next.t("floorplan_floors_below")}>
-                                        <input type="number" disabled={lone} value={form.floors_below}
-                                               min={limits.floors_below[0]} max={limits.floors_below[1]}
-                                               onChange={(e) => set("floors_below", e.target.value)}/>
-                                    </Field>
-                                </div>
-                            </div>
-                            <div>
-                                <h4>{i18next.t("floorplan_character")}</h4>
-                                <Field label={i18next.t("floorplan_shape")}>
-                                    <select disabled={lone} value={form.shape} onChange={(e) => set("shape", e.target.value)}>
-                                        {options.shape.map((v) => <option key={v} value={v}>{optionLabel(v)}</option>)}
-                                    </select>
-                                </Field>
-                                <Field label={i18next.t("floorplan_chamfer")}>
-                                    <input type="number" min="0" disabled={lone} value={form.chamfer}
-                                           onChange={(e) => set("chamfer", e.target.value)}/>
-                                </Field>
-                                <Field label={i18next.t("floorplan_wealth")}>
-                                    <Select name="wealth" values={options.wealth} form={form} set={set}/>
-                                </Field>
-                                <Field label={i18next.t("floorplan_condition")}>
-                                    <Select name="condition" values={options.condition} form={form} set={set}/>
-                                </Field>
-                                <Field label={i18next.t("floorplan_security")}>
-                                    <Select name="security" values={options.security} form={form} set={set}/>
-                                </Field>
-                            </div>
-                            <div>
-                                <h4>{i18next.t("floorplan_site")}</h4>
-                                <Field label={i18next.t("floorplan_street_side")}>
-                                    <Select name="street_side" values={options.sides} form={form} set={set}/>
-                                </Field>
-                                <Field label={i18next.t("floorplan_service_side")}>
-                                    <Select name="service_side" values={options.sides} form={form} set={set}
-                                            blank={i18next.t("floorplan_opposite_of_street")}/>
-                                </Field>
-                                <div className="checks">
-                                    <label>
-                                        <input type="checkbox" checked={form.entrances_override}
-                                               onChange={(e) => set("entrances_override", e.target.checked)}/>
-                                        {i18next.t("floorplan_override_entrances")}
-                                    </label>
-                                </div>
-                                <div className="checks" style={{opacity: form.entrances_override ? 1 : .45}}>
-                                    {options.entrances.map((kind) => (
-                                        <label key={kind}>
-                                            <input type="checkbox" disabled={!form.entrances_override}
-                                                   checked={form.entrances.includes(kind)}
-                                                   onChange={(e) => set("entrances", e.target.checked
-                                                       ? [...form.entrances, kind]
-                                                       : form.entrances.filter((k) => k !== kind))}/>
-                                            {optionLabel(kind)}
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                            <div>
-                                <h4>{i18next.t("floorplan_seed")}</h4>
-                                <div className="row">
-                                    <input type="number" min={limits.seed[0]} max={limits.seed[1]} value={form.seed}
-                                           placeholder={i18next.t("floorplan_random")}
-                                           onChange={(e) => set("seed", e.target.value)}/>
-                                    <Button FrameComponent={FramePentagon} type="button" style={{margin: 0}}
-                                            title={i18next.t("floorplan_reroll")}
-                                            onClick={() => set("seed", Math.floor(Math.random() * SEED_MAX))}>
-                                        <Text>🎲</Text>
-                                    </Button>
-                                </div>
-                                <h4>{i18next.t("floorplan_image")}</h4>
-                                <Field label={i18next.t("floorplan_theme")}>
-                                    <Select name="theme" values={options.themes} form={form} set={set}/>
-                                </Field>
-                                <div className="pair">
-                                    <Field label={i18next.t("floorplan_cell_px")}>
-                                        <NumberInput name="cell_px" form={form} set={set} min={limits.cell_px[0]}
-                                                max={limits.cell_px[1]}/>
-                                    </Field>
-                                    <Field label={i18next.t("floorplan_supersample")}>
-                                        <NumberInput name="supersample" form={form} set={set} min={limits.supersample[0]}
-                                                max={limits.supersample[1]}/>
-                                    </Field>
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{display: "flex", justifyContent: "flex-end", marginTop: 10}}>
-                            <Button FrameComponent={FramePentagon} style={{margin: 3, width: 150}}
-                                    onClick={submit} disabled={busy}>
-                                <Text>{i18next.t("floorplan_generate")}</Text>
-                            </Button>
-                        </div>
-                    </form>
-                )}
-            </FrameLines>
-            {error && <div style={{marginTop: 15}}><Warning text={error}/></div>}
-        </div>
+        <form className="floorplan-form" onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
+            <h4>{i18next.t("floorplan_building")}</h4>
+            <Field label={i18next.t("floorplan_type")}>
+                <Select name="building_type" values={options.building_types} form={form} set={set}/>
+            </Field>
+            <Field label={i18next.t("floorplan_room")}>
+                <Select name="room" values={options.rooms[form.building_type]} form={form}
+                        set={set} blank={i18next.t("floorplan_whole_building")}/>
+            </Field>
+            <div className="pair">
+                <Field label={i18next.t("floorplan_width")}>
+                    <NumberInput name="width" form={form} set={set} min={limits.side_cells[0]}
+                                 max={limits.side_cells[1]}/>
+                </Field>
+                <Field label={i18next.t("floorplan_depth")}>
+                    <NumberInput name="depth" form={form} set={set} min={limits.side_cells[0]}
+                                 max={limits.side_cells[1]}/>
+                </Field>
+            </div>
+            <div className="pair" style={{opacity: lone ? .45 : 1}}>
+                <Field label={i18next.t("floorplan_floors_above")}>
+                    <input type="number" disabled={lone} value={form.floors_above}
+                           min={limits.floors_above[0]} max={limits.floors_above[1]}
+                           onChange={(e) => set("floors_above", e.target.value)}/>
+                </Field>
+                <Field label={i18next.t("floorplan_floors_below")}>
+                    <input type="number" disabled={lone} value={form.floors_below}
+                           min={limits.floors_below[0]} max={limits.floors_below[1]}
+                           onChange={(e) => set("floors_below", e.target.value)}/>
+                </Field>
+            </div>
+            <Field label={i18next.t("floorplan_shape")}>
+                <select disabled={lone} value={form.shape} onChange={(e) => set("shape", e.target.value)}>
+                    {options.shape.map((v) => <option key={v} value={v}>{optionLabel(v)}</option>)}
+                </select>
+            </Field>
+            <Field label={i18next.t("floorplan_chamfer")}>
+                <input type="number" min="0" disabled={lone} value={form.chamfer}
+                       onChange={(e) => set("chamfer", e.target.value)}/>
+            </Field>
+            <Field label={i18next.t("floorplan_wealth")}>
+                <Select name="wealth" values={options.wealth} form={form} set={set}/>
+            </Field>
+            <Field label={i18next.t("floorplan_condition")}>
+                <Select name="condition" values={options.condition} form={form} set={set}/>
+            </Field>
+            <Field label={i18next.t("floorplan_security")}>
+                <Select name="security" values={options.security} form={form} set={set}/>
+            </Field>
+
+            <h4>{i18next.t("floorplan_site")}</h4>
+            <Field label={i18next.t("floorplan_street_side")}>
+                <Select name="street_side" values={options.sides} form={form} set={set}/>
+            </Field>
+            <Field label={i18next.t("floorplan_service_side")}>
+                <Select name="service_side" values={options.sides} form={form} set={set}
+                        blank={i18next.t("floorplan_opposite_of_street")}/>
+            </Field>
+            <div className="checks">
+                <label>
+                    <input type="checkbox" checked={form.entrances_override}
+                           onChange={(e) => set("entrances_override", e.target.checked)}/>
+                    {i18next.t("floorplan_override_entrances")}
+                </label>
+            </div>
+            <div className="checks" style={{opacity: form.entrances_override ? 1 : .45}}>
+                {options.entrances.map((kind) => (
+                    <label key={kind}>
+                        <input type="checkbox" disabled={!form.entrances_override}
+                               checked={form.entrances.includes(kind)}
+                               onChange={(e) => set("entrances", e.target.checked
+                                   ? [...form.entrances, kind]
+                                   : form.entrances.filter((k) => k !== kind))}/>
+                        {optionLabel(kind)}
+                    </label>
+                ))}
+            </div>
+
+            <h4>{i18next.t("floorplan_seed")}</h4>
+            <div className="row">
+                <input type="number" min={limits.seed[0]} max={limits.seed[1]} value={form.seed}
+                       placeholder={i18next.t("floorplan_random")}
+                       onChange={(e) => set("seed", e.target.value)}/>
+                <Button FrameComponent={FramePentagon} type="button" style={{margin: 0}}
+                        title={i18next.t("floorplan_reroll")}
+                        onClick={() => set("seed", Math.floor(Math.random() * SEED_MAX))}>
+                    <Text>🎲</Text>
+                </Button>
+            </div>
+
+            <h4>{i18next.t("floorplan_image")}</h4>
+            <Field label={i18next.t("floorplan_theme")}>
+                <Select name="theme" values={options.themes} form={form} set={set}/>
+            </Field>
+            <div className="pair">
+                <Field label={i18next.t("floorplan_cell_px")}>
+                    <NumberInput name="cell_px" form={form} set={set} min={limits.cell_px[0]}
+                                 max={limits.cell_px[1]}/>
+                </Field>
+                <Field label={i18next.t("floorplan_supersample")}>
+                    <NumberInput name="supersample" form={form} set={set} min={limits.supersample[0]}
+                                 max={limits.supersample[1]}/>
+                </Field>
+            </div>
+
+            <div style={{marginTop: 12}}>
+                <Button FrameComponent={FramePentagon} style={{margin: 0, width: "100%"}}
+                        onClick={onSubmit} disabled={busy}>
+                    <Text>{i18next.t("floorplan_generate")}</Text>
+                </Button>
+            </div>
+        </form>
     );
 }

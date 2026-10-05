@@ -43,42 +43,49 @@ function Tip({tip}) {
 }
 
 /**
- * Floor tabs, layer toggles, zoom and downloads for a finished floorplan.
- * `floorplan` is the detail from the API, `building` its stored JSON.
+ * The whole workspace: `sidebar` (the parameters) and the layer toggles on the left, floor tabs,
+ * zoom and downloads above the map. `floorplan` is the detail from the API and `building` its
+ * stored JSON; both are null until there is a finished floorplan, then `placeholder` fills the
+ * map area. `actions` go into the toolbar.
  */
-export default function FloorplanViewer({floorplan, building}) {
-    const levels = building.floors.map((f) => f.level);
-    const [level, setLevel] = useState(levels.includes(0) ? 0 : levels[0]);
+export default function FloorplanViewer({floorplan, building, sidebar, actions, placeholder}) {
+    const [level, setLevel] = useState(0);
     const [layers, setLayers] = useState(defaultLayers);
     const [gridStep, setGridStep] = useState(3);
     const [zoom, setZoom] = useState(null);
     const [tip, setTip] = useState(null);
     const viewport = useRef(null);
 
-    const padding = floorplan.padding;
+    const padding = floorplan ? floorplan.padding : 0;
     const fit = () => {
         const el = viewport.current;
-        if (!el) return MIN_ZOOM * 4;
+        if (!el || !building) return MIN_ZOOM * 4;
         const zx = (el.clientWidth - 32) / (building.width + 2 * padding);
         const zy = (el.clientHeight - 32) / (building.height + 2 * padding);
         return Math.max(MIN_ZOOM, Math.min(zx, zy));
     };
-    useEffect(() => setZoom(fit()), [building]);
+    useEffect(() => {
+        if (!building) return;
+        const levels = building.floors.map((f) => f.level);
+        setLevel((current) => (levels.includes(current) ? current : levels.includes(0) ? 0 : levels[0]));
+        setZoom(fit());
+    }, [building]);
 
-    const floor = building.floors.find((f) => f.level === level);
-    const files = floorplan.floors.find((f) => f.level === level) || {};
+    const floor = building && building.floors.find((f) => f.level === level);
+    const files = (floorplan && floorplan.floors.find((f) => f.level === level)) || {};
     const zoomBy = (factor) => setZoom((z) => Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, z * factor)));
     const toggle = (key) => {
         const next = {...layers, [key]: !layers[key]};
         setLayers(next);
         store(LAYERS_KEY, next);
     };
-    const stem = `${building.params.building_type}_${building.seed}`;
+    const stem = building ? `${building.params.building_type}_${building.seed}` : "";
     const tag = level >= 0 ? `F${level}` : `B${-level}`;
 
     return (
         <div className="floorplan-viewer">
             <aside>
+                {sidebar}
                 <h4>{i18next.t("floorplan_layers")}</h4>
                 {LAYERS.map(([key, , swatch]) => (
                     <label key={key}>
@@ -95,33 +102,38 @@ export default function FloorplanViewer({floorplan, building}) {
             </aside>
             <main>
                 <div className="bar">
-                    {[...building.floors].sort((a, b) => b.level - a.level).map((f) => (
+                    {building && [...building.floors].sort((a, b) => b.level - a.level).map((f) => (
                         <button key={f.level} className={f.level === level ? "active" : ""}
                                 title={f.role ? `${i18next.t("floorplan_role")}: ${f.role}` : ""}
                                 onClick={() => setLevel(f.level)}>{f.name}</button>
                     ))}
                     <span className="spacer"/>
-                    <span style={{opacity: .7}}>
+                    {building && <span style={{opacity: .7}}>
                         {pretty(building.params.building_type)} · {building.width}×{building.height}{" "}
                         ({building.width * .5}×{building.height * .5} m) · {i18next.t("floorplan_seed")} {building.seed}
-                    </span>
+                    </span>}
                     <button onClick={() => zoomBy(1 / 1.25)} title={i18next.t("floorplan_zoom_out")}>−</button>
                     <button onClick={() => setZoom(fit())}>{i18next.t("floorplan_zoom_fit")}</button>
                     <button onClick={() => zoomBy(1.25)} title={i18next.t("floorplan_zoom_in")}>+</button>
                 </div>
                 <div className="bar">
-                    <a className="fp-button" href={files.image_url} download={`${stem}_${tag}.webp`}>WebP</a>
-                    {files.dd2vtt_url &&
-                        <a className="fp-button" href={files.dd2vtt_url} download={`${stem}_${tag}.dd2vtt`}
-                           title={i18next.t("floorplan_dd2vtt_hint")}>dd2vtt</a>}
-                    <a className="fp-button" href={floorplan.building_url} download={`${stem}.json`}>JSON</a>
+                    {building && <>
+                        <a className="fp-button" href={files.image_url} download={`${stem}_${tag}.webp`}>WebP</a>
+                        {files.dd2vtt_url &&
+                            <a className="fp-button" href={files.dd2vtt_url} download={`${stem}_${tag}.dd2vtt`}
+                               title={i18next.t("floorplan_dd2vtt_hint")}>dd2vtt</a>}
+                        <a className="fp-button" href={floorplan.building_url} download={`${stem}.json`}>JSON</a>
+                    </>}
+                    <span className="spacer"/>
+                    {actions}
                 </div>
                 <div className="floorplan-viewport" ref={viewport}
                      onWheel={(e) => {
                          if (!e.ctrlKey) return;
                          zoomBy(e.deltaY < 0 ? 1.15 : 1 / 1.15);
                      }}>
-                    {zoom !== null && floor && (
+                    {!building && <div className="floorplan-placeholder">{placeholder}</div>}
+                    {building && zoom !== null && floor && (
                         <div className="floorplan-stage"
                              style={{
                                  width: (building.width + 2 * padding) * zoom,
@@ -138,7 +150,7 @@ export default function FloorplanViewer({floorplan, building}) {
                     )}
                 </div>
                 <Tip tip={tip}/>
-                {building.warnings.length > 0 && (
+                {building && building.warnings.length > 0 && (
                     <ul className="floorplan-warnings">
                         {building.warnings.map((w, i) => <li key={i}>{w}</li>)}
                     </ul>

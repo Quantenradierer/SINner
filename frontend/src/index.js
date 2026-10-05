@@ -25,8 +25,7 @@ import {EntityProvider} from "./components/entityProvider";
 import EntityList from "./components/entity/list";
 import i18n from "./i18n";
 import {Profile} from "./components/profile";
-import FloorplanCreate from "./components/floorplan/create";
-import FloorplanPage from "./components/floorplan/page";
+import FloorplanWorkspace from "./components/floorplan/workspace";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -137,7 +136,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "floorplans/:id",
-                element: <FloorplanPage/>,
+                element: <FloorplanWorkspace/>,
             },
             {
                 path: "floorplans/",
@@ -145,7 +144,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "floorplans/create",
-                element: <FloorplanCreate/>,
+                element: <FloorplanWorkspace/>,
             },
             {
                 path: "collections/create",
