@@ -1,44 +1,86 @@
-.floorplan-form label.field { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 2px; margin: 6px 0; font-size: 0.85em; color: #8fbcbc; }
-.floorplan-form input[type=number], .floorplan-form select, .floorplan-viewer input[type=number] {
-    font: inherit; color: #d9fafa; background: #0b1a1d; border: 1px solid #0a6e6e; padding: 4px 6px; min-width: 0; width: 100%; box-sizing: border-box;
+/* Floorplan workspace: parameters on the left (scrolls, Generate stays visible), map on the right. */
+.floorplan-viewer {
+    display: flex; gap: 12px; align-items: stretch; width: 100%;
+    height: calc(100vh - 125px); min-height: 480px; margin-top: 8px;
 }
-.floorplan-form input:focus, .floorplan-form select:focus { outline: none; border-color: #00f8f8; }
-.floorplan-form h4, .floorplan-viewer h4 { margin: 14px 0 4px; font-size: 0.8em; letter-spacing: .08em; text-transform: uppercase; color: #00b8b8; border-bottom: 1px solid #0a4e4e; }
-.floorplan-form .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.floorplan-form .checks { display: flex; flex-wrap: wrap; gap: 4px 14px; }
-.floorplan-form .checks label { display: flex; gap: 5px; align-items: center; cursor: pointer; }
-.floorplan-form .row { display: flex; gap: 6px; align-items: center; }
-
-.floorplan-viewer { display: flex; gap: 12px; align-items: stretch; width: 100%; height: calc(100vh - 190px); min-height: 480px; }
-.floorplan-viewer aside { width: 290px; flex: none; overflow-y: auto; padding-right: 6px; }
-.floorplan-viewer aside label { display: flex; gap: 6px; align-items: center; margin: 4px 0; cursor: pointer; font-size: 0.9em; }
-.floorplan-viewer .swatch { width: 10px; height: 10px; flex: none; }
+.floorplan-viewer aside {
+    width: 290px; flex: none; display: flex; flex-direction: column; min-height: 0;
+    border: 1px solid #0a4e4e; background: rgba(0, 40, 44, .35);
+}
+.floorplan-viewer aside .scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 4px 12px 8px; }
+.floorplan-viewer aside .footer { flex: none; padding: 10px 12px; border-top: 1px solid #0a4e4e; background: #031a1d; }
 .floorplan-viewer main { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
-.floorplan-viewer .bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
-.floorplan-viewer .bar .spacer { flex: 1; }
-.floorplan-viewer .bar button, .floorplan-viewer .bar a.fp-button {
-    font: inherit; color: #00f8f8; background: transparent; border: 1px solid #0a6e6e; padding: 3px 10px; cursor: pointer; text-decoration: none;
+
+/* Form */
+.floorplan-form label.field {
+    display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+    gap: 2px; margin: 6px 0; font-size: 0.85em; color: #8fbcbc;
 }
-.floorplan-viewer .bar button:hover, .floorplan-viewer .bar a.fp-button:hover { border-color: #00f8f8; }
-.floorplan-viewer .bar button.active { background: #00f8f8; color: #031213; }
+.floorplan-form input[type=number], .floorplan-form select, .floorplan-viewer input[type=number] {
+    font: inherit; color: #d9fafa; background: #0b1a1d; border: 1px solid #0a6e6e; padding: 4px 6px;
+    min-width: 0; width: 100%; box-sizing: border-box; height: 30px;
+}
+.floorplan-form input::placeholder { color: #7fa9a9; }
+.floorplan-form h4 {
+    margin: 16px 0 4px; font-size: 0.8em; letter-spacing: .08em; text-transform: uppercase;
+    color: #00b8b8; border-bottom: 1px solid #0a4e4e;
+}
+.floorplan-form h4:first-child { margin-top: 8px; }
+.floorplan-form .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.floorplan-form .row { display: flex; gap: 6px; align-items: center; }
+.floorplan-form .row .fp-button { flex: none; width: 30px; height: 30px; padding: 0; }
+.field-error { color: #ffb27a; font-size: 0.85em; margin-bottom: 8px; }
+
+/* Controls share one look */
+.fp-button, .floorplan-viewer .bar button {
+    font: inherit; color: #00f8f8; background: transparent; border: 1px solid #0a6e6e;
+    padding: 3px 10px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+}
+.fp-button:hover, .floorplan-viewer .bar button:hover { border-color: #00f8f8; }
+.fp-button.primary, .floorplan-viewer .bar button.active { background: #00f8f8; color: #031213; }
+.floorplan-form input:focus-visible, .floorplan-form select:focus-visible, .floorplan-viewer input:focus-visible,
+.floorplan-viewer .bar button:focus-visible, .fp-button:focus-visible { outline: 2px solid #00f8f8; outline-offset: 1px; }
+.floorplan-viewer input[type=checkbox] { accent-color: #00f8f8; margin: 0; width: auto; flex: none; }
+
+/* Layer chips above the map */
+.floorplan-viewer .layers { display: flex; flex-wrap: wrap; gap: 4px 6px; margin-bottom: 8px; }
+.floorplan-viewer .chip {
+    display: inline-flex; gap: 6px; align-items: center; cursor: pointer; font-size: 0.85em;
+    padding: 2px 8px; border: 1px solid #0a4e4e; white-space: nowrap;
+}
+.floorplan-viewer .chip:hover { border-color: #00b8b8; }
+.floorplan-viewer .chip .swatch { width: 10px; height: 10px; flex: none; border: 1px solid rgba(0, 0, 0, .5); }
+.floorplan-viewer .chip.grid-step input[type=number] { width: 52px; height: 24px; padding: 0 4px; }
+
+/* Toolbars */
+.floorplan-viewer .bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
+.floorplan-viewer .bar.downloads { margin: 8px 0 0; }
+.floorplan-viewer .bar .spacer { flex: 1; }
+.floorplan-viewer .bar .caption { opacity: .7; font-size: 0.9em; }
+.floorplan-viewer .bar .group-label { opacity: .7; font-size: 0.85em; text-transform: uppercase; letter-spacing: .06em; }
+.floorplan-viewer .badge { font-size: 0.85em; padding: 2px 8px; border: 1px solid #c0702a; color: #ffb27a; }
+.floorplan-viewer .badge.ok { border-color: #0a8e6e; color: #7ff0c8; }
+.floorplan-viewer .badge a { margin-left: 6px; }
+
 .floorplan-viewport { flex: 1; min-height: 0; overflow: auto; position: relative; border: 1px solid #0a4e4e; background: #06090b; }
 .floorplan-stage { position: relative; margin: 16px; }
 .floorplan-stage img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .floorplan-viewer svg text { font-family: inherit; pointer-events: none; }
 .floorplan-room-hit { fill: transparent; cursor: crosshair; }
 .floorplan-room-hit:hover { fill: rgba(0, 248, 248, .16); }
-.floorplan-tip { position: fixed; pointer-events: none; background: rgba(3, 12, 14, .95); border: 1px solid #00f8f8; padding: 6px 8px; max-width: 280px; z-index: 2000; font-size: 0.85em; }
+.floorplan-tip {
+    position: fixed; pointer-events: none; background: rgba(3, 12, 14, .95); border: 1px solid #00f8f8;
+    padding: 6px 8px; width: 280px; z-index: 2000; font-size: 0.9em;
+}
 .floorplan-tip b { color: #00f8f8; }
-.floorplan-warnings { margin: 8px 0 0; padding-left: 20px; color: #f5c35b; }
+.floorplan-warnings { margin: 6px 0 0; color: #f5c35b; font-size: 0.85em; }
+.floorplan-warnings summary { cursor: pointer; }
+.floorplan-warnings[open] { max-height: 110px; overflow-y: auto; }
+.floorplan-placeholder { padding: 40px 20px; text-align: center; color: #8fbcbc; }
 
 @media (max-width: 800px) {
     .floorplan-viewer { flex-direction: column; height: auto; }
-    .floorplan-viewer aside { width: 100%; overflow-y: visible; }
-    .floorplan-viewport { height: 70vh; flex: none; }
+    .floorplan-viewer aside { width: 100%; }
+    .floorplan-viewer aside .scroll { overflow-y: visible; }
+    .floorplan-viewport { height: 55vh; flex: none; scroll-margin-top: 70px; }
 }
-
-.floorplan-form input[type=checkbox], .floorplan-viewer input[type=checkbox] { margin: 0; width: auto; flex: none; }
-.floorplan-form .checks label, .floorplan-viewer aside label { justify-content: flex-start; text-align: left; white-space: nowrap; }
-.floorplan-viewer aside label.grid-step { white-space: normal; flex-direction: column; align-items: flex-start; }
-.floorplan-placeholder { padding: 40px 20px; text-align: center; color: #8fbcbc; }
-.floorplan-form h4:first-child, .floorplan-viewer aside > h4:first-child { margin-top: 0; }

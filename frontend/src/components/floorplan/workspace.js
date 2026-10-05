@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Button, FramePentagon, Text} from "@arwes/core";
 import {Helmet} from "react-helmet";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import api from "../../axios";
 import i18next from "../../i18n";
 import useFloorplan from "../../loader/use_floorplan";
@@ -52,6 +52,12 @@ export default function FloorplanWorkspace() {
         if (floorplan) setForm(formFromAttributes(floorplan.attributes));
     }, [floorplan && floorplan.id]);
 
+    useEffect(() => {
+        if (building && window.innerWidth <= 800) {
+            document.querySelector(".floorplan-viewport")?.scrollIntoView({behavior: "smooth", block: "start"});
+        }
+    }, [building]);
+
     const set = (name, value) => setForm((f) => {
         const next = {...f, [name]: value};
         if (name === "building_type" && options && !options.rooms[value].includes(next.room)) next.room = "";
@@ -83,35 +89,51 @@ export default function FloorplanWorkspace() {
     };
 
     const running = status && (status.state === "queued" || status.state === "rendering");
-    const isUnpublished = floorplan && floorplan.state === "Unpublished" && !published;
-    const canPublish = isUnpublished && status && status.state === "done";
+    const failed = status && status.state === "failed" ? status.error || i18next.t("floorplan_failed") : null;
+    const isPublished = floorplan && (floorplan.state === "Published" || published);
+    const canPublish = floorplan && !isPublished && status && status.state === "done";
     const title = floorplan ? pretty(floorplan.attributes.name) : i18next.t("tab_header_floorplans_create");
 
     let placeholder = i18next.t("floorplan_empty");
     if (id && !error && !floorplan) placeholder = i18next.t("floorplan_loading");
     if (running) placeholder = <Progress status={status}/>;
-    if (status && status.state === "failed") {
-        placeholder = <Warning text={status.error || i18next.t("floorplan_failed")}/>;
-    }
+    if (failed) placeholder = <Warning text={failed}/>;
     if (error) placeholder = <Warning text={i18next.t("floorplan_load_failed")}/>;
 
     return (
         <div style={{width: "100%", position: "relative"}}>
             <Helmet><title>{`Schattenakte - ${title}`}</title></Helmet>
             <FloorplanTabs/>
-            {isUnpublished && <Warning text={i18next.t("floorplan_is_not_published")}/>}
-            {message && <Warning text={message}/>}
             <FloorplanViewer
                 floorplan={floorplan}
                 building={status && status.state === "done" ? building : null}
-                sidebar={options && <ParamsForm options={options} form={form} set={set} onSubmit={generate}
-                                                busy={busy || running}/>}
-                actions={canPublish && (
-                    <div style={{width: 170}}>
-                        <Button FrameComponent={FramePentagon} style={{margin: 0}} onClick={publish}>
-                            <Text>{i18next.t("floorplan_publish")}</Text>
+                sidebar={options && <ParamsForm options={options} form={form} set={set} onSubmit={generate}/>}
+                sidebarFooter={options && (
+                    <>
+                        {(message || failed) && <div className="field-error" role="alert">{message || failed}</div>}
+                        <Button FrameComponent={FramePentagon} style={{margin: 0, width: "100%"}}
+                                onClick={generate} disabled={busy || running}>
+                            <Text>{i18next.t("floorplan_generate")}</Text>
                         </Button>
-                    </div>
+                    </>
+                )}
+                actions={floorplan && status && status.state === "done" && (
+                    <>
+                        {canPublish ? (
+                            <>
+                                <span className="badge" title={i18next.t("floorplan_is_not_published")}>
+                                    {i18next.t("floorplan_unpublished")}
+                                </span>
+                                <button className="fp-button primary" onClick={publish}>
+                                    {i18next.t("floorplan_publish")}
+                                </button>
+                            </>
+                        ) : (
+                            <span className="badge ok">
+                                {i18next.t("floorplan_published")} ✓ <Link to="/floorplans">{i18next.t("floorplan_to_list")}</Link>
+                            </span>
+                        )}
+                    </>
                 )}
                 placeholder={placeholder}/>
         </div>

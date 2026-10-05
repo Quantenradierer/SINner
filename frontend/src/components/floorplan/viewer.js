@@ -6,6 +6,8 @@ import "./floorplan.css";
 const MIN_ZOOM = 2;
 const MAX_ZOOM = 200;
 const LAYERS_KEY = "floorplan.layers";
+const TIP_WIDTH = 300;
+const TIP_HEIGHT = 150;
 
 function recall(key) {
     try {
@@ -28,11 +30,22 @@ const defaultLayers = () => {
     return Object.fromEntries(LAYERS.map(([key, on]) => [key, key in saved ? saved[key] : on]));
 };
 
+/** "Erdgeschoss", "2. OG", "UG 1" instead of roomplanner's English floor names. */
+export const floorName = (level) => {
+    if (level === 0) return i18next.t("floorplan_floor_ground");
+    return level > 0
+        ? i18next.t("floorplan_floor_upper", {level})
+        : i18next.t("floorplan_floor_basement", {level: -level});
+};
+
 function Tip({tip}) {
     if (!tip) return null;
     const {info, x, y} = tip;
+    // Stay on screen: flip to the other side of the cursor near the right and bottom edges.
+    const left = x + 14 + TIP_WIDTH > window.innerWidth ? x - 14 - TIP_WIDTH : x + 14;
+    const top = y + 14 + TIP_HEIGHT > window.innerHeight ? y - 14 - TIP_HEIGHT : y + 14;
     return (
-        <div className="floorplan-tip" style={{left: Math.min(x + 14, window.innerWidth - 300), top: y + 14}}>
+        <div className="floorplan-tip" style={{left: Math.max(4, left), top: Math.max(4, top)}}>
             <b>{info.type}</b> <span style={{opacity: .6}}>{info.id}</span><br/>
             {info.summary}
             {info.unit && <><br/>{i18next.t("floorplan_unit")} {info.unit}</>}
@@ -43,18 +56,19 @@ function Tip({tip}) {
 }
 
 /**
- * The whole workspace: `sidebar` (the parameters) and the layer toggles on the left, floor tabs,
- * zoom and downloads above the map. `floorplan` is the detail from the API and `building` its
- * stored JSON; both are null until there is a finished floorplan, then `placeholder` fills the
- * map area. `actions` go into the toolbar.
+ * The workspace: `sidebar` (the parameters, scrolls) with `sidebarFooter` (always visible) on
+ * the left; layer toggles, floor tabs, zoom and downloads around the map. `floorplan` is the
+ * detail from the API and `building` its stored JSON; both are null until there is a finished
+ * floorplan, then `placeholder` fills the map area. `actions` go into the download row.
  */
-export default function FloorplanViewer({floorplan, building, sidebar, actions, placeholder}) {
+export default function FloorplanViewer({floorplan, building, sidebar, sidebarFooter, actions, placeholder}) {
     const [level, setLevel] = useState(0);
     const [layers, setLayers] = useState(defaultLayers);
     const [gridStep, setGridStep] = useState(3);
     const [zoom, setZoom] = useState(null);
     const [tip, setTip] = useState(null);
     const viewport = useRef(null);
+    const side = useRef(null);
 
     const padding = floorplan ? floorplan.padding : 0;
     const fit = () => {
@@ -70,6 +84,10 @@ export default function FloorplanViewer({floorplan, building, sidebar, actions, 
         setLevel((current) => (levels.includes(current) ? current : levels.includes(0) ? 0 : levels[0]));
         setZoom(fit());
     }, [building]);
+    // A newly opened floorplan shows its parameters from the top (type, size).
+    useEffect(() => {
+        if (side.current) side.current.scrollTop = 0;
+    }, [floorplan && floorplan.id]);
 
     const floor = building && building.floors.find((f) => f.level === level);
     const files = (floorplan && floorplan.floors.find((f) => f.level === level)) || {};
@@ -85,47 +103,40 @@ export default function FloorplanViewer({floorplan, building, sidebar, actions, 
     return (
         <div className="floorplan-viewer">
             <aside>
-                {sidebar}
-                <h4>{i18next.t("floorplan_layers")}</h4>
-                {LAYERS.map(([key, , swatch]) => (
-                    <label key={key}>
-                        <input type="checkbox" checked={!!layers[key]} onChange={() => toggle(key)}/>
-                        <span className="swatch" style={{background: swatch}}/>
-                        {i18next.t(`floorplan_layer_${key}`)}
-                    </label>
-                ))}
-                <label className="grid-step">
-                    {i18next.t("floorplan_grid_every")}
-                    <input type="number" min="1" value={gridStep} style={{width: 60}}
-                           onChange={(e) => setGridStep(+e.target.value || 1)}/>
-                </label>
+                <div className="scroll" ref={side}>{sidebar}</div>
+                <div className="footer">{sidebarFooter}</div>
             </aside>
             <main>
+                <div className="layers" role="group" aria-label={i18next.t("floorplan_layers")}>
+                    {LAYERS.map(([key, , swatch]) => (
+                        <label key={key} className="chip">
+                            <input type="checkbox" checked={!!layers[key]} onChange={() => toggle(key)}/>
+                            <span className="swatch" style={{background: swatch}}/>
+                            {i18next.t(`floorplan_layer_${key}`)}
+                        </label>
+                    ))}
+                    <label className="chip grid-step">
+                        {i18next.t("floorplan_grid_every")}
+                        <input type="number" min="1" value={gridStep}
+                               onChange={(e) => setGridStep(+e.target.value || 1)}/>
+                        {i18next.t("floorplan_grid_cells")}
+                    </label>
+                </div>
                 <div className="bar">
                     {building && [...building.floors].sort((a, b) => b.level - a.level).map((f) => (
                         <button key={f.level} className={f.level === level ? "active" : ""}
+                                aria-pressed={f.level === level}
                                 title={f.role ? `${i18next.t("floorplan_role")}: ${f.role}` : ""}
-                                onClick={() => setLevel(f.level)}>{f.name}</button>
+                                onClick={() => setLevel(f.level)}>{floorName(f.level)}</button>
                     ))}
                     <span className="spacer"/>
-                    {building && <span style={{opacity: .7}}>
-                        {pretty(building.params.building_type)} · {building.width}×{building.height}{" "}
-                        ({building.width * .5}×{building.height * .5} m) · {i18next.t("floorplan_seed")} {building.seed}
-                    </span>}
-                    <button onClick={() => zoomBy(1 / 1.25)} title={i18next.t("floorplan_zoom_out")}>−</button>
-                    <button onClick={() => setZoom(fit())}>{i18next.t("floorplan_zoom_fit")}</button>
-                    <button onClick={() => zoomBy(1.25)} title={i18next.t("floorplan_zoom_in")}>+</button>
-                </div>
-                <div className="bar">
                     {building && <>
-                        <a className="fp-button" href={files.image_url} download={`${stem}_${tag}.webp`}>WebP</a>
-                        {files.dd2vtt_url &&
-                            <a className="fp-button" href={files.dd2vtt_url} download={`${stem}_${tag}.dd2vtt`}
-                               title={i18next.t("floorplan_dd2vtt_hint")}>dd2vtt</a>}
-                        <a className="fp-button" href={floorplan.building_url} download={`${stem}.json`}>JSON</a>
+                        <button onClick={() => zoomBy(1 / 1.25)} title={i18next.t("floorplan_zoom_out")}
+                                aria-label={i18next.t("floorplan_zoom_out")}>−</button>
+                        <button onClick={() => setZoom(fit())}>{i18next.t("floorplan_zoom_fit")}</button>
+                        <button onClick={() => zoomBy(1.25)} title={i18next.t("floorplan_zoom_in")}
+                                aria-label={i18next.t("floorplan_zoom_in")}>+</button>
                     </>}
-                    <span className="spacer"/>
-                    {actions}
                 </div>
                 <div className="floorplan-viewport" ref={viewport}
                      onWheel={(e) => {
@@ -150,10 +161,27 @@ export default function FloorplanViewer({floorplan, building, sidebar, actions, 
                     )}
                 </div>
                 <Tip tip={tip}/>
+                {building && (
+                    <div className="bar downloads">
+                        <span className="caption">
+                            {pretty(building.params.building_type)} · {building.width}×{building.height}{" "}
+                            ({building.width * .5}×{building.height * .5} m) · {i18next.t("floorplan_seed")} {building.seed}
+                        </span>
+                        <span className="spacer"/>
+                        <span className="group-label">{i18next.t("floorplan_download")}</span>
+                        <a className="fp-button" href={files.image_url} download={`${stem}_${tag}.webp`}>WebP</a>
+                        {files.dd2vtt_url &&
+                            <a className="fp-button" href={files.dd2vtt_url} download={`${stem}_${tag}.dd2vtt`}
+                               title={i18next.t("floorplan_dd2vtt_hint")}>dd2vtt</a>}
+                        <a className="fp-button" href={floorplan.building_url} download={`${stem}.json`}>JSON</a>
+                        {actions}
+                    </div>
+                )}
                 {building && building.warnings.length > 0 && (
-                    <ul className="floorplan-warnings">
-                        {building.warnings.map((w, i) => <li key={i}>{w}</li>)}
-                    </ul>
+                    <details className="floorplan-warnings">
+                        <summary>{i18next.t("floorplan_warnings", {count: building.warnings.length})}</summary>
+                        {building.warnings.map((w, i) => <div key={i}>{w}</div>)}
+                    </details>
                 )}
             </main>
         </div>

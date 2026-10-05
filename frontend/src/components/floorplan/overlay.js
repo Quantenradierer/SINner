@@ -63,6 +63,24 @@ export function bounds(cells) {
     return [Math.min(...xs), Math.min(...ys), Math.max(...xs) + 1, Math.max(...ys) + 1];
 }
 
+const CHAR_PX = ROOM_LABEL_PX * 0.55;  // average glyph width on screen
+
+/**
+ * The label lines that fit into the room at this zoom: the name if it fits at all, the id
+ * and area if there is height for a second line, the unit for a third. Null: no label.
+ */
+function labelLines(room, zoom) {
+    const [x0, y0, x1, y1] = bounds(room.cells);
+    const width = (x1 - x0) * zoom, height = (y1 - y0) * zoom;
+    const name = pretty(room.type);
+    if (width < name.length * CHAR_PX || height < ROOM_LABEL_PX * 1.6) return null;
+    const lines = [[name, 1, "600"]];
+    const detail = `${room.id} · ${room.cells.length * M2_PER_CELL} m²`;
+    if (height >= ROOM_LABEL_PX * 3 && width >= detail.length * CHAR_PX * .8) lines.push([detail, .8]);
+    if (room.unit && height >= ROOM_LABEL_PX * 4.2) lines.push([`unit ${room.unit}`, .8]);
+    return lines;
+}
+
 function describeOpening(o) {
     const parts = [`${o.kind} (${o.edges.length} cells)`];
     if (o.state) parts.push(o.state);
@@ -233,10 +251,9 @@ export default function FloorOverlay({building, floor, padding, zoom, layers: L,
 
             {L.labels && <g>
                 {floor.rooms.map((room) => {
+                    const lines = labelLines(room, zoom);
+                    if (!lines) return null;
                     const [cx, cy] = centre(room.cells);
-                    const lines = [[pretty(room.type), 1, "600"],
-                        [`${room.id} · ${room.cells.length * M2_PER_CELL} m²`, .8]];
-                    if (room.unit) lines.push([`unit ${room.unit}`, .8]);
                     return <Label key={room.id} x={cx} y={cy} lines={lines} size={size}/>;
                 })}
             </g>}

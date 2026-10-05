@@ -1,5 +1,4 @@
 import React from "react";
-import {Button, FramePentagon, Text} from "@arwes/core";
 import i18next from "../../i18n";
 import {TabsHeader} from "../cyberpunk/tabsHeader";
 import {pretty} from "./overlay";
@@ -88,8 +87,8 @@ export const FloorplanTabs = () => (
 /** The request body for the API from the form values. */
 export const requestFromFormValues = requestFromForm;
 
-/** Sidebar with every generation parameter; `set(name, value)` updates one, `onSubmit` generates. */
-export default function ParamsForm({options, form, set, onSubmit, busy}) {
+/** Every generation parameter; `set(name, value)` updates one, Enter calls `onSubmit`. */
+export default function ParamsForm({options, form, set, onSubmit}) {
     const lone = form.room !== "";
     const limits = options.limits;
 
@@ -158,24 +157,15 @@ export default function ParamsForm({options, form, set, onSubmit, busy}) {
                 <input type="number" min={limits.seed[0]} max={limits.seed[1]} value={form.seed}
                        placeholder={i18next.t("floorplan_random")}
                        onChange={(e) => set("seed", e.target.value)}/>
-                <Button FrameComponent={FramePentagon} type="button" style={{margin: 0}}
-                        title={i18next.t("floorplan_reroll")}
-                        onClick={() => set("seed", Math.floor(Math.random() * SEED_MAX))}>
-                    <Text>🎲</Text>
-                </Button>
+                <button type="button" className="fp-button" title={i18next.t("floorplan_reroll")}
+                        aria-label={i18next.t("floorplan_reroll")}
+                        onClick={() => set("seed", Math.floor(Math.random() * SEED_MAX))}>🎲</button>
             </div>
 
             <h4>{i18next.t("floorplan_image")}</h4>
             <Field label={i18next.t("floorplan_theme")}>
                 <Select name="theme" values={options.themes} form={form} set={set}/>
             </Field>
-
-            <div style={{marginTop: 12}}>
-                <Button FrameComponent={FramePentagon} style={{margin: 0, width: "100%"}}
-                        onClick={onSubmit} disabled={busy}>
-                    <Text>{i18next.t("floorplan_generate")}</Text>
-                </Button>
-            </div>
         </form>
     );
 }
