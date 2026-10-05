@@ -67,6 +67,11 @@ const Navigation = props => {
                 <MenuLink to="/npcs">Liste</MenuLink>
             </MenuHeader>
 
+            <MenuHeader to="/floorplans/" headerTitle={i18next.t('menu_floorplans')}>
+                <MenuLink to="/floorplans/create">Erstellen</MenuLink>
+                <MenuLink to="/floorplans">Liste</MenuLink>
+            </MenuHeader>
+
             <MenuHeader headerTitle={'Sonstiges'}>
                 {!is_logged_in() && <MenuLink to="/login">{i18next.t('menu_login')}</MenuLink>}
                 {is_logged_in() && <MenuLink to="/logout">{i18next.t('menu_logout')}</MenuLink>}

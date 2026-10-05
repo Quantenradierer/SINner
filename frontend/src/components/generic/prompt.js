@@ -134,6 +134,11 @@ const Prompt = props => {
             url: `/locations/create`,
             name: i18next.t('tab_header_locations_create'),
             element: <></>
+        },
+        'floorplans': {
+            url: `/floorplans/create`,
+            name: i18next.t('tab_header_floorplans_create'),
+            element: <></>
         }
     };
 

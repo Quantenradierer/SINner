@@ -23,6 +23,7 @@ import {useAtom} from "jotai";
 import {filterAtom} from "../../atom";
 import NPCListItem from "../npc/item";
 import LocationListItem from "../location/item";
+import FloorplanListItem from "../floorplan/item";
 import EntityLoader from "../../loader/entity_loader";
 import i18next from "i18next";
 import {CustomFrame} from "../cyberpunk/CustomFrame";
@@ -32,7 +33,8 @@ import Dialog from "../cyberpunk/dialog";
 
 const CARDS = {
     npc: NPCListItem,
-    location: LocationListItem
+    location: LocationListItem,
+    floorplan: FloorplanListItem,
 }
 
 
@@ -135,6 +137,10 @@ const EntityList = ({ filter, favorites, own, emptyText }) => {
         'locations': {
             url: `/locations`,
             name: i18next.t('tab_header_locations_list'),
+        },
+        'floorplans': {
+            url: `/floorplans`,
+            name: i18next.t('tab_header_floorplans_list'),
         },
 
     };

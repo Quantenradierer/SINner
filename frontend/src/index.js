@@ -25,6 +25,8 @@ import {EntityProvider} from "./components/entityProvider";
 import EntityList from "./components/entity/list";
 import i18n from "./i18n";
 import {Profile} from "./components/profile";
+import FloorplanCreate from "./components/floorplan/create";
+import FloorplanPage from "./components/floorplan/page";
 const ROOT_FONT_FAMILY = '"Titillium Web", sans-serif';
 
 const generalAnimator = {duration: {enter: 300, exit: 300}};
@@ -134,6 +136,18 @@ const router = createBrowserRouter([
                 element: <LocationPrompt/>,
             },
             {
+                path: "floorplans/:id",
+                element: <FloorplanPage/>,
+            },
+            {
+                path: "floorplans/",
+                element: <EntityList filter={['Floorplan']} emptyText={i18n.t('floorplan_list_empty_text')}/>,
+            },
+            {
+                path: "floorplans/create",
+                element: <FloorplanCreate/>,
+            },
+            {
                 path: "collections/create",
                 element: <Navigate to="/npcs/create" replace />,
             },
@@ -159,11 +173,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "collections/",
-                element: <EntityList filter={['Npc', 'Location', 'Custom']} favorites={true} emptyText={i18n.t('favorite_list_empty_text')}/>,
+                element: <EntityList filter={['Npc', 'Location', 'Floorplan', 'Custom']} favorites={true} emptyText={i18n.t('favorite_list_empty_text')}/>,
             },
             {
                 path: "own/",
-                element: <EntityList filter={['Npc', 'Location', 'Custom']} own={true} emptyText={i18n.t('own_list_empty_text')}/>,
+                element: <EntityList filter={['Npc', 'Location', 'Floorplan', 'Custom']} own={true} emptyText={i18n.t('own_list_empty_text')}/>,
             },
             {
                 path: "profile/",
