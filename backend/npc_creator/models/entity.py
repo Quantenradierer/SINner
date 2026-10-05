@@ -16,6 +16,7 @@ class Entity(models.Model):
         CRITTER = "Critter", "Critter"
         VEHICLE = "Vehicle", "Vehicle"
         OBJECTS = "Objects", "Objects"
+        FLOORPLAN = "Floorplan", "Floorplan"
 
     class States(models.TextChoices):
         UNPUBLISHED = "Unpublished", "Unpublished"

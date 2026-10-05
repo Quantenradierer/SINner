@@ -11,6 +11,7 @@ from .collection import Collection
 from .favorite import Favorite
 from .feedback import Feedback
 from .template_image import TemplateImage
+from .floorplan import FloorplanFile, FloorplanGeneration
 
 __all__ = [
     "Entity",
@@ -20,5 +21,7 @@ __all__ = [
     "Collection",
     "Favorite",
     "Feedback",
-    "TemplateImage"
+    "TemplateImage",
+    "FloorplanFile",
+    "FloorplanGeneration",
 ]
