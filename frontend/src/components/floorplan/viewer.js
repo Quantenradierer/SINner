@@ -68,6 +68,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
     const [level, setLevel] = useState(0);
     const [layers, setLayers] = useState(defaultLayers);
     const [zoom, setZoom] = useState(null);
+    const [pan, setPan] = useState({x: 0, y: 0});  // px offset of the map from the centre
     const [tip, setTip] = useState(null);
     const viewport = useRef(null);
     const side = useRef(null);
@@ -85,6 +86,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
         const levels = building.floors.map((f) => f.level);
         setLevel((current) => (levels.includes(current) ? current : levels.includes(0) ? 0 : levels[0]));
         setZoom(fit());
+        setPan({x: 0, y: 0});
     }, [building]);
     // A newly opened floorplan shows its parameters from the top (type, size).
     useEffect(() => {
@@ -95,8 +97,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
     const drag = useRef(null);
     const dragStart = (e) => {
         if (e.button !== 0) return;
-        const el = viewport.current;
-        drag.current = {x: e.clientX, y: e.clientY, left: el.scrollLeft, top: el.scrollTop, moved: false};
+        drag.current = {x: e.clientX, y: e.clientY, from: pan, moved: false};
     };
     const dragMove = (e) => {
         const d = drag.current, el = viewport.current;
@@ -109,8 +110,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
             setTip(null);
             el.classList.add("dragging");
         }
-        el.scrollLeft = d.left - dx;
-        el.scrollTop = d.top - dy;
+        setPan({x: d.from.x + dx, y: d.from.y + dy});
     };
     const dragEnd = (e) => {
         const el = viewport.current;
@@ -151,7 +151,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                     {building && <>
                         <button onClick={() => zoomBy(1 / 1.25)} title={i18next.t("floorplan_zoom_out")}
                                 aria-label={i18next.t("floorplan_zoom_out")}>−</button>
-                        <button onClick={() => setZoom(fit())}>{i18next.t("floorplan_zoom_fit")}</button>
+                        <button onClick={() => { setZoom(fit()); setPan({x: 0, y: 0}); }}>{i18next.t("floorplan_zoom_fit")}</button>
                         <button onClick={() => zoomBy(1.25)} title={i18next.t("floorplan_zoom_in")}
                                 aria-label={i18next.t("floorplan_zoom_in")}>+</button>
                     </>}
@@ -178,6 +178,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                     {building && zoom !== null && floor && (
                         <div className="floorplan-stage"
                              style={{
+                                 transform: `translate(calc(-50% + ${pan.x}px), calc(-50% + ${pan.y}px))`,
                                  width: (building.width + 2 * padding) * zoom,
                                  height: (building.height + 2 * padding) * zoom,
                              }}>
