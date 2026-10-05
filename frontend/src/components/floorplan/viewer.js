@@ -91,6 +91,34 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
         if (side.current) side.current.scrollTop = 0;
     }, [floorplan && floorplan.id]);
 
+    // Drag the map with the mouse (or a finger); a short press is still a click or hover.
+    const drag = useRef(null);
+    const dragStart = (e) => {
+        if (e.button !== 0) return;
+        const el = viewport.current;
+        drag.current = {x: e.clientX, y: e.clientY, left: el.scrollLeft, top: el.scrollTop, moved: false};
+    };
+    const dragMove = (e) => {
+        const d = drag.current, el = viewport.current;
+        if (!d) return;
+        const dx = e.clientX - d.x, dy = e.clientY - d.y;
+        if (!d.moved && Math.hypot(dx, dy) < 4) return;
+        if (!d.moved) {
+            d.moved = true;
+            el.setPointerCapture(e.pointerId);
+            setTip(null);
+            el.classList.add("dragging");
+        }
+        el.scrollLeft = d.left - dx;
+        el.scrollTop = d.top - dy;
+    };
+    const dragEnd = (e) => {
+        const el = viewport.current;
+        if (drag.current && drag.current.moved && el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+        el.classList.remove("dragging");
+        drag.current = null;
+    };
+
     const floor = building && building.floors.find((f) => f.level === level);
     const files = (floorplan && floorplan.floors.find((f) => f.level === level)) || {};
     const zoomBy = (factor) => setZoom((z) => Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, z * factor)));
@@ -119,12 +147,6 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                     ))}
                 </div>
                 <div className="bar">
-                    {building && [...building.floors].sort((a, b) => b.level - a.level).map((f) => (
-                        <button key={f.level} className={f.level === level ? "active" : ""}
-                                aria-pressed={f.level === level}
-                                title={f.role ? `${i18next.t("floorplan_role")}: ${f.role}` : ""}
-                                onClick={() => setLevel(f.level)}>{floorName(f.level)}</button>
-                    ))}
                     <span className="spacer"/>
                     {building && <>
                         <button onClick={() => zoomBy(1 / 1.25)} title={i18next.t("floorplan_zoom_out")}
@@ -134,7 +156,20 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                                 aria-label={i18next.t("floorplan_zoom_in")}>+</button>
                     </>}
                 </div>
+                <div className="floorplan-map">
+                {building && (
+                    <div className="floors" role="group" aria-label={i18next.t("floorplan_floor_list")}>
+                        {[...building.floors].sort((a, b) => b.level - a.level).map((f) => (
+                            <button key={f.level} className={f.level === level ? "active" : ""}
+                                    aria-pressed={f.level === level}
+                                    title={f.role ? `${i18next.t("floorplan_role")}: ${f.role}` : ""}
+                                    onClick={() => setLevel(f.level)}>{floorName(f.level)}</button>
+                        ))}
+                    </div>
+                )}
                 <div className="floorplan-viewport" ref={viewport}
+                     onPointerDown={dragStart} onPointerMove={dragMove} onPointerUp={dragEnd}
+                     onPointerCancel={dragEnd}
                      onWheel={(e) => {
                          if (!e.ctrlKey) return;
                          zoomBy(e.deltaY < 0 ? 1.15 : 1 / 1.15);
@@ -155,6 +190,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                                           onRoomLeave={() => setTip(null)}/>
                         </div>
                     )}
+                </div>
                 </div>
                 <Tip tip={tip}/>
                 {building && (
