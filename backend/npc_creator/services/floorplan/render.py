@@ -8,7 +8,13 @@ from django.core.files.base import ContentFile
 
 from npc_creator.models import Entity
 from npc_creator.models.floorplan import FloorplanFile
-from npc_creator.services.floorplan.request import PADDING, THEMES, FloorplanRequest
+from npc_creator.services.floorplan.request import (
+    CELL_PX,
+    PADDING,
+    SUPERSAMPLE,
+    THEMES,
+    FloorplanRequest,
+)
 from npc_creator.services.image_generation.store_image import store_entity_image
 
 Progress = Callable[[int, int], None]
@@ -38,12 +44,9 @@ def render_floorplan(
     progress(1, steps_total)
 
     options = RenderOptions(
-        request.cell_px,
-        padding=PADDING,
-        lighting=True,
-        supersample=request.supersample,
+        CELL_PX, padding=PADDING, lighting=True, supersample=SUPERSAMPLE
     )
-    export_options = ExportOptions(cell_px=request.cell_px)
+    export_options = ExportOptions(cell_px=CELL_PX)
     for done, floor in enumerate(building.floors, start=2):
         picture = render_floor(building, floor, theme, options)
         buffer = io.BytesIO()

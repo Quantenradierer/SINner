@@ -14,10 +14,9 @@ MIN_SIDE_CELLS = 8
 MAX_SIDE_CELLS = 120  # 60 m
 MAX_FLOORS_ABOVE = 6
 MAX_FLOORS_BELOW = 2
-MIN_CELL_PX = 12
-MAX_CELL_PX = 40
-DEFAULT_CELL_PX = 25
-MAX_SUPERSAMPLE = 2
+# Fixed image quality; not chosen per request.
+CELL_PX = 25
+SUPERSAMPLE = 1
 SEED_RANGE = 2**31
 
 # Image pixels around the building; the page's overlays rely on it.
@@ -32,16 +31,12 @@ class RequestError(ValueError):
 class FloorplanRequest:
     params: Any  # roomplanner.params.GenerationParams
     theme: str  # key of THEMES
-    cell_px: int
-    supersample: int
 
     def as_attributes(self) -> dict[str, Any]:
         """JSON stored on the entity; feeds the gallery search and the detail page."""
         return {
             "params": self.params.model_dump(mode="json"),
             "theme": self.theme,
-            "cell_px": self.cell_px,
-            "supersample": self.supersample,
             "name": f"{self.params.building_type.value} "
             f"{self.params.width}x{self.params.depth}",
         }
@@ -93,14 +88,7 @@ def parse_request(data: object) -> FloorplanRequest:
     theme = data.get("theme", DEFAULT_THEME)
     if theme not in THEMES:
         raise RequestError(f"theme must be one of {', '.join(THEMES)}")
-    cell_px = data.get("cell_px", DEFAULT_CELL_PX)
-    supersample = data.get("supersample", 1)
-    return FloorplanRequest(
-        params=params,
-        theme=theme,
-        cell_px=_int({"cell_px": cell_px}, "cell_px", MIN_CELL_PX, MAX_CELL_PX),
-        supersample=_int({"supersample": supersample}, "supersample", 1, MAX_SUPERSAMPLE),
-    )
+    return FloorplanRequest(params=params, theme=theme)
 
 
 def options() -> dict[str, Any]:
@@ -109,7 +97,6 @@ def options() -> dict[str, Any]:
     from roomplanner.params import (
         BuildingType,
         Condition,
-        EntranceKind,
         Security,
         Shape,
         Wealth,
@@ -123,20 +110,13 @@ def options() -> dict[str, Any]:
         "security": [s.value for s in Security],
         "shape": [s.value for s in Shape],
         "sides": [s.value for s in Side],
-        "entrances": [e.value for e in EntranceKind],
         "rooms": {t.value: sorted(load_rules(t).rooms) for t in BuildingType},
         "themes": list(THEMES),
         "limits": {
             "side_cells": [MIN_SIDE_CELLS, MAX_SIDE_CELLS],
             "floors_above": [1, MAX_FLOORS_ABOVE],
             "floors_below": [0, MAX_FLOORS_BELOW],
-            "cell_px": [MIN_CELL_PX, MAX_CELL_PX],
-            "supersample": [1, MAX_SUPERSAMPLE],
             "seed": [0, SEED_RANGE],
         },
-        "defaults": {
-            "theme": DEFAULT_THEME,
-            "cell_px": DEFAULT_CELL_PX,
-            "supersample": 1,
-        },
+        "defaults": {"theme": DEFAULT_THEME},
     }

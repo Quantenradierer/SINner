@@ -11,8 +11,7 @@ const SEED_MAX = 2 ** 31;
 export const DEFAULT_FORM = {
     building_type: "office", room: "", width: 48, depth: 30, floors_above: 1, floors_below: 0,
     shape: "rectangle", chamfer: 0, wealth: "middle", condition: "maintained", security: "low",
-    street_side: "S", service_side: "", entrances_override: false, entrances: ["main"],
-    seed: "", theme: "neon2", cell_px: 25, supersample: 1,
+    street_side: "S", service_side: "", seed: "", theme: "neon2",
 };
 
 export function recallForm() {
@@ -39,9 +38,7 @@ export function formFromAttributes(attributes) {
         building_type: p.building_type, room: p.room || "", width: p.width, depth: p.depth,
         floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape, chamfer: p.chamfer,
         wealth: p.wealth, condition: p.condition, security: p.security, street_side: p.street_side,
-        service_side: p.service_side || "", entrances_override: !!p.entrances,
-        entrances: p.entrances || DEFAULT_FORM.entrances, seed: p.seed ?? "",
-        theme: attributes.theme, cell_px: attributes.cell_px, supersample: attributes.supersample,
+        service_side: p.service_side || "", seed: p.seed ?? "", theme: attributes.theme,
     };
 }
 
@@ -52,9 +49,8 @@ const requestFromForm = (v) => ({
         chamfer: +v.chamfer, wealth: v.wealth, condition: v.condition, security: v.security,
         street_side: v.street_side, service_side: v.service_side || null, room: v.room || null,
         seed: v.seed === "" ? null : +v.seed,
-        ...(v.entrances_override ? {entrances: v.entrances} : {}),
     },
-    theme: v.theme, cell_px: +v.cell_px, supersample: +v.supersample,
+    theme: v.theme,
 });
 
 // Options are translated where a `floorplan_opt_<value>` key exists, else shown as roomplanner names them.
@@ -156,25 +152,6 @@ export default function ParamsForm({options, form, set, onSubmit, busy}) {
                 <Select name="service_side" values={options.sides} form={form} set={set}
                         blank={i18next.t("floorplan_opposite_of_street")}/>
             </Field>
-            <div className="checks">
-                <label>
-                    <input type="checkbox" checked={form.entrances_override}
-                           onChange={(e) => set("entrances_override", e.target.checked)}/>
-                    {i18next.t("floorplan_override_entrances")}
-                </label>
-            </div>
-            <div className="checks" style={{opacity: form.entrances_override ? 1 : .45}}>
-                {options.entrances.map((kind) => (
-                    <label key={kind}>
-                        <input type="checkbox" disabled={!form.entrances_override}
-                               checked={form.entrances.includes(kind)}
-                               onChange={(e) => set("entrances", e.target.checked
-                                   ? [...form.entrances, kind]
-                                   : form.entrances.filter((k) => k !== kind))}/>
-                        {optionLabel(kind)}
-                    </label>
-                ))}
-            </div>
 
             <h4>{i18next.t("floorplan_seed")}</h4>
             <div className="row">
@@ -192,16 +169,6 @@ export default function ParamsForm({options, form, set, onSubmit, busy}) {
             <Field label={i18next.t("floorplan_theme")}>
                 <Select name="theme" values={options.themes} form={form} set={set}/>
             </Field>
-            <div className="pair">
-                <Field label={i18next.t("floorplan_cell_px")}>
-                    <NumberInput name="cell_px" form={form} set={set} min={limits.cell_px[0]}
-                                 max={limits.cell_px[1]}/>
-                </Field>
-                <Field label={i18next.t("floorplan_supersample")}>
-                    <NumberInput name="supersample" form={form} set={set} min={limits.supersample[0]}
-                                 max={limits.supersample[1]}/>
-                </Field>
-            </div>
 
             <div style={{marginTop: 12}}>
                 <Button FrameComponent={FramePentagon} style={{margin: 0, width: "100%"}}

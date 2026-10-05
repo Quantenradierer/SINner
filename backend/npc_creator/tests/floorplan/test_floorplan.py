@@ -35,8 +35,6 @@ class TestParseRequest(TestCase):
         request = parse_request({"params": PARAMS})
 
         self.assertEqual("neon2", request.theme)
-        self.assertEqual(25, request.cell_px)
-        self.assertEqual(1, request.supersample)
 
     def test_rejects_what_exceeds_a_cap(self):
         for change in (
@@ -50,7 +48,7 @@ class TestParseRequest(TestCase):
                 parse_request({"params": {**PARAMS, **change}})
 
     def test_rejects_bad_options(self):
-        for extra in ({"theme": "neon"}, {"cell_px": 1000}, {"supersample": 4}):
+        for extra in ({"theme": "neon"},):
             with self.subTest(extra), self.assertRaises(RequestError):
                 parse_request({"params": PARAMS, **extra})
 
