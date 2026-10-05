@@ -8,7 +8,7 @@ const FORM_KEY = "floorplan.form";
 const SEED_MAX = 2 ** 31;
 
 export const DEFAULT_FORM = {
-    building_type: "office", room: "", width: 48, depth: 30, floors_above: 1, floors_below: 0,
+    building_type: "office", width: 48, depth: 30, floors_above: 1, floors_below: 0,
     shape: "rectangle", chamfer: 0, wealth: "middle", condition: "maintained", security: "low",
     street_side: "S", service_side: "", seed: "", theme: "neon2",
 };
@@ -34,7 +34,7 @@ export function formFromAttributes(attributes) {
     const p = attributes.params;
     return {
         ...DEFAULT_FORM,
-        building_type: p.building_type, room: p.room || "", width: p.width, depth: p.depth,
+        building_type: p.building_type, width: p.width, depth: p.depth,
         floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape, chamfer: p.chamfer,
         wealth: p.wealth, condition: p.condition, security: p.security, street_side: p.street_side,
         service_side: p.service_side || "", seed: p.seed ?? "", theme: attributes.theme,
@@ -46,7 +46,7 @@ const requestFromForm = (v) => ({
         building_type: v.building_type, width: +v.width, depth: +v.depth,
         floors_above: +v.floors_above, floors_below: +v.floors_below, shape: v.shape,
         chamfer: +v.chamfer, wealth: v.wealth, condition: v.condition, security: v.security,
-        street_side: v.street_side, service_side: v.service_side || null, room: v.room || null,
+        street_side: v.street_side, service_side: v.service_side || null,
         seed: v.seed === "" ? null : +v.seed,
     },
     theme: v.theme,
@@ -89,7 +89,6 @@ export const requestFromFormValues = requestFromForm;
 
 /** Every generation parameter; `set(name, value)` updates one, Enter calls `onSubmit`. */
 export default function ParamsForm({options, form, set, onSubmit}) {
-    const lone = form.room !== "";
     const limits = options.limits;
 
     return (
@@ -97,10 +96,6 @@ export default function ParamsForm({options, form, set, onSubmit}) {
             <h4>{i18next.t("floorplan_building")}</h4>
             <Field label={i18next.t("floorplan_type")}>
                 <Select name="building_type" values={options.building_types} form={form} set={set}/>
-            </Field>
-            <Field label={i18next.t("floorplan_room")}>
-                <Select name="room" values={options.rooms[form.building_type]} form={form}
-                        set={set} blank={i18next.t("floorplan_whole_building")}/>
             </Field>
             <div className="pair">
                 <Field label={i18next.t("floorplan_width")}>
@@ -112,25 +107,25 @@ export default function ParamsForm({options, form, set, onSubmit}) {
                                  max={limits.side_cells[1]}/>
                 </Field>
             </div>
-            <div className="pair" style={{opacity: lone ? .45 : 1}}>
+            <div className="pair">
                 <Field label={i18next.t("floorplan_floors_above")}>
-                    <input type="number" disabled={lone} value={form.floors_above}
+                    <input type="number" value={form.floors_above}
                            min={limits.floors_above[0]} max={limits.floors_above[1]}
                            onChange={(e) => set("floors_above", e.target.value)}/>
                 </Field>
                 <Field label={i18next.t("floorplan_floors_below")}>
-                    <input type="number" disabled={lone} value={form.floors_below}
+                    <input type="number" value={form.floors_below}
                            min={limits.floors_below[0]} max={limits.floors_below[1]}
                            onChange={(e) => set("floors_below", e.target.value)}/>
                 </Field>
             </div>
             <Field label={i18next.t("floorplan_shape")}>
-                <select disabled={lone} value={form.shape} onChange={(e) => set("shape", e.target.value)}>
+                <select value={form.shape} onChange={(e) => set("shape", e.target.value)}>
                     {options.shape.map((v) => <option key={v} value={v}>{optionLabel(v)}</option>)}
                 </select>
             </Field>
             <Field label={i18next.t("floorplan_chamfer")}>
-                <input type="number" min="0" disabled={lone} value={form.chamfer}
+                <input type="number" min="0" value={form.chamfer}
                        onChange={(e) => set("chamfer", e.target.value)}/>
             </Field>
             <Field label={i18next.t("floorplan_wealth")}>

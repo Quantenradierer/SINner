@@ -62,6 +62,7 @@ def parse_request(data: object) -> FloorplanRequest:
         raise RequestError("missing params")
 
     raw = dict(raw)
+    raw.pop("room", None)  # a single room is a debugging mode; always the whole building
     # Generation is deterministic per seed; pin it so the stored request reproduces.
     if raw.get("seed") is None:
         import secrets
@@ -101,7 +102,6 @@ def options() -> dict[str, Any]:
         Shape,
         Wealth,
     )
-    from roomplanner.rules import load_rules
 
     return {
         "building_types": [t.value for t in BuildingType],
@@ -110,7 +110,6 @@ def options() -> dict[str, Any]:
         "security": [s.value for s in Security],
         "shape": [s.value for s in Shape],
         "sides": [s.value for s in Side],
-        "rooms": {t.value: sorted(load_rules(t).rooms) for t in BuildingType},
         "themes": list(THEMES),
         "limits": {
             "side_cells": [MIN_SIDE_CELLS, MAX_SIDE_CELLS],

@@ -50,7 +50,6 @@
 }
 .floorplan-viewer .chip:hover { border-color: #00b8b8; }
 .floorplan-viewer .chip .swatch { width: 10px; height: 10px; flex: none; border: 1px solid rgba(0, 0, 0, .5); }
-.floorplan-viewer .chip.grid-step input[type=number] { width: 52px; height: 24px; padding: 0 4px; }
 
 /* Toolbars */
 .floorplan-viewer .bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }

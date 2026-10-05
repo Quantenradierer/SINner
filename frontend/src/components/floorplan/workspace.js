@@ -60,7 +60,6 @@ export default function FloorplanWorkspace() {
 
     const set = (name, value) => setForm((f) => {
         const next = {...f, [name]: value};
-        if (name === "building_type" && options && !options.rooms[value].includes(next.room)) next.room = "";
         return next;
     });
 

@@ -61,10 +61,12 @@ function Tip({tip}) {
  * detail from the API and `building` its stored JSON; both are null until there is a finished
  * floorplan, then `placeholder` fills the map area. `actions` go into the download row.
  */
+// Grid lines every this many cells.
+const GRID_STEP = 3;
+
 export default function FloorplanViewer({floorplan, building, sidebar, sidebarFooter, actions, placeholder}) {
     const [level, setLevel] = useState(0);
     const [layers, setLayers] = useState(defaultLayers);
-    const [gridStep, setGridStep] = useState(3);
     const [zoom, setZoom] = useState(null);
     const [tip, setTip] = useState(null);
     const viewport = useRef(null);
@@ -115,12 +117,6 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                             {i18next.t(`floorplan_layer_${key}`)}
                         </label>
                     ))}
-                    <label className="chip grid-step">
-                        {i18next.t("floorplan_grid_every")}
-                        <input type="number" min="1" value={gridStep}
-                               onChange={(e) => setGridStep(+e.target.value || 1)}/>
-                        {i18next.t("floorplan_grid_cells")}
-                    </label>
                 </div>
                 <div className="bar">
                     {building && [...building.floors].sort((a, b) => b.level - a.level).map((f) => (
@@ -152,7 +148,7 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                              }}>
                             {layers.image && files.image_url && <img src={files.image_url} alt=""/>}
                             <FloorOverlay building={building} floor={floor} padding={padding} zoom={zoom}
-                                          layers={layers} gridStep={gridStep}
+                                          layers={layers} gridStep={GRID_STEP}
                                           onRoomHover={(e, room) => setTip({
                                               info: roomInfo(room, floor), x: e.clientX, y: e.clientY,
                                           })}
