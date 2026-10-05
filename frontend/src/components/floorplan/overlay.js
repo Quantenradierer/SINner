@@ -8,11 +8,7 @@ const ROOM_LABEL_PX = 12;
 
 export const LAYERS = [
     ["image", true, "#888"],
-    ["rooms", false, "#6aa9ff"],
-    ["walls", false, "#e8e8e8"],
     ["labels", true, "#ffffff"],
-    ["units", false, "#c792ea"],
-    ["openings", false, "#f5c35b"],
     ["locks", false, "#ff6b6b"],
     ["objects", false, "#9be37a"],
     ["devices", false, "#ff8a3d"],
@@ -20,15 +16,7 @@ export const LAYERS = [
     ["grid", false, "#7a8190"],
 ];
 
-const FACING = {N: [0, -1], S: [0, 1], E: [1, 0], W: [-1, 0]};
-
 export const pretty = (text) => String(text).replace(/_/g, " ");
-
-function hue(text) {
-    let h = 0;
-    for (const ch of text) h = (h * 31 + ch.charCodeAt(0)) % 360;
-    return h;
-}
 
 const cellsPath = (cells) => cells.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join("");
 
@@ -81,15 +69,6 @@ function labelLines(room, zoom) {
     return lines;
 }
 
-function describeOpening(o) {
-    const parts = [`${o.kind} (${o.edges.length} cells)`];
-    if (o.state) parts.push(o.state);
-    if (o.material) parts.push(o.material);
-    if (o.lock) parts.push(`lock: ${o.lock}${o.rating ? " " + o.rating : ""}`);
-    if (o.entrance) parts.push(`${o.entrance} entrance`);
-    return parts.join(" · ");
-}
-
 // Text with a dark outline, lines = [[content, scale, weight], ...].
 function Label({x, y, lines, size, colour = "#fff"}) {
     return (
@@ -135,19 +114,6 @@ export default function FloorOverlay({building, floor, padding, zoom, layers: L,
              style={{position: "absolute", inset: 0, width: "100%", height: "100%"}}>
             {!L.image && <rect x={-padding} y={-padding} width={cols} height={rows} fill="#101217"/>}
 
-            {L.rooms && <g fillOpacity={L.image ? .35 : .55}>
-                {floor.rooms.map((room) => (
-                    <path key={room.id} d={cellsPath(room.cells)} fill={`hsl(${hue(room.type)} 55% 50%)`}/>
-                ))}
-            </g>}
-
-            {L.units && <g>
-                {floor.rooms.filter((room) => room.unit).map((room) => (
-                    <path key={room.id} d={cellsPath(room.cells)} fill={`hsl(${hue(room.unit)} 70% 60%)`}
-                          fillOpacity={.3}/>
-                ))}
-            </g>}
-
             {L.grid && <path fill="none" stroke="rgba(200,210,230,.35)" strokeWidth={.05} d={gridPath(building, gridStep)}/>}
 
             {L.lights && <g>
@@ -190,44 +156,6 @@ export default function FloorOverlay({building, floor, padding, zoom, layers: L,
                             {labelSize >= .22 && <Label x={obj.x + obj.w / 2} y={obj.y + obj.h / 2 + labelSize * .35}
                                                         lines={[[pretty(obj.kind), 1]]} size={labelSize}
                                                         colour="#d8f7c6"/>}
-                        </React.Fragment>
-                    );
-                })}
-            </g>}
-
-            {L.walls && <path d={edgesPath(floor.walls)} stroke="#e8e8e8" strokeWidth={.18}
-                              strokeLinecap="square" fill="none"/>}
-
-            {L.openings && <g fill="none" strokeLinecap="butt">
-                {floor.openings.map((o, i) => {
-                    const colour = {door: "#f5c35b", window: "#5ec8ff", breach: "#c08a5b"}[o.kind];
-                    const [x0, y0, x1, y1] = runCoords(o.edges);
-                    return (
-                        <React.Fragment key={i}>
-                            <path d={edgesPath(o.edges)} stroke={colour} strokeWidth={.32}
-                                  strokeDasharray={o.kind === "breach" || o.state === "missing" ? ".2 .15" : "none"}
-                                  opacity={o.state === "blocked" ? .5 : 1}>
-                                <title>{describeOpening(o)}</title>
-                            </path>
-                            {o.kind === "door" && o.state === "blocked" &&
-                                <path d={`M${x0} ${y0}L${x1} ${y1}`} stroke="#ff3b3b" strokeWidth={.1}/>}
-                        </React.Fragment>
-                    );
-                })}
-            </g>}
-
-            {L.devices && <g>
-                {floor.devices.map((d, i) => {
-                    const cx = d.x + .5, cy = d.y + .5;
-                    const [dx, dy] = FACING[d.facing];
-                    return (
-                        <React.Fragment key={i}>
-                            <path d={`M${cx} ${cy}L${cx + dx * .7} ${cy + dy * .7}`} stroke="#ff8a3d" strokeWidth={.1}/>
-                            <circle cx={cx} cy={cy} r={.38} fill="#2a1508" stroke="#ff8a3d" strokeWidth={.08}>
-                                <title>{`${pretty(d.kind)} · rating ${d.rating} · faces ${d.facing}`}</title>
-                            </circle>
-                            <Label x={cx} y={cy + .16} lines={[[d.kind[0].toUpperCase(), 1, "bold"]]} size={.45}
-                                   colour="#ffb27a"/>
                         </React.Fragment>
                     );
                 })}
