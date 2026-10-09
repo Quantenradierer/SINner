@@ -19,4 +19,4 @@ filelock
 basedpyright
 django-constance
 simpleeval
-roomplanner @ https://github.com/Quantenradierer/wuxing_building_planner/archive/ca803be0e124aa69cdd1117524ddcfba191f64b4.zip
+roomplanner @ https://github.com/Quantenradierer/wuxing_building_planner/archive/743fc0584962621c066ae3107c5201a173f337e3.zip

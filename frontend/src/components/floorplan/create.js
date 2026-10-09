@@ -7,16 +7,20 @@ import "./floorplan.css";
 const FORM_KEY = "floorplan.form";
 const SEED_MAX = 2 ** 31;
 
+// Only these building types are supported for now.
+const BUILDING_TYPES = ["office", "corp_office"];
+
 export const DEFAULT_FORM = {
     building_type: "office", width: 48, depth: 30, floors_above: 1, floors_below: 0,
-    shape: "rectangle", wealth: "middle", condition: "maintained", security: "low",
+    shape: "osm", layout: "partition_osm", wealth: "middle", condition: "maintained", security: "low",
     street_side: "S", service_side: "", seed: "", rooms_seed: "", furniture_seed: "",
     security_seed: "", theme: "neon2",
 };
 
 export function recallForm() {
     try {
-        return {...DEFAULT_FORM, ...JSON.parse(localStorage.getItem(FORM_KEY))};
+        const form = {...DEFAULT_FORM, ...JSON.parse(localStorage.getItem(FORM_KEY))};
+        return BUILDING_TYPES.includes(form.building_type) ? form : {...form, building_type: DEFAULT_FORM.building_type};
     } catch {
         return DEFAULT_FORM;
     }
@@ -36,7 +40,7 @@ export function formFromAttributes(attributes) {
     return {
         ...DEFAULT_FORM,
         building_type: p.building_type, width: p.width, depth: p.depth,
-        floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape,
+        floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape, layout: p.layout || "",
         wealth: p.wealth, condition: p.condition, security: p.security, street_side: p.street_side,
         service_side: p.service_side || "", seed: p.seed ?? "", rooms_seed: p.rooms_seed ?? "",
         furniture_seed: p.furniture_seed ?? "", security_seed: p.security_seed ?? "", theme: attributes.theme,
@@ -53,7 +57,7 @@ const SEEDS = [
 const requestFromForm = (v) => ({
     params: {
         building_type: v.building_type, width: +v.width, depth: +v.depth,
-        floors_above: +v.floors_above, floors_below: +v.floors_below, shape: v.shape,
+        floors_above: +v.floors_above, floors_below: +v.floors_below, shape: v.shape, layout: v.layout || null,
         wealth: v.wealth, condition: v.condition, security: v.security,
         street_side: v.street_side, service_side: v.service_side || null,
         seed: seedValue(v.seed), rooms_seed: seedValue(v.rooms_seed),
@@ -100,7 +104,7 @@ export default function ParamsForm({options, form, set, onSubmit, onReroll}) {
         <form className="floorplan-form" onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
             <h4>{i18next.t("floorplan_building")}</h4>
             <Field label={i18next.t("floorplan_type")}>
-                <Select name="building_type" values={options.building_types} form={form} set={set}/>
+                <Select name="building_type" values={options.building_types.filter((t) => BUILDING_TYPES.includes(t))} form={form} set={set}/>
             </Field>
             <div className="pair">
                 <Field label={i18next.t("floorplan_width")}>
@@ -128,6 +132,10 @@ export default function ParamsForm({options, form, set, onSubmit, onReroll}) {
                 <select value={form.shape} onChange={(e) => set("shape", e.target.value)}>
                     {options.shape.map((v) => <option key={v} value={v}>{optionLabel(v)}</option>)}
                 </select>
+            </Field>
+            <Field label={i18next.t("floorplan_layout")}>
+                <Select name="layout" values={options.layouts} form={form} set={set}
+                        blank={i18next.t("floorplan_layout_default")}/>
             </Field>
             {form.shape === "osm" && (
                 <p className="osm-credit">

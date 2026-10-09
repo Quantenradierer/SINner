@@ -24,6 +24,9 @@ SEED_RANGE = 2**31
 # Seeds for one aspect each (which room goes where, furniture, security devices).
 SUB_SEEDS = ("rooms_seed", "furniture_seed", "security_seed")
 
+# Corridor layout strategies a request may choose (None: the building type's own).
+LAYOUTS = ("partition", "partition_diagonal", "partition_osm")
+
 # Image pixels around the building; the page's overlays rely on it.
 PADDING = 2
 
@@ -84,6 +87,8 @@ def parse_request(data: object) -> FloorplanRequest:
             raw.pop(key, None)
         else:
             _int(raw, key, 0, SEED_RANGE)
+    if raw.get("layout") not in (None, *LAYOUTS):
+        raise RequestError(f"layout must be one of {', '.join(LAYOUTS)}")
     if "floors_above" in raw:
         _int(raw, "floors_above", 1, MAX_FLOORS_ABOVE)
     if "floors_below" in raw:
@@ -128,6 +133,7 @@ def options(language: str = DEFAULT_LANGUAGE) -> dict[str, Any]:
         "condition": [c.value for c in Condition],
         "security": [s.value for s in Security],
         "shape": [s.value for s in Shape],
+        "layouts": list(LAYOUTS),
         "sides": [s.value for s in Side],
         "themes": list(THEMES),
         "languages": list(LANGUAGES),
