@@ -110,6 +110,26 @@ class TestFloorplanApi(TestCase):
         self.assertEqual(Entity.Kinds.FLOORPLAN, floorplan.kind)
         self.assertEqual("office 30x20", floorplan.attributes["name"])
 
+    def test_same_parameters_reuse_the_existing_floorplan(self):
+        first, _ = self.create()
+        second, job = self.create()
+
+        self.assertEqual(200, second.status_code)
+        self.assertEqual(first.json()["id"], second.json()["id"])
+        self.assertTrue(second.json()["existing"])
+        job.assert_not_called()
+        self.assertEqual(1, Floorplan.objects.count())
+
+    def test_other_parameters_or_a_failed_render_make_a_new_floorplan(self):
+        first, _ = self.create()
+        other, _ = self.create(language="en")
+        self.assertNotEqual(first.json()["id"], other.json()["id"])
+
+        FloorplanGeneration.objects.update(state=FloorplanGeneration.State.FAILED)
+        retry, job = self.create()
+        self.assertEqual(201, retry.status_code)
+        job.assert_called_once()
+
     def test_create_records_the_creator(self):
         self.client.force_authenticate(self.user)
 

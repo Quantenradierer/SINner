@@ -61,7 +61,23 @@ class FloorplanViewSet(viewsets.ViewSet):
                 status.HTTP_503_SERVICE_UNAVAILABLE,
             )
 
-        floorplan = Floorplan(attributes=floorplan_request.as_attributes())
+        attributes = floorplan_request.as_attributes()
+        existing = _existing(attributes)
+        if existing:
+            return Response(
+                {
+                    "type": "success",
+                    "id": existing.uuid,
+                    "status": _status(_generation(existing)),
+                    "existing": True,
+                },
+                status=status.HTTP_200_OK,
+            )
+
+        floorplan = Floorplan(
+            attributes=attributes,
+            language=floorplan_request.language,
+        )
         if request.user.is_authenticated:
             floorplan.creator = request.user
         with transaction.atomic():
@@ -108,6 +124,24 @@ class FloorplanViewSet(viewsets.ViewSet):
         floorplan.state = Entity.States.PUBLISHED
         floorplan.save(update_fields=["state", "updated_at"])
         return Response({"type": "success", "state": floorplan.state})
+
+
+def _existing(attributes: dict) -> Floorplan | None:
+    """A floorplan made from the same parameters (generation is deterministic per seed),
+    unless its rendering failed."""
+    wanted = {key: attributes[key] for key in ("params", "theme", "language")}
+    candidates = Floorplan.objects.filter(
+        attributes__params__seed=attributes["params"]["seed"],
+        floorplan_generation__state__in=[
+            FloorplanGeneration.State.DONE,
+            FloorplanGeneration.State.QUEUED,
+            FloorplanGeneration.State.RENDERING,
+        ],
+    ).order_by("id")
+    for candidate in candidates:
+        if all(candidate.attributes.get(key) == value for key, value in wanted.items()):
+            return candidate
+    return None
 
 
 def _generation(floorplan: Floorplan) -> FloorplanGeneration:
