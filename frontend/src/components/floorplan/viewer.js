@@ -211,12 +211,6 @@ export default function FloorplanViewer({floorplan, building, sidebar, sidebarFo
                         {actions}
                     </div>
                 )}
-                {building && building.warnings.length > 0 && (
-                    <details className="floorplan-warnings">
-                        <summary>{i18next.t("floorplan_warnings", {count: building.warnings.length})}</summary>
-                        {building.warnings.map((w, i) => <div key={i}>{w}</div>)}
-                    </details>
-                )}
             </main>
         </div>
     );

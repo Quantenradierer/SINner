@@ -73,9 +73,6 @@
     padding: 6px 8px; width: 280px; z-index: 2000; font-size: 0.9em;
 }
 .floorplan-tip b { color: #00f8f8; }
-.floorplan-warnings { margin: 6px 0 0; color: #f5c35b; font-size: 0.85em; }
-.floorplan-warnings summary { cursor: pointer; }
-.floorplan-warnings[open] { max-height: 110px; overflow-y: auto; }
 .floorplan-placeholder { padding: 40px 20px; text-align: center; color: #8fbcbc; }
 
 @media (max-width: 800px) {
