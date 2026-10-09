@@ -66,12 +66,12 @@ export default function FloorplanWorkspace() {
         return next;
     });
 
-    const generate = async () => {
+    const generate = async (values = form) => {
         setBusy(true);
         setMessage(null);
-        rememberForm(form);
+        rememberForm(values);
         try {
-            const response = await api.post("/api/npc_creator/floorplans/", requestFromFormValues(form));
+            const response = await api.post("/api/npc_creator/floorplans/", requestFromFormValues(values));
             setPublished(false);
             navigate(`/floorplans/${response.data.id}`);
         } catch (e) {
@@ -92,6 +92,13 @@ export default function FloorplanWorkspace() {
 
     const running = status && (status.state === "queued" || status.state === "rendering");
     const failed = status && status.state === "failed" ? status.error || i18next.t("floorplan_failed") : null;
+    // A new seed generates at once.
+    const reroll = (name, value) => {
+        const next = {...form, [name]: value};
+        setForm(next);
+        if (!busy && !running) generate(next);
+    };
+
     const isPublished = floorplan && (floorplan.state === "Published" || published);
     const canPublish = floorplan && !isPublished && status && status.state === "done";
     const title = floorplan ? floorplanTitle(floorplan.attributes.params) : i18next.t("tab_header_floorplans_create");
@@ -109,12 +116,12 @@ export default function FloorplanWorkspace() {
             <FloorplanViewer
                 floorplan={floorplan}
                 building={status && status.state === "done" ? building : null}
-                sidebar={options && <ParamsForm options={options} form={form} set={set} onSubmit={generate}/>}
+                sidebar={options && <ParamsForm options={options} form={form} set={set} onSubmit={() => generate()} onReroll={reroll}/>}
                 sidebarFooter={options && (
                     <>
                         {(message || failed) && <div className="field-error" role="alert">{message || failed}</div>}
                         <Button FrameComponent={FramePentagon} style={{margin: 0, width: "100%"}}
-                                onClick={generate} disabled={busy || running}>
+                                onClick={() => generate()} disabled={busy || running}>
                             <Text>{i18next.t("floorplan_generate")}</Text>
                         </Button>
                     </>

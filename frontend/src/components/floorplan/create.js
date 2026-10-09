@@ -92,8 +92,8 @@ export const FloorplanTabs = () => (
 /** The request body for the API from the form values. */
 export const requestFromFormValues = requestFromForm;
 
-/** Every generation parameter; `set(name, value)` updates one, Enter calls `onSubmit`. */
-export default function ParamsForm({options, form, set, onSubmit}) {
+/** Every generation parameter; `set(name, value)` updates one, Enter calls `onSubmit`, a dice button calls `onReroll(name, seed)`. */
+export default function ParamsForm({options, form, set, onSubmit, onReroll}) {
     const limits = options.limits;
 
     return (
@@ -165,7 +165,7 @@ export default function ParamsForm({options, form, set, onSubmit}) {
                                onChange={(e) => set(name, e.target.value)}/>
                         <button type="button" className="fp-button" title={i18next.t("floorplan_reroll")}
                                 aria-label={i18next.t("floorplan_reroll")}
-                                onClick={() => set(name, Math.floor(Math.random() * SEED_MAX))}>🎲</button>
+                                onClick={() => onReroll(name, Math.floor(Math.random() * SEED_MAX))}>🎲</button>
                     </div>
                 </Field>
             ))}
