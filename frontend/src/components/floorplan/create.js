@@ -10,7 +10,8 @@ const SEED_MAX = 2 ** 31;
 export const DEFAULT_FORM = {
     building_type: "office", width: 48, depth: 30, floors_above: 1, floors_below: 0,
     shape: "rectangle", wealth: "middle", condition: "maintained", security: "low",
-    street_side: "S", service_side: "", seed: "", theme: "neon2",
+    street_side: "S", service_side: "", seed: "", rooms_seed: "", furniture_seed: "",
+    security_seed: "", theme: "neon2",
 };
 
 export function recallForm() {
@@ -37,9 +38,17 @@ export function formFromAttributes(attributes) {
         building_type: p.building_type, width: p.width, depth: p.depth,
         floors_above: p.floors_above, floors_below: p.floors_below, shape: p.shape,
         wealth: p.wealth, condition: p.condition, security: p.security, street_side: p.street_side,
-        service_side: p.service_side || "", seed: p.seed ?? "", theme: attributes.theme,
+        service_side: p.service_side || "", seed: p.seed ?? "", rooms_seed: p.rooms_seed ?? "",
+        furniture_seed: p.furniture_seed ?? "", security_seed: p.security_seed ?? "", theme: attributes.theme,
     };
 }
+
+const seedValue = (v) => (v === "" || v == null ? null : +v);
+
+const SEEDS = [
+    ["seed", "floorplan_seed_layout"], ["rooms_seed", "floorplan_seed_rooms"],
+    ["furniture_seed", "floorplan_seed_furniture"], ["security_seed", "floorplan_seed_security"],
+];
 
 const requestFromForm = (v) => ({
     params: {
@@ -47,7 +56,8 @@ const requestFromForm = (v) => ({
         floors_above: +v.floors_above, floors_below: +v.floors_below, shape: v.shape,
         wealth: v.wealth, condition: v.condition, security: v.security,
         street_side: v.street_side, service_side: v.service_side || null,
-        seed: v.seed === "" ? null : +v.seed,
+        seed: seedValue(v.seed), rooms_seed: seedValue(v.rooms_seed),
+        furniture_seed: seedValue(v.furniture_seed), security_seed: seedValue(v.security_seed),
     },
     theme: v.theme,
     language: i18next.language,  // of the room names baked into the images
@@ -119,6 +129,14 @@ export default function ParamsForm({options, form, set, onSubmit}) {
                     {options.shape.map((v) => <option key={v} value={v}>{optionLabel(v)}</option>)}
                 </select>
             </Field>
+            {form.shape === "osm" && (
+                <p className="osm-credit">
+                    {i18next.t("floorplan_osm_credit")}{" "}
+                    <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
+                        © OpenStreetMap contributors (ODbL)
+                    </a>
+                </p>
+            )}
             <Field label={i18next.t("floorplan_wealth")}>
                 <Select name="wealth" values={options.wealth} form={form} set={set}/>
             </Field>
@@ -139,14 +157,18 @@ export default function ParamsForm({options, form, set, onSubmit}) {
             </Field>
 
             <h4>{i18next.t("floorplan_seed")}</h4>
-            <div className="row">
-                <input type="number" min={limits.seed[0]} max={limits.seed[1]} value={form.seed}
-                       placeholder={i18next.t("floorplan_random")}
-                       onChange={(e) => set("seed", e.target.value)}/>
-                <button type="button" className="fp-button" title={i18next.t("floorplan_reroll")}
-                        aria-label={i18next.t("floorplan_reroll")}
-                        onClick={() => set("seed", Math.floor(Math.random() * SEED_MAX))}>🎲</button>
-            </div>
+            {SEEDS.map(([name, label]) => (
+                <Field key={name} label={i18next.t(label)}>
+                    <div className="row">
+                        <input type="number" min={limits.seed[0]} max={limits.seed[1]} value={form[name]}
+                               placeholder={i18next.t(name === "seed" ? "floorplan_random" : "floorplan_follows_layout")}
+                               onChange={(e) => set(name, e.target.value)}/>
+                        <button type="button" className="fp-button" title={i18next.t("floorplan_reroll")}
+                                aria-label={i18next.t("floorplan_reroll")}
+                                onClick={() => set(name, Math.floor(Math.random() * SEED_MAX))}>🎲</button>
+                    </div>
+                </Field>
+            ))}
 
             <h4>{i18next.t("floorplan_image")}</h4>
             <Field label={i18next.t("floorplan_theme")}>

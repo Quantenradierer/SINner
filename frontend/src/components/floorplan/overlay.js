@@ -1,6 +1,6 @@
 import React from "react";
 import i18next from "../../i18n";
-import {objectName, pretty, roomName} from "./names";
+import {matrixSpec, objectName, pretty, roomName, term} from "./names";
 
 // Port of the overlay layers of the Floorplaner page (roomplanner/ui/index.html).
 // Coordinates are cells; the SVG's viewBox maps them onto the themed image.
@@ -14,11 +14,37 @@ export const LAYERS = [
     ["locks", false, "#ff6b6b"],
     ["objects", false, "#9be37a"],
     ["devices", false, "#ff8a3d"],
+    ["matrix", false, "#3dd6ff"],
     ["lights", false, "#fff3a0"],
     ["grid", false, "#7a8190"],
 ];
 
 export {pretty};
+
+const DEVICE_CONTROLS = {camera: ["camera", "audio"], motion_sensor: ["motion"], alarm_panel: ["alarm"]};
+
+/** The Matrix nodes of a floor: hackable objects, security devices, lights and every door. */
+function matrixNodes(floor) {
+    const nodes = [];
+    const add = (x, y, w, h, name, controls, round) => nodes.push({x, y, w, h, name, controls, round});
+    for (const obj of floor.objects) {
+        const spec = matrixSpec(obj.kind);
+        if (spec) add(obj.x, obj.y, obj.w, obj.h, spec.as ? term("word", spec.as) : objectName(obj.kind), spec.controls, false);
+    }
+    for (const d of floor.devices) {
+        if (DEVICE_CONTROLS[d.kind]) add(d.x, d.y, 1, 1, pretty(d.kind), DEVICE_CONTROLS[d.kind], true);
+    }
+    for (const light of floor.lights) {
+        add(light.x - .5, light.y - .5, 1, 1, `${pretty(light.kind)} ${i18next.t("floorplan_light_word")}`, ["power"], true);
+    }
+    for (const o of floor.openings) {
+        if (o.kind !== "door") continue;  // every door has a controller, visible or not
+        const [x0, y0, x1, y1] = runCoords(o.edges);
+        const lock = o.lock ? ` (${pretty(o.lock)}${o.rating ? " " + o.rating : ""})` : "";
+        add((x0 + x1) / 2 - .5, (y0 + y1) / 2 - .5, 1, 1, `${term("word", "door")}${lock}`, ["lock"], true);
+    }
+    return nodes;
+}
 
 const cellsPath = (cells) => cells.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join("");
 
@@ -174,6 +200,22 @@ export default function FloorOverlay({building, floor, padding, zoom, layers: L,
                             <circle cx={mx} cy={my} r={.2} fill={o.lock ? "#ff6b6b" : "#f5c35b"}/>
                             <Label x={mx} y={my - .45} lines={[[text, 1, "bold"]]} size={.5}
                                    colour={o.entrance ? "#ffe08a" : "#ffb0b0"}/>
+                        </React.Fragment>
+                    );
+                })}
+            </g>}
+
+            {L.matrix && <g>
+                {matrixNodes(floor).map((n, i) => {
+                    const cx = n.x + n.w / 2, cy = n.y + n.h / 2;
+                    const attrs = {fill: "rgba(61,214,255,.22)", stroke: "#3dd6ff", strokeWidth: .08};
+                    return (
+                        <React.Fragment key={i}>
+                            {n.round
+                                ? <circle cx={cx} cy={cy} r={.4} {...attrs}/>
+                                : <rect x={n.x + .05} y={n.y + .05} width={n.w - .1} height={n.h - .1} rx={.1} {...attrs}/>}
+                            <Label x={cx} y={cy + .15} lines={[["◈", 1, "bold"]]} size={.6} colour="#a8f0ff"/>
+                            <title>{`${n.name}: ${n.controls.map((c) => term("control", c)).join(", ")}`}</title>
                         </React.Fragment>
                     );
                 })}

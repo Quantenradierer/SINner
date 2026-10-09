@@ -44,7 +44,7 @@ export default function FloorplanWorkspace() {
     useEffect(() => {
         api.get("/api/npc_creator/floorplans/options/", {params: {lang: i18next.language}})
             .then((response) => {
-                setNames(response.data.names);
+                setNames(response.data.names, response.data.matrix_objects);
                 setOptions(response.data);
             })
             .catch(() => setMessage(i18next.t("floorplan_options_failed")));

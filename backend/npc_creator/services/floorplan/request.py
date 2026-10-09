@@ -21,6 +21,8 @@ MAX_FLOORS_BELOW = 2
 CELL_PX = 25
 SUPERSAMPLE = 1
 SEED_RANGE = 2**31
+# Seeds for one aspect each (which room goes where, furniture, security devices).
+SUB_SEEDS = ("rooms_seed", "furniture_seed", "security_seed")
 
 # Image pixels around the building; the page's overlays rely on it.
 PADDING = 2
@@ -77,6 +79,11 @@ def parse_request(data: object) -> FloorplanRequest:
     _int(raw, "width", MIN_SIDE_CELLS, MAX_SIDE_CELLS)
     _int(raw, "depth", MIN_SIDE_CELLS, MAX_SIDE_CELLS)
     _int(raw, "seed", 0, SEED_RANGE)
+    for key in SUB_SEEDS:  # empty: follows `seed`
+        if raw.get(key) is None:
+            raw.pop(key, None)
+        else:
+            _int(raw, key, 0, SEED_RANGE)
     if "floors_above" in raw:
         _int(raw, "floors_above", 1, MAX_FLOORS_ABOVE)
     if "floors_below" in raw:
@@ -104,6 +111,7 @@ def parse_request(data: object) -> FloorplanRequest:
 def options(language: str = DEFAULT_LANGUAGE) -> dict[str, Any]:
     """Choices and caps for the form, with the room and object names in `language`."""
     from roomplanner.i18n import Language, web_catalogue
+    from roomplanner.rules import load_objects
 
     from roomplanner.geometry import Side
     from roomplanner.params import (
@@ -126,7 +134,13 @@ def options(language: str = DEFAULT_LANGUAGE) -> dict[str, Any]:
         "names": {
             key: names
             for key, names in web_catalogue(Language(language)).items()
-            if key in ("rooms", "objects")
+            if key in ("rooms", "objects", "terms")
+        },
+        # Objects the Matrix layer shows: what they control, and the word to show instead.
+        "matrix_objects": {
+            kind: {"controls": spec.matrix, "as": spec.matrix_as}
+            for kind, spec in sorted(load_objects().items())
+            if spec.matrix
         },
         "limits": {
             "side_cells": [MIN_SIDE_CELLS, MAX_SIDE_CELLS],
