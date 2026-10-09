@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 
 import Prompt from "../generic/prompt";
+import i18next from "../../i18n";
+import {EXAMPLES_EN} from "./locationExamplesEn";
 
 
 const EXAMPLES = [
@@ -105,7 +107,7 @@ const EXAMPLES = [
 ]
 
 const LocationPrompt = props => {
-    return (<Prompt entityType='location' examples={EXAMPLES}/>)
+    return (<Prompt entityType='location' examples={i18next.language === 'en' ? EXAMPLES_EN : EXAMPLES}/>)
 }
 
 

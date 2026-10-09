@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {useLoaderData} from "react-router";
 import Prompt from "../generic/prompt";
+import i18next from "../../i18n";
+import {EXAMPLES_EN} from "./npcExamplesEn";
 
 const EXAMPLES = [
     'Erstelle einen Werkstattbesitzer',
@@ -116,7 +118,7 @@ const NPCPrompt = props => {
 
     const relevantAttributes = ['Aussehen', 'Parameter']
 
-    return (<Prompt entityType='npc' examples={EXAMPLES}/>)
+    return (<Prompt entityType='npc' examples={i18next.language === 'en' ? EXAMPLES_EN : EXAMPLES}/>)
 }
 
 

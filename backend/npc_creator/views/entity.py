@@ -46,6 +46,7 @@ class EntitySerializer(serializers.ModelSerializer):
             "id",
             "state",
             "kind",
+            "language",
             "image_generator_description",
             "image_objects",
             "values",
@@ -143,6 +144,10 @@ class EntityViewSet(
             kinds = self.request.query_params.getlist("kind[]", [])
             queryset = queryset.filter(kind__in=kinds)
 
+            language = self.request.query_params.get("lang")
+            if language in Entity.Languages.values:
+                queryset = queryset.filter(language=language)
+
             search_text = self.request.query_params.get("search", "").strip()
             regex = f"(^|[^A-Za-z]){search_text}([^A-Za-z]|$)"
 
@@ -192,6 +197,15 @@ class EntityViewSet(
 
         entity = ENTITIES_CLASSES[data.get("kind")]()
         entity.prompt = prompt
+        language = data.get("language", Entity.Languages.GERMAN)
+        if language not in Entity.Languages.values:
+            return Response(
+                {
+                    "type": "error",
+                    "error": f"language must be one of {', '.join(Entity.Languages.values)}",
+                }
+            )
+        entity.language = language
         result = entity.Fill(entity=entity).call()
         if not result:
             return Response({"type": "error", "error": result.error})

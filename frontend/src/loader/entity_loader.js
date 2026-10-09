@@ -1,4 +1,5 @@
 import api from "../axios";
+import i18next from "../i18n";
 
 function getFilterKeys(filter) {
   return Object.entries(filter)
@@ -20,7 +21,7 @@ export default class EntityLoader {
 
         let url = new URL(request.url);
         try {
-            const response = await api.get(`/api/npc_creator/entities/`, {params: {kind: filtered, search: search, page: page, favorites: favorites, own: own}})
+            const response = await api.get(`/api/npc_creator/entities/`, {params: {kind: filtered, search: search, page: page, favorites: favorites, own: own, lang: i18next.language}})
             if (response.status == 200) {
                 return response.data
             }

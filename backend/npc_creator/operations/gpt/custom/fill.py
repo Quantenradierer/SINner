@@ -16,6 +16,16 @@ class Fill(entity.Fill):
             "- Gib immer etwas neues aus, statt die Eingabe zu wiederholen\r\n"
         )
 
+        if self.entity.language == self.entity.Languages.ENGLISH:
+            self.system_prompt = (
+                "- You are an illustrator with 100 years of experience\r\n"
+                "- Answer ONLY as JSON in the format {'appearance': 'A good description for an image generator'}\r\n"
+                "- The JSON may only contain this one string and no further objects/nesting\r\n"
+                "- Do not ask for details, make up details yourself\r\n"
+                "- Fill in the appearance based on the input\r\n"
+                "- Always output something new instead of repeating the input\r\n"
+            )
+
     def prompt(self):
         return [
             self.entity.prompt,
