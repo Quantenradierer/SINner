@@ -185,10 +185,7 @@ const resources = {
             floorplan_dd2vtt_hint: "Universal VTT, z. B. für Roll20 oder Foundry",
             floorplan_layer_image: "Bild",
             floorplan_layer_labels: "Raumbeschreibungen",
-            floorplan_layer_locks: "Schlösser & Eingänge",
             floorplan_layer_objects: "Möbel",
-            floorplan_layer_devices: "Sicherheitstechnik",
-            floorplan_layer_lights: "Lichter",
             floorplan_layer_matrix: "Matrix-Geräte",
             floorplan_layer_grid: "Raster",
 
@@ -806,10 +803,7 @@ const resources = {
             "floorplan_dd2vtt_hint": "Universal VTT, e.g. for Roll20 or Foundry",
             "floorplan_layer_image": "Image",
             "floorplan_layer_labels": "Room descriptions",
-            "floorplan_layer_locks": "Locks & entrances",
             "floorplan_layer_objects": "Furniture",
-            "floorplan_layer_devices": "Security devices",
-            "floorplan_layer_lights": "Lights",
             "floorplan_layer_matrix": "Matrix devices",
             "floorplan_layer_grid": "Grid",
 

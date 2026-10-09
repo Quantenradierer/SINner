@@ -11,11 +11,8 @@ const ROOM_LABEL_PX = 12;
 export const LAYERS = [
     ["image", true, "#888"],
     ["labels", true, "#ffffff"],
-    ["locks", false, "#ff6b6b"],
     ["objects", false, "#9be37a"],
-    ["devices", false, "#ff8a3d"],
     ["matrix", false, "#3dd6ff"],
-    ["lights", false, "#fff3a0"],
     ["grid", false, "#7a8190"],
 ];
 
